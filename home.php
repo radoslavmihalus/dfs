@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="../../favicon.ico">
-        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300|500' rel='stylesheet' type='text/css'>
         <title>DOGFORSHOW</title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        
+
                     </div>
                     <div class="col-md-6">
                         <p class="text-center text-uppercase landing_header_slogan">"Bringing together breeders, owners and handlers of <strong>purebred dogs from over the world</strong>"</p>
@@ -91,6 +91,42 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <h2 class="heading text-center text-uppercase"><strong>Present internationally on the right place</strong></h2>
+                <p class="text-center">New social network dedicated to owners of purebred dogs, kennels and handlers from over the world. Create a detailed profile of your canine champion and list all your show successes in one place. Plan litters, submit offers at stud, add pictures and take the opportunity to contact potential buyers internationally.</p>
+            </div>
+        </div>
+        <div class="section_divider"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border" aria-hidden="true"></span></p>
+                    <h3 class="section_heading text-center text-uppercase">Kennel ( Breeder )</h3>
+                    <p class="section_text text-justify">Create a clear profile of your kennel with unique profiles of your dogs, offer dogs at stud, add awards, dogshow successes, titles, health informations, working exams, photos, inform about planned litters, offer puppies for sale, share successes via social networks</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>
+                    <h3 class="section_heading text-center text-uppercase">Owner of purebred dog</h3>
+                    <p class="section_text text-justify">Create a clear profile of the owner of purebred dogs with unique profiles of your dogs and the possibility of changing profile to kennel, offer dogs at stud, add awards, dogshow successes, titles, health informations, working exams, photos, share successes via social networks.</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>
+                    <h3 class="section_heading text-center text-uppercase">Handler</h3>
+                    <p class="section_text text-justify">Create a clear profile of handler, add awards and certificates, dogshow successes and titles, photos, share successes via social networks, offer your handling services to whole world.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section_divider"></div>
+        <div class="jumbotron brown">
+            <div class="container">
+                <div class="row">
+                <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Follow with us how we growing</strong></h2>
+                <p class="secondary_heading text-center">Forget about the classic advertising portals and join the fast growing community</p>
+            </div>
+            </div>
+        </div>
+
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
