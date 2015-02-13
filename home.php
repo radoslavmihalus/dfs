@@ -14,8 +14,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Bootstrap theme -->
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="css/main.css" rel="stylesheet">
+        <!-- Landing page style -->
+        <link href="css/home.css" rel="stylesheet">
     </head>
 
     <body role="document">
@@ -32,8 +32,26 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
+
+                    </div>
+                    <div class="col-md-6">
                         <p class="text-center text-uppercase landing_header_slogan">"Bringing together breeders, owners and handlers of <strong>purebred dogs from over the world</strong>"</p>
-                        <button type="button" class="btn btn-danger btn-lg btn-block"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Join us today</button>
+                        <div class="panel panel-default registration_block transparent_white">
+                            <div class="panel-body">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="Name" placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    </div>
+                                </form>
+                                <button type="submit" class="btn btn-danger btn-lg btn-block"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Join us today</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
