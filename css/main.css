@@ -1,0 +1,26 @@
+/* 
+    Document   : main
+    Created on : 12.2.2015, 21:23:26
+    Author     : admin
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.landing_header
+{
+    height:600px;
+    background:url("../img/header.jpg")no-repeat center center;
+    background-size:cover;
+    
+}
+.landing_header_slogan
+{
+    padding-top: 100px;
+    color:white;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 30px !important;
+}
+.landing_text_white
+{
+    color:white;
+}
