@@ -52,7 +52,7 @@
                                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
                                                 <select class="form-control" id="">
                                                     <option>Day</option>
@@ -62,7 +62,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
                                                 <select class="form-control" id="">
                                                     <option>Month</option>
@@ -72,7 +72,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
                                                 <select class="form-control" id="">
                                                     <option>Year</option>
