@@ -32,7 +32,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-
+                        
                     </div>
                     <div class="col-md-6">
                         <p class="text-center text-uppercase landing_header_slogan">"Bringing together breeders, owners and handlers of <strong>purebred dogs from over the world</strong>"</p>
@@ -43,10 +43,45 @@
                                         <input type="text" class="form-control" id="Name" placeholder="Name">
                                     </div>
                                     <div class="form-group">
+                                        <input type="text" class="form-control" id="Name" placeholder="Surname">
+                                    </div>
+                                    <div class="form-group">
                                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <select class="form-control" id="">
+                                                    <option>Day</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <select class="form-control" id="">
+                                                    <option>Month</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <select class="form-control" id="">
+                                                    <option>Year</option>
+                                                    <option>2012</option>
+                                                    <option>2013</option>
+                                                    <option>2014</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                                 <button type="submit" class="btn btn-danger btn-lg btn-block"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Join us today</button>
