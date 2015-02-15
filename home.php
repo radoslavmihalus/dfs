@@ -36,10 +36,11 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active text-uppercase landing_menu_typography"><a href="#">Join Us<span class="sr-only">(current)</span></a></li>
-                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">About</a></li>
+                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">Join us</a></li>
+                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">About us</a></li>
                         <li><a href="#" class="text-uppercase landing_navbar_typography">Follow us</a></li>
-                        <li><a href="#" class="text-uppercase landing_navbar_typography">Contact</a></li>
+                        <li><a href="#" class="text-uppercase landing_navbar_typography">Discover us</a></li>
+                        <li><a href="#" class="text-uppercase landing_navbar_typography">Contact us</a></li>
                 </div>
         </nav>
         <div class="jumbotron landing_header">
