@@ -18,6 +18,11 @@
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">
         <!-- Landing page style -->
         <link href="css/home.css" rel="stylesheet">
+        <style>
+            body {
+                padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
+            }
+        </style>
     </head>
 
     <body role="document">
@@ -30,17 +35,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logotyp" href="#">
+                    <a class="navbar-brand logotyp" href="#top">
                         <img alt="Brand" src="img/logo.png" alt="Dogforshow">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">Join us</a></li>
-                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">About us</a></li>
-                        <li><a href="#" class="text-uppercase landing_navbar_typography">Follow us</a></li>
-                        <li><a href="#" class="text-uppercase landing_navbar_typography">Discover us</a></li>
-                        <li><a href="#" class="text-uppercase landing_navbar_typography">Contact us</a></li>
+                        <li><a href="#about" class="page-scroll text-uppercase landing_navbar_typography">About us</a></li>
+                        <li><a href="#follow" class="text-uppercase landing_navbar_typography">Follow us</a></li>
+                        <li><a href="#discover" class="text-uppercase landing_navbar_typography">Discover us</a></li>
+                        <li><a href="#contact" class="text-uppercase landing_navbar_typography">Contact us</a></li>
                 </div>
         </nav>
         <div class="jumbotron landing_header">
@@ -77,80 +82,101 @@
                 </div>
             </div>
         </div>
-                    <div class="container animatedParent animateOnce">
+        <section id="about">
+            <div class="container animatedParent animateOnce">
                 <div class="row animated fadeIn">
                     <h2 class="heading text-center text-uppercase"><strong>Present internationally on the right place</strong></h2>
                     <p class="secondary_heading text-center">New social network dedicated to owners of purebred dogs, kennels and handlers from over the world. Create a detailed profile of your canine champion and list all your show successes in one place. Plan litters, submit offers at stud, add pictures and take the opportunity to contact potential buyers internationally.</p>
                 </div>
             </div>
-          <div class="section_divider"></div>
-        <div class="container animatedParent animateOnce">
-            <div class="row animated fadeIn">
-                <div class="col-md-4">
-                    <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>
-                    <h3 class="section_heading text-center text-uppercase">Kennel ( Breeder )</h3>
-                    <ul class="section_list">
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear profile of your kennel</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create unique profiles of your dogs</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your dogs at stud</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Inform about planned litters</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer puppies for sale from planned litters</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and titles of your dogs</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add dogshow successes and keep show history of your dog in one place</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add working exams and health informations</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add pedigrees</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos of your dogs</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share your succeses on social networks </li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>
-                    <h3 class="section_heading text-center text-uppercase">Owner of purebred dog</h3>
-                    <ul class="section_list">
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear owner profile</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Possibility to migrate on kennel profile</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your dogs at stud</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and titles of your dogs</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add dogshow successes and keep show history of your dog in one place</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add working exams and health informations</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add pedigrees</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos of your dogs</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share your succeses on social networks </li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>
-                    <h3 class="section_heading text-center text-uppercase">Handler</h3>
-                    <ul class="section_list">
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear handler profile</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and certificates</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add your dogshow successes and titles</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add breeds list for handling</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your handling services</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share successes via social networks</li>
-                        <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="section_divider"></div>
-        <div class="jumbotron brown animatedParent animateOnce">
-            <div class="container">
+            <div class="container animatedParent animateOnce">
                 <div class="row animated fadeIn">
-                    <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Follow with us how we growing</strong></h2>
-                    <p class="secondary_heading text-center">Forget about the classic advertising portals and join the fast growing community</p>
+                    <div class="col-md-4">
+                        <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>
+                        <h3 class="section_heading text-center text-uppercase">Kennel ( Breeder )</h3>
+                        <ul class="section_list">
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear profile of your kennel</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create unique profiles of your dogs</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your dogs at stud</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Inform about planned litters</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer puppies for sale from planned litters</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and titles of your dogs</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add dogshow successes and keep show history of your dog in one place</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add working exams and health informations</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add pedigrees</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos of your dogs</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share your succeses on social networks </li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>
+                        <h3 class="section_heading text-center text-uppercase">Owner of purebred dog</h3>
+                        <ul class="section_list">
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear owner profile</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Possibility to migrate on kennel profile</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your dogs at stud</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and titles of your dogs</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add dogshow successes and keep show history of your dog in one place</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add working exams and health informations</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add pedigrees</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos of your dogs</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share your succeses on social networks </li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>
+                        <h3 class="section_heading text-center text-uppercase">Handler</h3>
+                        <ul class="section_list">
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear handler profile</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and certificates</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add your dogshow successes and titles</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add breeds list for handling</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your handling services</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share successes via social networks</li>
+                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container animatedParent animateOnce">
-            <div class="row animated fadeIn">
-                <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Discover the DOGFORSHOW community closer</strong></h2>
-                <p class="secondary_heading text-center">We are building an international community of breeders, owners and handlers of purebred dogs, helping them to present themselves, communicate with each other and mutually inspire</p>
+            <div class="section_divider"></div>
+        </section>
+        <section id="follow">
+            <div class="jumbotron brown animatedParent animateOnce">
+                <div class="container">
+                    <div class="row animated fadeIn">
+                        <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Follow with us how we growing</strong></h2>
+                        <p class="secondary_heading text-center">Forget about the classic advertising portals and join the fast growing community</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+        <section id="discover">
+            <div class="container animatedParent animateOnce">
+                <div class="row animated fadeIn">
+                    <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Discover the DOGFORSHOW community closer</strong></h2>
+                    <p class="secondary_heading text-center">We are building an international community of breeders, owners and handlers of purebred dogs, helping them to present themselves, communicate with each other and mutually inspire</p>
+                </div>
+                <div class="row animated fadeIn">
+                    <div class="col-md-4 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Kennels</a>
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Owners of purebred dogs</a>
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Handlers</a>
+                    </div>
+                    <div class="col-md-4 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Dogs</a>
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Stud dogs</a>
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Planned litters</a>
+                    </div>
+                    <div class="col-md-4 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Puppies for sale</a>
+                    </div>
+                </div>
+            </div>
+            <div class="section_divider"></div>
+        </section>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -159,5 +185,7 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src='js/css3-animate-it.js'></script>
+        <script src="js/jquery.easing.min.js"></script>
+        <script src="js/scrolling-nav.js"></script>
     </body>
 </html>

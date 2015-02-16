@@ -11,7 +11,6 @@
 }
 .landing_header
 {
-    padding-top: 90px;
     height:auto;
     background:url("../img/header.jpg")no-repeat center center;
     background-size:cover;
@@ -111,4 +110,11 @@ ul.section_list
     font-size: 20px !important;
     background-color: white !important;
     border-bottom: #a5987f 2px solid;
+}
+.community_link a
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: white;
+    color: #a5987f;
+    border: #a5987f 1px solid;
 }
