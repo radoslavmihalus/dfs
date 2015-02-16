@@ -26,6 +26,7 @@
     </head>
 
     <body role="document">
+        <!-- Navigation DOGFORSHOW  -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -42,12 +43,13 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">Join us</a></li>
-                        <li><a href="#about" class="page-scroll text-uppercase landing_navbar_typography">About us</a></li>
-                        <li><a href="#follow" class="text-uppercase landing_navbar_typography">Follow us</a></li>
-                        <li><a href="#discover" class="text-uppercase landing_navbar_typography">Discover us</a></li>
+                        <li><a href="#about" class="page-scroll text-uppercase landing_navbar_typography">About</a></li>
+                        <li><a href="#follow" class="text-uppercase landing_navbar_typography">How we grow</a></li>
+                        <li><a href="#discover" class="text-uppercase landing_navbar_typography">Discover dogforshow</a></li>
                         <li><a href="#contact" class="text-uppercase landing_navbar_typography">Contact us</a></li>
                 </div>
         </nav>
+        <!-- DOGFORSHOW landing jumbotron -->
         <div class="jumbotron landing_header">
             <div class="container animatedParent animateOnce">
                 <div class="row animated fadeIn">
@@ -58,6 +60,7 @@
                         <p class="text-center text-uppercase landing_header_slogan">"Bringing together breeders, owners and handlers of <strong>purebred dogs from over the world</strong>"</p>
                         <div class="panel panel-default registration_block transparent_white">
                             <div class="panel-body">
+                                <!-- DOGFORSHOW Sign up form -->
                                 <form>
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="txtName" placeholder="Name">
@@ -82,6 +85,7 @@
                 </div>
             </div>
         </div>
+        <!-- About DOGFORSHOW section -->
         <section id="about">
             <div class="container animatedParent animateOnce">
                 <div class="row animated fadeIn">
@@ -143,6 +147,7 @@
             </div>
             <div class="section_divider"></div>
         </section>
+        <!-- Follow section -->
         <section id="follow">
             <div class="jumbotron brown animatedParent animateOnce">
                 <div class="container">
@@ -153,6 +158,7 @@
                 </div>
             </div>
         </section>
+        <!-- Discover section -->
         <section id="discover">
             <div class="container animatedParent animateOnce">
                 <div class="row animated fadeIn">
@@ -160,22 +166,77 @@
                     <p class="secondary_heading text-center">We are building an international community of breeders, owners and handlers of purebred dogs, helping them to present themselves, communicate with each other and mutually inspire</p>
                 </div>
                 <div class="row animated fadeIn">
-                    <div class="col-md-4 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Kennels</a>
-                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Owners of purebred dogs</a>
-                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Handlers</a>
+                    <div class="col-md-6">
+                        <div class="col-md-6 community_link form-group">
+                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Kennels</a>
+                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Owners of purebred dogs</a>
+                        </div>
+                        <div class="col-md-6 community_link form-group">
+                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Handlers</a>
+                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Best in show</a>
+                        </div>
                     </div>
-                    <div class="col-md-4 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Dogs</a>
-                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Stud dogs</a>
-                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Planned litters</a>
+                    <div class="col-md-6">
+                        <div class="col-md-6 community_link form-group">
+                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Dogs</a>
+                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Stud dogs</a>
+                        </div>
+                        <div class="col-md-6 community_link form-group">
+                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Planned litters</a>
+                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Puppies for sale</a>
+                        </div>
                     </div>
-                    <div class="col-md-4 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Puppies for sale</a>
+                </div>
+                <!-- Reference Carousel -->
+                <div class="row animated fadeIn">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="img/referer1.jpg" class="img-circle" alt="Andrax gold kennel">
+                                <div class="carousel-caption">
+                                    <h3>Andrax Gold kennel</h3>
+                                    <p class="text-center">Jednoduchosť, dostupnosť, prehľadnosť a krásna grafika portálu ma oslovila a pridala som na ňu svoju chovateľskú stanicu. Jej celkový dosah a návštevnosť na webe sú výbornou prezentáciou úspešných jedincov a vynikajúcou podporou pre skutočných chovateľov</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="section_divider"></div>
+        </section>
+        <section id="contact">
+            <div class="jumbotron brown animatedParent animateOnce">
+                <div class="container animatedParent animateOnce">
+                    <div class="row animated fadeIn">
+                        <div class="col-md-6 brown">
+                            <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Contact us</strong></h2>
+                            <p class="secondary_heading text-center">Please contact us via the contact form below if you have any questions or issues or if you are interested in advertising on the DOGFORSHOW portal.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Follow us</strong></h2>
+                            <p class="secondary_heading text-center">Please contact us via the contact form below if you have any questions or issues or if you are interested in advertising on the DOGFORSHOW portal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Bootstrap core JavaScript

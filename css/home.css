@@ -44,7 +44,7 @@
 .secondary_heading
 {
     padding:10px;
-    font-size:15px;
+    font-size:17px !important;
 }
 .section_heading
 {
@@ -82,7 +82,7 @@
 {
     background-color: #a5987f !important;
     color:white;
-    height:600px;
+    height:auto;
 }
 ul.section_list
 {
