@@ -36,20 +36,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logotyp" href="#top">
-                        <img alt="Brand" src="img/logo.png" alt="Dogforshow">
+                    <a class="navbar-brand logotyp" href="#">
+                        <img alt="Brand" src="img/logo.png">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">Join us</a></li>
+                        <li><a href="#join" class="page-scroll text-uppercase landing_navbar_typography">Join us</a></li>
                         <li><a href="#about" class="page-scroll text-uppercase landing_navbar_typography">About</a></li>
-                        <li><a href="#follow" class="text-uppercase landing_navbar_typography">How we grow</a></li>
-                        <li><a href="#discover" class="text-uppercase landing_navbar_typography">Discover dogforshow</a></li>
-                        <li><a href="#contact" class="text-uppercase landing_navbar_typography">Contact us</a></li>
+                        <li><a href="#follow" class="page-scroll text-uppercase landing_navbar_typography">How we grow</a></li>
+                        <li><a href="#discover" class="page-scroll text-uppercase landing_navbar_typography">Discover dogforshow</a></li>
+                        <li><a href="#contact" class="page-scroll text-uppercase landing_navbar_typography">Contact us</a></li>
                 </div>
         </nav>
         <!-- DOGFORSHOW landing jumbotron -->
+        <section id="join">
         <div class="jumbotron landing_header">
             <div class="container animatedParent animateOnce">
                 <div class="row animated fadeIn">
@@ -85,6 +86,7 @@
                 </div>
             </div>
         </div>
+        </section>
         <!-- About DOGFORSHOW section -->
         <section id="about">
             <div class="container animatedParent animateOnce">
