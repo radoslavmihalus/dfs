@@ -42,7 +42,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#join" class="page-scroll text-uppercase landing_navbar_typography">Join us</a></li>
+                        <li><a href="#join" class="page-scroll text-uppercase landing_navbar_typography">Register</a></li>
                         <li><a href="#about" class="page-scroll text-uppercase landing_navbar_typography">About</a></li>
                         <li><a href="#follow" class="page-scroll text-uppercase landing_navbar_typography">How we grow</a></li>
                         <li><a href="#discover" class="page-scroll text-uppercase landing_navbar_typography">Discover dogforshow</a></li>
@@ -51,41 +51,41 @@
         </nav>
         <!-- DOGFORSHOW landing jumbotron -->
         <section id="join">
-        <div class="jumbotron landing_header">
-            <div class="container animatedParent animateOnce">
-                <div class="row animated fadeIn">
-                    <div class="col-md-6">
+            <div class="jumbotron landing_header">
+                <div class="container animatedParent animateOnce">
+                    <div class="row animated fadeIn">
+                        <div class="col-md-6">
 
-                    </div>
-                    <div class="col-md-6 container">
-                        <p class="text-center text-uppercase landing_header_slogan">"Bringing together breeders, owners and handlers of <strong>purebred dogs from over the world</strong>"</p>
-                        <div class="panel panel-default registration_block transparent_white">
-                            <div class="panel-body">
-                                <!-- DOGFORSHOW Sign up form -->
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="txtName" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="txtSurname" placeholder="Surname">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="txtEmail" placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="txtPassword" placeholder="Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm password">
-                                    </div>
-                                </form>
-                                <button type="submit" class="btn btn-danger btn-lg btn-block"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Join us today</button>
+                        </div>
+                        <div class="col-md-6 container">
+                            <p class="text-center text-uppercase landing_header_slogan">"Bringing together breeders, owners and handlers of <strong>purebred dogs from over the world</strong>"</p>
+                            <div class="panel panel-default registration_block transparent_white">
+                                <div class="panel-body">
+                                    <!-- DOGFORSHOW Sign up form -->
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtName" placeholder="Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtSurname" placeholder="Surname">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="txtEmail" placeholder="Email">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="txtPassword" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm password">
+                                        </div>
+                                    </form>
+                                    <button type="submit" class="btn btn-danger btn-lg btn-block"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Join us today</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </section>
         <!-- About DOGFORSHOW section -->
         <section id="about">
@@ -156,6 +156,34 @@
                     <div class="row animated fadeIn">
                         <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Follow with us how we growing</strong></h2>
                         <p class="secondary_heading text-center">Forget about the classic advertising portals and join the fast growing community</p>
+                    </div>
+                    <!-- Registered users counters -->
+                    <div class="row animated fadeIn">
+
+                        <div class="col-md-4">
+                            <div class="col-md-6">
+                                fefefe
+                            </div>
+                            <div class="col-md-6">
+                                hfghgfhgf
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-6">
+                                hfghfghfgh
+                            </div>
+                            <div class="col-md-6">
+                                hfgohgfohkpf
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-6">
+                                hfgh7rtrt
+                            </div>
+                            <div class="col-md-6">
+                                kuytfvbnjh
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -247,8 +275,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Animation scripts -->
         <script src='js/css3-animate-it.js'></script>
         <script src="js/jquery.easing.min.js"></script>
+        <!-- Scrolling scripts -->
         <script src="js/scrolling-nav.js"></script>
+        <!-- Counter scripts -->
+
     </body>
 </html>
