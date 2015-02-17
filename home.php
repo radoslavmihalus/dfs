@@ -159,29 +159,34 @@
                     </div>
                     <!-- Registered users counters -->
                     <div class="row animated fadeIn">
-
                         <div class="col-md-4">
                             <div class="col-md-6">
-                                fefefe
+                                <p class="text-center counter_number">1.140</p>
+                                <p class="text-center counter_description">Purebred dogs</p>
                             </div>
                             <div class="col-md-6">
-                                hfghgfhgf
+                                <p class="text-center counter_number">417</p>
+                                <p class="text-center counter_description">Stud dogs</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="col-md-6">
-                                hfghfghfgh
+                                <p class="text-center counter_number">206</p>
+                                <p class="text-center counter_description">Planned litters</p>
                             </div>
                             <div class="col-md-6">
-                                hfgohgfohkpf
+                                <p class="text-center counter_number">660</p>
+                                <p class="text-center counter_description">Kennels</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="col-md-6">
-                                hfgh7rtrt
+                                <p class="text-center counter_number">392</p>
+                                <p class="text-center counter_description">Owners</p>
                             </div>
                             <div class="col-md-6">
-                                kuytfvbnjh
+                                <p class="text-center counter_number">50</p>
+                                <p class="text-center counter_description">Handlers</p>
                             </div>
                         </div>
                     </div>
@@ -217,39 +222,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Reference Carousel -->
-                <div class="row animated fadeIn">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner" role="listbox">
-                            <div class="item active">
-                                <img src="img/referer1.jpg" class="img-circle" alt="Andrax gold kennel">
-                                <div class="carousel-caption">
-                                    <h3>Andrax Gold kennel</h3>
-                                    <p class="text-center">Jednoduchosť, dostupnosť, prehľadnosť a krásna grafika portálu ma oslovila a pridala som na ňu svoju chovateľskú stanicu. Jej celkový dosah a návštevnosť na webe sú výbornou prezentáciou úspešných jedincov a vynikajúcou podporou pre skutočných chovateľov</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
             </div>
+                <!-- Reference Carousel -->
             <div class="section_divider"></div>
         </section>
         <section id="contact">
