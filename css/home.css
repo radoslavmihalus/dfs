@@ -78,6 +78,10 @@
 {
     margin-bottom: 50px;
 }
+.white
+{
+    color:white;
+}
 .brown
 {
     background-color: #a5987f !important;
@@ -139,3 +143,17 @@ ul.section_list
     font-size:17px !important;
     font-family: 'Roboto Condensed', sans-serif;
 }
+.follow_link
+{
+    color:white;
+    margin-right: 10px;
+}
+.contact_textarea
+{
+    height:100px;
+}
+.landing_captcha
+{
+    width:150px !important;
+}
+

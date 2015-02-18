@@ -18,6 +18,9 @@
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">
         <!-- Landing page style -->
         <link href="css/home.css" rel="stylesheet">
+        <!-- Glyphicons -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
         <style>
             body {
                 padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -62,7 +65,7 @@
                             <div class="panel panel-default registration_block transparent_white">
                                 <div class="panel-body">
                                     <!-- DOGFORSHOW Sign up form -->
-                                    <form>
+                                    <form id="frmSignIn">
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="txtName" placeholder="Name">
                                         </div>
@@ -154,7 +157,7 @@
             <div class="jumbotron brown animatedParent animateOnce">
                 <div class="container">
                     <div class="row animated fadeIn">
-                        <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Follow with us how we growing</strong></h2>
+                        <h2 class="heading text-center text-uppercase"><span class="fa fa-line-chart" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Follow with us how we growing</strong></h2>
                         <p class="secondary_heading text-center">Forget about the classic advertising portals and join the fast growing community</p>
                     </div>
                     <!-- Registered users counters -->
@@ -213,7 +216,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="col-md-6 community_link form-group">
-                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Dogs</a>
+                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Purebred dogs</a>
                             <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">Stud dogs</a>
                         </div>
                         <div class="col-md-6 community_link form-group">
@@ -223,7 +226,7 @@
                     </div>
                 </div>
             </div>
-                <!-- Reference Carousel -->
+            <!-- Reference Carousel -->
             <div class="section_divider"></div>
         </section>
         <section id="contact">
@@ -233,10 +236,51 @@
                         <div class="col-md-6 brown">
                             <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Contact us</strong></h2>
                             <p class="secondary_heading text-center">Please contact us via the contact form below if you have any questions or issues or if you are interested in advertising on the DOGFORSHOW portal.</p>
+                            <form id="Contact">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="txtName" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="txtSurname" placeholder="Surname">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="txtEmail" placeholder="Email">
+                                </div>
+                            </div>
+                                <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea type="text" class="form-control contact_textarea" id="txtPassword" placeholder="Message text"></textarea>
+                                </div>
+                                </div>
+                            </form>
+                            <div class="col-md-6">
+<!--                                <div class="g-recaptcha landing_captcha" data-sitekey="6LdBSgITAAAAAPHEfML6Of8AKPJ1CTbIrI7BdEql"></div>-->
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;Send</button>
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Follow us</strong></h2>
-                            <p class="secondary_heading text-center">Please contact us via the contact form below if you have any questions or issues or if you are interested in advertising on the DOGFORSHOW portal.</p>
+                            <h2 class="heading text-center text-uppercase"><strong>Follow us</strong></h2>
+                            <p class="secondary_heading text-center">
+                                <a href="https://www.facebook.com/dogforshow" target="_blank" title="DOGFORSHOW on facebook">
+                                    <span class="fa fa-facebook-official fa-2x follow_link"></span>
+                                </a>
+                                <a href="https://plus.google.com/+Dogforshow" target="_blank" title="DOGFORSHOW on Google+">
+                                    <span class="fa fa-google-plus-square fa-2x white follow_link"></span>
+                                </a>
+<!--                                <a href="https://twitter.com/DOGFORSHOW" target="_blank" title="DOGFORSHOW on Twitter">
+                                    <span class="fa fa-twitter-square fa-2x white follow_link"></span>
+                                </a>
+                                <a href="https://www.pinterest.com/DOGFORSHOW" target="_blank" title="DOGFORSHOW on Pinterest">
+                                    <span class="fa fa-pinterest-square fa-2x white follow_link"></span>
+                                </a>-->
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -255,6 +299,8 @@
         <!-- Scrolling scripts -->
         <script src="js/scrolling-nav.js"></script>
         <!-- Counter scripts -->
+        <!-- Google re-captcha -->
+        <script src='https://www.google.com/recaptcha/api.js'></script>
 
     </body>
 </html>
