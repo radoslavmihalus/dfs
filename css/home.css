@@ -84,7 +84,7 @@
 }
 .brown
 {
-    background-color: #a5987f !important;
+    background-color: #8C8067 !important;
     color:white;
     height:auto;
 }
@@ -124,8 +124,8 @@ ul.section_list
 {
     font-family: 'Roboto Condensed', sans-serif;
     background-color: white;
-    color: #a5987f;
-    border: #a5987f 1px solid;
+    color: #8C8067;
+    border: #8C8067 1px solid;
 }
 .carousel_image
 {
@@ -156,4 +156,8 @@ ul.section_list
 {
     width:150px !important;
 }
-
+.background1
+{
+    background:url("../img/back1.jpg")no-repeat center center;
+    background-size:cover;
+}

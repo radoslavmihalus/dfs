@@ -154,7 +154,7 @@
         </section>
         <!-- Follow section -->
         <section id="follow">
-            <div class="jumbotron brown animatedParent animateOnce">
+            <div class="jumbotron brown animatedParent animateOnce background1">
                 <div class="container">
                     <div class="row animated fadeIn">
                         <h2 class="heading text-center text-uppercase"><span class="fa fa-line-chart" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Follow with us how we growing</strong></h2>
