@@ -3,7 +3,7 @@ root {
     display: block;
 }
 body {
-    background-color: #f8f8f8;
+    background-color: #E0E0E0;
 }
 
 #wrapper {
@@ -34,6 +34,10 @@ body {
     margin-right: 10px;
     border:#D0D0D0 2px solid;
 }
+.popup_boxstyle_headings
+{
+    font-size:12px;
+}
 .no_image_thumb
 {
     width:50px;
@@ -46,7 +50,12 @@ body {
 }
 .friend_request_name
 {
+    font-size:13px;
+}
+.message_text
+{
     font-size:12px;
+    color:#9197a3;
 }
 .navbar-top-links {
     margin-right: 0;

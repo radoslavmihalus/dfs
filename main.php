@@ -40,7 +40,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
                         <li>
-                            <p class="text-center">
+                            <p class="text-center popup_boxstyle_headings">
                                 <strong>Friends requests</strong>
                             </p>
                         </li>
@@ -48,7 +48,7 @@
                         <li>
                             <a href="#">
                                 <div >
-                                    <div class="no_image_thumb pull-left text-center img-circle"><i class="fa fa-user fa-2x "></i></div>  
+                                    <div class="no_image_thumb pull-left text-center img-rounded"><i class="fa fa-user fa-2x "></i></div>  
                                     <p class="friend_request_name"><strong>Radoslav Mihalus</strong></p>
                                 </div>
                                 <div><button type="button" class="btn btn-default btn-xs"><i class="fa fa-user-plus"></i> Accept</button> <button type="button" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Decline</button></div>
@@ -58,7 +58,7 @@
                         <li>
                             <a href="#">
                                 <div >
-                                    <img src="img/referer2.jpg" class="pull-left image_thumb img-circle"/>  
+                                    <img src="img/referer2.jpg" class="pull-left image_thumb img-rounded"/>  
                                     <p class="friend_request_name"><strong>Shitzu kennel Slovakia</strong></p>
                                 </div>
                                 <div><button type="button" class="btn btn-default btn-xs"><i class="fa fa-user-plus"></i> Accept</button> <button type="button" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Decline</button></div>
@@ -68,7 +68,7 @@
                         <li>
                             <a href="#">
                                 <div >
-                                    <img src="img/referer1.jpg" class="pull-left image_thumb img-circle"/>  
+                                    <img src="img/referer1.jpg" class="pull-left image_thumb img-rounded"/>  
                                     <p class="friend_request_name"><strong>Martina Brunina</strong></p>
                                 </div>
                                 <div><button type="button" class="btn btn-default btn-xs"><i class="fa fa-user-plus"></i> Accept</button> <button type="button" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Decline</button></div>
@@ -76,63 +76,44 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a class="text-center" href="#">
+                            <a class="text-center popup_boxstyle_headings" href="#">
                                 <strong>See all friend requests</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-messages -->
                 </li>
+                <!-- User-messages -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                        <span class="badge">0</span>  <i class="fa fa-envelope fa-fw color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
                         <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
+                            <p class="text-center popup_boxstyle_headings">
+                                <strong>Messages</strong>
+                            </p>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
+                                <div >
+                                    <img src="img/referer1.jpg" class="pull-left image_thumb img-rounded"/>  
+                                    <p class="friend_request_name"><strong>Martina Brunina</strong></p>
                                 </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                <div>
+                                    <p class="message_text">Ahoj, tak tento portal je naozaj na urovni...</p>
+                                </div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
+                            <a class="text-center popup_boxstyle_headings" href="#">
                                 <strong>Read All Messages</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-messages -->
                 </li>
                 <!-- User Notifications -->
                 <li class="dropdown">
@@ -141,6 +122,12 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
+                            <p class="text-center popup_boxstyle_headings">
+                                <strong>Notifications</strong>
+                            </p>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
                             <a href="#">
                                 <div>
                                     <i class="fa fa-comment fa-fw"></i> New Comment
@@ -148,53 +135,24 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="divider"></li>
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <i class="fa fa-thumbs-up fa-fw"></i> New like
                                     <span class="pull-right text-muted small">4 minutes ago</span>
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
+                            <a class="text-center popup_boxstyle_headings" href="#">
+                                <strong>See All notifications</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-alerts -->
                 </li>
-                <!-- /.dropdown -->
+                <!-- User account -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                         <i class="fa fa-user fa-fw color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
@@ -208,12 +166,9 @@
                         <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-user -->
                 </li>
-                <!-- /.dropdown -->
             </ul>
-            <!-- /.navbar-top-links -->
-
+            <!-- User sidebar navigation -->
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav in" id="side-menu">
@@ -228,93 +183,9 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li>
-                            <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li class="">
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li class="">
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level collapse" aria-expanded="false" style="height: 0px;">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+<!--                        <li>
+                            <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> My DOGFORSHOW profile</a>
+                        </li>-->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
