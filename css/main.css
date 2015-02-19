@@ -52,6 +52,25 @@ body {
 {
     font-size:13px;
 }
+.profile
+{
+    height:70px;
+    background-color: #8C8067;
+}
+.profile_name
+{
+    font-size:13px;
+    color: white;
+}
+.user_sidebar_link a
+{
+    color:#8C8067;
+}
+.user_sidebar_link a:hover
+{
+    color:#8C8067;
+}
+
 .message_text
 {
     font-size:12px;
@@ -106,11 +125,11 @@ body {
     min-width: 0;
 }
 
-.navbar-top-links .dropdown-messages {
+.navbar-top-links .dropdown-tasks {
     margin-left: 5px;
 }
 
-.navbar-top-links .dropdown-tasks {
+.navbar-top-links .dropdown-messages {
     margin-left: -59px;
 }
 

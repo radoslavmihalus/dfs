@@ -29,16 +29,16 @@
                 <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-<!--                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>-->
+                <!--                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>-->
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
                 <!-- Friends request -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                       <span class="badge badge-important">3</span> <i class="fa fa-users color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
+                        <span class="badge badge-important">3</span> <i class="fa fa-users color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-messages">
+                    <ul class="dropdown-menu dropdown-tasks">
                         <li>
                             <p class="text-center popup_boxstyle_headings">
                                 <strong>Friends requests</strong>
@@ -86,9 +86,9 @@
                 <!-- User-messages -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                       <span class="badge">0</span>  <i class="fa fa-envelope fa-fw color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
+                        <span class="badge">0</span>  <i class="fa fa-envelope fa-fw color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-tasks">
+                    <ul class="dropdown-menu dropdown-messages">
                         <li>
                             <p class="text-center popup_boxstyle_headings">
                                 <strong>Messages</strong>
@@ -160,6 +160,8 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
+                        <li><a href="#"><i class="fa fa-exchange"></i></i> Switch Accounts</a>
+                        </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
@@ -174,18 +176,24 @@
                     <ul class="nav in" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="search ...">
+                                <input type="text" class="form-control" style="font-size:12px;" placeholder="search DOGFORSHOW ...">
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
                             </div>
                             <!-- /input-group -->
                         </li>
-<!--                        <li>
-                            <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> My DOGFORSHOW profile</a>
-                        </li>-->
+                        <li class="profile" >
+                            <a href="#">
+                                    <img src="img/referer1.jpg" class="pull-left image_thumb img-rounded"/>  
+                                    <p class="profile_name"><strong>Martina Brunina</strong></p>
+                            </a>
+                        </li>
+                        <li class="user_sidebar_link">
+                            <a href="#"><i class="fa fa-paw"></i>  Pridane psy</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
