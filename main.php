@@ -194,6 +194,30 @@
                         <li class="user_sidebar_link">
                             <a href="#"><i class="fa fa-paw"></i>  Pridane psy</a>
                         </li>
+                        <li class="user_sidebar_link_menu_stack">
+                            <i class="fa fa-bars"></i>  DOGFORSHOW MENU
+                        </li>
+                        <li class="user_sidebar_link">
+                            <a href="#"><i class="fa fa-paw"></i>  Chovateľské stanice <span class="badge pull-right">600</span></a>
+                        </li>
+                        <li class="user_sidebar_link">
+                            <a href="#"><i class="fa fa-paw"></i>  Majitelia <span class="badge pull-right">600</span></a>
+                        </li>
+                        <li class="user_sidebar_link">
+                            <a href="#"><i class="fa fa-paw"></i>  Handlery <span class="badge pull-right">600</span></a>
+                        </li>
+                        <li class="user_sidebar_link">
+                            <a href="#"><i class="fa fa-paw"></i>  Psy <span class="badge pull-right">600</span></a>
+                        </li>
+                        <li class="user_sidebar_link">
+                            <a href="#"><i class="fa fa-paw"></i>  Psy na krytie <span class="badge pull-right">600</span></a>
+                        </li>
+                        <li class="user_sidebar_link">
+                            <a href="#"><i class="fa fa-paw"></i>  Plánované vrhy <span class="badge pull-right">600</span></a>
+                        </li>
+                        <li class="user_sidebar_link">
+                            <a href="#"><i class="fa fa-paw"></i>  Šteniatká na predaj <span class="badge pull-right">600</span></a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
