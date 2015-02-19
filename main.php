@@ -18,212 +18,223 @@
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">
         <!-- Main page style -->
         <link href="css/main.css" rel="stylesheet">
+        <!-- Main menu style -->
+        <link href="js/menu/metisMenu.css" rel="stylesheet">
         <!-- Glyphicons -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
     </head>
     <body role="document">
-        <!-- Navigation DOGFORSHOW  -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navbar-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <!--                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>-->
-            </div>
-            <!-- /.navbar-header -->
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- Friends request -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <span class="badge badge-important">3</span> <i class="fa fa-users color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-tasks">
-                        <li>
-                            <p class="text-center popup_boxstyle_headings">
-                                <strong>Friends requests</strong>
-                            </p>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div >
-                                    <div class="no_image_thumb pull-left text-center img-rounded"><i class="fa fa-user fa-2x "></i></div>  
-                                    <p class="friend_request_name"><strong>Radoslav Mihalus</strong></p>
-                                </div>
-                                <div><button type="button" class="btn btn-default btn-xs"><i class="fa fa-user-plus"></i> Accept</button> <button type="button" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Decline</button></div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div >
-                                    <img src="img/referer2.jpg" class="pull-left image_thumb img-rounded"/>  
-                                    <p class="friend_request_name"><strong>Shitzu kennel Slovakia</strong></p>
-                                </div>
-                                <div><button type="button" class="btn btn-default btn-xs"><i class="fa fa-user-plus"></i> Accept</button> <button type="button" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Decline</button></div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div >
-                                    <img src="img/referer1.jpg" class="pull-left image_thumb img-rounded"/>  
-                                    <p class="friend_request_name"><strong>Martina Brunina</strong></p>
-                                </div>
-                                <div><button type="button" class="btn btn-default btn-xs"><i class="fa fa-user-plus"></i> Accept</button> <button type="button" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Decline</button></div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center popup_boxstyle_headings" href="#">
-                                <strong>See all friend requests</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- User-messages -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <span class="badge">0</span>  <i class="fa fa-envelope fa-fw color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <p class="text-center popup_boxstyle_headings">
-                                <strong>Messages</strong>
-                            </p>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div >
-                                    <img src="img/referer1.jpg" class="pull-left image_thumb img-rounded"/>  
-                                    <p class="friend_request_name"><strong>Martina Brunina</strong></p>
-                                </div>
-                                <div>
-                                    <p class="message_text">Ahoj, tak tento portal je naozaj na urovni...</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center popup_boxstyle_headings" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- User Notifications -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <span class="badge">0</span> <i class="fa fa-bell fa-fw color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <p class="text-center popup_boxstyle_headings">
-                                <strong>Notifications</strong>
-                            </p>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-thumbs-up fa-fw"></i> New like
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center popup_boxstyle_headings" href="#">
-                                <strong>See All notifications</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- User account -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <i class="fa fa-user fa-fw color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-exchange"></i></i> Switch Accounts</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- User sidebar navigation -->
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav in" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" style="font-size:12px;" placeholder="search DOGFORSHOW ...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li class="profile" >
-                            <a href="#">
-                                    <img src="img/referer1.jpg" class="pull-left image_thumb img-rounded"/>  
-                                    <p class="profile_name"><strong>Martina Brunina</strong></p>
-                            </a>
-                        </li>
-                        <li class="user_sidebar_link">
-                            <a href="#"><i class="fa fa-paw"></i>  Pridane psy</a>
-                        </li>
-                        <li class="user_sidebar_link_menu_stack">
-                            <i class="fa fa-bars"></i>  DOGFORSHOW MENU
-                        </li>
-                        <li class="user_sidebar_link">
-                            <a href="#"><i class="fa fa-paw"></i>  Chovateľské stanice <span class="badge pull-right">600</span></a>
-                        </li>
-                        <li class="user_sidebar_link">
-                            <a href="#"><i class="fa fa-paw"></i>  Majitelia <span class="badge pull-right">600</span></a>
-                        </li>
-                        <li class="user_sidebar_link">
-                            <a href="#"><i class="fa fa-paw"></i>  Handlery <span class="badge pull-right">600</span></a>
-                        </li>
-                        <li class="user_sidebar_link">
-                            <a href="#"><i class="fa fa-paw"></i>  Psy <span class="badge pull-right">600</span></a>
-                        </li>
-                        <li class="user_sidebar_link">
-                            <a href="#"><i class="fa fa-paw"></i>  Psy na krytie <span class="badge pull-right">600</span></a>
-                        </li>
-                        <li class="user_sidebar_link">
-                            <a href="#"><i class="fa fa-paw"></i>  Plánované vrhy <span class="badge pull-right">600</span></a>
-                        </li>
-                        <li class="user_sidebar_link">
-                            <a href="#"><i class="fa fa-paw"></i>  Šteniatká na predaj <span class="badge pull-right">600</span></a>
-                        </li>
-                    </ul>
+            <!-- Navigation DOGFORSHOW  -->
+            <nav class="navbar navbar-default navbar-static-top-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <!--                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>-->
                 </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+                <!-- /.navbar-header -->
+                <ul class="nav navbar-top-links navbar-right">
+                    <!-- Friends request -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="badge badge-important">3</span> <i class="fa fa-users color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-tasks">
+                            <li>
+                                <p class="text-center popup_boxstyle_headings">
+                                    <strong>Friends requests</strong>
+                                </p>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div >
+                                        <div class="no_image_thumb pull-left text-center img-rounded"><i class="fa fa-user fa-2x "></i></div>  
+                                        <p class="friend_request_name"><strong>Radoslav Mihalus</strong></p>
+                                    </div>
+                                    <div><button type="button" class="btn btn-default btn-xs"><i class="fa fa-user-plus"></i> Accept</button> <button type="button" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Decline</button></div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div >
+                                        <img src="img/referer2.jpg" class="pull-left image_thumb img-rounded"/>  
+                                        <p class="friend_request_name"><strong>Shitzu kennel Slovakia</strong></p>
+                                    </div>
+                                    <div><button type="button" class="btn btn-default btn-xs"><i class="fa fa-user-plus"></i> Accept</button> <button type="button" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Decline</button></div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div >
+                                        <img src="img/referer1.jpg" class="pull-left image_thumb img-rounded"/>  
+                                        <p class="friend_request_name"><strong>Martina Brunina</strong></p>
+                                    </div>
+                                    <div><button type="button" class="btn btn-default btn-xs"><i class="fa fa-user-plus"></i> Accept</button> <button type="button" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Decline</button></div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center popup_boxstyle_headings" href="#">
+                                    <strong>See all friend requests</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User-messages -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <span class="badge">0</span>  <i class="fa fa-envelope fa-fw color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+                            <li>
+                                <p class="text-center popup_boxstyle_headings">
+                                    <strong>Messages</strong>
+                                </p>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div >
+                                        <img src="img/referer1.jpg" class="pull-left image_thumb img-rounded"/>  
+                                        <p class="friend_request_name"><strong>Martina Brunina</strong></p>
+                                    </div>
+                                    <div>
+                                        <p class="message_text">Ahoj, tak tento portal je naozaj na urovni...</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center popup_boxstyle_headings" href="#">
+                                    <strong>Read All Messages</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User Notifications -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <span class="badge">0</span> <i class="fa fa-bell fa-fw color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <p class="text-center popup_boxstyle_headings">
+                                    <strong>Notifications</strong>
+                                </p>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-comment fa-fw"></i> New Comment
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-thumbs-up fa-fw"></i> New like
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center popup_boxstyle_headings" href="#">
+                                    <strong>See All notifications</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User account -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <i class="fa fa-user fa-fw color-gray"></i>  <i class="fa fa-caret-down color-gray"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-exchange"></i></i> Switch Accounts</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- User sidebar navigation -->
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" style="font-size:12px;" placeholder="search DOGFORSHOW ...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                                <!-- /input-group -->
+                            </li>
+                            <li class="" >
+                                <a id="profile_stack" href="#">
+                                    <img src="img/referer1.jpg" class="pull-left image_thumb img-rounded"/>  
+                                    <p class="profile_type"><i class="fa fa-eye">&nbsp;&nbsp;</i>Spectator</p>
+                                    <p class="profile_name">Steffanie Jones Smith</p>
+                                </a>
+                            </li>
+                            <li class="user_sidebar_link">
+
+                            </li>
+<!--                            <li class="user_sidebar_link_menu_stack">
+                                <i class="fa fa-bars"></i>  DOGFORSHOW
+                            </li>-->
+                            <li class="user_sidebar_link">
+                                <a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Kennels <span class="badge pull-right">670</span></a>
+                            </li>
+                            <li class="user_sidebar_link">
+                                <a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Owners <span class="badge pull-right">420</span></a>
+                            </li>
+                            <li class="user_sidebar_link">
+                                <a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Handlers <span class="badge pull-right">50</span></a>
+                            </li>
+                            <li class="user_sidebar_link">
+                                <a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Dogs <span class="badge pull-right">1.160</span></a>
+                            </li>
+                            <li class="user_sidebar_link">
+                                <a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Stud dogs <span class="badge pull-right">480</span></a>
+                            </li>
+                            <li class="user_sidebar_link">
+                                <a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Planed litters <span class="badge pull-right">210</span></a>
+                            </li>
+                            <li class="user_sidebar_link">
+                                <a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Puppies for sale <span class="badge pull-right">60</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Bar Chart Example
+                    </div>
+                </div>
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
@@ -236,7 +247,6 @@
         <!-- Scrolling scripts -->
         <script src="js/scrolling-nav.js"></script>
         <!-- Counter scripts -->
-        <!-- Google re-captcha -->
-        <script src='https://www.google.com/recaptcha/api.js'></script>
+
     </body>
 </html>
