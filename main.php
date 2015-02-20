@@ -199,21 +199,6 @@
                                     <p class="profile_name">Steffanie Jones Smith</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="flot.html">Flot Charts</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html">Morris.js Charts</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
                             <li class="user_sidebar_link">
                                 <a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Kennels <span class="badge pull-right">670</span></a>
                             </li>

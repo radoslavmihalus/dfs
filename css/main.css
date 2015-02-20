@@ -3,17 +3,18 @@ root {
     display: block;
 }
 body {
-    background-color: #E0E0E0;
 }
 
 #wrapper {
     width: 100%;
+    background-color: white;
 }
 
 #page-wrapper {
     padding: 0 15px;
     min-height: 568px;
-    background-color: #fff;
+    border-left:#e7e7e7 1px solid;
+    background-color: #DBD8CF;
 }
 
 @media(min-width:768px) {
@@ -21,7 +22,7 @@ body {
         position: inherit;
         margin: 0 0 0 250px;
         padding: 0 30px;
-        border-left: 1px solid #e7e7e7;
+        border-left:#e7e7e7 1px solid;
     }
 }
 .color-gray
@@ -80,6 +81,7 @@ body {
 {
     font-size:13px;
     color:gray;
+    background-color:white;
 }
 .user_sidebar_link a:hover
 {
