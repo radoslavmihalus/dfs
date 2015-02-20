@@ -2,7 +2,7 @@
 <html lang="en">
 
     <head>
-<title>DOGFORSHOW</title>
+        <title>DOGFORSHOW</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -228,8 +228,15 @@
             </nav>
 
             <div id="page-wrapper">
-                <!-- /.row -->
-                <div class="row">
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-md-8">
+                        <div class="panel panel-default" style="padding: 5px;">
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        
+                    </div>
                 </div>
                 <!-- /.row -->
             </div>
