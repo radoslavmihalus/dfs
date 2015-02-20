@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
-        <title>DOGFORSHOW</title>
+<title>DOGFORSHOW</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,25 +19,25 @@
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">
         <!-- Main page style -->
         <link href="css/main.css" rel="stylesheet">
-        <!-- Main menu style -->
-        <link href="js/menu/metisMenu.css" rel="stylesheet">
         <!-- Glyphicons -->
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
     </head>
-    <body role="document">
-            <!-- Navigation DOGFORSHOW  -->
-            <nav class="navbar navbar-default navbar-static-top-top" role="navigation" style="margin-bottom: 0">
+
+    <body>
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navbar-collapse">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
-                    <!--                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>-->
+                    <a class="navbar-brand" href="index.html"></a>
                 </div>
                 <!-- /.navbar-header -->
+
                 <ul class="nav navbar-top-links navbar-right">
                     <!-- Friends request -->
                     <li class="dropdown">
@@ -175,13 +176,14 @@
                         </ul>
                     </li>
                 </ul>
-                <!-- User sidebar navigation -->
+                <!-- /.navbar-top-links -->
+
                 <div class="navbar-default sidebar" role="navigation">
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li class="sidebar-search">
                                 <div class="input-group custom-search-form">
-                                    <input type="text" class="form-control" style="font-size:12px;" placeholder="search DOGFORSHOW ...">
+                                    <input type="text" class="form-control" style="font-size:12px;" placeholder="Search DOGFORSHOW ...">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" type="button">
                                             <i class="fa fa-search"></i>
@@ -190,19 +192,28 @@
                                 </div>
                                 <!-- /input-group -->
                             </li>
-                            <li class="" >
+                            <li >
                                 <a id="profile_stack" href="#">
                                     <img src="img/referer1.jpg" class="pull-left image_thumb img-rounded"/>  
                                     <p class="profile_type"><i class="fa fa-eye">&nbsp;&nbsp;</i>Spectator</p>
                                     <p class="profile_name">Steffanie Jones Smith</p>
                                 </a>
                             </li>
-                            <li class="user_sidebar_link">
-
+                            <li>
+                                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
-<!--                            <li class="user_sidebar_link_menu_stack">
-                                <i class="fa fa-bars"></i>  DOGFORSHOW
-                            </li>-->
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="flot.html">Flot Charts</a>
+                                    </li>
+                                    <li>
+                                        <a href="morris.html">Morris.js Charts</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
                             <li class="user_sidebar_link">
                                 <a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Kennels <span class="badge pull-right">670</span></a>
                             </li>
@@ -230,14 +241,16 @@
                 </div>
                 <!-- /.navbar-static-side -->
             </nav>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> Bar Chart Example
-                    </div>
+
+            <div id="page-wrapper">
+                <!-- /.row -->
+                <div class="row">
                 </div>
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
+        </div>
+        <!-- /#wrapper -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -246,7 +259,11 @@
         <script src="js/jquery.easing.min.js"></script>
         <!-- Scrolling scripts -->
         <script src="js/scrolling-nav.js"></script>
-        <!-- Counter scripts -->
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="js/menu/metisMenu.min.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="js/menu/sb-admin-2.js"></script>
 
     </body>
+
 </html>
