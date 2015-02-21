@@ -19,6 +19,7 @@
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">
         <!-- Main page style -->
         <link href="css/main.css" rel="stylesheet">
+        <link href="css/home.css" rel="stylesheet">
         <!-- Glyphicons -->
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
     </head>
@@ -228,34 +229,83 @@
             </nav>
 
             <div id="page-wrapper">
-                <div class="row" style="padding-top: 10px;">
-                    <div class="col-md-8">
-                        <div class="panel panel-default" style="padding: 5px;">
-                            
+                <div class="row animatedParent animateOnce" style="padding-top: 10px;">
+                    <div class="panel-default col-md-8 animated fadeIn" style="background-color: white;font-size: 12px;padding-left:0px;padding-right: 0px;">
+                        <div id="main_heading" class="panel-heading"><i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;Create profile</div>
+                        <div class="panel-body">
+                            <div class="col-md-4">
+<!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
+                                <h3 class="section_heading text-center text-uppercase">Kennel</h3>
+                                <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <ul class="section_list" style="pading-left:0px;">
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear profile of your kennel</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create unique profiles of your dogs</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your dogs at stud</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Inform about planned litters</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer puppies for sale from planned litters</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and titles of your dogs</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add dogshow successes and keep show history of your dog in one place</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add working exams and health informations</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add pedigrees</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos of your dogs</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share your succeses on social networks </li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+<!--                                <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>-->
+                                <h3 class="section_heading text-center text-uppercase">Owner of purebred dog</h3>
+                                <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <ul class="section_list">
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear owner profile</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Possibility to migrate on kennel profile</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your dogs at stud</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and titles of your dogs</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add dogshow successes and keep show history of your dog in one place</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add working exams and health informations</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add pedigrees</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos of your dogs</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share your succeses on social networks </li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+<!--                                <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>-->
+                                <h3 class="section_heading text-center text-uppercase">Handler</h3>
+                                <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <ul class="section_list">
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear handler profile</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and certificates</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add your dogshow successes and titles</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add breeds list for handling</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your handling services</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share successes via social networks</li>
+                                    <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        
-                    </div>
                 </div>
-                <!-- /.row -->
             </div>
-            <!-- /#page-wrapper -->
+            <!-- /.row -->
         </div>
-        <!-- /#wrapper -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <!-- Animation scripts -->
-        <script src='js/css3-animate-it.js'></script>
-        <script src="js/jquery.easing.min.js"></script>
-        <!-- Scrolling scripts -->
-        <script src="js/scrolling-nav.js"></script>
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="js/menu/metisMenu.min.js"></script>
-        <!-- Custom Theme JavaScript -->
-        <script src="js/menu/sb-admin-2.js"></script>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Animation scripts -->
+    <script src='js/css3-animate-it.js'></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <!-- Scrolling scripts -->
+    <script src="js/scrolling-nav.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="js/menu/metisMenu.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/menu/sb-admin-2.js"></script>
 
-    </body>
+</body>
 
 </html>

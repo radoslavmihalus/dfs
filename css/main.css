@@ -29,6 +29,14 @@ body {
 {
    color:gray !important;
 }
+#main_heading
+{
+    color:black;
+    font-size: 13px;
+    background-color: whitesmoke !important;
+    background-image: none;
+}
+
 .image_thumb
 {
     width:50px;
