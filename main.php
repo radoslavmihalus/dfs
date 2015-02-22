@@ -232,7 +232,7 @@
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div id="main_heading" class="panel-heading"><i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;Create profile</div>
-                        <div class="panel-body" style="background-color: white;">
+                        <div class="panel-body" style="background-color: white;min-height:380px;margin-bottom: 10px;">
                             <div class="">
 <!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Kennel</h3>
@@ -256,7 +256,7 @@
                     </div>
                     <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div id="main_heading" class="panel-heading"><i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;Create profile</div>
-                        <div class="panel-body" style="background-color: white;">
+                        <div class="panel-body" style="background-color: white;min-height:380px;margin-bottom: 10px;">
                             <div class="">
 <!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Owner of purebred dog</h3>
@@ -278,7 +278,7 @@
                     </div>
                     <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div id="main_heading" class="panel-heading"><i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;Create profile</div>
-                        <div class="panel-body" style="background-color: white;">
+                        <div class="panel-body" style="background-color: white;min-height:380px;margin-bottom: 10px;">
                             <div class="">
 <!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Handler</h3>
