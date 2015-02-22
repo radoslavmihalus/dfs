@@ -230,10 +230,10 @@
 
             <div id="page-wrapper">
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
-                    <div class="panel-default col-md-8 animated fadeIn" style="background-color: white;font-size: 12px;padding-left:0px;padding-right: 0px;">
+                    <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div id="main_heading" class="panel-heading"><i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;Create profile</div>
-                        <div class="panel-body">
-                            <div class="col-md-4">
+                        <div class="panel-body" style="background-color: white;">
+                            <div class="">
 <!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Kennel</h3>
                                 <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
@@ -252,8 +252,13 @@
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
                                 </ul>
                             </div>
-                            <div class="col-md-4">
-<!--                                <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>-->
+                        </div>
+                    </div>
+                    <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
+                        <div id="main_heading" class="panel-heading"><i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;Create profile</div>
+                        <div class="panel-body" style="background-color: white;">
+                            <div class="">
+<!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Owner of purebred dog</h3>
                                 <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
                                 <ul class="section_list">
@@ -269,8 +274,13 @@
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
                                 </ul>
                             </div>
-                            <div class="col-md-4">
-<!--                                <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>-->
+                        </div>
+                    </div>
+                    <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
+                        <div id="main_heading" class="panel-heading"><i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;Create profile</div>
+                        <div class="panel-body" style="background-color: white;">
+                            <div class="">
+<!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Handler</h3>
                                 <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
                                 <ul class="section_list">
