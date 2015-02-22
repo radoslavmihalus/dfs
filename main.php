@@ -236,7 +236,7 @@
                             <div class="">
 <!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Kennel</h3>
-                                <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <p class="text-center"><button type="submit" class="btn btn-danger btn-lg" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
                                 <ul class="section_list" style="pading-left:0px;">
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear profile of your kennel</li>
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create unique profiles of your dogs</li>
@@ -260,7 +260,7 @@
                             <div class="">
 <!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Owner of purebred dog</h3>
-                                <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <p class="text-center"><button type="submit" class="btn btn-danger btn-lg" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
                                 <ul class="section_list">
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear owner profile</li>
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Possibility to migrate on kennel profile</li>
@@ -282,7 +282,7 @@
                             <div class="">
 <!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Handler</h3>
-                                <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <p class="text-center"><button type="submit" class="btn btn-danger btn-lg" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
                                 <ul class="section_list">
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear handler profile</li>
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and certificates</li>
