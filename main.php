@@ -22,9 +22,6 @@
         <link href="css/home.css" rel="stylesheet">
         <!-- Glyphicons -->
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
-        <!-- Bootstrap select -->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
 
     <body>
@@ -364,10 +361,6 @@
         <script src="js/menu/metisMenu.min.js"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/menu/sb-admin-2.js"></script>
-        <!-- Bootstrap select -->
-        <script type="text/javascript" src="js/bootstrap-select.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-
     </body>
 
 </html>
