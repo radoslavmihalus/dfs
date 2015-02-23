@@ -40,7 +40,10 @@ body {
     background-color: whitesmoke !important;
     background-image: none;
 }
-
+.tooltip_brown
+{
+    color:#8C8067 !important;
+}
 .image_thumb
 {
     width:50px;
@@ -50,6 +53,13 @@ body {
 .popup_boxstyle_headings
 {
     font-size:12px;
+}
+.form_heading
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px !important;
+    text-transform: uppercase;
+    color: #a5987f;
 }
 .no_image_thumb
 {

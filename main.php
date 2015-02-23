@@ -22,12 +22,20 @@
         <link href="css/home.css" rel="stylesheet">
         <!-- Glyphicons -->
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
+        <!-- Smart tooltips -->
+        <link rel="stylesheet" href="css/tooltips/jquery-smallipop.css" type="text/css" media="all" title="Screen"/>
+        <style>
+            body
+            {
+                padding-top: 50px;
+            }
+        </style>
     </head>
 
     <body>
         <div id="wrapper">
             <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -229,6 +237,7 @@
             </nav>
 
             <div id="page-wrapper">
+                <!-- Profile switcher -->
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div class="panel-body" style="background-color: white;min-height:430px;margin-bottom: 10px;">
@@ -294,56 +303,298 @@
                         </div>
                     </div>
                 </div>
+                <!-- /Profile switcher -->
+                <!-- Kennel registration form -->
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
                             <form id="frmCreateKennelProfile">
-                                <h3 class="section_heading text-center text-uppercase">Kennel profile</h3>
+                                <h3 class="section_heading text-center text-uppercase"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Kennel profile</h3>
+                                <span class="form_heading"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;Basic informations about kennel</span>
+                                <hr>
                                 <div class="form-group">
-                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel name</span>
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel name <i class="fa fa-question-circle tooltip_brown"></i></span>
                                     <input type="text" class="form-control font_size_12px" id="txtKennelName" placeholder="Kennel name">
                                 </div>
                                 <div class="form-group">
-                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel FCI number</span>
-                                    <input type="text" class="form-control font_size_12px" id="txtKennelFciNumber" placeholder="For example 987/2011">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel FCI number <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtKennelFciNumber" placeholder="example 987/2011">
                                 </div>
                                 <div class="form-group">
-                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel profile picture</span>
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel profile picture <i class="fa fa-question-circle tooltip_brown"></i></span>
                                     <input type="file" class="form-control font_size_12px" id="txtKennelProfilePicture" placeholder="Kennel profile picture">
                                 </div>
                                 <div class="form-group">
-                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel website</span>
-                                    <input type="text" class="form-control font_size_12px" id="txtKennelWebsite" placeholder="For example www.kennel.com"></textarea>
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel website <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtKennelWebsite" placeholder="example www.dogforshow.com"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel description</span>
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel description <i class="fa fa-question-circle tooltip_brown"></i></span>
                                     <textarea type="text" style="height:50px;" class="form-control contact_textarea font_size_12px" id="txtKennelDescription" placeholder="Kennel description"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Select the breed bred by your kennel</span>
-                                    <select class="selectpicker" multiple title='Choose the breed'>
-                                        <option>Dogo Argentino</option>
-                                        <option>Dogo Canario</option>
-                                        <option>Deutsche Dogue</option>
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Select the breed bred by your kennel <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <select class="form-control font_size_12px" id="ddlBreedList">
+                                        <option>Select breed</option>
+                                        <option>Dogo argentino</option>
+                                        <option>Berger de Brie</option>
+                                        <option>Labrador</option>
+                                    </select>
+                                </div>
+                                <span class="form_heading" style="display:block;margin-top:30px;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;Basic informations about kennel owner</span>
+                                <span>Informations marked with this sign <i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i> will not be accessible to the public or exploited for commercial use by third parties</span>
+                                <hr>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Name <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtName" placeholder="Name">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Surname <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtSurname" placeholder="Surname">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Email <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="email" class="form-control font_size_12px" id="txtEmail" placeholder="example@dogforshow.com">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Address <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtAdress" placeholder="Address">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Town <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtTown" placeholder="Town">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;ZIP <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtZIP" placeholder="example 94485">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Country <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <select class="form-control font_size_12px" id="ddlCountries">
+                                        <option>Select country</option>
+                                        <option>Czech Republic</option>
+                                        <option>Afghanistan</option>
+                                        <option>Kuwait</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="txtSurname" placeholder="Surname">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Phone number <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtPhone" placeholder="example +420 xxx xxx xxx">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="txtEmail" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="txtPassword" placeholder="Password">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm password">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Date of Birth <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="form-control font_size_12px" id="ddlDayBirth">
+                                                <option>Day</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control font_size_12px" id="ddlDayBirth">
+                                                <option>Month</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control font_size_12px" id="ddlDayBirth">
+                                                <option>Year</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                             <button type="submit" class="btn btn-danger btn-xl pull-right"><i class="fa fa-user-plus"></i></span>&nbsp;&nbsp;Create profile</button>
                         </div>
                     </div>  
                 </div>
+                <!-- /Kennel registration form -->
+                <!-- Owner registration form -->
+                <div class="row animatedParent animateOnce" style="padding-top: 10px;">
+                    <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
+                        <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
+                            <form id="frmCreateOwnerProfile">
+                                <h3 class="section_heading text-center text-uppercase"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Owner profile</h3>
+                                <span class="form_heading" style="display:block;margin-top:30px;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;Basic informations about owner</span>
+                                <span>Informations marked with this sign <i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i> will not be accessible to the public or exploited for commercial use by third parties</span>
+                                <hr>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Profile picture <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="file" class="form-control font_size_12px" id="txtOwnerProfilePicture" placeholder="Owner profile picture">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Name <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtName" placeholder="Name">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Surname <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtSurname" placeholder="Surname">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Email <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="email" class="form-control font_size_12px" id="txtEmail" placeholder="example@dogforshow.com">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Address <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtAdress" placeholder="Address">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Town <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtTown" placeholder="Town">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;ZIP <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtZIP" placeholder="example 94485">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Country <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <select class="form-control font_size_12px" id="ddlCountries">
+                                        <option>Select country</option>
+                                        <option>Czech Republic</option>
+                                        <option>Afghanistan</option>
+                                        <option>Kuwait</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Phone number <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtPhone" placeholder="example +420 xxx xxx xxx">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Date of Birth <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="form-control font_size_12px" id="ddlDayBirth">
+                                                <option>Day</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control font_size_12px" id="ddlDayBirth">
+                                                <option>Month</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control font_size_12px" id="ddlDayBirth">
+                                                <option>Year</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <button type="submit" class="btn btn-danger btn-xl pull-right"><i class="fa fa-user-plus"></i></span>&nbsp;&nbsp;Create profile</button>
+                        </div>
+                    </div>  
+                </div>
+                <!-- /Owner registration form -->
+                <!-- Handler registration form -->
+                <div class="row animatedParent animateOnce" style="padding-top: 10px;">
+                    <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
+                        <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
+                            <form id="frmCreateOwnerProfile">
+                                <h3 class="section_heading text-center text-uppercase"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Handler profile</h3>
+                                <span class="form_heading" style="display:block;margin-top:30px;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;Basic informations about handler</span>
+                                <span>Informations marked with this sign <i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i> will not be accessible to the public or exploited for commercial use by third parties</span>
+                                <hr>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Profile picture <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="file" class="form-control font_size_12px" id="txtOwnerProfilePicture" placeholder="Owner profile picture">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Select the breed that you can handle <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <select class="form-control font_size_12px" id="ddlBreedList">
+                                        <option>Select breed</option>
+                                        <option>Dogo argentino</option>
+                                        <option>Berger de Brie</option>
+                                        <option>Labrador</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Name <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtName" placeholder="Name">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Surname <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtSurname" placeholder="Surname">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Email <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="email" class="form-control font_size_12px" id="txtEmail" placeholder="example@dogforshow.com">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Address <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtAdress" placeholder="Address">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Town <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtTown" placeholder="Town">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;ZIP <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtZIP" placeholder="example 94485">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Country <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <select class="form-control font_size_12px" id="ddlCountries">
+                                        <option>Select country</option>
+                                        <option>Czech Republic</option>
+                                        <option>Afghanistan</option>
+                                        <option>Kuwait</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Phone number <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <input type="text" class="form-control font_size_12px" id="txtPhone" placeholder="example +420 xxx xxx xxx">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Date of Birth <i class="fa fa-question-circle tooltip_brown"></i></span>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="form-control font_size_12px" id="ddlDayBirth">
+                                                <option>Day</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control font_size_12px" id="ddlDayBirth">
+                                                <option>Month</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control font_size_12px" id="ddlDayBirth">
+                                                <option>Year</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <button type="submit" class="btn btn-danger btn-xl pull-right"><i class="fa fa-user-plus"></i></span>&nbsp;&nbsp;Create profile</button>
+                        </div>
+                    </div>  
+                </div>
+                <!-- /Handler registration form -->
             </div>
             <!-- /#page-wrapper -->
         </div>
