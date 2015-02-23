@@ -22,6 +22,9 @@
         <link href="css/home.css" rel="stylesheet">
         <!-- Glyphicons -->
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
+        <!-- Bootstrap select -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
 
     <body>
@@ -231,12 +234,11 @@
             <div id="page-wrapper">
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
-                        <div id="main_heading" class="panel-heading"><i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;Create profile</div>
-                        <div class="panel-body" style="background-color: white;min-height:380px;margin-bottom: 10px;">
+                        <div class="panel-body" style="background-color: white;min-height:430px;margin-bottom: 10px;">
                             <div class="">
-<!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Kennel</h3>
-                                <p class="text-center"><button type="submit" class="btn btn-danger btn-lg" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <hr>
                                 <ul class="section_list" style="pading-left:0px;">
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear profile of your kennel</li>
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create unique profiles of your dogs</li>
@@ -255,12 +257,11 @@
                         </div>
                     </div>
                     <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
-                        <div id="main_heading" class="panel-heading"><i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;Create profile</div>
-                        <div class="panel-body" style="background-color: white;min-height:380px;margin-bottom: 10px;">
+                        <div class="panel-body" style="background-color: white;min-height:430px;margin-bottom: 10px;">
                             <div class="">
-<!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Owner of purebred dog</h3>
-                                <p class="text-center"><button type="submit" class="btn btn-danger btn-lg" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <hr>
                                 <ul class="section_list">
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear owner profile</li>
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Possibility to migrate on kennel profile</li>
@@ -277,12 +278,11 @@
                         </div>
                     </div>
                     <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
-                        <div id="main_heading" class="panel-heading"><i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;Create profile</div>
-                        <div class="panel-body" style="background-color: white;min-height:380px;margin-bottom: 10px;">
+                        <div class="panel-body" style="background-color: white;min-height:430px;margin-bottom: 10px;">
                             <div class="">
-<!--                                <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>-->
                                 <h3 class="section_heading text-center text-uppercase">Handler</h3>
-                                <p class="text-center"><button type="submit" class="btn btn-danger btn-lg" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;</span> Create profile</button></p>
+                                <hr>
                                 <ul class="section_list">
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear handler profile</li>
                                     <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and certificates</li>
@@ -297,25 +297,77 @@
                         </div>
                     </div>
                 </div>
+                <div class="row animatedParent animateOnce" style="padding-top: 10px;">
+                    <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
+                        <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
+                            <form id="frmCreateKennelProfile">
+                                <h3 class="section_heading text-center text-uppercase">Kennel profile</h3>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel name</span>
+                                    <input type="text" class="form-control font_size_12px" id="txtKennelName" placeholder="Kennel name">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel FCI number</span>
+                                    <input type="text" class="form-control font_size_12px" id="txtKennelFciNumber" placeholder="For example 987/2011">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel profile picture</span>
+                                    <input type="file" class="form-control font_size_12px" id="txtKennelProfilePicture" placeholder="Kennel profile picture">
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel website</span>
+                                    <input type="text" class="form-control font_size_12px" id="txtKennelWebsite" placeholder="For example www.kennel.com"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel description</span>
+                                    <textarea type="text" style="height:50px;" class="form-control contact_textarea font_size_12px" id="txtKennelDescription" placeholder="Kennel description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">Select the breed bred by your kennel</span>
+                                    <select class="selectpicker" multiple title='Choose the breed'>
+                                        <option>Dogo Argentino</option>
+                                        <option>Dogo Canario</option>
+                                        <option>Deutsche Dogue</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtSurname" placeholder="Surname">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="txtEmail" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="txtPassword" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm password">
+                                </div>
+                            </form>
+                            <button type="submit" class="btn btn-danger btn-xl pull-right"><i class="fa fa-user-plus"></i></span>&nbsp;&nbsp;Create profile</button>
+                        </div>
+                    </div>  
+                </div>
             </div>
-            <!-- /.row -->
+            <!-- /#page-wrapper -->
         </div>
-        <!-- /#page-wrapper -->
-    </div>
-    <!-- /#wrapper -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Animation scripts -->
-    <script src='js/css3-animate-it.js'></script>
-    <script src="js/jquery.easing.min.js"></script>
-    <!-- Scrolling scripts -->
-    <script src="js/scrolling-nav.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="js/menu/metisMenu.min.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="js/menu/sb-admin-2.js"></script>
+        <!-- /#wrapper -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <!-- Animation scripts -->
+        <script src='js/css3-animate-it.js'></script>
+        <script src="js/jquery.easing.min.js"></script>
+        <!-- Scrolling scripts -->
+        <script src="js/scrolling-nav.js"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="js/menu/metisMenu.min.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="js/menu/sb-admin-2.js"></script>
+        <!-- Bootstrap select -->
+        <script type="text/javascript" src="js/bootstrap-select.js"></script>
+        <script src="js/bootstrap.min.js"></script>
 
-</body>
+    </body>
 
 </html>

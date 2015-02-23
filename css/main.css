@@ -29,6 +29,10 @@ body {
 {
    color:gray !important;
 }
+.font_size_12px
+{
+    font-size: 12px !important;
+}
 #main_heading
 {
     color:black;
