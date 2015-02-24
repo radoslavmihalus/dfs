@@ -1,3 +1,13 @@
+<?php
+// source: templates/home.latte.php
+
+// prolog Latte\Macros\CoreMacros
+list($_b, $_g, $_l) = $template->initialize('1477798431', 'html')
+;
+//
+// main template
+//
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

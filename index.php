@@ -14,6 +14,10 @@ use Nette\Forms\Form,
 
 Debugger::enable();
 
+$latte = new Latte\Engine;
+$latte->setTempDirectory('tmp');
+
+$latte->render('templates/home.latte.php');
 
 
 ?>
