@@ -50,6 +50,17 @@ body {
     margin-right: 10px;
     border:#D0D0D0 2px solid;
 }
+.image_profile_thumb
+{
+    margin-left: 20px;
+    width:150px;
+    border:white 2px solid;
+}
+.header_spacer
+{
+    display:block;
+    height:180px;
+}
 .popup_boxstyle_headings
 {
     font-size:12px;
@@ -70,6 +81,11 @@ body {
     color:#D0D0D0;
     background-color: #F2F2F2;
     line-height: 50px;
+}
+.profil_header_image
+{
+    background: url("../img/profile_header.jpg")no-repeat center center;
+    height:350px;
 }
 .friend_request_name
 {

@@ -237,7 +237,7 @@
             </nav>
 
             <div id="page-wrapper">
-                <!-- Profile switcher -->
+<!--                 Profile switcher 
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div class="panel-body" style="background-color: white;min-height:430px;margin-bottom: 10px;">
@@ -303,8 +303,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- /Profile switcher -->
-                <!-- Kennel registration form -->
+                 /Profile switcher 
+                 Kennel registration form 
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
@@ -415,8 +415,8 @@
                         </div>
                     </div>  
                 </div>
-                <!-- /Kennel registration form -->
-                <!-- Owner registration form -->
+                 /Kennel registration form 
+                 Owner registration form 
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
@@ -500,8 +500,8 @@
                         </div>
                     </div>  
                 </div>
-                <!-- /Owner registration form -->
-                <!-- Handler registration form -->
+                 /Owner registration form 
+                 Handler registration form 
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
@@ -591,6 +591,20 @@
                                 </div>
                             </form>
                             <button type="submit" class="btn btn-danger btn-xl pull-right"><i class="fa fa-user-plus"></i></span>&nbsp;&nbsp;Create profile</button>
+                        </div>
+                    </div>  
+                </div>
+                 /Handler registration form 
+                 User profile -->
+                <div class="row animatedParent animateOnce" style="padding-top: 10px;">
+                    <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
+                        <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
+                            <div class="profil_header_image">
+                                <div class="header_spacer">
+                                    
+                                </div>
+                               <img src="img/referer1.jpg" class="pull-left image_profile_thumb">
+                            </div>
                         </div>
                     </div>  
                 </div>
