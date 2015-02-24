@@ -2,7 +2,7 @@
 // source: templates/home.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('1477798431', 'html')
+list($_b, $_g, $_l) = $template->initialize('9279597831', 'html')
 ;
 //
 // main template
@@ -29,12 +29,11 @@ list($_b, $_g, $_l) = $template->initialize('1477798431', 'html')
         <!-- Landing page style -->
         <link href="css/home.css" rel="stylesheet">
         <!-- Glyphicons -->
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
         <style>
             body {
                 padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
-            }
+                }
         </style>
     </head>
 
@@ -61,6 +60,7 @@ list($_b, $_g, $_l) = $template->initialize('1477798431', 'html')
                         <li><a href="#discover" class="page-scroll text-uppercase landing_navbar_typography">Discover dogforshow</a></li>
                         <li><a href="#contact" class="page-scroll text-uppercase landing_navbar_typography">Contact us</a></li>
                 </div>
+            </div>
         </nav>
         <!-- DOGFORSHOW landing jumbotron -->
         <section id="join">
@@ -112,7 +112,7 @@ list($_b, $_g, $_l) = $template->initialize('1477798431', 'html')
                 <div class="row animated fadeIn">
                     <div class="col-md-4">
                         <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>
-                        <h3 class="section_heading text-center text-uppercase">Kennel ( Breeder )</h3>
+                        <h3 class="section_heading text-center text-uppercase">Kennel</h3>
                         <ul class="section_list">
                             <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear profile of your kennel</li>
                             <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create unique profiles of your dogs</li>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <title>DOGFORSHOW</title>
         <meta charset="utf-8">
@@ -18,12 +17,9 @@
         <!-- Bootstrap theme -->
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">
         <!-- Main page style -->
-        <link href="css/main.css" rel="stylesheet">
-        <link href="css/home.css" rel="stylesheet">
+        <link href="css/mainold.css" rel="stylesheet">
         <!-- Glyphicons -->
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
-        <!-- Smart tooltips -->
-        <link rel="stylesheet" href="css/tooltips/jquery-smallipop.css" type="text/css" media="all" title="Screen"/>
         <style>
             body
             {
@@ -609,24 +605,34 @@
                                     <h1 class="profile_type_heading">Stefannie Jonnes Smith</h1>
                                     <span class="profile_type_description"><i class="fa fa-user"></i>&nbsp;&nbsp;Owner of purebred dog</span>
                                 </div>
+                                <div class="col-md-4">
+                                    fefefefe
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="navbar default" role="navigation">
-                                    <div class="navbar-header">
-                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                            <span class="sr-only">Toggle navigation</span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                        </button>
-                                    </div>
-                                    <a href="#" >Odkaz 1</a>                                    
-                                </div>
+                                <nav class="navbar navbar-default">
+                                        <div class="navbar-header">
+                                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="user_menu">
+                                                <span class="sr-only">Toggle navigation</span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                            </button>
+                                        </div>
+                                        <div class="collapse navbar-collapse" id="user_menu">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="#" class="">Register</a></li>
+                                                <li><a href="#" class="">About</a></li>
+                                                <li><a href="#" class="">How we grow</a></li>
+                                                <li><a href="#" class="">Discover dogforshow</a></li>
+                                                <li><a href="#" class="">Contact us</a></li>
+                                        </div>
+                                </nav>
                             </div>
                         </div>
                     </div>  
                 </div>
-                <!-- /Handler registration form -->
+                <!--                 /User profile -->
             </div>
             <!-- /#page-wrapper -->
         </div>
@@ -640,8 +646,6 @@
         <script src="js/jquery.easing.min.js"></script>
         <!-- Scrolling scripts -->
         <script src="js/scrolling-nav.js"></script>
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="js/menu/metisMenu.min.js"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/menu/sb-admin-2.js"></script>
     </body>
