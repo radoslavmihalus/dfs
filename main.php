@@ -43,7 +43,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"></a>
+                    <a class="navbar-brand" href="main.php"></a>
                 </div>
                 <!-- /.navbar-header -->
 
@@ -237,7 +237,7 @@
             </nav>
 
             <div id="page-wrapper">
-<!--                 Profile switcher 
+                <!--                 Profile switcher -->
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div class="panel-body" style="background-color: white;min-height:430px;margin-bottom: 10px;">
@@ -303,8 +303,8 @@
                         </div>
                     </div>
                 </div>
-                 /Profile switcher 
-                 Kennel registration form 
+                <!--                 /Profile switcher -->
+                <!--                 Kennel registration form -->
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
@@ -415,8 +415,8 @@
                         </div>
                     </div>  
                 </div>
-                 /Kennel registration form 
-                 Owner registration form 
+                <!--                 /Kennel registration form -->
+                <!--                 Owner registration form -->
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
@@ -500,8 +500,8 @@
                         </div>
                     </div>  
                 </div>
-                 /Owner registration form 
-                 Handler registration form 
+                <!--                 /Owner registration form -->
+                <!--                 Handler registration form -->
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
@@ -594,16 +594,34 @@
                         </div>
                     </div>  
                 </div>
-                 /Handler registration form 
-                 User profile -->
+                <!--                 /Handler registration form -->
+                <!--                 User profile -->
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-8 animated fadeIn" style="font-size: 12px;min-width: 244px">
-                        <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
+                        <div class="panel-body" style="background-color: white;margin-bottom: 5px;">
                             <div class="profil_header_image">
                                 <div class="header_spacer">
-                                    
                                 </div>
-                               <img src="img/referer1.jpg" class="pull-left image_profile_thumb">
+                                <img src="img/referer1.jpg" class="pull-left image_profile_thumb">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8" style="padding-left:35px;">
+                                    <h1 class="profile_type_heading">Stefannie Jonnes Smith</h1>
+                                    <span class="profile_type_description"><i class="fa fa-user"></i>&nbsp;&nbsp;Owner of purebred dog</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="navbar default" role="navigation">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                    </div>
+                                    <a href="#" >Odkaz 1</a>                                    
+                                </div>
                             </div>
                         </div>
                     </div>  

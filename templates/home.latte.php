@@ -51,6 +51,7 @@
                         <li><a href="#discover" class="page-scroll text-uppercase landing_navbar_typography">Discover dogforshow</a></li>
                         <li><a href="#contact" class="page-scroll text-uppercase landing_navbar_typography">Contact us</a></li>
                 </div>
+            </div>
         </nav>
         <!-- DOGFORSHOW landing jumbotron -->
         <section id="join">

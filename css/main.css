@@ -56,10 +56,54 @@ body {
     width:150px;
     border:white 2px solid;
 }
+a.icon_link:link
+{
+    display:block;
+    padding:10px 10px 10px 10px;
+    color:gray;
+    text-decoration: none;
+}
+a.icon_link:active
+{
+    display:block;
+    padding:10px 10px 10px 10px;
+    color:gray;
+    text-decoration: none;
+}
+a.icon_link:visited
+{
+    display:block;
+    padding:10px 10px 10px 10px;
+    color:gray;
+    text-decoration: none;
+}
+a.icon_link:hover
+{
+    display:block;
+    padding:10px 10px 10px 10px;
+    color:gray;
+    text-decoration: none;
+}
 .header_spacer
 {
     display:block;
     height:180px;
+}
+.profile_type_heading
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 25px !important;
+    text-transform: uppercase;
+    color: black;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+.profile_type_description
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px !important;
+    text-transform: uppercase;
+    color: #a5987f;
 }
 .popup_boxstyle_headings
 {
