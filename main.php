@@ -23,8 +23,7 @@
         <!-- Top menu -->
         <nav class="navbar-default navbar-fixed-top">
             <div class="container-fluid top-menu">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <button type="button" class="navbar-toggle collapsed toogle-margin-zero" data-toggle="collapse" data-target="">
+                <button type="button" class="navbar-toggle collapsed toogle-margin-zero" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
                 <i class="refresh-icon fa fa-refresh fa-1x"></i>
@@ -44,18 +43,30 @@
                 </div>
             </div>
         </nav>
-        <nav class="navbar-default" role="navigation">
-            <div class="container-fluid user-menu">
-                <div class="input-group custom-search-form search-bar">
-                    <input type="text" class="form-control search-bar-typing" placeholder="Search DOGFORSHOW ...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
+        <!-- /Top menu -->
+        <!-- User menu -->
+        <div class="container-fluid user-menu" >
+            <div class="collapse navbar-collapse" id="user-menu" role="navigation" style="padding: 0px;">
+                <ul class="navbar-nav user-menu-list">
+                    <li>
+                        <div class="input-group custom-search-form search">
+                            <input type="text" class="form-control search-bar-typing" placeholder="Search DOGFORSHOW ...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-angle-right"></i>&nbsp;&nbsp;DOGFORSHOW
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+        <!-- /User menu -->
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

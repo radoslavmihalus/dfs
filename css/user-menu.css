@@ -11,19 +11,44 @@
         padding: 0px;
         margin-top:50px;
     }
+    
 }
-
 .user-menu
 {
     padding:0px;
     background-color: #f8f8f8;
     margin-top:50px;
 }
-.search-bar
+.search
 {
-    padding:15px;
+    padding:15px 15px 15px 15px;
 }
 .search-bar-typing
 {
     font-size: 12px;
+}
+.user-menu-list
+{
+    padding:0px;
+    margin:0px;
+    list-style-type: none;
+}
+.user-menu-list li
+{
+    width:100%;
+    padding:0px;
+    display:block;
+    border-bottom: #e4e4e4 1px solid;
+}
+.user-menu-list li:hover
+{
+    width:100%;
+    display:block;
+    border-bottom: #e4e4e4 1px solid;
+}
+.user-menu-list li a
+{
+    padding:15px 15px 15px 15px;
+    width:100%;
+    display:block;
 }
