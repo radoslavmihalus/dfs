@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
         <style>
             body {
-                padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
+                padding-top: 70px; /* 60px to make the container go all the way to the bottom of the topbar */
                 }
         </style>
     </head>
@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand logotyp" href="#">
-                        <img alt="Brand" src="img/logo.png">
+                        <img alt="Brand" style="width:150px;" src="img/logo.png">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -268,7 +268,7 @@
                         <div class="col-md-6">
                             <h2 class="heading text-center text-uppercase"><strong>Follow us</strong></h2>
                             <p class="secondary_heading text-center">
-                                <a href="https://www.facebook.com/dogforshow" target="_blank" title="DOGFORSHOW on facebook">
+                                <a href="https://www.facebook.com/dogforshow" target="_blank" title="DOGFORSHOW on facebook" style="margin-right:15px;">
                                     <span class="fa fa-facebook-official fa-2x follow_link"></span>
                                 </a>
                                 <a href="https://plus.google.com/+Dogforshow" target="_blank" title="DOGFORSHOW on Google+">

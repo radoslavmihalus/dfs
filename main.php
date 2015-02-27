@@ -10,8 +10,10 @@
         <!-- /Google font definition -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/typography.css" rel="stylesheet">
-        <!-- Menu section definition -->
+        <!-- Top Menu section definition -->
         <link href="css/top-menu.css" rel="stylesheet">
+        <!-- User Menu section definition -->
+        <link href="css/user-menu.css" rel="stylesheet">
         <!-- Main template definition -->
         <link href="css/main.css" rel="stylesheet">
         <!-- Glyphicons -->
@@ -19,26 +21,41 @@
     </head>
     <body>
         <!-- Top menu -->
-        <nav class="navbar-default">
-            <div class="container-fluid">
+        <nav class="navbar-default navbar-fixed-top">
+            <div class="container-fluid top-menu">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <i class="refresh-icon fa fa-refresh fa-1x"></i>
-                        <div class="notification-bar">
-                            <i class="notification-icon fa fa-users fa-1x"></i>
-                            <i class="notification-icon fa fa-envelope fa-1x"></i>
-                            <i class="notification-icon fa fa-bell fa-1x"></i>
-                        </div>
+                <button type="button" class="navbar-toggle collapsed toogle-margin-zero" data-toggle="collapse" data-target="">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <i class="refresh-icon fa fa-refresh fa-1x"></i>
+                <div class="notification-bar">
+                    <a href="#">
+                        <i class="notification-icon fa fa-users fa-1x"></i>
+                        <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
+                    </a>
+                    <a href="#">
+                        <i class="notification-icon fa fa-envelope fa-1x"></i>
+                        <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
+                    </a>
+                    <a href="#">
+                        <i class="notification-icon fa fa-bell fa-1x"></i>
+                        <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
+                    </a>
                 </div>
             </div>
         </nav>
-        <!-- /Top menu -->
-        <div class="container-fluid">
-
-        </div>
+        <nav class="navbar-default" role="navigation">
+            <div class="container-fluid user-menu">
+                <div class="input-group custom-search-form search-bar">
+                    <input type="text" class="form-control search-bar-typing" placeholder="Search DOGFORSHOW ...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </nav>
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

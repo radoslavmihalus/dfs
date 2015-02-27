@@ -1,0 +1,29 @@
+@media (min-width: 768px)
+{
+    .user-menu
+    {
+        z-index: 1;
+        position: absolute;
+        width: 250px !important;
+        height: 100%;
+        border-right: #e4e4e4 1px solid;
+        background-color: #f8f8f8;
+        padding: 0px;
+        margin-top:50px;
+    }
+}
+
+.user-menu
+{
+    padding:0px;
+    background-color: #f8f8f8;
+    margin-top:50px;
+}
+.search-bar
+{
+    padding:15px;
+}
+.search-bar-typing
+{
+    font-size: 12px;
+}

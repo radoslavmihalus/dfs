@@ -1,3 +1,7 @@
+.top-menu
+{
+    border-bottom: #e4e4e4 1px solid;
+}
 .refresh-icon
 {
     float: left;
@@ -7,13 +11,17 @@
     color:#919191;
     cursor:pointer;
 }
+.toogle-margin-zero
+{
+    margin-right: 0px !important;
+}
 .refresh-icon:active
 {
-    color:#81745a;
+    color:#6d6c6c;
 }
 .refresh-icon:hover
 {
-    color:#81745a;
+    color:#6d6c6c;
 }
 .notification-bar
 {
@@ -22,22 +30,33 @@
 }
 .notification-icon
 {
-    padding: 12px 10px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    margin-right: 15px;
-    color:#b2b2b2;
     cursor:pointer;
 }
-.notification-icon:active
+.notification-icon-caret
 {
-    color:#81745a;
 }
-.notification-icon:hover
+.notification-bar a:link
 {
-    color:#81745a;
+    padding:15px;
+    display:block;
+    float:left;
+    color:#BBBBBB !important;
+    text-decoration:none;
 }
-
-
+.notification-bar a:visited
+{
+    display:block;
+    float:left;
+    color:#BBBBBB !important;
+    text-decoration:none;
+}
+.notification-bar a:hover
+{
+    display:block;
+    float:left;
+    color:#919191 !important;
+    text-decoration: none;
+    background-color: #efefef;
+}
 
 
