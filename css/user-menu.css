@@ -59,7 +59,7 @@
     .user-menu
     {
         z-index: 1;
-        position: absolute;
+        position: fixed;
         width: 250px !important;
         height: 100%;
         border-right: #e4e4e4 1px solid;
