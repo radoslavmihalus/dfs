@@ -233,7 +233,7 @@
             </nav>
 
             <div id="page-wrapper">
-                <!--                 Profile switcher -->
+                <!-- Profile switcher -->
                 <div class="row animatedParent animateOnce" style="padding-top: 10px;">
                     <div class="panel-default col-md-4 animated fadeIn" style="font-size: 12px;min-width: 244px">
                         <div class="panel-body" style="background-color: white;min-height:430px;margin-bottom: 10px;">
