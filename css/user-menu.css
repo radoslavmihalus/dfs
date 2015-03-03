@@ -67,6 +67,7 @@
         padding: 0px;
         margin-top:50px;
     }
+    
 }
 .search-bar-typing
 {
@@ -91,3 +92,17 @@
     display:block;
     border-bottom: #e4e4e4 1px solid;
 }
+.user-menu-list li a.create-profile-link
+    {
+        color:white;
+        background-color: #d43f3a;
+    }   
+    
+.user-menu-list li a.create-profile-link:hover
+    {
+        color:white;
+        background-color: #BD221C;
+    }   
+    
+    
+    

@@ -2,3 +2,18 @@ body
 {
     background-color: #DBD7CD;
 }
+.content-wrapper
+{
+    position:fixed;
+    display:block;
+    width:100%;
+    margin: 50px 0 0 250px;
+    padding: 10px;
+}
+@media (max-width: 768px)
+{
+    .content-wrapper
+    {
+        margin:0px 0px 0px 0px;
+    }
+}

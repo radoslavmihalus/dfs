@@ -31,6 +31,14 @@
         ?>
         <!--/user-menu -->
         
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    
+                </div>
+            </div>
+        </div>
         <!-- /Main content -->
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

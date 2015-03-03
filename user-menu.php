@@ -16,6 +16,11 @@
                     </span>
                 </div>
             </li>
+            <li >
+                <a href="#" class="create-profile-link">
+                    <i class="fa fa-user-plus"></i>&nbsp;&nbsp;Create profile
+                </a>
+            </li>
             <li>
                 <a href="#">
                     <i class="fa fa-angle-right"></i>&nbsp;&nbsp;DOGFORSHOW
