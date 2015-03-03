@@ -4,6 +4,8 @@
             <li>
                 <div class="user-block">
                     <img class="user-block-thumb" src="../img/referer1.jpg" />
+                    <p class="user-block-type"><i class="fa fa-eye"></i>&nbsp;&nbsp;</i>Spectator</p>
+                    <p class="text-uppercase user-block-name">Petra Jessica Parker</p>
                 </div>
             </li>
             <li>
