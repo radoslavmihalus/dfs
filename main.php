@@ -22,12 +22,12 @@
     <body>
         <!-- top-menu -->
         <?php
-            include "../top-menu.php";
+            include "templates/top-menu.latte.php";
         ?>
         <!-- /top-menu -->
         <!-- user-menu -->
         <?php
-            include "../user-menu.php";
+            include "templates/user-menu.latte.php";
         ?>
         <!--/user-menu -->
         
@@ -36,7 +36,7 @@
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
                     <?php
-                    include "../create-profile-switcher.php";
+                    include "templates/create-profile-switcher.latte.php";
                     ?>
                 </div>
             </div>
