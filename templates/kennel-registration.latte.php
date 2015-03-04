@@ -49,18 +49,6 @@
                 <input type="email" class="form-control font_size_13px" id="txtEmail" placeholder="example@dogforshow.com">
             </div>
             <div class="form-group">
-                <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:15px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Address <i class="fa fa-question-circle tooltip_brown"></i></span>
-                <input type="text" class="form-control font_size_13px" id="txtAdress" placeholder="Address">
-            </div>
-            <div class="form-group">
-                <span style="font-size: 13px;display:block;margin-bottom: 5px;">Town <i class="fa fa-question-circle tooltip_brown"></i></span>
-                <input type="text" class="form-control font_size_13px" id="txtTown" placeholder="Town">
-            </div>
-            <div class="form-group">
-                <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:15px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;ZIP <i class="fa fa-question-circle tooltip_brown"></i></span>
-                <input type="text" class="form-control font_size_13px" id="txtZIP" placeholder="94485">
-            </div>
-            <div class="form-group">
                 <span style="font-size: 13px;display:block;margin-bottom: 5px;">Country <i class="fa fa-question-circle tooltip_brown"></i></span>
                 <select class="form-control font_size_12px" id="ddlCountries">
                     <option>Select country</option>
@@ -68,39 +56,6 @@
                     <option>Afghanistan</option>
                     <option>Kuwait</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:15px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Phone number <i class="fa fa-question-circle tooltip_brown"></i></span>
-                <input type="text" class="form-control font_size_13px" id="txtPhone" placeholder="+420xxxxxxxxx">
-            </div>
-            <div class="form-group">
-                <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:15px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Date of Birth <i class="fa fa-question-circle tooltip_brown"></i></span>
-                <div class="row">
-                    <div class="col-md-4" style="margin-bottom: 10px;">
-                        <select class="form-control font_size_13px" id="ddlDayBirth">
-                            <option>Day</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4" style="margin-bottom: 10px;">
-                        <select class="form-control font_size_13px" id="ddlDayBirth">
-                            <option>Month</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4" style="margin-bottom: 10px;">
-                        <select class="form-control font_size_13px" id="ddlDayBirth">
-                            <option>Year</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
-                </div>
             </div>
         </form>
         <button type="submit" class="btn btn-danger btn-xl pull-right"><i class="fa fa-user-plus"></i></span>&nbsp;&nbsp;Create profile</button>
