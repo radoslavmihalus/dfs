@@ -16,6 +16,8 @@
         <link href="css/user-menu.css" rel="stylesheet">
         <!-- Main template definition -->
         <link href="css/main.css" rel="stylesheet">
+        <!-- Components definition -->
+        <link href="css/components.css" rel="stylesheet">
         <!-- Glyphicons -->
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
     </head>
@@ -36,7 +38,7 @@
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
                     <?php
-                    include "templates/create-profile-switcher.latte.php";
+                    include "templates/owner-registration.latte.php";
                     ?>
                 </div>
             </div>

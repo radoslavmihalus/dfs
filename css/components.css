@@ -2,3 +2,22 @@ root {
     display: block;
 }
 
+ul.section_list
+{
+    padding-left: 0px;
+    margin-left: 0px;
+    display:table;
+    list-style-type: none;
+}
+ul.section_list li
+{
+    margin-left: 0px;
+}
+.section_list_icon
+{
+    color:#a5987f;
+    font-size:10px;
+    margin-right: 8px;
+}
+
+
