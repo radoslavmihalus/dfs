@@ -7,8 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <!-- Google font definition -->
         <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300|500' rel='stylesheet' type='text/css'>
-        <!-- /Google font definition -->
+        <!-- Bootstrap definition -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+        <!-- Typographyp definition -->
         <link href="css/typography.css" rel="stylesheet">
         <!-- Top Menu section definition -->
         <link href="css/top-menu.css" rel="stylesheet">
@@ -18,6 +20,8 @@
         <link href="css/main.css" rel="stylesheet">
         <!-- Components definition -->
         <link href="css/components.css" rel="stylesheet">
+        <!-- Profile template -->
+        <link href="css/profile.css" rel="stylesheet">
         <!-- Glyphicons -->
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
     </head>
@@ -38,7 +42,7 @@
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
                     <?php
-                    include "templates/owner-registration.latte.php";
+                    include "templates/owner-profile.latte.php";
                     ?>
                 </div>
             </div>

@@ -1,0 +1,16 @@
+.profil-header-image
+{
+    background: url("../img/profile_header.jpg")no-repeat center center;
+    height:350px;
+}
+.header_spacer
+{
+    display:block;
+    height:180px;
+}
+.image_profile_thumb
+{
+    margin-left: 20px;
+    width:150px;
+    border:white 2px solid;
+}
