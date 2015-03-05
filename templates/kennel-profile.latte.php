@@ -1,6 +1,6 @@
-<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
+<div class="panel-default col-lg-8 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body" style="background-color: white;margin-bottom: 5px;">
-        <div class="profil-header-image">
+        <div class="profile-header-image">
             <div class="header_spacer">
             </div>
             <img src="img/referer1.jpg" class="pull-left image_profile_thumb">

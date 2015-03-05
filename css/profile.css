@@ -1,4 +1,12 @@
-.profil-header-image
+@media (min-width: 1280px)
+{
+    .profile_wrapper
+    {
+        min-width: 1020px;
+    } 
+}
+
+.profile-header-image
 {
     background: url("../img/profile_header.jpg")no-repeat center center;
     height:350px;
