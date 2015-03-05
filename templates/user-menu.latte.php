@@ -4,8 +4,11 @@
             <li>
                 <div class="user-block">
                     <img class="user-block-thumb" src="img/referer1.jpg" />
-                    <p class="user-block-type"><i class="fa fa-eye"></i>&nbsp;&nbsp;</i>Spectator</p>
-                    <p class="text-uppercase user-block-name">Petra Jessica Parker</p>
+<!--                    <p class="user-block-type"><i class="fa fa-eye"></i>&nbsp;&nbsp;</i>Spectator</p>-->
+                    <p class="user-block-type"><i class="fa fa-home"></i>&nbsp;&nbsp;</i>Kennel</p>
+<!--                    <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>Owner of purebred dog</p>
+                    <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>Handler</p>-->
+                    <p class="text-uppercase user-block-name">Faalat rhodesian ridgeback kennel</p>
                 </div>
             </li>
             <li>
