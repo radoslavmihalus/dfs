@@ -24,8 +24,7 @@
 <script type="text/javascript">
     if ($(window).width() <= 1366)
     {
-        $("#profile_div").removeClass("col-lg-8");
-        $("#profile_div").addClass("col-lg-12");
+        $("#profile_div").removeClass("col-lg-8").addClass("col-lg-12");
     }
     else
     {
