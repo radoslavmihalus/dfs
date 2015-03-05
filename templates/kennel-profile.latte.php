@@ -1,4 +1,4 @@
-<div id="profile_div" class="panel-default col-lg-8 profile_wrapper" style="font-size: 12px;">
+<div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body" style="background-color: white;margin-bottom: 5px;">
         <div class="profile-header-image">
             <div class="header_spacer">
@@ -21,13 +21,23 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    if ($(window).width() <= 1366)
-    {
-        $("#profile_div").removeClass("col-lg-8").addClass("col-lg-12");
-    }
-    else
-    {
-        $("#profile_div").removeClass("col-lg-12").addClass("col-lg-8");
-    }
-</script>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-md-4">
+            <!-- Description panel-->
+            <div class="panel-body col-lg-12" style="background-color: white;margin-bottom: 5px;margin-top: 5px;">
+                <div style="color:gray"><i class="fa fa-align-justify">&nbsp;&nbsp;</i>Description</div>
+                <hr>
+                <div class="text-justify" style="font-size:12px;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id tellus eros. Ut ultricies pharetra nisi, vel sodales enim. Fusce rutrum urna justo. Nulla commodo iaculis convallis. Duis ac sodales nulla, vel condimentum justo. Mauris at nisi id metus pellentesque facilisis quis eget dolor. Suspendisse interdum magna enim, vel pellentesque dolor tempus consectetur. Suspendisse sed metus leo. Nunc vitae dictum risus, convallis varius metus. Donec neque velit, volutpat vel tincidunt a, dignissim at nibh.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            
+        </div>
+        <div class="col-md-4">
+            
+        </div>
+    </div>
+</div>

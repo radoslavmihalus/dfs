@@ -1,14 +1,7 @@
-@media (min-width: 1280px)
-{
-    .profile_wrapper
-    {
-        min-width: 1020px;
-    } 
-}
-
 .profile-header-image
 {
     background: url("../img/profile_header.jpg")no-repeat center center;
+    background-size:cover;
     height:350px;
 }
 .header_spacer
@@ -24,6 +17,6 @@
 }
 .profile_type_description
 {
-    color:gray;
-    font-size:13px;
+    color:black;
+    font-size:15px;
 }
