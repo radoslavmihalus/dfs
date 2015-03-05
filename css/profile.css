@@ -17,6 +17,7 @@
 }
 .profile_type_description
 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px !important;
     color:black;
-    font-size:15px;
 }

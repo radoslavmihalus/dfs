@@ -19,5 +19,11 @@ ul.section_list li
     font-size:10px;
     margin-right: 8px;
 }
+.panel-description
+{
+    color:gray;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 17px !important;
+}
 
 
