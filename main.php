@@ -24,6 +24,8 @@
         <link href="css/profile.css" rel="stylesheet">
         <!-- Glyphicons -->
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
         <!-- top-menu -->
@@ -49,8 +51,6 @@
         </div>
         <!-- /Main content -->
         <!-- Scripts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
 

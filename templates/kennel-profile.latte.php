@@ -1,4 +1,4 @@
-<div class="panel-default col-lg-8 profile_wrapper" style="font-size: 12px;">
+<div id="profile_div" class="panel-default col-lg-8 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body" style="background-color: white;margin-bottom: 5px;">
         <div class="profile-header-image">
             <div class="header_spacer">
@@ -20,4 +20,15 @@
             </div>
         </div>
     </div>
-</div>  
+</div>
+<script type="text/javascript">
+    if ($(window).width() <= 1366)
+    {
+        $("#profile_div").removeClass("col-lg-8");
+        $("#profile_div").addClass("col-lg-12");
+    }
+    else
+    {
+        $("#profile_div").removeClass("col-lg-12").addClass("col-lg-8");
+    }
+</script>
