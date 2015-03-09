@@ -14,6 +14,7 @@
     height:auto;
     background:url("../img/header.jpg")no-repeat center center;
     background-size:cover;
+    min-height:600px;
     
 }
 .landing_header_slogan
@@ -160,4 +161,25 @@ ul.section_list
 {
     background:url("../img/back1.jpg")no-repeat center center;
     background-size:cover;
+}
+a.myTabslink:active
+{
+    color:black;
+    font-size:17px !important;
+    font-weight:bold;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+a.myTabslink:link
+{
+    color:white;
+    font-size:17px !important;
+    font-weight:bold;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+a.myTabslink:hover
+{
+    color:black;
+    font-size:17px !important;
+    font-weight:bold;
+    font-family: 'Roboto Condensed', sans-serif;
 }

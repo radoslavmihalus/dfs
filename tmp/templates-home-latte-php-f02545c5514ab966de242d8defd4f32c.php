@@ -2,7 +2,7 @@
 // source: templates/home.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('8264425165', 'html')
+list($_b, $_g, $_l) = $template->initialize('8234977271', 'html')
 ;
 //
 // main template
@@ -33,7 +33,7 @@ list($_b, $_g, $_l) = $template->initialize('8264425165', 'html')
         <style>
             body {
                 padding-top: 70px; /* 60px to make the container go all the way to the bottom of the topbar */
-                }
+            }
         </style>
     </head>
 
@@ -72,27 +72,51 @@ list($_b, $_g, $_l) = $template->initialize('8264425165', 'html')
                         </div>
                         <div class="col-md-6 container">
                             <p class="text-center text-uppercase landing_header_slogan">"Bringing together breeders, owners and handlers of <strong>purebred dogs from over the world</strong>"</p>
-                            <div class="panel panel-default registration_block transparent_white">
-                                <div class="panel-body">
-                                    <!-- DOGFORSHOW Sign up form -->
-                                    <form id="frmSignIn">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="txtName" placeholder="Name">
+                            <ul id="myTabs" class="nav nav-tabs nav-justified">
+                                <li class="active"><a class="myTabslink" href="#login" data-toggle="tab"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login</a></li>
+                                <li><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;Registration</a></li>
+                            </ul>
+                            <div id="myTabsContent" class="tab-content">
+                                <div class="tab-pane fade" id="registration">
+                                    <div class="panel panel-default registration_block transparent_white">
+                                        <div class="panel-body">
+                                            <!-- DOGFORSHOW Sign up form -->
+                                            <form id="frmSignIn">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="txtName" placeholder="Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="txtSurname" placeholder="Surname">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" id="txtEmail" placeholder="Email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" id="txtPassword" placeholder="Password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm password">
+                                                </div>
+                                            </form>
+                                            <button type="submit" class="btn btn-danger btn-lg btn-block">Register</button>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="txtSurname" placeholder="Surname">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade in active" id="login">
+                                    <div class="panel panel-default registration_block transparent_white">
+                                        <div class="panel-body">
+                                            <!-- DOGFORSHOW Sign up form -->
+                                            <form id="frmlogIn">
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" id="txtEmail" placeholder="Email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" id="txtPassword" placeholder="Password">
+                                                </div>
+                                            </form>
+                                            <button type="submit" class="btn btn-danger btn-lg btn-block">Login</button>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" id="txtEmail" placeholder="Email">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" id="txtPassword" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm password">
-                                        </div>
-                                    </form>
-                                    <button type="submit" class="btn btn-danger btn-lg btn-block"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Join us today</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -258,18 +282,18 @@ list($_b, $_g, $_l) = $template->initialize('8264425165', 'html')
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" id="txtEmail" placeholder="Email">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="txtEmail" placeholder="Email">
+                                    </div>
                                 </div>
-                            </div>
                                 <div class="col-md-12">
-                                <div class="form-group">
-                                    <textarea type="text" class="form-control contact_textarea" id="txtPassword" placeholder="Message text"></textarea>
-                                </div>
+                                    <div class="form-group">
+                                        <textarea type="text" class="form-control contact_textarea" id="txtPassword" placeholder="Message text"></textarea>
+                                    </div>
                                 </div>
                             </form>
                             <div class="col-md-6">
-<!--                                <div class="g-recaptcha landing_captcha" data-sitekey="6LdBSgITAAAAAPHEfML6Of8AKPJ1CTbIrI7BdEql"></div>-->
+                                <!--                                <div class="g-recaptcha landing_captcha" data-sitekey="6LdBSgITAAAAAPHEfML6Of8AKPJ1CTbIrI7BdEql"></div>-->
                             </div>
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;Send</button>
@@ -284,12 +308,12 @@ list($_b, $_g, $_l) = $template->initialize('8264425165', 'html')
                                 <a href="https://plus.google.com/+Dogforshow" target="_blank" title="DOGFORSHOW on Google+">
                                     <span class="fa fa-google-plus-square fa-2x white follow_link"></span>
                                 </a>
-<!--                                <a href="https://twitter.com/DOGFORSHOW" target="_blank" title="DOGFORSHOW on Twitter">
-                                    <span class="fa fa-twitter-square fa-2x white follow_link"></span>
-                                </a>
-                                <a href="https://www.pinterest.com/DOGFORSHOW" target="_blank" title="DOGFORSHOW on Pinterest">
-                                    <span class="fa fa-pinterest-square fa-2x white follow_link"></span>
-                                </a>-->
+                                <!--                                <a href="https://twitter.com/DOGFORSHOW" target="_blank" title="DOGFORSHOW on Twitter">
+                                                                    <span class="fa fa-twitter-square fa-2x white follow_link"></span>
+                                                                </a>
+                                                                <a href="https://www.pinterest.com/DOGFORSHOW" target="_blank" title="DOGFORSHOW on Pinterest">
+                                                                    <span class="fa fa-pinterest-square fa-2x white follow_link"></span>
+                                                                </a>-->
                             </p>
                         </div>
                     </div>
