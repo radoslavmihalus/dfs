@@ -164,28 +164,20 @@ ul.section_list
 a.myTabslink:active
 {
     color:black;
-    font-size:17px !important;
-    font-weight:bold;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-size:15px !important;
 }
 a.myTabslink:link
 {
     color:white;
-    font-size:17px !important;
-    font-weight:bold;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-size:15px !important;
 }
 a.myTabslink:hover
 {
     color:black !important;
-    font-size:17px !important;
-    font-weight:bold;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-size:15px !important;
 }
 a.myTabslink:visited
 {
     color:white;
-    font-size:17px !important;
-    font-weight:bold;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-size:15px !important;
 }

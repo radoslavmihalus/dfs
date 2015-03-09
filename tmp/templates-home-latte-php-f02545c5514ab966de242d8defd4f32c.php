@@ -2,7 +2,7 @@
 // source: templates/home.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('3802941396', 'html')
+list($_b, $_g, $_l) = $template->initialize('8654665158', 'html')
 ;
 //
 // main template
@@ -54,7 +54,7 @@ list($_b, $_g, $_l) = $template->initialize('3802941396', 'html')
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#join" class="page-scroll text-uppercase landing_navbar_typography">Register</a></li>
+                        <li><a href="#join" class="page-scroll text-uppercase landing_navbar_typography">Registration</a></li>
                         <li><a href="#about" class="page-scroll text-uppercase landing_navbar_typography">About</a></li>
                         <li><a href="#follow" class="page-scroll text-uppercase landing_navbar_typography">How we grow</a></li>
                         <li><a href="#discover" class="page-scroll text-uppercase landing_navbar_typography">Discover dogforshow</a></li>
@@ -98,7 +98,7 @@ list($_b, $_g, $_l) = $template->initialize('3802941396', 'html')
                                                     <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm password">
                                                 </div>
                                             </form>
-                                            <button type="submit" class="btn btn-danger btn-lg btn-block">Register</button>
+                                            <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;Register</button>
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@ list($_b, $_g, $_l) = $template->initialize('3802941396', 'html')
                                                     <input type="password" class="form-control" id="txtPassword" placeholder="Password">
                                                 </div>
                                             </form>
-                                            <button type="submit" class="btn btn-danger btn-lg btn-block">Login</button>
+                                            <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login</button>
                                         </div>
                                     </div>
                                 </div>
