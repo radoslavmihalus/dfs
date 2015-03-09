@@ -26,10 +26,36 @@
         <div class="col-md-4">
             <!-- Description panel-->
             <div class="panel-body col-lg-12" style="background-color: white;margin-bottom: 5px;margin-top: 5px;">
-                <div class="panel-description"><i class="fa fa-align-justify">&nbsp;&nbsp;</i>Description</div>
+                <!-- FCI number panel-->
+                <div class="panel-description"><i class="fa fa-book"></i>&nbsp;&nbsp;FCI number 
+<!--                    <a href="#" class="panel-edit-button btn btn-default btn-sm pull-right"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>-->
+                </div>
+                <div class="text-justify" style="font-size:12px;padding-top: 10px;">
+                    1478/2014
+                </div>
                 <hr>
-                <div class="text-justify" style="font-size:12px;">
+                <!-- Kennel breed panel-->
+                <div class="panel-description"><i class="fa fa-tags"></i>&nbsp;&nbsp;Breeds bred by kennel 
+                </div>
+                <div class="text-justify" style="font-size:12px;padding-top: 10px;">
+                    Cane Corso Italiano
+                </div>
+                <hr>
+                <!-- Kennel description panel-->
+                <div class="panel-description"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Description 
+                </div>
+                <div class="text-justify" style="font-size:12px;padding-top: 10px;">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id tellus eros. Ut ultricies pharetra nisi, vel sodales enim. Fusce rutrum urna justo. Nulla commodo iaculis convallis. Duis ac sodales nulla, vel condimentum justo. Mauris at nisi id metus pellentesque facilisis quis eget dolor. Suspendisse interdum magna enim, vel pellentesque dolor tempus consectetur. Suspendisse sed metus leo. Nunc vitae dictum risus, convallis varius metus. Donec neque velit, volutpat vel tincidunt a, dignissim at nibh.
+                </div>
+                 <hr>
+            </div>
+            <!-- Dogs panel-->
+            <div class="panel-body col-lg-12" style="background-color: white;margin-bottom: 5px;margin-top: 5px;">
+                <div class="panel-description"><i class="fa fa-paw"></i>&nbsp;&nbsp;Dogs 
+                    <a href="#" class="panel-edit-button btn btn-danger btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add dog</a>
+                </div>
+                <div class="text-justify" style="font-size:12px;">
+                    
                 </div>
             </div>
         </div>

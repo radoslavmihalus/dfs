@@ -23,7 +23,15 @@ ul.section_list li
 {
     color:gray;
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 17px !important;
+    font-size: 16px !important;
 }
-
+.panel-edit-button
+{
+    font-family: sans-serif !important;
+}
+.spacer
+{
+    display:block;
+    height:20px;
+}
 
