@@ -2,7 +2,7 @@
 // source: templates/home.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('8234977271', 'html')
+list($_b, $_g, $_l) = $template->initialize('3802941396', 'html')
 ;
 //
 // main template
@@ -72,7 +72,7 @@ list($_b, $_g, $_l) = $template->initialize('8234977271', 'html')
                         </div>
                         <div class="col-md-6 container">
                             <p class="text-center text-uppercase landing_header_slogan">"Bringing together breeders, owners and handlers of <strong>purebred dogs from over the world</strong>"</p>
-                            <ul id="myTabs" class="nav nav-tabs nav-justified">
+                            <ul id="myTabs" class="nav nav-tabs" style="border-bottom:0px !important;">
                                 <li class="active"><a class="myTabslink" href="#login" data-toggle="tab"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login</a></li>
                                 <li><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;Registration</a></li>
                             </ul>

@@ -33,7 +33,6 @@
 {
     background-color: none !important;
     background:url("../img/transparent_white.png") repeat !important;
-    border:none !important;
     padding:10px;
 }
 .heading
@@ -178,7 +177,14 @@ a.myTabslink:link
 }
 a.myTabslink:hover
 {
-    color:black;
+    color:black !important;
+    font-size:17px !important;
+    font-weight:bold;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+a.myTabslink:visited
+{
+    color:white;
     font-size:17px !important;
     font-weight:bold;
     font-family: 'Roboto Condensed', sans-serif;
