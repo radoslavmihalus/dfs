@@ -1,15 +1,15 @@
 <div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body" style="background-color: white;margin-bottom: 5px;">
         <div class="profile-header-image">
-            <div class="header_spacer">
+            <div class="header-spacer">
             </div>
-            <img src="img/referer1.jpg" class="pull-left image_profile_thumb">
+            <img src="img/referer1.jpg" class="pull-left image-profile-thumb">
         </div>
         <div class="row">
             <div class="col-md-8">
                 <h1 class="profile_type_heading text-uppercase">Faalat rhodesian ridgeback kennel</h1>
-                <span class="profile_type_description"><i class="fa fa-home"></i></i>&nbsp;&nbsp;Kennel</span>
-                <span class="profile_type_description" style="margin-left: 20px"><i class="fa fa-map-marker"></i></i>&nbsp;&nbsp;Slovakia</span>
+                <span class="profile-type-description"><i class="fa fa-home"></i></i>&nbsp;&nbsp;Kennel</span>
+                <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker"></i></i>&nbsp;&nbsp;Slovakia</span>
             </div>
             <div class="col-md-4" style="padding-top: 15px;">
                 <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">
@@ -47,14 +47,56 @@
                 <div class="text-justify" style="font-size:12px;padding-top: 10px;">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id tellus eros. Ut ultricies pharetra nisi, vel sodales enim. Fusce rutrum urna justo. Nulla commodo iaculis convallis. Duis ac sodales nulla, vel condimentum justo. Mauris at nisi id metus pellentesque facilisis quis eget dolor. Suspendisse interdum magna enim, vel pellentesque dolor tempus consectetur. Suspendisse sed metus leo. Nunc vitae dictum risus, convallis varius metus. Donec neque velit, volutpat vel tincidunt a, dignissim at nibh.
                 </div>
+                <hr>
+                <!-- Kennel website-->
+                <div class="panel-description"><i class="fa fa-external-link"></i>&nbsp;&nbsp;Website 
+                </div>
+                <div class="text-justify" style="font-size:12px;padding-top: 10px;">
+                    www.something.com
+                </div>
             </div>
             <!-- Dogs panel-->
             <div class="panel-body col-lg-12" style="background-color: white;margin-bottom: 5px;margin-top: 5px;">
+                <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
                 <div class="panel-description"><i class="fa fa-paw"></i>&nbsp;&nbsp;Dogs 
                     <a href="#" class="panel-edit-button btn btn-danger btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add dog</a>
                 </div>
-                <div class="text-justify" style="font-size:12px;">
-                    
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                    <p style="font-size:12px">
+                        <i class="fa fa-mars gender-dog"></i>&nbsp;Males
+                    </p>
+                    <ul class="dog-list">
+                        <li>
+                            <a>
+                                <img src="img/dog1.jpg" class="pull-left">
+                                <p class="dog-name">AMIR faalat rhodesian ridgeback</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12">
+                    <p style="font-size:12px">
+                        <i class="fa fa-venus gender-bitch"></i>&nbsp;Females
+                    </p>
+                    <ul class="dog-list">
+                        <li>
+                            <a>
+                                <img src="img/dog2.jpg" class="pull-left">
+                                <p class="dog-name">Jasmine faalat rhodesian ridgeback</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <img src="img/dog3.jpg" class="pull-left">
+                                <p class="dog-name">Kanar faalat rhodesian ridgeback</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 </div>
             </div>
         </div>

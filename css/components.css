@@ -1,3 +1,4 @@
+// COMPONENTS GENERAL
 root { 
     display: block;
 }
@@ -23,7 +24,7 @@ ul.section_list li
 {
     color:gray;
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 16px !important;
+    font-size: 15px !important;
 }
 .panel-edit-button
 {
@@ -34,4 +35,66 @@ ul.section_list li
     display:block;
     height:20px;
 }
-
+// ADDED DOGS COMPONENT
+.gender-dog
+{
+    color:#2087de;
+}
+.gender-bitch
+{
+    color:#f67aec;
+}
+.dog-list
+{
+    width:100%;
+    float:left;
+    margin:0px 0px 15px 0px;
+    padding:0px 0px 0px 0px;
+    
+}
+.dog-list li
+{
+    padding:10px;
+    width:100%;
+    border:1px solid #eee;
+    float:left;
+    display:block;
+    border-radius: 4px;
+    list-style-type: none;
+    cursor:pointer;
+    margin-bottom: 5px;
+}
+.dog-list li:hover
+{
+    background-color: whitesmoke;
+}
+.dog-list li a
+{
+    width:100%;
+    float:left;
+    display:block;
+}
+.dog-list li a:hover
+{
+    width:100%;
+    float:left;
+    display:block;
+    text-decoration: none;
+}
+.dog-list li a img
+{
+    float:left;
+    width:70px;
+    height:70px;
+    border-radius: 4px;
+    border:1px solid #e4e4e4;
+}
+.dog-name
+{
+   display:block;
+   font-family: 'Roboto Condensed', sans-serif;
+   font-size:16px;
+   margin-left: 80px;
+   text-transform: uppercase;
+   color:#a5987f;
+}

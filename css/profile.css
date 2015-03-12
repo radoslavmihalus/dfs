@@ -4,20 +4,20 @@
     background-size:cover;
     height:350px;
 }
-.header_spacer
+.header-spacer
 {
     display:block;
     height:180px;
 }
-.image_profile_thumb
+.image-profile-thumb
 {
     margin-left: 20px;
     width:150px;
     border:white 2px solid;
 }
-.profile_type_description
+.profile-type-description
 {
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 16px !important;
+    font-size: 17px !important;
     color:black;
 }
