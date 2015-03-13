@@ -8,8 +8,8 @@
         <div class="row">
             <div class="col-md-8">
                 <h1 class="profile_type_heading text-uppercase">Faalat rhodesian ridgeback kennel</h1>
-                <span class="profile-type-description"><i class="fa fa-home"></i></i>&nbsp;&nbsp;Kennel</span>
-                <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker"></i></i>&nbsp;&nbsp;Slovakia</span>
+                <span class="profile-type-description"><i class="fa fa-home fa-1x"></i></i>&nbsp;&nbsp;Kennel</span>
+                <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker fa-1x"></i></i>&nbsp;&nbsp;Slovakia</span>
             </div>
             <div class="col-md-4" style="padding-top: 15px;">
                 <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">
@@ -98,6 +98,12 @@
         </div>
         <div class="col-md-8">
             <!-- Timeline events-->
+            <div class="panel-body col-md-6 hidden-sm" style="background-color: white;margin-bottom: 5px;margin-top: 5px;">
+                <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
+                <div class="panel-description"><i class="fa fa-users fa-1x"></i>&nbsp;&nbsp;Friendlist 
+                </div>
+                </div>
+            </div>
             <div class="panel-body col-lg-12" style="background-color: white;margin-bottom: 5px;margin-top: 5px;">
                 <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
                 <div class="panel-description"><i class="fa fa-clock-o fa-1x"></i>&nbsp;&nbsp;Timeline events 
