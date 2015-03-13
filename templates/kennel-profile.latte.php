@@ -27,7 +27,7 @@
             <!-- Description panel-->
             <div class="panel-body col-lg-12" style="background-color: white;margin-bottom: 5px;margin-top: 5px;">
                 <!-- FCI number panel-->
-                <div class="panel-description"><i class="fa fa-book"></i>&nbsp;&nbsp;FCI number 
+                <div class="panel-description"><i class="fa fa-book fa-1x"></i>&nbsp;&nbsp;FCI number 
 <!--                    <a href="#" class="panel-edit-button btn btn-default btn-sm pull-right"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>-->
                 </div>
                 <div class="text-justify" style="font-size:12px;padding-top: 10px;">
@@ -35,21 +35,21 @@
                 </div>
                 <hr>
                 <!-- Kennel breed panel-->
-                <div class="panel-description"><i class="fa fa-tags"></i>&nbsp;&nbsp;Breeds bred by kennel 
+                <div class="panel-description"><i class="fa fa-tags fa-1x"></i>&nbsp;&nbsp;Breeds bred by kennel 
                 </div>
                 <div class="text-justify" style="font-size:12px;padding-top: 10px;">
                     Cane Corso Italiano
                 </div>
                 <hr>
                 <!-- Kennel description panel-->
-                <div class="panel-description"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Description 
+                <div class="panel-description"><i class="fa fa-file-text-o fa-1x"></i>&nbsp;&nbsp;Description 
                 </div>
                 <div class="text-justify" style="font-size:12px;padding-top: 10px;">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id tellus eros. Ut ultricies pharetra nisi, vel sodales enim. Fusce rutrum urna justo. Nulla commodo iaculis convallis. Duis ac sodales nulla, vel condimentum justo. Mauris at nisi id metus pellentesque facilisis quis eget dolor. Suspendisse interdum magna enim, vel pellentesque dolor tempus consectetur. Suspendisse sed metus leo. Nunc vitae dictum risus, convallis varius metus. Donec neque velit, volutpat vel tincidunt a, dignissim at nibh.
                 </div>
                 <hr>
                 <!-- Kennel website-->
-                <div class="panel-description"><i class="fa fa-external-link"></i>&nbsp;&nbsp;Website 
+                <div class="panel-description"><i class="fa fa-external-link fa-1x"></i>&nbsp;&nbsp;Website 
                 </div>
                 <div class="text-justify" style="font-size:12px;padding-top: 10px;">
                     www.something.com
@@ -58,7 +58,7 @@
             <!-- Dogs panel-->
             <div class="panel-body col-lg-12" style="background-color: white;margin-bottom: 5px;margin-top: 5px;">
                 <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-                <div class="panel-description"><i class="fa fa-paw"></i>&nbsp;&nbsp;Dogs 
+                <div class="panel-description"><i class="fa fa-paw fa-1x"></i>&nbsp;&nbsp;Dogs 
                     <a href="#" class="panel-edit-button btn btn-danger btn-sm pull-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add dog</a>
                 </div>
                 </div>
@@ -100,12 +100,14 @@
             <!-- Timeline events-->
             <div class="panel-body col-lg-12" style="background-color: white;margin-bottom: 5px;margin-top: 5px;">
                 <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-                <div class="panel-description"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;Timeline events 
+                <div class="panel-description"><i class="fa fa-clock-o fa-1x"></i>&nbsp;&nbsp;Timeline events 
                 </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                    <p>No timeline events</p>
+                        <?php
+                    include "templates/timeline.latte.php";
+                    ?>
                     </div>
                 </div>
                 </div>
