@@ -64,14 +64,15 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                    <p style="font-size:12px">
-                        <i class="fa fa-mars gender-dog"></i>&nbsp;Males
+                    <p style="font-size:12px;color:gray">
+                        <i class="fa fa-mars gender-dog" style="color:#0c9eea"></i>&nbsp;Males
                     </p>
                     <ul class="dog-list">
                         <li>
                             <a>
-                                <img src="img/dog1.jpg" class="pull-left">
+                                <div class="dog-thumb pull-left"></div>
                                 <p class="dog-name">AMIR faalat rhodesian ridgeback</p>
+                                <p class="dog-datebirth"><i class="fa fa-calendar-o"></i>&nbsp;15.2.2014</p>
                             </a>
                         </li>
                     </ul>
@@ -79,20 +80,15 @@
                 </div>
                 <div class="row">
                 <div class="col-md-12">
-                    <p style="font-size:12px">
+                    <p style="font-size:12px;color:gray">
                         <i class="fa fa-venus gender-bitch"></i>&nbsp;Females
                     </p>
                     <ul class="dog-list">
                         <li>
                             <a>
-                                <img src="img/dog2.jpg" class="pull-left">
+                                <div class="dog-thumb pull-left"></div>
                                 <p class="dog-name">Jasmine faalat rhodesian ridgeback</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <img src="img/dog3.jpg" class="pull-left">
-                                <p class="dog-name">Kanar faalat rhodesian ridgeback</p>
+                                <p class="dog-datebirth"><i class="fa fa-calendar-o"></i>&nbsp;15.2.2014</p>
                             </a>
                         </li>
                     </ul>
@@ -101,7 +97,19 @@
             </div>
         </div>
         <div class="col-md-4">
-            
+            <!-- Timeline events-->
+            <div class="panel-body col-lg-12" style="background-color: white;margin-bottom: 5px;margin-top: 5px;">
+                <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
+                <div class="panel-description"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;Timeline events 
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                    <p>No timeline events</p>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             
