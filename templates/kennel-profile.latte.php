@@ -96,7 +96,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-8">
             <!-- Timeline events-->
             <div class="panel-body col-lg-12" style="background-color: white;margin-bottom: 5px;margin-top: 5px;">
                 <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
@@ -112,9 +112,6 @@
                 </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            
         </div>
     </div>
 </div>
