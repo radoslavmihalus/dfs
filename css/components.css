@@ -20,6 +20,14 @@ ul.section_list li
     font-size:10px;
     margin-right: 8px;
 }
+.component
+{
+  border-top:#a5987f 3px solid;
+  background-color: white;
+  margin-bottom: 15px;
+  webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
 .panel-description
 {
     color:gray;

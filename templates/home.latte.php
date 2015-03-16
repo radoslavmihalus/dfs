@@ -49,6 +49,7 @@
                         <li><a href="#follow" class="page-scroll text-uppercase landing_navbar_typography">How we grow</a></li>
                         <li><a href="#discover" class="page-scroll text-uppercase landing_navbar_typography">Discover dogforshow</a></li>
                         <li><a href="#contact" class="page-scroll text-uppercase landing_navbar_typography">Contact us</a></li>
+                    </ul>
                 </div>
             </div>
         </nav>

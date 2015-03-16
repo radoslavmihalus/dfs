@@ -4,7 +4,7 @@
                 position: relative;
             }
 
-            .timeline:before {
+/*            .timeline:before {
                 top: 0;
                 bottom: 0;
                 position: absolute;
@@ -13,7 +13,7 @@
                 background-color: #eeeeee;
                 left: 50%;
                 margin-left: -1.5px;
-            }
+            }*/
 
             .timeline > li {
                 margin-bottom: 20px;
@@ -40,8 +40,9 @@
                 clear: both;
             }
 
+
             .timeline > li > .timeline-panel {
-                width: 46%;
+                width: 100%;
                 float: left;
                 border: 1px solid #d4d4d4;
                 border-radius: 2px;
@@ -51,7 +52,7 @@
                 box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
             }
 
-            .timeline > li > .timeline-panel:before {
+/*            .timeline > li > .timeline-panel:before {
                 position: absolute;
                 top: 26px;
                 right: -15px;
@@ -61,9 +62,9 @@
                 border-right: 0 solid #ccc;
                 border-bottom: 15px solid transparent;
                 content: " ";
-            }
+            }*/
 
-            .timeline > li > .timeline-panel:after {
+/*            .timeline > li > .timeline-panel:after {
                 position: absolute;
                 top: 27px;
                 right: -14px;
@@ -73,7 +74,7 @@
                 border-right: 0 solid #fff;
                 border-bottom: 14px solid transparent;
                 content: " ";
-            }
+            }*/
 
             .timeline > li > .timeline-badge {
                 color: #fff;
@@ -139,11 +140,21 @@
 
             .timeline-body > p,
             .timeline-body > ul {
+                font-size:13px;
                 margin-bottom: 0;
             }
-
+            .timeline-actions
+            {
+                margin-top: 10px;
+                padding:0px;
+            }
             .timeline-body > p + p {
                 margin-top: 5px;
+            }
+            .timeline h3
+            {
+                font-size:15px;
+                color:gray;
             }
 
             @media (min-width: 20px) {
@@ -151,11 +162,11 @@
                     left: 40px;
                 }
 
-                ul.timeline > li > .timeline-panel {
+/*                ul.timeline > li > .timeline-panel {
                     width: calc(100% - 90px);
                     width: -moz-calc(100% - 90px);
                     width: -webkit-calc(100% - 90px);
-                }
+                }*/
 
                 ul.timeline > li > .timeline-badge {
                     left: 15px;
@@ -164,7 +175,7 @@
                 }
 
                 ul.timeline > li > .timeline-panel {
-                    float: right;
+                    float: left;
                 }
 
                 ul.timeline > li > .timeline-panel:before {

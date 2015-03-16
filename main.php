@@ -16,6 +16,8 @@
         <link href="css/top-menu.css" rel="stylesheet">
         <!-- User Menu section definition -->
         <link href="css/user-menu.css" rel="stylesheet">
+        <!-- Profile Menu section definition -->
+        <link href="css/profile-menu.css" rel="stylesheet">
         <!-- Main template definition -->
         <link href="css/main.css" rel="stylesheet">
         <!-- Components definition -->
