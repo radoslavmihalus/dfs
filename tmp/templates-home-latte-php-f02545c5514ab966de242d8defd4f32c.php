@@ -2,7 +2,7 @@
 // source: templates/home.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('0656313276', 'html')
+list($_b, $_g, $_l) = $template->initialize('7035526238', 'html')
 ;
 //
 // main template
@@ -72,7 +72,7 @@ list($_b, $_g, $_l) = $template->initialize('0656313276', 'html')
 
                         </div>
                         <div class="col-md-6 container">
-                            <p class="text-center text-uppercase landing_header_slogan">"Bringing together breeders, owners and handlers of <strong>purebred dogs from over the world</strong>"</p>
+                            <p class="text-center text-uppercase landing_header_slogan">"Breeding happy and healthy <strong>purebred dogs</strong>"</p>
                             <ul id="myTabs" class="nav nav-tabs" style="border-bottom:0px !important;">
                                 <li class="active"><a class="myTabslink" href="#login" data-toggle="tab"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login</a></li>
                                 <li><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;Registration</a></li>
@@ -129,59 +129,35 @@ list($_b, $_g, $_l) = $template->initialize('0656313276', 'html')
         <section id="about">
             <div class="container animatedParent animateOnce">
                 <div class="row animated fadeIn">
-                    <h2 class="heading text-center text-uppercase"><strong>Present internationally on the right place</strong></h2>
-                    <p class="secondary_heading text-center">New social network dedicated to owners of purebred dogs, kennels and handlers from over the world. Create a detailed profile of your canine champion and list all your show successes in one place. Plan litters, submit offers at stud, add pictures and take the opportunity to contact potential buyers internationally.</p>
+                    <h2 class="heading text-center text-uppercase"><strong><i class="fa fa-globe"></i>&nbsp;&nbsp;Present internationally on the right place</strong></h2>
+                    <p class="secondary_heading text-center">DOGFORSHOW is new international social network dedicated to owners of purebred dogs, kennels and handlers, helping them to present themselves, communicate with each other and mutually inspire</p>
                 </div>
             </div>
             <div class="container animatedParent animateOnce">
                 <div class="row animated fadeIn">
                     <div class="col-md-4">
-                        <p class="text-center block"><span class="glyphicon glyphicon-home section_heading_icon_border " aria-hidden="true"></span></p>
-                        <h3 class="section_heading text-center text-uppercase">Kennel</h3>
-                        <ul class="section_list">
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear profile of your kennel</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create unique profiles of your dogs</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your dogs at stud</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Inform about planned litters</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer puppies for sale from planned litters</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and titles of your dogs</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add dogshow successes and keep show history of your dog in one place</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add working exams and health informations</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add pedigrees</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos of your dogs</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share your succeses on social networks </li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
-                        </ul>
+                        <p class="text-center block "><i class="section_heading_icon_border fa fa-user-plus"></i></p>
+                        <h5 class="section_heading_h5 text-center text-uppercase">Possibility to create kennel,owner and handler profile</h5>
                     </div>
                     <div class="col-md-4">
-                        <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>
-                        <h3 class="section_heading text-center text-uppercase">Owner of purebred dog</h3>
-                        <ul class="section_list">
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear owner profile</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Possibility to migrate on kennel profile</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your dogs at stud</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and titles of your dogs</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add dogshow successes and keep show history of your dog in one place</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add working exams and health informations</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add pedigrees</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos of your dogs</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share your succeses on social networks </li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
-                        </ul>
+                        <p class="text-center block "><i class="section_heading_icon_border fa fa-user-plus"></i></p>
+                        <h5 class="section_heading_h5 text-center text-uppercase">Create unique profiles of your dogs with possibility to offer your dog for mating</h5>
                     </div>
                     <div class="col-md-4">
-                        <p class="text-center block"><span class="glyphicon glyphicon-user section_heading_icon_border" aria-hidden="true"></span></p>
-                        <h3 class="section_heading text-center text-uppercase">Handler</h3>
-                        <ul class="section_list">
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear handler profile</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and certificates</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add your dogshow successes and titles</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add breeds list for handling</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your handling services</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share successes via social networks</li>
-                            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
-                        </ul>
+                        <p class="text-center block "><i class="section_heading_icon_border fa fa-trophy"></i></p>
+                        <h5 class="section_heading_h5 text-center text-uppercase">Add dogshow successes, awards, titles, working exams, health informations, photos and videos</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-center block "><i class="section_heading_icon_border fa fa-calendar"></i></p>
+                        <h5 class="section_heading_h5 text-center text-uppercase">Inform about planned litters and offer puppies for sale</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-center block "><i class="section_heading_icon_border fa fa-users"></i></p>
+                        <h5 class="section_heading_h5 text-center text-uppercase">Create friendships and communicate with each other</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-center block "><i class="section_heading_icon_border fa fa-envelope"></i></p>
+                        <h5 class="section_heading_h5 text-center text-uppercase">Take oportunity to contact by potential buyers from over the world</h5>
                     </div>
                 </div>
             </div>
@@ -235,7 +211,7 @@ list($_b, $_g, $_l) = $template->initialize('0656313276', 'html')
         <section id="discover">
             <div class="container animatedParent animateOnce">
                 <div class="row animated fadeIn">
-                    <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Discover the DOGFORSHOW community closer</strong></h2>
+                    <h2 class="heading text-center text-uppercase"><i class="fa fa-search"></i>&nbsp;&nbsp;<strong>Discover the DOGFORSHOW community closer</strong></h2>
                     <p class="secondary_heading text-center">We are building an international community of breeders, owners and handlers of purebred dogs, helping them to present themselves, communicate with each other and mutually inspire</p>
                 </div>
                 <div class="row animated fadeIn">
@@ -269,7 +245,7 @@ list($_b, $_g, $_l) = $template->initialize('0656313276', 'html')
                 <div class="container animatedParent animateOnce">
                     <div class="row animated fadeIn">
                         <div class="col-md-6 brown">
-                            <h2 class="heading text-center text-uppercase"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;<strong>Contact us</strong></h2>
+                            <h2 class="heading text-center text-uppercase"><i class="fa fa-envelope"></i>&nbsp;&nbsp;<strong>Contact us</strong></h2>
                             <p class="secondary_heading text-center">Please contact us via the contact form below if you have any questions or issues or if you are interested in advertising on the DOGFORSHOW portal.</p>
                             <form id="Contact">
                                 <div class="col-md-6">

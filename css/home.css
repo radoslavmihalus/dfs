@@ -9,12 +9,17 @@
 {
  height:auto;   
 }
+.option-icon
+{
+    margin:auto;
+    color:#a5987f;
+}
 .landing_header
 {
     height:auto;
     background:url("../img/header.jpg")no-repeat center center;
     background-size:cover;
-    min-height:600px;
+    min-height:608px;
     
 }
 .landing_header_slogan
@@ -22,7 +27,7 @@
     padding-top: 20px;
     color:white;
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 22px !important;
+    font-size: 30px !important;
     margin-bottom: 15px !important;
 }
 .landing_text_white
@@ -53,6 +58,12 @@
     margin-bottom: 20px;
     color:#a5987f;
 }
+.section_heading_h5
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px !important;
+    color:#7f735c;
+}
 .section_heading_icon
 {
     margin-bottom: 20px;
@@ -61,14 +72,18 @@
 }
 .section_heading_icon_border
 {
+    padding-top:27px;
     border-radius:100px;
     width:100px;
     height:100px;
     line-height: 90px;
-    border:#a5987f 2px solid;
+    background-color: #a5987f;
+    margin-top: 15px;
     margin-bottom: 10px;
-    color:#a5987f;
+    color:white;
     font-size: 40px !important;
+    webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
 }
 .section_text
 {
