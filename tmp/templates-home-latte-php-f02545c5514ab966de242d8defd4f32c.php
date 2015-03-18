@@ -2,7 +2,7 @@
 // source: templates/home.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('7035526238', 'html')
+list($_b, $_g, $_l) = $template->initialize('9939204846', 'html')
 ;
 //
 // main template
@@ -14,7 +14,6 @@ list($_b, $_g, $_l) = $template->initialize('7035526238', 'html')
         <title>DOGFORSHOW</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -30,6 +29,8 @@ list($_b, $_g, $_l) = $template->initialize('7035526238', 'html')
         <link href="css/home.css" rel="stylesheet">
         <!-- Glyphicons -->
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
+        <!-- Glyphicons PRO -->
+        <link rel="stylesheet" href="fonts/glyphicons/pro-awesome/css/glyphicons-pro.css">
         <style>
             body {
                 padding-top: 70px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -55,7 +56,7 @@ list($_b, $_g, $_l) = $template->initialize('7035526238', 'html')
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#join" class="page-scroll text-uppercase landing_navbar_typography">Registration</a></li>
-                        <li><a href="#about" class="page-scroll text-uppercase landing_navbar_typography">About</a></li>
+                        <li><a href="#about" class="page-scroll text-uppercase landing_navbar_typography">About us</a></li>
                         <li><a href="#follow" class="page-scroll text-uppercase landing_navbar_typography">How we grow</a></li>
                         <li><a href="#discover" class="page-scroll text-uppercase landing_navbar_typography">Discover dogforshow</a></li>
                         <li><a href="#contact" class="page-scroll text-uppercase landing_navbar_typography">Contact us</a></li>
@@ -72,7 +73,7 @@ list($_b, $_g, $_l) = $template->initialize('7035526238', 'html')
 
                         </div>
                         <div class="col-md-6 container">
-                            <p class="text-center text-uppercase landing_header_slogan">"Breeding happy and healthy <strong>purebred dogs</strong>"</p>
+                            <p class="text-center text-uppercase landing_header_slogan"><strong>"Breeding happy and healthy purebred dogs"</strong></p>
                             <ul id="myTabs" class="nav nav-tabs" style="border-bottom:0px !important;">
                                 <li class="active"><a class="myTabslink" href="#login" data-toggle="tab"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login</a></li>
                                 <li><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;Registration</a></li>
@@ -140,11 +141,11 @@ list($_b, $_g, $_l) = $template->initialize('7035526238', 'html')
                         <h5 class="section_heading_h5 text-center text-uppercase">Possibility to create kennel,owner and handler profile</h5>
                     </div>
                     <div class="col-md-4">
-                        <p class="text-center block "><i class="section_heading_icon_border fa fa-user-plus"></i></p>
+                        <p class="text-center block "><i class="section_heading_icon_border glyphicons glyphicons-dog"></i></p>
                         <h5 class="section_heading_h5 text-center text-uppercase">Create unique profiles of your dogs with possibility to offer your dog for mating</h5>
                     </div>
                     <div class="col-md-4">
-                        <p class="text-center block "><i class="section_heading_icon_border fa fa-trophy"></i></p>
+                        <p class="text-center block "><i class="section_heading_icon_border fa fa-trophy drop"></i></p>
                         <h5 class="section_heading_h5 text-center text-uppercase">Add dogshow successes, awards, titles, working exams, health informations, photos and videos</h5>
                     </div>
                     <div class="col-md-4">
@@ -305,7 +306,7 @@ list($_b, $_g, $_l) = $template->initialize('7035526238', 'html')
         <script src="js/bootstrap.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Animation scripts -->
-        <script src='js/css3-animate-it.js'></script>
+        <script src="js/css3-animate-it.js"></script>
         <script src="js/jquery.easing.min.js"></script>
         <!-- Scrolling scripts -->
         <script src="js/scrolling-nav.js"></script>
