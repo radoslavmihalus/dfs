@@ -14,6 +14,7 @@
             <div class="col-md-6" style="padding-top: 15px;">
                 <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">
                     <a type="button" class="btn btn-default"><i class="fa fa-users"></i>&nbsp;&nbsp;Add friend</a>
+                    <a type="button" class="btn btn-default"><i class="fa fa-rss"></i>&nbsp;&nbsp;Follow</a>
                     <a type="button" class="btn btn-default"><i class="fa fa-envelope"></i>&nbsp;&nbsp;Message</a>
                     <a type="button" class="btn btn-default navbar-toggle collapsed toogle-margin-zero" data-toggle="collapse" data-target="#profile-menu">
                     <i class="fa fa-ellipsis-v"></i>
