@@ -28,6 +28,8 @@
         <link href="css/timeline.css" rel="stylesheet">
         <!-- Glyphicons -->
         <link rel="stylesheet" href="fonts/glyphicons/font-awesome/css/font-awesome.min.css">
+        <!-- Glyphicons PRO -->
+        <link rel="stylesheet" href="fonts/glyphicons/pro-awesome/css/glyphicons-pro.css">
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </head>
@@ -48,7 +50,7 @@
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
                     <?php
-                    include "templates/kennel-profile.latte.php";
+                    include "templates/handler-registration.latte.php";
                     ?>
                 </div>
             </div>

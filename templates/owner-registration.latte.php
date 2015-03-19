@@ -1,8 +1,8 @@
 <div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
     <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
         <form id="frmCreateOwnerProfile">
-            <h2 class="text-center text-uppercase"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Owner of purebred dog profile</h2>
-            <span class="form-secondary-description" style="display:block;margin-top:30px;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;Basic informations about owner</span>
+            <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;Owner of purebred dog profile</h2>
+            <span class="form-secondary-description" style="display:block;margin-top:30px;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;Basic informations about you</span>
             <span>Informations marked with this sign <i style="color:#c12e2a;font-size:15px;" class="fa fa-eye-slash"></i> will not be accessible to the public or exploited for commercial use by third parties</span>
             <hr>
             <div class="form-group">
@@ -20,6 +20,10 @@
             <div class="form-group">
                 <span style="font-size: 13px;display:block;margin-bottom: 5px;"><i style="color:#c12e2a;font-size:15px;" class="fa fa-eye-slash"></i>&nbsp;&nbsp;Email <i class="fa fa-question-circle tooltip_brown"></i></span>
                 <input type="email" class="form-control font_size_13px" id="txtEmail" placeholder="example@dogforshow.com">
+            </div>
+            <div class="form-group">
+                <span style="font-size: 13px;display:block;margin-bottom: 5px;">Short description about you <i class="fa fa-question-circle tooltip_brown"></i></span>
+                <textarea type="text" style="height:50px;" class="form-control contact_textarea font_size_13px" id="txtOwnerDescription" placeholder="Short description"></textarea>
             </div>
             <div class="form-group">
                 <span style="font-size: 13px;display:block;margin-bottom: 5px;">Country <i class="fa fa-question-circle tooltip_brown"></i></span>

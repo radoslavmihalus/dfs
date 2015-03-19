@@ -1,8 +1,8 @@
 <div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
     <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
         <form id="frmCreateKennelProfile">
-            <h2 class="text-center text-uppercase"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Kennel profile</h2>
-            <span class="form-secondary-description"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;Basic informations about kennel</span>
+            <h2 class="text-center text-uppercase"><i class="fa fa-home"></i>&nbsp;&nbsp;Kennel profile</h2>
+            <span class="form-secondary-description"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;Basic informations about your kennel</span>
             <hr>
             <div class="form-group">
                 <span style="font-size: 13px;display:block;margin-bottom: 5px;">Kennel name <i class="fa fa-question-circle tooltip_brown"></i></span>

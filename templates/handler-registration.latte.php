@@ -1,8 +1,8 @@
 <div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
     <div class="panel-body" style="background-color: white;margin-bottom: 10px;">
         <form id="frmCreateOwnerProfile">
-            <h2 class="section_heading text-center text-uppercase"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Handler profile</h2>
-            <span class="form-secondary-description" style="display:block;margin-top:30px;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;Basic informations about handler</span>
+            <h2 class="section_heading text-center text-uppercase"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;Handler profile</h2>
+            <span class="form-secondary-description" style="display:block;margin-top:30px;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;Basic informations about you</span>
             <span>Informations marked with this sign <i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i> will not be accessible to the public or exploited for commercial use by third parties</span>
             <hr>
             <div class="form-group">
