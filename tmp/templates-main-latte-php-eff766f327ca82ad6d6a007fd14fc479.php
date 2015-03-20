@@ -2,7 +2,7 @@
 // source: templates/main.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('8441511683', 'html')
+list($_b, $_g, $_l) = $template->initialize('5141078168', 'html')
 ;
 //
 // main template
@@ -57,8 +57,7 @@ list($_b, $_g, $_l) = $template->initialize('8441511683', 'html')
         <div class="container-fluid content-wrapper">
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
-                    <?php
-                    include "templates/create-profile-switcher.latte.php" ?>
+<?php $_b->templates['5141078168']->renderChildTemplate('create-profile-switcher.latte.php', $template->getParameters()) ?>
                 </div>
             </div>
         </div>
