@@ -8,8 +8,8 @@
         <div class="row">
             <div class="col-md-6">
                 <h1 class="profile_type_heading text-uppercase">Michal Slepanek</h1>
-                <span class="profile-type-description"><i class="glyphicons glyphicons-user"></i></i>&nbsp;&nbsp;Owner of purebred dog</span>
-                <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker"></i></i>&nbsp;&nbsp;Slovakia</span>
+                <span class="profile-type-description"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;Owner of purebred dog</span>
+                <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Slovakia</span>
             </div>
             <div class="col-md-6" style="padding-top: 15px;">
                 <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">

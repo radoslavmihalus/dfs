@@ -50,7 +50,7 @@
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
                     <?php
-                    include "templates/kennel-registration.latte.php";
+                    include "templates/create-profile-switcher.latte.php";
                     ?>
                 </div>
             </div>
