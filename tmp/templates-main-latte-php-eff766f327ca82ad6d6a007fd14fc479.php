@@ -2,7 +2,7 @@
 // source: templates/main.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('5141078168', 'html')
+list($_b, $_g, $_l) = $template->initialize('4983175919', 'html')
 ;
 //
 // main template
@@ -45,19 +45,17 @@ list($_b, $_g, $_l) = $template->initialize('5141078168', 'html')
     </head>
     <body>
         <!-- top-menu -->
-        <?php
-        include "templates/top-menu.latte.php" ?>
+<?php $_b->templates['4983175919']->renderChildTemplate('top-menu.latte.php', $template->getParameters()) ?>
         <!-- /top-menu -->
         <!-- user-menu -->
-        <?php
-        include "templates/user-menu.latte.php" ?>
+<?php $_b->templates['4983175919']->renderChildTemplate('user-menu.latte.php', $template->getParameters()) ?>
         <!--/user-menu -->
 
         <!-- Main content -->
         <div class="container-fluid content-wrapper">
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
-<?php $_b->templates['5141078168']->renderChildTemplate('create-profile-switcher.latte.php', $template->getParameters()) ?>
+<?php $_b->templates['4983175919']->renderChildTemplate('create-profile-switcher.latte.php', $template->getParameters()) ?>
                 </div>
             </div>
         </div>

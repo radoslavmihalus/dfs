@@ -23,7 +23,7 @@
             </li>
             <li >
                 <a href="#" class="create-profile-link">
-                    <i class="fa fa-user-plus"></i>&nbsp;&nbsp;Create profile
+                    <i class="fa fa-user-plus"></i>&nbsp;&nbsp;{_ 'Create profile'}
                 </a>
             </li>
             <li>

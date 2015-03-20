@@ -35,14 +35,10 @@
     </head>
     <body>
         <!-- top-menu -->
-        <?php
-        include "templates/top-menu.latte.php";
-        ?>
+        {include 'top-menu.latte.php'}
         <!-- /top-menu -->
         <!-- user-menu -->
-        <?php
-        include "templates/user-menu.latte.php";
-        ?>
+        {include 'user-menu.latte.php'}
         <!--/user-menu -->
 
         <!-- Main content -->
