@@ -2,7 +2,7 @@
 // source: templates/main.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('4983175919', 'html')
+list($_b, $_g, $_l) = $template->initialize('6818001721', 'html')
 ;
 //
 // main template
@@ -45,17 +45,17 @@ list($_b, $_g, $_l) = $template->initialize('4983175919', 'html')
     </head>
     <body>
         <!-- top-menu -->
-<?php $_b->templates['4983175919']->renderChildTemplate('top-menu.latte.php', $template->getParameters()) ?>
+<?php $_b->templates['6818001721']->renderChildTemplate('top-menu.latte.php', $template->getParameters()) ?>
         <!-- /top-menu -->
         <!-- user-menu -->
-<?php $_b->templates['4983175919']->renderChildTemplate('user-menu.latte.php', $template->getParameters()) ?>
+<?php $_b->templates['6818001721']->renderChildTemplate('user-menu.latte.php', $template->getParameters()) ?>
         <!--/user-menu -->
 
         <!-- Main content -->
         <div class="container-fluid content-wrapper">
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
-<?php $_b->templates['4983175919']->renderChildTemplate('create-profile-switcher.latte.php', $template->getParameters()) ?>
+<?php $_b->templates['6818001721']->renderChildTemplate('kennel-profile.latte.php', $template->getParameters()) ?>
                 </div>
             </div>
         </div>

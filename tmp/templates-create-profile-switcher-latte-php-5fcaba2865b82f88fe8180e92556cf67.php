@@ -2,7 +2,7 @@
 // source: templates/create-profile-switcher.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('3067082776', 'html')
+list($_b, $_g, $_l) = $template->initialize('2692255092', 'html')
 ;
 //
 // main template
@@ -14,18 +14,18 @@ list($_b, $_g, $_l) = $template->initialize('3067082776', 'html')
         <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Create profile'), ENT_NOQUOTES) ?></button></p>
         <hr>
         <ul class="section_list">
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear profile of your kennel</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create unique profiles of your dogs</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your dogs at stud</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Inform about planned litters</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer puppies for sale from planned litters</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and titles of your dogs</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add dogshow successes and keep show history of your dog in one place</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add working exams and health informations</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add pedigrees</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos of your dogs</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share your succeses on social networks </li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Create a clear profile of your kennel'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Create unique profiles of your dogs'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Offer your dogs at stud'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Inform about planned litters'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Offer puppies for sale from planned litters'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add awards and titles of your dogs'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add dogshow successes and keep show history of your dog in one place'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add working exams and health informations'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add pedigrees'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add photos of your dogs'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Share your succeses on social networks'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Communicate with other members of DOGFORSHOW'), ENT_NOQUOTES) ?></li>
         </ul>
     </div>
 </div>
@@ -35,16 +35,16 @@ list($_b, $_g, $_l) = $template->initialize('3067082776', 'html')
         <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Create profile'), ENT_NOQUOTES) ?></button></p>
         <hr>
         <ul class="section_list">
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear owner profile</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Possibility to migrate on kennel profile</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your dogs at stud</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and titles of your dogs</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add dogshow successes and keep show history of your dog in one place</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add working exams and health informations</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add pedigrees</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos of your dogs</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share your succeses on social networks </li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Create a clear owner profile'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Possibility to migrate on kennel profile'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Offer your dogs at stud'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add awards and titles of your dogs'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add dogshow successes and keep show history of your dog in one place'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add working exams and health informations'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add pedigrees'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add photos of your dogs'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Share your succeses on social networks'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Communicate with other members of DOGFORSHOW'), ENT_NOQUOTES) ?></li>
         </ul>
     </div>
 </div>
@@ -54,14 +54,14 @@ list($_b, $_g, $_l) = $template->initialize('3067082776', 'html')
         <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Create profile'), ENT_NOQUOTES) ?></button></p>
         <hr>
         <ul class="section_list">
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Create a clear handler profile</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add awards and certificates</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add your dogshow successes and titles</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add breeds list for handling</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Add photos</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Offer your handling services</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Share successes via social networks</li>
-            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>Communicate with other members of DOGFORSHOW</li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Create a clear handler profile'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add awards and certificates'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add your dogshow successes and titles'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add breeds list for handling'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Add photos'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Offer your handling services'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Share successes via social networks'), ENT_NOQUOTES) ?></li>
+            <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Communicate with other members of DOGFORSHOW'), ENT_NOQUOTES) ?></li>
         </ul>
     </div>
 </div>
