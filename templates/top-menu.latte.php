@@ -17,6 +17,10 @@
                 <i class="notification-icon fa fa-bell fa-1x"></i>
                 <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
             </a>
+            <a href="#">
+                <i class="notification-icon fa fa-cog fa-1x"></i>
+                <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
+            </a>
         </div>
     </div>
 </nav>

@@ -2,7 +2,7 @@
 // source: templates/main.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('6818001721', 'html')
+list($_b, $_g, $_l) = $template->initialize('0838401135', 'html')
 ;
 //
 // main template
@@ -28,6 +28,8 @@ list($_b, $_g, $_l) = $template->initialize('6818001721', 'html')
         <link href="css/user-menu.css" rel="stylesheet">
         <!-- Profile Menu section definition -->
         <link href="css/profile-menu.css" rel="stylesheet">
+        <!-- Edit Profile Menu section definition -->
+        <link href="css/edit-profile-menu.css" rel="stylesheet">
         <!-- Main template definition -->
         <link href="css/main.css" rel="stylesheet">
         <!-- Components definition -->
@@ -45,17 +47,17 @@ list($_b, $_g, $_l) = $template->initialize('6818001721', 'html')
     </head>
     <body>
         <!-- top-menu -->
-<?php $_b->templates['6818001721']->renderChildTemplate('top-menu.latte.php', $template->getParameters()) ?>
+<?php $_b->templates['0838401135']->renderChildTemplate('top-menu.latte.php', $template->getParameters()) ?>
         <!-- /top-menu -->
         <!-- user-menu -->
-<?php $_b->templates['6818001721']->renderChildTemplate('user-menu.latte.php', $template->getParameters()) ?>
+<?php $_b->templates['0838401135']->renderChildTemplate('user-menu.latte.php', $template->getParameters()) ?>
         <!--/user-menu -->
 
         <!-- Main content -->
         <div class="container-fluid content-wrapper">
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
-<?php $_b->templates['6818001721']->renderChildTemplate('kennel-profile.latte.php', $template->getParameters()) ?>
+<?php $_b->templates['0838401135']->renderChildTemplate('handler-edit-profile.latte.php', $template->getParameters()) ?>
                 </div>
             </div>
         </div>

@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Country'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                <select class="form-control font_size_12px" id="ddlCountries">
+                <select class="form-control font_size_13px" id="ddlCountries">
                     <option>Select country</option>
                     <option>Czech Republic</option>
                     <option>Afghanistan</option>

@@ -18,6 +18,8 @@
         <link href="css/user-menu.css" rel="stylesheet">
         <!-- Profile Menu section definition -->
         <link href="css/profile-menu.css" rel="stylesheet">
+        <!-- Edit Profile Menu section definition -->
+        <link href="css/edit-profile-menu.css" rel="stylesheet">
         <!-- Main template definition -->
         <link href="css/main.css" rel="stylesheet">
         <!-- Components definition -->
@@ -45,7 +47,7 @@
         <div class="container-fluid content-wrapper">
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
-                    {include 'kennel-profile.latte.php'}
+                    {include 'handler-edit-profile.latte.php'}
                 </div>
             </div>
         </div>
