@@ -14,6 +14,14 @@
                         <input type="email" class="form-control" id="txtEmail" placeholder="{_ 'Email'}">
                     </div>
                     <div class="form-group">
+                        <select class="form-control font_size_13px" id="ddlCountries">
+                            <option value="" selected disabled>{_ 'Country'}</option>
+                            <option>Czech Republic</option>
+                            <option>Afghanistan</option>
+                            <option>Kuwait</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <input type="password" class="form-control" id="txtPassword" placeholder="{_ 'Password'}">
                     </div>
                     <div class="form-group">

@@ -2,7 +2,7 @@
 // source: templates/kennel-edit-profile.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('2775114952', 'html')
+list($_b, $_g, $_l) = $template->initialize('6426917517', 'html')
 ;
 //
 // main template
@@ -19,6 +19,8 @@ list($_b, $_g, $_l) = $template->initialize('2775114952', 'html')
             <div class="tab-pane fade in active" id="informations">
                 <div class="panel panel-default registration_block transparent_white">
                     <div class="panel-body">
+                        <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Basic informations about your kennel'), ENT_NOQUOTES) ?></span>
+                         <hr>
                         <div class="form-group">
                             <span style="font-size: 13px;display:block;margin-bottom: 5px;"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Kennel name'), ENT_NOQUOTES) ?> <i class="fa fa-question-circle tooltip_brown" ></i></span>
                             <input type="text" class="form-control font_size_13px" id="txtKennelName" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Kennel name'), ENT_COMPAT) ?>">
@@ -42,19 +44,10 @@ list($_b, $_g, $_l) = $template->initialize('2775114952', 'html')
                         <div class="form-group">
                             <span style="font-size: 13px;display:block;margin-bottom: 5px;"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Select the breed bred by your kennel'), ENT_NOQUOTES) ?> <i class="fa fa-question-circle tooltip_brown"></i></span>
                             <select class="form-control font_size_13px" id="ddlBreedList">
-                                <option>Select breed</option>
+                                <option value="" selected disabled><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Please select'), ENT_NOQUOTES) ?></option>
                                 <option>Dogo argentino</option>
                                 <option>Berger de Brie</option>
                                 <option>Labrador</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <span style="font-size: 13px;display:block;margin-bottom: 5px;"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Country'), ENT_NOQUOTES) ?> <i class="fa fa-question-circle tooltip_brown"></i></span>
-                            <select class="form-control font_size_13px" id="ddlCountries">
-                                <option>Select country</option>
-                                <option>Czech Republic</option>
-                                <option>Afghanistan</option>
-                                <option>Kuwait</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-danger btn-xl pull-right"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Save'), ENT_NOQUOTES) ?></button>

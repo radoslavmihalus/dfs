@@ -5,9 +5,9 @@
 .refresh-icon
 {
     float: left;
-    padding: 10px 10px;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    padding: 10px 10px 0px 0px;
+    margin-top: 8px;
+    margin-bottom: 0px;
     color:#919191;
     cursor:pointer;
 }
@@ -50,13 +50,36 @@
     color:#BBBBBB !important;
     text-decoration:none;
 }
+.notification-bar a:focus
+{
+    display:block;
+    float:left;
+    color:#919191 !important;
+    text-decoration:none;
+    background-color:#eeeeee;
+}
 .notification-bar a:hover
 {
     display:block;
     float:left;
     color:#919191 !important;
     text-decoration: none;
-/*    background-color: #efefef;*/
 }
+.user-account
+{
+        width:200px;
+        top:48px;
+        left:-152px;
+        border-radius:0px;
+}
+ul.dropdown-menu.user-account > li > a
+{
+    display:block;
+    width:100%;
+    padding: 10px;
+    color:black !important;
+    font-size: 13px;
+}
+
 
 

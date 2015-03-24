@@ -9,6 +9,8 @@
             <div class="tab-pane fade in active" id="informations">
                 <div class="panel panel-default registration_block transparent_white">
                     <div class="panel-body">
+                        <span class="form-secondary-description" style="display:block;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about you'}</span>
+                        <hr>
                         <div class="form-group">
                             <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Your profile picture'} <i class="fa fa-question-circle tooltip_brown"></i></span>
                             <input type="file" class="form-control font_size_13px" id="txtOwnerProfilePicture" placeholder="Your profile picture">
@@ -16,15 +18,6 @@
                         <div class="form-group">
                             <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Short description about you'} <i class="fa fa-question-circle tooltip_brown"></i></span>
                             <textarea type="text" style="height:50px;" class="form-control contact_textarea font_size_13px" id="txtOwnerDescription" placeholder="{_ 'Short description'}"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Country'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                            <select class="form-control font_size_13px" id="ddlCountries">
-                                <option>Select country</option>
-                                <option>Czech Republic</option>
-                                <option>Afghanistan</option>
-                                <option>Kuwait</option>
-                            </select>
                         </div>
                         <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Save'}</button>
                     </div>

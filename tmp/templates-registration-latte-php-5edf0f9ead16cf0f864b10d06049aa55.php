@@ -2,7 +2,7 @@
 // source: templates/registration.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('6640251855', 'html')
+list($_b, $_g, $_l) = $template->initialize('0532443579', 'html')
 ;
 //
 // main template
@@ -18,19 +18,27 @@ list($_b, $_g, $_l) = $template->initialize('6640251855', 'html')
                         <input type="text" class="form-control" id="txtName" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Name'), ENT_COMPAT) ?>">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="txtSurname" placeholder="Surname">
+                        <input type="text" class="form-control" id="txtSurname" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Surname'), ENT_COMPAT) ?>">
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" id="txtEmail" placeholder="Email">
+                        <input type="email" class="form-control" id="txtEmail" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Email'), ENT_COMPAT) ?>">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="txtPassword" placeholder="Password">
+                        <select class="form-control font_size_13px" id="ddlCountries">
+                            <option value="" selected disabled><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Country'), ENT_NOQUOTES) ?></option>
+                            <option>Czech Republic</option>
+                            <option>Afghanistan</option>
+                            <option>Kuwait</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm password">
+                        <input type="password" class="form-control" id="txtPassword" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Password'), ENT_COMPAT) ?>">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="txtConfirmPassword" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Confirm password'), ENT_COMPAT) ?>">
                     </div>
                 </form>
-                <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;Register</button>
+                <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Register'), ENT_NOQUOTES) ?></button>
             </div>
         </div>
     </div>
@@ -40,10 +48,10 @@ list($_b, $_g, $_l) = $template->initialize('6640251855', 'html')
                 <!-- DOGFORSHOW Sign up form -->
                 <form id="frmlogIn">
                     <div class="form-group">
-                        <input type="email" class="form-control" id="txtEmail" placeholder="Email">
+                        <input type="email" class="form-control" id="txtEmail" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Email'), ENT_COMPAT) ?>">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="txtPassword" placeholder="Password">
+                        <input type="password" class="form-control" id="txtPassword" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Password'), ENT_COMPAT) ?>">
                     </div>
                 </form>
                 <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Login'), ENT_NOQUOTES) ?></button>
