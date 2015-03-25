@@ -120,3 +120,36 @@ ul.section_list li
     text-decoration: none;
     color:gray;
 }
+.list-item
+{
+    display:block;
+    float:left;
+    background-color: white;
+    webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    width:100%;
+    margin-bottom: 15px;
+    min-width: 230px;
+    padding: 10px;
+}
+.list-item-location
+{
+    color:gray;
+    font-size:14px;
+}
+.list-item-image
+{
+    background: url("../img/profile_header.jpg")no-repeat center center;
+    background-size:cover;
+    height:200px;
+}
+ul.pagination li > a
+{
+    color:#a5987f !important;
+    
+}
+ul.pagination li > a:focus
+{
+    background-color:#a5987f !important;
+    color:white !important;
+}
