@@ -1,5 +1,5 @@
 <div class="panel-default col-lg-12 col-md-12 col-xs-12" style="font-size: 13px;min-width: 244px">
-    <h1><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennels'}</h1>
+    <h1><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{_ 'Owners of purebred dogs'}</h1>
     <nav>
         <ul class="pagination">
             <li ><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
@@ -20,9 +20,8 @@
                 <div class="list-item">
                     <div class="list-item-image">
                         <img src="img/referer1.jpg"  class="pull-left image-list-thumb">
-                        <span class="list-puppy-info" style="font-size:15px;"><i class="fa fa-info-circle"></i>&nbsp;{_ 'We have puppies'}</span>
                     </div>    
-                    <h3 class="text-uppercase">Kennel la costa brava</h3>
+                    <h3 class="text-uppercase">Michal Slepánek</h3>
                     <hr style="margin-bottom: 10px;">
                     <span class="list-item-location"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Slovakia</span>
                     <span class="list-item-regdate"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;25.6.2015</span>
