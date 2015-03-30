@@ -152,6 +152,26 @@ ul.section_list li
   webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 }
+.list-mating-info
+{
+  position:absolute;
+  top:15px;
+  right:30px;
+  display: inline;
+  padding: .5em;
+  font-size: 13px !important;
+  font-weight: 200;
+  line-height: 1;
+  color: #fff !important;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  /*border:white 1px solid;*/
+  background-color: #0c9eea;
+  webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
 .list-item-location
 {
     display:block;
@@ -164,6 +184,20 @@ ul.section_list li
     display:block;
     color:#bababa;
     font-size:12px;
+}
+.list-item-breed
+{
+    display:block;
+    color:#777;
+    font-size:15px;
+    margin-bottom: 5px;
+}
+.list-item-gender
+{
+    display:block;
+    color:#777;
+    font-size:15px;
+    margin-bottom: 5px;
 }
 .list-item-image
 {
