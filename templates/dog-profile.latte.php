@@ -28,10 +28,15 @@
         </div>
         <hr style="margin-bottom: 0px;margin-top: 10px;">
         <!-- Profile menu-->
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#profile-menu">
+            <span><i class="fa fa-bars"></i></span>
+        </button>
+        </div>
         <div class="row">
             <div class="container-fluid profile-menu">
                 <div class="collapse navbar-collapse" id="profile-menu" role="navigation" style="padding: 0px;">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav" style="margin:0px;">
                         <li class="active"><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Home'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Titles'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Shows'}</a></li>
@@ -48,13 +53,6 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="col-md-4">
-
-        </div>
-        <div class="col-md-8">
-
-        </div>
-    </div>
+<div class="col-md-12">
+        {include 'dog-title-list.latte.php'}
 </div>
