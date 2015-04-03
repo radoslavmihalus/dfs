@@ -1,6 +1,6 @@
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="fa fa-trophy"></i>&nbsp;&nbsp;{_ 'Titles'}
+        <div class="panel-description"><i class="fa fa-flag"></i>&nbsp;&nbsp;{_ 'Working exams'}
         </div>
     </div>
     <!-- Message -->
@@ -22,7 +22,7 @@
             <a href="" style="color:#777;"><i class="fa fa-image fa-1x"></i></a>
         </div>
         <div class="col-xs-8 col-lg-8 col-md-8" style="padding-right: 0px;">
-            <span class="text-uppercase text-left">slovakia junior champion</span>
+            <span class="text-uppercase text-left">SVV 1</span>
         </div>
     </div>
     <!-- /Title item -->
