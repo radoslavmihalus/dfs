@@ -54,5 +54,5 @@
     </div>
 </div>
 <div class="col-md-12">
-        {include 'dog-coowner-list.latte.php'}
+        {include 'dog-title-list.latte.php'}
 </div>

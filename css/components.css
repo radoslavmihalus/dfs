@@ -235,3 +235,14 @@ ul.pagination li > a:focus
     margin-left: 10px;
     border: white 2px solid;
 }
+.column-spacer
+{
+    margin-bottom: 5px;
+}
+
+.add-list-item
+{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-left: 10px;
+    text-transform: capitalize
+}
