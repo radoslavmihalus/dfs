@@ -80,6 +80,21 @@ ul.dropdown-menu.user-account > li > a
     color:black !important;
     font-size: 13px;
 }
+.messages
+{
+        width:200px;
+        top:48px;
+        left:-150px;
+        border-radius:0px;
+}
+ul.dropdown-menu.messages > li > a
+{
+    display:block;
+    width:100%;
+    padding: 10px;
+    color:black !important;
+    font-size: 13px;
+}
 
 
 
