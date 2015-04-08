@@ -14,9 +14,8 @@ enumNotificationType = {
     confirmation: 'confirmation'
 }
 
-function showLoading(show) {
-    if (show) {
-        $("body").nimbleLoader("show", {
+function showLoadingAnimation(){
+    $("body").nimbleLoader("show", {
           position             : "fixed",
           loaderClass          : "loading_bar_body",
           debug                : true,
@@ -26,9 +25,10 @@ function showLoading(show) {
           backgroundColor      : "#34383e",
           backgroundOpacity    : 1
         });
-    } else {
-        $("body").nimbleLoader("hide");
-    }
+}
+
+function hideLoadingAnimation(){
+    $("body").nimbleLoader("hide");
 }
  
 //function ShowMessage(messageType, message, autoclose, duration) {
