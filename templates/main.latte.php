@@ -34,6 +34,18 @@
         <link rel="stylesheet" href="fonts/glyphicons/pro-awesome/css/glyphicons-pro.css">
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <style>
+            .loading_bar_body {
+                height: 100%;
+                width: 100%;
+                top:0;
+                left:0;
+                background: url(img/ajax-loader.gif) no-repeat 50% 50%;
+            }
+        </style>
+        <!-- Loading animation -->
+        <script src="js/jquery.nimble.loader.js" type="text/javascript"></script>
+        <script src="templates/js/pageinit.js" type="text/javascript"></script>        
     </head>
     <body>
         <!-- top-menu -->
