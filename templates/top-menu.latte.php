@@ -13,10 +13,18 @@
                 <i class="notification-icon fa fa-envelope fa-1x"></i>
                 <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
             </a>
-            <a href="#">
-                <i class="notification-icon fa fa-bell fa-1x"></i>
-                <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
-            </a>
+            <!-- Top menu messages -->
+            <div class="dropdown" style="float:left;">
+                <a href="#" class="dropdown-toggle" style="margin-right: 5px;" type="button" id="Messages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="notification-icon fa fa-bell fa-1x"></i>
+                    <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu messages" role="menu" aria-labelledby="Messages">
+                    <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Messages'}</li>
+                </ul>
+            </div>
+            <!-- /Top menu messages -->
+            <!-- Top menu user account -->
             <div class="dropdown" style="float:left;">
                 <a href="#" class="dropdown-toggle" style="margin-right: 5px;" type="button" id="UserAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="notification-icon fa fa-cog fa-1x"></i>
@@ -29,6 +37,7 @@
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;{_ 'Logout'}</a></li>
                 </ul>
             </div>
+            <!-- /Top menu user account -->
         </div>
     </div>
 </nav>
