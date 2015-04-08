@@ -4,6 +4,7 @@
             <div class="panel-body">
                 <!-- DOGFORSHOW Sign up form -->
                 <form id="frmSignIn" action="templates/scripts/insert.php" method="post">
+                    <input type="hidden" name="formName" value="frmSignIn" />
                     <div class="form-group">
                         <input type="text" class="form-control" id="txtName" name="txtName" placeholder="{_'Name'}">
                     </div>
