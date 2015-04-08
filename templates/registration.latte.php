@@ -53,13 +53,18 @@
 </div>
 <script type="text/javascript">
     function showResponse(responseText, statusText, xhr, $form) {
+        showLoading(false);
         alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
                 '\n\nThe output div should have already been updated with the responseText.');
     }
-
+    
+    function showLoadingAnimation(){
+        showLoading(true);
+    }
+    
     var options = {
         //target:        '#output1',   // target element(s) to be updated with server response 
-        //beforeSubmit:  showRequest,  // pre-submit callback 
+        beforeSubmit: showLoadingAnimation,  // pre-submit callback 
         success: showResponse  // post-submit callback 
 
                 // other available options: 
