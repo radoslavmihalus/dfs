@@ -5,7 +5,7 @@
     position:fixed;
     margin-top:50px;
     z-index: 9999;
-    height:100%;
+    height:auto;
     webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     overflow: auto;
@@ -15,7 +15,7 @@
     float:left;
     display:block;
     width:100%;
-    background-color: #a5987f;
+    background-color: #83765E;
     padding:10px;
 }
 .user-block-thumb
@@ -50,15 +50,6 @@
     {
         padding:15px 25px 10px 25px;
     }
-    .user-menu-list li a
-    {
-        padding:15px 25px 15px 25px;
-        width:100%;
-        display:block;
-        font-size:13px;
-        text-decoration: none;
-        color:#2e2e2e;
-    }
     .user-block
     {
         padding:15px 25px 15px 25px;
@@ -71,24 +62,17 @@
     {
         padding:15px 10px 15px 10px;
     }
-    .user-menu-list li a
-    {
-        padding:15px 15px 15px 15px;
-        width:100%;
-        display:block;
-        font-size:13px;
-        text-decoration: none;
-        color:#2e2e2e;
-    }   
     .user-menu
     {
         z-index: 1;
+        height:auto;
         position: fixed;
         width: 250px !important;
-        height: 100%;
         overflow:auto;
         background-color: #f8f8f8;
         padding: 0px;
+        webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     }
     
 }
@@ -96,42 +80,28 @@
 {
     font-size: 12px;
 }
-.user-menu-list
+.user-menu-links
 {
-    padding:0px;
+    font-size:13px;
+}
+.user-menu-links li.panel
+{
+    border-radius: 0px;
+    background-color: #A5987F;
     margin:0px;
-    list-style-type: none;
+    border-top: 1px solid #B6AC97;
 }
-.user-menu-list li
+.user-menu-links li.panel a
 {
-    float:left;
-    width:100%;
-    padding:0px;
-    display:block;
-    border-bottom: #e4e4e4 1px solid;
+    color:white;
 }
-.user-menu-list li:hover
+.user-menu-links li.panel a:hover
 {
-    width:100%;
-    display:block;
-    border-bottom: #e4e4e4 1px solid;
+    color:white;
+    background-color: #7E6E51;
 }
-.user-menu-list li a.create-profile-link
-    {
-        color:#BD221C;
-    }
-    
-    
-.user-menu-list li a.create-profile-link:hover
-    {
-        color:white;
-        background-color: #BD221C;
-    }   
-    
-.user-menu-list li a:hover
-    {
-        background-color: #EDEDED;
-    }   
-    
-    
-    
+.user-menu-links li.panel a:focus
+{
+    color:white;
+    background-color: #7E6E51;
+}

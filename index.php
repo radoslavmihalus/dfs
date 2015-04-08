@@ -23,5 +23,5 @@ $translator = new DFSTranslator();
 
 $latte->addFilter('translate', $translator === NULL ? NULL : array($translator, 'translate'));
 
-$latte->render('templates/home.latte.php');
+$latte->render('templates/main.latte.php');
 ?>
