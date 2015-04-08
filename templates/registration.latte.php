@@ -73,5 +73,5 @@
                 //timeout:   3000 
     };
 
-    $("#frmlogIn").ajaxForm(options);
+    $("#frmSignIn").ajaxForm(options);
 </script>
