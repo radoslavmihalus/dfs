@@ -47,7 +47,18 @@
         <script src="js/jquery-noty/packaged/jquery.noty.packaged.min.js" type="text/javascript"></script>
         <!-- Loading animation -->
         <script src="js/jquery.nimble.loader.js" type="text/javascript"></script>
-        <script src="templates/js/pageinit.js" type="text/javascript"></script>        
+        <script src="templates/js/pageinit.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function ()
+            {
+                var wheight = $(window).height() - 51;
+                $(".user-menu").css("max-height", wheight);
+            });
+            $(window).resize(function () {
+                var wheight = $(window).height() - 51;
+                $(".user-menu").css("max-height", wheight);
+            });
+        </script>
     </head>
     <body>
         <!-- top-menu -->
