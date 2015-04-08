@@ -2,7 +2,7 @@
 // source: templates/registration.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('4685135308', 'html')
+list($_b, $_g, $_l) = $template->initialize('8675848291', 'html')
 ;
 //
 // main template
@@ -13,18 +13,19 @@ list($_b, $_g, $_l) = $template->initialize('4685135308', 'html')
         <div class="panel panel-default registration_block transparent_white">
             <div class="panel-body">
                 <!-- DOGFORSHOW Sign up form -->
-                <form id="frmSignIn">
+                <form id="frmSignIn" action="templates/scripts/insert.php" method="post">
+                    <input type="hidden" name="formName" value="frmSignIn">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="txtName" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Name'), ENT_COMPAT) ?>">
+                        <input type="text" class="form-control" id="txtName" name="txtName" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Name'), ENT_COMPAT) ?>">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="txtSurname" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Surname'), ENT_COMPAT) ?>">
+                        <input type="text" class="form-control" id="txtSurname" name="txtSurname" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Surname'), ENT_COMPAT) ?>">
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" id="txtEmail" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Email'), ENT_COMPAT) ?>">
+                        <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Email'), ENT_COMPAT) ?>">
                     </div>
                     <div class="form-group">
-                        <select class="form-control font_size_13px" id="ddlCountries">
+                        <select class="form-control font_size_13px" id="ddlCountries" name="ddlCountries">
                             <option value="" selected disabled><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Country'), ENT_NOQUOTES) ?></option>
                             <option>Czech Republic</option>
                             <option>Afghanistan</option>
@@ -32,7 +33,7 @@ list($_b, $_g, $_l) = $template->initialize('4685135308', 'html')
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="txtPassword" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Password'), ENT_COMPAT) ?>">
+                        <input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Password'), ENT_COMPAT) ?>">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" id="txtConfirmPassword" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Confirm password'), ENT_COMPAT) ?>">
@@ -46,7 +47,7 @@ list($_b, $_g, $_l) = $template->initialize('4685135308', 'html')
         <div class="panel panel-default registration_block transparent_white">
             <div class="panel-body">
                 <!-- DOGFORSHOW Sign up form -->
-                <form id="frmlogIn" action="templates/scripts/registration.php" method="post">
+                <form id="frmlogIn">
                     <input type="hidden" name="formName" value="frmlogIn">
                     <div class="form-group">
                         <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Email'), ENT_COMPAT) ?>">
@@ -62,24 +63,15 @@ list($_b, $_g, $_l) = $template->initialize('4685135308', 'html')
 </div>
 <script type="text/javascript">
     function showResponse(responseText, statusText, xhr, $form) {
-        // for normal html responses, the first argument to the success callback 
-        // is the XMLHttpRequest object's responseText property 
-
-        // if the ajaxForm method was passed an Options Object with the dataType 
-        // property set to 'xml' then the first argument to the success callback 
-        // is the XMLHttpRequest object's responseXML property 
-
-        // if the ajaxForm method was passed an Options Object with the dataType 
-        // property set to 'json' then the first argument to the success callback 
-        // is the json data object returned by the server 
-
-        alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
-                '\n\nThe output div should have already been updated with the responseText.');
+        hideLoadingAnimation();
+        ShowMessage(enumNotificationType.success, responseText);
+//        alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
+//                '\n\nThe output div should have already been updated with the responseText.');
     }
-
+    
     var options = {
         //target:        '#output1',   // target element(s) to be updated with server response 
-        //beforeSubmit:  showRequest,  // pre-submit callback 
+        beforeSubmit: showLoadingAnimation,  // pre-submit callback 
         success: showResponse  // post-submit callback 
 
                 // other available options: 
@@ -93,5 +85,5 @@ list($_b, $_g, $_l) = $template->initialize('4685135308', 'html')
                 //timeout:   3000 
     };
 
-    $("#frmlogIn").ajaxForm(options);
+    $("#frmSignIn").ajaxForm(options);
 </script>

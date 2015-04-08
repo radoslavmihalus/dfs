@@ -18,7 +18,7 @@ use Nette\Forms\Form,
     Tracy\Dumper;
 
 function getConnection() {
-    $connection = new Nette\Database\Connection('mysql:host=dogforshow.com;dbname=dfs', 'dfs', 'awqbn154');
+    $connection = new Nette\Database\Connection('mysql:host=localhost;dbname=dfs', 'root', 'L884fv57');
     return $connection;
 }
 
@@ -57,9 +57,9 @@ function doInsert($table_name, $data) {
 
     $query = $context->query("INSERT INTO $table_name", $data);
 
-    var_dump($query);
+    //var_dump($data);
 
-    return 'completed';
+    return 'Registration suceeded';
 }
 
 $array = array();

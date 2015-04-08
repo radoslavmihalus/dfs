@@ -13,32 +13,35 @@ enumNotificationType = {
     information: 'information',
     confirmation: 'confirmation'
 }
- 
-function showLoading(show) {
-    if (show) {
-        $("body").nimbleLoader("show", {
-            position: "fixed",
-            loaderClass: "loading_bar_body",
-            debug: true,
-            speed: 700,
-            hasBackground: true,
-            zIndex: 999,
-            backgroundColor: "#34383e",
-            backgroundOpacity: 0.90
+
+function showLoadingAnimation(){
+    $("body").nimbleLoader("show", {
+          position             : "fixed",
+          loaderClass          : "loading_bar_body",
+          debug                : true,
+          speed                : 700,
+          hasBackground        : true,
+          zIndex               : 9999,
+          backgroundColor      : "#34383e",
+          backgroundOpacity    : 1
         });
-    } else {
-        $("body").nimbleLoader("hide");
-    }
+}
+
+function hideLoadingAnimation(){
+    $("body").nimbleLoader("hide");
 }
  
 function ShowMessage(messageType, message, autoclose, duration) {
-    if (inDebugMode)
-        autoclose = false;
     if (typeof autoclose === "undefined" || autoclose === null) autoclose = true;
     if (typeof duration === "undefined" || duration === null) duration = 3;
  
-//    if (messageType == enumNotificationType.error && !inDebugMode)
-//        duration = 1;
+//    if (inDebugMode){
+//        autoclose = false;
+//        duration = 10;
+//    }
+    
+    if (messageType === enumNotificationType.error && inDebugMode)
+        duration = 10;
  
     if (autoclose) {
         noty({ text: message, type: messageType, timeout: (duration * 1000), layout: 'bottomLeft', theme: 'defaultTheme' });
@@ -46,3 +49,10 @@ function ShowMessage(messageType, message, autoclose, duration) {
         noty({ text: message, type: messageType, timeout: false, layout: 'bottomLeft', theme: 'defaultTheme' });
     }
 }
+
+$(document).ready(function () {
+//    ShowMessage(enumNotificationType.warning, "Show warning");
+//    ShowMessage(enumNotificationType.information, "Show information");
+//    ShowMessage(enumNotificationType.confirmation, "Show confirmation");
+//    ShowMessage(enumNotificationType.error, "Show error");
+});
