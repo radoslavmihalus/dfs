@@ -2,7 +2,7 @@
 // source: templates/home.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('7603721141', 'html')
+list($_b, $_g, $_l) = $template->initialize('8670803647', 'html')
 ;
 //
 // main template
@@ -48,6 +48,8 @@ list($_b, $_g, $_l) = $template->initialize('7603721141', 'html')
                 background: url(img/ajax-loader.gif) no-repeat 50% 50%;
             }
         </style>
+        <!-- noty - popup alerts -->
+        <script src="js/jquery-noty/packaged/jquery.noty.packaged.min.js" type="text/javascript"></script>
         <!-- Loading animation -->
         <script src="js/jquery.nimble.loader.js" type="text/javascript"></script>
         <script src="templates/js/pageinit.js" type="text/javascript"></script>
@@ -93,7 +95,7 @@ list($_b, $_g, $_l) = $template->initialize('7603721141', 'html')
                                 <li class="active"><a class="myTabslink" href="#login" data-toggle="tab"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Login'), ENT_NOQUOTES) ?></a></li>
                                 <li><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Registration'), ENT_NOQUOTES) ?></a></li>
                             </ul>
-<?php $_b->templates['7603721141']->renderChildTemplate('registration.latte.php', $template->getParameters()) ?>
+<?php $_b->templates['8670803647']->renderChildTemplate('registration.latte.php', $template->getParameters()) ?>
                         </div>
                     </div>
                 </div>

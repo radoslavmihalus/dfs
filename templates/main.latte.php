@@ -43,6 +43,8 @@
                 background: url(img/ajax-loader.gif) no-repeat 50% 50%;
             }
         </style>
+        <!-- noty - popup alerts -->
+        <script src="js/jquery-noty/packaged/jquery.noty.packaged.min.js" type="text/javascript"></script>
         <!-- Loading animation -->
         <script src="js/jquery.nimble.loader.js" type="text/javascript"></script>
         <script src="templates/js/pageinit.js" type="text/javascript"></script>        

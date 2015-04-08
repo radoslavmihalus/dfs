@@ -2,7 +2,7 @@
 // source: templates/registration.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('6772778679', 'html')
+list($_b, $_g, $_l) = $template->initialize('0227311245', 'html')
 ;
 //
 // main template
@@ -63,13 +63,9 @@ list($_b, $_g, $_l) = $template->initialize('6772778679', 'html')
 </div>
 <script type="text/javascript">
     function showResponse(responseText, statusText, xhr, $form) {
-        showLoading(false);
+        hideLoadingAnimation();
         alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
                 '\n\nThe output div should have already been updated with the responseText.');
-    }
-    
-    function showLoadingAnimation(){
-        showLoading(true);
     }
     
     var options = {

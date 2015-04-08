@@ -31,18 +31,29 @@ function hideLoadingAnimation(){
     $("body").nimbleLoader("hide");
 }
  
-//function ShowMessage(messageType, message, autoclose, duration) {
-//    if (inDebugMode)
+function ShowMessage(messageType, message, autoclose, duration) {
+    if (typeof autoclose === "undefined" || autoclose === null) autoclose = true;
+    if (typeof duration === "undefined" || duration === null) duration = 3;
+ 
+//    if (inDebugMode){
 //        autoclose = false;
-//    if (typeof autoclose === "undefined" || autoclose === null) autoclose = true;
-//    if (typeof duration === "undefined" || duration === null) duration = 3;
-// 
-////    if (messageType == enumNotificationType.error && !inDebugMode)
-////        duration = 1;
-// 
-//    if (autoclose) {
-//        noty({ text: message, type: messageType, timeout: (duration * 1000), layout: 'bottomLeft', theme: 'defaultTheme' });
-//    } else {
-//        noty({ text: message, type: messageType, timeout: false, layout: 'bottomLeft', theme: 'defaultTheme' });
+//        duration = 10;
 //    }
-//}
+    
+    if (messageType === enumNotificationType.error && inDebugMode)
+        duration = 10;
+ 
+    if (autoclose) {
+        noty({ text: message, type: messageType, timeout: (duration * 1000), layout: 'bottomLeft', theme: 'defaultTheme' });
+    } else {
+        noty({ text: message, type: messageType, timeout: false, layout: 'bottomLeft', theme: 'defaultTheme' });
+    }
+}
+
+$(document).ready(function () {
+    ShowMessage(enumNotificationType.success, "Show success");
+    ShowMessage(enumNotificationType.warning, "Show warning");
+    ShowMessage(enumNotificationType.information, "Show information");
+    ShowMessage(enumNotificationType.confirmation, "Show confirmation");
+    ShowMessage(enumNotificationType.error, "Show error");
+});
