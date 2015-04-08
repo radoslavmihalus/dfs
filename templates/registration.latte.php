@@ -54,8 +54,9 @@
 <script type="text/javascript">
     function showResponse(responseText, statusText, xhr, $form) {
         hideLoadingAnimation();
-        alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
-                '\n\nThe output div should have already been updated with the responseText.');
+        ShowMessage(enumNotificationType.success, responseText);
+//        alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
+//                '\n\nThe output div should have already been updated with the responseText.');
     }
     
     var options = {

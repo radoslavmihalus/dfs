@@ -51,9 +51,8 @@ function ShowMessage(messageType, message, autoclose, duration) {
 }
 
 $(document).ready(function () {
-    ShowMessage(enumNotificationType.success, "Show success");
-    ShowMessage(enumNotificationType.warning, "Show warning");
-    ShowMessage(enumNotificationType.information, "Show information");
-    ShowMessage(enumNotificationType.confirmation, "Show confirmation");
-    ShowMessage(enumNotificationType.error, "Show error");
+//    ShowMessage(enumNotificationType.warning, "Show warning");
+//    ShowMessage(enumNotificationType.information, "Show information");
+//    ShowMessage(enumNotificationType.confirmation, "Show confirmation");
+//    ShowMessage(enumNotificationType.error, "Show error");
 });
