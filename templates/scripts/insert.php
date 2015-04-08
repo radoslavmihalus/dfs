@@ -57,7 +57,7 @@ function doInsert($table_name, $data) {
 
     $query = $context->query("INSERT INTO $table_name", $data);
 
-    var_dump($query);
+    //var_dump($data);
 
     return 'completed';
 }
