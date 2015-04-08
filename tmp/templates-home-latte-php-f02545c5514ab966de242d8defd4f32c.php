@@ -2,7 +2,7 @@
 // source: templates/home.latte.php
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('9468757172', 'html')
+list($_b, $_g, $_l) = $template->initialize('2368957935', 'html')
 ;
 //
 // main template
@@ -17,6 +17,11 @@ list($_b, $_g, $_l) = $template->initialize('9468757172', 'html')
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="description" content="">
         <meta name="author" content="">
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery.form.js"></script>
+        <!-- Scrolling scripts -->
+        <!-- Counter scripts -->
+
         <link rel="icon" href="../../favicon.ico">
         <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300|500' rel='stylesheet' type='text/css'>
         <!--jQuery Animations -->
@@ -78,7 +83,7 @@ list($_b, $_g, $_l) = $template->initialize('9468757172', 'html')
                                 <li class="active"><a class="myTabslink" href="#login" data-toggle="tab"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Login'), ENT_NOQUOTES) ?></a></li>
                                 <li><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;<?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Registration'), ENT_NOQUOTES) ?></a></li>
                             </ul>
-<?php $_b->templates['9468757172']->renderChildTemplate('registration.latte.php', $template->getParameters()) ?>
+<?php $_b->templates['2368957935']->renderChildTemplate('registration.latte.php', $template->getParameters()) ?>
                         </div>
                     </div>
                 </div>
@@ -132,30 +137,30 @@ list($_b, $_g, $_l) = $template->initialize('9468757172', 'html')
                     </div>
                     <!-- Registered users counters -->
                     <div class="row animated fadeIn">
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">1.140</p>
-                                <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Purebred dogs'), ENT_NOQUOTES) ?></p>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">417</p>
-                                <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Dogs for mating'), ENT_NOQUOTES) ?></p>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">206</p>
-                                <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Planned litters'), ENT_NOQUOTES) ?></p>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">660</p>
-                                <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Kennels'), ENT_NOQUOTES) ?></p>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">392</p>
-                                <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Owners of purebred dogs'), ENT_NOQUOTES) ?></p>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">50</p>
-                                <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Handlers'), ENT_NOQUOTES) ?></p>
-                            </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">1.140</p>
+                            <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Purebred dogs'), ENT_NOQUOTES) ?></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">417</p>
+                            <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Dogs for mating'), ENT_NOQUOTES) ?></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">206</p>
+                            <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Planned litters'), ENT_NOQUOTES) ?></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">660</p>
+                            <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Kennels'), ENT_NOQUOTES) ?></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">392</p>
+                            <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Owners of purebred dogs'), ENT_NOQUOTES) ?></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">50</p>
+                            <p class="text-center counter_description"><?php echo Latte\Runtime\Filters::escapeHtml($template->translate('Handlers'), ENT_NOQUOTES) ?></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -250,21 +255,13 @@ list($_b, $_g, $_l) = $template->initialize('9468757172', 'html')
                 </div>
             </div>
         </section>
-
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Animation scripts -->
         <script src="js/css3-animate-it.js"></script>
         <script src="js/jquery.easing.min.js"></script>
-        <!-- Scrolling scripts -->
         <script src="js/scrolling-nav.js"></script>
-        <!-- Counter scripts -->
-        <!-- Google re-captcha -->
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-
     </body>
 </html>

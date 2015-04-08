@@ -7,6 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="description" content="">
         <meta name="author" content="">
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery.form.js"></script>
+        <!-- Scrolling scripts -->
+        <!-- Counter scripts -->
+
         <link rel="icon" href="../../favicon.ico">
         <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300|500' rel='stylesheet' type='text/css'>
         <!--jQuery Animations -->
@@ -122,30 +127,30 @@
                     </div>
                     <!-- Registered users counters -->
                     <div class="row animated fadeIn">
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">1.140</p>
-                                <p class="text-center counter_description">{_ 'Purebred dogs'}</p>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">417</p>
-                                <p class="text-center counter_description">{_ 'Dogs for mating'}</p>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">206</p>
-                                <p class="text-center counter_description">{_ 'Planned litters'}</p>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">660</p>
-                                <p class="text-center counter_description">{_ 'Kennels'}</p>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">392</p>
-                                <p class="text-center counter_description">{_ 'Owners of purebred dogs'}</p>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center counter_number">50</p>
-                                <p class="text-center counter_description">{_ 'Handlers'}</p>
-                            </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">1.140</p>
+                            <p class="text-center counter_description">{_ 'Purebred dogs'}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">417</p>
+                            <p class="text-center counter_description">{_ 'Dogs for mating'}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">206</p>
+                            <p class="text-center counter_description">{_ 'Planned litters'}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">660</p>
+                            <p class="text-center counter_description">{_ 'Kennels'}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">392</p>
+                            <p class="text-center counter_description">{_ 'Owners of purebred dogs'}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">50</p>
+                            <p class="text-center counter_description">{_ 'Handlers'}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -240,21 +245,13 @@
                 </div>
             </div>
         </section>
-
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Animation scripts -->
         <script src="js/css3-animate-it.js"></script>
         <script src="js/jquery.easing.min.js"></script>
-        <!-- Scrolling scripts -->
         <script src="js/scrolling-nav.js"></script>
-        <!-- Counter scripts -->
-        <!-- Google re-captcha -->
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-
     </body>
 </html>
