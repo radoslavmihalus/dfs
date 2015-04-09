@@ -5,28 +5,79 @@
         </button>
         <i class="refresh-icon fa fa-list-alt fa-1x"></i>
         <div class="notification-bar">
-            <a href="#">
-                <i class="notification-icon fa fa-users fa-1x"></i>
-                <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
-            </a>
-            <a href="#">
-                <i class="notification-icon fa fa-envelope fa-1x"></i>
-                <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
-            </a>
+            <!-- Top menu friend requests -->
+            <div class="dropdown" style="float:left;">
+                <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="Friend-requests" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="notification-icon fa fa-users fa-1x"></i>
+                    <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu friend-requests" role="menu" aria-labelledby="Friend-requests">
+                    <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Friend requests'}</li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">
+                            <img class="user-block-thumb" src="img/dog.jpg"/>
+                            <span class="notification-item-header text-uppercase">Bronca la rosa de inca</span>
+                            <span class="notification-item-event"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
+                            <span class="notification-item-event-action">
+                                <button type="button" class="btn btn-default btn-xs">Accept</button>
+                                <button type="button" class="btn btn-default btn-xs">Delete</button>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">
+                            <img class="user-block-thumb" src="img/dog3.jpg"/>
+                            <span class="notification-item-header text-uppercase">James lee blunt</span>
+                            <span class="notification-item-event"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
+                            <span class="notification-item-event-action">
+                                <button type="button" class="btn btn-default btn-xs">Accept</button>
+                                <button type="button" class="btn btn-default btn-xs">Delete</button>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /Top menu friend requests -->
             <!-- Top menu messages -->
             <div class="dropdown" style="float:left;">
-                <a href="#" class="dropdown-toggle" style="margin-right: 5px;" type="button" id="Messages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="notification-icon fa fa-bell fa-1x"></i>
+                <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="Messages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="notification-icon fa fa-envelope fa-1x"></i>
                     <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu messages" role="menu" aria-labelledby="Messages">
                     <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Messages'}</li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-cog "></i>&nbsp;&nbsp;{_ 'New comment'}</a></li>
                 </ul>
             </div>
             <!-- /Top menu messages -->
+            <!-- Top menu notifications -->
+            <div class="dropdown" style="float:left;">
+                <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="Notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="notification-icon fa fa-bell fa-1x"></i>
+                    <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu notifications" role="menu" aria-labelledby="Notifications">
+                    <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Notifications'}</li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">
+                            <img class="user-block-thumb" src="img/referer1.jpg"/>
+                            <span class="notification-item-header text-uppercase">Faalat rhodesian ridgeback kennel</span>
+                            <span class="notification-item-event"><i class="fa fa-comment"></i>&nbsp;&nbsp;{_ 'comment your post'}</span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">
+                            <img class="user-block-thumb" src="img/referer2.jpg"/>
+                            <span class="notification-item-header text-uppercase">Michal Slepánek</span>
+                            <span class="notification-item-event"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;{_ 'like your post'}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /Top menu notifications -->
             <!-- Top menu user account -->
             <div class="dropdown" style="float:left;">
-                <a href="#" class="dropdown-toggle" style="margin-right: 5px;" type="button" id="UserAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="UserAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="notification-icon fa fa-cog fa-1x"></i>
                     <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
                 </a>

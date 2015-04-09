@@ -56,7 +56,7 @@
                 </ul>
             </li>
             <li class="panel">
-                <span>DOGFORSHOW</span>
+                <div>DOGFORSHOW</div>
             </li>
             <li>
                 <div class="input-group custom-search-form search">
@@ -72,25 +72,28 @@
                 <a data-toggle="collapse" data-parent="#accordion1" href="#thirdLink"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Lists</a>
                 <ul id="thirdLink" class="collapse panel-collapse">
                     <li>
-                        <a href="#">Kennels</a>
+                        <a href="#"><i class="fa fa-home"></i>&nbsp;&nbsp;Kennels<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
-                        <a href="#">Owners of purebred dogs</a>
+                        <a href="#"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;Owners of purebred dogs<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
-                        <a href="#">Handlers</a>
+                        <a href="#"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;Handlers<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
-                        <a href="#">Dogs</a>
+                        <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
-                        <a href="#">Dogs for mating</a>
+                        <a href="#"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;Dogs for mating<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
-                        <a href="#">Planned litters</a>
+                        <a href="#"><i class="fa fa-calendar"></i>&nbsp;&nbsp;Planned litters<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
-                        <a href="#">Puppies for sale</a>
+                        <a href="#">Puppies for sale<span class="badge" style="float:right">0</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;Best in show<span class="badge" style="float:right">0</span></a>
                     </li>
                 </ul>
             </li>

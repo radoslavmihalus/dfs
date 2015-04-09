@@ -80,21 +80,128 @@ ul.dropdown-menu.user-account > li > a
     color:black !important;
     font-size: 13px;
 }
-.messages
+@media (max-width: 767px)
 {
-        width:200px;
-        top:48px;
-        left:-150px;
-        border-radius:0px;
+    .notifications
+    {
+            width:240px;
+            top:48px;
+            left:-128px;
+            border-radius:0px;
+    }
+    ul.dropdown-menu.notifications > li > a
+    {
+        display:block;
+        width:100%;
+        padding: 10px;
+        color:black !important;
+        font-size: 11px;
+        border-bottom: whitesmoke 1px solid;
+    }
+    .messages
+    {
+            width:240px;
+            top:48px;
+            left:-80px;
+            border-radius:0px;
+    }
+    ul.dropdown-menu.messages > li > a
+    {
+        display:block;
+        width:100%;
+        padding: 10px;
+        color:black !important;
+        font-size: 11px;
+        border-bottom: whitesmoke 1px solid;
+    }
+    .friend-requests
+    {
+            width:240px;
+            top:48px;
+            left:-32px;
+            border-radius:0px;
+    }
+    ul.dropdown-menu.friend-requests > li > a
+    {
+        display:block;
+        width:100%;
+        padding: 10px;
+        color:black !important;
+        font-size: 11px;
+        border-bottom: whitesmoke 1px solid;
+    }
 }
-ul.dropdown-menu.messages > li > a
+@media (min-width: 767px)
+{
+    .notifications
+    {
+            width:430px;
+            top:48px;
+            left:-380px;
+            border-radius:0px;
+    }
+    ul.dropdown-menu.notifications > li > a
+    {
+        display:block;
+        width:100%;
+        padding: 10px;
+        color:black !important;
+        font-size: 12px;
+        border-bottom: whitesmoke 1px solid;
+    }
+    .messages
+    {
+            width:430px;
+            top:48px;
+            left:-380px;
+            border-radius:0px;
+    }
+    ul.dropdown-menu.messages > li > a
+    {
+        display:block;
+        width:100%;
+        padding: 10px;
+        color:black !important;
+        font-size: 12px;
+        border-bottom: whitesmoke 1px solid;
+    }
+    .friend-requests
+    {
+            width:430px;
+            top:48px;
+            left:-377px;
+            border-radius:0px;
+    }
+    ul.dropdown-menu.friend-requests > li > a
+    {
+        display:block;
+        width:100%;
+        padding: 10px;
+        color:black !important;
+        font-size: 12px;
+        border-bottom: whitesmoke 1px solid;
+    }
+}
+.notification-item-header
+{
+    font-weight: 700;
+    color:#a5987f;
+    font-size:12px;
+    white-space: normal;
+    display:block;
+    width:70%;
+    float:left;
+}
+.notification-item-event
+{
+    white-space: normal;
+    display:block;
+    width:70%;
+    float:left;
+}
+.notification-item-event-action
 {
     display:block;
-    width:100%;
-    padding: 10px;
-    color:black !important;
-    font-size: 13px;
+    width:70%;
+    float:left;
 }
-
-
-

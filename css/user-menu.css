@@ -100,7 +100,7 @@
     margin:0px;
     border-top: 1px solid #EDEBE4;
 }
-.user-menu-links li.panel span
+.user-menu-links li.panel div
 {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -136,6 +136,7 @@
 }
 .user-menu-links li.panel ul li a
 {
+    padding-right: 5px;
     display:block;
     padding-top:15px;
     padding-bottom: 15px;
@@ -145,6 +146,7 @@
 }
 .user-menu-links li.panel ul li a:hover
 {
+    padding-right: 5px;
     display:block;
     padding-top:15px;
     padding-bottom: 15px;
@@ -155,6 +157,7 @@
 }
 .user-menu-links li.panel ul li a:focus
 {
+    padding-right: 5px;
     display:block;
     padding-top:15px;
     padding-bottom: 15px;
