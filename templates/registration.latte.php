@@ -6,16 +6,16 @@
                 <form id="frmSignIn" action="templates/scripts/insert.php" method="post">
                     <input type="hidden" name="formName" value="frmSignIn" />
                     <div class="form-group">
-                        <input type="text" class="form-control" id="txtName" name="txtName" placeholder="{_'Name'}">
+                        <input type="text" class="form-control required" id="txtName" name="txtName" placeholder="{_'Name'}">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="txtSurname" name="txtSurname" placeholder="{_ 'Surname'}">
+                        <input type="text" class="form-control required" id="txtSurname" name="txtSurname" placeholder="{_ 'Surname'}">
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="{_ 'Email'}">
+                        <input type="email" class="form-control required" id="txtEmail" name="txtEmail" placeholder="{_ 'Email'}">
                     </div>
                     <div class="form-group">
-                        <select class="form-control font_size_13px" id="ddlCountries" name="ddlCountries">
+                        <select class="form-control font_size_13px required" id="ddlCountries" name="ddlCountries">
                             <option value="" selected disabled>{_ 'Country'}</option>
                             <option>Czech Republic</option>
                             <option>Afghanistan</option>
@@ -23,10 +23,10 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="{_ 'Password'}">
+                        <input type="password" class="form-control required" id="txtPassword" name="txtPassword" placeholder="{_ 'Password'}">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="txtConfirmPassword" placeholder="{_ 'Confirm password'}">
+                        <input type="password" class="form-control required" id="txtConfirmPassword" placeholder="{_ 'Confirm password'}">
                     </div>
                     <button type="submit" id="btnSignIn" class="btn btn-danger btn-block"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Register'}</button>
                 </form>
