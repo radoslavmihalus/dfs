@@ -16,7 +16,7 @@
                     <li role="presentation">
                         <a role="menuitem" tabindex="-1" href="#">
                             <img class="user-block-thumb" src="img/dog.jpg"/>
-                            <span class="notification-item-header text-uppercase">Bronca la rosa de inca</span>
+                            <span class="notification-item-header text-uppercase">Top dog dogforshow kennel</span>
                             <span class="notification-item-event"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
                             <span class="notification-item-event-action">
                                 <button type="button" class="btn btn-default btn-xs">Accept</button>
@@ -35,6 +35,22 @@
                             </span>
                         </a>
                     </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">
+                            <img class="user-block-thumb" src="img/dog1.jpg"/>
+                            <span class="notification-item-header text-uppercase">Viktorij Dogshow</span>
+                            <span class="notification-item-event"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
+                            <span class="notification-item-event-action">
+                                <button type="button" class="btn btn-default btn-xs">Accept</button>
+                                <button type="button" class="btn btn-default btn-xs">Delete</button>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a class="dropdown-footer" href="#">
+                            {_ 'View all'}&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- /Top menu friend requests -->
@@ -46,7 +62,19 @@
                 </a>
                 <ul class="dropdown-menu messages" role="menu" aria-labelledby="Messages">
                     <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Messages'}</li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-cog "></i>&nbsp;&nbsp;{_ 'New comment'}</a></li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">
+                            <img class="user-block-thumb" src="img/dog1.jpg"/>
+                            <span class="notification-item-header text-uppercase">Viktorij Dogshow</span>
+                            <span class="notification-item-event">Hi my friend, i just want to show you my profile ...</span>
+                            <span class="notification-item-event-time">25.6.2014&nbsp;&nbsp;22:30</span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a class="dropdown-footer" href="#">
+                            {_ 'View all'}&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- /Top menu messages -->
@@ -68,8 +96,13 @@
                     <li role="presentation">
                         <a role="menuitem" tabindex="-1" href="#">
                             <img class="user-block-thumb" src="img/referer2.jpg"/>
-                            <span class="notification-item-header text-uppercase">Michal Slepánek</span>
+                            <span class="notification-item-header text-uppercase">Stephen Charles King</span>
                             <span class="notification-item-event"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;{_ 'like your post'}</span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a class="dropdown-footer" href="#">
+                            {_ 'View all'}&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>
                         </a>
                     </li>
                 </ul>

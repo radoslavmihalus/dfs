@@ -84,7 +84,7 @@ ul.dropdown-menu.user-account > li > a
 {
     .notifications
     {
-            width:240px;
+            width:250px;
             top:48px;
             left:-128px;
             border-radius:0px;
@@ -98,9 +98,19 @@ ul.dropdown-menu.user-account > li > a
         font-size: 11px;
         border-bottom: whitesmoke 1px solid;
     }
+    ul.dropdown-menu.notifications > li > a.dropdown-footer
+    {
+        display:block;
+        text-align: center;
+        width:100%;
+        padding: 10px;
+        text-transform: uppercase;
+        color:#777 !important;
+        font-size: 12px;
+    }
     .messages
     {
-            width:240px;
+            width:250px;
             top:48px;
             left:-80px;
             border-radius:0px;
@@ -114,9 +124,19 @@ ul.dropdown-menu.user-account > li > a
         font-size: 11px;
         border-bottom: whitesmoke 1px solid;
     }
+    ul.dropdown-menu.messages > li > a.dropdown-footer
+    {
+        display:block;
+        text-align: center;
+        width:100%;
+        padding: 10px;
+        text-transform: uppercase;
+        color:#777 !important;
+        font-size: 12px;
+    }
     .friend-requests
     {
-            width:240px;
+            width:250px;
             top:48px;
             left:-32px;
             border-radius:0px;
@@ -129,6 +149,16 @@ ul.dropdown-menu.user-account > li > a
         color:black !important;
         font-size: 11px;
         border-bottom: whitesmoke 1px solid;
+    }
+    ul.dropdown-menu.friend-requests > li > a.dropdown-footer
+    {
+        display:block;
+        text-align: center;
+        width:100%;
+        padding: 10px;
+        text-transform: uppercase;
+        color:#777 !important;
+        font-size: 12px;
     }
 }
 @media (min-width: 767px)
@@ -149,6 +179,16 @@ ul.dropdown-menu.user-account > li > a
         font-size: 12px;
         border-bottom: whitesmoke 1px solid;
     }
+    ul.dropdown-menu.notifications > li > a.dropdown-footer
+    {
+        display:block;
+        text-align: center;
+        width:100%;
+        padding: 10px;
+        text-transform: uppercase;
+        color:#777 !important;
+        font-size: 12px;
+    }
     .messages
     {
             width:430px;
@@ -165,6 +205,16 @@ ul.dropdown-menu.user-account > li > a
         font-size: 12px;
         border-bottom: whitesmoke 1px solid;
     }
+    ul.dropdown-menu.messages > li > a.dropdown-footer
+    {
+        display:block;
+        text-align: center;
+        width:100%;
+        padding: 10px;
+        text-transform: uppercase;
+        color:#777 !important;
+        font-size: 12px;
+    }
     .friend-requests
     {
             width:430px;
@@ -180,6 +230,16 @@ ul.dropdown-menu.user-account > li > a
         color:black !important;
         font-size: 12px;
         border-bottom: whitesmoke 1px solid;
+    }
+    ul.dropdown-menu.friend-requests > li > a.dropdown-footer
+    {
+        display:block;
+        text-align: center;
+        width:100%;
+        padding: 10px;
+        text-transform: uppercase;
+        color:#777 !important;
+        font-size: 12px;
     }
 }
 .notification-item-header
@@ -205,3 +265,12 @@ ul.dropdown-menu.user-account > li > a
     width:70%;
     float:left;
 }
+.notification-item-event-time
+{
+    display:block;
+    width:70%;
+    float:left;
+    color:#777;
+    font-size:11px;
+}
+
