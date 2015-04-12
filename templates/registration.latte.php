@@ -3,30 +3,35 @@
         <div class="panel panel-default registration_block transparent_white">
             <div class="panel-body">
                 <!-- DOGFORSHOW Sign up form -->
-                <form id="frmSignIn" action="templates/scripts/insert.php" method="post">
+                <form id="frmSignIn" action="templates/scripts/insert.php" method="post" role="form" data-toggle="validator">
                     <input type="hidden" name="formName" value="frmSignIn" />
                     <div class="form-group">
-                        <input type="text" class="form-control required" id="txtName" name="txtName" placeholder="{_'Name'}">
+                        <input type="text" class="form-control required" id="txtName" name="txtName" placeholder="{_'Name'}" data-error="Vyplne meno" required>
+                        <div class="help-block with-errors error-message"></div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control required" id="txtSurname" name="txtSurname" placeholder="{_ 'Surname'}">
+                        <input type="text" class="form-control required" id="txtSurname" name="txtSurname" placeholder="{_ 'Surname'}" required>
+                        <div class="help-block with-errors error-message"></div>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control required" id="txtEmail" name="txtEmail" placeholder="{_ 'Email'}">
+                        <input type="email" class="form-control required" id="txtEmail" name="txtEmail" placeholder="{_ 'Email'}" required>
+                        <div class="help-block with-errors error-message"></div>
                     </div>
                     <div class="form-group">
-                        <select class="form-control font_size_13px required" id="ddlCountries" name="ddlCountries">
-                            <option value="" selected disabled>{_ 'Country'}</option>
-                            <option>Czech Republic</option>
-                            <option>Afghanistan</option>
-                            <option>Kuwait</option>
+                        <select class="form-control font_size_13px required" id="ddlCountries" name="ddlCountries" required>
+                            {foreach $countries as $country}
+                            <option id="country-{$iterator->counter}" value="{$country|capitalize}">{_$country}</option>
+                            {/foreach}
                         </select>
+                        <div class="help-block with-errors error-message"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control required" id="txtPassword" name="txtPassword" placeholder="{_ 'Password'}">
+                        <input type="password" class="form-control required" id="txtPassword" name="txtPassword" placeholder="{_ 'Password'}" required>
+                        <div class="help-block with-errors error-message"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control required" id="txtConfirmPassword" placeholder="{_ 'Confirm password'}">
+                        <input type="password" class="form-control required" id="txtConfirmPassword" data-match="#txtPassword" data-match-error="Whoops, these don't match" placeholder="{_ 'Confirm password'}" required>
+                        <div class="help-block with-errors error-message"></div>
                     </div>
                     <button type="submit" id="btnSignIn" class="btn btn-danger btn-block"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Register'}</button>
                 </form>
@@ -40,10 +45,10 @@
                 <form id="frmlogIn">
                     <input type="hidden" name="formName" value="frmlogIn" />
                     <div class="form-group">
-                        <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="{_ 'Email'}">
+                        <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="{_ 'Email'}" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="{_ 'Password'}">
+                        <input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="{_ 'Password'}" required>
                     </div>
                     <button type="submit" id="btnLogin" class="btn btn-danger btn-block"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_'Login'}</button>
                 </form>
@@ -58,10 +63,18 @@
 //        alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
 //                '\n\nThe output div should have already been updated with the responseText.');
     }
-    
+
+    function validateForm()
+    {
+        showLoadingAnimation();
+        $('#frmSignIn').validator();
+        return $('#frmSignIn').valid();
+    }
+
     var options = {
         //target:        '#output1',   // target element(s) to be updated with server response 
-        beforeSubmit: showLoadingAnimation,  // pre-submit callback 
+        beforeSubmit: validateForm, // pre-submit callback 
+        error: hideLoadingAnimation,
         success: showResponse  // post-submit callback 
 
                 // other available options: 

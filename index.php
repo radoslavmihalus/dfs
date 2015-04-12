@@ -23,5 +23,12 @@ $translator = new DFSTranslator();
 
 $latte->addFilter('translate', $translator === NULL ? NULL : array($translator, 'translate'));
 
-$latte->render('templates/home.latte.php');
+$countries = array(
+    'Buranda',
+    'Qumran',
+    'Saint Georges Island',
+    'other',
+);
+
+$latte->render('templates/home.latte.php', $countries);
 ?>

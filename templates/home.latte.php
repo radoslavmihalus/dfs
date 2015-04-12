@@ -85,7 +85,7 @@
                                 <li class="active"><a class="myTabslink" href="#login" data-toggle="tab"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_ 'Login'}</a></li>
                                 <li><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Registration'}</a></li>
                             </ul>
-                            {include 'registration.latte.php'}
+                            {include 'registration.latte.php', "registration" => $countries}
                         </div>
                     </div>
                 </div>
@@ -265,5 +265,6 @@
         <script src="js/css3-animate-it.js"></script>
         <script src="js/jquery.easing.min.js"></script>
         <script src="js/scrolling-nav.js"></script>
+        <script type="text/javascript" src="js/validator.min.js"></script>
     </body>
 </html>
