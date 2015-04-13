@@ -9,6 +9,8 @@
         <meta name="author" content="">
         <script src="js/jquery.js"></script>
         <script src="js/jquery.form.js"></script>
+        <script type="text/javascript" src="js/validate/jquery.validate.min.js"></script>
+
         <!-- Scrolling scripts -->
         <!-- Counter scripts -->
 
@@ -265,6 +267,5 @@
         <script src="js/css3-animate-it.js"></script>
         <script src="js/jquery.easing.min.js"></script>
         <script src="js/scrolling-nav.js"></script>
-        <script type="text/javascript" src="js/validator.min.js"></script>
     </body>
 </html>

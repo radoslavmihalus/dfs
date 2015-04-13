@@ -3,10 +3,10 @@
         <div class="user-block">
             <img class="user-block-thumb" src="img/referer1.jpg" />
 <!--                    <p class="user-block-type"><i class="fa fa-eye"></i>&nbsp;&nbsp;</i>Spectator</p>-->
-            <p class="user-block-type"><i class="fa fa-home"></i>&nbsp;&nbsp;</i>Kennel</p>
+            <p class="user-block-type"><i class="fa fa-home"></i>&nbsp;&nbsp;</i>{_'Spectator'}</p>
 <!--                    <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>Owner of purebred dog</p>
             <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>Handler</p>-->
-            <p class="text-uppercase user-block-name">Faalat rhodesian ridgeback kennel</p>
+            <p class="text-uppercase user-block-name" id="userName"></p>
         </div>
         <ul class="nav nav-stacked user-menu-links" id="accordion1">
             <li class="panel"> 
@@ -60,13 +60,13 @@
             </li>
             <li>
                 <div class="input-group custom-search-form search">
-            <input type="text" class="form-control search-bar-typing" placeholder="Search DOGFORSHOW ...">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                    <i class="fa fa-search"></i>
-                </button>
-            </span>
-        </div>
+                    <input type="text" class="form-control search-bar-typing" placeholder="Search DOGFORSHOW ...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
             </li>
             <li class="panel"> 
                 <a data-toggle="collapse" data-parent="#accordion1" href="#thirdLink"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Lists</a>
@@ -100,3 +100,18 @@
         </ul>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        showLoadingAnimation();
+        $.ajax("templates/scripts/get.php?login")
+                .done(function (result) {
+                    $("#userName").html(result);
+                })
+                .fail(function () {
+                    //alert("error");
+                })
+                .always(function () {
+                    hideLoadingAnimation();
+                });
+    });
+</script>

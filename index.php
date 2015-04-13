@@ -7,6 +7,8 @@ if (@!include __DIR__ . '/nette/Nette/loader.php') {
     die('Install packages using `composer update --dev`');
 }
 
+session_start();
+
 use Nette\Forms\Form,
     Nette\Forms\Controls,
     Tracy\Debugger,
@@ -30,5 +32,9 @@ $countries = array(
     'other',
 );
 
-$latte->render('templates/home.latte.php', $countries);
+
+if($_SESSION['is_logged_in'])
+    $latte->render('templates/main.latte.php', $countries);
+else
+    $latte->render('templates/home.latte.php', $countries);
 ?>

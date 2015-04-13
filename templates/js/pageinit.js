@@ -22,7 +22,7 @@ function showLoadingAnimation(){
           speed                : 700,
           hasBackground        : true,
           zIndex               : 9999,
-          backgroundColor      : "#34383e",
+          backgroundColor      : "#a5987f",
           backgroundOpacity    : 1
         });
 }
@@ -44,9 +44,9 @@ function ShowMessage(messageType, message, autoclose, duration) {
         duration = 10;
  
     if (autoclose) {
-        noty({ text: message, type: messageType, timeout: (duration * 1000), layout: 'bottomLeft', theme: 'defaultTheme' });
+        noty({ text: message, type: messageType, timeout: (duration * 1000), layout: 'top', theme: 'defaultTheme' });
     } else {
-        noty({ text: message, type: messageType, timeout: false, layout: 'bottomLeft', theme: 'defaultTheme' });
+        noty({ text: message, type: messageType, timeout: false, layout: 'top', theme: 'defaultTheme' });
     }
 }
 

@@ -19,9 +19,7 @@
                     </div>
                     <div class="form-group">
                         <select class="form-control font_size_13px required" id="ddlCountries" name="ddlCountries" required>
-                            {foreach $countries as $country}
-                            <option id="country-{$iterator->counter}" value="{$country|capitalize}">{_$country}</option>
-                            {/foreach}
+                            <option>Slovensko</option>
                         </select>
                         <div class="help-block with-errors error-message"></div>
                     </div>
@@ -42,7 +40,7 @@
         <div class="panel panel-default registration_block transparent_white">
             <div class="panel-body">
                 <!-- DOGFORSHOW Sign up form -->
-                <form id="frmlogIn">
+                <form id="frmlogIn" action="templates/scripts/login.php" method="post" role="form" data-toggle="validator">
                     <input type="hidden" name="formName" value="frmlogIn" />
                     <div class="form-group">
                         <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="{_ 'Email'}" required>
@@ -57,25 +55,39 @@
     </div>
 </div>
 <script type="text/javascript">
-    function showResponse(responseText, statusText, xhr, $form) {
+    function showResponseReg(responseText, statusText, xhr, $form) {
         hideLoadingAnimation();
         ShowMessage(enumNotificationType.success, responseText);
-//        alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
-//                '\n\nThe output div should have already been updated with the responseText.');
+        $("#frmSignIn").find("input[type=text], input[type=email], input[type=password], select, textarea").val("");
     }
 
-    function validateForm()
+    function validateFormReg()
     {
         showLoadingAnimation();
-        $('#frmSignIn').validator();
-        return $('#frmSignIn').valid();
     }
 
-    var options = {
-        //target:        '#output1',   // target element(s) to be updated with server response 
-        beforeSubmit: validateForm, // pre-submit callback 
+    function showResponseLog(responseText, statusText, xhr, $form) {
+        hideLoadingAnimation();
+        if (responseText == 'ok') {
+            window.location.href = 'index.php';
+//        ShowMessage(enumNotificationType.success, responseText);
+//        $("#frmSignIn").find("input[type=text], input[type=email], input[type=password], select, textarea").val("");
+        }
+        else
+        {
+            ShowMessage(enumNotificationType.error, responseText);
+        }
+    }
+
+    function validateFormLog()
+    {
+        showLoadingAnimation();
+    }
+
+    var optionsreg = {
+        beforeSubmit: validateFormReg, // pre-submit callback 
         error: hideLoadingAnimation,
-        success: showResponse  // post-submit callback 
+        success: showResponseReg  // post-submit callback 
 
                 // other available options: 
                 //url:       url         // override for form's 'action' attribute 
@@ -88,5 +100,22 @@
                 //timeout:   3000 
     };
 
-    $("#frmSignIn").ajaxForm(options);
+    var optionslog = {
+        beforeSubmit: validateFormLog, // pre-submit callback 
+        error: hideLoadingAnimation,
+        success: showResponseLog  // post-submit callback 
+
+                // other available options: 
+                //url:       url         // override for form's 'action' attribute 
+                //type:      type        // 'get' or 'post', override for form's 'method' attribute 
+                //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
+                //clearForm: true        // clear all form fields after successful submit 
+                //resetForm: true        // reset the form after successful submit 
+
+                // $.ajax options can be used here too, for example: 
+                //timeout:   3000 
+    };
+
+    $("#frmSignIn").ajaxForm(optionsreg);
+    $("#frmlogIn").ajaxForm(optionslog);
 </script>
