@@ -44,15 +44,16 @@ function ShowMessage(messageType, message, autoclose, duration) {
         duration = 10;
  
     if (autoclose) {
-        noty({ text: message, type: messageType, timeout: (duration * 1000), layout: 'top', theme: 'defaultTheme' });
+        noty({ text: message, type: messageType, timeout: (duration * 8000), layout: 'top', theme: 'bootstrapTheme' });
     } else {
-        noty({ text: message, type: messageType, timeout: false, layout: 'top', theme: 'defaultTheme' });
+        noty({ text: message, type: messageType, timeout: false, layout: 'top', theme: 'bootstrapTheme' });
     }
 }
 
 $(document).ready(function () {
-//    ShowMessage(enumNotificationType.warning, "Show warning");
+    ShowMessage(enumNotificationType.warning, '<i class="fa fa-exclamation-circle" style="font-size:30px;"></i>&nbsp;&nbsp;Warning message');
 //    ShowMessage(enumNotificationType.information, "Show information");
 //    ShowMessage(enumNotificationType.confirmation, "Show confirmation");
-//    ShowMessage(enumNotificationType.error, "Show error");
+    ShowMessage(enumNotificationType.error, '<i class="fa fa-times-circle" style="font-size:30px;"></i>&nbsp;&nbsp;Error message');
+    ShowMessage(enumNotificationType.success, '<i class="fa fa-check-square" style="font-size:30px;"></i>&nbsp;&nbsp;Succes message');
 });
