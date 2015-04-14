@@ -51,9 +51,9 @@ function ShowMessage(messageType, message, autoclose, duration) {
 }
 
 $(document).ready(function () {
-    ShowMessage(enumNotificationType.warning, '<i class="fa fa-exclamation-circle" style="font-size:30px;"></i>&nbsp;&nbsp;Warning message');
+//   ShowMessage(enumNotificationType.warning, '<i class="fa fa-exclamation-circle" style="font-size:30px;"></i>&nbsp;&nbsp;Warning message');
 //    ShowMessage(enumNotificationType.information, "Show information");
 //    ShowMessage(enumNotificationType.confirmation, "Show confirmation");
-    ShowMessage(enumNotificationType.error, '<i class="fa fa-times-circle" style="font-size:30px;"></i>&nbsp;&nbsp;Error message');
-    ShowMessage(enumNotificationType.success, '<i class="fa fa-check-square" style="font-size:30px;"></i>&nbsp;&nbsp;Succes message');
+//    ShowMessage(enumNotificationType.error, '<i class="fa fa-times-circle" style="font-size:30px;"></i>&nbsp;&nbsp;Error message');
+//    ShowMessage(enumNotificationType.success, '<i class="fa fa-check-square" style="font-size:30px;"></i>&nbsp;&nbsp;Succes message');
 });

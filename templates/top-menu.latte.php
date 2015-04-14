@@ -66,8 +66,8 @@
                         <a role="menuitem" tabindex="-1" href="#">
                             <img class="user-block-thumb" src="img/dog1.jpg"/>
                             <span class="notification-item-header text-uppercase">Viktorij Dogshow</span>
-                            <span class="notification-item-event">Hi my friend, i just want to show you my profile ...</span>
                             <span class="notification-item-event-time">25.6.2014&nbsp;&nbsp;22:30</span>
+                            <span class="notification-item-event">Hi my friend, i just want to show you my profile ...</span>
                         </a>
                     </li>
                     <li role="presentation">
