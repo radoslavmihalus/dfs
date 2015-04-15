@@ -73,7 +73,7 @@
         <div class="container-fluid content-wrapper">
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
-                    {include 'user-friend-requests-list.latte.php'}
+                    {include 'user-message-compose.latte.php'}
                 </div>
             </div>
         </div>
