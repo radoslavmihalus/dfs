@@ -276,7 +276,8 @@ ul.dropdown-menu.user-account > li > a
 }
 .textarea-compose-message
 {
-    width:70%;
+    width:100%;
+    margin-bottom: 10px;
 }
 
 @media (min-width: 1000px)
@@ -315,7 +316,8 @@ ul.dropdown-menu.user-account > li > a
     }
     .textarea-compose-message
     {
-        width:85%;
+        width:100%;
+        margin-bottom: 10px;
     }
 }
 

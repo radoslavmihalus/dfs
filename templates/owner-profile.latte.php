@@ -29,7 +29,7 @@
                 <div class="collapse navbar-collapse" id="profile-menu" role="navigation" style="padding: 0px;">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Home'}</a></li>
-                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'My Dogs'}</a></li>
+                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Dogs'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Videos'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Friends'}</a></li>
