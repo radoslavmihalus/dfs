@@ -48,6 +48,16 @@
                     <div class="form-group">
                         <input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="{_ 'Password'}" required>
                     </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-6" style="margin-bottom: 10px;">
+                                <input type="checkbox" style="display: inline" class="radio" value="1"><span style="margin-left: 10px;color:white;">{_ 'Remember me'}</span>
+                            </div>
+                            <div class="col-md-6" style="margin-bottom: 10px;">
+                                <a href="#" style="color:white;"><i class="fa fa-question-circle"></i>&nbsp;&nbsp;{_ 'Forgot password'}</a>
+                            </div>
+                        </div>
+                    </div>
                     <button type="submit" id="btnLogin" class="btn btn-danger btn-block"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_'Login'}</button>
                 </form>
             </div>

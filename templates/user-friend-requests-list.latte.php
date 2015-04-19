@@ -1,0 +1,30 @@
+<div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
+    <div class="panel-body component">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-description" style="margin-bottom: 20px;"><i class="fa fa-users"></i>&nbsp;&nbsp{_ 'Friend requests'} 
+                </div>
+            </div>
+            <div class="col-md-12">
+                <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" href="#">
+                    <img class="user-block-thumb" src="img/dog3.jpg"/>
+                    <span class="notification-item-header text-uppercase">James lee blunt</span>
+                    <span class="notification-item-event" style="color:black;"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
+                    <span class="notification-item-event-action">
+                        <button type="button" class="btn btn-default btn-xs">Accept</button>
+                        <button type="button" class="btn btn-default btn-xs">Delete</button>
+                    </span>
+                </a>
+                <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" href="#">
+                    <img class="user-block-thumb" src="img/dog1.jpg"/>
+                    <span class="notification-item-header text-uppercase">Viktorij Dogshow</span>
+                    <span class="notification-item-event" style="color:black;"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
+                    <span class="notification-item-event-action">
+                        <button type="button" class="btn btn-default btn-xs">Accept</button>
+                        <button type="button" class="btn btn-default btn-xs">Delete</button>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

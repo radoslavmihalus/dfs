@@ -27,6 +27,12 @@
                     <a type="button" class="btn btn-default"><i class="fa fa-comment fa-1x"></i>&nbsp;&nbsp;Comment</a>
                 </div>
             </div>
+            <div class="input-group" style="float:left;margin-top: 10px;">
+                <input type="text" class="form-control font_size_13px" style="z-index: 0;" placeholder="{_ 'Comment'}...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default font_size_13px" type="button"><i class="fa fa-comment fa-1x"></i></button>
+                </span>
+            </div>
         </div>
     </li>
 </ul>

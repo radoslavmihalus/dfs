@@ -42,6 +42,7 @@
         </style>
         <!-- noty - popup alerts -->
         <script src="js/jquery-noty/packaged/jquery.noty.packaged.min.js" type="text/javascript"></script>
+        <script src="js/jquery-noty/themes/bootstrap.js" type="text/javascript"></script>
         <!-- Loading animation -->
         <script src="js/jquery.nimble.loader.js" type="text/javascript"></script>
         <script src="templates/js/pageinit.js" type="text/javascript"></script>
@@ -65,9 +66,9 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#join" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Registration'}</a></li>
-                        <li><a href="#about" class="page-scroll text-uppercase landing_navbar_typography">{_ 'About us'}</a></li>
-                        <li><a href="#follow" class="page-scroll text-uppercase landing_navbar_typography">{_ 'How we grow'}</a></li>
                         <li><a href="#discover" class="page-scroll text-uppercase landing_navbar_typography">{_ ' Discover DOGFORSHOW'}</a></li>
+                        <li><a href="#follow" class="page-scroll text-uppercase landing_navbar_typography">{_ 'How we grow'}</a></li>
+                        <li><a href="#about" class="page-scroll text-uppercase landing_navbar_typography">{_ 'About us'}</a></li>
                         <li><a href="#contact" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Contact us'}</a></li>
                     </ul>
                 </div>
@@ -88,6 +89,83 @@
                                 <li><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Registration'}</a></li>
                             </ul>
                             {include 'registration.latte.php', "registration" => $countries}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Discover section -->
+        <section id="discover">
+            <div class="container animatedParent animateOnce">
+                <div class="row animated fadeIn">
+                    <h2 class="heading text-center text-uppercase"><i class="fa fa-search"></i>&nbsp;&nbsp;<strong>{_ 'Discover the DOGFORSHOW community closer'}</strong></h2>
+                    <p class="secondary_heading text-center">{_ 'We are building an international community of breeders, owners and handlers of purebred dogs, helping them to present themselves, communicate with each other and mutually inspire'}</p>
+                </div>
+                <div class="row animated fadeIn">
+                    <div class="col-md-3 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Kennels'}</a>
+                    </div>
+                    <div class="col-md-3 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Owners'}</a>
+                    </div>
+                    <div class="col-md-3 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Handlers'}</a>
+                    </div>
+                    <div class="col-md-3 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Purebred dogs'}</a>
+                    </div>
+                </div>
+                <div class="row animated fadeIn">
+                    <div class="col-md-3 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Puppies for sale'}</a>
+                    </div>
+                    <div class="col-md-3 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Planned litters'}</a>
+                    </div>
+                    <div class="col-md-3 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Dogs for mating'}</a>
+                    </div>
+                    <div class="col-md-3 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Best in show'}</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Reference Carousel -->
+            <div class="section_divider"></div>
+        </section>
+        <!-- Follow section -->
+        <section id="follow">
+            <div class="jumbotron brown animatedParent animateOnce background1">
+                <div class="container">
+                    <div class="row animated fadeIn">
+                        <h2 class="heading text-center text-uppercase"><span class="fa fa-line-chart" aria-hidden="true"></span>&nbsp;&nbsp;<strong>{_ 'Follow with us how we growing'}</strong></h2>
+                        <p class="secondary_heading text-center">{_ 'Forget about the classic advertising portals and join the fast growing community'}</p>
+                    </div>
+                    <!-- Registered users counters -->
+                    <div class="row animated fadeIn">
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">1.140</p>
+                            <p class="text-center counter_description">{_ 'Purebred dogs'}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">417</p>
+                            <p class="text-center counter_description">{_ 'Dogs for mating'}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">206</p>
+                            <p class="text-center counter_description">{_ 'Planned litters'}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">660</p>
+                            <p class="text-center counter_description">{_ 'Kennels'}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">392</p>
+                            <p class="text-center counter_description">{_ 'Owners of purebred dogs'}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center counter_number">50</p>
+                            <p class="text-center counter_description">{_ 'Handlers'}</p>
                         </div>
                     </div>
                 </div>
@@ -131,77 +209,7 @@
             </div>
             <div class="section_divider"></div>
         </section>
-        <!-- Follow section -->
-        <section id="follow">
-            <div class="jumbotron brown animatedParent animateOnce background1">
-                <div class="container">
-                    <div class="row animated fadeIn">
-                        <h2 class="heading text-center text-uppercase"><span class="fa fa-line-chart" aria-hidden="true"></span>&nbsp;&nbsp;<strong>{_ 'Follow with us how we growing'}</strong></h2>
-                        <p class="secondary_heading text-center">{_ 'Forget about the classic advertising portals and join the fast growing community'}</p>
-                    </div>
-                    <!-- Registered users counters -->
-                    <div class="row animated fadeIn">
-                        <div class="col-md-2">
-                            <p class="text-center counter_number">1.140</p>
-                            <p class="text-center counter_description">{_ 'Purebred dogs'}</p>
-                        </div>
-                        <div class="col-md-2">
-                            <p class="text-center counter_number">417</p>
-                            <p class="text-center counter_description">{_ 'Dogs for mating'}</p>
-                        </div>
-                        <div class="col-md-2">
-                            <p class="text-center counter_number">206</p>
-                            <p class="text-center counter_description">{_ 'Planned litters'}</p>
-                        </div>
-                        <div class="col-md-2">
-                            <p class="text-center counter_number">660</p>
-                            <p class="text-center counter_description">{_ 'Kennels'}</p>
-                        </div>
-                        <div class="col-md-2">
-                            <p class="text-center counter_number">392</p>
-                            <p class="text-center counter_description">{_ 'Owners of purebred dogs'}</p>
-                        </div>
-                        <div class="col-md-2">
-                            <p class="text-center counter_number">50</p>
-                            <p class="text-center counter_description">{_ 'Handlers'}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Discover section -->
-        <section id="discover">
-            <div class="container animatedParent animateOnce">
-                <div class="row animated fadeIn">
-                    <h2 class="heading text-center text-uppercase"><i class="fa fa-search"></i>&nbsp;&nbsp;<strong>{_ 'Discover the DOGFORSHOW community closer'}</strong></h2>
-                    <p class="secondary_heading text-center">{_ 'We are building an international community of breeders, owners and handlers of purebred dogs, helping them to present themselves, communicate with each other and mutually inspire'}</p>
-                </div>
-                <div class="row animated fadeIn">
-                    <div class="col-md-6">
-                        <div class="col-md-6 community_link form-group">
-                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Kennels'}</a>
-                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Owners of purebred dogs'}</a>
-                        </div>
-                        <div class="col-md-6 community_link form-group">
-                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Handlers'}</a>
-                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Best in show'}</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="col-md-6 community_link form-group">
-                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Purebred dogs'}</a>
-                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Dogs for mating'}</a>
-                        </div>
-                        <div class="col-md-6 community_link form-group">
-                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Planned litters'}</a>
-                            <a class="btn text-uppercase btn-lg btn-block" href="#" role="button">{_ 'Puppies for sale'}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Reference Carousel -->
-            <div class="section_divider"></div>
-        </section>
+        <!-- Contact section -->
         <section id="contact">
             <div class="jumbotron brown animatedParent animateOnce">
                 <div class="container animatedParent animateOnce">

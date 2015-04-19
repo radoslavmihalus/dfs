@@ -22,6 +22,20 @@
     min-height:657px;
     
 }
+.landing_header_forgot_password
+{
+    height:auto;
+    background:url("../img/header2.jpg")no-repeat center center;
+    background-size:cover;
+    min-height:657px;
+}
+.landing_header_reset_password
+{
+    height:auto;
+    background:url("../img/header3.jpg")no-repeat center center;
+    background-size:cover;
+    min-height:657px;
+}
 .landing_header_slogan
 {
     padding-top: 20px;
