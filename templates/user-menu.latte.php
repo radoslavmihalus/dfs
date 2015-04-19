@@ -2,8 +2,8 @@
     <div class="collapse navbar-collapse" id="user-menu" role="navigation" style="padding: 0px;">
         <div class="user-block">
             <img class="user-block-thumb" src="img/referer1.jpg" />
-<!--                    <p class="user-block-type"><i class="fa fa-eye"></i>&nbsp;&nbsp;</i>Spectator</p>-->
-            <p class="user-block-type"><i class="fa fa-home"></i>&nbsp;&nbsp;</i>{_'Spectator'}</p>
+<!--                    <p class="user-block-type"><i class="fa fa-home"></i>&nbsp;&nbsp;</i>Spectator</p>-->
+            <p class="user-block-type"><i class="fa fa-eye"></i>&nbsp;&nbsp;</i>{_'Spectator'}</p>
 <!--                    <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>Owner of purebred dog</p>
             <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>Handler</p>-->
             <p class="text-uppercase user-block-name" id="userName"></p>
@@ -68,7 +68,7 @@
                     </span>
                 </div>
             </li>
-            <li class="panel"> 
+            <li class="panel">
                 <a data-toggle="collapse" data-parent="#accordion1" href="#thirdLink"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Lists</a>
                 <ul id="thirdLink" class="collapse panel-collapse">
                     <li>

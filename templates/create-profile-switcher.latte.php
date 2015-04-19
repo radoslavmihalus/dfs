@@ -1,7 +1,7 @@
 <div class="col-md-4" style="font-size: 12px;">
     <div class="panel-body component" style="background-color: white;min-height:430px;margin-bottom: 10px;">
         <h2 class="text-center text-uppercase"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</h2>
-        <p class="text-center"><button type="submit" class="btn btn-danger btn-xl" style="margin-bottom:10px;">{_ 'Create profile'}</button></p>
+        <p class="text-center"><a href='?create-handler' class="btn btn-danger btn-xl" style="margin-bottom:10px;">{_ 'Create profile'}</a></p>
         <hr>
         <ul class="section_list">
             <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>{_ 'Create a clear profile of your kennel'}</li>

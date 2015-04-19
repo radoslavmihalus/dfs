@@ -34,6 +34,10 @@
         <link rel="stylesheet" href="fonts/glyphicons/pro-awesome/css/glyphicons-pro.css">
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="js/fileup/css/jquery.fileupload.css">
+        <link rel="stylesheet" href="js/fileup/css/jquery.fileupload-ui.css">
+        <script type="text/javascript" src="js/fileup/js/jquery.fileupload.js"></script>
+        <script type="text/javascript" src="js/fileup/js/jquery.fileupload-ui.js"></script>
         <style>
             .loading_bar_body {
                 height: 100%;
@@ -72,12 +76,10 @@
         <div class="container-fluid content-wrapper">
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
-                    {include 'create-profile-switcher.latte.php'}
+                    {include 'kennel-profile.latte.php'}
                 </div>
             </div>
         </div>
         <!-- /Main content -->
         <!-- Scripts -->
-    </body>
-</html>
 

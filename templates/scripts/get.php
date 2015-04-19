@@ -62,22 +62,24 @@ function doGet($table_name, $data, $ret_field = "", $where = '(1=1)') {
 
     //echo $query;
 
+    //echo $query;
+
     $rows = $context->query($query);
 
     $return = "";
 
     foreach ($rows as $row) {
-        $return = $row[$ret_field];
+        $return = $row->username;
     }
-    
+
     return $return;
 }
 
 if (isset($_REQUEST['login'])) {
-    echo doGet('tbl_user', "CONCAT(`name`,' ',`surname`) AS username", 'id=' . $_SESSION['userid']);
+    echo doGet('tbl_user', "CONCAT(`name`,' ',`surname`) AS username", "username", "id=" . $_SESSION['userid']);
 } else {
     $table = $_REQUEST['tableName'];
     $field = $_REQUEST['fieldName'];
-    echo doGet($table, $field, "username");
+    echo doGet($table, $field);
 }
 
