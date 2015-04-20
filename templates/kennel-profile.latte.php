@@ -1,8 +1,7 @@
 <div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body component">
         <div class="profile-header-image">
-            <div class="header-spacer">
-            </div>
+            <span class="list-puppy-info-detail"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>
             <img src="img/referer1.jpg" class="pull-left image-profile-thumb">
         </div>
         <div class="row">
@@ -43,7 +42,7 @@
         </div>
     </div>
 </div>
-<div class="row">
-    {include 'kennel-profile-home.latte.php'}
+<div class="col-md-12">
+    {include 'friends-list.latte.php'}
 </div>
 

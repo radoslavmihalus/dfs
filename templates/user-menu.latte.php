@@ -31,7 +31,7 @@
                         <a href="#"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Home</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-trophy"></i>&nbsp;&nbsp;Awards</a>
+                        <a href="#"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;Awards</a>
                     </li>
                     <li>
                         <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs</a>
@@ -40,7 +40,7 @@
                         <a href="#"><i class="fa fa-calendar"></i>&nbsp;&nbsp;Planned litters</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Puppies for sale</a>
+                        <a href="#"><i class="fa fa-paw"></i>&nbsp;&nbsp;Puppies for sale</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;Photos</a>
@@ -91,7 +91,7 @@
                         <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Breeds for handling</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-trophy"></i>&nbsp;&nbsp;Awards</a>
+                        <a href="#"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;Awards</a>
                     </li>
                     <li>
                         <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Certificates</a>
@@ -148,7 +148,7 @@
                         <a href="#"><i class="fa fa-calendar"></i>&nbsp;&nbsp;Planned litters<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
-                        <a href="#">Puppies for sale<span class="badge" style="float:right">0</span></a>
+                        <a href="#"><i class="fa fa-paw"></i>&nbsp;&nbsp;Puppies for sale<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
                         <a href="#"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;Best in show<span class="badge" style="float:right">0</span></a>

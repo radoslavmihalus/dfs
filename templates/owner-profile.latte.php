@@ -1,8 +1,6 @@
 <div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body component">
         <div class="profile-header-image">
-            <div class="header-spacer">
-            </div>
             <img src="img/referer1.jpg" class="pull-left image-profile-thumb">
         </div>
         <div class="row">

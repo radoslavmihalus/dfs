@@ -20,7 +20,7 @@
                 <div class="list-item">
                     <div class="list-item-image">
                         <img src="img/referer1.jpg"  class="pull-left image-list-thumb">
-                        <span class="list-puppy-info" style="font-size:15px;"><i class="fa fa-info-circle"></i>&nbsp;{_ 'We have puppies'}</span>
+                        <span class="list-puppy-info" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>
                     </div>    
                     <h3 class="text-uppercase">Kennel la costa brava</h3>
                     <hr style="margin-bottom: 10px;">
