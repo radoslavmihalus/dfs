@@ -1,1 +1,0 @@
-Nette 2.2.7 (revision 685c06d released on 2015-01-06)
