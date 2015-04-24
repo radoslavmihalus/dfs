@@ -1,0 +1,15 @@
+# nastavenie pre PHP
+php_flag magic_quotes_gpc off 
+php_flag register_globals off
+
+# mod_rewrite
+RewriteEngine On
+# v prípade, ze je nutne nastavovat (routujete z ineho adresara ako je webroot)
+#RewriteBase /
+
+# front controller 
+# hlavny controller (index.php) a obmedzenie requestov na urcite typy suborov 
+RewriteCond %{REQUEST_URI} !^/www/.*$
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteRule !\.(pdf|js|ico|gif|jpg|png|css|rar|zip|tar\.gz)$ index.php [L]

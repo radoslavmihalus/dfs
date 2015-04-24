@@ -1,0 +1,23 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# http://nette.org/security-warning
+#
+php:
+	date.timezone: Europe/Bratislava
+
+nette:
+    application:
+        mapping:
+            *: App\*Module\Presenters\*Presenter
+
+database:
+	dsn: "sqlite:%appDir%/model/demo.db3"
+#	dsn: "mysql:host=localhost;dbname=dfs"
+#        user: root
+#        password: L884fv57
+
+services:
+    - App\Model\Authenticator
+    - App\Model\AlbumRepository
+#    - App\Model\DFSTranslator
+#    router: App\RouterFactory::createRouter
