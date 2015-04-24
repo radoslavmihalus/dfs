@@ -30,6 +30,7 @@ $container = $configurator->createContainer();
 $router = $container->getService('router');
 
 // routy
+$router[] = new Route('index.php', 'LandingPage:default');
 $router[] = new Route('list-of-kennels', 'kennel:list');
 $router[] = new Route('kennel-profile', 'kennel:profile');
 // routy
