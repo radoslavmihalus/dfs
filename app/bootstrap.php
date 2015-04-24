@@ -33,6 +33,7 @@ $router = $container->getService('router');
 $router[] = new Route('index.php', 'LandingPage:default');
 $router[] = new Route('list-of-kennels', 'kennel:list');
 $router[] = new Route('kennel-profile', 'kennel:profile');
+$router[] = new Route('kennel-create-profile', 'kennel:create_profile');
 // routy
 
 $router[] = new Route('<presenter>/<action>[/<id>]', 'LandingPage:default');
