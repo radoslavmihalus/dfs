@@ -6,7 +6,7 @@ use App\Model,
     Nette,
     Nette\Application\UI\Form;
 
-class accountPresenter extends BasePresenter {
+class dogPresenter extends BasePresenter {
 
     /** @var Model\AlbumRepository */
     //private $albums;

@@ -33,11 +33,15 @@ $router = $container->getService('router');
 $router[] = new Route('index.php', 'LandingPage:default');
 $router[] = new Route('forgot-password', 'LandingPage:forgot_password');
 $router[] = new Route('reset-password', 'LandingPage:reset_password');
-// Account routes
-$router[] = new Route('profile-switch', 'account:create_profile_switcher');
-$router[] = new Route('edit-account', 'account:edit_account');
-$router[] = new Route('list-of-followers', 'account:followers_list');
-$router[] = new Route('list-of-friends', 'account:friends_list');
+// User routes
+$router[] = new Route('switch-profile', 'user:user_create_profile_switcher');
+$router[] = new Route('edit-account', 'user:user_edit_account');
+$router[] = new Route('list-of-followers', 'user:user_followers_list');
+$router[] = new Route('list-of-friends', 'user:user_friends_list');
+$router[] = new Route('list-of-friends-requests', 'user:user_friend_requests_list');
+$router[] = new Route('notification-list', 'user:user_notification_list');
+$router[] = new Route('message-list', 'user:user_message_list');
+$router[] = new Route('message-compose', 'user:user_message_compose');
 // Kennel routes
 $router[] = new Route('kennel-profile', 'kennel:kennel_profile');
 $router[] = new Route('kennel-create-profile', 'kennel:kennel_create_profile');
@@ -48,12 +52,15 @@ $router[] = new Route('handler-profile', 'handler:handler_profile');
 $router[] = new Route('handler-create-profile', 'handler:handler_create_profile');
 $router[] = new Route('handler-edit-profile', 'handler:handler_edit_profile');
 $router[] = new Route('list-of-handlers', 'handler:handler_list');
-
 // Owner routes
 $router[] = new Route('owner-profile', 'owner:owner_profile');
 $router[] = new Route('owner-create-profile', 'owner:owner_create_profile');
 $router[] = new Route('owner-edit-profile', 'owner:owner_edit_profile');
 $router[] = new Route('list-of-owners', 'owner:owner_list');
+// Dog routes
+$router[] = new Route('dog-profile', 'dog:dog_profile');
+$router[] = new Route('list-of-dogs', 'dog:dog_list');
+
 
 // routy
 
