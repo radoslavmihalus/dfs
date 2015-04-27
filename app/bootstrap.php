@@ -31,8 +31,13 @@ $router = $container->getService('router');
 
 // routy
 $router[] = new Route('index.php', 'LandingPage:default');
+$router[] = new Route('forgot-password', 'LandingPage:forgot_password');
+$router[] = new Route('reset-password', 'LandingPage:reset_password');
 // Account routes
 $router[] = new Route('profile-switch', 'account:create_profile_switcher');
+$router[] = new Route('edit-account', 'account:edit_account');
+$router[] = new Route('list-of-followers', 'account:followers_list');
+$router[] = new Route('list-of-friends', 'account:friends_list');
 // Kennel routes
 $router[] = new Route('kennel-profile', 'kennel:kennel_profile');
 $router[] = new Route('kennel-create-profile', 'kennel:kennel_create_profile');
