@@ -31,9 +31,25 @@ $router = $container->getService('router');
 
 // routy
 $router[] = new Route('index.php', 'LandingPage:default');
-$router[] = new Route('list-of-kennels', 'kennel:list');
-$router[] = new Route('kennel-profile', 'kennel:profile');
-$router[] = new Route('kennel-create-profile', 'kennel:create_profile');
+// Account routes
+$router[] = new Route('profile-switch', 'account:create_profile_switcher');
+// Kennel routes
+$router[] = new Route('kennel-profile', 'kennel:kennel_profile');
+$router[] = new Route('kennel-create-profile', 'kennel:kennel_create_profile');
+$router[] = new Route('kennel-edit-profile', 'kennel:kennel_edit_profile');
+$router[] = new Route('list-of-kennels', 'kennel:kennel_list');
+// Handler routes
+$router[] = new Route('handler-profile', 'handler:handler_profile');
+$router[] = new Route('handler-create-profile', 'handler:handler_create_profile');
+$router[] = new Route('handler-edit-profile', 'handler:handler_edit_profile');
+$router[] = new Route('list-of-handlers', 'handler:handler_list');
+
+// Owner routes
+$router[] = new Route('owner-profile', 'owner:owner_profile');
+$router[] = new Route('owner-create-profile', 'owner:owner_create_profile');
+$router[] = new Route('owner-edit-profile', 'owner:owner_edit_profile');
+$router[] = new Route('list-of-owners', 'owner:owner_list');
+
 // routy
 
 $router[] = new Route('<presenter>/<action>[/<id>]', 'LandingPage:default');
