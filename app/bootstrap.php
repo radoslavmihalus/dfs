@@ -43,7 +43,7 @@ $router[] = new Route('notification-list', 'user:user_notification_list');
 $router[] = new Route('message-list', 'user:user_message_list');
 $router[] = new Route('message-compose', 'user:user_message_compose');
 // Kennel routes
-$router[] = new Route('kennel-profile', 'kennel:kennel_profile');
+$router[] = new Route('kennel-awards-list', 'kennel:kennel_awards_list');
 $router[] = new Route('kennel-create-profile', 'kennel:kennel_create_profile');
 $router[] = new Route('kennel-edit-profile', 'kennel:kennel_edit_profile');
 $router[] = new Route('list-of-kennels', 'kennel:kennel_list');
