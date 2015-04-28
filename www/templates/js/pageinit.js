@@ -15,20 +15,20 @@ enumNotificationType = {
 }
 
 function showLoadingAnimation(){
-    $("body").nimbleLoader("show", {
-          position             : "fixed",
-          loaderClass          : "loading_bar_body",
-          debug                : true,
-          speed                : 700,
-          hasBackground        : true,
-          zIndex               : 9999,
-          backgroundColor      : "#a5987f",
-          backgroundOpacity    : 1
-        });
+//    $("body").nimbleLoader("show", {
+//          position             : "fixed",
+//          loaderClass          : "loading_bar_body",
+//          debug                : true,
+//          speed                : 700,
+//          hasBackground        : true,
+//          zIndex               : 9999,
+//          backgroundColor      : "#a5987f",
+//          backgroundOpacity    : 1
+//        });
 }
 
 function hideLoadingAnimation(){
-    $("body").nimbleLoader("hide");
+//    $("body").nimbleLoader("hide");
 }
  
 function ShowMessage(messageType, message, autoclose, duration) {
