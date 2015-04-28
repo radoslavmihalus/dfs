@@ -67,17 +67,17 @@
     </head>
     <body>
         <!-- top-menu -->
-        {include 'menu/top-menu.latte'}
+        {include '../menu/top-menu.latte'}
         <!-- /top-menu -->
         <!-- user-menu -->
-        {include 'menu/user-menu.latte'}
+        {include '../menu/user-menu.latte'}
         <!--/user-menu -->
 
         <!-- Main content -->
         <div class="container-fluid content-wrapper">
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
-                    {includeblock 'kennel/kennel_header.latte'}
+                    {include 'kennel_header.latte'}
                     <div class="col-md-12">
                         {include content}
                     </div>
