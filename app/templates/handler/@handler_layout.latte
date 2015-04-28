@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>DOGFORSHOW</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- Google font definition -->
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300|500' rel='stylesheet' type='text/css'>
+        <!-- Bootstrap definition -->
+        <link href="www/css/bootstrap.min.css" rel="stylesheet">
+        <link href="www/css/bootstrap-theme.min.css" rel="stylesheet">
+        <!-- Typographyp definition -->
+        <link href="www/css/typography.css" rel="stylesheet">
+        <!-- Top Menu section definition -->
+        <link href="www/css/top-menu.css" rel="stylesheet">
+        <!-- User Menu section definition -->
+        <link href="www/css/user-menu.css" rel="stylesheet">
+        <!-- Profile Menu section definition -->
+        <link href="www/css/profile-menu.css" rel="stylesheet">
+        <!-- Edit Profile Menu section definition -->
+        <link href="www/css/edit-profile-menu.css" rel="stylesheet">
+        <!-- Main template definition -->
+        <link href="www/css/main.css" rel="stylesheet">
+        <!-- Components definition -->
+        <link href="www/css/components.css" rel="stylesheet">
+        <!-- Profile template -->
+        <link href="www/css/profile.css" rel="stylesheet">
+        <!-- Timeline template -->
+        <link href="www/css/timeline.css" rel="stylesheet">
+        <!-- Glyphicons -->
+        <link rel="stylesheet" href="www/fonts/glyphicons/font-awesome/css/font-awesome.min.css">
+        <!-- Glyphicons PRO -->
+        <link rel="stylesheet" href="www/fonts/glyphicons/pro-awesome/css/glyphicons-pro.css">
+        <script src="www/js/jquery.js"></script>
+        <script src="www/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="www/js/fileup/css/jquery.fileupload.css">
+        <link rel="stylesheet" href="www/js/fileup/css/jquery.fileupload-ui.css">
+        <script type="text/javascript" src="www/js/fileup/js/jquery.fileupload.js"></script>
+        <script type="text/javascript" src="www/js/fileup/js/jquery.fileupload-ui.js"></script>
+        <style>
+            #ajax-spinner {
+                position:fixed;
+                left: 50%;
+                top: 50%;
+                margin: -15px 0 0 -15px;
+                background: white url('www/img/ajax-loader.gif') no-repeat 50% 50%;
+                padding: 13px;
+                border: 2px solid #CCC;
+                font-size: 0;
+            }
+            /*            .loading_bar_body {
+                            height: 100%;
+                            width: 100%;
+                            top:0;
+                            left:0;
+                            background: url(img/ajax-loader.gif) no-repeat 50% 50%;
+                        }*/
+        </style>
+        <!-- noty - popup alerts -->
+        <script src="www/js/jquery-noty/packaged/jquery.noty.packaged.min.js" type="text/javascript"></script>
+        <script src="www/js/jquery-noty/themes/bootstrap.js" type="text/javascript"></script>
+        <!-- Loading animation -->
+        <script src="www/js/jquery.nimble.loader.js" type="text/javascript"></script>
+        <script src="www/templates/js/pageinit.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function()
+            {
+                var wheight = $(window).height() - 51;
+                $(".user-menu").css("max-height", wheight);
+            });
+            $(window).resize(function() {
+                var wheight = $(window).height() - 51;
+                $(".user-menu").css("max-height", wheight);
+            });
+        </script>
+    </head>
+    <body>
+        <!-- top-menu -->
+        {include '../menu/top-menu.latte'}
+        <!-- /top-menu -->
+        <!-- user-menu -->
+        {include '../menu/user-menu.latte'}
+        <!--/user-menu -->
+
+        <!-- Main content -->
+        <div class="container-fluid content-wrapper">
+            <div class="row" style="margin-left: 0px;margin-right: 0px;">
+                <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
+                    {include 'handler_header.latte'}
+                    <div class="col-md-12">
+                        {include content}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Main content -->
+        <!-- Scripts -->
+
+        <script type="text/javascript">
+            $(function() {
+                // vhodně nastylovaný div vložím po načtení stránky
+                $('<div id="ajax-spinner"></div>').appendTo("body").ajaxStop(function() {
+                    // a při události ajaxStop spinner schovám a nastavím mu původní pozici
+                    $(this).hide().css({
+                        position: "fixed",
+                        left: "50%",
+                        top: "50%"
+                    });
+                }).hide();
+            });
+
+// zajaxovatění odkazů provedu takto
+            $("a.ajax").live("click", function(event) {
+                event.preventDefault();
+
+                $.get(this.href);
+
+                // zobrazení spinneru a nastavení jeho pozice
+                $("#ajax-spinner").show().css({
+                    position: "absolute",
+                    left: event.pageX + 20,
+                    top: event.pageY + 40
+                });
+            });
+        </script>
+
+    </body>
+</html>

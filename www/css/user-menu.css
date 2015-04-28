@@ -9,11 +9,11 @@
 }
 .user-block
 {
-    float:left;
     display:block;
     width:100%;
     background-color: #83765E;
     padding:10px;
+    height:70px;
 }
 .user-block-thumb
 {
