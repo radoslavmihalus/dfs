@@ -1,10 +1,11 @@
+{block content}
 <div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
     <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
         <form id="frmCreateDogProfile">
-            <h2 class="text-center text-uppercase"><i class="fa fa-heartbeat"></i>&nbsp;&nbsp;{_ 'Add health record'}</h2>
+            <h2 class="text-center text-uppercase"><i class="fa fa-flag"></i>&nbsp;&nbsp;{_ 'Add working exam'}</h2>
             <hr>
             <div>
-                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Date of the health record'} <i class="fa fa-question-circle tooltip_brown"></i></span>
+                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Date exam passed'} <i class="fa fa-question-circle tooltip_brown"></i></span>
             </div>
             <div class="row">
                 <div class="col-md-4 form-group"> 
@@ -36,14 +37,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Description of the health record'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                <input type="text" class="form-control font_size_13px" id="txtDogHealthReport" placeholder="{_ 'Hip Dysplasia'}">
+                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Type of exam'} <i class="fa fa-question-circle tooltip_brown"></i></span>
+                <input type="text" class="form-control font_size_13px" id="txtDogExam" placeholder="{_ 'SVV1'}">
             </div>
             <div class="form-group">
                 <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Picture'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                <input type="file" class="form-control font_size_13px" id="txtHealthPicture" placeholder="{_ 'Picture'}">
+                <input type="file" class="form-control font_size_13px" id="txtExamPicture" placeholder="{_ 'Picture'}">
             </div>
             <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
             <button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
     </div>
 </div>  
+    {/block}
