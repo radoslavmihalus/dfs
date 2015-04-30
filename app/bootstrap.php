@@ -70,6 +70,8 @@ $router[] = new Route('owner-edit-profile', 'owner:owner_edit_profile');
 $router[] = new Route('list-of-owners', 'owner:owner_list');
 $router[] = new Route('owner-profile', 'owner:owner_profile_home');
 $router[] = new Route('owner-dog-list', 'owner:owner_dog_list');
+$router[] = new Route('owner-photogallery', 'owner:owner_photogallery');
+$router[] = new Route('owner-videogallery', 'owner:owner_videogallery');
 $router[] = new Route('owner-friends-list', 'owner:owner_friends_list');
 $router[] = new Route('owner-followers-list', 'owner:owner_followers_list');
 // Dog routes

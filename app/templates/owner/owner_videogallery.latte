@@ -1,0 +1,52 @@
+{layout '@owner_layout.latte'}
+{block content}
+<div class="panel-body component col-md-12">
+    <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
+        <div class="panel-description"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}<a n:href="" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        </div>
+    </div>
+    <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="links">
+        <a href="https://www.youtube.com/watch?v=qFMm883japA" type="text/html" data-youtube="qFMm883japA" title="World Dog Show" data-gallery>
+            <img src="https://i.ytimg.com/vi/qFMm883japA/maxresdefault.jpg" width="200px" />
+        </a>
+        <a href="https://www.youtube.com/watch?v=ao2U14t_wzw" type="text/html" data-youtube="ao2U14t_wzw" title="World Dog Show" data-gallery>
+            <img src="https://i.ytimg.com/vi/ao2U14t_wzw/maxresdefault.jpg" width="200px" controls/>
+        </a>
+    </div>
+    
+</div>
+{/block}
