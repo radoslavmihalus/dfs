@@ -18,10 +18,7 @@
                         </div>
                         <div class="form-group">
                             <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Kennel FCI number'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                            <div class="selectivity-multiple-input-container">
-                                <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" class="form-control font_size_13px selectivity-multiple-input" id="txtKennelFciNumber" placeholder="987/2011">
-                                <p><span id="tags-input" class="selectivity-input"></span></p>
-                            </div>
+                                <input type="text" class="form-control font_size_13px" id="txtKennelFciNumber" placeholder="987/2011">
                         </div>
                         <div class="form-group">
                             <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Kennel profile picture'} <i class="fa fa-question-circle tooltip_brown"></i></span>
@@ -37,12 +34,10 @@
                         </div>
                         <div class="form-group">
                             <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Select the breed bred by your kennel'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                            <select class="form-control font_size_13px" id="ddlBreedList">
-                                <option value="" selected disabled>{_ 'Please select'}</option>
-                                <option>Dogo argentino</option>
-                                <option>Berger de Brie</option>
-                                <option>Labrador</option>
-                            </select>
+                            <input id="tags-input" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" class="form-control font_size_13px selectivity-input" id="ddlBreedList">
+                            <div class="selectivity-multiple-input-container">
+                                
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Save'}</button>
                     </div>
