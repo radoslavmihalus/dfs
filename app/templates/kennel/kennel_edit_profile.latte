@@ -1,4 +1,5 @@
 {block content}
+{includeblock 'selectivity_control.latte'}
 <div class="col-lg-8">
     <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
         <div class="panel-description" style="margin-bottom: 10px;"><i class="glyphicons glyphicons-edit"></i>&nbsp;&nbsp;Edit profile</div>
@@ -34,7 +35,8 @@
                         </div>
                         <div class="form-group">
                                 <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Select the breed bred by your kennel'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                                <input id="tags-input" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" class="form-control font_size_13px selectivity-input" id="ddlBreedList">
+                                <!--<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" class="form-control font_size_13px selectivity-input" id="ddlBreedList">-->
+                                {include selectivity_control, kokot=>"kokot som"}
                         </div>
                         <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Save'}</button>
                     </div>
@@ -54,12 +56,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $('#tags-input').selectivity({
-        items: ['Dogo Argentino', 'Labrador', 'Golden Retriever'],
-        multiple: true,
-        tokenSeparators: [' '],
-        value: ['Dogo Argentino']
-    });
-</script>
 {/block}
