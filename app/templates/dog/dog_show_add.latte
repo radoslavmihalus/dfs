@@ -1,0 +1,366 @@
+{block content}
+<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
+    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
+        <form id="frmAddShow">
+            <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-notes-2"></i>&nbsp;&nbsp;{_ 'Add show result'}</h2>
+            <hr>
+            <div>
+                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Date of show'} <i class="fa fa-question-circle tooltip_brown"></i></span>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group"> 
+                    <select class="form-control font_size_13px" id="ddlDay">
+                        <option value="" selected disabled>Day</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group"> 
+                    <select class="form-control font_size_13px" id="ddlMonth">
+                        <option value="" selected disabled>Month</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <select class="form-control font_size_13px" id="ddlYear">
+                        <option value="" selected disabled>Year</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Show type'} <i class="fa fa-question-circle tooltip_brown"></i></span>
+                <select class="form-control font_size_13px" name="ddlShowType" id="ddlShowType" required>
+                    <option value="" selected disabled>{_ 'Please select'}</option>
+                    <option>Regional</option>
+                    <option>Club</option>
+                    <option>Special CAC</option>
+                    <option>National CAC</option>
+                    <option>National CAC, NW</option>
+                    <option>International CACIB</option>
+                    <option>European show</option>
+                    <option>World show</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Country'} <i class="fa fa-question-circle tooltip_brown"></i></span>
+                <select class="form-control font_size_13px" id="ddlCountries">
+                    <option value="" selected disabled>{_ 'Country'}</option>
+                    <option>Czech Republic</option>
+                    <option>Afghanistan</option>
+                    <option>Kuwait</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Name of judge'} <i class="fa fa-question-circle tooltip_brown"></i></span>
+                <input type="text" class="form-control font_size_13px" id="txtJudgeName" placeholder="{_ 'Enter the judge’s name'}">
+            </div>
+            <div class="form-group">
+                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Class'} <i class="fa fa-question-circle tooltip_brown"></i></span>
+                <select class="form-control font_size_13px" name="ddlDogClass" id="ddlShowType" required>
+                    <option value="" selected disabled>{_ 'Please select'}</option>
+                    <option>Minor Puppy</option>
+                    <option>Puppy</option>
+                    <option>Junior</option>
+                    <option>Intermediate</option>
+                    <option>Open</option>
+                    <option>Working</option>
+                    <option>Champions</option>
+                    <option>Veteran</option>
+                    <option>Honor</option>
+                </select>
+                <!-- Assesment Minor puppy-->
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Assesment'}</span>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VP 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VP 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VP 3
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VP
+                    </label>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Best minor puppy'}</span>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">{_ 'Best minor puppy'} 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">{_ 'Best minor puppy'} 2
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">{_ 'Best minor puppy'} 3
+                        </label>
+                    </div>
+                </div>
+                <!-- /Assesment Minor puppy-->
+                <!-- Assesment Puppy-->
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Assesment'}</span>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VP 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VP 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VP 3
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VP
+                    </label>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Best puppy male & female'}</span>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">{_ 'Best puppy male & female'} 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">{_ 'Best puppy male & female'} 2
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">{_ 'Best puppy male & female'} 3
+                        </label>
+                    </div>
+                </div>
+                <!-- /Assesment Minor Puppy-->
+                <!-- Assesment Junior-->
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Assesment'}</span>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">EXC 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">EXC 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">EXC 3
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">EXC 4
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VG 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VG 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VG 3
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VG 4
+                    </label>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Titles'}</span>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">CAJC
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">JBOB
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">BOB
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">BOS
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Junior BOG'}</span>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">JBOG 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">JBOG 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">JBOG 3
+                    </label>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Junior BIS'}</span>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">JBIS 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">JBIS 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">JBIS 3
+                    </label>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'BOG'}</span>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BOG 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BOG 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BOG 3
+                    </label>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'BIS'}</span>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BIS 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BIS 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BIS 3
+                    </label>
+                </div>
+                <!-- /Assesment Junior-->
+                <!-- Assesment Intermediate,Open,Worjing,Champions,Veterans,Honor-->
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Assesment'}</span>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">EXC 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">EXC 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">EXC 3
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">EXC 4
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VG 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VG 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VG 3
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">VG 4
+                    </label>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Titles'}</span>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">CAC
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">RES.CAC
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">CACIB
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">RES.CACIB
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">BOS
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="font-size: 13px;">
+                            <input type="checkbox" value="">BOB
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'BOG'}</span>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BOG 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BOG 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BOG 3
+                    </label>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'BIS'}</span>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BIS 1
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BIS 2
+                    </label>
+                    <label class="checkbox-inline" style="font-size: 13px;">
+                        <input type="checkbox" value="">BIS 3
+                    </label>
+                </div>
+                <!-- /Assesment Intermediate,Open,Worjing,Champions,Veterans,Honor-->
+            </div>
+            <div class="form-group">
+                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Other titles and awards received at the show'} <i class="fa fa-question-circle tooltip_brown"></i></span>
+                <input type="text" class="form-control font_size_13px" id="txtOtherTitles" placeholder="{_ 'Enter other titles achieved at this show (e.g. National Winner)'}">
+            </div>
+            <div class="form-group">
+                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Image from show'} <i class="fa fa-question-circle tooltip_brown"></i></span>
+                <span class="btn btn-default fileinput-button btn-sm">
+                    <i class="fa fa-picture-o"></i>&nbsp;&nbsp;
+                    <span>{_'Select picture'}</span>
+                    <!-- The file input field used as target for the file upload widget -->
+                    <input type="file" name="files[]" multiple required>
+                </span>
+                <span class="fileupload-process"></span>
+<!--                <input type="file" class="form-control font_size_13px" name="" id="txtKennelProfilePicture" placeholder="{_ 'Kennel profile picture'}">-->
+            </div>
+            <div class="col-lg-5 fileupload-progress fade">
+                <!-- The global progress bar -->
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                </div>
+                <!-- The extended global progress state -->
+                <div class="progress-extended">&nbsp;</div>
+            </div>
+            <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
+            <button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
+        </form>
+    </div>
+</div> 
+{/block}

@@ -77,9 +77,11 @@ $router[] = new Route('owner-followers-list', 'owner:owner_followers_list');
 // Dog routes
 $router[] = new Route('list-of-dogs', 'dog:dog_list');
 $router[] = new Route('add-dog', 'dog:dog_create_profile');
+$router[] = new Route('dog-profile-edit', 'dog:dog_edit_profile');
 $router[] = new Route('dog-profile', 'dog:dog_title_list');
 $router[] = new Route('dog-title-add', 'dog:dog_title_add');
 $router[] = new Route('dog-title-edit', 'dog:dog_title_edit');
+$router[] = new Route('dog-show-add', 'dog:dog_show_add');
 $router[] = new Route('dog-workexam-list', 'dog:dog_workexam_list');
 $router[] = new Route('dog-workexam-add', 'dog:dog_workexam_add');
 $router[] = new Route('dog-workexam-edit', 'dog:dog_workexam_edit');
