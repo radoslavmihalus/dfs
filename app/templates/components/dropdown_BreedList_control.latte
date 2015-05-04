@@ -1,0 +1,15 @@
+{define #dropdown_BreedList_control}
+<div class="form-group">
+    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_$description} <i class="fa fa-question-circle tooltip_brown"></i></span>
+    <span id="tags-input-" class="selectivity-input form-control" placeholder="{_$placeholder}"></span>
+</div>
+
+<script type="text/javascript">
+    $('#tags-input').selectivity({
+        items: ['Dogo Argentino', 'Labrador', 'Golden Retriever'],
+        multiple: true,
+        tokenSeparators: [',']
+                //value: ['Dogo Argentino']
+    });
+</script>
+{/define}

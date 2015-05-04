@@ -1,12 +1,14 @@
 {block content}
-{includeblock 'selectivity_control.latte'}
-{includeblock 'textbox_control.latte'}
+{includeblock '../components/textbox_control.latte'}
+{includeblock '../components/textarea_control.latte'}
+{includeblock '../components/image_UploadPicture_control.latte'}
+{includeblock '../components/dropdown_BreedList_control.latte'}
 <div class="col-lg-8">
     <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
-        <div class="panel-description" style="margin-bottom: 10px;"><i class="glyphicons glyphicons-edit"></i>&nbsp;&nbsp;Edit profile</div>
+        <div class="panel-description" style="margin-bottom: 10px;"><i class="glyphicons glyphicons-edit"></i>&nbsp;&nbsp;{_ 'Edit profile'}</div>
         <ul id="EditProfile" class="nav nav-tabs" style="border-bottom:0px !important;font-size:13px;">
             <li class="active"><a class="EditProfilelink" href="#informations" data-toggle="tab"><i class="fa fa-align-justify"></i>&nbsp;&nbsp;{_ 'Informations'}</a></li>
-            <li><a class="EditProfilelink" href="#pictures" data-toggle="tab"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;{_ 'Cover photo'}</a></li>
+            <li><a class="EditProfilelink" href="#pictures" data-toggle="tab"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;{_ 'Profile photos'}</a></li>
         </ul>
         <div id="EditProfileContent" class="tab-content">
             <div class="tab-pane fade in active" id="informations">
@@ -14,42 +16,21 @@
                     <div class="panel-body">
                         <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about your kennel'}</span>
                         <hr>
-                        <!-- vystrihnute -->
                         {include textbox_control, description => "Kennel name", placeholder => "Kennel name", id => "txtKennelName", name => "txtKennelName"}
                         {include textbox_control, description => "Kennel FCI number", placeholder => "Kennel FCI number", id => "txtKennelFciNumber", name => "txtKennelFciNumber"}
-<!--                        <div class="form-group">
-                            <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Kennel FCI number'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                            <input type="text" class="form-control font_size_13px" id="txtKennelFciNumber" placeholder="987/2011">
-                        </div>-->
-                        <div class="form-group">
-                            <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Kennel profile picture'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                            <input type="file" class="form-control font_size_13px" id="txtKennelProfilePicture" placeholder="{_ 'Kennel profile picture'}">
-                        </div>
-                        <div class="form-group">
-                            <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Kennel website'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                            <input type="text" class="form-control font_size_13px" id="txtKennelWebsite" placeholder="{_ 'www.yourwebsite.com'}"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Kennel description'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                            <textarea type="text" style="height:50px;" class="form-control contact_textarea font_size_13px" id="txtKennelDescription" placeholder="{_ 'Kennel description'}"></textarea>
-                        </div>
-                        <div class="form-group">
-                                <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Select the breed bred by your kennel'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                                <!--<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" class="form-control font_size_13px selectivity-input" id="ddlBreedList">-->
-                                {include selectivity_control}
-                        </div>
-                        <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Save'}</button>
+                        {include textbox_control, description => "Kennel website", placeholder => "www.yourwebsite.com", id => "txtKennelWebsite", name => "txtKennelWebsite"}
+                        {include textarea_control, description => "Kennel description", placeholder => "Kennel description", id => "txtKennelDescription", name => "txtKennelDescription"}
+                        {include dropdown_BreedList_control, description => "Select the breed bred by your kennel", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList"}
+                        <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
                     </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="pictures">
                 <div class="panel panel-default registration_block transparent_white">
                     <div class="panel-body">
-                        <div class="form-group">
-                            <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Kennel cover photo'} <i class="fa fa-question-circle tooltip_brown"></i></span>
-                            <input type="file" class="form-control font_size_13px" id="txtKennelCoverPhoto" placeholder="{_ 'Kennel cover photo'}">
-                        </div>
-                        <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Save'}</button>
+                        {include image_UploadPicture_control, description => "Kennel cover photo", placeholder => "Select picture", id => "txtKennelCoverPhoto", name => "txtKennelCoverPhoto"}
+                        {include image_UploadPicture_control, description => "Kennel profile picture", placeholder => "Select picture", id => "txtKennelProfilePicture", name => "txtKennelProfilePicture"}
+                        <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
                     </div>
                 </div>
             </div>
