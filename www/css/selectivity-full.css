@@ -36,6 +36,8 @@
  * Dropdown
  */
 .selectivity-dropdown {
+  margin-top: 12px;
+  font-size:13px;
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.15), 0 10px 16px 0 rgba(0, 0, 0, 0.2);
@@ -65,7 +67,7 @@
 
 .selectivity-load-more.highlight,
 .selectivity-result-item.highlight {
-  background: #4484c7;
+  background: #83765E;
   color: #fff; }
 
 .selectivity-result-item:first-child {
@@ -95,9 +97,11 @@
  * Multi-selection input
  */
 .selectivity-multiple-input-container {
-  background: #eee;
+  /*background: #eee;*/
   border-radius: 2px;
+  margin-top: -10px;
   cursor: text;
+  font-size: 13px;
   max-height: 10em;
   min-height: -webkit-calc(2em + 4px);
   min-height: calc(2em + 4px);
@@ -136,7 +140,7 @@ input[type='text'].selectivity-multiple-input {
   white-space: pre; }
 
 .selectivity-multiple-selected-item {
-  background: #4484c7;
+  background: #83765E;
   border-radius: 3px;
   color: #fff;
   cursor: default;
@@ -151,9 +155,18 @@ input[type='text'].selectivity-multiple-input {
   user-select: none;
   white-space: nowrap; }
   .selectivity-multiple-selected-item.highlighted {
-    background-color: #ccc; }
+    background-color: white; }
 
 .selectivity-multiple-selected-item-remove {
+    margin-right: 5px;
+    background-color:#c12e2a;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px; }
+
+.selectivity-multiple-selected-item-remove:hover {
+    margin-right: 5px;
+    background-color:#c12e2a;
   color: #fff;
   cursor: pointer;
   padding: 5px; }
