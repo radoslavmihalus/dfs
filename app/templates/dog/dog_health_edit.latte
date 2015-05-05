@@ -10,9 +10,9 @@
             {include dropdown_DatePicker_control, description => "Date of the health record", placeholder => "Please select", id => "ddlDate", name => "ddlDate"}
             {include textbox_control, description => "Description of the health record", placeholder => "Hip Dysplasia", id => "txtHealthName", name => "txtHealthName"}
             {include image_UploadPicture_control, description => "Picture", placeholder => "Select picture", id => "txtHealthPicture", name => "txtHealthPicture"}
+            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+            <button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
         </form>
-        <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
-        <button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
     </div>
 </div>  
 {/block}
