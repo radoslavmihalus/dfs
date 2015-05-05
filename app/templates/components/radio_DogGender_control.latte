@@ -1,11 +1,11 @@
 {define #radio_DogGender_control}
 <div class="form-group">
     <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_$description} <i class="fa fa-question-circle tooltip_brown" style="color:#83765E"></i></span>
-    <label class="radio-inline" style="font-size: 13px;" id="{$id}">
-        <input type="radio" name="GenderDog">{_ 'Dog'}
+    <label class="radio-inline" style="font-size: 13px;">
+        <input type="radio" id="{$id}" name="{$name}" value="Dog">{_ 'Dog'}
     </label>
-    <label class="radio-inline" style="font-size: 13px;" id="{$id}">
-        <input type="radio" name="GenderBitch">{_ 'Bitch'}
+    <label class="radio-inline" style="font-size: 13px;">
+        <input type="radio" id="{$id}" name="{$name}" value="Bitch">{_ 'Bitch'}
     </label>
 </div>
 {/define}
