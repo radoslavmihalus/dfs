@@ -15,13 +15,13 @@
                 <a data-toggle="collapse" data-parent="#accordion1" href="#ProfileMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'Profile settings'}</a>
                 <ul id="ProfileMenu" class="collapse panel-collapse">
                     <li>
-                        <a href="switch-profile"><i class="fa fa-exchange"></i>&nbsp;&nbsp;Switch profile</a>
+                        <a n:href="user:user_create_profile_switcher"><i class="fa fa-exchange"></i>&nbsp;&nbsp;Switch profile</a>
                     </li>
                     <li>
-                        <a href="kennel-edit-profile"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Edit profile</a>
+                        <a n:href="kennel:kennel_edit_profile"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Edit profile</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete profile</a>
+                        <a n:href="#"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete profile</a>
                     </li>
                 </ul>
             </li>
@@ -30,16 +30,16 @@
                 <a data-toggle="collapse" data-parent="#accordion1" href="#KennelMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
                 <ul id="KennelMenu" class="collapse panel-collapse">
                     <li>
-                        <a href="#"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Home</a>
+                        <a n:href="kennel:kennel_profile_home"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Home</a>
                     </li>
                     <li>
-                        <a href="#"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;Awards</a>
+                        <a n:href="kennel:kennel_awards_list"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;Awards</a>
                     </li>
                     <li>
-                        <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs</a>
+                        <a n:href="kennel:kennel_dog_list"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-calendar"></i>&nbsp;&nbsp;Planned litters</a>
+                        <a n:href=""><i class="fa fa-calendar"></i>&nbsp;&nbsp;Planned litters</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-paw"></i>&nbsp;&nbsp;Puppies for sale</a>
@@ -51,10 +51,10 @@
                         <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;Videos</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;Friends</a>
+                        <a n:href="kennel:kennel_friends_list"><i class="fa fa-users"></i>&nbsp;&nbsp;Friends</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-rss"></i>&nbsp;&nbsp;Followers</a>
+                        <a n:href="kennel:kennel_followers_list"><i class="fa fa-rss"></i>&nbsp;&nbsp;Followers</a>
                     </li>
                 </ul>
             </li>
@@ -132,16 +132,16 @@
                 <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowLists"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;Lists</a>
                 <ul id="DogforshowLists" class="collapse panel-collapse">
                     <li>
-                        <a href="list-of-kennels"><i class="fa fa-home"></i>&nbsp;&nbsp;Kennels<span class="badge" style="float:right">0</span></a>
+                        <a n:href="kennel:kennel_list"><i class="fa fa-home"></i>&nbsp;&nbsp;Kennels<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
-                        <a href="list-of-owners"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;Owners of purebred dogs<span class="badge" style="float:right">0</span></a>
+                        <a n:href="owner:owner_list"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;Owners of purebred dogs<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
-                        <a href="list-of-handlers"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;Handlers<span class="badge" style="float:right">0</span></a>
+                        <a n:href="handler:handler_list"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;Handlers<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
-                        <a href="list-of-dogs"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs<span class="badge" style="float:right">0</span></a>
+                        <a n:href="dog:dog_list"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs<span class="badge" style="float:right">0</span></a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;Dogs for mating<span class="badge" style="float:right">0</span></a>
