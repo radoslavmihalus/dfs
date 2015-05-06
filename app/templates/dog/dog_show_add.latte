@@ -10,6 +10,11 @@
 {includeblock '../components/checkbox_ShowTitlesPuppy_control.latte'}
 {includeblock '../components/checkbox_ShowAssesment_control.latte'}
 {includeblock '../components/checkbox_ShowTitlesJunior_control.latte'}
+{includeblock '../components/checkbox_ShowTitlesJuniorBOG_control.latte'}
+{includeblock '../components/checkbox_ShowTitlesJuniorBIS_control.latte'}
+{includeblock '../components/checkbox_ShowTitles_control.latte'}
+{includeblock '../components/checkbox_ShowTitlesBOG_control.latte'}
+{includeblock '../components/checkbox_ShowTitlesBIS_control.latte'}
 <div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
     <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
         <form id="frmAddShow">
@@ -44,162 +49,24 @@
             <!-- /Assesment Junior-->
             <!-- Titles Junior-->
             {include checkbox_ShowTitlesJunior_control, description => "Titles", placeholder => "Titles", id => "chckTitlesJunior", name => "chckTitlesJunior"}
+            {include checkbox_ShowTitlesJuniorBOG_control, description => "Junior Best of Group", placeholder => "Junior BOG", id => "chckTitlesJuniorBOG", name => "chckTitlesJuniorBOG"}
+            {include checkbox_ShowTitlesJuniorBIS_control, description => "Junior Best in Show", placeholder => "Junior BIS", id => "chckTitlesJuniorBIS", name => "chckTitlesJuniorBIS"}
+            {include checkbox_ShowTitlesBOG_control, description => "Best of Group", placeholder => "Best of Group", id => "chckTitlesBOG", name => "chckTitlesBOG"}
+            {include checkbox_ShowTitlesBIS_control, description => "Best in Show", placeholder => "Best in Show", id => "chckTitlesBIS", name => "chckTitlesBIS"}
             <!-- /Titles Junior-->
             <!-- /Junior -->
             
-            <!-- Assesment Junior-->
+            <!-- Intermediate,Open,Working,Champions,Veterans,Honor-->
+            <!-- Assesment -->
+            {include checkbox_ShowAssesment_control, description => "Assesment", placeholder => "Assesment", id => "chckAssesment", name => "chckAssesment"}
+            <!-- /Assesment -->
+            <!-- Titles -->
+            {include checkbox_ShowTitles_control, description => "Titles", placeholder => "Titles", id => "chckTitles", name => "chckTitles"}
+            {include checkbox_ShowTitlesBOG_control, description => "Best of Group", placeholder => "Best of Group", id => "chckTitlesBOG", name => "chckTitlesBOG"}
+            {include checkbox_ShowTitlesBIS_control, description => "Best in Show", placeholder => "Best in Show", id => "chckTitlesBIS", name => "chckTitlesBIS"}
+            <!-- /Titles -->
+            <!-- /Intermediate,Open,Working,Champions,Veterans,Honor-->
             
-            <div class="form-group">
-                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
-                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Junior BOG'}</span>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">JBOG 1
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">JBOG 2
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">JBOG 3
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
-                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Junior BIS'}</span>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">JBIS 1
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">JBIS 2
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">JBIS 3
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
-                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'BOG'}</span>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BOG 1
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BOG 2
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BOG 3
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
-                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'BIS'}</span>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BIS 1
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BIS 2
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BIS 3
-                    </label>
-                </div>
-            </div>
-            <!-- /Assesment Junior-->
-            <!-- Assesment Intermediate,Open,Working,Champions,Veterans,Honor-->
-            <div class="form-group">
-                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
-                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Assesment'}</span>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">EXC 1
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">EXC 2
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">EXC 3
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">EXC 4
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">VG 1
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">VG 2
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">VG 3
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">VG 4
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
-                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'Titles'}</span>
-                    <div class="checkbox">
-                        <label style="font-size: 13px;">
-                            <input type="checkbox" value="">CAC
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label style="font-size: 13px;">
-                            <input type="checkbox" value="">RES.CAC
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label style="font-size: 13px;">
-                            <input type="checkbox" value="">CACIB
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label style="font-size: 13px;">
-                            <input type="checkbox" value="">RES.CACIB
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label style="font-size: 13px;">
-                            <input type="checkbox" value="">BOS
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label style="font-size: 13px;">
-                            <input type="checkbox" value="">BOB
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
-                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'BOG'}</span>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BOG 1
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BOG 2
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BOG 3
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
-                    <span style="font-size: 13px;display:block;margin-bottom: 5px;">{_ 'BIS'}</span>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BIS 1
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BIS 2
-                    </label>
-                    <label class="checkbox-inline" style="font-size: 13px;">
-                        <input type="checkbox" value="">BIS 3
-                    </label>
-                </div>
-            </div>
-            <!-- /Assesment Intermediate,Open,Worjing,Champions,Veterans,Honor-->
             {include textbox_control, description => "Other titles and awards received at the show", placeholder => "Enter other titles achieved at this show (e.g. National Winner)", id => "txtOtherTitle", name => "txtOtherTitle"}         
             {include image_UploadPicture_control, description => "Image from show", placeholder => "Select picture", id => "txtShowImage", name => "txtShowImage"}
             <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
