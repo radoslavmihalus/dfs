@@ -1,0 +1,33 @@
+{layout '@kennel_layout.latte'}
+{block content}
+<div class="panel-body component col-md-12">
+    <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
+        <div class="panel-description"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_ 'Planned litters'}<a n:href="dog:kennel_planned_litter_add" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        </div>
+    </div>
+    <div class="panel-default col-lg-12 col-md-12 col-xs-12" style="font-size: 13px;min-width: 244px">
+        <div class="row">
+            <!-- List profile component -->
+            <!-- Message -->
+            <!--        <div class="row">
+                        <div class="col-md-12">
+                            <div class="message-brown" role="alert">
+                                <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+                            </div>
+                        </div>
+                    </div>-->
+            <!-- / Message -->
+            <div class="col-lg-4 col-md-6 col-xs-12 padding">
+                {includeblock '../dog/dog_list_item.latte'}
+                {include dog_list_item}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+{/block}

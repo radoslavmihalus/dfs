@@ -12,34 +12,36 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="dog-image-profile-thumb">
-
+                    <span class="list-mating-info" style="font-size:15px;"><i class="fa fa-venus-mars"></i>&nbsp;{_ 'Available for mating'}</span>
                 </div>
             </div>
             <div class="col-md-6">
                 <ul class="dog-information-list">
-                    <li><i class="fa fa-tag" style="margin-right: 10px;"></i><strong>Dogo Argentino</strong></li>
-                    <li><i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>Bitch<!--<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i>Dog--></li>
-                    <li><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>21.10.2012</li>
-                    <li class="text-uppercase"><i class="fa fa-file-text-o" style="margin-right: 10px;color:#777;"></i>spkp 1304</li>
-                    <li><i class="fa fa-arrows-v" style="margin-right: 10px;color:#777;"></i>46&nbsp;cm</li>
-                    <li><i class="fa fa-tachometer" style="margin-right: 10px;color:#777;"></i>22&nbsp;kg</li>
-                    <li><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i>Slovakia</li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="Breed"><i class="fa fa-tag" style="margin-right: 10px;"></i><strong>Dogo Argentino</strong></span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="Gender"><i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>Bitch<!--<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i>Dog--></span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="Date of birth"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>21.10.2012</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="Pedigree registration number" class="text-uppercase"><i class="fa fa-file-text-o" style="margin-right: 10px;color:#777;"></i>spkp 1304</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="Height at the withers (cm)"><i class="fa fa-arrows-v" style="margin-right: 10px;color:#777;"></i>46&nbsp;cm</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="Weight (kg)"><i class="fa fa-tachometer" style="margin-right: 10px;color:#777;"></i>22&nbsp;kg</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="Country"><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i>Slovakia</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="Father"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>Dahud del Cavdillo</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="Mother"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>Bronca Charismatic</span></li>
                 </ul>
             </div>
         </div>
         <hr style="margin-bottom: 0px;margin-top: 10px;">
         <!-- Profile menu-->
         <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#profile-menu">
-            <span><i class="fa fa-bars"></i></span>
-        </button>
+            <button type="button" class="navbar-toggle collapsed" style="float:left;border-color: #ddd;margin: 10px 0px 0px 0px;width:100%;" data-toggle="collapse" data-target="#profile-menu">
+                <i class="fa fa-bars fa-1x"></i><span style="margin-left: 10px;font-family: 'Roboto Condensed', sans-serif;font-size: 17px;color: #777;text-transform: uppercase">Menu</span>
+            </button>
         </div>
         <div class="row">
             <div class="container-fluid profile-menu">
                 <div class="collapse navbar-collapse" id="profile-menu" role="navigation" style="padding: 0px;">
                     <ul class="nav navbar-nav" style="margin:0px;">
                         <li><a n:href="dog_title_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Titles'}</a></li>
-                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Shows'}</a></li>
+                        <li><a n:href="dog_show_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Shows'}</a></li>
                         <li><a n:href="dog_workexam_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Working exams'}</a></li>
                         <li><a n:href="dog_health_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Health'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Pedigree'}</a></li>
@@ -53,4 +55,9 @@
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 {/block}
