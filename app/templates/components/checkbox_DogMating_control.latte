@@ -1,8 +1,13 @@
 {define #checkbox_DogMating_control}
 <div class="form-group">
-    <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i class="fa fa-question-circle tooltip_brown" style="color:#83765E"></i></span>
+    <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
     <label class="checkbox-inline" style="font-size: 13px;">
         <input type="checkbox" id="{$id}" name="{$name}" class="radio" value="Yes">{_ 'Yes'}
     </label>
 </div>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+</script>
 {/define}

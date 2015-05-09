@@ -10,7 +10,7 @@
             <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about your kennel'}</span>
             <hr>
             <input type="hidden" name="formName" value="kennel-create-profile" />
-            {include textbox_control, description => "Kennel name", placeholder => "Kennel name", id => "txtKennelName", name => "txtKennelName"}
+            {include textbox_control, description => "Kennel name", placeholder => "Kennel name", id => "txtKennelName", name => "txtKennelName", tooltip => "Ahoj"}
             {include textbox_control, description => "Kennel FCI number", placeholder => "Kennel FCI number", id => "txtKennelFciNumber", name => "txtKennelFciNumber"}
             {include image_UploadPicture_control, description => "Kennel profile picture", placeholder => "Select picture", id => "txtKennelProfilePicture", name => "txtKennelProfilePicture"}
             {include textbox_control, description => "Kennel website", placeholder => "www.yourwebsite.com", id => "txtKennelWebsite", name => "txtKennelWebsite"}

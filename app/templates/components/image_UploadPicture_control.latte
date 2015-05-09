@@ -1,13 +1,18 @@
 {define #image_UploadPicture_control}
 <div class="form-group">
-                <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i class="fa fa-question-circle tooltip_brown" style="color:#83765E"></i></span>
-                <span class="btn btn-default fileinput-button btn-sm">
-                    <i class="fa fa-picture-o"></i>&nbsp;&nbsp;
-                    <span>{_$placeholder}</span>
-                    <!-- The file input field used as target for the file upload widget -->
-                    <input type="file" id="{$id}" name="{$name}" multiple required>
-                </span>
-                <span class="fileupload-process"></span>
-            </div>
-            <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+    <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
+    <span class="btn btn-default fileinput-button btn-sm">
+        <i class="fa fa-picture-o"></i>&nbsp;&nbsp;
+        <span>{_$placeholder}</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input type="file" id="{$id}" name="{$name}" multiple required>
+    </span>
+    <span class="fileupload-process"></span>
+</div>
+<table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+</script>
 {/define}

@@ -67,10 +67,10 @@
 }
 .user-account
 {
-        width:200px;
-        top:48px;
-        left:-152px;
-        border-radius:0px;
+    width:200px;
+    top:48px;
+    left:-152px;
+    border-radius:0px;
 }
 ul.dropdown-menu.user-account > li > a
 {
@@ -84,10 +84,10 @@ ul.dropdown-menu.user-account > li > a
 {
     .notifications
     {
-            width:250px;
-            top:48px;
-            left:-128px;
-            border-radius:0px;
+        width:250px;
+        top:48px;
+        left:-128px;
+        border-radius:0px;
     }
     ul.dropdown-menu.notifications > li > a
     {
@@ -110,10 +110,10 @@ ul.dropdown-menu.user-account > li > a
     }
     .messages
     {
-            width:250px;
-            top:48px;
-            left:-80px;
-            border-radius:0px;
+        width:250px;
+        top:48px;
+        left:-80px;
+        border-radius:0px;
     }
     ul.dropdown-menu.messages > li > a
     {
@@ -136,10 +136,10 @@ ul.dropdown-menu.user-account > li > a
     }
     .friend-requests
     {
-            width:250px;
-            top:48px;
-            left:-32px;
-            border-radius:0px;
+        width:250px;
+        top:48px;
+        left:-32px;
+        border-radius:0px;
     }
     ul.dropdown-menu.friend-requests > li > a
     {
@@ -165,10 +165,10 @@ ul.dropdown-menu.user-account > li > a
 {
     .notifications
     {
-            width:430px;
-            top:48px;
-            left:-380px;
-            border-radius:0px;
+        width:430px;
+        top:48px;
+        left:-380px;
+        border-radius:0px;
     }
     ul.dropdown-menu.notifications > li > a
     {
@@ -191,10 +191,10 @@ ul.dropdown-menu.user-account > li > a
     }
     .messages
     {
-            width:430px;
-            top:48px;
-            left:-380px;
-            border-radius:0px;
+        width:430px;
+        top:48px;
+        left:-380px;
+        border-radius:0px;
     }
     ul.dropdown-menu.messages > li > a
     {
@@ -217,10 +217,10 @@ ul.dropdown-menu.user-account > li > a
     }
     .friend-requests
     {
-            width:430px;
-            top:48px;
-            left:-377px;
-            border-radius:0px;
+        width:430px;
+        top:48px;
+        left:-377px;
+        border-radius:0px;
     }
     ul.dropdown-menu.friend-requests > li > a
     {
@@ -321,3 +321,18 @@ ul.dropdown-menu.user-account > li > a
     }
 }
 
+.notify
+{
+    position:absolute;
+    background-color: #D21414;
+    top:8px;
+    font-size:11px;
+    padding: 4px 6px 4px 6px;
+    z-index: 10;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius:10px;
+
+}
