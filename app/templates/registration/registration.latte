@@ -51,7 +51,11 @@
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-6" style="margin-bottom: 10px;">
-                                <input type="checkbox" style="display: inline" class="radio" value="1"><span style="margin-left: 10px;color:white;">{_ 'Remember me'}</span>
+                                <div class="checkbox" style="margin-top:0px;color:white;font-size: 14px;">
+                                    <label>
+                                        <input type="checkbox" id="{$id}" name="{$name}" value="remember">{_ 'Remeber me'}
+                                    </label>
+                                </div>
                             </div>
                             <div class="col-md-6" style="margin-bottom: 10px;">
                                 <a href="forgot-password" style="color:white;"><i class="fa fa-question-circle"></i>&nbsp;&nbsp;{_ 'Forgot password'}</a>
