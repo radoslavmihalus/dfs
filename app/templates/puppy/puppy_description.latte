@@ -1,0 +1,33 @@
+{layout '@puppy_layout.latte'}
+{block content}
+<div class="panel-body component col-md-12">
+    <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
+        <div class="panel-description"><i class="fa fa-file-text"></i>&nbsp;&nbsp;{_ 'Description'}<a n:href="puppy:puppy_description_add" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        </div>
+    </div>
+    <!-- Message -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="message-brown" role="alert">
+                <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+            </div>
+        </div>
+    </div>
+    <!-- / Message -->
+    <div class="row" style="padding:10px;">
+        <div class="col-lg-12 col-md-12 column-spacer">
+            <span class="" style="">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus, quam quis dignissim auctor, lorem massa egestas libero, ac interdum nibh lacus sit amet dui. Etiam vehicula lacus in diam pulvinar, sit amet mollis dui semper. Quisque finibus erat ac nunc egestas, sed sodales mauris maximus. Morbi ornare a est id pharetra. Phasellus placerat pharetra odio eu sollicitudin. Aliquam urna ex, vestibulum sit amet eros eu, aliquam sodales nunc. In hac habitasse platea dictumst. Nam id finibus mauris.
+            </span>
+        </div>
+    </div>    
+</div>
+
+
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+{/block}
