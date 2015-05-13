@@ -1,0 +1,26 @@
+{block content}
+{includeblock '../components/image_UploadPicture_control.latte'}
+{includeblock '../components/dropdown_DatePicker_control.latte'}
+{includeblock '../components/dropdown_CountryList_control.latte'}
+{includeblock '../components/dropdown_PlannedLitter_control.latte'}
+{includeblock '../components/textbox_control.latte'}
+{includeblock '../components/radio_DogGender_control.latte'}
+
+<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
+    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
+        <form id="frmCreatePuppyProfile">
+            <h2 class="text-center text-uppercase"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_ 'Add a puppy'}</h2>
+            <span class="form-secondary-description" style="display:block;margin-top:30px;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about puppy'}</span>
+            <hr>
+            {include dropdown_PlannedLitter_control, description => "Select your planned litter", placeholder => "Please select", id => "ddlPlannedLitter", name => "ddlPlannedLitter", tooltip => "Please add your planned litter in the kennel menu"}
+            {include radio_DogGender_control, description => "Gender", placeholder => "Gender", id => "radGender", name => "radGender", tooltip => "Select the puppy’s gender"}
+            {include textbox_control, description => "Puppy's name", placeholder => "Puppy's name", id => "txtPuppyName", name => "txtPuppyName", tooltip => "Enter the puppy’s name"}
+            {include image_UploadPicture_control, description => "Picture of puppy", placeholder => "Select picture", id => "txtPuppyProfilePhoto", name => "txtPuppyProfilePhoto", tooltip => "Upload a profile picture of puppy in PNG, JPG or GIF format"}
+            {include dropdown_DatePicker_control, description => "Date of birth", placeholder => "Date of birth", id => "ddlDate", name => "ddlDate", tooltip => "Day, month and year of puppy’s birth"}
+            {include dropdown_CountryList_control, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry", tooltip => "Country in which the puppy is currently located"}
+            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
+            <button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
+        </form>
+    </div>
+</div>  
+{/block}

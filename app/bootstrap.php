@@ -49,6 +49,7 @@ $router[] = new Route('kennel-awards-list', 'kennel:kennel_awards_list');
 $router[] = new Route('kennel-awards-add', 'kennel:kennel_awards_add');
 $router[] = new Route('kennel-awards-edit', 'kennel:kennel_awards_edit');
 $router[] = new Route('kennel-dog-list', 'kennel:kennel_dog_list');
+$router[] = new Route('kennel-puppy-list', 'kennel:kennel_puppy_list');
 $router[] = new Route('kennel-planned-litter-list', 'kennel:kennel_planned_litter_list');
 $router[] = new Route('kennel-friends-list', 'kennel:kennel_friends_list');
 $router[] = new Route('kennel-followers-list', 'kennel:kennel_followers_list');
@@ -80,6 +81,7 @@ $router[] = new Route('owner-friends-list', 'owner:owner_friends_list');
 $router[] = new Route('owner-followers-list', 'owner:owner_followers_list');
 // Dog routes
 $router[] = new Route('list-of-dogs', 'dog:dog_list');
+$router[] = new Route('list-of-dogs-for-mating', 'dog:dog_for_mating_list');
 $router[] = new Route('add-dog', 'dog:dog_create_profile');
 $router[] = new Route('dog-profile-edit', 'dog:dog_edit_profile');
 $router[] = new Route('dog-profile', 'dog:dog_title_list');
@@ -101,7 +103,15 @@ $router[] = new Route('dog-coowner-list', 'dog:dog_coowner_list');
 $router[] = new Route('dog-coowner-add', 'dog:dog_coowner_add');
 $router[] = new Route('dog-coowner-edit', 'dog:dog_coowner_edit');
 // Puppy routes
+$router[] = new Route('puppies-for-sale', 'puppy:puppy_list');
 $router[] = new Route('puppy-profile', 'puppy:puppy_description');
+$router[] = new Route('puppy-create-profile', 'puppy:puppy_create_profile');
+$router[] = new Route('puppy-edit-profile', 'puppy:puppy_edit_profile');
+$router[] = new Route('puppy-description-add', 'puppy:puppy_description_add');
+$router[] = new Route('puppy-description-edit', 'puppy:puppy_description_edit');
+$router[] = new Route('puppy-health-list', 'puppy:puppy_health_list');
+$router[] = new Route('puppy-health-add', 'puppy:puppy_health_add');
+$router[] = new Route('puppy-health-edit', 'puppy:puppy_health_edit');
 
 
 // routy

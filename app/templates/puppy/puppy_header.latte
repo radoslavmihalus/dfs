@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-12 col-xs-12">
                 <h1 class="profile_type_heading text-uppercase" style="margin-top: 0px;"><i class="fa fa-paw"></i>&nbsp;&nbsp;Puppy hasta blasta<a style="text-transform: capitalize;margin-left: 15px;" n:href="puppy:puppy_edit_profile" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button></h1>
-                <a href="#">
+                <a n:href="kennel:kennel_profile_home">
                     <span data-toggle="tooltip" data-placement='top' title="{_ 'Kennel'}" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>La Rosa de inca</span>
                 </a>
             </div>
@@ -23,6 +23,7 @@
                 <div class="dog-image-profile-thumb">
                     <span class="puppy-info-forsale" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'For sale'}</span>
 <!--                    <span class="puppy-info-reserved" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Reserved'}</span>-->
+<!--                    <span class="puppy-info-sold" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Sold'}</span>-->
                 </div>
             </div>
             <div class="col-md-6">
@@ -48,8 +49,8 @@
             <div class="container-fluid profile-menu">
                 <div class="collapse navbar-collapse" id="profile-menu" role="navigation" style="padding: 0px;">
                     <ul class="nav navbar-nav" style="margin:0px;">
-                        <li><a n:href="dog_title_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Description'}</a></li>
-                        <li><a n:href="dog_health_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Health'}</a></li>
+                        <li><a n:href="puppy:puppy_description" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Description'}</a></li>
+                        <li><a n:href="puppy:puppy_health_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Health'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Pedigree'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
                     </ul>
