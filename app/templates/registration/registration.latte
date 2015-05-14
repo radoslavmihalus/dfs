@@ -31,6 +31,9 @@
                         <input type="password" class="form-control required" id="txtConfirmPassword" data-match="#txtPassword" data-match-error="Whoops, these don't match" placeholder="{_ 'Confirm password'}" required>
                         <div class="help-block with-errors error-message"></div>
                     </div>
+                    <div class="form-group" style="font-size:12px;color:white;">
+                        By clicking Register, you agree to our <a href="#" target="_blank" rel="nofollow">Terms</a> and that you have read our <a href="#" target="_blank" rel="nofollow">Cookie Use</a>.
+                    </div>
                     <button type="submit" id="btnSignIn" class="btn btn-danger btn-block"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Register'}</button>
                 </form>
             </div>
@@ -53,7 +56,7 @@
                             <div class="col-md-6" style="margin-bottom: 10px;">
                                 <div class="checkbox" style="margin-top:0px;color:white;font-size: 14px;">
                                     <label>
-                                        <input type="checkbox" id="{$id}" name="{$name}" value="remember">{_ 'Remeber me'}
+                                        <input type="checkbox" id="{$id}" name="{$name}" value="remember">{_ 'Remember me'}
                                     </label>
                                 </div>
                             </div>
