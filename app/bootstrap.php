@@ -109,9 +109,7 @@ $router[] = new Route('puppy-create-profile', 'puppy:puppy_create_profile');
 $router[] = new Route('puppy-edit-profile', 'puppy:puppy_edit_profile');
 $router[] = new Route('puppy-description-add', 'puppy:puppy_description_add');
 $router[] = new Route('puppy-description-edit', 'puppy:puppy_description_edit');
-$router[] = new Route('puppy-health-list', 'puppy:puppy_health_list');
-$router[] = new Route('puppy-health-add', 'puppy:puppy_health_add');
-$router[] = new Route('puppy-health-edit', 'puppy:puppy_health_edit');
+
 
 
 // routy
