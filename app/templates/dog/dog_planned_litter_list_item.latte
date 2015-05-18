@@ -1,0 +1,51 @@
+{define #dog_planned_litter_list_item}
+<div class="list-item">
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-lg-6 col-md-6 col-xs-12 panel-description" style="margin-bottom: 5px;color:#a5987f;">
+            <i class="fa fa-calendar"></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Name of the planned litter'}" style="margin-left: 10px;">{_ 'Planned litter'}&nbsp;A</span><a style="text-transform: capitalize;margin-left: 15px;" n:href="dog:dog_edit_profile" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 panel-description" style="margin-bottom: 5px;color:#a5987f;">
+            <i class="fa fa-calendar-o" ></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Scheduled date of birth of the puppies'}" style="margin-left: 10px;">6/2015</span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
+            <a style="color: #a5987f;margin-right: 10px;text-decoration: none;" href="#" ><i data-toggle="tooltip" data-placement='top' title="{_ 'Share on Facebook'}" class="fa fa-facebook-square fa-2x"></i></a>
+            <a style="color: #a5987f;margin-right: 10px;text-decoration: none;" href="#" ><i data-toggle="tooltip" data-placement='top' title="{_ 'Share on Google+'}" class="fa fa-google-plus-square fa-2x"></i></a>
+            <a style="color: #a5987f;margin-right: 10px;text-decoration: none;" href="#" ><i data-toggle="tooltip" data-placement='top' title="{_ 'Share on Twitter'}" class="fa fa-twitter-square fa-2x"></i></a>
+            <a style="color: #a5987f;margin-right: 10px;text-decoration: none;" href="#" ><i data-toggle="tooltip" data-placement='top' title="{_ 'Share on Pinterest'}" class="fa fa-pinterest-square fa-2x"></i></a>
+            <a style="color: #a5987f;margin-right: 10px;text-decoration: none;" href="#" ><i data-toggle="tooltip" data-placement='top' title="{_ 'Share on Tumblr'}" class="fa fa-tumblr-square fa-2x"></i></a>
+            <a style="color: #a5987f;margin-right: 10px;text-decoration: none;" href="#" ><i data-toggle="tooltip" data-placement='top' title="{_ 'Post to a friend'}" class="fa fa-envelope-square fa-2x"></i></a>
+        </div>
+    </div>
+    <div class="row">
+        <a n:href="dog:dog_title_list">
+            <div class="col-lg-6 col-md-6 col-xs-12 padding" style="margin-bottom: 10px;">
+                <div class="list-item">
+                    <div class="dog-image-profile-thumb">
+                    </div>    
+                    <h3 class="text-uppercase"><i class="fa fa-mars" style="color:#0c9eea;"></i>&nbsp;&nbsp;Bronca la rosa de inca</h3>
+                    <hr style="margin-bottom: 10px;">
+                    <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;Dogo argentino</span>
+                    <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;Slovakia</span>
+                </div>
+            </div>
+        </a>
+        <a n:href="dog:dog_title_list">
+            <div class="col-lg-6 col-md-6 col-xs-12 padding">
+                <div class="list-item">
+                    <div class="dog-image-profile-thumb">
+                    </div>    
+                    <h3 class="text-uppercase"><i class="fa fa-venus gender-bitch"></i>&nbsp;&nbsp;Bronca la rosa de inca</h3>
+                    <hr style="margin-bottom: 10px;">
+                    <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;Dogo argentino</span>
+                    <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;Slovakia</span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12 panel-description "><i class="fa fa-paw"></i>&nbsp;&nbsp;{_ 'Puppies'}<a n:href="puppy:puppy_create_profile" class="btn btn-danger btn-xs add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        </div>
+    </div>
+</div>
+
+{/define}
