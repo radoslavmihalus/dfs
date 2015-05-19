@@ -8,24 +8,22 @@ use App\Model,
 
 class userPresenter extends BasePresenter {
 
-    /** @var Model\AlbumRepository */
-    //private $albums;
-//    public function __construct() {
-//        
-//    }
+    private $database;
+
+    public function __construct(Nette\Database\Context $database) {
+        $this->database = $database;
+    }
 
     protected function startup() {
         parent::startup();
-//        $translator = new DFSTranslator();
-//        $this->template->setTranslator($translator);
+        $mysection = $this->getSession('userdata');
+        $myid = $mysection->id;
+        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
 
-        //$this->setLayout('@layout.latte');
-//		if (!$this->getUser()->isLoggedIn()) {
-//			if ($this->getUser()->logoutReason === Nette\Security\IUserStorage::INACTIVITY) {
-//				$this->flashMessage('You have been signed out due to inactivity. Please sign in again.');
-//			}
-//			$this->redirect('Sign:in', array('backlink' => $this->storeRequest()));
-//		}
+        foreach ($userdata as $user) {
+            $this->template->fullname = $user->name . ' ' . $user->surname;
+        }
+
     }
 
     /*     * ******************* view default ******************** */

@@ -10,25 +10,37 @@ use App\Model,
 
 class LandingPagePresenter extends BasePresenter {
 
-    /** @var Model\AlbumRepository */
-    //private $albums;
-
     private $database;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
     }
 
+    function getField($form_name, $element_name) {
+        $fields = $this->database->query("SELECT * FROM form_fields WHERE form_name=? AND element_name=?", $form_name, $element_name);
+
+        $return = "";
+
+        foreach ($fields as $field) {
+            $return = $field->field_name;
+        }
+        return $return;
+    }
+
+    function assignFields($valuesArray, $form) {
+        $return = array();
+
+        foreach ($valuesArray as $key => $value) {
+            $field = $this->getField($form, $key);
+            if (strlen($field) > 0)
+                $return[$field] = $value;
+        }
+
+        return $return;
+    }
+
     protected function startup() {
         parent::startup();
-//        $translator = new DFSTranslator();
-//        $this->template->setTranslator($translator);
-//		if (!$this->getUser()->isLoggedIn()) {
-//			if ($this->getUser()->logoutReason === Nette\Security\IUserStorage::INACTIVITY) {
-//				$this->flashMessage('You have been signed out due to inactivity. Please sign in again.');
-//			}
-//			$this->redirect('Sign:in', array('backlink' => $this->storeRequest()));
-//		}
     }
 
     /*     * ******************* view default ******************** */
@@ -70,7 +82,7 @@ class LandingPagePresenter extends BasePresenter {
      * @return Form
      */
     protected function createComponentFrmSignIn() {
-        $form = new Form;
+        $form = new Form();
         $form->addText("txtName");
         $form->addText("txtSurname");
         $form->addText("txtEmail");
@@ -82,7 +94,7 @@ class LandingPagePresenter extends BasePresenter {
     }
 
     protected function createComponentFrmLogIn() {
-        $form = new Form;
+        $form = new Form();
         $form->addText("txtEmail");
         $form->addPassword("txtPassword");
         $form->addCheckbox("chkRemember");
@@ -118,8 +130,13 @@ class LandingPagePresenter extends BasePresenter {
 
         $id = 0;
 
+        $user_section = $this->getSession('userdata');
+
         foreach ($result as $row) {
             $id = $row->id;
+            $user_section->name = $row->name;
+            $user_section->surname = $row->surname;
+            $user_section->id = $row->id;
         }
 
         if ($id == 0) {
@@ -134,22 +151,11 @@ class LandingPagePresenter extends BasePresenter {
      * @return Form
      */
     protected function createComponentDeleteForm() {
-//		$form = new Form;
-//		$form->addSubmit('cancel', 'Cancel')
-//			->onClick[] = array($this, 'formCancelled');
-//
-//		$form->addSubmit('delete', 'Delete')
-//			->setAttribute('class', 'default')
-//			->onClick[] = array($this, 'deleteFormSucceeded');
-//
-//		$form->addProtection();
-//		return $form;
+        
     }
 
     public function deleteFormSucceeded() {
-//		$this->albums->findById($this->getParameter('id'))->delete();
-//		$this->flashMessage('Album has been deleted.');
-//		$this->redirect('default');
+        
     }
 
     public function formCancelled() {

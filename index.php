@@ -4,4 +4,5 @@
 $container = require __DIR__ . '/app/bootstrap.php';
 
 // run application
+session_start();
 $container->getService('application')->run();
