@@ -1,12 +1,13 @@
 {define #dropdown_BreedList_control}
 <div class="form-group">
     <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
+    <input type="hidden" id="hid-tags-input-{$id}" name="hid{$name}" />
     <span id="tags-input-{$id}" name="{$name}" class="selectivity-input form-control" style="padding:0px;" placeholder="{_$placeholder}"></span>
 </div>
-<script>
+<script type="text/javascript">
     $(function () {
-        $('[data-toggle="popover"]').popover()
-    })
+        $('[data-toggle="popover"]').popover();
+    });
 </script>
 <script type="text/javascript">
     $("#tags-input-" + {$id}).selectivity({
@@ -14,6 +15,11 @@
         multiple: true,
         tokenSeparators: [',']
                 //value: ['Dogo Argentino']
+    });
+    
+    $('#tags-input-' + {$id}).on('change', function(item)
+    {
+        $("#hid-tags-input-" + {$id}).val(item.value);
     });
 </script>
 {/define}

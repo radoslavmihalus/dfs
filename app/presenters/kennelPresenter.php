@@ -9,17 +9,31 @@ use App\Model,
 class kennelPresenter extends BasePresenter {
 
     /** @var Model\AlbumRepository */
-    //private $albums;
+//private $albums;
 //    public function __construct() {
 //        
 //    }
+    private $database;
+
+    public function __construct(Nette\Database\Context $database) {
+        $this->database = $database;
+    }
 
     protected function startup() {
         parent::startup();
+        $mysection = $this->getSession('userdata');
+        $myid = $mysection->id;
+        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
+
+        foreach ($userdata as $user) {
+            $this->template->fullname = $user->name . ' ' . $user->surname;
+            $this->template->profile_type = 'Kennel';
+            $this->template->profile_type_icon = 'fa fa-home'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
+        }
+
 //        $translator = new DFSTranslator();
 //        $this->template->setTranslator($translator);
-
-        //$this->setLayout('@layout.latte');
+//$this->setLayout('@layout.latte');
 //		if (!$this->getUser()->isLoggedIn()) {
 //			if ($this->getUser()->logoutReason === Nette\Security\IUserStorage::INACTIVITY) {
 //				$this->flashMessage('You have been signed out due to inactivity. Please sign in again.');
@@ -31,13 +45,14 @@ class kennelPresenter extends BasePresenter {
     /*     * ******************* view default ******************** */
 
     public function renderDefault() {
-        //predanie argumentov //$this->template->albums = $this->albums->findAll()->order('artist')->order('title');
+        //$this->flashMessage("OK");
+//predanie argumentov //$this->template->albums = $this->albums->findAll()->order('artist')->order('title');
     }
 
     /*     * ******************* views add & edit ******************** */
 
     public function renderAdd() {
-        //$this['albumForm']['save']->caption = 'Add';
+//$this['albumForm']['save']->caption = 'Add';
     }
 
     public function renderEdit($id = 0) {
@@ -66,24 +81,24 @@ class kennelPresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
-    protected function createComponentAlbumForm() {
-//		$form = new Form;
-//		$form->addText('artist', 'Artist:')
-//			->setRequired('Please enter an artist.');
-//
-//		$form->addText('title', 'Title:')
-//			->setRequired('Please enter a title.');
-//
-//		$form->addSubmit('save', 'Save')
-//			->setAttribute('class', 'default')
-//			->onClick[] = array($this, 'albumFormSucceeded');
-//
-//		$form->addSubmit('cancel', 'Cancel')
-//			->setValidationScope(array())
-//			->onClick[] = array($this, 'formCancelled');
-//
-//		$form->addProtection();
-//		return $form;
+    protected function createComponentKennelCreateProfile() {
+
+        $form = new Form();
+        $form->addText('txtKennelName');
+        $form->addText('txtKennelFciNumber');
+        $form->addUpload('txtKennelProfilePicture');
+        $form->addText('txtKennelWebsite');
+        $form->addTextArea('txtKennelDescription');
+        $form->addText('hidddlBreedList');
+        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateProfileSucceeded');
+
+        return $form;
+    }
+
+    public function frmCreateProfileSucceeded($button) {
+        $values = $button->getForm()->getValues();
+        
+        //var_dump($values);
     }
 
     public function albumFormSucceeded($button) {

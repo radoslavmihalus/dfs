@@ -11,10 +11,13 @@ nette:
             *: App\*Module\Presenters\*Presenter
 
 database:
-	dsn: "sqlite:%appDir%/model/demo.db3"
+#	dsn: "sqlite:%appDir%/model/demo.db3"
 #	dsn: "mysql:host=localhost;dbname=dfs"
 #        user: root
 #        password: L884fv57
+    dsn: "mysql:host=localhost;dbname=u147232041_dfs"
+    user: u147232041_dfs
+    password: dfs123
 
 services:
     - App\Model\Authenticator

@@ -1,14 +1,14 @@
 <div class="container-fluid user-menu" >
     <div class="collapse navbar-collapse" id="user-menu" role="navigation" style="padding: 0px;">
         <a href="kennel-profile">
-        <div class="user-block">
-            <img class="user-block-thumb" src="img/referer1.jpg" />
-<!--                    <p class="user-block-type"><i class="fa fa-home"></i>&nbsp;&nbsp;</i>Spectator</p>-->
-            <p class="user-block-type"><i class="fa fa-eye"></i>&nbsp;&nbsp;</i>{_'Spectator'}</p>
-<!--                    <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>Owner of purebred dog</p>
-            <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>Handler</p>-->
-            <p class="text-uppercase user-block-name" id="userName"></p>
-        </div>
+            <div class="user-block">
+                <img class="user-block-thumb" src="img/referer1.jpg" />
+                <p class="user-block-type"><i class="{$profile_type_icon}"></i>&nbsp;&nbsp;</i>{_$profile_type}</p>
+<!--                <p class="user-block-type"><i class="fa fa-eye"></i>&nbsp;&nbsp;</i>{_'Spectator'}</p>
+                <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>{_'Owner of purebred dog'}</p>
+                <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>{_'Handler'}</p>-->
+                <p class="text-uppercase user-block-name" id="userName">{$fullname}</p>
+            </div>
         </a>
         <ul class="nav nav-stacked user-menu-links" id="accordion1">
             <li class="panel"> 
@@ -59,62 +59,62 @@
                 </ul>
             </li>
             <!-- Owner menu -->
-<!--            <li class="panel"> 
-                <a data-toggle="collapse" data-parent="#accordion1" href="#OwnerMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
-                <ul id="OwnerMenu" class="collapse panel-collapse">
-                    <li>
-                        <a href="#"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Home</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;Photos</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;Videos</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;Friends</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-rss"></i>&nbsp;&nbsp;Followers</a>
-                    </li>
-                </ul>
-            </li>-->
+            <!--            <li class="panel"> 
+                            <a data-toggle="collapse" data-parent="#accordion1" href="#OwnerMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
+                            <ul id="OwnerMenu" class="collapse panel-collapse">
+                                <li>
+                                    <a href="#"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Home</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;Photos</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;Videos</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;Friends</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-rss"></i>&nbsp;&nbsp;Followers</a>
+                                </li>
+                            </ul>
+                        </li>-->
             <!-- Handler menu -->
-<!--            <li class="panel"> 
-                <a data-toggle="collapse" data-parent="#accordion1" href="#HandlerMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
-                <ul id="HandlerMenu" class="collapse panel-collapse">
-                    <li>
-                        <a href="#"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Home</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Breeds for handling</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;Awards</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Certificates</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Show results</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;Photos</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;Videos</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;Friends</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-rss"></i>&nbsp;&nbsp;Followers</a>
-                    </li>
-                </ul>
-            </li>-->
+            <!--            <li class="panel"> 
+                            <a data-toggle="collapse" data-parent="#accordion1" href="#HandlerMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
+                            <ul id="HandlerMenu" class="collapse panel-collapse">
+                                <li>
+                                    <a href="#"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Home</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Breeds for handling</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;Awards</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Certificates</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Show results</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;Photos</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;Videos</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;Friends</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-rss"></i>&nbsp;&nbsp;Followers</a>
+                                </li>
+                            </ul>
+                        </li>-->
             <li class="panel">
                 <div>DOGFORSHOW</div>
             </li>

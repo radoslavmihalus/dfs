@@ -10,10 +10,8 @@ use Nette,
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
-    private $translator;
+    public $translator;
 
-    
-    
     function beforeRender() {
         $translator = new DFSTranslator();
         $this->template->setTranslator($translator);
