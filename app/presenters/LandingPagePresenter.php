@@ -4,8 +4,9 @@ namespace App\Presenters;
 
 use App\Model,
     Nette,
-    Nette\Application\UI\Form;
-
+    Nette\Application\UI\Form,
+    Nette\Mail\Message,
+    Nette\Mail\SendmailMailer;
 
 class LandingPagePresenter extends BasePresenter {
 
@@ -22,8 +23,6 @@ class LandingPagePresenter extends BasePresenter {
         parent::startup();
 //        $translator = new DFSTranslator();
 //        $this->template->setTranslator($translator);
-
-
 //		if (!$this->getUser()->isLoggedIn()) {
 //			if ($this->getUser()->logoutReason === Nette\Security\IUserStorage::INACTIVITY) {
 //				$this->flashMessage('You have been signed out due to inactivity. Please sign in again.');
@@ -35,7 +34,7 @@ class LandingPagePresenter extends BasePresenter {
     /*     * ******************* view default ******************** */
 
     public function renderDefault() {
-        //predanie argumentov //$this->template->albums = $this->albums->findAll()->order('artist')->order('title');
+        $this->template->states = $this->database->table("lk_countries")->order("CountryName_sk");
     }
 
     /*     * ******************* views add & edit ******************** */
@@ -70,37 +69,64 @@ class LandingPagePresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
-    protected function createComponentAlbumForm() {
-//		$form = new Form;
-//		$form->addText('artist', 'Artist:')
-//			->setRequired('Please enter an artist.');
-//
-//		$form->addText('title', 'Title:')
-//			->setRequired('Please enter a title.');
-//
-//		$form->addSubmit('save', 'Save')
-//			->setAttribute('class', 'default')
-//			->onClick[] = array($this, 'albumFormSucceeded');
-//
-//		$form->addSubmit('cancel', 'Cancel')
-//			->setValidationScope(array())
-//			->onClick[] = array($this, 'formCancelled');
-//
-//		$form->addProtection();
-//		return $form;
+    protected function createComponentFrmSignIn() {
+        $form = new Form;
+        $form->addText("txtName");
+        $form->addText("txtSurname");
+        $form->addText("txtEmail");
+        $form->addSelect("ddlCountries");
+        $form->addPassword("txtPassword");
+        $form->addPassword("txtConfirmPassword");
+        $form->addSubmit('btnSignIn', 'Register')->onClick[] = array($this, 'frmSignInSucceeded');
+        return $form;
     }
 
-    public function albumFormSucceeded($button) {
-//		$values = $button->getForm()->getValues();
-//		$id = (int) $this->getParameter('id');
-//		if ($id) {
-//			$this->albums->findById($id)->update($values);
-//			$this->flashMessage('The album has been updated.');
-//		} else {
-//			$this->albums->insert($values);
-//			$this->flashMessage('The album has been added.');
-//		}
-//		$this->redirect('default');
+    protected function createComponentFrmLogIn() {
+        $form = new Form;
+        $form->addText("txtEmail");
+        $form->addPassword("txtPassword");
+        $form->addCheckbox("chkRemember");
+        $form->addSubmit('btnLogin', 'Login')->onClick[] = array($this, 'frmLogInSucceeded');
+        return $form;
+    }
+
+    public function frmSignInSucceeded($button) {
+        $values = $button->getForm()->getValues();
+
+        $values = $this->assignFields($values, 'frmSignIn');
+
+        $this->database->table("tbl_user")->insert($values);
+        $userid = $this->database->getInsertId();
+
+        $mail = new Message();
+        $mail->setFrom('Franta <dfs@fsofts.eu>')
+                ->addTo($values['email'])
+                ->setSubject('Potvrdenie registracie')
+                ->setBody("Hello " . $values['name'] . " " . $values['surname'] . "\r\n\r\nYour password is: " . $values['password']);
+
+        $mailer = new SendmailMailer();
+        $mailer->send($mail);
+
+        $this->flashMessage('User created successfully.');
+        //var_dump($values);
+    }
+
+    public function frmLogInSucceeded($button) {
+        $values = $button->getForm()->getValues();
+
+        $result = $this->database->query("SELECT * FROM tbl_user WHERE email=? AND password=?", $values['txtEmail'], $values['txtPassword']);
+
+        $id = 0;
+
+        foreach ($result as $row) {
+            $id = $row->id;
+        }
+
+        if ($id == 0) {
+            $this->flashMessage("Wrong username or password.");
+        } else {
+            $this->redirect("user:user_create_profile_switcher");
+        }
     }
 
     /**

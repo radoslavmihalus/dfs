@@ -77,6 +77,11 @@
                 </div>
             </div>
         </nav>
+        {foreach $flashes as $flash}
+            <script type="text/javascript">
+                ShowMessage(enumNotificationType.information, {$flash->message});
+            </script>
+        {/foreach}
         <!-- DOGFORSHOW landing jumbotron -->
         <section id="join">
             <div class="jumbotron landing_header">

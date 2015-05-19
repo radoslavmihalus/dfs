@@ -31,6 +31,7 @@ class kennelPresenter extends BasePresenter {
     /*     * ******************* view default ******************** */
 
     public function renderDefault() {
+        $this->flashMessage("OK");
         //predanie argumentov //$this->template->albums = $this->albums->findAll()->order('artist')->order('title');
     }
 
