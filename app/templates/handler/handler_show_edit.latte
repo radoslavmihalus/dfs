@@ -1,0 +1,79 @@
+{block content}
+{includeblock '../components/dropdown_DatePicker_control.latte'}
+{includeblock '../components/dropdown_ShowType_control.latte'}
+{includeblock '../components/dropdown_CountryList_control.latte'}
+{includeblock '../components/dropdown_DogList_control.latte'}
+{includeblock '../components/textbox_control.latte'}
+{includeblock '../components/image_UploadPicture_control.latte'}
+{includeblock '../components/dropdown_ShowClass_control.latte'}
+{includeblock '../components/checkbox_ShowAssesmentMinorPuppy_control.latte'}
+{includeblock '../components/checkbox_ShowTitlesMinorPuppy_control.latte'}
+{includeblock '../components/checkbox_ShowTitlesPuppy_control.latte'}
+{includeblock '../components/checkbox_ShowAssesment_control.latte'}
+{includeblock '../components/checkbox_ShowTitlesJunior_control.latte'}
+{includeblock '../components/checkbox_ShowTitlesJuniorBOG_control.latte'}
+{includeblock '../components/checkbox_ShowTitlesJuniorBIS_control.latte'}
+{includeblock '../components/checkbox_ShowTitles_control.latte'}
+{includeblock '../components/checkbox_ShowTitlesBOG_control.latte'}
+{includeblock '../components/checkbox_ShowTitlesBIS_control.latte'}
+<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
+    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
+        <form id="frmEditShowHandler">
+            <h2 class="text-center text-uppercase"><i class="fa fa-clipboard"></i>&nbsp;&nbsp;{_ 'Edit show result'}</h2>
+            <hr>
+            {include dropdown_DatePicker_control, description => "Date of show", placeholder => "Date of show", id => "ddlDate", name => "ddlDate"}
+            {include dropdown_ShowType_control, description => "Show type", placeholder => "Show type", id => "ddlShowType", name => "ddlShowType"}
+            {include dropdown_CountryList_control, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry"}
+            {include dropdown_DogList_control, description => "Name of the handled dog", placeholder => "Select or enter the name of the dog", id => "txtHandlerDogName", name => "txtHandlerDogName"}
+            {include textbox_control, description => "Name of judge", placeholder => "Enter the judge’s name", id => "txtJudgeName", name => "txtJudgeName"}
+            {include dropdown_ShowClass_control, description => "Class", placeholder => "Please select", id => "ddlShowClass", name => "ddlShowClass"}
+            <!-- Minor puppy class -->
+            <!-- Assesment Minor puppy-->
+            {include checkbox_ShowAssesmentMinorPuppy_control, description => "Assesment", placeholder => "Assesment", id => "chckAssesmentMinorPuppy", name => "chckAssesmentMinorPuppy"}
+            <!-- /Assesment Minor puppy-->
+            <!-- Titles Minor puppy-->
+            {include checkbox_ShowTitlesMinorPuppy_control, description => "Best minor puppy", placeholder => "Best minor puppy", id => "chckTitlesMinorPuppy", name => "chckTitlesMinorPuppy"}
+            <!-- /Titles Minor puppy-->
+            <!-- /Minor puppy -->
+            
+            <!-- Puppy class -->
+            <!-- Assesment Puppy-->
+            {include checkbox_ShowAssesmentMinorPuppy_control, description => "Assesment", placeholder => "Assesment", id => "chckAssesmentMinorPuppy", name => "chckAssesmentMinorPuppy"}
+            <!-- /Assesment Puppy-->
+            <!-- Titles Puppy-->
+            {include checkbox_ShowTitlesPuppy_control, description => "Best puppy male & female", placeholder => "Best puppy male & female", id => "chckTitlesPuppy", name => "chckTitlesPuppy"}
+            <!-- /Titles Puppy-->
+            <!-- /Puppy -->
+            
+            <!-- Junior class -->
+            <!-- Assesment Junior-->
+            {include checkbox_ShowAssesment_control, description => "Assesment", placeholder => "Assesment", id => "chckAssesment", name => "chckAssesment"}
+            <!-- /Assesment Junior-->
+            <!-- Titles Junior-->
+            {include checkbox_ShowTitlesJunior_control, description => "Titles", placeholder => "Titles", id => "chckTitlesJunior", name => "chckTitlesJunior"}
+            {include checkbox_ShowTitlesJuniorBOG_control, description => "Junior Best of Group", placeholder => "Junior BOG", id => "chckTitlesJuniorBOG", name => "chckTitlesJuniorBOG"}
+            {include checkbox_ShowTitlesJuniorBIS_control, description => "Junior Best in Show", placeholder => "Junior BIS", id => "chckTitlesJuniorBIS", name => "chckTitlesJuniorBIS"}
+            {include checkbox_ShowTitlesBOG_control, description => "Best of Group", placeholder => "Best of Group", id => "chckTitlesBOG", name => "chckTitlesBOG"}
+            {include checkbox_ShowTitlesBIS_control, description => "Best in Show", placeholder => "Best in Show", id => "chckTitlesBIS", name => "chckTitlesBIS"}
+            <!-- /Titles Junior-->
+            <!-- /Junior -->
+            
+            <!-- Intermediate,Open,Working,Champions,Veterans,Honor-->
+            <!-- Assesment -->
+            {include checkbox_ShowAssesment_control, description => "Assesment", placeholder => "Assesment", id => "chckAssesment", name => "chckAssesment"}
+            <!-- /Assesment -->
+            <!-- Titles -->
+            {include checkbox_ShowTitles_control, description => "Titles", placeholder => "Titles", id => "chckTitles", name => "chckTitles"}
+            {include checkbox_ShowTitlesBOG_control, description => "Best of Group", placeholder => "Best of Group", id => "chckTitlesBOG", name => "chckTitlesBOG"}
+            {include checkbox_ShowTitlesBIS_control, description => "Best in Show", placeholder => "Best in Show", id => "chckTitlesBIS", name => "chckTitlesBIS"}
+            <!-- /Titles -->
+            <!-- /Intermediate,Open,Working,Champions,Veterans,Honor-->
+            
+            {include textbox_control, description => "Other titles and awards received at the show", placeholder => "Enter other titles achieved at this show (e.g. National Winner)", id => "txtOtherTitle", name => "txtOtherTitle"}         
+            {include image_UploadPicture_control, description => "Image from show", placeholder => "Select picture", id => "txtShowImage", name => "txtShowImage"}
+            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+            <button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
+        </form>
+    </div>
+</div> 
+{/block}

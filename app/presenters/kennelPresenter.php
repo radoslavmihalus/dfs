@@ -84,7 +84,7 @@ class kennelPresenter extends BasePresenter {
     protected function createComponentKennelCreateProfile() {
 
         $form = new Form();
-        $form->addText('txtKennelName');
+        $form->addText('txtKennelName')->setValue("Kennel");
         $form->addText('txtKennelFciNumber');
         $form->addUpload('txtKennelProfilePicture');
         $form->addText('txtKennelWebsite');
@@ -97,7 +97,7 @@ class kennelPresenter extends BasePresenter {
 
     public function frmCreateProfileSucceeded($button) {
         $values = $button->getForm()->getValues();
-        
+
         //var_dump($values);
     }
 

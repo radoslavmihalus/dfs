@@ -15,9 +15,9 @@ database:
 #	dsn: "mysql:host=localhost;dbname=dfs"
 #        user: root
 #        password: L884fv57
-    dsn: "mysql:host=localhost;dbname=u147232041_dfs"
-    user: u147232041_dfs
-    password: dfs123
+    dsn: "mysql:host=localhost;dbname=dfs"
+    user: root
+    password: L884fv57
 
 services:
     - App\Model\Authenticator

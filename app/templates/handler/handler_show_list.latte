@@ -1,8 +1,8 @@
-{layout '@dog_layout.latte'}
+{layout '@handler_layout.latte'}
 {block content}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="fa fa-clipboard"></i>&nbsp;&nbsp;{_ 'Show results'}<a n:href="dog:dog_show_add" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        <div class="panel-description"><i class="fa fa-clipboard"></i>&nbsp;&nbsp;{_ 'Show results'}<a n:href="handler:handler_show_add" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
         </div>
     </div>
     <!-- Message -->
@@ -15,8 +15,8 @@
         </div>-->
     <!-- / Message -->
     <!-- Title item -->
-            {includeblock 'dog_show_list_item.latte'}
-            {include dog_show_list_item}
+            {includeblock 'handler_show_list_item.latte'}
+            {include handler_show_list_item}
     <!-- /Title item -->
 </div>
 

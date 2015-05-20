@@ -1,4 +1,4 @@
-{define #dog_show_list_item}
+{define #handler_show_list_item}
 <div class="row" style="padding:0px 10px 0px 10px;">
         <div class="col-lg-1 col-md-2 column-spacer">
             <span class="text-left" style="color:#777;">12.6.2014</span>
@@ -18,13 +18,13 @@
             <span class="text-left" style="color:#777;"><a href="" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a></span>
         </div>
         <div class="col-lg-5 col-md-4 column-spacer">
+            <a href="" style="text-decoration: none;text-transform: uppercase"><span style="color:#FF9B00;" data-toggle="tooltip" data-placement='top' title="Dog"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Bronca La Rosa de Inca</span></a>
+        </div>
+        <div class="col-lg-3 col-md-3 column-spacer">
             <span class="text-left" style="color:#777;">{_ 'Class'}: {_ 'Champion'}</span>
         </div>
         <div class="col-lg-3 col-md-3 column-spacer">
             <span style="margin-right: 5px;color:#777;">{_ 'Judge'}: Tibor Havelka</span>
-        </div>
-        <div class="col-lg-3 col-md-3 column-spacer">
-            <a href="" style="text-decoration: none; text-transform: uppercase;"><span style="color:#FF9B00;" data-toggle="tooltip" data-placement='top' title="Handler"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;Orsyola Nagy</span></a>
         </div>
     </div>
         <div class="row" style="padding:0px 10px 0px 10px;border-bottom: 1px solid #eee;font-size:12px">
@@ -38,7 +38,7 @@
             <span style="margin-right: 5px; color:#777;">Best in show veteran</span>
         </div>
         <div class="col-lg-3 col-md-3 column-spacer">
-            <a n:href="dog:dog_show_edit" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>
+            <a n:href="handler:handler_show_edit" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>
             <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button>
         </div>
     </div>
