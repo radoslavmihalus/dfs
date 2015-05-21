@@ -14,11 +14,27 @@ class ownerPresenter extends BasePresenter {
 //        
 //    }
 
+    private $database;
+
+    public function __construct(Nette\Database\Context $database) {
+        $this->database = $database;
+    }
+
     protected function startup() {
         parent::startup();
+
+        $mysection = $this->getSession('userdata');
+        $myid = $mysection->id;
+        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
+
+        foreach ($userdata as $user) {
+            $this->template->fullname = $user->name . ' ' . $user->surname;
+            $this->template->profile_type = 'Owner';
+            $this->template->profile_type_icon = 'fa fa-user'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
+        }
+
 //        $translator = new DFSTranslator();
 //        $this->template->setTranslator($translator);
-
         //$this->setLayout('@layout.latte');
 //		if (!$this->getUser()->isLoggedIn()) {
 //			if ($this->getUser()->logoutReason === Nette\Security\IUserStorage::INACTIVITY) {
@@ -66,7 +82,13 @@ class ownerPresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
-    protected function createComponentAlbumForm() {
+    protected function createComponentOwnerCreateProfile() {
+        $form = new Form();
+        $form->addUpload('txtOwnerProfilePhoto');
+        $form->addTextArea('txtOwnerDescritpion');
+        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateProfileSucceeded');
+
+        return $form;
 //		$form = new Form;
 //		$form->addText('artist', 'Artist:')
 //			->setRequired('Please enter an artist.');
@@ -84,6 +106,12 @@ class ownerPresenter extends BasePresenter {
 //
 //		$form->addProtection();
 //		return $form;
+    }
+
+    public function frmCreateProfileSucceeded($button) {
+        $values = $button->getForm()->getValues();
+
+        var_dump($values);
     }
 
     public function albumFormSucceeded($button) {

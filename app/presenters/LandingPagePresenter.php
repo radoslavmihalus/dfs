@@ -86,7 +86,7 @@ class LandingPagePresenter extends BasePresenter {
         $form->addText("txtName");
         $form->addText("txtSurname");
         $form->addText("txtEmail");
-        $form->addSelect("ddlCountries");
+        $form->addText("hidddlCountries");
         $form->addPassword("txtPassword");
         $form->addPassword("txtConfirmPassword");
         $form->addSubmit('btnSignIn', 'Register')->onClick[] = array($this, 'frmSignInSucceeded');
@@ -117,8 +117,8 @@ class LandingPagePresenter extends BasePresenter {
                 ->setBody("Hello " . $values['name'] . " " . $values['surname'] . "\r\n\r\nYour password is: " . $values['password']);
 
         $mailer = new SendmailMailer();
-        $mailer->send($mail);
-
+        $mailer->send($mail);        
+        
         $this->flashMessage('User created successfully.');
         //var_dump($values);
     }

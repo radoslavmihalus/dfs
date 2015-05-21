@@ -14,11 +14,26 @@ class handlerPresenter extends BasePresenter {
 //        
 //    }
 
+    private $database;
+
+    public function __construct(Nette\Database\Context $database) {
+        $this->database = $database;
+    }
+
     protected function startup() {
         parent::startup();
+        $mysection = $this->getSession('userdata');
+        $myid = $mysection->id;
+        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
+
+        foreach ($userdata as $user) {
+            $this->template->fullname = $user->name . ' ' . $user->surname;
+            $this->template->profile_type = 'Handler';
+            $this->template->profile_type_icon = 'glyphicons glyphicons-shirt'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
+        }
+
 //        $translator = new DFSTranslator();
 //        $this->template->setTranslator($translator);
-
         //$this->setLayout('@layout.latte');
 //		if (!$this->getUser()->isLoggedIn()) {
 //			if ($this->getUser()->logoutReason === Nette\Security\IUserStorage::INACTIVITY) {
@@ -66,7 +81,15 @@ class handlerPresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
-    protected function createComponentAlbumForm() {
+    protected function createComponentHandlerCreateProfile() {
+        $form = new Form();
+        $form->addUpload('txtHandlerProfilePhoto');
+        $form->addTextArea('txtHandlerDescritpion');
+        $form->addText('hidddlBreedList');
+        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateProfileSucceeded');
+
+        return $form;
+
 //		$form = new Form;
 //		$form->addText('artist', 'Artist:')
 //			->setRequired('Please enter an artist.');
@@ -84,6 +107,12 @@ class handlerPresenter extends BasePresenter {
 //
 //		$form->addProtection();
 //		return $form;
+    }
+
+    public function frmCreateProfileSucceeded($button) {
+        $values = $button->getForm()->getValues();
+
+        var_dump($values);
     }
 
     public function albumFormSucceeded($button) {

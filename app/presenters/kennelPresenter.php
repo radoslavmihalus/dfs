@@ -44,7 +44,15 @@ class kennelPresenter extends BasePresenter {
 
     /*     * ******************* view default ******************** */
 
-    public function renderDefault() {
+    public function renderKennel_list()
+    {
+        $this->template->image = "http://i00.i.aliimg.com/wsphoto/v1/32309935404_1/2015-Women-Halter-Push-Up-Bikini-Sexy-None-Swimwear-Beachwear-Swimsuit-Biquini-bikinis-Set.jpg"; //"img/referer1.jpg";
+        $this->template->name = "Meno kenela";
+        $this->template->registration_date = "22.06.1980";
+        $this->template->state = "Bosna";
+    }
+
+        public function renderDefault() {
         //$this->flashMessage("OK");
 //predanie argumentov //$this->template->albums = $this->albums->findAll()->order('artist')->order('title');
     }
