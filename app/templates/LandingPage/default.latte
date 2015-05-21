@@ -255,18 +255,18 @@
                         <div class="col-md-6">
                             <h2 class="heading text-center text-uppercase"><strong>{_ 'Follow us'}</strong></h2>
                             <p class="secondary_heading text-center">
-                                <a href="https://www.facebook.com/dogforshow" target="_blank" title="{_ 'DOGFORSHOW on facebook'}" style="margin-right:15px;">
+                                <a href="https://www.facebook.com/dogforshow" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on facebook'}" style="margin-right:15px;text-decoration: none;">
                                     <span class="fa fa-facebook-official fa-2x follow_link"></span>
                                 </a>
-                                <a href="https://plus.google.com/+Dogforshow" target="_blank" title="{_ 'DOGFORSHOW on Google+'}">
+                                <a href="https://plus.google.com/+Dogforshow" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Google+'}" style="margin-right:15px;text-decoration: none;">
                                     <span class="fa fa-google-plus-square fa-2x white follow_link"></span>
                                 </a>
-                                <!--                                <a href="https://twitter.com/DOGFORSHOW" target="_blank" title="DOGFORSHOW on Twitter">
-                                                                    <span class="fa fa-twitter-square fa-2x white follow_link"></span>
-                                                                </a>
-                                                                <a href="https://www.pinterest.com/DOGFORSHOW" target="_blank" title="DOGFORSHOW on Pinterest">
-                                                                    <span class="fa fa-pinterest-square fa-2x white follow_link"></span>
-                                                                </a>-->
+                                <a href="https://twitter.com/DOGFORSHOW" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Twitter'}" style="margin-right:15px;text-decoration: none;">
+                                    <span class="fa fa-twitter-square fa-2x white follow_link"></span>
+                                </a>
+                                <a href="https://www.pinterest.com/DOGFORSHOW" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Pinterest'}" style="text-decoration: none;">
+                                    <span class="fa fa-pinterest-square fa-2x white follow_link"></span>
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -281,5 +281,10 @@
         <script src="www/js/css3-animate-it.js"></script>
         <script src="www/js/jquery.easing.min.js"></script>
         <script src="www/js/scrolling-nav.js"></script>
+        <script>
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
+        </script>
     </body>
 </html>
