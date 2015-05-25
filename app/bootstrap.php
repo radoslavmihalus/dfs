@@ -99,6 +99,7 @@ $router[] = new Route('dog-workexam-edit', 'dog:dog_workexam_edit');
 $router[] = new Route('dog-health-list', 'dog:dog_health_list');
 $router[] = new Route('dog-health-add', 'dog:dog_health_add');
 $router[] = new Route('dog-health-edit', 'dog:dog_health_edit');
+$router[] = new Route('dog-pedigree', 'dog:dog_pedigree_list');
 $router[] = new Route('dog-mating-list', 'dog:dog_mating_list');
 $router[] = new Route('dog-mating-add', 'dog:dog_mating_add');
 $router[] = new Route('dog-mating-edit', 'dog:dog_mating_edit');

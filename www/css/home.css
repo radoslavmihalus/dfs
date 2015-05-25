@@ -140,15 +140,17 @@ ul.section_list
 .navbar-default .navbar-nav a:hover
 {
     padding-top: 30px;
-    border-bottom: #a5987f 2px solid;
+    border-bottom: #a5987f 3px solid;
 }
 .navbar-default .navbar-nav .active a
 {
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 20px !important;
     background-color: white !important;
-    border-bottom: #a5987f 2px solid;
+    border-bottom: #a5987f 3px solid;
+    background-image: none;
 }
+
 .community_link a
 {
     font-family: 'Roboto Condensed', sans-serif;
