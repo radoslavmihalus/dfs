@@ -148,7 +148,7 @@ ul.section_list
     font-size: 20px !important;
     background-color: white !important;
     border-bottom: #a5987f 3px solid;
-    background-image: none;
+    background-image: linear-gradient(to bottom,#F0EDE9 100%,#FFFFFF 100%);
 }
 
 .community_link a

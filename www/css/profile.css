@@ -43,3 +43,16 @@ ul.dog-information-list > li
     padding-top: 3px;
     padding-bottom: 3px;
 }
+th.pedigree
+{
+    font-size: 13px;
+    color:#777;
+    text-align: center;
+    font-weight:normal;
+}
+td.pedigree
+{
+    border:1px solid #E4E4E4;
+    width:33%;
+    font-size: 12px;
+}
