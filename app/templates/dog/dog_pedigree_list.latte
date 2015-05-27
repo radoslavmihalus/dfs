@@ -1,24 +1,26 @@
 {layout '@dog_layout.latte'}
 {block content}
+{includeblock '../components/dropdown_DogList_control.latte'}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
         <div class="panel-description"><i class="fa fa-sitemap"></i>&nbsp;&nbsp;{_ 'Pedigree'}<!--<a n:href="dog:dog_show_add" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>-->
         </div>
     </div>
-    <!-- Message -->
-    <!--        <div class="row">
-                <div class="col-md-12">
-                    <div class="message-brown" role="alert">
-                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
-                    </div>
-                </div>
-            </div>-->
-    <!-- / Message -->
-    <!-- Pedigree -->
+    <!-- Pedigree add -->
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="row" style="padding:15px;">
-                <table class="table">
+            <!-- Message -->
+            <div class="row hidden-lg visible-md visible-sm visible-xs">
+                <div class="col-md-12">
+                    <div class="message-brown" role="alert">
+                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'This feature is unavailable to view on small screens'}
+                    </div>
+                </div>
+            </div>
+            <!-- / Message -->
+            <!-- Pedigree -->
+            <div class="row visible-lg hidden-md hidden-sm hidden-xs" style="padding:15px;">
+                <table class="table" style="margin-bottom: 0px;">
                     <thead>
                         <tr>
                             <th class="pedigree">1st generation</th>
@@ -28,26 +30,110 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="pedigree" style="vertical-align: middle;font-size:13px;font-weight:bold;" rowspan="4">DAHUD DEL CAVDILLO</td>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">TALITO ACKON CAHUAK VERDES PAMPAS</td>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">HANKKO ACKON CAHUAK</td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="4">{include dropdown_DogList_control, description => "Name of the father", placeholder => "Select or enter the name of the dog", id => "txtPedigreeFather", name => "txtPedigreeFather"}</td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree1", name => "txtPedigree1"}</td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree2", name => "txtPedigree2"}</td>
                         </tr>
                         <tr>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">HUAYNA ACKON CAHUAK</td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree3", name => "txtPedigree3"}</td>
                         </tr>
                         <tr>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">KAROLLA DEL CAVDILLO</td>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">PAMPERO ACHON CAHUAK</td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree4", name => "txtPedigree4"}</span></td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree5", name => "txtPedigree5"}</td>
                         </tr>
                         <tr>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">KAROLLA DEL CAVDILLO</td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree6", name => "txtPedigree6"}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="4">{include dropdown_DogList_control, description => "Name of the mother", placeholder => "Select or enter the name of the dog", id => "txtPedigreeMother", name => "txtPedigreeMother"}</td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree7", name => "txtPedigree7"}</td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree8", name => "txtPedigree8"}</td>
+                        </tr>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree9", name => "txtPedigree9"}</td>
+                        </tr>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree10", name => "txtPedigree10"}</td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree11", name => "txtPedigree11"}</td>
+                        </tr>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree12", name => "txtPedigree12"}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+           <!-- /Pedigree -->
         </div>
     </div>
-    <!-- /Pedigree -->
+    <!-- /Pedigree add -->
+    <!-- Pedigree view -->
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <!-- Message -->
+            <div class="row hidden-lg visible-md visible-sm visible-xs">
+                <div class="col-md-12">
+                    <div class="message-brown" role="alert">
+                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'This feature is unavailable to view on small screens'}
+                    </div>
+                </div>
+            </div>
+            <!-- / Message -->
+            <!-- Pedigree -->
+            <div class="row visible-lg hidden-md hidden-sm hidden-xs" style="padding:15px;">
+                <table class="table" style="margin-bottom: 0px;">
+                    <thead>
+                        <tr>
+                            <th class="pedigree">1st generation</th>
+                            <th class="pedigree">2nd generation</th>
+                            <th class="pedigree">3rd generation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="4"><a n:href="#" style="text-decoration: none;"><img class="user-block-thumb" src="img/referer1.jpg"><span style="color:black">DAHUD DEL CAVDILLO</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>21.10.2012</span></a></td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2"><span style="color:black">TALITO ACKON CAHUAK VERDES PAMPAS</span></td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1"><span style="color:black">HANKKO ACKON CAHUAK</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1"><a n:href="#" style="text-decoration: none;"><img class="user-block-thumb" src="img/referer2.jpg"><span style="color:black">HUAYNA ACKON CAHUAK</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>21.10.2012</span></a></td>
+                        </tr>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2"><span style="color:black">KAROLLA DEL CAVDILLO</span></td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1"><span style="color:black">PAMPERO ACHON CAHUAK</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2"><span style="color:black">KAROLLA DEL CAVDILLO</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="4"><a n:href="#" style="text-decoration: none;"><img class="user-block-thumb" src="img/referer1.jpg"><span style="color:black">DAHUD DEL CAVDILLO</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>21.10.2012</span></a></td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2"><span style="color:black">TALITO ACKON CAHUAK VERDES PAMPAS</span></td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1"><span style="color:black">HANKKO ACKON CAHUAK</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1"><a n:href="#" style="text-decoration: none;"><img class="user-block-thumb" src="img/referer2.jpg"><span style="color:black">HUAYNA ACKON CAHUAK</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>21.10.2012</span></a></td>
+                        </tr>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2"><span style="color:black">KAROLLA DEL CAVDILLO</span></td>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="1"><span style="color:black">PAMPERO ACHON CAHUAK</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pedigree" style="vertical-align: middle;" rowspan="2"><span style="color:black">KAROLLA DEL CAVDILLO</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           <!-- /Pedigree -->
+        </div>
+    </div>
+    <!-- /Pedigree view -->
 
 
     <script>
