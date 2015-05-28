@@ -7,69 +7,77 @@
         </div>
     </div>
     <!-- Pedigree add -->
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <!-- Message -->
-            <div class="row hidden-lg visible-md visible-sm visible-xs">
-                <div class="col-md-12">
-                    <div class="message-brown" role="alert">
-                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'This feature is unavailable to view on small screens'}
+    <form id="frmAddPedigree">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <!-- Message -->
+                <div class="row hidden-lg visible-md visible-sm visible-xs">
+                    <div class="col-md-12">
+                        <div class="message-brown" role="alert">
+                            <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'This feature is unavailable to view on small screens'}
+                        </div>
                     </div>
                 </div>
+                <!-- / Message -->
+                <!-- Pedigree -->
+                <div class="row visible-lg hidden-md hidden-sm hidden-xs" style="padding:15px;">
+                    <table class="table" style="margin-bottom: 0px;">
+                        <thead>
+                            <tr>
+                                <th class="pedigree">1st generation</th>
+                                <th class="pedigree">2nd generation</th>
+                                <th class="pedigree">3rd generation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="4">{include dropdown_DogList_control, description => "Name of the father", placeholder => "Select or enter the name of the dog", id => "txtPedigreeFather", name => "txtPedigreeFather"}</td>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree1", name => "txtPedigree1"}</td>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree2", name => "txtPedigree2"}</td>
+                            </tr>
+                            <tr>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree3", name => "txtPedigree3"}</td>
+                            </tr>
+                            <tr>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree4", name => "txtPedigree4"}</span></td>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree5", name => "txtPedigree5"}</td>
+                            </tr>
+                            <tr>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree6", name => "txtPedigree6"}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="4">{include dropdown_DogList_control, description => "Name of the mother", placeholder => "Select or enter the name of the dog", id => "txtPedigreeMother", name => "txtPedigreeMother"}</td>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree7", name => "txtPedigree7"}</td>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree8", name => "txtPedigree8"}</td>
+                            </tr>
+                            <tr>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree9", name => "txtPedigree9"}</td>
+                            </tr>
+                            <tr>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree10", name => "txtPedigree10"}</td>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree11", name => "txtPedigree11"}</td>
+                            </tr>
+                            <tr>
+                                <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree12", name => "txtPedigree12"}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /Pedigree -->
             </div>
-            <!-- / Message -->
-            <!-- Pedigree -->
-            <div class="row visible-lg hidden-md hidden-sm hidden-xs" style="padding:15px;">
-                <table class="table" style="margin-bottom: 0px;">
-                    <thead>
-                        <tr>
-                            <th class="pedigree">1st generation</th>
-                            <th class="pedigree">2nd generation</th>
-                            <th class="pedigree">3rd generation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="4">{include dropdown_DogList_control, description => "Name of the father", placeholder => "Select or enter the name of the dog", id => "txtPedigreeFather", name => "txtPedigreeFather"}</td>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree1", name => "txtPedigree1"}</td>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree2", name => "txtPedigree2"}</td>
-                        </tr>
-                        <tr>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree3", name => "txtPedigree3"}</td>
-                        </tr>
-                        <tr>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree4", name => "txtPedigree4"}</span></td>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree5", name => "txtPedigree5"}</td>
-                        </tr>
-                        <tr>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree6", name => "txtPedigree6"}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="4">{include dropdown_DogList_control, description => "Name of the mother", placeholder => "Select or enter the name of the dog", id => "txtPedigreeMother", name => "txtPedigreeMother"}</td>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree7", name => "txtPedigree7"}</td>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree8", name => "txtPedigree8"}</td>
-                        </tr>
-                        <tr>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree9", name => "txtPedigree9"}</td>
-                        </tr>
-                        <tr>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree10", name => "txtPedigree10"}</td>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="1">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree11", name => "txtPedigree11"}</td>
-                        </tr>
-                        <tr>
-                            <td class="pedigree" style="vertical-align: middle;" rowspan="2">{include dropdown_DogList_control, description => "Name of the dog", placeholder => "Select or enter the name of the dog", id => "txtPedigree12", name => "txtPedigree12"}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-           <!-- /Pedigree -->
         </div>
-    </div>
-    <!-- /Pedigree add -->
+        <!-- /Pedigree add -->
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <button type="submit" class="btn btn-danger btn-sm pull-right">{_ 'Edit'}</button>
+                <button type="submit" class="btn btn-default btn-sm pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
+            </div>
+        </div>
+    </form>
     <!-- Pedigree view -->
     <div class="row">
         <div class="col-md-12 col-lg-12">
@@ -130,7 +138,12 @@
                     </tbody>
                 </table>
             </div>
-           <!-- /Pedigree -->
+            <!-- /Pedigree -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <button type="submit" class="btn btn-danger btn-sm pull-right">{_ 'Edit'}</button>
         </div>
     </div>
     <!-- /Pedigree view -->
