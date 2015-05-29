@@ -114,6 +114,8 @@ $router[] = new Route('puppy-create-profile', 'puppy:puppy_create_profile');
 $router[] = new Route('puppy-edit-profile', 'puppy:puppy_edit_profile');
 $router[] = new Route('puppy-description-add', 'puppy:puppy_description_add');
 $router[] = new Route('puppy-description-edit', 'puppy:puppy_description_edit');
+// Timeline routes
+$router[] = new Route('timeline', 'timeline:timeline');
 
 
 
