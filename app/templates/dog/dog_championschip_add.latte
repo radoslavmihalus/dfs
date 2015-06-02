@@ -7,9 +7,9 @@
         <form id="frmAddTitle">
             <h2 class="text-center text-uppercase"><i class="fa fa-trophy"></i>&nbsp;&nbsp;{_ 'Add championchip'}</h2>
             <hr>
-            {include dropdown_DatePicker_control, description => "Date of Championship award", placeholder => "Please select", id => "ddlDate", name => "ddlDate"}
-            {include textbox_control, description => "Championship", placeholder => "Junior champion of Hungary", id => "txtChampionshipName", name => "txtChampionshipName"}
-            {include image_UploadPicture_control, description => "Picture", placeholder => "Select picture", id => "txtChampionshipPicture", name => "txtChampionshipPicture"}
+            {include dropdown_DatePicker_control, description => "Date of Championship award", placeholder => "Please select", id => "ddlDate", name => "ddlDate", tooltip => "Select date when the championship was awarded"}
+            {include textbox_control, description => "Championship", placeholder => "Junior champion of Hungary", id => "txtChampionshipName", name => "txtChampionshipName", tooltip => "Enter a championship (e.g. Junior Champion of Slovakia). For better clarity of your dog’s profile, please enter only one title at a time."}
+            {include image_UploadPicture_control, description => "Picture", placeholder => "Select picture", id => "txtChampionshipPicture", name => "txtChampionshipPicture", tooltip => "Upload the image (e.g. diploma received for each degree, or certificate – in JPG or PNG format). This field is optional."}
             <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
             <button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
         </form>

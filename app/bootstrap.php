@@ -107,6 +107,7 @@ $router[] = new Route('dog-coowner-list', 'dog:dog_coowner_list');
 $router[] = new Route('dog-coowner-add', 'dog:dog_coowner_add');
 $router[] = new Route('dog-coowner-edit', 'dog:dog_coowner_edit');
 $router[] = new Route('dog-planned-litter-add', 'dog:dog_planned_litter_add');
+$router[] = new Route('dog-planned-litter-edit', 'dog:dog_planned_litter_edit');
 // Puppy routes
 $router[] = new Route('puppies-for-sale', 'puppy:puppy_list');
 $router[] = new Route('puppy-profile', 'puppy:puppy_description');

@@ -7,9 +7,9 @@
         <form id="frmAddMating">
             <h2 class="text-center text-uppercase"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_ 'Add mating'}</h2>
             <hr>
-            {include dropdown_DatePicker_control, description => "Date of mating", placeholder => "Date of mating", id => "ddlDate", name => "ddlDate"}
-            {include dropdown_Lookup_control, description => "Name of the bitch", placeholder => "Name of the bitch", id => "txtMatingBitchName", name => "txtMatingBitchName"}
-            {include image_UploadPicture_control, description => "Picture of the bitch", placeholder => "Select picture", id => "txtMatingBitchPicture", name => "txtMatingBitchPicture"}
+            {include dropdown_DatePicker_control, description => "Date of mating", placeholder => "Date of mating", id => "ddlDate", name => "ddlDate", tooltip => "Enter the date, when the mating was"}
+            {include dropdown_Lookup_control, description => "Name of the bitch", placeholder => "Name of the bitch", id => "txtMatingBitchName", name => "txtMatingBitchName", tooltip => "Please enter the bitch name or select bitch from the DOGFORSHOW database for interactivity"}
+            {include image_UploadPicture_control, description => "Picture of the bitch", placeholder => "Select picture", id => "txtMatingBitchPicture", name => "txtMatingBitchPicture", tooltip => "Record the bitch picture in JPEG or PNG format. This field is optional"}
             <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
             <button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
         </form>

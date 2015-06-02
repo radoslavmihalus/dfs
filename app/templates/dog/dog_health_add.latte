@@ -7,9 +7,9 @@
         <form id="frmAddHealth">
             <h2 class="text-center text-uppercase"><i class="fa fa-heartbeat"></i>&nbsp;&nbsp;{_ 'Add health record'}</h2>
             <hr>
-            {include dropdown_DatePicker_control, description => "Date of the health record", placeholder => "Please select", id => "ddlDate", name => "ddlDate"}
-            {include textbox_control, description => "Description of the health record", placeholder => "Hip Dysplasia", id => "txtHealthName", name => "txtHealthName"}
-            {include image_UploadPicture_control, description => "Picture", placeholder => "Select picture", id => "txtHealthPicture", name => "txtHealthPicture"}
+            {include dropdown_DatePicker_control, description => "Date of the health record", placeholder => "Please select", id => "ddlDate", name => "ddlDate", tooltip => "Enter the date the health record was issued"}
+            {include textbox_control, description => "Description of the health record", placeholder => "Hip Dysplasia", id => "txtHealthName", name => "txtHealthName", tooltip => "Enter a description or type of health record (e.g. HD, ED)"}
+            {include image_UploadPicture_control, description => "Picture", placeholder => "Select picture", id => "txtHealthPicture", name => "txtHealthPicture", tooltip => "Record the picture (e.g. health report – image in JPG or PNG format). This field is optional"}
             <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
             <button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
         </form>

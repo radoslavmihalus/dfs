@@ -1,15 +1,7 @@
 {define #kennel_timeline_home}
-<div class="panel-body component col-lg-12">
-        <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-            <div class="panel-description"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{_ 'Timeline events'} 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                {include '../timeline/timeline.latte'}
-            </div>
-        </div>
-    </div>
+
+{include '../timeline/timeline.latte'}
+
 <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()

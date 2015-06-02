@@ -7,9 +7,9 @@
         <form id="frmAddWorkExam">
             <h2 class="text-center text-uppercase"><i class="fa fa-flag"></i>&nbsp;&nbsp;{_ 'Add working exam'}</h2>
             <hr>
-            {include dropdown_DatePicker_control, description => "Date exam passed", placeholder => "Please select", id => "ddlDate", name => "ddlDate"}
-            {include textbox_control, description => "Type of exam", placeholder => "SVV 1", id => "txtWorkExamName", name => "txtWorkExamName"}
-            {include image_UploadPicture_control, description => "Picture", placeholder => "Select picture", id => "txtWorkExamPicture", name => "txtWorkExamPicture"}
+            {include dropdown_DatePicker_control, description => "Date exam passed", placeholder => "Please select", id => "ddlDate", name => "ddlDate", tooltip => "Enter the date working exam completed"}
+            {include textbox_control, description => "Type of exam", placeholder => "For example IPO 1", id => "txtWorkExamName", name => "txtWorkExamName", tooltip => "Enter the type of working exam (e.g. IPO 1)"}
+            {include image_UploadPicture_control, description => "Picture", placeholder => "Select picture", id => "txtWorkExamPicture", name => "txtWorkExamPicture", tooltip => "Record the picture (e.g. diploma received in a working exam or a certificate – in JPG or PNG format. This field is optional"}
         </form>
         <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
         <button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
