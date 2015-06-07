@@ -13,6 +13,8 @@ $configurator = new Nette\Configurator;
 
 // Enable Nette Debugger for error visualisation & logging
 $configurator->enableDebugger(__DIR__ . '/../log');
+$configurator->setDebugMode(TRUE);
+//Tracy\Debugger::enable(Tracy\Debugger::PRODUCTION);
 
 // Enable RobotLoader - this will load all classes automatically
 $configurator->setTempDirectory(__DIR__ . '/../temp');

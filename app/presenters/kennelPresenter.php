@@ -14,15 +14,63 @@ class kennelPresenter extends BasePresenter {
 //        
 //    }
     private $database;
+    private $logged_in_id;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
+    }
+
+    function getField($form_name, $element_name) {
+        $fields = $this->database->query("SELECT * FROM form_fields WHERE form_name=? AND element_name=?", $form_name, $element_name);
+
+        $return = "";
+
+        foreach ($fields as $field) {
+            $return = $field->field_name;
+        }
+        return $return;
+    }
+
+    function getFieldReverse($form_name, $field_name) {
+        $fields = $this->database->query("SELECT * FROM form_fields WHERE form_name=? AND field_name=?", $form_name, $field_name);
+
+        $return = "";
+
+        foreach ($fields as $field) {
+            $return = $field->element_name;
+        }
+        return $return;
+    }
+
+    function assignFields($valuesArray, $form) {
+        $return = array();
+
+        foreach ($valuesArray as $key => $value) {
+            $field = $this->getField($form, $key);
+            if (strlen($field) > 0)
+                $return[$field] = $value;
+        }
+
+        return $return;
+    }
+
+    function assignFieldsRevers($valuesArray, $form) {
+        $return = array();
+
+        foreach ($valuesArray as $key => $value) {
+            $field = $this->getFieldReverse($form, $key);
+            if (strlen($field) > 0)
+                $return[$field] = $value;
+        }
+
+        return $return;
     }
 
     protected function startup() {
         parent::startup();
         $mysection = $this->getSession('userdata');
         $myid = $mysection->id;
+        $this->logged_in_id = $myid;
         $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
 
         foreach ($userdata as $user) {
@@ -44,15 +92,19 @@ class kennelPresenter extends BasePresenter {
 
     /*     * ******************* view default ******************** */
 
-    public function renderKennel_list()
-    {
-        $this->template->image = "http://i00.i.aliimg.com/wsphoto/v1/32309935404_1/2015-Women-Halter-Push-Up-Bikini-Sexy-None-Swimwear-Beachwear-Swimsuit-Biquini-bikinis-Set.jpg"; //"img/referer1.jpg";
-        $this->template->name = "Meno kenela";
-        $this->template->registration_date = "22.06.1980";
-        $this->template->state = "Bosna";
+    public function renderKennel_list() {
+        $rows = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id")->fetchAll();
+
+        $this->template->result = $rows;
+
+        //var_dump($rows);
+//        $this->template->image = "http://i00.i.aliimg.com/wsphoto/v1/32309935404_1/2015-Women-Halter-Push-Up-Bikini-Sexy-None-Swimwear-Beachwear-Swimsuit-Biquini-bikinis-Set.jpg"; //"img/referer1.jpg";
+//        $this->template->name = "Meno kenela";
+//        $this->template->registration_date = "22.06.1980";
+//        $this->template->state = "Bosna";
     }
 
-        public function renderDefault() {
+    public function renderDefault() {
         //$this->flashMessage("OK");
 //predanie argumentov //$this->template->albums = $this->albums->findAll()->order('artist')->order('title');
     }
@@ -106,47 +158,17 @@ class kennelPresenter extends BasePresenter {
     public function frmCreateProfileSucceeded($button) {
         $values = $button->getForm()->getValues();
 
+        var_dump($values);
+
+        $values = $this->assignFields($values, 'frmKennelCreateProfile');
+
+        $values['user_id'] = $this->logged_in_id;
+
+        $this->database->table("tbl_userkennel")->insert($values);
+
+        $userid = $this->database->getInsertId();
+
         //var_dump($values);
-    }
-
-    public function albumFormSucceeded($button) {
-//		$values = $button->getForm()->getValues();
-//		$id = (int) $this->getParameter('id');
-//		if ($id) {
-//			$this->albums->findById($id)->update($values);
-//			$this->flashMessage('The album has been updated.');
-//		} else {
-//			$this->albums->insert($values);
-//			$this->flashMessage('The album has been added.');
-//		}
-//		$this->redirect('default');
-    }
-
-    /**
-     * Delete form factory.
-     * @return Form
-     */
-    protected function createComponentDeleteForm() {
-//		$form = new Form;
-//		$form->addSubmit('cancel', 'Cancel')
-//			->onClick[] = array($this, 'formCancelled');
-//
-//		$form->addSubmit('delete', 'Delete')
-//			->setAttribute('class', 'default')
-//			->onClick[] = array($this, 'deleteFormSucceeded');
-//
-//		$form->addProtection();
-//		return $form;
-    }
-
-    public function deleteFormSucceeded() {
-//		$this->albums->findById($this->getParameter('id'))->delete();
-//		$this->flashMessage('Album has been deleted.');
-//		$this->redirect('default');
-    }
-
-    public function formCancelled() {
-        $this->redirect('default');
     }
 
 }
