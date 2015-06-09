@@ -1,0 +1,19 @@
+{define #radio_DogGenderFilter_control}
+<div class="form-group">
+    <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
+    <label class="radio-inline" style="font-size: 13px;">
+        <input type="radio" id="{$id}" name="{$name}" value="na">{_ 'Does not matter'}
+    </label>
+    <label class="radio-inline" style="font-size: 13px;">
+        <input type="radio" id="{$id}" name="{$name}" value="Dog">{_ 'Dog'}
+    </label>
+    <label class="radio-inline" style="font-size: 13px;">
+        <input type="radio" id="{$id}" name="{$name}" value="Bitch">{_ 'Bitch'}
+    </label>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+</script>
+{/define}

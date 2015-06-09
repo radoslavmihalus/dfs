@@ -1,0 +1,27 @@
+{block content}
+{includeblock '../components/dropdown_HandlerList_control.latte'}
+{includeblock '../components/dropdown_BreedList_control.latte'}
+{includeblock '../components/dropdown_CountryList_control.latte'}
+<div class="panel-body component col-lg-12 col-md-12 col-xs-12">
+    <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 10px;">
+        <div class="panel-description"><i class="fa fa-search"></i>&nbsp;&nbsp;{_ 'Search'}
+        </div>
+        <button type="button" class="navbar-toggle collapsed" style="position:absolute; top:8px; right:10px;padding:8px;margin:0px;border-color: #ddd;" data-toggle="collapse" data-target="#kennel-filter">
+            <i class="fa fa-chevron-down fa-1x"></i>
+        </button>
+    </div>
+    <div class="row">
+        <div class="collapse navbar-collapse" id="kennel-filter" role="navigation" style="padding: 0px;">
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                {include dropdown_HandlerList_control, description => "Name", placeholder => "Please select", id => "ddlHandlerList", name => "ddlHandlerList"}
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                {include dropdown_BreedList_control, description => "Breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList"}
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                {include dropdown_CountryList_control, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry"}
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

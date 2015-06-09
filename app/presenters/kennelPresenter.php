@@ -54,7 +54,7 @@ class kennelPresenter extends BasePresenter {
         return $return;
     }
 
-    function assignFieldsRevers($valuesArray, $form) {
+    function assignFieldsReverse($valuesArray, $form) {
         $return = array();
 
         foreach ($valuesArray as $key => $value) {

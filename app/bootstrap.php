@@ -13,8 +13,6 @@ $configurator = new Nette\Configurator;
 
 // Enable Nette Debugger for error visualisation & logging
 $configurator->enableDebugger(__DIR__ . '/../log');
-$configurator->setDebugMode(TRUE);
-//Tracy\Debugger::enable(Tracy\Debugger::PRODUCTION);
 
 // Enable RobotLoader - this will load all classes automatically
 $configurator->setTempDirectory(__DIR__ . '/../temp');
@@ -119,6 +117,10 @@ $router[] = new Route('puppy-description-add', 'puppy:puppy_description_add');
 $router[] = new Route('puppy-description-edit', 'puppy:puppy_description_edit');
 // Timeline routes
 $router[] = new Route('timeline', 'timeline:timeline');
+// Pages
+$router[] = new Route('general-terms', 'pages:general_terms');
+$router[] = new Route('cookies-use', 'pages:cookies_use');
+
 
 
 
