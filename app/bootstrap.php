@@ -84,6 +84,7 @@ $router[] = new Route('owner-friends-list', 'owner:owner_friends_list');
 $router[] = new Route('owner-followers-list', 'owner:owner_followers_list');
 // Dog routes
 $router[] = new Route('list-of-dogs', 'dog:dog_list');
+$router[] = new Route('best-in-show', 'dog:dog_list_bestinshow');
 $router[] = new Route('list-of-dogs-for-mating', 'dog:dog_for_mating_list');
 $router[] = new Route('add-dog', 'dog:dog_create_profile');
 $router[] = new Route('dog-profile-edit', 'dog:dog_edit_profile');
