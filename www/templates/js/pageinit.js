@@ -69,8 +69,8 @@ function ShowMessageModal(messageType, message)
     }
     if (messageType === enumNotificationType.information)
     {
-        dlgmodal = 'Information';
-        title = '<i class="fa fa-info-circle"></i>Information';
+        dlgmodal = "Information";
+        title = "Information"
     }
     if (messageType === enumNotificationType.success)
     {
