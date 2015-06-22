@@ -17,6 +17,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->template->setTranslator($translator);
     }
 
+    function translate($message) {
+        return $this->translator->translate($message);
+    }
+
 }
 
 class DFSTranslator implements Nette\Localization\ITranslator {

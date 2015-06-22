@@ -39,7 +39,6 @@ class LandingPagePresenter extends BasePresenter {
         return $return;
     }
 
-
     protected function startup() {
         parent::startup();
     }
@@ -47,6 +46,7 @@ class LandingPagePresenter extends BasePresenter {
     /*     * ******************* view default ******************** */
 
     public function renderDefault() {
+
         $this->template->states = $this->database->table("lk_countries")->order("CountryName_sk");
     }
 
@@ -82,6 +82,47 @@ class LandingPagePresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
+    protected function createComponentFrmContactForm() {
+        $form = new Form();
+        $form->addText('txtName');
+        $form->addText('txtSurname');
+        $form->addText('txtEmail');
+        $form->addTextArea('txtMessage');
+        $form->addText('txtVerify');
+        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmContactFormSucceeded');
+
+        return $form;
+    }
+
+    public function frmContactFormSucceeded($button) {
+        $values = $button->getForm()->getValues();
+
+        try {
+            $mail = new Message();
+
+            if ($values['txtVerify'] != 2) {
+                throw new \Exception("CAPTCHA is not valid.", "1");
+            } else {
+                $mail->setFrom($values['txtName'] . ' ' . $values['txtSurname'] . ' <' . $values['txtEmail'] . '>') //$values['txtEmail']) //DOGFORSHOW <info@dogforshow.com>
+                        ->addTo('info@dogforshow.com')
+                        ->addTo('radoslav.mihalus@gmail.com')
+                        ->setSubject('DOGFORSHOW - Contact Form')
+                        ->setBody('Name: ' . $values['txtName'] . '<br/>Surname: ' . $values['txtSurname'] . '<br/>Email: ' . $values['txtEmail'] . '<br/><br/>Message:<br/>' . $values['txtMessage'])
+                        ->setContentType('text/html')
+                        ->setEncoding('UTF-8');
+
+                //var_dump($mail);
+
+                $mailer = new SendmailMailer();
+                $mailer->send($mail);
+
+                $this->flashMessage("Your message was been successfully sent. We will contact you as soon as possible.");
+            }
+        } catch (\Exception $ex) {
+            $this->flashMessage($ex->getMessage());
+        }
+    }
+
     protected function createComponentFrmSignIn() {
         $form = new Form();
         $form->addText("txtName");
@@ -104,24 +145,28 @@ class LandingPagePresenter extends BasePresenter {
     }
 
     public function frmSignInSucceeded($button) {
-        $values = $button->getForm()->getValues();
+        try {
+            $values = $button->getForm()->getValues();
 
-        $values = $this->assignFields($values, 'frmSignIn');
+            $values = $this->assignFields($values, 'frmSignIn');
+            
+            $this->database->table("tbl_user")->insert($values);
+            $userid = $this->database->getInsertId();
 
-        $this->database->table("tbl_user")->insert($values);
-        $userid = $this->database->getInsertId();
+            $mail = new Message();
+            $mail->setFrom('Franta <dfs@fsofts.eu>')
+                    ->addTo($values['email'])
+                    ->setSubject('Potvrdenie registracie')
+                    ->setBody("Hello " . $values['name'] . " " . $values['surname'] . "\r\n\r\nYour password is: " . $values['password']);
 
-        $mail = new Message();
-        $mail->setFrom('Franta <dfs@fsofts.eu>')
-                ->addTo($values['email'])
-                ->setSubject('Potvrdenie registracie')
-                ->setBody("Hello " . $values['name'] . " " . $values['surname'] . "\r\n\r\nYour password is: " . $values['password']);
+            $mailer = new SendmailMailer();
+            $mailer->send($mail);
 
-        $mailer = new SendmailMailer();
-        $mailer->send($mail);
-
-        $this->flashMessage('User created successfully.');
-        //var_dump($values);
+            $this->flashMessage('User created successfully.');
+            //var_dump($values);
+        } catch (\Exception $ex) {
+            $this->flashMessage($ex->getMessage());
+        }
     }
 
     public function frmLogInSucceeded($button) {

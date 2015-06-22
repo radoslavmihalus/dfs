@@ -52,6 +52,23 @@
     </head>
 
     <body role="document" data-spy="scroll" data-target=".navbar" data-offset="12">
+        <div id="modalFlash" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalTitle"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalText"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
         <!-- Navigation DOGFORSHOW  -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -62,28 +79,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logotyp" href="#">
+                    <a class="navbar-brand logotyp" id="logo" href="#">
                         <img alt="Brand" style="width:150px;" src="www/img/logo.png">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#join" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Registration'}</a></li>
-                        <li><a href="#discover" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Who we are'}</a></li>
-                        <li><a href="#follow" class="page-scroll text-uppercase landing_navbar_typography">{_ 'How we grow'}</a></li>
-                        <li><a href="#about" class="page-scroll text-uppercase landing_navbar_typography">{_ 'What we offer'}</a></li>
-                        <li><a href="#contact" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Contact us'}</a></li>
+                        <li id="joinmeli"><a  id="joinme" href="javascript:void(0)" class="text-uppercase landing_navbar_typography">{_ 'Registration'}</a></li>
+                        <li id="whoweareli"><a id="whoweare" href="javascript:void(0)" class="text-uppercase landing_navbar_typography">{_ 'Who we are'}</a></li>
+                        <li id="howwegrowli"><a id="howwegrow" href="javascript:void(0)" class="text-uppercase landing_navbar_typography">{_ 'How we grow'}</a></li>
+                        <li id="whatweofferli"><a id="whatweoffer" href="javascript:void(0)" class="text-uppercase landing_navbar_typography">{_ 'What we offer'}</a></li>
+                        <li id="contactusli"><a id="contactus" href="javascript:void(0)" class="text-uppercase landing_navbar_typography">{_ 'Contact us'}</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        {foreach $flashes as $flash}
-            <script type="text/javascript">
-                ShowMessage(enumNotificationType.information, {$flash->message});
-            </script>
-        {/foreach}
         <!-- DOGFORSHOW landing jumbotron -->
-        <section id="join">
+        <div id="join">
             <div class="jumbotron landing_header">
                 <div class="container">
                     <div class="row">
@@ -92,18 +104,14 @@
                         </div>
                         <div class="col-md-6 container">
                             <p class="text-center text-uppercase landing_header_slogan"><strong>"{_ 'Breeding happy and healthy purebred dogs'}"</strong></p>
-                            <ul id="myTabs" class="nav nav-tabs" style="border-bottom:0px !important;">
-                                <li class="active"><a class="myTabslink" href="#login" data-toggle="tab"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_ 'Login'}</a></li>
-                                <li><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Registration'}</a></li>
-                            </ul>
                             {include '../registration/registration.latte'}
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
         <!-- Discover section -->
-        <section id="discover">
+        <div id="discover">
             <div class="container">
                 <div class="row">
                     <h1 class="heading text-center text-uppercase" style="font-size:40px !important;"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;<strong>DOGFORSHOW</strong></h1>
@@ -140,9 +148,9 @@
             </div>
             <!-- Reference Carousel -->
             <div class="section_divider"></div>
-        </section>
+        </div>
         <!-- Follow section -->
-        <section id="follow">
+        <div id="follow">
             <div class="jumbotron brown background1">
                 <div class="container">
                     <div class="row animated">
@@ -177,9 +185,9 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
         <!-- About DOGFORSHOW section -->
-        <section id="about">
+        <div id="about">
             <div class="container">
                 <div class="row">
                     <h2 class="heading text-center text-uppercase"><strong><i class="fa fa-globe"></i>&nbsp;&nbsp;{_ 'Present internationally on the right place'}</strong></h2>
@@ -214,43 +222,45 @@
                 </div>
             </div>
             <div class="section_divider"></div>
-        </section>
+        </div>
         <!-- Contact section -->
-        <section id="contact">
+        <div id="contact">
             <div class="jumbotron brown">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 brown">
                             <h2 class="heading text-center text-uppercase"><i class="fa fa-envelope"></i>&nbsp;&nbsp;<strong>{_ 'Contact us'}</strong></h2>
                             <p class="secondary_heading text-center">{_ 'Please contact us via the contact form below if you have any questions or issues or if you are interested in advertising on the DOGFORSHOW portal'}</p>
-                            <form id="Contact">
+                            {form frmContactForm}
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="txtName" placeholder="{_ 'Name'}">
+                                        <input type="text" class="form-control" id="txtName" name="txtName" placeholder="{_ 'Name'}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="txtSurname" placeholder="{_ 'Surname'}">
+                                        <input type="text" class="form-control" id="txtSurname" name="txtSurname" placeholder="{_ 'Surname'}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" id="txtEmail" placeholder="{_ 'Email'}">
+                                        <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="{_ 'Email'}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea type="text" class="form-control contact_textarea" id="txtPassword" placeholder="{_ 'Message'}"></textarea>
+                                        <textarea type="text" class="form-control contact_textarea" id="txtMessage" name="txtMessage" placeholder="{_ 'Message'}"></textarea>
                                     </div>
                                 </div>
-                            </form>
-                            <div class="col-md-6">
-                                <!--                                <div class="g-recaptcha landing_captcha" data-sitekey="6LdBSgITAAAAAPHEfML6Of8AKPJ1CTbIrI7BdEql"></div>-->
-                            </div>
-                            <div class="col-md-6">
-                                <button type="submit" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;{_ 'Send'}</button>
-                            </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        1+1&nbsp;=&nbsp;<input type="text" class="form-control" id="txtVerify" name="txtVerify" placeholder="{_ 'Verify'}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-danger btn-block" id="btnSubmit" name="btnSubmit"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;{_ 'Send'}</button>
+                                </div>
+                            {/form}
                         </div>
                         <div class="col-md-6">
                             <h2 class="heading text-center text-uppercase"><strong>{_ 'Follow us'}</strong></h2>
@@ -272,7 +282,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
@@ -282,9 +292,112 @@
         <script src="www/js/jquery.easing.min.js"></script>
         <script src="www/js/scrolling-nav.js"></script>
         <script>
-                $(function () {
-                    $('[data-toggle="tooltip"]').tooltip()
-                })
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+
+            $("#logo").click(function (event)
+            {
+                event.preventDefault();
+                var target = "#join";
+
+                $('html,body').animate({
+                    scrollTop: $(target).offset().top - 69
+                }, 800, 'easeInOutCirc');
+
+                $("#joinmeli").removeClass("active");
+                $("#whoweareli").removeClass("active");
+                $("#howwegrowli").removeClass("active");
+                $("#whatweofferli").removeClass("active");
+                $("#contactusli").removeClass("active");
+            });
+
+            $("#joinme").click(function () {
+                $("#login_link").removeClass("active");
+                $("#register_link").addClass("active");
+                $("#login").removeClass("in");
+                $("#login").removeClass("active");
+                $("#registration").addClass("in");
+                $("#registration").addClass("active");
+
+                event.preventDefault();
+                var target = "#join";
+
+                $('html,body').animate({
+                    scrollTop: $(target).offset().top - 69
+                }, 800, 'easeInOutCirc');
+
+                $("#joinmeli").addClass("active");
+                $("#whoweareli").removeClass("active");
+                $("#howwegrowli").removeClass("active");
+                $("#whatweofferli").removeClass("active");
+                $("#contactusli").removeClass("active");
+            });
+
+            $('#whoweare').click(function (event) {
+                event.preventDefault();
+                var target = "#discover";
+
+                $('html,body').animate({
+                    scrollTop: $(target).offset().top - 89
+                }, 800, 'easeInOutCirc');
+
+                $("#joinmeli").removeClass("active");
+                $("#whoweareli").addClass("active");
+                $("#howwegrowli").removeClass("active");
+                $("#whatweofferli").removeClass("active");
+                $("#contactusli").removeClass("active");
+            });
+
+            $('#howwegrow').click(function (event) {
+                event.preventDefault();
+                var target = "#follow";
+
+                $('html,body').animate({
+                    scrollTop: $(target).offset().top - 69
+                }, 800, 'easeInOutCirc');
+                $("#joinmeli").removeClass("active");
+                $("#whoweareli").removeClass("active");
+                $("#howwegrowli").addClass("active");
+                $("#whatweofferli").removeClass("active");
+                $("#contactusli").removeClass("active");
+            });
+
+            $('#whatweoffer').click(function (event) {
+                event.preventDefault();
+                var target = "#about";
+
+                $('html,body').animate({
+                    scrollTop: $(target).offset().top - 89
+                }, 800, 'easeInOutCirc');
+
+                $("#joinmeli").removeClass("active");
+                $("#whoweareli").removeClass("active");
+                $("#howwegrowli").removeClass("active");
+                $("#whatweofferli").addClass("active");
+                $("#contactusli").removeClass("active");
+            });
+
+            $('#contactus').click(function (event) {
+                event.preventDefault();
+                var target = "#contact";
+
+                $('html,body').animate({
+                    scrollTop: $(target).offset().top - 69
+                }, 800, 'easeInOutCirc');
+
+                $("#joinmeli").removeClass("active");
+                $("#whoweareli").removeClass("active");
+                $("#howwegrowli").removeClass("active");
+                $("#whatweofferli").removeClass("active");
+                $("#contactusli").addClass("active");
+            });
         </script>
+        {foreach $flashes as $flash}
+            <script type="text/javascript">
+                ShowMessageModal(enumNotificationType.information, {$flash->message});
+            </script>
+        {/foreach}
+
     </body>
 </html>

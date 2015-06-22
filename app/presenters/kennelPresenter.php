@@ -15,55 +15,11 @@ class kennelPresenter extends BasePresenter {
 //    }
     private $database;
     private $logged_in_id;
+    private $data_model;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
-    }
-
-    function getField($form_name, $element_name) {
-        $fields = $this->database->query("SELECT * FROM form_fields WHERE form_name=? AND element_name=?", $form_name, $element_name);
-
-        $return = "";
-
-        foreach ($fields as $field) {
-            $return = $field->field_name;
-        }
-        return $return;
-    }
-
-    function getFieldReverse($form_name, $field_name) {
-        $fields = $this->database->query("SELECT * FROM form_fields WHERE form_name=? AND field_name=?", $form_name, $field_name);
-
-        $return = "";
-
-        foreach ($fields as $field) {
-            $return = $field->element_name;
-        }
-        return $return;
-    }
-
-    function assignFields($valuesArray, $form) {
-        $return = array();
-
-        foreach ($valuesArray as $key => $value) {
-            $field = $this->getField($form, $key);
-            if (strlen($field) > 0)
-                $return[$field] = $value;
-        }
-
-        return $return;
-    }
-
-    function assignFieldsReverse($valuesArray, $form) {
-        $return = array();
-
-        foreach ($valuesArray as $key => $value) {
-            $field = $this->getFieldReverse($form, $key);
-            if (strlen($field) > 0)
-                $return[$field] = $value;
-        }
-
-        return $return;
+        $this->data_model = new \DataModel($database);
     }
 
     protected function startup() {
@@ -78,16 +34,6 @@ class kennelPresenter extends BasePresenter {
             $this->template->profile_type = 'Kennel';
             $this->template->profile_type_icon = 'fa fa-home'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
         }
-
-//        $translator = new DFSTranslator();
-//        $this->template->setTranslator($translator);
-//$this->setLayout('@layout.latte');
-//		if (!$this->getUser()->isLoggedIn()) {
-//			if ($this->getUser()->logoutReason === Nette\Security\IUserStorage::INACTIVITY) {
-//				$this->flashMessage('You have been signed out due to inactivity. Please sign in again.');
-//			}
-//			$this->redirect('Sign:in', array('backlink' => $this->storeRequest()));
-//		}
     }
 
     /*     * ******************* view default ******************** */
@@ -96,17 +42,6 @@ class kennelPresenter extends BasePresenter {
         $rows = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id")->fetchAll();
 
         $this->template->result = $rows;
-
-        //var_dump($rows);
-//        $this->template->image = "http://i00.i.aliimg.com/wsphoto/v1/32309935404_1/2015-Women-Halter-Push-Up-Bikini-Sexy-None-Swimwear-Beachwear-Swimsuit-Biquini-bikinis-Set.jpg"; //"img/referer1.jpg";
-//        $this->template->name = "Meno kenela";
-//        $this->template->registration_date = "22.06.1980";
-//        $this->template->state = "Bosna";
-    }
-
-    public function renderDefault() {
-        //$this->flashMessage("OK");
-//predanie argumentov //$this->template->albums = $this->albums->findAll()->order('artist')->order('title');
     }
 
     /*     * ******************* views add & edit ******************** */
@@ -141,10 +76,12 @@ class kennelPresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
+    //Create profile
+
     protected function createComponentKennelCreateProfile() {
 
         $form = new Form();
-        $form->addText('txtKennelName')->setValue("Kennel");
+        $form->addText('txtKennelName');
         $form->addText('txtKennelFciNumber');
         $form->addUpload('txtKennelProfilePicture');
         $form->addText('txtKennelWebsite');
@@ -156,19 +93,86 @@ class kennelPresenter extends BasePresenter {
     }
 
     public function frmCreateProfileSucceeded($button) {
-        $values = $button->getForm()->getValues();
+        try {
+            $values = $button->getForm()->getValues();
 
-        var_dump($values);
+            $form = $button->getForm();
 
-        $values = $this->assignFields($values, 'frmKennelCreateProfile');
+            $img = $form['txtKennelProfilePicture']->getValue();
 
-        $values['user_id'] = $this->logged_in_id;
+            //var_dump($values['txtKennelProfilePicture']);
 
-        $this->database->table("tbl_userkennel")->insert($values);
+            $target_path = "uploads/";
 
-        $userid = $this->database->getInsertId();
+            $ext = '';
+
+            $ext = explode('.', $img->name);
+
+            $length = count($ext);
+
+            $ext = $ext[$length - 1];
+
+            switch ($ext) {
+                case 'gif':
+                    $ext = 'gif';
+                    break;
+                case 'jpeg':
+                    $ext = 'jpg';
+                    break;
+                case 'jpg':
+                    $ext = 'jpg';
+                    break;
+                case 'png':
+                    $ext = 'png';
+                    break;
+                default :
+                    throw new \Exception("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+                    break;
+            }
+
+            $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+
+            $img->move("$target_path/$filename");
+
+            $values['txtKennelProfilePicture'] = "$target_path/$filename";
+
+            $values = $this->data_model->assignFields($values, 'frmKennelCreateProfile');
+            $values['user_id'] = $this->logged_in_id;
+
+            $this->database->table("tbl_userkennel")->insert($values);
+            $profileid = $this->database->getInsertId();
+
+            $this->redirectUrl("kennel-profile");
+            exit;
+        } catch (\Exception $exc) {
+            $this->flashMessage($exc->getMessage());
+        }
+
 
         //var_dump($values);
+    }
+
+    //Update profile
+
+    protected function createComponentKennelEditProfile() {
+        $data = $this->database->table("tbl_userkennel")->where("user_id=?", $this->logged_in_id);
+
+        $data = $this->data_model->assignFieldsReverse($data, "frmKennelCreateProfile");
+        
+        var_dump($data);
+        
+        $form = new Form();
+        
+        $form->setValues($data, TRUE);
+        
+        $form->addText('txtKennelName');
+        $form->addText('txtKennelFciNumber');
+        $form->addText('txtKennelWebsite');
+        $form->addTextArea('txtKennelDescription');
+        $form->addText('hidddlBreedList');
+        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateProfileSucceeded');
+
+        return $form;
     }
 
 }

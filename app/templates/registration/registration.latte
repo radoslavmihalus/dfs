@@ -1,5 +1,9 @@
+<ul id="myTabs" class="nav nav-tabs" style="border-bottom:0px !important;">
+    <li id="login_link"><a class="myTabslink" href="#login" data-toggle="tab"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_ 'Login'}</a></li>
+    <li id="register_link" class="active"><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Registration'}</a></li>
+</ul>
 <div id="myTabsContent" class="tab-content">
-    <div class="tab-pane fade" id="registration">
+    <div class="tab-pane fade in active" id="registration">
         <div class="panel panel-default registration_block transparent_white">
             <div class="panel-body">
                 <!-- DOGFORSHOW Sign up form -->
@@ -27,7 +31,7 @@
                             {/foreach}
                         </select>
                         <script type="text/javascript">
-                            $("#ddlCountries").on("change",function(){
+                            $("#ddlCountries").on("change", function () {
                                 $("#hidddlCountries").val($("#ddlCountries").val());
                             });
                         </script>
@@ -44,18 +48,18 @@
                     <div class="form-group" style="font-size:12px;color:white;">
                         By clicking Register, you agree to our <a n:href="pages:general_terms" style="color:#FDB42F;text-decoration: underline;" target="_blank" rel="nofollow">Terms</a> and you have read our <a n:href="pages:cookies_use" style="color:#FDB42F;text-decoration: underline;" target="_blank" rel="nofollow">Cookie Use</a>.
                     </div>
-                        <button type="submit" id="btnSignIn" name="btnSignIn" class="btn btn-danger btn-block"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Register'}</button>
+                    <button type="submit" id="btnSignIn" name="btnSignIn" class="btn btn-danger btn-block"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Register'}</button>
                 {/form}
                 <!--                </form>-->
             </div>
         </div>
     </div>
-    <div class="tab-pane fade in active" id="login">
+    <div class="tab-pane fade" id="login">
         <div class="panel panel-default registration_block transparent_white">
             <div class="panel-body">
                 <!-- DOGFORSHOW Sign up form -->
                 {form frmLogIn}
-                <!--<form id="frmlogIn" action="templates/scripts/login.php" method="post" role="form" data-toggle="validator">-->
+                    <!--<form id="frmlogIn" action="templates/scripts/login.php" method="post" role="form" data-toggle="validator">-->
                     <input type="hidden" name="formName" value="frmlogIn" />
                     <div class="form-group">
                         <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="{_ 'Email'}" required>
@@ -78,7 +82,7 @@
                         </div>
                     </div>
                     <button type="submit" id="btnLogin" name="btnLogin" class="btn btn-danger btn-block"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_'Login'}</button>
-                <!--</form>-->
+                    <!--</form>-->
                 {/form}
             </div>
         </div>

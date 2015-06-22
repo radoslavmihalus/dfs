@@ -15,9 +15,11 @@ class handlerPresenter extends BasePresenter {
 //    }
 
     private $database;
+    private $kmodel;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
+        $this->kmodel = new \HandlerModel($database);
     }
 
     protected function startup() {
@@ -41,6 +43,12 @@ class handlerPresenter extends BasePresenter {
 //			}
 //			$this->redirect('Sign:in', array('backlink' => $this->storeRequest()));
 //		}
+    }
+    
+    
+    public function renderHandler_list()
+    {
+        $this->template->handlers = $this->kmodel->fetchAll();
     }
 
     /*     * ******************* view default ******************** */
