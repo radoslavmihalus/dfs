@@ -13,8 +13,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $translator;
 
     function beforeRender() {
-        $translator = new DFSTranslator();
-        $this->template->setTranslator($translator);
+        $this->translator = new DFSTranslator();
+        $this->template->setTranslator($this->translator);
     }
 
     function translate($message) {

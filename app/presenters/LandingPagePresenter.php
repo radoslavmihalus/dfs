@@ -101,7 +101,7 @@ class LandingPagePresenter extends BasePresenter {
             $mail = new Message();
 
             if ($values['txtVerify'] != 2) {
-                throw new \Exception("CAPTCHA is not valid.", "1");
+                throw new \Exception("CAPTCHA is not valid.");
             } else {
                 $mail->setFrom($values['txtName'] . ' ' . $values['txtSurname'] . ' <' . $values['txtEmail'] . '>') //$values['txtEmail']) //DOGFORSHOW <info@dogforshow.com>
                         ->addTo('info@dogforshow.com')
@@ -149,7 +149,11 @@ class LandingPagePresenter extends BasePresenter {
             $values = $button->getForm()->getValues();
 
             $values = $this->assignFields($values, 'frmSignIn');
-            
+
+            if (preg_match('/[0-9]+/', $values['name']) || preg_match('/[0-9]+/', $values['surname'])) {
+                throw new \Exception($this->translator->translate("Fields Name and Surname cannot contains digits"));
+            }
+
             $this->database->table("tbl_user")->insert($values);
             $userid = $this->database->getInsertId();
 
