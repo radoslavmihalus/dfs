@@ -50,25 +50,44 @@ function ShowMessage(messageType, message, autoclose, duration) {
 function ShowMessageModal(messageType, message)
 {
     var title = "";
+    var dlgmodal = "";
 
     if (messageType === enumNotificationType.alert)
+    {
+        dlgmodal = "Alert";
         title = "Alert";
+    }
     if (messageType === enumNotificationType.confirmation)
+    {
+        dlgmodal = "Confirmation";
         title = "Confirmation";
+    }
     if (messageType === enumNotificationType.error)
+    {
+        dlgmodal = "Error";
         title = "Error";
+    }
     if (messageType === enumNotificationType.information)
+    {
+        dlgmodal = 'Information';
         title = '<i class="fa fa-info-circle"></i>Information';
+    }
     if (messageType === enumNotificationType.success)
+    {
+        dlgmodal = "Success";
         title = "Success";
+    }
     if (messageType === enumNotificationType.warning)
+    {
+        dlgmodal = "Warning";
         title = "Warning";
+    }
 
 
-    $("#modalTitle").html(title);
-    $("#modalText").html(message);
-    
-    $("#modalFlash").modal('show');
+    $("#modalTitle" + dlgmodal).html(title);
+    $("#modalText" + dlgmodal).html(message);
+
+    $("#modalFlash" + dlgmodal).modal('show');
 }
 
 

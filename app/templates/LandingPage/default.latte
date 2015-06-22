@@ -69,6 +69,94 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
+
+        <div id="modalFlashInformation" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalTitleInformation"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalTextInformation"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="modalFlashConfirmation" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalTitleConfirmation"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalTextConfirmation"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="modalFlashError" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalTitleError"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalTextError"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="modalFlashSuccess" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalTitleSuccess"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalTextSuccess"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="modalFlashWarning" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalTitleWarning"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalTextWarning"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
         <!-- Navigation DOGFORSHOW  -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -399,5 +487,12 @@
             </script>
         {/foreach}
 
+            <script type="text/javascript">
+                ShowMessageModal(enumNotificationType.confirmation, "Lol");
+                ShowMessageModal(enumNotificationType.information, "Lol");
+                ShowMessageModal(enumNotificationType.warning, "Lol");
+                ShowMessageModal(enumNotificationType.success, "Lol");
+                ShowMessageModal(enumNotificationType.error, "Lol");
+            </script>
     </body>
 </html>
