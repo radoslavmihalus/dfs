@@ -119,7 +119,7 @@ class LandingPagePresenter extends BasePresenter {
                 $this->flashMessage("Your message was been successfully sent. We will contact you as soon as possible.");
             }
         } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage());
+            $this->flashMessage($ex->getMessage(), "Error");
         }
     }
 
@@ -170,18 +170,18 @@ class LandingPagePresenter extends BasePresenter {
             $userid = $this->database->getInsertId();
 
             $mail = new Message();
-            $mail->setFrom('Franta <dfs@fsofts.eu>')
+            $mail->setFrom('DOGFORSHOW <info@dogforshow.com>')
                     ->addTo($values['email'])
-                    ->setSubject('Potvrdenie registracie')
+                    ->setSubject('Welcome to DOGFORSHOW')
                     ->setBody("Hello " . $values['name'] . " " . $values['surname'] . "\r\n\r\nYour password is: " . $values['password']);
 
             $mailer = new SendmailMailer();
             $mailer->send($mail);
 
-            $this->flashMessage('User created successfully.');
+            $this->flashMessage('Your registration has been successful.<br/><ul><li>Please check your Email for activation your user account</li><li>If you was not received an Email, please check your SPAM folder</li></ul>',"Success");
             //var_dump($values);
         } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage());
+            $this->flashMessage($ex->getMessage(), "Error");
         }
     }
 
@@ -202,7 +202,7 @@ class LandingPagePresenter extends BasePresenter {
         }
 
         if ($id == 0) {
-            $this->flashMessage("Wrong username or password.");
+            $this->flashMessage("Wrong username or password.", "Warning");
         } else {
             $this->redirect("user:user_create_profile_switcher");
         }

@@ -146,6 +146,10 @@
         </script>
         {foreach $flashes as $flash}
             <script type="text/javascript">
+                if({$flash->type} == "error")
+                {
+                    
+                }
                 ShowMessageModal(enumNotificationType.information, {$flash->message});
             </script>
         {/foreach}

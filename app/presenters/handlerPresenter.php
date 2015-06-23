@@ -32,6 +32,7 @@ class handlerPresenter extends BasePresenter {
             $this->template->fullname = $user->name . ' ' . $user->surname;
             $this->template->profile_type = 'Handler';
             $this->template->profile_type_icon = 'glyphicons glyphicons-shirt'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
+            $this->template->logged_in_id = $myid;
         }
 
 //        $translator = new DFSTranslator();

@@ -25,6 +25,7 @@ class userPresenter extends BasePresenter {
             $this->template->fullname = $user->name . ' ' . $user->surname;
             $this->template->profile_type = 'Spectator';
             $this->template->profile_type_icon = 'fa fa-eye'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
+            $this->template->logged_in_id = $myid;
         }
     }
 

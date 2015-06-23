@@ -33,6 +33,7 @@ class kennelPresenter extends BasePresenter {
             $this->template->fullname = $user->name . ' ' . $user->surname;
             $this->template->profile_type = 'Kennel';
             $this->template->profile_type_icon = 'fa fa-home'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
+            $this->template->logged_in_id = $myid;
         }
     }
 
@@ -162,15 +163,15 @@ class kennelPresenter extends BasePresenter {
         var_dump($data);
         
         $form = new Form();
-        
-        $form->setValues($data, TRUE);
-        
+                
         $form->addText('txtKennelName');
         $form->addText('txtKennelFciNumber');
         $form->addText('txtKennelWebsite');
         $form->addTextArea('txtKennelDescription');
         $form->addText('hidddlBreedList');
         $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateProfileSucceeded');
+
+        $form->setValues($data, TRUE);
 
         return $form;
     }

@@ -146,9 +146,10 @@
         <div id="modalFlashWarning" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="color: #c12e2a">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="modalTitleWarning"></h4>
+                        <i class="fa fa-exclamation-circle fa-1x" style="float:left;margin-right: 5px;font-size:22px;"></i>
+                        <h4 class="modal-title" id="modalTitleWarning" style="font-weight:bold;font-size:15px;"></h4>
                     </div>
                     <div class="modal-body">
                         <p id="modalTextWarning"></p>
@@ -487,16 +488,25 @@
         </script>
         {foreach $flashes as $flash}
             <script type="text/javascript">
-                ShowMessageModal(enumNotificationType.information, {$flash->message});
+                if ({$flash->type} == 'Error')
+                    ShowMessageModal(enumNotificationType.error, {$flash->message});
+                if ({$flash->type} == 'Warning')
+                    ShowMessageModal(enumNotificationType.warning, {$flash->message});
+                if ({$flash->type} == 'Info')
+                    ShowMessageModal(enumNotificationType.information, {$flash->message});
+                if ({$flash->type} == 'Success')
+                    ShowMessageModal(enumNotificationType.success, {$flash->message});
+                if ({$flash->type} == 'Confirmation')
+                    ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
             </script>
         {/foreach}
 
-<!--            <script type="text/javascript">
-                ShowMessageModal(enumNotificationType.confirmation, "Lol");
-                ShowMessageModal(enumNotificationType.information, "Lol");
-                ShowMessageModal(enumNotificationType.warning, "Lol");
-                ShowMessageModal(enumNotificationType.success, "Lol");
-                ShowMessageModal(enumNotificationType.error, "Lol");
-            </script>-->
+        <!--            <script type="text/javascript">
+                        ShowMessageModal(enumNotificationType.confirmation, "Lol");
+                        ShowMessageModal(enumNotificationType.information, "Lol");
+                        ShowMessageModal(enumNotificationType.warning, "Lol");
+                        ShowMessageModal(enumNotificationType.success, "Lol");
+                        ShowMessageModal(enumNotificationType.error, "Lol");
+                    </script>-->
     </body>
 </html>

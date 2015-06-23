@@ -31,6 +31,7 @@ class ownerPresenter extends BasePresenter {
             $this->template->fullname = $user->name . ' ' . $user->surname;
             $this->template->profile_type = 'Owner';
             $this->template->profile_type_icon = 'fa fa-user'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
+            $this->template->logged_in_id = $myid;
         }
 
 //        $translator = new DFSTranslator();

@@ -1,63 +1,67 @@
 <div class="container-fluid user-menu" >
     <div class="collapse navbar-collapse" id="user-menu" role="navigation" style="padding: 0px;">
-        <a href="kennel-profile">
-            <div class="user-block">
-                <img class="user-block-thumb" src="img/referer1.jpg" />
-                <p class="user-block-type"><i class="{$profile_type_icon}"></i>&nbsp;&nbsp;</i>{_$profile_type}</p>
-<!--                <p class="user-block-type"><i class="fa fa-eye"></i>&nbsp;&nbsp;</i>{_'Spectator'}</p>
-                <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>{_'Owner of purebred dog'}</p>
-                <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>{_'Handler'}</p>-->
-                <p class="text-uppercase user-block-name" id="userName">{$fullname}</p>
-            </div>
-        </a>
+        {if $logged_in_id>0}
+            <a href="kennel-profile">
+                <div class="user-block">
+                    <img class="user-block-thumb" src="img/referer1.jpg" />
+                    <p class="user-block-type"><i class="{$profile_type_icon}"></i>&nbsp;&nbsp;</i>{_$profile_type}</p>
+    <!--                <p class="user-block-type"><i class="fa fa-eye"></i>&nbsp;&nbsp;</i>{_'Spectator'}</p>
+                    <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>{_'Owner of purebred dog'}</p>
+                    <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>{_'Handler'}</p>-->
+                    <p class="text-uppercase user-block-name" id="userName">{$fullname}</p>
+                </div>
+            </a>
+        {/if}
         <ul class="nav nav-stacked user-menu-links" id="accordion1">
-            <li class="panel"> 
-                <a data-toggle="collapse" data-parent="#accordion1" href="#ProfileMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'Profile settings'}</a>
-                <ul id="ProfileMenu" class="collapse panel-collapse">
-                    <li>
-                        <a n:href="user:user_create_profile_switcher"><i class="fa fa-exchange"></i>&nbsp;&nbsp;Switch profile</a>
-                    </li>
-                    <li>
-                        <a n:href="kennel:kennel_edit_profile"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Edit profile</a>
-                    </li>
-                    <li>
-                        <a n:href="#"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete profile</a>
-                    </li>
-                </ul>
-            </li>
-            <!-- Kennel menu -->
-            <li class="panel"> 
-                <a data-toggle="collapse" data-parent="#accordion1" href="#KennelMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
-                <ul id="KennelMenu" class="collapse panel-collapse">
-                    <li>
-                        <a n:href="kennel:kennel_profile_home"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Home</a>
-                    </li>
-                    <li>
-                        <a n:href="kennel:kennel_awards_list"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;Awards</a>
-                    </li>
-                    <li>
-                        <a n:href="kennel:kennel_dog_list"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs</a>
-                    </li>
-                    <li>
-                        <a n:href=""><i class="fa fa-calendar"></i>&nbsp;&nbsp;Planned litters</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-paw"></i>&nbsp;&nbsp;Puppies for sale</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;Photos</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;Videos</a>
-                    </li>
-                    <li>
-                        <a n:href="kennel:kennel_friends_list"><i class="fa fa-users"></i>&nbsp;&nbsp;Friends</a>
-                    </li>
-                    <li>
-                        <a n:href="kennel:kennel_followers_list"><i class="fa fa-rss"></i>&nbsp;&nbsp;Followers</a>
-                    </li>
-                </ul>
-            </li>
+            {if $logged_in_id>0}
+                <li class="panel">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#ProfileMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'Profile settings'}</a>
+                    <ul id="ProfileMenu" class="collapse panel-collapse">
+                        <li>
+                            <a n:href="user:user_create_profile_switcher"><i class="fa fa-exchange"></i>&nbsp;&nbsp;Switch profile</a>
+                        </li>
+                        <li>
+                            <a n:href="kennel:kennel_edit_profile"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Edit profile</a>
+                        </li>
+                        <li>
+                            <a n:href="#"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete profile</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Kennel menu -->
+                <li class="panel">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#KennelMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
+                    <ul id="KennelMenu" class="collapse panel-collapse">
+                        <li>
+                            <a n:href="kennel:kennel_profile_home"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Home</a>
+                        </li>
+                        <li>
+                            <a n:href="kennel:kennel_awards_list"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;Awards</a>
+                        </li>
+                        <li>
+                            <a n:href="kennel:kennel_dog_list"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs</a>
+                        </li>
+                        <li>
+                            <a n:href=""><i class="fa fa-calendar"></i>&nbsp;&nbsp;Planned litters</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-paw"></i>&nbsp;&nbsp;Puppies for sale</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;Photos</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;Videos</a>
+                        </li>
+                        <li>
+                            <a n:href="kennel:kennel_friends_list"><i class="fa fa-users"></i>&nbsp;&nbsp;Friends</a>
+                        </li>
+                        <li>
+                            <a n:href="kennel:kennel_followers_list"><i class="fa fa-rss"></i>&nbsp;&nbsp;Followers</a>
+                        </li>
+                    </ul>
+                </li>
+            {/if}
             <!-- Owner menu -->
             <!--            <li class="panel"> 
                             <a data-toggle="collapse" data-parent="#accordion1" href="#OwnerMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>

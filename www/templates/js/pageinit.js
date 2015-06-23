@@ -52,11 +52,11 @@ function ShowMessageModal(messageType, message)
     var title = "";
     var dlgmodal = "";
 
-    if (messageType === enumNotificationType.alert)
-    {
-        dlgmodal = "Alert";
-        title = "Alert";
-    }
+//    if (messageType === enumNotificationType.alert)
+//    {
+//        dlgmodal = "Alert";
+//        title = "Alert";
+//    }
     if (messageType === enumNotificationType.confirmation)
     {
         dlgmodal = "Confirmation";
