@@ -148,11 +148,23 @@ class LandingPagePresenter extends BasePresenter {
         try {
             $values = $button->getForm()->getValues();
 
+
+            $exception = '<ul>';
+
+            if ($values['txtPassword'] != $values['txtConfirmPassword']) {
+                $exception .= "<li>Password and confirm password does not match</li>";
+            }
+
             $values = $this->assignFields($values, 'frmSignIn');
 
             if (preg_match('/[0-9]+/', $values['name']) || preg_match('/[0-9]+/', $values['surname'])) {
-                throw new \Exception($this->translator->translate("Fields Name and Surname cannot contains digits"));
+                $exception .= "<li>Fields Name and Surname cannot contains digits</li>";
             }
+
+            $exception .= '</ul>';
+
+            if ($exception != '<ul></ul>')
+                throw new \Exception($exception);
 
             $this->database->table("tbl_user")->insert($values);
             $userid = $this->database->getInsertId();
