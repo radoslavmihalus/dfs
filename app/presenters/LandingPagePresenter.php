@@ -46,8 +46,7 @@ class LandingPagePresenter extends BasePresenter {
     /*     * ******************* view default ******************** */
 
     public function renderDefault() {
-
-        $this->template->states = $this->database->table("lk_countries")->order("CountryName_sk");
+        
     }
 
     /*     * ******************* views add & edit ******************** */
@@ -124,13 +123,21 @@ class LandingPagePresenter extends BasePresenter {
     }
 
     protected function createComponentFrmSignIn() {
+        $result = $this->database->table("lk_countries")->order("CountryName_sk");
+        $items = array();
+
+        foreach ($result as $row) {
+            $items[$row->CountryName_en] = $row->CountryName_en;
+        }
+
         $form = new Form();
-        $form->addText("txtName");
-        $form->addText("txtSurname");
-        $form->addText("txtEmail");
-        $form->addText("hidddlCountries");
-        $form->addPassword("txtPassword");
-        $form->addPassword("txtConfirmPassword");
+        $form->addText("txtName")->setRequired();
+        $form->addText("txtSurname")->setRequired();
+        $form->addText("txtEmail")->setRequired();
+        $form->addText("hidddlCountries")->setRequired();
+        $form->addSelect("ddlCountries")->setItems($items);
+        $form->addPassword("txtPassword")->setRequired();
+        $form->addPassword("txtConfirmPassword")->setRequired();
         $form->addSubmit('btnSignIn', 'Register')->onClick[] = array($this, 'frmSignInSucceeded');
         return $form;
     }
@@ -178,7 +185,7 @@ class LandingPagePresenter extends BasePresenter {
             $mailer = new SendmailMailer();
             $mailer->send($mail);
 
-            $this->flashMessage('Your registration has been successful.<br/><ul><li>Please check your Email for activation your user account</li><li>If you was not received an Email, please check your SPAM folder</li></ul>',"Success");
+            $this->flashMessage('<ul><li><strong>Your registration has been successful</strong></li><li>Please check your Email for activation your user account</li><li>If you was not received an Email, please check your SPAM folder</li></ul>', "Success");
             //var_dump($values);
         } catch (\Exception $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
