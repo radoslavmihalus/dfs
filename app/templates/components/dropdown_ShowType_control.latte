@@ -1,16 +1,16 @@
 {define #dropdown_ShowType_control}
 <div class="form-group">
     <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
-    <select class="form-control font_size_13px" name="{$name}" id="{$id}" required>
+    <select class="form-control font_size_13px" n:attr="name => $name" id="{$id}" required>
         <option value="" selected disabled>{_ 'Please select'}</option>
-        <option>Regional</option>
-        <option>Club</option>
-        <option>Special CAC</option>
-        <option>National CAC</option>
-        <option>National CAC, NW</option>
-        <option>International CACIB</option>
-        <option>European show</option>
-        <option>World show</option>
+        <option value="Regional">{_'Regional'}</option>
+        <option value="Club">{_'Club'}</option>
+        <option value="Special CAC">{_'Special CAC'}</option>
+        <option value="National CAC">{_'National CAC'}</option>
+        <option value="National CAC, NW">{_'National CAC, NW'}</option>
+        <option value="International CACIB">{_'International CACIB'}</option>
+        <option value="European show">{_'European show'}</option>
+        <option value="World show">{_'World show'}</option>
     </select>
 </div>
 {/define}

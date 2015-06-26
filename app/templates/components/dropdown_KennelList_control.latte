@@ -10,10 +10,34 @@
 </script>
 <script type="text/javascript">
     $("#tags-input-" + {$id}).selectivity({
-        items: ['La Rosa de Inca', 'Arroyo Blanco', 'De Alfa Fiera'],
-        multiple: true,
+        ajax: {
+            url: 'http://dfs.fsofts.eu/www/templates/scripts/ajax_kenels.php',
+            dataType: 'json',
+            minimumInputLength: 0,
+            quietMillis: 250,
+            params: function (term, offset) {
+                // GitHub uses 1-based pages with 30 results, by default
+                return {
+                    q: term,
+                    page: offset
+                };
+            },
+            processItem: function (item) {
+                return {
+                    id: item.name,
+                    text: item.name,
+                    description: item.name
+                };
+            },
+            results: function (data) {
+                return {
+                    results: data.items
+                };
+            }
+        },
+        multiple: false,
         tokenSeparators: [',']
-                //value: ['Dogo Argentino']
+        //value: ['Dogo Argentino']
     });
 </script>
 {/define}

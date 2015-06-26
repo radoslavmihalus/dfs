@@ -35,6 +35,25 @@ class kennelPresenter extends BasePresenter {
             $this->template->profile_type_icon = 'fa fa-home'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
             $this->template->logged_in_id = $myid;
         }
+
+        $result = $this->database->table("tbl_breeds");
+
+        $i = 0;
+
+        $dditems = "";
+
+        foreach ($result as $row) {
+            if ($i == 0)
+                $dditems .= $row->BreedName;
+            else
+                $dditems .= "," . $row->BreedName;
+
+            $i++;
+        }
+
+        //echo $dditems;
+
+        $this->template->dd_breeds_items = $dditems;
     }
 
     /*     * ******************* view default ******************** */
@@ -159,11 +178,11 @@ class kennelPresenter extends BasePresenter {
         $data = $this->database->table("tbl_userkennel")->where("user_id=?", $this->logged_in_id);
 
         $data = $this->data_model->assignFieldsReverse($data, "frmKennelCreateProfile");
-        
+
         var_dump($data);
-        
+
         $form = new Form();
-                
+
         $form->addText('txtKennelName');
         $form->addText('txtKennelFciNumber');
         $form->addText('txtKennelWebsite');
