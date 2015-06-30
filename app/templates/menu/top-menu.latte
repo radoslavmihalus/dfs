@@ -1,6 +1,11 @@
 <nav class="navbar-default navbar-fixed-top">
     <div class="container-fluid top-menu" style="height:50px;">
-        <button type="button" data-toggle="modal" data-target="#Registration" class="btn btn-block btn-danger btn-lg">Registration | Login</button>
+        <div class="col-md-6 col-sm-6 col-xs-6" style="padding-top: 10px;">
+        <button type="button" data-toggle="modal" data-target="#Registration" class="btn btn-block btn-danger btn-sm"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Registration'}</button>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6" style="padding-top: 10px;">
+        <button type="button" data-toggle="modal" data-target="#Login" class="btn btn-block btn-default btn-sm"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_ 'Login'}</button>
+        </div>
     </div>
     <div class="modal fade" id="Registration">
         <div class="modal-dialog">
