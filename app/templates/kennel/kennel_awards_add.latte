@@ -7,9 +7,9 @@
         <form id="frmAddAward">
             <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_ 'Add award'}</h2>
             <hr>
-            {include dropdown_DatePicker_control, description => "Date of the award", placeholder => "Please select", id => "ddlDate", name => "ddlDate"}
-            {include textbox_control, description => "Name of the award", placeholder => "Name of the award", id => "txtAwardName", name => "txtAwardName"}
-            {include image_UploadPicture_control, description => "Picture", placeholder => "Select picture", id => "txtAwardPicture", name => "txtAwardPicture"}
+            {include dropdown_DatePicker_control, _form => $_form, description => "Date of the award", placeholder => "Please select", id => "ddlDate", name => "ddlDate"}
+            {include textbox_control, _form => $_form, description => "Name of the award", placeholder => "Name of the award", id => "txtAwardName", name => "txtAwardName"}
+            {include image_UploadPicture_control, _form => $_form, description => "Picture", placeholder => "Select picture", id => "txtAwardPicture", name => "txtAwardPicture"}
             <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
             <button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
     </div>

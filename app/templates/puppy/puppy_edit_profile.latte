@@ -17,16 +17,16 @@
             <div class="tab-pane fade in active" id="informations">
                 <div class="panel panel-default registration_block transparent_white">
                     <div class="panel-body">
-                        <form id="frmEditPuppyProfile">
+                        {form puppyEditProfile}
                             <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about puppy'}</span>
                             <hr>
-                            {include dropdown_PlannedLitter_control, description => "Select your planned litter", placeholder => "Please select", id => "ddlPlannedLitter", name => "ddlPlannedLitter", tooltip => "Please add your planned litter in the kennel menu"}
-                            {include radio_DogGender_control, description => "Gender", placeholder => "Gender", id => "radGender", name => "radGender", tooltip => "Select the puppy’s gender"}
-                            {include textbox_control, description => "Puppy's name", placeholder => "Puppy's name", id => "txtPuppyName", name => "txtPuppyName", tooltip => "Enter the puppy’s name"}
-                            {include dropdown_DatePicker_control, description => "Date of birth", placeholder => "Date of birth", id => "ddlDate", name => "ddlDate", tooltip => "Day, month and year of puppy’s birth"}
-                            {include dropdown_CountryList_control, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry", tooltip => "Country in which the puppy is currently located"}
+                            {include dropdown_PlannedLitter_control, _form => $_form, description => "Select your planned litter", placeholder => "Please select", id => "ddlPlannedLitter", name => "ddlPlannedLitter", tooltip => "Please add your planned litter in the kennel menu"}
+                            {include radio_DogGender_control, _form => $_form, description => "Gender", placeholder => "Gender", id => "radGender", name => "radGender", tooltip => "Select the puppy’s gender"}
+                            {include textbox_control, _form => $_form, description => "Puppy's name", placeholder => "Puppy's name", id => "txtPuppyName", name => "txtPuppyName", tooltip => "Enter the puppy’s name"}
+                            {include dropdown_DatePicker_control, _form => $_form, description => "Date of birth", placeholder => "Date of birth", id => "ddlDate", name => "ddlDate", tooltip => "Day, month and year of puppy’s birth"}
+                            {include dropdown_CountryList_control, _form => $_form, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry", tooltip => "Country in which the puppy is currently located"}
                             <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
-                        </form>
+                        {/form}
                     </div>
                 </div>
             </div>
