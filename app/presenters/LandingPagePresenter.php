@@ -49,32 +49,6 @@ class LandingPagePresenter extends BasePresenter {
         
     }
 
-    /*     * ******************* views add & edit ******************** */
-
-    public function renderAdd() {
-        //$this['albumForm']['save']->caption = 'Add';
-    }
-
-    public function renderEdit($id = 0) {
-//		$form = $this['albumForm'];
-//		if (!$form->isSubmitted()) {
-//			$album = $this->albums->findById($id);
-//			if (!$album) {
-//				$this->error('Record not found');
-//			}
-//			$form->setDefaults($album);
-//		}
-    }
-
-    /*     * ******************* view delete ******************** */
-
-    public function renderDelete($id = 0) {
-//		$this->template->album = $this->albums->findById($id);
-//		if (!$this->template->album) {
-//			$this->error('Record not found');
-//		}
-    }
-
     /*     * ******************* component factories ******************** */
 
     /**
@@ -123,9 +97,10 @@ class LandingPagePresenter extends BasePresenter {
     }
 
     protected function createComponentFrmSignIn() {
-        $result = $this->database->table("lk_countries")->order("CountryName_sk");
+        $result = $this->database->table("lk_countries")->order("CountryName_en");
         $items = array();
 
+        $items[] = "Please select state ...";
         foreach ($result as $row) {
             $items[$row->CountryName_en] = $row->CountryName_en;
         }
@@ -185,45 +160,32 @@ class LandingPagePresenter extends BasePresenter {
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Welcome to DOGFORSHOW</title>
-        <style type="text/css">
-        body {margin: 0; padding: 0; min-width: 100%!important;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#8C8067;}
-        .content {width: 90%;margin-top:10px;padding:20px; max-width: 600px;}  
-		.content p {font-size:15px;}
-		.footer {width: 90%;margin-top:10px;padding:20px; max-width: 600px;color:white;} 
-		.footer p {font-size:12px;}
-		h1 {font-size:23px;color:#8C8067;font-family: "Roboto Condensed", sans-serif;}
-		a.activationlink:active {text-decoration:none;padding: 10px 16px;font-size: 18px;line-height: 1.3333333;border-radius: 6px;white-space: nowrap;vertical-align: middle;cursor: pointer;font-family: "Roboto Condensed", sans-serif;background-color: #c12e2a;color:white;text-transform:uppercase;}
-		a.activationlink:link {text-decoration:none;padding: 10px 16px;font-size: 18px;line-height: 1.3333333;border-radius: 6px;white-space: nowrap;vertical-align: middle;cursor: pointer;font-family: "Roboto Condensed", sans-serif;background-color: #c12e2a;color:white;text-transform:uppercase;}
-		a.activationlink:visited {text-decoration:none;padding: 10px 16px;font-size: 18px;line-height: 1.3333333;border-radius: 6px;white-space: nowrap;vertical-align: middle;cursor: pointer;font-family: "Roboto Condensed", sans-serif;background-color: #c12e2a;color:white;text-transform:uppercase;}
-		a.activationlink:hover {text-decoration:none;padding: 10px 16px;font-size: 18px;line-height: 1.3333333;border-radius: 6px;white-space: nowrap;vertical-align: middle;cursor: pointer;font-family: "Roboto Condensed", sans-serif;background-color: #c12e2a;color:white;text-transform:uppercase;}
-        </style>
-		<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:300" rel="stylesheet" type="text/css">
     </head>
-    <body bgcolor="#f6f8f1">
+    <body bgcolor="#f6f8f1" style="margin: 0; padding: 0; min-width: 100%!important;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#8C8067;" >
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
-                    <table class="content" bgcolor="white" align="center" cellpadding="0" cellspacing="0" border="0">
+                    <table style="padding-bottom:20px; margin-top:10px; width: 90%; max-width: 600px;" class="content" bgcolor="white" align="center" cellpadding="10" cellspacing="0" border="0">
                         <tr>
                             <td align="center" style="border-bottom:#8C8067 1px solid">
-                                <h1>Hello <strong>' . $values['name'] . '</strong></h1>
+                                <h1 style="font-size:23px;color:#8C8067;">Hello ' . $values['name'] . '</h1>
                             </td>
                         </tr>
 						<tr>
                             <td>
-                                <p>Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link - ACTIVATE ACCOUNT.</p>
+                                <p style="font-size:15px;">Thanks for your registration on DOGFORSHOW. Please activate your account by clicking on the following link</p>
                             </td>
                         </tr>
-						<tr>
+			<tr>
                             <td align="center">
-                                <p><a href="http://dfs.fsofts.eu" class="activationlink">Activate account</a></p>
+                                <p style="font-size:15px;"><a href="http://dfs.fsofts.eu" style="padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">Activate account</a></p>
                             </td>
                         </tr>
                     </table>
-					<table class="footer" align="center" cellpadding="0" cellspacing="0" border="0">
+                    <table style="margin-top: 10px; width: 90%; max-width: 600px;color:white;" align="center" cellpadding="10" cellspacing="0" border="0">
                         <tr>
                             <td align="center">
-                                <p>This email was automatically sent by DOGFORSHOW system. Please do not reply on it.</p>
+                                <p style="font-size:12px;">This email was automatically sent by DOGFORSHOW system. Please dont reply on this email</p>
                             </td>
                         </tr>
                     </table>

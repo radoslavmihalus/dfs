@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="description" content="International social network for purebred dogs,kennels,owners,handlers,dog for mating,puppies for sale,planned litters,titles,show results,photos,videos">
+        <link href="www/css/home.css" rel="stylesheet">
         <!-- Google font definition -->
         <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300|500' rel='stylesheet' type='text/css'>
         <!-- Bootstrap definition -->
@@ -87,6 +88,114 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+        <div id="modalFlash" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalTitle"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalText"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+        <div id="modalFlashInformation" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="color:#a5987f;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <i class="fa fa-info-circle fa-1x" style="float:left;margin-right: 5px;font-size:22px;"></i>
+                        <h4 class="modal-title" id="modalTitleInformation" style="font-weight:bold;font-size:15px;"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalTextInformation"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="modalFlashConfirmation" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="color: #FDB42F;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <i class="fa fa-question-circle fa-1x" style="float:left;margin-right: 5px;font-size:22px;"></i>
+                        <h4 class="modal-title" id="modalTitleConfirmation" style="font-weight:bold;font-size:15px;"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalTextConfirmation"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="modalFlashError" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="color: #c12e2a">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <i class="fa fa-times-circle fa-1x" style="float:left;margin-right: 5px;font-size:22px;"></i>
+                        <h4 class="modal-title" id="modalTitleError" style="font-weight:bold;font-size:15px;"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalTextError"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="modalFlashSuccess" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="color: #45B219">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <i class="fa fa-check-circle fa-1x" style="float:left;margin-right: 5px;font-size:22px;"></i>
+                        <h4 class="modal-title" id="modalTitleSuccess" style="font-weight:bold;font-size:15px;"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalTextSuccess"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="modalFlashWarning" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="color: #c12e2a">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <i class="fa fa-exclamation-circle fa-1x" style="float:left;margin-right: 5px;font-size:22px;"></i>
+                        <h4 class="modal-title" id="modalTitleWarning" style="font-weight:bold;font-size:15px;"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalTextWarning"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
         <!-- top-menu -->
         {include 'menu/top-menu.latte'}
@@ -107,7 +216,16 @@
         <!-- Scripts -->
         {foreach $flashes as $flash}
             <script type="text/javascript">
-                ShowMessageModal(enumNotificationType.information, {$flash->message});
+                if ({$flash->type} == 'Error')
+                    ShowMessageModal(enumNotificationType.error, {$flash->message});
+                if ({$flash->type} == 'Warning')
+                    ShowMessageModal(enumNotificationType.warning, {$flash->message});
+                if ({$flash->type} == 'Info')
+                    ShowMessageModal(enumNotificationType.information, {$flash->message});
+                if ({$flash->type} == 'Success')
+                    ShowMessageModal(enumNotificationType.success, {$flash->message});
+                if ({$flash->type} == 'Confirmation')
+                    ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
             </script>
         {/foreach}
     </body>

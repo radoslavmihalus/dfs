@@ -1,9 +1,9 @@
 <ul id="myTabs" class="nav nav-tabs" style="border-bottom:0px !important;">
-    <li id="login_link"><a class="myTabslink" href="#login" data-toggle="tab"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_ 'Login'}</a></li>
-    <li id="register_link" class="active"><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Registration'}</a></li>
+    <li id="login_link" class="active"><a class="myTabslink" href="#login" data-toggle="tab"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_ 'Login'}</a></li>
+    <li id="register_link"><a class="myTabslink" href="#registration" data-toggle="tab"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Registration'}</a></li>
 </ul>
 <div id="myTabsContent" class="tab-content">
-    <div class="tab-pane fade in active" id="registration">
+    <div class="tab-pane fade" id="registration">
         <div class="panel panel-default registration_block transparent_white">
             <div class="panel-body">
                 <!-- DOGFORSHOW Sign up form -->
@@ -45,13 +45,13 @@
                     <div class="form-group" style="font-size:12px;color:white;">
                         By clicking Register, you agree to our <a n:href="pages:general_terms" style="color:#FDB42F;text-decoration: underline;" target="_blank" rel="nofollow">Terms</a> and you have read our <a n:href="pages:cookies_use" style="color:#FDB42F;text-decoration: underline;" target="_blank" rel="nofollow">Cookie Use</a>.
                     </div>
-                    <button type="submit" id="btnSignIn" name="btnSignIn" class="btn btn-danger btn-block"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Register'}</button>
+                    <button type="submit" id="btnSignIn" n:name=btnSignIn class="btn btn-danger btn-block"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Register'}</button>
                 {/form}
                 <!--                </form>-->
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="login">
+    <div class="tab-pane fade in active" id="login">
         <div class="panel panel-default registration_block transparent_white">
             <div class="panel-body">
                 <!-- DOGFORSHOW Sign up form -->
@@ -59,17 +59,17 @@
                     <!--<form id="frmlogIn" action="templates/scripts/login.php" method="post" role="form" data-toggle="validator">-->
                     <input type="hidden" name="formName" value="frmlogIn" />
                     <div class="form-group">
-                        <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="{_ 'Email'}" required>
+                        <input type="email" class="form-control" id="txtEmail" n:name=txtEmail placeholder="{_ 'Email'}" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="{_ 'Password'}" required>
+                        <input type="password" class="form-control" id="txtPassword" n:name=txtPassword placeholder="{_ 'Password'}" required>
                     </div>
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-6" style="margin-bottom: 10px;">
                                 <div class="checkbox" style="margin-top:0px;color:white;font-size: 14px;">
                                     <label>
-                                        <input type="checkbox" id="chkRemember" name="chkRemember" value="remember">{_ 'Remember me'}
+                                        <input type="checkbox" id="chkRemember" n:name=chkRemember value="remember">{_ 'Remember me'}
                                     </label>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" id="btnLogin" name="btnLogin" class="btn btn-danger btn-block"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_'Login'}</button>
+                    <button type="submit" id="btnLogin" n:name=btnLogin class="btn btn-danger btn-block"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_'Login'}</button>
                     <!--</form>-->
                 {/form}
             </div>
