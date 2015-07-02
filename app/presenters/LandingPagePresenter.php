@@ -43,6 +43,12 @@ class LandingPagePresenter extends BasePresenter {
         parent::startup();
     }
 
+    public function renderLogout() {
+        $this->session->destroy();
+        $this->flashMessage("You have been successsfully logged out");
+        $this->redirect("default");
+    }
+
     /*     * ******************* view default ******************** */
 
     public function renderDefault() {
@@ -127,12 +133,16 @@ class LandingPagePresenter extends BasePresenter {
     }
 
     public function frmSignInSucceeded($button) {
+        $is_error = FALSE;
         try {
             $values = $button->getForm()->getValues();
 
 
             $exception = '<ul>';
 
+            if($values['ddlCountries'] == 0)
+                $exception .= "<li>Please select state</li>";
+            
             if ($values['txtPassword'] != $values['txtConfirmPassword']) {
                 $exception .= "<li>Password and confirm password does not match</li>";
             }
@@ -202,7 +212,10 @@ class LandingPagePresenter extends BasePresenter {
             //var_dump($values);
         } catch (\Exception $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
+            $is_error = TRUE;
         }
+        if (!$is_error)
+            $this->redirect("LandingPage:default");
     }
 
     public function frmLogInSucceeded($button) {

@@ -47,7 +47,7 @@ class userPresenter extends BasePresenter {
 
             foreach ($userdata as $user) {
                 $this->template->fullname = $user->name . ' ' . $user->surname;
-                $this->template->profile_type = 'Spectator';
+                $this->template->profile_type = 'User account';
                 $this->template->profile_type_icon = 'fa fa-eye'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
                 $this->template->logged_in_id = $myid;
             }
@@ -95,6 +95,12 @@ class userPresenter extends BasePresenter {
      * @return Form
      */
     protected function createComponentUserEditAccount() {
+        $result = $this->database->table("lk_countries")->order("CountryName_en");
+        $countries = array();
+
+        foreach ($result as $row) {
+            $countries[$row->CountryName_en] = $row->CountryName_en;
+        }
 
         $yt = date('Y');
         $years = array();
@@ -118,6 +124,7 @@ class userPresenter extends BasePresenter {
             $zip = $user->zip;
             $phone = $user->phone;
             $year_of_birth = $user->year_of_birth;
+            $country = $user->state;
         }
 
         $form = new Form();
@@ -127,6 +134,7 @@ class userPresenter extends BasePresenter {
                 ->setRequired('Please enter.')->setValue($surname);
         $form->addText('txtEmail')
                 ->setRequired('Please enter.')->setDisabled()->setValue($email);
+        $form->addSelect('ddlCountries')->setItems($countries)->setValue($country)->setRequired();
         $form->addText('txtAddress')->setValue($address);
         $form->addText('txtTown')->setValue($city);
         $form->addText('txtZip')->setValue($zip);
@@ -198,9 +206,9 @@ class userPresenter extends BasePresenter {
                 $pass = $user->password;
             }
 
-            if($values['txtOldPassword']!=$pass)
+            if ($values['txtOldPassword'] != $pass)
                 throw new \ErrorException("You have entered wrong old password.");
-            
+
             if ($values['txtNewPassword'] != $values['txtConfirmPassword'])
                 throw new \ErrorException("Password and confirm password does not match.");
 
