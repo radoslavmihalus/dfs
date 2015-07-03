@@ -90,7 +90,7 @@ class LandingPagePresenter extends BasePresenter {
                         ->setContentType('text/html')
                         ->setEncoding('UTF-8');
 
-                //var_dump($mail);
+//var_dump($mail);
 
                 $mailer = new SendmailMailer();
                 $mailer->send($mail);
@@ -140,9 +140,9 @@ class LandingPagePresenter extends BasePresenter {
 
             $exception = '<ul>';
 
-            if($values['ddlCountries'] == 0)
+            if ($values['ddlCountries'] == 0)
                 $exception .= "<li>Please select state</li>";
-            
+
             if ($values['txtPassword'] != $values['txtConfirmPassword']) {
                 $exception .= "<li>Password and confirm password does not match</li>";
             }
@@ -183,7 +183,7 @@ class LandingPagePresenter extends BasePresenter {
                         </tr>
 						<tr>
                             <td>
-                                <p style="font-size:15px;">Thanks for your registration on DOGFORSHOW. Please activate your account by clicking on the following link</p>
+                                <p style="font-size:15px;">Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link</p>
                             </td>
                         </tr>
 			<tr>
@@ -209,7 +209,7 @@ class LandingPagePresenter extends BasePresenter {
             $mailer->send($mail);
 
             $this->flashMessage('<ul><li><strong>Your registration has been successfully completed</strong></li><li>Please check your Email for your user acccount activation</li><li>If you have not received the Email yet, please also check your SPAM folder</li></ul>', "Success");
-            //var_dump($values);
+//var_dump($values);
         } catch (\Exception $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
             $is_error = TRUE;
@@ -241,20 +241,88 @@ class LandingPagePresenter extends BasePresenter {
         }
     }
 
-    /**
-     * Delete form factory.
-     * @return Form
-     */
-    protected function createComponentDeleteForm() {
-        
+    protected function createComponentForgotPassword() {
+        $form = new Form();
+        $form->addText("txtEmail")->setRequired();
+        $form->addSubmit('btnForgotPassword')->onClick[] = array($this, 'ForgotPasswordSucceeded');
+        return $form;
     }
 
-    public function deleteFormSucceeded() {
-        
-    }
+    public function ForgotPasswordSucceeded($button) {
+        try {
+            $values = $button->getForm()->getValues();
 
-    public function formCancelled() {
-        $this->redirect('default');
+            $data = $this->database->table("tbl_user")->where("email=?", $values['txtEmail'])->fetchAll();
+
+            $password = '';
+            $name = '';
+
+            foreach ($data as $row) {
+                $name = $row->name;
+                $password = $row->password;
+            }
+
+            if ($password == '') {
+                $this->flashMessage("User with this e-mail, is not in our database", "Error");
+                throw new \ErrorException();
+            }
+
+            $mail = new Message();
+            $mail->setFrom('DOGFORSHOW <info@dogforshow.com>')
+                    ->setSubject("Forgot password")
+                    ->addTo($values['txtEmail'])
+                    ->setHtmlBody('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Welcome to DOGFORSHOW</title>
+    </head>
+    <body bgcolor="#f6f8f1" style="margin: 0; padding: 0; min-width: 100%!important;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#8C8067;" >
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <table style="padding-bottom:20px; margin-top:10px; width: 90%; max-width: 600px;" class="content" bgcolor="white" align="center" cellpadding="10" cellspacing="0" border="0">
+                        <tr>
+                            <td align="center" style="border-bottom:#8C8067 1px solid">
+                                <h1 style="font-size:23px;color:#8C8067;">Hello ' . $name . '</h1>
+                            </td>
+                        </tr>
+						<tr>
+                            <td>
+                                <ul style="list-style-type: none">
+                                <li>Email: <strong>' . $values['txtEmail'] . '</strong></li>
+                                <li>Password: <strong>' . $password . '</strong></li>
+                                </ul>
+                            </td>
+                        </tr>
+			<tr>
+                            <td align="center">
+                                <p style="font-size:15px;"><a href="http://dfs.fsofts.eu" style="padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">Login to your account</a></p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="margin-top: 10px; width: 90%; max-width: 600px;color:white;" align="center" cellpadding="10" cellspacing="0" border="0">
+                        <tr>
+                            <td align="center">
+                                <p style="font-size:12px;">This email was automatically sent by DOGFORSHOW system. Please dont reply on this email</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>');
+
+
+            $mailer = new SendmailMailer();
+            $mailer->send($mail);
+
+            $this->flashMessage("Your password has been successfully sent to your e-mail", "Success");
+            $this->redirect("default");
+        } catch (\ErrorException $ex) {
+            
+        }
     }
 
 }

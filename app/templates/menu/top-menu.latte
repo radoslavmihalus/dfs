@@ -1,26 +1,47 @@
 <nav class="navbar-default navbar-fixed-top">
     {if $logged_in_id == 0}
         <div class="container-fluid top-menu" style="height:50px;">
+            <button type="button" class="navbar-toggle collapsed toogle-margin-zero" style="margin-top: 5px;margin-bottom: 0px;" data-toggle="collapse" data-target="#user-menu">
+                <i class="fa fa-bars"></i>
+            </button>
             <div class="col-md-6 col-sm-6 col-xs-6" style="padding-top: 10px;">
-                <button type="button" data-toggle="modal" data-target="#Registration" class="btn btn-block btn-danger btn-sm"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Registration'}</button>
+                <button type="button" id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-block btn-default btn-sm"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_ 'Login'}</button>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6" style="padding-top: 10px;">
-                <button type="button" data-toggle="modal" data-target="#Registration" class="btn btn-block btn-default btn-sm"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_ 'Login'}</button>
+                <button type="button" id="btnRegistration" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-block btn-danger btn-sm"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Registration'}</button>
             </div>
         </div>
-        <div class="modal fade" id="Registration">
+        <div class="modal fade" id="RegistrationModal">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Register</h4>
-                    </div>
+                    <!--                    <div class="modal-header">
+                                            <h4 class="modal-title">&nbsp;</h4>
+                                        </div>-->
                     <div class="modal-body" style="background-color: #83765E">
-                            {include '../registration/registration.latte'}
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {include '../registration/registration.latte'}
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+        <script type="text/javascript">
+            $("#btnRegistration").click(function () {
+                $("#login").removeClass("in");
+                $("#login").removeClass("active");
+                $("#login_link").removeClass("active");
+                $("#registration").addClass("in");
+                $("#registration").addClass("active");
+                $("#register_link").addClass("active");
+            });
+            $("#btnLogIn").click(function () {
+                $("#registration").removeClass("in");
+                $("#registration").removeClass("active");
+                $("#register_link").removeClass("active");
+                $("#login").addClass("in");
+                $("#login").addClass("active");
+                $("#login_link").addClass("active");
+            });
+        </script>
     {else}
         <div class="container-fluid top-menu">
             <button type="button" class="navbar-toggle collapsed toogle-margin-zero" style="margin-top: 5px;margin-bottom: 0px;" data-toggle="collapse" data-target="#user-menu">

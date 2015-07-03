@@ -55,6 +55,7 @@
         <div class="panel panel-default registration_block transparent_white">
             <div class="panel-body">
                 <!-- DOGFORSHOW Sign up form -->
+                {include 'forgot_password.latte'}
                 {form frmLogIn}
                     <!--<form id="frmlogIn" action="templates/scripts/login.php" method="post" role="form" data-toggle="validator">-->
                     <input type="hidden" name="formName" value="frmlogIn" />
@@ -74,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6" style="margin-bottom: 10px;">
-                                <a href="forgot-password" style="color:white;"><i class="fa fa-question-circle"></i>&nbsp;&nbsp;{_ 'Forgot password'}</a>
+                                <a href="forgot-password" style="color:white;" data-toggle="modal" data-target="#forgot_passwordModal"><i class="fa fa-question-circle"></i>&nbsp;&nbsp;{_ 'Forgot password'}</a>
                             </div>
                         </div>
                     </div>

@@ -31,8 +31,8 @@ $router = $container->getService('router');
 
 // routy
 $router[] = new Route('index.php', 'LandingPage:default');
-$router[] = new Route('forgot-password', 'LandingPage:forgot_password');
-$router[] = new Route('reset-password', 'LandingPage:reset_password');
+//$router[] = new Route('forgot-password', 'LandingPage:forgot_password');
+//$router[] = new Route('reset-password', 'LandingPage:reset_password');
 // User routes
 $router[] = new Route('switch-profile', 'user:user_create_profile_switcher');
 $router[] = new Route('edit-account', 'user:user_edit_account');
