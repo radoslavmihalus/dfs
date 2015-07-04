@@ -45,7 +45,7 @@ class LandingPagePresenter extends BasePresenter {
 
     public function renderLogout() {
         $this->session->destroy();
-        $this->flashMessage("You have been successsfully logged out");
+        $this->flashMessage("You have been successsfully logged out", "Info");
         $this->redirect("default");
     }
 
@@ -95,7 +95,7 @@ class LandingPagePresenter extends BasePresenter {
                 $mailer = new SendmailMailer();
                 $mailer->send($mail);
 
-                $this->flashMessage("Your message was been successfully sent. We will contact you as soon as possible.");
+                $this->flashMessage("Your message was been successfully sent. We will contact you as soon as possible.", "Info");
             }
         } catch (\Exception $ex) {
             $this->flashMessage($ex->getMessage(), "Error");

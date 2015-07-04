@@ -63,9 +63,33 @@ class kennelPresenter extends BasePresenter {
     /*     * ******************* view default ******************** */
 
     public function renderKennel_list() {
-        $rows = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id")->fetchAll();
+        $rows = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state, FALSE as have_puppies FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id")->fetchAll();
 
         $this->template->result = $rows;
+    }
+
+    public function renderKennel_profile_home($id = 0) {
+        $row = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id WHERE tbl_userkennel.id=?", $id)->fetch();
+
+        $have_puppies = FALSE;
+
+        $profile_image = $row->kennel_profile_picture;
+        $logged_in_profile_id = $row->id;
+        $name = $row->kennel_name;
+        if (strlen($row->kennel_background_image) > 2) {
+            $have_background_image = TRUE;
+            $background_image = $row->kennel_background_image;
+        } else
+            $have_background_image = FALSE;
+        $state = $row->state;
+
+        $this->template->have_puppies = $have_puppies;
+        $this->template->profile_image = $profile_image;
+        $this->template->logged_in_profile_id = $logged_in_profile_id;
+        $this->template->kennel_name = $name;
+        $this->template->have_background_image = $have_background_image;
+        $this->template->background_image = $background_image;
+        $this->template->state = $state;
     }
 
     protected function createComponentFrmSignIn() {
@@ -183,8 +207,9 @@ class kennelPresenter extends BasePresenter {
             $mailer->send($mail);
 
             $this->flashMessage('<ul><li><strong>Your registration has been successfully completed</strong></li><li>Please check your Email for your user acccount activation</li><li>If you have not received the Email yet, please also check your SPAM folder</li></ul>', "Success");
+            $this->redirect('this');
             //var_dump($values);
-        } catch (\Exception $ex) {
+        } catch (\ErrorException $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
         }
     }
@@ -254,7 +279,7 @@ class kennelPresenter extends BasePresenter {
         $form->addUpload('txtKennelProfilePicture');
         $form->addText('txtKennelWebsite');
         $form->addTextArea('txtKennelDescription');
-        $form->addText('hidddlBreedList');
+        $form->addText('ddlBreedList');
         $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateProfileSucceeded');
 
         return $form;
@@ -294,7 +319,7 @@ class kennelPresenter extends BasePresenter {
                     $ext = 'png';
                     break;
                 default :
-                    throw new \Exception("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+                    throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
                     break;
             }
 
@@ -308,12 +333,12 @@ class kennelPresenter extends BasePresenter {
             $values['user_id'] = $this->logged_in_id;
 
             $this->database->table("tbl_userkennel")->insert($values);
-            $profileid = $this->database->getInsertId();
+            $id = $this->database->getInsertId();
 
-            $this->redirectUrl("kennel-profile");
-            exit;
-        } catch (\Exception $exc) {
-            $this->flashMessage($exc->getMessage());
+            $this->flashMessage("Your kennel profile has been successfully created.", "Success");
+            $this->redirect("kennel:kennel_profile_home", $id);
+        } catch (\ErrorException $exc) {
+            $this->flashMessage($exc->getMessage(), "Error");
         }
 
 
@@ -323,24 +348,132 @@ class kennelPresenter extends BasePresenter {
     //Update profile
 
     protected function createComponentKennelEditProfile() {
-        $data = $this->database->table("tbl_userkennel")->where("user_id=?", $this->logged_in_id);
-
-        $data = $this->data_model->assignFieldsReverse($data, "frmKennelCreateProfile");
-
-        var_dump($data);
+        $data = $this->database->table("tbl_userkennel")->where("user_id=?", $this->logged_in_id)->fetch();
 
         $form = new Form();
 
-        $form->addText('txtKennelName');
-        $form->addText('txtKennelFciNumber');
-        $form->addText('txtKennelWebsite');
-        $form->addTextArea('txtKennelDescription');
-        $form->addText('hidddlBreedList');
+        $form->addText('txtKennelName')->setValue($data->kennel_name);
+        $form->addText('txtKennelFciNumber')->setValue($data->kennel_fci_number);
+        $form->addText('txtKennelWebsite')->setValue($data->kennel_website);
+        $form->addTextArea('txtKennelDescription')->setValue($data->kennel_description);
+        $form->addText('ddlBreedList');
         $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateProfileSucceeded');
 
-        $form->setValues($data, TRUE);
+        return $form;
+    }
+
+    protected function createComponentKennelEditProfileCoverImage() {
+        $form = new Form();
+
+        $form->addUpload('txtKennelCoverPhoto');
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileCoverImageSuccess');
 
         return $form;
+    }
+
+    protected function createComponentKennelEditProfileImage() {
+        $form = new Form();
+
+        $form->addUpload('txtKennelProfilePicture');
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileImageSuccess');
+
+        return $form;
+    }
+
+    public function frmEditProfileImageSuccess($button) {
+        $values = $button->getForm()->getValues();
+
+        $img = $values['txtKennelProfilePicture'];
+
+        $target_path = "uploads/";
+
+        $ext = '';
+
+        $ext = explode('.', $img->name);
+
+        $length = count($ext);
+
+        $ext = $ext[$length - 1];
+
+        switch ($ext) {
+            case 'gif':
+                $ext = 'gif';
+                break;
+            case 'jpeg':
+                $ext = 'jpg';
+                break;
+            case 'jpg':
+                $ext = 'jpg';
+                break;
+            case 'png':
+                $ext = 'png';
+                break;
+            default :
+                throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+                break;
+        }
+
+        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+
+        $img->move("$target_path/$filename");
+
+        $values['txtKennelProfilePicture'] = "$target_path/$filename";
+
+        $values = $this->data_model->assignFields($values, 'frmEditProfileImage');
+        $values['user_id'] = $this->logged_in_id;
+
+        $mysection = $this->getSession('userdata');
+        $myid = $mysection->id;
+
+        $userdata = $this->database->table("tbl_userkennel")->where("user_id = ?", $myid)->update($values);
+    }
+
+    public function frmEditProfileCoverImageSuccess($button) {
+        $values = $button->getForm()->getValues();
+
+        $img = $values['txtKennelCoverPhoto'];
+
+        $target_path = "uploads/";
+
+        $ext = '';
+
+        $ext = explode('.', $img->name);
+
+        $length = count($ext);
+
+        $ext = $ext[$length - 1];
+
+        switch ($ext) {
+            case 'gif':
+                $ext = 'gif';
+                break;
+            case 'jpeg':
+                $ext = 'jpg';
+                break;
+            case 'jpg':
+                $ext = 'jpg';
+                break;
+            case 'png':
+                $ext = 'png';
+                break;
+            default :
+                throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+                break;
+        }
+
+        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+
+        $img->move("$target_path/$filename");
+
+        $values['txtKennelCoverPhoto'] = "$target_path/$filename";
+
+        $values = $this->data_model->assignFields($values, 'frmEditProfileCoverImage');
+        $values['user_id'] = $this->logged_in_id;
+
+        $mysection = $this->getSession('userdata');
+        $myid = $mysection->id;
+
+        $userdata = $this->database->table("tbl_userkennel")->where("user_id = ?", $myid)->update($values);
     }
 
 }

@@ -17,7 +17,7 @@
                         {form kennelEditProfile}
                             <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about your kennel'}</span>
                             <hr>
-                            {include textbox_control, _form => $_form, description => "Kennel name", value => $data, placeholder => "Kennel name", id => "txtKennelName", name => "txtKennelName"}
+                            {include textbox_control, _form => $_form, description => "Kennel name", placeholder => "Kennel name", id => "txtKennelName", name => "txtKennelName"}
                             {include textbox_control, _form => $_form, description => "Kennel FCI number", placeholder => "Kennel FCI number", id => "txtKennelFciNumber", name => "txtKennelFciNumber"}
                             {include textbox_control, _form => $_form, description => "Kennel website", placeholder => "www.yourwebsite.com", id => "txtKennelWebsite", name => "txtKennelWebsite"}
                             {include textarea_control, _form => $_form, description => "Kennel description", placeholder => "Kennel description", id => "txtKennelDescription", name => "txtKennelDescription"}
@@ -30,14 +30,14 @@
             <div class="tab-pane fade" id="pictures">
                 <div class="panel panel-default registration_block transparent_white">
                     <div class="panel-body">
-                        <form id="frmEditKennelProfilePicture">
+                        {form kennelEditProfileCoverImage}
                             {include image_UploadPicture_control, _form => $_form, description => "Kennel cover photo", placeholder => "Select picture", id => "txtKennelCoverPhoto", name => "txtKennelCoverPhoto"}
-                            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
-                        </form>
-                        <form id="frmEditKennelProfilePicture">
+                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                        {/form}
+                        {form kennelEditProfileImage}
                             {include image_UploadPicture_control, _form => $_form, description => "Kennel profile picture", placeholder => "Select picture", id => "txtKennelProfilePicture", name => "txtKennelProfilePicture"}
-                            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
-                        </form>
+                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                        {/form}
                     </div>
                 </div>
             </div>
