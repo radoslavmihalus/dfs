@@ -81,22 +81,8 @@
 
     </head>
     <body>
-        <div id="modalFlash" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="modalTitle"></h4>
-                    </div>
-                    <div class="modal-body">
-                        <p id="modalText"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+        <!-- Modal Flash control  -->
+        {include '../components/modal_control.latte'}
         <!-- top-menu -->
         {include '../menu/top-menu.latte'}
         <!-- /top-menu -->
