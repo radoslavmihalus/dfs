@@ -22,7 +22,7 @@
                             {include textbox_control, _form => $_form, description => "Kennel website", placeholder => "www.yourwebsite.com", id => "txtKennelWebsite", name => "txtKennelWebsite"}
                             {include textarea_control, _form => $_form, description => "Kennel description", placeholder => "Kennel description", id => "txtKennelDescription", name => "txtKennelDescription"}
                             {include dropdown_BreedList_control, _form => $_form, description => "Select the breed bred by your kennel", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList"}
-                            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
                         {/form}
                     </div>
                 </div>

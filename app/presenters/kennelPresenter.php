@@ -90,6 +90,28 @@ class kennelPresenter extends BasePresenter {
         $this->template->have_background_image = $have_background_image;
         $this->template->background_image = $background_image;
         $this->template->state = $state;
+
+        $this->renderKennel_description_home($id);
+    }
+
+    public function renderKennel_description_home($id = 0) {
+//        $row = $this->database->query("SELECT tbl_userkennel.*, link_kennel_breed.breed_name FROM tbl_userkennel INNER JOIN link_kennel_breed ON link_kennel_breed.kennel_id = tbl_userkennel.id WHERE tbl_userkennel.id=?", $id)->fetch();
+        $row = $this->database->query("SELECT tbl_userkennel.* FROM tbl_userkennel WHERE tbl_userkennel.id=?", $id)->fetch();
+
+        $have_puppies = FALSE;
+
+        $kennel_fci_number = $row->kennel_fci_number;
+        $logged_in_profile_id = $row->id;
+        $kennel_description = $row->kennel_description;
+        $kennel_website = $row->kennel_website;
+
+        $this->template->kennel_fci_number = $kennel_fci_number;
+        $this->template->kennel_description = $kennel_description;
+        $this->template->kennel_website = $kennel_website;
+
+        $breeds = $this->database->query("SELECT link_kennel_breed.breed_name FROM link_kennel_breed WHERE kennel_id=?", $row->id)->fetchAll();
+
+        $this->template->breeds = $breeds;
     }
 
     protected function createComponentFrmSignIn() {
@@ -239,23 +261,6 @@ class kennelPresenter extends BasePresenter {
 
     /*     * ******************* views add & edit ******************** */
 
-    public function renderAdd() {
-//$this['albumForm']['save']->caption = 'Add';
-    }
-
-    public function renderEdit($id = 0) {
-//		$form = $this['albumForm'];
-//		if (!$form->isSubmitted()) {
-//			$album = $this->albums->findById($id);
-//			if (!$album) {
-//				$this->error('Record not found');
-//			}
-//			$form->setDefaults($album);
-//		}
-    }
-
-    /*     * ******************* view delete ******************** */
-
     public function renderDelete($id = 0) {
 //		$this->template->album = $this->albums->findById($id);
 //		if (!$this->template->album) {
@@ -288,6 +293,8 @@ class kennelPresenter extends BasePresenter {
     public function frmCreateProfileSucceeded($button) {
         try {
             $values = $button->getForm()->getValues();
+
+            $breeds = $values['ddlBreedList'];
 
             $form = $button->getForm();
 
@@ -335,6 +342,12 @@ class kennelPresenter extends BasePresenter {
             $this->database->table("tbl_userkennel")->insert($values);
             $id = $this->database->getInsertId();
 
+            $breeds = explode(",", $breeds);
+
+            foreach ($breeds as $breed) {
+                $this->database->query("INSERT INTO link_kennel_breed(kennel_id, breed_name) VALUES(?,?)", $id, $breed);
+            }
+
             $this->flashMessage("Your kennel profile has been successfully created.", "Success");
             $this->redirect("kennel:kennel_profile_home", $id);
         } catch (\ErrorException $exc) {
@@ -352,14 +365,59 @@ class kennelPresenter extends BasePresenter {
 
         $form = new Form();
 
+        $breed_rows = $this->database->query("SELECT link_kennel_breed.breed_name FROM link_kennel_breed WHERE kennel_id=?", $data->id)->fetchAll();
+
+        $breeds = "";
+        $i = 0;
+        foreach ($breed_rows as $row) {
+            if ($i == 0)
+                $breeds .= $row->breed_name;
+            else
+                $breeds .= "," . $row->breed_name;
+
+            $i++;
+        }
+
         $form->addText('txtKennelName')->setValue($data->kennel_name);
         $form->addText('txtKennelFciNumber')->setValue($data->kennel_fci_number);
         $form->addText('txtKennelWebsite')->setValue($data->kennel_website);
         $form->addTextArea('txtKennelDescription')->setValue($data->kennel_description);
-        $form->addText('ddlBreedList');
-        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateProfileSucceeded');
+        $form->addText("ddlBreedList")->setValue($breeds);
+        $this->template->breeds = $breeds;
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileSucceeded');
 
         return $form;
+    }
+
+    public function frmEditProfileSucceeded($button) {
+        try {
+            $values = $button->getForm()->getValues();
+
+            $breeds = $values['ddlBreedList'];
+
+            $values = $this->data_model->assignFields($values, 'frmKennelEditProfile');
+
+            var_dump($values);
+
+            $this->database->table("tbl_userkennel")->where("user_id = ?", $this->logged_in_id)->update($values);
+
+            $row = $this->database->table("tbl_userkennel")->where("user_id = ?", $this->logged_in_id)->fetch();
+
+            $id = $row->id;
+
+            $this->database->table("link_kennel_breed")->where("kennel_id=?", $id)->delete();
+
+            $breeds = explode(",", $breeds);
+
+            foreach ($breeds as $breed) {
+                $this->database->query("INSERT INTO link_kennel_breed(kennel_id, breed_name) VALUES(?,?)", $id, $breed);
+            }
+
+            $this->flashMessage("Your kennel profile has been successfully updated.", "Success");
+            $this->redirect("kennel:kennel_profile_home", $id);
+        } catch (\ErrorException $exc) {
+            $this->flashMessage($exc->getMessage(), "Error");
+        }
     }
 
     protected function createComponentKennelEditProfileCoverImage() {
@@ -476,4 +534,11 @@ class kennelPresenter extends BasePresenter {
         $userdata = $this->database->table("tbl_userkennel")->where("user_id = ?", $myid)->update($values);
     }
 
+    protected function createComponentFrmAddAward()
+    {
+        $form = new Form();
+
+        $form->addText("ddlDate");
+    }
+    
 }

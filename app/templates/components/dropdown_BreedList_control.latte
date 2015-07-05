@@ -39,12 +39,29 @@
         },
         multiple: true,
         tokenSeparators: [',']
-        //value: ['Dogo Argentino']
+                //value: ['Dogo Argentino']
     });
 
     $('#tags-input-' + {$id}).on('change', function (item)
     {
         $("#hid-tags-input-" + {$id}).val(item.value);
     });
+
+    var mystr = $('#hid-tags-input-' + {$id}).val();
+
+    if (mystr.length > 1)
+    {
+        var a = mystr.split(","),
+                i;
+
+        $('#hid-tags-input-' + {$id}).val("");
+
+        for (i = 0; i < a.length; i++) {
+            $('#tags-input-' + {$id}).selectivity('add', {
+                id: a[i],
+                text: a[i]
+            });
+        }
+    }
 </script>
 {/define}
