@@ -705,5 +705,4 @@ class kennelPresenter extends BasePresenter {
             $this->flashMessage($exc->getMessage(), "Error");
         }
     }
-
 }

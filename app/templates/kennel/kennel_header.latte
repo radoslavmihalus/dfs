@@ -2,6 +2,9 @@
 <div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body component">
         <div class="profile-header-image" style="{if $have_background_image} background: url('{$background_image}')no-repeat center center {else} background-color:#D5D0C0; background-image: none{/if}">
+            {if !$have_background_image}
+                <!-- medzi tento if pride tlacitko na editaciu profilu, prehod si ho kam potrebujes -->
+            {/if}
             {if $have_puppies}
                 <span class="list-puppy-info-detail"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>
             {/if}
