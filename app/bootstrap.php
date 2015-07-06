@@ -50,6 +50,7 @@ $router[] = new Route('kennel-awards-add', 'kennel:kennel_awards_add');
 $router[] = new Route('kennel-awards-edit', 'kennel:kennel_awards_edit');
 $router[] = new Route('kennel-dog-list', 'kennel:kennel_dog_list');
 $router[] = new Route('kennel-puppy-list', 'kennel:kennel_puppy_list');
+$router[] = new Route('kennel-photogallery', 'kennel:kennel_photogallery');
 $router[] = new Route('kennel-planned-litter-list', 'kennel:kennel_planned_litter_list');
 $router[] = new Route('kennel-friends-list', 'kennel:kennel_friends_list');
 $router[] = new Route('kennel-followers-list', 'kennel:kennel_followers_list');
