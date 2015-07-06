@@ -18,6 +18,8 @@ class kennelPresenter extends BasePresenter {
     private $data_model;
     private $logged_in_kennel_id;
 
+    private $award_id;
+    
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
         $this->data_model = new \DataModel($database);
@@ -133,6 +135,10 @@ class kennelPresenter extends BasePresenter {
         $breeds = $this->database->query("SELECT link_kennel_breed.breed_name FROM link_kennel_breed WHERE kennel_id=?", $row->id)->fetchAll();
 
         $this->template->breeds = $breeds;
+    }
+
+    public function actionKennel_awards_edit($id) {
+        $this->award_id = $id;
     }
 
     protected function createComponentFrmSignIn() {
@@ -566,11 +572,11 @@ class kennelPresenter extends BasePresenter {
         return $form;
     }
 
-    protected function createComponentFrmEditAward($form, $parid = 0) {
+    protected function createComponentFrmEditAward() {
 
-        //$parid = $_REQUEST['parid'];
+        $parid = $this->award_id;
 
-        $row = $this->database->table("link_kennel_awards")->where("id=?", $parid)->fetch();
+        $row = $this->database->table("link_kennel_awards")->where("id = ?", $parid)->fetch();
 
         $form = new Form();
 
@@ -649,7 +655,7 @@ class kennelPresenter extends BasePresenter {
         try {
             $values = $button->getForm()->getValues();
 
-            $id = $values["hidAwardId"];
+            $id = $this->award_id;
 
             $form = $button->getForm();
 
@@ -695,9 +701,9 @@ class kennelPresenter extends BasePresenter {
             $values['ddlDate'] = date('Y-m-d', $time);
 
             $values = $this->data_model->assignFields($values, 'frmEditAward');
-            $values['kennel_id'] = $this->logged_in_kennel_id;
+            //$values['kennel_id'] = $this->logged_in_kennel_id;
 
-            $this->database->table("link_kennel_awards")->where("id=?", $id)->update($values);
+            $this->database->table("link_kennel_awards")->where("id = ?", $id)->update($values);
 
             $this->flashMessage("Your kennel award has been successfully updated.", "Success");
             $this->redirect("kennel:kennel_awards_list");
@@ -705,4 +711,5 @@ class kennelPresenter extends BasePresenter {
             $this->flashMessage($exc->getMessage(), "Error");
         }
     }
+
 }
