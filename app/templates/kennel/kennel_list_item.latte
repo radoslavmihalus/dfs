@@ -1,23 +1,23 @@
 {define #kennel_list_item}
 {foreach $result as $row}
     <div class="col-lg-4 col-md-6 col-xs-12 padding">
-        <div class="col-lg-4 col-md-6 col-xs-12 padding">
-            <a n:href="kennel:kennel_profile_home id => $row->id">
-                <div class="list-item">
-                    <div class="list-item-image" style="{if (strlen($row->kennel_background_image)>2)} background: url('{$row->kennel_background_image}')no-repeat center center {else} background-color:#D5D0C0; background-image: none{/if}">
-                        <img src="{$row->kennel_profile_picture}"  class="pull-left image-list-thumb">
-                        <button class="btn btn-danger btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'Remove from friends'}" type="button"><i class="fa fa-trash"></i></button>
-                            {if $row->have_puppies}
-                            <span class="list-puppy-info" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>
-                        {/if}
+        <a n:href="kennel:kennel_profile_home id => $row->id">
+            <div class="list-item">
+                <div class="profile-header-image" style="height:200px;{if (strlen($row->kennel_background_image)>2)} background: url('{$row->kennel_background_image}')no-repeat center center {else} background-color:#D5D0C0; background-image: none{/if}">
+                    <div class="pull-left image-profile-thumb" style="top:40px;">
+                        <img src="{$row->kennel_profile_picture}">
                     </div>
-                    <h3 class="text-uppercase"><i class="fa fa-home"></i>&nbsp;&nbsp;{$row->kennel_name}</h3>
-                    <hr style="margin-bottom: 10px;">
-                    <span class="list-item-location"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{_$row->state}</span>
-                    <span class="list-item-regdate"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{$row->kennel_create_date}</span>
+                    <button class="btn btn-danger btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'Remove from friends'}" type="button"><i class="fa fa-trash"></i></button>
+                        {if $row->have_puppies}
+                        <span class="list-puppy-info" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>
+                    {/if}
                 </div>
-            </a>
-        </div>
+                <h3 class="text-uppercase"><i class="fa fa-home"></i>&nbsp;&nbsp;{$row->kennel_name}</h3>
+                <hr style="margin-bottom: 10px;">
+                <span class="list-item-location"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{_$row->state}</span>
+                <span class="list-item-regdate"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{$row->kennel_create_date}</span>
+            </div>
+        </a>
     </div>
 {/foreach}
 {/define}

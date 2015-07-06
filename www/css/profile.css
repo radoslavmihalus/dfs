@@ -11,11 +11,24 @@
 }
 .image-profile-thumb
 {
-    position:absolute;
-    top:205px;
-    left: 40px;
-    width:150px;
-    border:white 2px solid;
+    position: relative;
+    top: 190px;
+    left: 10px;
+    width: 150px;
+    height: 150px;
+    overflow:hidden;
+    border: white 2px solid;
+}
+.image-profile-thumb img
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
 }
 .dog-image-profile-thumb
 {
@@ -65,6 +78,6 @@ td.pedigree
 }
 .table>thead:first-child>tr:first-child>th 
 {
-  border-top: 1px solid #E4E4E4;
-  border-bottom: 0;
+    border-top: 1px solid #E4E4E4;
+    border-bottom: 0;
 }
