@@ -149,7 +149,8 @@ ul.section_list li
 {
   position:absolute;
   top:15px;
-  left:30px;
+  min-width: 150px;
+  left:35px;
   display: inline;
   padding: .7em;
   font-size: 13px !important;
@@ -169,7 +170,8 @@ ul.section_list li
 {
   position:absolute;
   top:25px;
-  left:35px;
+  min-width: 150px;
+  left:40px;
   display: inline;
   padding: .7em;
   font-size: 13px !important;

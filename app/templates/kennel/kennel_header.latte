@@ -3,12 +3,13 @@
     <div class="panel-body component">
         <div class="profile-header-image" style="{if $have_background_image} background: url('{$background_image}')no-repeat center center {else} background-color:#D5D0C0; background-image: none{/if}">
             {if !$have_background_image}
-                <!-- medzi tento if pride tlacitko na editaciu profilu, prehod si ho kam potrebujes -->
+                <a n:href=""><i class="fa fa-camera fa-2x change-cover-icon"><span style="vertical-align: middle;display: block;float: right;padding-top: 5px;margin-left: 5px;font-size:13px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;">{_ 'Update cover photo'}</span></i></a>
             {/if}
-            {if $have_puppies}
-                <span class="list-puppy-info-detail"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>
-            {/if}
+            {*if $have_puppies*}
+<!--                <span class="list-puppy-info-detail"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>-->
+            {*/if*}
             <div class="pull-left image-profile-thumb">
+                <a n:href=""><i class="fa fa-camera fa-2x change-image-icon"></i></a>
                 <img src="{$profile_image}">
             </div>
         </div>
