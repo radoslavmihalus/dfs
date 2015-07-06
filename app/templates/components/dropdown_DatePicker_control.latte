@@ -4,18 +4,20 @@
 </div>
 <div class="row">
     <div class="col-md-12 form-group">
-        <select class="form-control font_size_13px" id="ddlDay-{$id}" n:name="{$name}-Day">
-            <option value="" selected disabled>Day</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-        </select>
+        <div class="input-group date">
+            <input type="text" class="form-control" n:name="{$name}"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+        </div>
     </div>
 </div>
-<script>
+<script type="text/javascript">
     $(function () {
         $('[data-toggle="popover"]').popover()
-    })
+    });
+    $('.input-group.date').datepicker({
+        format: "dd.mm.yyyy",
+        todayBtn: "linked",
+        //language: "sk",
+        autoclose: true
+    });
 </script>
 {/define}

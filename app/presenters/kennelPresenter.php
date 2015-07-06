@@ -16,6 +16,7 @@ class kennelPresenter extends BasePresenter {
     private $database;
     private $logged_in_id;
     private $data_model;
+    private $logged_in_kennel_id;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
@@ -36,6 +37,13 @@ class kennelPresenter extends BasePresenter {
                 $this->template->profile_type_icon = 'fa fa-home'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
                 $this->template->logged_in_id = $myid;
             }
+
+            try {
+                $kennel_data = $this->database->table("tbl_userkennel")->where("user_id=?", $this->logged_in_id)->fetch();
+                $this->logged_in_kennel_id = $kennel_data->id;
+            } catch (\Exception $ex) {
+                
+            }
         } catch (\Exception $ex) {
             $this->logged_in_id = 0;
         }
@@ -55,7 +63,7 @@ class kennelPresenter extends BasePresenter {
             $i++;
         }
 
-        //echo $dditems;
+//echo $dditems;
 
         $this->template->dd_breeds_items = $dditems;
     }
@@ -68,7 +76,20 @@ class kennelPresenter extends BasePresenter {
         $this->template->result = $rows;
     }
 
+    public function renderKennel_awards_list($id = 0) {
+        $this->renderKennel_profile_home($id);
+        if ($id == 0)
+            $id = $this->logged_in_kennel_id;
+
+        $result_awards = $this->database->table("link_kennel_awards")->where("kennel_id=?", $id)->order("kennel_award_date DESC")->fetchAll();
+
+        $this->template->result_awards = $result_awards;
+    }
+
     public function renderKennel_profile_home($id = 0) {
+        if ($id == 0)
+            $id = $this->logged_in_kennel_id;
+
         $row = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id WHERE tbl_userkennel.id=?", $id)->fetch();
 
         $have_puppies = FALSE;
@@ -230,7 +251,7 @@ class kennelPresenter extends BasePresenter {
 
             $this->flashMessage('<ul><li><strong>Your registration has been successfully completed</strong></li><li>Please check your Email for your user acccount activation</li><li>If you have not received the Email yet, please also check your SPAM folder</li></ul>', "Success");
             $this->redirect('this');
-            //var_dump($values);
+//var_dump($values);
         } catch (\ErrorException $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
         }
@@ -274,7 +295,7 @@ class kennelPresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
-    //Create profile
+//Create profile
 
     protected function createComponentKennelCreateProfile() {
 
@@ -300,7 +321,7 @@ class kennelPresenter extends BasePresenter {
 
             $img = $form['txtKennelProfilePicture']->getValue();
 
-            //var_dump($values['txtKennelProfilePicture']);
+//var_dump($values['txtKennelProfilePicture']);
 
             $target_path = "uploads/";
 
@@ -355,10 +376,10 @@ class kennelPresenter extends BasePresenter {
         }
 
 
-        //var_dump($values);
+//var_dump($values);
     }
 
-    //Update profile
+//Update profile
 
     protected function createComponentKennelEditProfile() {
         $data = $this->database->table("tbl_userkennel")->where("user_id=?", $this->logged_in_id)->fetch();
@@ -534,11 +555,155 @@ class kennelPresenter extends BasePresenter {
         $userdata = $this->database->table("tbl_userkennel")->where("user_id = ?", $myid)->update($values);
     }
 
-    protected function createComponentFrmAddAward()
-    {
+    protected function createComponentFrmAddAward() {
         $form = new Form();
 
-        $form->addText("ddlDate");
+        $form->addText("ddlDate")->setRequired();
+        $form->addText("txtAwardName")->setRequired();
+        $form->addUpload("txtAwardPicture");
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddAwardSuccess');
+
+        return $form;
     }
-    
+
+    protected function createComponentFrmEditAward($form, $parid = 0) {
+
+        //$parid = $_REQUEST['parid'];
+
+        $row = $this->database->table("link_kennel_awards")->where("id=?", $parid)->fetch();
+
+        $form = new Form();
+
+        $time = strtotime($row->kennel_award_date);
+        $date = date('d.m.Y', $time);
+
+        $form->addText("ddlDate")->setRequired()->setValue($date);
+        $form->addText("txtAwardName")->setRequired()->setValue($row->kennel_award_title);
+        $form->addUpload("txtAwardPicture");
+        $form->addHidden("hidAwardId")->setValue($row->id);
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditAwardSuccess');
+
+        return $form;
+    }
+
+    public function frmAddAwardSuccess($button) {
+        try {
+            $values = $button->getForm()->getValues();
+
+            $form = $button->getForm();
+
+            $img = $form['txtAwardPicture']->getValue();
+            if (strlen($img) > 0) {
+                $target_path = "uploads/";
+
+                $ext = '';
+
+                $ext = explode('.', $img->name);
+
+                $length = count($ext);
+
+                $ext = $ext[$length - 1];
+
+                switch ($ext) {
+                    case 'gif':
+                        $ext = 'gif';
+                        break;
+                    case 'jpeg':
+                        $ext = 'jpg';
+                        break;
+                    case 'jpg':
+                        $ext = 'jpg';
+                        break;
+                    case 'png':
+                        $ext = 'png';
+                        break;
+                    default :
+                        throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+                        break;
+                }
+
+                $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+
+                $img->move("$target_path/$filename");
+
+                $values['txtAwardPicture'] = "$target_path/$filename";
+            }
+
+            $time = strtotime($values['ddlDate']);
+            $values['ddlDate'] = date('Y-m-d', $time);
+
+            $values = $this->data_model->assignFields($values, 'frmAddAward');
+            $values['kennel_id'] = $this->logged_in_kennel_id;
+
+            $this->database->table("link_kennel_awards")->insert($values);
+            $id = $this->database->getInsertId();
+
+            $this->flashMessage("Your kennel award has been successfully created.", "Success");
+            $this->redirect("kennel:kennel_awards_list", $id);
+        } catch (\ErrorException $exc) {
+            $this->flashMessage($exc->getMessage(), "Error");
+        }
+    }
+
+    public function frmEditAwardSuccess($button) {
+        try {
+            $values = $button->getForm()->getValues();
+
+            $id = $values["hidAwardId"];
+
+            $form = $button->getForm();
+
+            $img = $form['txtAwardPicture']->getValue();
+
+            if (strlen($img) > 0) {
+                $target_path = "uploads/";
+
+                $ext = '';
+
+                $ext = explode('.', $img->name);
+
+                $length = count($ext);
+
+                $ext = $ext[$length - 1];
+
+                switch ($ext) {
+                    case 'gif':
+                        $ext = 'gif';
+                        break;
+                    case 'jpeg':
+                        $ext = 'jpg';
+                        break;
+                    case 'jpg':
+                        $ext = 'jpg';
+                        break;
+                    case 'png':
+                        $ext = 'png';
+                        break;
+                    default :
+                        throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+                        break;
+                }
+
+                $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+
+                $img->move("$target_path/$filename");
+
+                $values['txtAwardPicture'] = "$target_path/$filename";
+            }
+
+            $time = strtotime($values['ddlDate']);
+            $values['ddlDate'] = date('Y-m-d', $time);
+
+            $values = $this->data_model->assignFields($values, 'frmEditAward');
+            $values['kennel_id'] = $this->logged_in_kennel_id;
+
+            $this->database->table("link_kennel_awards")->where("id=?", $id)->update($values);
+
+            $this->flashMessage("Your kennel award has been successfully updated.", "Success");
+            $this->redirect("kennel:kennel_awards_list");
+        } catch (\ErrorException $exc) {
+            $this->flashMessage($exc->getMessage(), "Error");
+        }
+    }
+
 }
