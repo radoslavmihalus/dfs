@@ -17,9 +17,8 @@ class kennelPresenter extends BasePresenter {
     private $logged_in_id;
     private $data_model;
     private $logged_in_kennel_id;
-
     private $award_id;
-    
+
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
         $this->data_model = new \DataModel($database);
@@ -405,11 +404,11 @@ class kennelPresenter extends BasePresenter {
             $i++;
         }
 
-        $form->addText('txtKennelName')->setValue($data->kennel_name);
-        $form->addText('txtKennelFciNumber')->setValue($data->kennel_fci_number);
+        $form->addText('txtKennelName')->setValue($data->kennel_name)->setRequired();
+        $form->addText('txtKennelFciNumber')->setValue($data->kennel_fci_number)->setRequired();
         $form->addText('txtKennelWebsite')->setValue($data->kennel_website);
-        $form->addTextArea('txtKennelDescription')->setValue($data->kennel_description);
-        $form->addText("ddlBreedList")->setValue($breeds);
+        $form->addTextArea('txtKennelDescription')->setValue($data->kennel_description)->setRequired();
+        $form->addText("ddlBreedList")->setValue($breeds)->setRequired();
         $this->template->breeds = $breeds;
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileSucceeded');
 
@@ -450,7 +449,7 @@ class kennelPresenter extends BasePresenter {
     protected function createComponentKennelEditProfileCoverImage() {
         $form = new Form();
 
-        $form->addUpload('txtKennelCoverPhoto');
+        $form->addUpload('txtKennelCoverPhoto')->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileCoverImageSuccess');
 
         return $form;
@@ -459,7 +458,7 @@ class kennelPresenter extends BasePresenter {
     protected function createComponentKennelEditProfileImage() {
         $form = new Form();
 
-        $form->addUpload('txtKennelProfilePicture');
+        $form->addUpload('txtKennelProfilePicture')->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileImageSuccess');
 
         return $form;
@@ -599,41 +598,40 @@ class kennelPresenter extends BasePresenter {
             $form = $button->getForm();
 
             $img = $form['txtAwardPicture']->getValue();
-            if (strlen($img) > 0) {
-                $target_path = "uploads/";
+            $target_path = "uploads/";
 
-                $ext = '';
+            $ext = '';
 
-                $ext = explode('.', $img->name);
+            $ext = explode('.', $img->name);
 
-                $length = count($ext);
+            $length = count($ext);
 
-                $ext = $ext[$length - 1];
+            $ext = $ext[$length - 1];
 
-                switch ($ext) {
-                    case 'gif':
-                        $ext = 'gif';
-                        break;
-                    case 'jpeg':
-                        $ext = 'jpg';
-                        break;
-                    case 'jpg':
-                        $ext = 'jpg';
-                        break;
-                    case 'png':
-                        $ext = 'png';
-                        break;
-                    default :
-                        throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-                        break;
-                }
-
-                $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-
-                $img->move("$target_path/$filename");
-
-                $values['txtAwardPicture'] = "$target_path/$filename";
+            switch ($ext) {
+                case 'gif':
+                    $ext = 'gif';
+                    break;
+                case 'jpeg':
+                    $ext = 'jpg';
+                    break;
+                case 'jpg':
+                    $ext = 'jpg';
+                    break;
+                case 'png':
+                    $ext = 'png';
+                    break;
+                default :
+                    throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+                    break;
             }
+
+            $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+
+            $img->move("$target_path/$filename");
+
+            $values['txtAwardPicture'] = "$target_path/$filename";
+
 
             $time = strtotime($values['ddlDate']);
             $values['ddlDate'] = date('Y-m-d', $time);
