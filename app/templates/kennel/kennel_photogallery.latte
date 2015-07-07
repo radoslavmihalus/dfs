@@ -1,0 +1,75 @@
+{layout '@kennel_layout.latte'}
+{block content}
+<div class="panel-body component col-md-12">
+    <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
+        <div class="panel-description"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<a n:href="" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        </div>
+    </div>
+    <!-- Message -->
+    <!--        <div class="row">
+                <div class="col-md-12">
+                    <div class="message-brown" role="alert">
+                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+                    </div>
+                </div>
+            </div>-->
+    <!-- / Message -->
+    <!-- Title item -->
+    <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+    <div id="blueimp-gallery" class="blueimp-gallery">
+        <!-- The container for the modal slides -->
+        <div class="slides"></div>
+        <!-- Controls for the borderless lightbox -->
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+        <!-- The modal dialog, which will be used to wrap the lightbox content -->
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body next"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left prev">
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                            Previous
+                        </button>
+                        <button type="button" class="btn btn-primary next">
+                            Next
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Gallery -->
+    <div id="gallery">
+    <a href="www/img/dog1.jpg" title="Dog1" data-gallery>
+        <img src="www/img/dog1.jpg" width="70px" height="70px" alt="Dog1">
+    </a>
+    <a href="www/img/dog2.jpg" title="Dog2" data-gallery>
+        <img src="www/img/dog2.jpg" width="70px" height="70px" alt="Dog2">
+    </a>
+    <a href="www/img/dog3.jpg" title="Dog3" data-gallery>
+        <img src="www/img/dog3.jpg" width="70px" height="70px" alt="Dog3">
+    </a>
+    <a href="www/img/dog1.jpg" title="Dog4" data-gallery>
+        <img src="www/img/dog1.jpg" width="70px" height="70px" alt="Dog4">
+    </a>
+    <a href="www/img/dog2.jpg" title="Dog5" data-gallery>
+        <img src="www/img/dog2.jpg" width="70px" height="70px" alt="Dog5">
+    </a>
+    <a href="www/img/dog3.jpg" title="Dog6" data-gallery>
+        <img src="www/img/dog3.jpg" width="70px" height="70px" alt="Dog6">
+    </a>
+    </div>
+</div>
+{/block}
