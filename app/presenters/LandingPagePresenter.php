@@ -140,7 +140,7 @@ class LandingPagePresenter extends BasePresenter {
 
             $exception = '<ul>';
 
-            if ($values['ddlCountries'] == 0)
+            if ($values['ddlCountries'] == "0")
                 $exception .= "<li>Please select state</li>";
 
             if ($values['txtPassword'] != $values['txtConfirmPassword']) {
