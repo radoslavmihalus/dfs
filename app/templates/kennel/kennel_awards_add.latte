@@ -7,9 +7,9 @@
         {form frmAddAward}
             <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_ 'Add award'}</h2>
             <hr>
-            {include dropdown_DatePicker_control, _form => $_form, description => "Date of the award", placeholder => "Please select", id => "ddlDate", name => "ddlDate"}
-            {include textbox_control, _form => $_form, description => "Name of the award", placeholder => "Name of the award", id => "txtAwardName", name => "txtAwardName"}
-            {include image_UploadPicture_control, _form => $_form, description => "Picture", placeholder => "Select picture", id => "txtAwardPicture", name => "txtAwardPicture"}
+            {include dropdown_DatePicker_control, _form => $_form, description => "Date of the award", placeholder => "Please select", id => "ddlDate", name => "ddlDate", tooltip=>"Select date when award was obtained"}
+            {include textbox_control, _form => $_form, description => "Name of the award", placeholder => "Name of the award", id => "txtAwardName", name => "txtAwardName", tooltip=>"Name of the award"}
+            {include image_UploadPicture_control, _form => $_form, description => "Picture", placeholder => "Select picture", id => "txtAwardPicture", name => "txtAwardPicture", tooltip=>"Picture of award in jpeg or jpg format"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
             <a n:href="kennel:kennel_awards_list" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</a>
         {/form}
