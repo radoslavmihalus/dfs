@@ -17,11 +17,11 @@
                         {form kennelEditProfile}
                             <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about your kennel'}</span>
                             <hr>
-                            {include textbox_control, _form => $_form, description => "Kennel name", placeholder => "Kennel name", id => "txtKennelName", name => "txtKennelName"}
-                            {include textbox_control, _form => $_form, description => "Kennel FCI number", placeholder => "Kennel FCI number", id => "txtKennelFciNumber", name => "txtKennelFciNumber"}
-                            {include textbox_control, _form => $_form, description => "Kennel website", placeholder => "www.yourwebsite.com", id => "txtKennelWebsite", name => "txtKennelWebsite"}
-                            {include textarea_control, _form => $_form, description => "Kennel description", placeholder => "Kennel description", id => "txtKennelDescription", name => "txtKennelDescription"}
-                            {include dropdown_BreedList_control, _form => $_form, description => "Select the breed bred by your kennel", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList"}
+                            {include textbox_control, _form => $_form, description => "Kennel name", placeholder => "Kennel name", id => "txtKennelName", name => "txtKennelName", tooltip => "Name of your kennel"}
+                            {include textbox_control, _form => $_form, description => "FCI number", placeholder => "FCI number", id => "txtKennelFciNumber", name => "txtKennelFciNumber", tooltip => "Fill the FCI number in the form 1580/2015. If you are non FCI kennel, please leave this field empty"}
+                            {include textbox_control, _form => $_form, description => "Kennel website", placeholder => "www.yourwebsite.com", id => "txtKennelWebsite", name => "txtKennelWebsite", tooltip => "Enter the website of your kennel"}
+                            {include textarea_control, _form => $_form, description => "Kennel description", placeholder => "Kennel description", id => "txtKennelDescription", name => "txtKennelDescription", tooltip => "Enter information about your kennel"}
+                            {include dropdown_BreedList_control, _form => $_form, description => "Select the breed bred by your kennel", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose one ore more breeds bred by your kennel"}
                             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
                         {/form}
                     </div>
@@ -31,12 +31,12 @@
                 <div class="panel panel-default registration_block transparent_white">
                     <div class="panel-body">
                         {form kennelEditProfileCoverImage}
-                            {include image_UploadPicture_control, _form => $_form, description => "Kennel cover photo", placeholder => "Select picture", id => "txtKennelCoverPhoto", name => "txtKennelCoverPhoto"}
-                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                            {include image_UploadPicture_control, _form => $_form, description => "Cover photo", placeholder => "Select picture", id => "txtKennelCoverPhoto", name => "txtKennelCoverPhoto", tooltip => "Cover photo of your kennel in jpeg or jpg format"}
+                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Update'}</button>
                         {/form}
                         {form kennelEditProfileImage}
-                            {include image_UploadPicture_control, _form => $_form, description => "Kennel profile picture", placeholder => "Select picture", id => "txtKennelProfilePicture", name => "txtKennelProfilePicture"}
-                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                            {include image_UploadPicture_control, _form => $_form, description => "Profile picture", placeholder => "Select picture", id => "txtKennelProfilePicture", name => "txtKennelProfilePicture", tooltip => "Profile picture of your kennel in jpeg or jpg format"}
+                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Update'}</button>
                         {/form}
                     </div>
                 </div>
