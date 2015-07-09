@@ -305,12 +305,12 @@ class kennelPresenter extends BasePresenter {
     protected function createComponentKennelCreateProfile() {
 
         $form = new Form();
-        $form->addText('txtKennelName');
+        $form->addText('txtKennelName')->setRequired();
         $form->addText('txtKennelFciNumber');
-        $form->addUpload('txtKennelProfilePicture');
+        $form->addUpload('txtKennelProfilePicture')->setRequired();
         $form->addText('txtKennelWebsite');
         $form->addTextArea('txtKennelDescription');
-        $form->addText('ddlBreedList');
+        $form->addText('ddlBreedList')->setRequired();
         $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateProfileSucceeded');
 
         return $form;
@@ -405,9 +405,9 @@ class kennelPresenter extends BasePresenter {
         }
 
         $form->addText('txtKennelName')->setValue($data->kennel_name)->setRequired();
-        $form->addText('txtKennelFciNumber')->setValue($data->kennel_fci_number)->setRequired();
+        $form->addText('txtKennelFciNumber')->setValue($data->kennel_fci_number);
         $form->addText('txtKennelWebsite')->setValue($data->kennel_website);
-        $form->addTextArea('txtKennelDescription')->setValue($data->kennel_description)->setRequired();
+        $form->addTextArea('txtKennelDescription')->setValue($data->kennel_description);
         $form->addText("ddlBreedList")->setValue($breeds)->setRequired();
         $this->template->breeds = $breeds;
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileSucceeded');
