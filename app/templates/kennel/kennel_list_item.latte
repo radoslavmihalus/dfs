@@ -3,7 +3,7 @@
     <div class="col-lg-4 col-md-6 col-xs-12 padding">
         <a n:href="kennel:kennel_profile_home id => $row->id">
             <div class="list-item">
-                <div class="profile-header-image" style="height:200px;{if (strlen($row->kennel_background_image)>2)} background: url('{$row->kennel_background_image}')no-repeat center center {else} background-color:#D5D0C0; background-image: none{/if}">
+                <div class="profile-header-image" style="height:200px;{if (strlen($row->kennel_background_image)>2)} background: url('{$row->kennel_background_image}')no-repeat center center;background-size:cover;background-position:50% 20%; {else} background-color:#D5D0C0; background-image: none{/if}">
                     <div class="pull-left image-profile-thumb" style="top:40px;">
                         <img src="{$row->kennel_profile_picture}">
                     </div>
