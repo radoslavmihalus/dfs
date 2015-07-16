@@ -35,7 +35,8 @@ $router[] = new Route('index.php', 'LandingPage:default');
 //$router[] = new Route('reset-password', 'LandingPage:reset_password');
 // User routes
 $router[] = new Route('switch-profile', 'user:user_create_profile_switcher');
-$router[] = new Route('premium-account', 'user:user_premium_account');
+$router[] = new Route('premium-account', 'user:user_premium');
+$router[] = new Route('premium-account-activation', 'user:user_premium_activation');
 $router[] = new Route('edit-account', 'user:user_edit_account');
 $router[] = new Route('list-of-friends-requests', 'user:user_friend_requests_list');
 $router[] = new Route('notification-list', 'user:user_notification_list');
