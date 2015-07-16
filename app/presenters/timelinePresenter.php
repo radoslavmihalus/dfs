@@ -17,15 +17,16 @@ class timelinePresenter extends BasePresenter {
     protected function startup() {
         parent::startup();
 
-        $mysection = $this->getSession('userdata');
-        $myid = $mysection->id;
-        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
-
-        foreach ($userdata as $user) {
-            $this->template->fullname = $user->name . ' ' . $user->surname;
-            $this->template->profile_type = 'Spectator';
-            $this->template->profile_type_icon = 'fa fa-eye'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
-        }
+//        $mysection = $this->getSession('userdata');
+//        $myid = $mysection->id;
+//        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
+//
+//        foreach ($userdata as $user) {
+        $this->template->fullname = $user->name . ' ' . $user->surname;
+        $this->template->profile_type = 'Spectator';
+        $this->template->profile_type_icon = 'fa fa-eye'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
+        $this->template->logged_in_id = 0;
+//        }
     }
 
     /*     * ******************* view default ******************** */
@@ -66,6 +67,43 @@ class timelinePresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
+    protected function createComponentFrmSignIn() {
+        $result = $this->database->table("lk_countries")->order("CountryName_en");
+        $items = array();
+
+        $items[] = "Please select state ...";
+        foreach ($result as $row) {
+            $items[$row->CountryName_en] = $row->CountryName_en;
+        }
+
+        $form = new Form();
+        $form->addText("txtName")->setRequired();
+        $form->addText("txtSurname")->setRequired();
+        $form->addText("txtEmail")->setRequired();
+        $form->addText("hidddlCountries")->setRequired();
+        $form->addSelect("ddlCountries")->setItems($items);
+        $form->addPassword("txtPassword")->setRequired();
+        $form->addPassword("txtConfirmPassword")->setRequired();
+        $form->addSubmit('btnSignIn', 'Register')->onClick[] = array($this, 'frmSignInSucceeded');
+        return $form;
+    }
+
+    protected function createComponentFrmLogIn() {
+        $form = new Form();
+        $form->addText("txtEmail");
+        $form->addPassword("txtPassword");
+        $form->addCheckbox("chkRemember");
+        $form->addSubmit('btnLogin', 'Login')->onClick[] = array($this, 'frmLogInSucceeded');
+        return $form;
+    }
+
+    protected function createComponentForgotPassword() {
+        $form = new Form();
+        $form->addText("txtEmail")->setRequired();
+        $form->addSubmit('btnForgotPassword')->onClick[] = array($this, 'ForgotPasswordSucceeded');
+        return $form;
+    }
+
     protected function createComponentAlbumForm() {
 //		$form = new Form;
 //		$form->addText('artist', 'Artist:')
