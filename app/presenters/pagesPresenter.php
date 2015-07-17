@@ -8,24 +8,15 @@ use App\Model,
 
 class pagesPresenter extends BasePresenter {
 
-    private $database;
+//    private $database;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
+        $this->translator = new DFSTranslator();
     }
 
     protected function startup() {
         parent::startup();
-
-        $mysection = $this->getSession('userdata');
-        $myid = $mysection->id;
-        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
-
-        foreach ($userdata as $user) {
-            $this->template->fullname = $user->name . ' ' . $user->surname;
-            $this->template->profile_type = 'Spectator';
-            $this->template->profile_type_icon = 'fa fa-eye'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
-        }
     }
 
     /*     * ******************* view default ******************** */

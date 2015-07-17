@@ -8,84 +8,40 @@ use App\Model,
 
 class userPresenter extends BasePresenter {
 
-    private $database;
+//    private $database;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
-    }
-
-    function getField($form_name, $element_name) {
-        $fields = $this->database->query("SELECT * FROM form_fields WHERE form_name=? AND element_name=?", $form_name, $element_name);
-
-        $return = "";
-
-        foreach ($fields as $field) {
-            $return = $field->field_name;
-        }
-        return $return;
-    }
-
-    function assignFields($valuesArray, $form) {
-        $return = array();
-
-        foreach ($valuesArray as $key => $value) {
-            $field = $this->getField($form, $key);
-            if (strlen($field) > 0)
-                $return[$field] = $value;
-        }
-
-        return $return;
+        $this->translator = new DFSTranslator();
     }
 
     protected function startup() {
         parent::startup();
+    }
 
-        try {
-            $mysection = $this->getSession('userdata');
-            $myid = $mysection->id;
-            $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
-
-            foreach ($userdata as $user) {
-                $this->template->fullname = $user->name . ' ' . $user->surname;
-                $this->template->profile_type = 'User account';
-                $this->template->profile_type_icon = 'fa fa-eye'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
-                $this->template->logged_in_id = $myid;
-            }
-        } catch (\Exception $ex) {
-            $this->template->logged_in_id = 0;
+    public function renderUser_create_profile_switcher() {
+        switch ($this->profile_type) {
+            case 1:
+                $this->template->active_profile_kennel = true;
+                $this->template->active_profile_owner = false;
+                $this->template->active_profile_handler = false;
+                break;
+            case 2:
+                $this->template->active_profile_kennel = false;
+                $this->template->active_profile_owner = true;
+                $this->template->active_profile_handler = false;
+                break;
+            case 3:
+                $this->template->active_profile_kennel = false;
+                $this->template->active_profile_owner = false;
+                $this->template->active_profile_handler = true;
+                break;
+            default :
+                $this->template->active_profile_kennel = false;
+                $this->template->active_profile_owner = false;
+                $this->template->active_profile_handler = false;
+                break;
         }
-    }
-
-    /*     * ******************* view default ******************** */
-
-    public function renderDefault() {
-//predanie argumentov //$this->template->albums = $this->albums->findAll()->order('artist')->order('title');
-    }
-
-    /*     * ******************* views add & edit ******************** */
-
-    public function renderAdd() {
-//$this['albumForm']['save']->caption = 'Add';
-    }
-
-    public function renderEdit($id = 0) {
-//		$form = $this['albumForm'];
-//		if (!$form->isSubmitted()) {
-//			$album = $this->albums->findById($id);
-//			if (!$album) {
-//				$this->error('Record not found');
-//			}
-//			$form->setDefaults($album);
-//		}
-    }
-
-    /*     * ******************* view delete ******************** */
-
-    public function renderDelete($id = 0) {
-//		$this->template->album = $this->albums->findById($id);
-//		if (!$this->template->album) {
-//			$this->error('Record not found');
-//		}
     }
 
     /*     * ******************* component factories ******************** */
@@ -161,17 +117,6 @@ class userPresenter extends BasePresenter {
 
         $this->flashMessage("User updated successfully", "Success");
         $this->redirect('user:user_edit_account');
-
-//		$values = $button->getForm()->getValues();
-//		$id = (int) $this->getParameter('id');
-//		if ($id) {
-//			$this->albums->findById($id)->update($values);
-//			$this->flashMessage('The album has been updated.');
-//		} else {
-//			$this->albums->insert($values);
-//			$this->flashMessage('The album has been added.');
-//		}
-//		$this->redirect('default');
     }
 
     /**
@@ -222,16 +167,6 @@ class userPresenter extends BasePresenter {
             $this->flashMessage($ex->getMessage(), "Error");
             $this->redirect('user:user_edit_account');
         }
-    }
-
-    public function deleteFormSucceeded() {
-//		$this->albums->findById($this->getParameter('id'))->delete();
-//		$this->flashMessage('Album has been deleted.');
-//		$this->redirect('default');
-    }
-
-    public function formCancelled() {
-        $this->redirect('default');
     }
 
 }

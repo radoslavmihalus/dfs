@@ -126,5 +126,20 @@
                 });
             });
         </script>
+        {foreach $flashes as $flash}
+            <script type="text/javascript">
+                if ({$flash->type} == 'Error')
+                    ShowMessageModal(enumNotificationType.error, {$flash->message});
+                if ({$flash->type} == 'Warning')
+                    ShowMessageModal(enumNotificationType.warning, {$flash->message});
+                if ({$flash->type} == 'Info')
+                    ShowMessageModal(enumNotificationType.information, {$flash->message});
+                if ({$flash->type} == 'Success')
+                    ShowMessageModal(enumNotificationType.success, {$flash->message});
+                if ({$flash->type} == 'Confirmation')
+                    ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
+            </script>
+        {/foreach}
+
     </body>
 </html>

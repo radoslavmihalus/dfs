@@ -134,18 +134,22 @@
                     top: event.pageY + 40
                 });
             });
-        </script>
-        {foreach $flashes as $flash}
-            <script type="text/javascript">
-                if({$flash->type} == "error")
-                {
-                    
-                }
-                ShowMessageModal(enumNotificationType.information, {$flash->message});
-            </script>
-        {/foreach}
-        
+        </script>        
         <script src="www/js/gallery/jquery.blueimp-gallery.min.js"></script>
         <script src="www/js/gallery/bootstrap-image-gallery.js"></script>
+        {foreach $flashes as $flash}
+            <script type="text/javascript">
+                if ({$flash->type} == 'Error')
+                    ShowMessageModal(enumNotificationType.error, {$flash->message});
+                if ({$flash->type} == 'Warning')
+                    ShowMessageModal(enumNotificationType.warning, {$flash->message});
+                if ({$flash->type} == 'Info')
+                    ShowMessageModal(enumNotificationType.information, {$flash->message});
+                if ({$flash->type} == 'Success')
+                    ShowMessageModal(enumNotificationType.success, {$flash->message});
+                if ({$flash->type} == 'Confirmation')
+                    ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
+            </script>
+        {/foreach}
     </body>
 </html>

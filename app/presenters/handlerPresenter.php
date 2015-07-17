@@ -14,36 +14,16 @@ class handlerPresenter extends BasePresenter {
 //        
 //    }
 
-    private $database;
     private $kmodel;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
         $this->kmodel = new \HandlerModel($database);
+        $this->translator = new DFSTranslator();
     }
 
     protected function startup() {
         parent::startup();
-        $mysection = $this->getSession('userdata');
-        $myid = $mysection->id;
-        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
-
-        foreach ($userdata as $user) {
-            $this->template->fullname = $user->name . ' ' . $user->surname;
-            $this->template->profile_type = 'Handler';
-            $this->template->profile_type_icon = 'glyphicons glyphicons-shirt'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
-            $this->template->logged_in_id = $myid;
-        }
-
-//        $translator = new DFSTranslator();
-//        $this->template->setTranslator($translator);
-        //$this->setLayout('@layout.latte');
-//		if (!$this->getUser()->isLoggedIn()) {
-//			if ($this->getUser()->logoutReason === Nette\Security\IUserStorage::INACTIVITY) {
-//				$this->flashMessage('You have been signed out due to inactivity. Please sign in again.');
-//			}
-//			$this->redirect('Sign:in', array('backlink' => $this->storeRequest()));
-//		}
     }
     
     

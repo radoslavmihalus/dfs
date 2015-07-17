@@ -2,9 +2,16 @@
 <div class="col-md-4" style="font-size: 12px;">
     <div class="panel-body component" style="background-color: white;min-height:430px;margin-bottom: 10px;">
         <h2 class="text-center text-uppercase"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</h2>
-        <p class="text-center"><a n:href="kennel:kennel_create_profile" class="btn btn-danger btn-xl" style="margin-bottom:10px;">{_ 'Create profile'}</a></p>
-        <p class="text-center"><a n:href="" class="btn btn-default btn-xl" style="margin-bottom:10px;"><i class="fa fa-exchange"></i>&nbsp;&nbsp;{_ 'Switch profile'}</a></p>
-        <p class="text-center"><span class="label label-warning" style="border:#EDEBE4 1px solid;background-color: white;color:rgb(213, 208, 192);margin-bottom:10px;display: inline-block;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;{_ 'Active profile'}</span><p>
+        {if $has_kennel_profile}
+            {if !$active_profile_kennel}
+                <p class="text-center"><a n:href="kennel:kennel_profile_home" class="btn btn-default btn-xl" style="margin-bottom:10px;"><i class="fa fa-exchange"></i>&nbsp;&nbsp;{_ 'Switch profile'}</a></p>
+            {/if}
+            {if $active_profile_kennel}
+                <p class="text-center"><span class="label label-warning" style="border:#EDEBE4 1px solid;background-color: white;color:rgb(213, 208, 192);margin-bottom:10px;display: inline-block;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;{_ 'Active profile'}</span><p>
+                {/if}
+            {else}
+            <p class="text-center"><a n:href="kennel:kennel_create_profile" class="btn btn-danger btn-xl" style="margin-bottom:10px;">{_ 'Create profile'}</a></p>
+            {/if}
         <hr>
         <ul class="section_list">
             <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>{_ 'Create a clear profile of your kennel'}</li>
@@ -25,9 +32,16 @@
 <div class="col-md-4" style="font-size: 12px;">
     <div class="panel-body component" style="background-color: white;min-height:430px;margin-bottom: 10px;">
         <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{_ 'Owner of purebred dog'}</h2>
-        <p class="text-center"><a n:href="owner:owner_create_profile" class="btn btn-danger btn-xl" style="margin-bottom:10px;">{_ 'Create profile'}</a></p>
-        <p class="text-center"><a n:href="" class="btn btn-default btn-xl" style="margin-bottom:10px;"><i class="fa fa-exchange"></i>&nbsp;&nbsp;{_ 'Switch profile'}</a></p>
-        <p class="text-center"><span class="label label-warning" style="border:#EDEBE4 1px solid;background-color: white;color:rgb(213, 208, 192);margin-bottom:10px;display: inline-block;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;{_ 'Active profile'}</span><p>
+        {if $has_owner_profile}
+            {if !$active_profile_owner}
+                <p class="text-center"><a n:href="owner:owner_profile_home" class="btn btn-default btn-xl" style="margin-bottom:10px;"><i class="fa fa-exchange"></i>&nbsp;&nbsp;{_ 'Switch profile'}</a></p>
+            {/if}
+            {if $active_profile_owner}
+                <p class="text-center"><span class="label label-warning" style="border:#EDEBE4 1px solid;background-color: white;color:rgb(213, 208, 192);margin-bottom:10px;display: inline-block;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;{_ 'Active profile'}</span><p>
+                {/if}
+            {else}
+            <p class="text-center"><a n:href="owner:owner_create_profile" class="btn btn-danger btn-xl" style="margin-bottom:10px;">{_ 'Create profile'}</a></p>
+            {/if}
         <hr>
         <ul class="section_list">
             <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>{_ 'Create a clear owner profile'}</li>
@@ -46,9 +60,16 @@
 <div class="panel-default col-md-4" style="font-size: 12px;">
     <div class="panel-body component" style="background-color: white;min-height:430px;margin-bottom: 10px;">
         <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_ 'Handler'}</h2>
-        <p class="text-center"><a n:href="handler:handler_create_profile" class="btn btn-danger btn-xl" style="margin-bottom:10px;">{_ 'Create profile'}</a></p>
-        <p class="text-center"><a n:href="" class="btn btn-default btn-xl" style="margin-bottom:10px;"><i class="fa fa-exchange"></i>&nbsp;&nbsp;{_ 'Switch profile'}</a></p>
-        <p class="text-center"><span class="label label-warning" style="border:#EDEBE4 1px solid;background-color: white;color:rgb(213, 208, 192);margin-bottom:10px;display: inline-block;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;{_ 'Active profile'}</span><p>
+        {if $has_handler_profile}
+            {if !$active_profile_handler}
+                <p class="text-center"><a n:href="handler:handler_profile_home" class="btn btn-default btn-xl" style="margin-bottom:10px;"><i class="fa fa-exchange"></i>&nbsp;&nbsp;{_ 'Switch profile'}</a></p>
+            {/if}
+            {if $active_profile_handler}
+                <p class="text-center"><span class="label label-warning" style="border:#EDEBE4 1px solid;background-color: white;color:rgb(213, 208, 192);margin-bottom:10px;display: inline-block;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;{_ 'Active profile'}</span><p>
+                {/if}
+            {else}
+            <p class="text-center"><a n:href="handler:handler_create_profile" class="btn btn-danger btn-xl" style="margin-bottom:10px;">{_ 'Create profile'}</a></p>
+            {/if}
         <hr>
         <ul class="section_list">
             <li><span class="glyphicon glyphicon-ok section_list_icon" aria-hidden="true"></span>{_ 'Create a clear handler profile'}</li>

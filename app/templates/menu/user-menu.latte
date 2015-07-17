@@ -1,13 +1,21 @@
 <div class="container-fluid user-menu" >
     <div class="collapse navbar-collapse" id="user-menu" role="navigation" style="padding: 0px;">
         {if $logged_in_id>0}
-            <a href="kennel-profile">
+            {var $profile_url = ""}
+            {if ($active_profile_type == 1)}
+                {$profile_url = "kennel:kennel_profile_home"}
+            {elseif ($active_profile_type == 2)}
+                {$profile_url = "owner:owner_profile_home"}
+            {else}
+                {$profile_url = "handler:handler_profile_home"}
+            {/if}                    
+
+            <a n:href="{$profile_url}">
                 <div class="user-block">
-<!--                    <img class="user-block-thumb" src="img/referer1.jpg" />-->
+                    {if $has_owner_profile || $has_kennel_profile || $has_handler_profile}
+                        <img class="user-block-thumb" src="{$profile_home_image}" />
+                    {/if}
                     <p class="user-block-type"><i class="{$profile_type_icon}"></i>&nbsp;&nbsp;</i>{_$profile_type}</p>
-    <!--                <p class="user-block-type"><i class="fa fa-eye"></i>&nbsp;&nbsp;</i>{_'Spectator'}</p>
-                    <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>{_'Owner of purebred dog'}</p>
-                    <p class="user-block-type"><i class="fa fa-user"></i>&nbsp;&nbsp;</i>{_'Handler'}</p>-->
                     <p class="text-uppercase user-block-name" id="userName">{$fullname}</p>
                 </div>
             </a>
@@ -122,16 +130,16 @@
             <li class="panel">
                 <div>DOGFORSHOW</div>
             </li>
-<!--            <li>
-                <div class="input-group custom-search-form search">
-                    <input type="text" class="form-control search-bar-typing" placeholder="Search DOGFORSHOW ...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </li>-->
+            <!--            <li>
+                            <div class="input-group custom-search-form search">
+                                <input type="text" class="form-control search-bar-typing" placeholder="Search DOGFORSHOW ...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </li>-->
             <li class="panel"> 
                 <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowAbout"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i>{_ 'About us'}</a>
                 <ul id="DogforshowAbout" class="collapse panel-collapse">

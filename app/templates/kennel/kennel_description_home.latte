@@ -1,12 +1,14 @@
 {define #kennel_description_home}
 <div class="panel-body component col-lg-12">
     <!-- FCI number panel-->
-    <div class="panel-description">{_ 'Kennel FCI number'} 
-    </div>
-    <div class="text-justify" style="font-size:12px;padding-top: 10px;">
-        {$kennel_fci_number}
-    </div>
-    <hr>
+    {if strlen($kennel_fci_number)>0}
+        <div class="panel-description">{_ 'Kennel FCI number'} 
+        </div>
+        <div class="text-justify" style="font-size:12px;padding-top: 10px;">
+            {$kennel_fci_number}
+        </div>
+        <hr>
+    {/if}
     <!-- Kennel breed panel-->
     <div class="panel-description">{_ 'Breeds bred by our kennel'}</div>
     <div class="text-justify" style="font-size:12px;padding-top: 10px;">
@@ -18,18 +20,22 @@
     </div>
     <hr>
     <!-- Kennel description panel-->
-    <div class="panel-description">{_ 'About us'} 
-    </div>
-    <div class="text-justify" style="font-size:12px;padding-top: 10px;">
-        {!$kennel_description|escape|nl2br}
-    </div>
-    <hr>
+    {if strlen($kennel_description)>0}
+        <div class="panel-description">{_ 'About us'} 
+        </div>
+        <div class="text-justify" style="font-size:12px;padding-top: 10px;">
+            {!$kennel_description|escape|nl2br}
+        </div>
+        <hr>
+    {/if}
     <!-- Kennel website-->
-    <div class="panel-description">{_ 'Website'} 
-    </div>
-    <div class="text-justify" style="font-size:12px;padding-top: 10px;">
-        {$kennel_website}
-    </div>
+    {if strlen($kennel_website)>0}
+        <div class="panel-description">{_ 'Website'} 
+        </div>
+        <div class="text-justify" style="font-size:12px;padding-top: 10px;">
+            {$kennel_website}
+        </div>
+    {/if}
 </div>
 <script>
     $(function () {

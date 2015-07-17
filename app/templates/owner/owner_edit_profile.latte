@@ -26,6 +26,9 @@
                     <div class="panel-body">
                         {form ownerEditProfilePicture}
                             {include image_UploadPicture_control, description => "Your cover photo", placeholder => "Select picture", id => "txtOwnerCoverPhoto", name => "txtOwnerCoverPhoto", _form => $_form}
+                            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                        {/form}
+                        {form ownerEditProfilePicture}
                             {include image_UploadPicture_control, description => "Your profile picture", placeholder => "Select picture", id => "txtOwnerProfilePhoto", name => "txtOwnerProfilePhoto", _form => $_form}
                             <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
                         {/form}
