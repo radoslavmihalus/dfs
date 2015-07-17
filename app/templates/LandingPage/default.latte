@@ -175,7 +175,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="div_with_map">
                             <!-- google geo chart -->
                             <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['geochart']}]}"></script>
                             <div id="regions_div" style="width:100%"></div>
@@ -240,8 +240,8 @@
                                     var options = {
                                         legend: 'none',
                                         colorAxis: {
-    colors: ['#fff', 'black', '#fff']
-   },
+                                            colors: ['#fff', 'black', '#fff']
+                                        },
                                         enableRegionInteractivity: 0,
                                         backgroundColor: 'transparent',
                                         datalessRegionColor: '#a5987f',
@@ -252,6 +252,18 @@
 
                                     chart.draw(data, options);
                                 }
+
+/*                                window.onresize = function () {
+                                    var mywidth;
+                                    mywidth = $(window).width() - 60;
+                                    
+                                    $("#region_div").html(" ");
+                                    
+                                    $("#region_div").height("auto");
+                                    $("#region_div").width(mywidth);
+                                    $("#region_div").html(" ");
+                                    drawRegionsMap();
+                                };*/
                             </script>
                         </div>
                     </div>
