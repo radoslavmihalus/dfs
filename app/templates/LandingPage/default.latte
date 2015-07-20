@@ -149,32 +149,32 @@
                     </div>
                     <!-- Registered users counters -->
                     <div class="row animated">
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-sm-6 col-xs-6">
                             <p class="text-center counter_number">1.140</p>
                             <p class="text-center counter_description">{_ 'Kennels'}</p>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-sm-6 col-xs-6">
                             <p class="text-center counter_number">417</p>
                             <p class="text-center counter_description">{_ 'Owners'}</p>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-sm-6 col-xs-6">
                             <p class="text-center counter_number">206</p>
                             <p class="text-center counter_description">{_ 'Handlers'}</p>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-sm-6 col-xs-6">
                             <p class="text-center counter_number">660</p>
                             <p class="text-center counter_description">{_ 'Dogs with pedigree'}</p>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-sm-6 col-xs-6">
                             <p class="text-center counter_number">392</p>
                             <p class="text-center counter_description">{_ 'Planned litters'}</p>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-sm-6 col-xs-6">
                             <p class="text-center counter_number">50</p>
                             <p class="text-center counter_description">{_ 'Puppies for sale'}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="margin-top:15px;">
                         <div class="col-md-12" id="div_with_map">
                             <!-- google geo chart -->
                             <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['geochart']}]}"></script>
@@ -185,7 +185,7 @@
                                 function drawRegionsMap() {
 
                                     var data = google.visualization.arrayToDataTable([
-                                        ['Country', 'Popularity'],
+                                        ['Country', 'Name'],
                                         ['Czech Republic', 2568],
                                         ['Slovakia', 2568],
                                         ['Serbia', 2568],
@@ -244,8 +244,8 @@
                                         },
                                         enableRegionInteractivity: 0,
                                         backgroundColor: 'transparent',
-                                        datalessRegionColor: '#a5987f',
-                                        defaultColor: '#a5987f',
+                                        datalessRegionColor: 'transparent',
+                                        defaultColor: '#fff'
                                     };
 
                                     var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
@@ -253,17 +253,17 @@
                                     chart.draw(data, options);
                                 }
 
-/*                                window.onresize = function () {
-                                    var mywidth;
-                                    mywidth = $(window).width() - 60;
-                                    
-                                    $("#region_div").html(" ");
-                                    
-                                    $("#region_div").height("auto");
-                                    $("#region_div").width(mywidth);
-                                    $("#region_div").html(" ");
-                                    drawRegionsMap();
-                                };*/
+                                /*                                window.onresize = function () {
+                                 var mywidth;
+                                 mywidth = $(window).width() - 60;
+                                 
+                                 $("#region_div").html(" ");
+                                 
+                                 $("#region_div").height("auto");
+                                 $("#region_div").width(mywidth);
+                                 $("#region_div").html(" ");
+                                 drawRegionsMap();
+                                 };*/
                             </script>
                         </div>
                     </div>
@@ -358,8 +358,11 @@
                                 <a href="https://twitter.com/DOGFORSHOW" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Twitter'}" style="margin-right:15px;text-decoration: none;">
                                     <span class="fa fa-twitter-square fa-2x white follow_link"></span>
                                 </a>
-                                <a href="https://www.pinterest.com/DOGFORSHOW" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Pinterest'}" style="text-decoration: none;">
+                                <a href="https://www.pinterest.com/DOGFORSHOW" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Pinterest'}" style="margin-right:15px;text-decoration: none;">
                                     <span class="fa fa-pinterest-square fa-2x white follow_link"></span>
+                                </a>
+                                <a href="http://dog-for-show.tumblr.com/" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Tumblr'}" style="text-decoration: none;">
+                                    <span class="fa fa-tumblr-square fa-2x white follow_link"></span>
                                 </a>
                             </p>
                         </div>
