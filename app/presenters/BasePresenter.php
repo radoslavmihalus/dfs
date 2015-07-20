@@ -55,7 +55,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         parent::startup();
         $this->translator = new DFSTranslator();
         $this->template->setTranslator($this->translator);
-        
+
         try {
             $mysection = $this->getSession('userdata');
             $myid = $mysection->id;
@@ -72,7 +72,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             if ($userdata->active_profile_id > 0 && $userdata->active_profile_type > 0) {
                 $this->profile_type = $userdata->active_profile_type;
                 $this->profile_id = $userdata->active_profile_id;
-                
+
                 $this->template->active_profile_type = $this->profile_type;
                 switch ($userdata->active_profile_type) {
                     case 1:
@@ -110,7 +110,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->template->logged_in_id = $myid;
 
             $this->template->profile_id = $profile_id;
-            
+
             $counter = 0;
             $type_cnt = 0;
 
@@ -186,7 +186,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $result = $this->database->table("lk_countries")->order("CountryName_en");
         $items = array();
 
-        $items[] = "Please select state ...";
+        $items["0"] = "Please select state ...";
         foreach ($result as $row) {
             $items[$row->CountryName_en] = $this->translate($row->CountryName_en);
         }
@@ -196,10 +196,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $form->addText("txtSurname")->setRequired();
         $form->addText("txtEmail")->setRequired();
         $form->addText("hidddlCountries")->setRequired();
-        $form->addSelect("ddlCountries")->setItems($items);
+        $form->addSelect("ddlCountries")->setItems($items)->setRequired();
         $form->addPassword("txtPassword")->setRequired();
         $form->addPassword("txtConfirmPassword")->setRequired();
-        $form->addSubmit('btnSignIn', 'Register')->onClick[] = array($this, 'frmSignInSucceeded');
+        $form->addSubmit('btnSignIn')->onClick[] = array($this, 'frmSignInSucceeded');
         return $form;
     }
 
@@ -210,92 +210,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $form->addCheckbox("chkRemember");
         $form->addSubmit('btnLogin', 'Login')->onClick[] = array($this, 'frmLogInSucceeded');
         return $form;
-    }
-
-    public function frmSignInSucceeded($button) {
-        $is_error = FALSE;
-        try {
-            $values = $button->getForm()->getValues();
-
-
-            $exception = '<ul>';
-
-            if ($values['ddlCountries'] == "0")
-                $exception .= "<li>" . $this->translate("Please select state") . "</li>";
-
-            if ($values['txtPassword'] != $values['txtConfirmPassword']) {
-                $exception .= "<li>" . $this->translate("Password and confirm password does not match") . "</li>";
-            }
-
-            $values = $this->assignFields($values, 'frmSignIn');
-
-            if (preg_match('/[0-9]+/', $values['name']) || preg_match('/[0-9]+/', $values['surname'])) {
-                $exception .= "<li>" . $this->translate("Fields Name and Surname cannot contains digits") . "</li>";
-            }
-
-            $exception .= '</ul>';
-
-            if ($exception != '<ul></ul>')
-                throw new \Exception($exception);
-
-            $this->database->table("tbl_user")->insert($values);
-            $userid = $this->database->getInsertId();
-
-            $mail = new Message();
-            $mail->setFrom('DOGFORSHOW <info@dogforshow.com>')
-                    ->addTo($values['email'])
-                    ->setSubject($this->translate('Welcome to DOGFORSHOW'))
-                    ->setHtmlBody('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Welcome to DOGFORSHOW</title>
-    </head>
-    <body bgcolor="#f6f8f1" style="margin: 0; padding: 0; min-width: 100%!important;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#8C8067;" >
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td>
-                    <table style="padding-bottom:20px; margin-top:10px; width: 90%; max-width: 600px;" class="content" bgcolor="white" align="center" cellpadding="10" cellspacing="0" border="0">
-                        <tr>
-                            <td align="center" style="border-bottom:#8C8067 1px solid">
-                                <h1 style="font-size:23px;color:#8C8067;">' . $this->translate("Hello") . ' ' . $values['name'] . '</h1>
-                            </td>
-                        </tr>
-						<tr>
-                            <td>
-                                <p style="font-size:15px;">' . $this->translate('Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link') . '</p>
-                            </td>
-                        </tr>
-			<tr>
-                            <td align="center">
-                                <p style="font-size:15px;"><a href="http://dfs.fsofts.eu" style="padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Activate account') . '</a></p>
-                            </td>
-                        </tr>
-                    </table>
-                    <table style="margin-top: 10px; width: 90%; max-width: 600px;color:white;" align="center" cellpadding="10" cellspacing="0" border="0">
-                        <tr>
-                            <td align="center">
-                                <p style="font-size:12px;">' . $this->translate('This email was automatically sent by DOGFORSHOW system. Please dont reply on this email') . '</p>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-    </body>
-</html>');
-
-            $mailer = new SendmailMailer();
-            $mailer->send($mail);
-
-            $this->flashMessage('<ul><li><strong>' . $this->translate('Your registration has been successfully completed') . '</strong></li><li>' . $this->translate('Please check your Email for your user acccount activation') . '</li><li>' . $this->translate('If you have not received the Email yet, please also check your SPAM folder') . '</li></ul>', "Success");
-//var_dump($values);
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-            $is_error = TRUE;
-        }
-        if (!$is_error)
-            $this->redirect("LandingPage:default");
     }
 
     public function frmLogInSucceeded($button) {

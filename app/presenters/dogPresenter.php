@@ -29,7 +29,7 @@ class dogPresenter extends BasePresenter {
 
     public function renderDog_championschip_list($id = 0) {
         $this->renderDefault($id);
-        $championships = $this->database->table("tbl_dogs_championship")->where("dog_id=?",$id)->fetchAll();
+        $championships = $this->database->table("tbl_dogs_championship")->where("dog_id=?", $id)->fetchAll();
         $this->template->championships = $championships;
     }
 
@@ -171,25 +171,36 @@ class dogPresenter extends BasePresenter {
     }
 
     protected function createComponentFormEditTitle() {
-        $id = $this->dog_id;
-        
-        
-        
+        $row = $this->database->table("tbl_dogs_championship")->where("id=?", $this->title_id)->fetch();
         $form = new Form();
-        $form->addHidden("dog_id")->setValue($id);
-        $form->addText("ddlDate")->setValue();
-        $form->addText("txtChampionshipName");
+        $form->addHidden("dog_id")->setValue($row->dog_id);
+        $form->addText("ddlDate")->setValue($row->date);
+        $form->addText("txtChampionshipName")->setValue($row->description);
         $form->addUpload("txtChampionshipPicture");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddTitleSucceeded');
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditTitleSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
         return $form;
+    }
+
+    public function frmDogEditTitleSucceeded($button) {
+        try {
+            $values = $button->getForm()->getValues();
+            $values["txtChampionshipPicture"] = $this->data_model->processImage($values['txtChampionshipPicture']);
+            $values = $this->data_model->assignFields($values, "frmDogAddTitle");
+
+            unset($values["dog_id"]);
+
+            $this->database->table("tbl_dogs_championship")->where("id=?", $this->title_id)->update($values);
+        } catch (\ErrorException $ex) {
+            $this->flashMessage($ex->getMessage(), "Error");
+        }
     }
 
     public function actionDog_edit_profile($id) {
         $this->dog_id = $id;
     }
 
-    public function actionDog_championschip_edit_profile($id) {
+    public function actionDog_championschip_edit($id) {
         $this->title_id = $id;
     }
 
@@ -249,5 +260,4 @@ class dogPresenter extends BasePresenter {
     public function formCancelled() {
         $this->redirect('dog:dog_list');
     }
-
 }
