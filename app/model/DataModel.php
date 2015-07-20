@@ -59,4 +59,46 @@ class DataModel {
 
         return $return;
     }
+
+    /***
+     * @img = file upload control
+     */
+    function processImage($img) {
+        $target_path = "uploads/";
+
+        $ext = '';
+
+        $ext = explode('.', $img->name);
+
+        $length = count($ext);
+
+        $ext = $ext[$length - 1];
+
+        switch ($ext) {
+            case 'gif':
+                $ext = 'gif';
+                break;
+            case 'jpeg':
+                $ext = 'jpg';
+                break;
+            case 'jpg':
+                $ext = 'jpg';
+                break;
+            case 'png':
+                $ext = 'png';
+                break;
+            default :
+                throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+                break;
+        }
+
+        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+
+        $img->move("$target_path/$filename");
+
+        $return = "$target_path/$filename";
+        
+        return $return;
+    }
+
 }

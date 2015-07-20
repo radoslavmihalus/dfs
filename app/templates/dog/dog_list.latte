@@ -1,7 +1,7 @@
 {block content}
 <div class="panel-default col-lg-12 col-md-12 col-xs-12" style="font-size: 13px;min-width: 244px">
     <h1><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_ 'Purebred dogs'}</h1>
-    {include 'dog_list_filter.latte'}
+    <!-- { include 'dog_list_filter.latte'} -->
     <nav>
         <ul class="pagination">
             <li ><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
@@ -16,12 +16,12 @@
         </ul>
     </nav>
     <div class="row">
-        <!-- List profile component -->
         <div class="col-lg-4 col-md-6 col-xs-12 padding">
+            <!-- List profile component -->
             {includeblock 'dog_list_item.latte'}
             {include dog_list_item}
+            <!-- / List profile component -->
         </div>
-        <!-- / List profile component -->
     </div>
 </div>  
 {/block}

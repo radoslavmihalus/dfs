@@ -1,14 +1,18 @@
 {block content}
 <div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body component">
-        <div class="profile-header-image">
-            <img src="img/referer1.jpg" class="pull-left image-profile-thumb">
+        <div class="profile-header-image" style="{if $have_background_image} background: url('{$background_image}')no-repeat center center;background-size:cover;background-position:50% 20%; {else} background-color:#D5D0C0; background-image: none{/if}">
+            <a n:href="owner:owner_edit_profile"><i class="fa fa-camera fa-2x change-cover-icon"><span style="vertical-align: middle;display: block;float: right;padding-top: 5px;margin-left: 5px;font-size:13px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;">{_ 'Update cover photo'}</span></i></a>
+            <div class="pull-left image-profile-thumb">
+                <a n:href="owner:owner_edit_profile"><i class="fa fa-camera fa-2x change-image-icon"></i></a>
+                <img src="{$profile_image}">
+            </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <h1 class="profile_type_heading text-uppercase">Michal Slepanek</h1>
+                <h1 class="profile_type_heading text-uppercase">{$owner_name}</h1>
                 <span class="profile-type-description"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{_ 'Owner of purebred dog'}</span>
-                <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Slovakia</span>
+                <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{$state}</span>
             </div>
             <div class="col-md-6" style="padding-top: 15px;">
                 <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">
@@ -29,12 +33,12 @@
             <div class="container-fluid profile-menu">
                 <div class="collapse navbar-collapse" id="profile-menu" role="navigation" style="padding: 0px;">
                     <ul class="nav navbar-nav" style="margin:0px">
-                        <li class="active"><a n:href="owner:owner_profile_home" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Home'}</a></li>
-                        <li><a n:href="owner:owner_dog_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Dogs'}</a></li>
-                        <li><a n:href="owner:owner_photogallery" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
-                        <li><a n:href="owner:owner_videogallery" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Videos'}</a></li>
-                        <li><a n:href="owner:owner_friends_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Friends'}</a></li>
-                        <li><a n:href="owner:owner_followers_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Followers'}</a></li>
+                        <li class="active"><a n:href="owner:owner_profile_home id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Home'}</a></li>
+                        <li><a n:href="owner:owner_dog_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Dogs'}</a></li>
+                        <li><a n:href="owner:owner_photogallery id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
+                        <li><a n:href="owner:owner_videogallery id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Videos'}</a></li>
+                        <li><a n:href="owner:owner_friends_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Friends'}</a></li>
+                        <li><a n:href="owner:owner_followers_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Followers'}</a></li>
                     </ul>
                 </div>
             </div>

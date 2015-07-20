@@ -77,7 +77,11 @@ class kennelPresenter extends BasePresenter {
             $profile_data['active_profile_id'] = $id;
             $profile_data['active_profile_type'] = 1;
             $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->update($profile_data);
+            $this->current_user_id = $this->logged_in_id;
             parent::startup();
+        } else {
+            $userRow = $this->database->table("tbl_userkennel")->where("id=?", $id)->fetch();
+            $this->current_user_id = $userRow->user_id;
         }
 
         $row = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id WHERE tbl_userkennel.id=?", $id)->fetch();
@@ -102,7 +106,25 @@ class kennelPresenter extends BasePresenter {
         $this->template->background_image = $background_image;
         $this->template->state = $state;
 
+        $this->template->profile_id = $id;
+
         $this->renderKennel_description_home($id);
+        $this->renderKennel_dog_list_home($id);
+    }
+
+    public function renderKennel_dog_list($id = 0) {
+        if ($id == 0)
+            $id = $this->logged_in_kennel_id;
+        $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND user_id=?", $id, $this->current_user_id)->fetchAll();
+        $this->template->rows = $rows;
+        $this->renderKennel_profile_home($id);
+    }
+
+    public function renderKennel_dog_list_home($id = 0) {
+        if ($id == 0)
+            $id = $this->logged_in_kennel_id;
+        $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND user_id=?", $id, $this->current_user_id)->fetchAll();
+        $this->template->rows = $rows;
     }
 
     public function renderKennel_description_home($id = 0) {

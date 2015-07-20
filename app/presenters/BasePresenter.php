@@ -19,6 +19,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $profile_id;
     public $logged_in_id;
     public $data_model;
+    public $current_user_id;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
@@ -59,6 +60,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $mysection = $this->getSession('userdata');
             $myid = $mysection->id;
             $this->logged_in_id = $myid;
+            $this->current_user_id = $myid;
             $userdata = $this->database->table("tbl_user")->where("id = ?", $myid)->fetch();
 
             $profile_table = "";
@@ -107,6 +109,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->template->profile_type_icon = $profile_type_icon; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
             $this->template->logged_in_id = $myid;
 
+            $this->template->profile_id = $profile_id;
+            
             $counter = 0;
             $type_cnt = 0;
 

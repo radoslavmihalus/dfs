@@ -3,11 +3,14 @@
         {if $logged_in_id>0}
             {var $profile_url = ""}
             {if ($active_profile_type == 1)}
-                {$profile_url = "kennel:kennel_profile_home"}
+                {var $profile_url = "kennel:kennel_profile_home"}
+                {var $edit_url = "kennel:kennel_edit_profile"}
             {elseif ($active_profile_type == 2)}
-                {$profile_url = "owner:owner_profile_home"}
+                {var $profile_url = "owner:owner_profile_home"}
+                {var $edit_url = "owner:owner_edit_profile"}
             {else}
-                {$profile_url = "handler:handler_profile_home"}
+                {var $profile_url = "handler:handler_profile_home"}
+                {var $edit_url = "handler:handler_edit_profile"}
             {/if}                    
 
             <a n:href="{$profile_url}">
@@ -29,7 +32,7 @@
                             <a n:href="user:user_create_profile_switcher"><i class="fa fa-exchange"></i>&nbsp;&nbsp;{_'Switch profile'}</a>
                         </li>
                         <li>
-                            <a n:href="kennel:kennel_edit_profile"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;{_'Edit profile'}</a>
+                            <a n:href="{$edit_url}"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;{_'Edit profile'}</a>
                         </li>
                         <li>
                             <a n:href="#"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;{_'Delete profile'}</a>

@@ -16,7 +16,7 @@
                             <span class="form-secondary-description" style="display:block;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about you'}</span>
                             <hr>
                             {include textarea_control, description => "Short description about you", placeholder => "Short description", id => "txtOwnerDescritpion", name => "txtOwnerDescritpion", _form => $_form}
-                            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
                         {/form}
                     </div>
                 </div>
@@ -24,13 +24,13 @@
             <div class="tab-pane fade" id="pictures">
                 <div class="panel panel-default registration_block transparent_white">
                     <div class="panel-body">
-                        {form ownerEditProfilePicture}
+                        {form ownerEditCoverPicture}
                             {include image_UploadPicture_control, description => "Your cover photo", placeholder => "Select picture", id => "txtOwnerCoverPhoto", name => "txtOwnerCoverPhoto", _form => $_form}
-                            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
                         {/form}
                         {form ownerEditProfilePicture}
                             {include image_UploadPicture_control, description => "Your profile picture", placeholder => "Select picture", id => "txtOwnerProfilePhoto", name => "txtOwnerProfilePhoto", _form => $_form}
-                            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
                         {/form}
                     </div>
                 </div>

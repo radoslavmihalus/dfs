@@ -1,9 +1,20 @@
 {block content}
+{var $profile_url = ""}
+{if ($active_profile_type == 1)}
+    {var $profile_url = "kennel:kennel_profile_home"}
+    {var $edit_url = "kennel:kennel_edit_profile"}
+{elseif ($active_profile_type == 2)}
+    {var $profile_url = "owner:owner_profile_home"}
+    {var $edit_url = "owner:owner_edit_profile"}
+{else}
+    {var $profile_url = "handler:handler_profile_home"}
+    {var $edit_url = "handler:handler_edit_profile"}
+{/if}
 <div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body component">
         <div class="row">
             <div class="col-lg-6 col-md-12 col-xs-12">
-                <h1 class="profile_type_heading text-uppercase" style="margin-top: 0px;"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Bronca La Rosa de Inca<a style="text-transform: capitalize;margin-left: 15px;" n:href="dog:dog_edit_profile" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button></h1>
+                <h1 class="profile_type_heading text-uppercase" style="margin-top: 0px;"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{$dog->dog_name}<a style="text-transform: capitalize;margin-left: 15px;" n:href="dog:dog_edit_profile id=>$dog->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button></h1>
                 <a n:href="kennel:kennel_profile_home">
                     <span data-toggle="tooltip" data-placement='top' title="Kennel" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>La Rosa de inca</span>
                 </a>
@@ -20,22 +31,22 @@
         <hr style="margin-bottom: 5px;margin-top: 5px;">
         <div class="row">
             <div class="col-md-6">
-                <div class="dog-image-profile-thumb">
+                <div class="dog-image-profile-thumb" style="background: url('{$dog->dog_image}') no-repeat center center; background-size: cover; min-height: 240px;">
                     <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
                     <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
                 </div>
             </div>
             <div class="col-md-6">
                 <ul class="dog-information-list">
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i><strong>Dogo Argentino</strong></span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}"><i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>Bitch<!--<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i>Dog--></span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>21.10.2012</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Pedigree registration number'}" class="text-uppercase"><i class="fa fa-file-text-o" style="margin-right: 10px;color:#777;"></i>spkp 1304</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Height at the withers (cm)'}"><i class="fa fa-arrows-v" style="margin-right: 10px;color:#777;"></i>46&nbsp;cm</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Weight (kg)'}"><i class="fa fa-tachometer" style="margin-right: 10px;color:#777;"></i>22&nbsp;kg</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i>Slovakia</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>Dahud del Cavdillo</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>Bronca Charismatic</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i><strong>{$dog->breed_name}</strong></span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}">{if $dog->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$dog->dog_gender}</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog->date_of_birth|date:'%d.%m.%Y'}</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Pedigree registration number'}" class="text-uppercase"><i class="fa fa-file-text-o" style="margin-right: 10px;color:#777;"></i>{$dog->dog_registration_number}</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Height at the withers (cm)'}"><i class="fa fa-arrows-v" style="margin-right: 10px;color:#777;"></i>{$dog->height}&nbsp;cm</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Weight (kg)'}"><i class="fa fa-tachometer" style="margin-right: 10px;color:#777;"></i>{$dog->weight}&nbsp;kg</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i>{$dog->country}</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>{$dog->dog_father}</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>{$dog->dog_mother}</span></li>
                 </ul>
             </div>
         </div>

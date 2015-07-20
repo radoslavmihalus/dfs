@@ -50,7 +50,6 @@ class ownerPresenter extends BasePresenter {
 //echo $dditems;
 
         $this->template->dd_breeds_items = $dditems;
-
     }
 
     /*     * ******************* view default ******************** */
@@ -62,16 +61,17 @@ class ownerPresenter extends BasePresenter {
             $profile_data['active_profile_id'] = $id;
             $profile_data['active_profile_type'] = 2;
             $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->update($profile_data);
+            $this->current_user_id = $this->logged_in_id;
             parent::startup();
         }
 
-        $row = $this->database->query("SELECT tbl_userowner.*, tbl_user.state FROM tbl_userowner INNER JOIN tbl_user ON tbl_user.id = tbl_userowner.user_id WHERE tbl_userowner.id=?", $id)->fetch();
+        $row = $this->database->query("SELECT tbl_userowner.*, concat(tbl_user.name,' ',tbl_user.surname) as fullname, tbl_user.state FROM tbl_userowner INNER JOIN tbl_user ON tbl_user.id = tbl_userowner.user_id WHERE tbl_userowner.id=?", $id)->fetch();
 
         $have_puppies = FALSE;
 
         $profile_image = $row->owner_profile_picture;
         $logged_in_profile_id = $row->id;
-        $name = $this->template->fullname;
+        $name = $row->fullname;
         if (strlen($row->owner_background_image) > 2) {
             $have_background_image = TRUE;
             $background_image = $row->owner_background_image;
@@ -87,7 +87,31 @@ class ownerPresenter extends BasePresenter {
         $this->template->background_image = $background_image;
         $this->template->state = $state;
 
-        //$this->renderKennel_description_home($id);
+        $this->renderOwner_description_home($id);
+        $this->renderOwner_dog_list_home($id);
+    }
+
+    public function renderOwner_description_home($id = 0) {
+        $row = $this->database->query("SELECT tbl_userowner.* FROM tbl_userowner WHERE tbl_userowner.id=?", $id)->fetch();
+
+        $owner_description = $row->owner_description;
+
+        $this->template->owner_description = $owner_description;
+    }
+
+    public function renderOwner_dog_list($id = 0) {
+        if ($id == 0)
+            $id = $this->logged_in_owner_id;
+        $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND user_id=?", $id, $this->logged_in_id)->fetchAll();
+        $this->template->rows = $rows;
+        $this->renderOwner_profile_home($id);
+    }
+
+    public function renderOwner_dog_list_home($id = 0) {
+        if ($id == 0)
+            $id = $this->logged_in_owner_id;
+        $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND user_id=?", $id, $this->logged_in_id)->fetchAll();
+        $this->template->rows = $rows;
     }
 
     /*     * ******************* component factories ******************** */
@@ -108,8 +132,6 @@ class ownerPresenter extends BasePresenter {
     public function frmCreateOwnerProfileSucceeded($button) {
         try {
             $values = $button->getForm()->getValues();
-
-            $breeds = $values['ddlBreedList'];
 
             $form = $button->getForm();
 
@@ -162,52 +184,152 @@ class ownerPresenter extends BasePresenter {
         }
     }
 
-    public function createComponentownerEditProfile($button) {
+    public function createComponentOwnerEditProfile($button) {
         $form = new Form();
-        $form->addTextArea('txtOwnerDescritpion');
+
+        $row = $this->database->query("SELECT tbl_userowner.* FROM tbl_userowner WHERE tbl_userowner.id=?", $this->logged_in_owner_id)->fetch();
+
+        $form->addTextArea('txtOwnerDescritpion')->setValue($row->owner_description);
         $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmEditOwnerProfileSucceeded');
 
         return $form;
     }
 
-    public function albumFormSucceeded($button) {
-//		$values = $button->getForm()->getValues();
-//		$id = (int) $this->getParameter('id');
-//		if ($id) {
-//			$this->albums->findById($id)->update($values);
-//			$this->flashMessage('The album has been updated.');
-//		} else {
-//			$this->albums->insert($values);
-//			$this->flashMessage('The album has been added.');
-//		}
-//		$this->redirect('default');
+    public function createComponentOwnerEditCoverPicture() {
+        $form = new Form();
+        $form->addUpload('txtOwnerCoverPhoto');
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditOwnerCoverPhotoSucceeded');
+
+        return $form;
     }
 
-    /**
-     * Delete form factory.
-     * @return Form
-     */
-    protected function createComponentDeleteForm() {
-//		$form = new Form;
-//		$form->addSubmit('cancel', 'Cancel')
-//			->onClick[] = array($this, 'formCancelled');
-//
-//		$form->addSubmit('delete', 'Delete')
-//			->setAttribute('class', 'default')
-//			->onClick[] = array($this, 'deleteFormSucceeded');
-//
-//		$form->addProtection();
-//		return $form;
+    public function createComponentOwnerEditProfilePicture() {
+        $form = new Form();
+        $form->addUpload('txtOwnerProfilePhoto');
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditOwnerProfilePhotoSucceeded');
+
+        return $form;
     }
 
-    public function deleteFormSucceeded() {
-//		$this->albums->findById($this->getParameter('id'))->delete();
-//		$this->flashMessage('Album has been deleted.');
-//		$this->redirect('default');
+    public function frmEditOwnerProfileSucceeded($button) {
+        try {
+            $values = $button->getForm()->getValues();
+
+            $values = $this->data_model->assignFields($values, 'frmOwnerEditProfile');
+
+            $this->database->table("tbl_userowner")->where("id = ?", $this->logged_in_owner_id)->update($values);
+
+            $this->flashMessage("Your owner profile has been successfully updated.", "Success");
+            $this->redirect("owner:owner_profile_home");
+        } catch (\ErrorException $exc) {
+            $this->flashMessage($exc->getMessage(), "Error");
+        }
     }
 
-    public function formCancelled() {
-        $this->redirect('default');
+    public function frmEditOwnerCoverPhotoSucceeded($button) {
+        try {
+            $values = $button->getForm()->getValues();
+
+            $form = $button->getForm();
+
+            $img = $form['txtOwnerCoverPhoto']->getValue();
+
+            $target_path = "uploads/";
+
+            $ext = '';
+
+            $ext = explode('.', $img->name);
+
+            $length = count($ext);
+
+            $ext = $ext[$length - 1];
+
+            switch ($ext) {
+                case 'gif':
+                    $ext = 'gif';
+                    break;
+                case 'jpeg':
+                    $ext = 'jpg';
+                    break;
+                case 'jpg':
+                    $ext = 'jpg';
+                    break;
+                case 'png':
+                    $ext = 'png';
+                    break;
+                default :
+                    throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+                    break;
+            }
+
+            $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+
+            $img->move("$target_path/$filename");
+
+            $values['txtOwnerCoverPhoto'] = "$target_path/$filename";
+
+            $values = $this->data_model->assignFields($values, 'frmOwnerEditCoverPhoto');
+
+            $this->database->table("tbl_userowner")->where("id = ?", $this->logged_in_owner_id)->update($values);
+
+            $this->flashMessage("Your cover photo has been successfully updated.", "Success");
+            $this->redirect("owner:owner_profile_home");
+        } catch (\ErrorException $exc) {
+            $this->flashMessage($exc->getMessage(), "Error");
+        }
+    }
+
+    public function frmEditOwnerProfilePhotoSucceeded($button) {
+        try {
+            $values = $button->getForm()->getValues();
+
+            $form = $button->getForm();
+
+            $img = $form['txtOwnerProfilePhoto']->getValue();
+
+            $target_path = "uploads/";
+
+            $ext = '';
+
+            $ext = explode('.', $img->name);
+
+            $length = count($ext);
+
+            $ext = $ext[$length - 1];
+
+            switch ($ext) {
+                case 'gif':
+                    $ext = 'gif';
+                    break;
+                case 'jpeg':
+                    $ext = 'jpg';
+                    break;
+                case 'jpg':
+                    $ext = 'jpg';
+                    break;
+                case 'png':
+                    $ext = 'png';
+                    break;
+                default :
+                    throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+                    break;
+            }
+
+            $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+
+            $img->move("$target_path/$filename");
+
+            $values['txtOwnerProfilePhoto'] = "$target_path/$filename";
+
+            $values = $this->data_model->assignFields($values, 'frmOwnerEditProfilePhoto');
+
+            $this->database->table("tbl_userowner")->where("id = ?", $this->logged_in_owner_id)->update($values);
+
+            $this->flashMessage("Your profile photo has been successfully updated.", "Success");
+            $this->redirect("owner:owner_profile_home");
+        } catch (\ErrorException $exc) {
+            $this->flashMessage($exc->getMessage(), "Error");
+        }
     }
 
 }

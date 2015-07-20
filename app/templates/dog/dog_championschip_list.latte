@@ -6,30 +6,32 @@
         </div>
     </div>
     <!-- Message -->
-<!--        <div class="row">
-            <div class="col-md-12">
-                <div class="message-brown" role="alert">
-                    <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+    <!--        <div class="row">
+                <div class="col-md-12">
+                    <div class="message-brown" role="alert">
+                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+                    </div>
                 </div>
-            </div>
-        </div>-->
+            </div>-->
     <!-- / Message -->
     <!-- Title item -->
-    <div class="row" style="padding:10px;border-bottom: 1px solid #eee;">
-        <div class="col-lg-1 col-md-2 column-spacer">
-            <span class="text-left" style="color:#777;">12.6.2014</span>
+    {foreach $championships as $row}
+        <div class="row" style="padding:10px;border-bottom: 1px solid #eee;">
+            <div class="col-lg-1 col-md-2 column-spacer">
+                <span class="text-left" style="color:#777;">{$row->date|date:'%d.%m.%Y'}</span>
+            </div>
+            <div class="col-lg-5 col-md-4 column-spacer">
+                <span class="text-uppercase text-left">{$row->description}</span>
+            </div>
+            <div class="col-lg-3 col-md-3 column-spacer">
+                <a href="{$row->image}" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a>
+            </div>
+            <div class="col-lg-3 col-md-3 column-spacer">
+                <a n:href="dog:dog_championschip_edit id => row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>
+                <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button>
+            </div>
         </div>
-        <div class="col-lg-5 col-md-4 column-spacer">
-            <span class="text-uppercase text-left">slovakia junior champion</span>
-        </div>
-        <div class="col-lg-3 col-md-3 column-spacer">
-            <a href="" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a>
-        </div>
-        <div class="col-lg-3 col-md-3 column-spacer">
-            <a n:href="dog:dog_championschip_edit" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>
-            <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button>
-        </div>
-    </div>
+    {/foreach}
     <!-- /Title item -->
 </div>
 
