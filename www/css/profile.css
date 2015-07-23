@@ -36,7 +36,7 @@
     padding: 5px;
     background-color: rgba(0,0,0,0.5);
     bottom: 5px;
-    z-index: 0;
+    z-index: 1;
     left: 5px;
     position: absolute;
     webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
@@ -47,7 +47,7 @@
     color: white;
     padding: 5px;
     background-color: rgba(0,0,0,0.8);
-    z-index: 0;
+    z-index: 1;
     bottom: 5px;
     left: 5px;
     position: absolute;
@@ -59,7 +59,7 @@
     color: white;
     padding: 5px;
     background-color: rgba(0,0,0,0.5);
-    z-index: 0;
+    z-index: 1;
     left: 40px;
     top:30px;
     position: absolute;
@@ -71,7 +71,7 @@
     color: white;
     padding: 5px;
     background-color: rgba(0,0,0,0.8);
-    z-index: 0;
+    z-index: 1;
     left: 40px;
     top:30px;
     position: absolute;

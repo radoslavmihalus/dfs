@@ -1,0 +1,62 @@
+{define #image_UploadPicture_modal_control}
+<div id="modalFlashUpload{$name}" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--            <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modalTitle"></h4>
+                        </div>-->
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p id="modalText">
+                    <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
+                    <!-- imgSelect Container -->
+                <div id="imgselect_container{$name}">
+                    <!-- Upload & Webcam buttons -->
+                    <div class="btn btn-default btn-sm imgs-upload"><i class="fa fa-upload"></i>&nbsp;&nbsp;{_ 'Upload'}</div> <!-- .imgs-upload -->
+                    <button type="button" class="btn btn-default btn-sm imgs-webcam"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Take picture'}</button> <!-- .imgs-webcam -->
+
+                    <!-- Webcam & Crop containers -->
+                    <div class="imgs-webcam-container"></div> <!-- .imgs-webcam-container -->
+                    <div class="imgs-crop-container"></div> <!-- .imgs-crop-container -->
+
+                    <!-- Action buttons -->
+                    <button type="button" class="btn btn-primary imgs-save" data-dismiss="modal">Save Image</button> <!-- .imgs-save -->
+                    <button type="button" class="btn btn-primary imgs-newsnap">New Snapshot</button> <!-- .imgs-newsnap -->
+                    <button type="button" class="btn btn-primary imgs-capture">Capture</button> <!-- .imgs-capture -->
+                    <button type="button" class="btn btn-default imgs-cancel" data-dismiss="modal">Cancel</button> <!-- .imgs-cancel -->
+
+                    <div class="imgs-alert alert" style="margin-top: 10px;font-size:13px;"></div> <!-- .imgs-alert -->
+                </div>
+                </p>
+            </div>
+            <!--            <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{_'Close'}</button>
+                        </div>-->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+</script>
+<script>
+    new ImgSelect($("#imgselect_container" + {$name}),
+            {
+                cropComplete: function (image) {
+                    $("#modalFlashUpload" + {$name}).modal("hide");
+                    $.ajax({
+                        url: "www/templates/scripts/ajax_update_profile_image.php?profile_type={$profile_type_id}&profile_id={$profile_id}&image_type=" + {$name} + "&image_name=" + image.name
+                    }).done(function () {
+                        //alert(image.name);
+                        document.location.href = window.location.href;
+                    });
+                },
+                crop: {
+                    aspectRatio: {$aspect_x} / {$aspect_y},
+                    setSelect: [0, 0, {$aspect_x} * 15, {$aspect_y} * 15]
+                }
+            });
+</script>
+{/define}

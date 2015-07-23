@@ -47,6 +47,11 @@ function ShowMessage(messageType, message, autoclose, duration) {
     }
 }
 
+function ShowUploadModal(parType)
+{
+    $("#modalFlashUpload" + parType).modal('show');
+}
+
 function ShowMessageModal(messageType, message)
 {
     var title = "";

@@ -6,26 +6,9 @@
  * and open the template in the editor.
  */
 
-session_start();
+require_once '../../inc/config_ajax.php';
 
-if (@!include __DIR__ . '/../../../libs/Nette/loader.php') {
-    die('Install packages using `composer update --dev`');
-}
-
-use Nette\Forms\Form,
-    Nette\Forms\Controls,
-    Nette\Database\Connection,
-    Nette\Database\Context,
-    Tracy\Debugger,
-    Tracy\Dumper;
-
-function getConnection() {
-    $connection = new Nette\Database\Connection('mysql:host=localhost;dbname=u147232041_dfs', 'u147232041_dfs', 'dfs123');
-    return $connection;
-}
-
-$connection = getConnection();
-$context = new Nette\Database\Context($connection);
+$context = getContext();
 $fields = $context->query("SELECT CountryName_en FROM lk_countries WHERE CountryName_en LIKE '%" . $_GET['q'] . "%'  ORDER BY CountryName_en")->fetchAll();
 
 $return = array();

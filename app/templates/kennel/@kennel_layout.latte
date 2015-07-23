@@ -32,7 +32,7 @@
         <!-- Gallery -->
         <link rel="stylesheet" href="www/css/gallery/blueimp-gallery.min.css">
         <link rel="stylesheet" href="www/css/gallery/bootstrap-image-gallery.css">
-        
+
         <!-- Glyphicons -->
         <link rel="stylesheet" href="www/fonts/glyphicons/font-awesome/css/font-awesome.min.css">
         <!-- Glyphicons PRO -->
@@ -45,6 +45,11 @@
         <script type="text/javascript" src="www/js/fileup/js/jquery.fileupload-ui.js"></script>
         <link rel="stylesheet" href="www/css/selectivity-full.css">
         <script type="text/javascript" src="www/js/selectivity-full.js"></script>
+
+        <link rel="stylesheet" href="www/crop/assets/css/imgSelect.css">
+        <script src="www/crop/assets/js/jquery.Jcrop.min.js"></script>
+        <script src="www/crop/assets/js/imgSelect.js"></script>
+
         <style>
             #ajax-spinner {
                 position:fixed;
@@ -139,16 +144,16 @@
         <script src="www/js/gallery/bootstrap-image-gallery.js"></script>
         {foreach $flashes as $flash}
             <script type="text/javascript">
-                if ({$flash->type} == 'Error')
-                    ShowMessageModal(enumNotificationType.error, {$flash->message});
-                if ({$flash->type} == 'Warning')
-                    ShowMessageModal(enumNotificationType.warning, {$flash->message});
-                if ({$flash->type} == 'Info')
-                    ShowMessageModal(enumNotificationType.information, {$flash->message});
-                if ({$flash->type} == 'Success')
-                    ShowMessageModal(enumNotificationType.success, {$flash->message});
-                if ({$flash->type} == 'Confirmation')
-                    ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
+            if ({$flash->type} == 'Error')
+                ShowMessageModal(enumNotificationType.error, {$flash->message});
+            if ({$flash->type} == 'Warning')
+                ShowMessageModal(enumNotificationType.warning, {$flash->message});
+            if ({$flash->type} == 'Info')
+                ShowMessageModal(enumNotificationType.information, {$flash->message});
+            if ({$flash->type} == 'Success')
+                ShowMessageModal(enumNotificationType.success, {$flash->message});
+            if ({$flash->type} == 'Confirmation')
+                ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
             </script>
         {/foreach}
     </body>

@@ -16,12 +16,14 @@
         </ul>
     </nav>
     <div class="row">
-        <div class="col-lg-4 col-md-6 col-xs-12 padding">
-            <!-- List profile component -->
-            {includeblock 'dog_list_item.latte'}
-            {include dog_list_item}
-            <!-- / List profile component -->
-        </div>
+        {foreach $rows as $row}
+            <div class="col-lg-4 col-md-6 col-xs-12 padding">
+                <!-- List profile component -->
+                {includeblock 'dog_list_item.latte'}
+                {include dog_list_item row=>$row}
+                <!-- / List profile component -->
+            </div>
+        {/foreach}
     </div>
 </div>  
 {/block}

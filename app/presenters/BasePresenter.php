@@ -109,6 +109,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->template->profile_type_icon = $profile_type_icon; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
             $this->template->logged_in_id = $myid;
 
+            $this->template->profile_type_id = $userdata->active_profile_type;
             $this->template->profile_id = $profile_id;
 
             $counter = 0;

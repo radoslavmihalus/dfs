@@ -19,16 +19,20 @@
                         </div>
                     </div>-->
             <!-- / Message -->
-            <div class="col-lg-12 col-md-12 col-xs-12 padding">
-                {includeblock '../dog/dog_list_item.latte'}
-                {include dog_list_item id=>$profile_id, gender => 'Dog'}
-            </div>
+            {includeblock '../dog/dog_list_item.latte'}
+            {foreach $rows as $row}
+                <div class="col-lg-12 col-md-12 col-xs-12 padding">
+                    {include dog_list_item id=>$profile_id, gender => 'Dog', row=>$row}
+                </div>
+            {/foreach}
             <div class="col-md-12 text-center text-uppercase" style="padding:15px;color:#777">
                 <i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{_ 'Bitches'}
             </div>
-            <div class="col-lg-12 col-md-12 col-xs-12 padding">
-                {include dog_list_item id=>$profile_id, gender => 'Bitch'}
-            </div>
+            {foreach $rows as $row}
+                <div class="col-lg-12 col-md-12 col-xs-12 padding">
+                    {include dog_list_item id=>$profile_id, gender => 'Bitch', row=>$row}
+                </div>
+            {/foreach}
             <!-- / List profile component -->
         </div>
     </div>

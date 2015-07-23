@@ -6,26 +6,10 @@
  * and open the template in the editor.
  */
 
-session_start();
+require_once '../../inc/config_ajax.php';
 
-if (@!include __DIR__ . '/../../../libs/Nette/loader.php') {
-    die('Install packages using `composer update --dev`');
-}
+$context = getContext();
 
-use Nette\Forms\Form,
-    Nette\Forms\Controls,
-    Nette\Database\Connection,
-    Nette\Database\Context,
-    Tracy\Debugger,
-    Tracy\Dumper;
-
-function getConnection() {
-    $connection = new Nette\Database\Connection('mysql:host=localhost;dbname=u147232041_dfs', 'u147232041_dfs', 'dfs123');
-    return $connection;
-}
-
-$connection = getConnection();
-$context = new Nette\Database\Context($connection);
 $fields = $context->query("SELECT BreedName FROM tbl_breeds WHERE BreedName LIKE '%" . $_GET['q'] . "%'  ORDER BY BreedName")->fetchAll();
 
 $return = array();

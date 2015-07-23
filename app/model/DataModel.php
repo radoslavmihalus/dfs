@@ -60,9 +60,10 @@ class DataModel {
         return $return;
     }
 
-    /***
+    /*     * *
      * @img = file upload control
      */
+
     function processImage($img) {
         $target_path = "uploads/";
 
@@ -75,9 +76,6 @@ class DataModel {
         $ext = $ext[$length - 1];
 
         switch ($ext) {
-            case 'gif':
-                $ext = 'gif';
-                break;
             case 'jpeg':
                 $ext = 'jpg';
                 break;
@@ -88,7 +86,7 @@ class DataModel {
                 $ext = 'png';
                 break;
             default :
-                throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+                throw new \ErrorException("Only .jpeg / .jpg / .png extensions are allowed", "1");
                 break;
         }
 
@@ -97,8 +95,7 @@ class DataModel {
         $img->move("$target_path/$filename");
 
         $return = "$target_path/$filename";
-        
+
         return $return;
     }
-
 }

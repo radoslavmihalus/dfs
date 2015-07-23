@@ -6,27 +6,10 @@
  * and open the template in the editor.
  */
 
-session_start();
-
-if (@!include __DIR__ . '/../../nette/Nette/loader.php') {
-    die('Install packages using `composer update --dev`');
-}
-
-use Nette\Forms\Form,
-    Nette\Forms\Controls,
-    Nette\Database\Connection,
-    Nette\Database\Context,
-    Tracy\Debugger,
-    Tracy\Dumper;
-
-function getConnection() {
-    $connection = new Nette\Database\Connection('mysql:host=localhost;dbname=dfs', 'root', 'L884fv57');
-    return $connection;
-}
+require_once '../../inc/config_ajax.php';
 
 function getTable($form_name) {
-    $connection = getConnection();
-    $context = new Nette\Database\Context($connection);
+    $context = getContext();
     $forms = $context->query("SELECT * FROM forms WHERE form_name=?", $form_name);
 
     $return = "";
@@ -39,8 +22,7 @@ function getTable($form_name) {
 }
 
 function getField($form_name, $element_name) {
-    $connection = getConnection();
-    $context = new Nette\Database\Context($connection);
+    $context = getContext();
     $fields = $context->query("SELECT * FROM form_fields WHERE form_name=? AND element_name=?", $form_name, $element_name);
 
     $return = "";
@@ -53,10 +35,7 @@ function getField($form_name, $element_name) {
 }
 
 function doGet($table_name, $data, $ret_field = "", $where = '(1=1)') {
-    //error_reporting(E_ALL);
-    $connection = getConnection();
-
-    $context = new Nette\Database\Context($connection);
+    $context = getContext();
 
     $query = "SELECT $data FROM $table_name WHERE $where";
 

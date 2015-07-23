@@ -32,8 +32,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="dog-image-profile-thumb" style="background: url('{$dog->dog_image}') no-repeat center center; background-size: cover; min-height: 240px;">
-                    <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
-                    <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
+                    {if $dog->offer_for_mating==1}
+                        <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
+                        {/if}
+
+                    {if ($bis>0 || $jbis>0)}
+                        <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
+                        {/if}
                 </div>
             </div>
             <div class="col-md-6">
@@ -55,70 +60,70 @@
             <div class="col-md-1 col-xs-4" style="padding: 0px;">
                 <p class="text-center"><span style="font-size:15px;font-weight:bold;color:#83765E;">CAJC</span></p>
                 <p class="text-center" style="color:#d5d0c0">
-                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">1</span>
+                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">{$cajc}</span>
                     <i class="glyphicons glyphicons-certificate" style="font-size: 70px;"></i>
                 </p>
             </div>
             <div class="col-md-1 col-xs-4" style="padding: 0px;">
                 <p class="text-center"><span style="position:relative;font-size:15px;font-weight:bold;color:#83765E;">JBOB</span></p>
                 <p class="text-center" style="color:#d5d0c0">
-                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">1</span>
+                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">{$jbob}</span>
                     <i class="glyphicons glyphicons-certificate" style="font-size: 70px;"></i>
                 </p>
             </div>
             <div class="col-md-1 col-xs-4" style="padding: 0px;">
                 <p class="text-center"><span style="position:relative;font-size:15px;font-weight:bold;color:#83765E;">JBOG</span></p>
                 <p class="text-center" style="color:#d5d0c0">
-                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">0</span>
+                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">{$jbog}</span>
                     <i class="glyphicons glyphicons-certificate" style="font-size: 70px;"></i>
                 </p>
             </div>
             <div class="col-md-1 col-xs-4" style="padding: 0px;">
                 <p class="text-center"><span style="position:relative;font-size:15px;font-weight:bold;color:#83765E;">JBIS</span></p>
                 <p class="text-center" style="color:#d5d0c0">
-                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">10</span>
+                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">{$jbis}</span>
                     <i class="glyphicons glyphicons-certificate" style="color:rgb(250, 182, 35);font-size: 70px;"></i>
                 </p>
             </div>
             <div class="col-md-1 col-xs-4" style="padding: 0px;">
                 <p class="text-center"><span style="position:relative;font-size:15px;font-weight:bold;color:#83765E;">CAC</span></p>
                 <p class="text-center" style="color:#d5d0c0">
-                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">1</span>
+                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">{$cac}</span>
                     <i class="glyphicons glyphicons-certificate" style="font-size: 70px;"></i>
                 </p>
             </div>
             <div class="col-md-1 col-xs-4" style="padding: 0px;">
                 <p class="text-center"><span style="position:relative;font-size:15px;font-weight:bold;color:#83765E;">CACIB</span></p>
                 <p class="text-center" style="color:#d5d0c0">
-                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">0</span>
+                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">{$cacib}</span>
                     <i class="glyphicons glyphicons-certificate" style="font-size: 70px;"></i>
                 </p>
             </div>
             <div class="col-md-1 col-xs-4" style="padding: 0px;">
                 <p class="text-center"><span style="position:relative;font-size:15px;font-weight:bold;color:#83765E;">BOS</span></p>
                 <p class="text-center" style="color:#d5d0c0">
-                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">0</span>
+                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">{$bos}</span>
                     <i class="glyphicons glyphicons-certificate" style="font-size: 70px;"></i>
                 </p>
             </div>
             <div class="col-md-1 col-xs-4" style="padding: 0px;">
                 <p class="text-center"><span style="position:relative;font-size:15px;font-weight:bold;color:#83765E;">BOB</span></p>
                 <p class="text-center" style="color:#d5d0c0">
-                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">0</span>
+                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">{$bob}</span>
                     <i class="glyphicons glyphicons-certificate" style="font-size: 70px;"></i>
                 </p>
             </div>
             <div class="col-md-1 col-xs-4" style="padding: 0px;">
                 <p class="text-center"><span style="position:relative;font-size:15px;font-weight:bold;color:#83765E;">BOG</span></p>
                 <p class="text-center" style="color:#d5d0c0">
-                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">0</span>
+                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">{$bog}</span>
                     <i class="glyphicons glyphicons-certificate" style="font-size: 70px;"></i>
                 </p>
             </div>
             <div class="col-md-1 col-xs-4" style="padding: 0px;">
                 <p class="text-center"><span style="position:relative;font-size:15px;font-weight:bold;color:#83765E;">BIS</span></p>
                 <p class="text-center" style="color:#d5d0c0">
-                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">0</span>
+                    <span style="position: absolute;font-size:15px;color:#83765E;z-index: 2;left:45%;top:43%;font-weight: 600;">{$bis}</span>
                     <i class="glyphicons glyphicons-certificate" style="color:rgb(250, 182, 35);font-size: 70px;"></i>
                 </p>
             </div>
@@ -134,15 +139,15 @@
             <div class="container-fluid profile-menu">
                 <div class="collapse navbar-collapse" id="profile-menu" role="navigation" style="padding: 0px;">
                     <ul class="nav navbar-nav" style="margin:0px;">
-                        <li><a n:href="dog_championschip_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Championships'}</a></li>
-                        <li><a n:href="dog_show_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Show results'}</a></li>
-                        <li><a n:href="dog_workexam_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Working exams'}</a></li>
-                        <li><a n:href="dog_health_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Health'}</a></li>
-                        <li><a n:href="dog_pedigree_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Pedigree'}</a></li>
+                        <li><a n:href="dog_championschip_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Championships'}</a></li>
+                        <li><a n:href="dog_show_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Show results'}</a></li>
+                        <li><a n:href="dog_workexam_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Working exams'}</a></li>
+                        <li><a n:href="dog_health_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Health'}</a></li>
+                        <li><a n:href="dog_pedigree_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Pedigree'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Videos'}</a></li>
-                        <li><a n:href="dog_mating_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Matings'}</a></li>
-                        <li><a n:href="dog_coowner_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Coowners'}</a></li>
+                        <li><a n:href="dog_mating_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Matings'}</a></li>
+                        <li><a n:href="dog_coowner_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Coowners'}</a></li>
                     </ul>
                 </div>
             </div>

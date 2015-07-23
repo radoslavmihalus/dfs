@@ -33,7 +33,7 @@
                             {include dropdown_CountryList_control, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry", tooltip => "Country in which the dog is currently located", _form => $_form}
                             {include dropdown_DogList_control, description => "Father of the dog", placeholder => "Please select", id => "ddlDogFather", name => "ddlDogFather", tooltip => "Please enter father's name or select father's name from the DOGFORSHOW database for interactive pedigree", _form => $_form}
                             {include dropdown_DogList_control, description => "Mother of the dog", placeholder => "Please select", id => "ddlDogMother", name => "ddlDogMother", tooltip => "Please enter mother's name or select mother's name from the DOGFORSHOW database for interactive pedigree", _form => $_form}
-                            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
                         {/form}
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="panel-body">
                         {form formEditDogProfilePicture}
                             {include image_UploadPicture_control, description => "Dog profile picture", placeholder => "Select picture", id => "txtDogProfilePhoto", name => "txtDogProfilePhoto", tooltip => "Upload a profile image of your dog in JPG or PNG format", _form => $_form}
-                            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
                         {/form}
                     </div>
                 </div>

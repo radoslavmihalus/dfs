@@ -6,26 +6,9 @@
  * and open the template in the editor.
  */
 
-session_start();
+require_once '../../inc/config_ajax.php';
 
-if (@!include __DIR__ . '/../../nette/Nette/loader.php') {
-    die('Install packages using `composer update --dev`');
-}
-
-use Nette\Forms\Form,
-    Nette\Forms\Controls,
-    Nette\Database\Connection,
-    Nette\Database\Context,
-    Tracy\Debugger,
-    Tracy\Dumper;
-
-function getConnection() {
-    $connection = new Nette\Database\Connection('mysql:host=localhost;dbname=dfs', 'root', 'L884fv57');
-    return $connection;
-}
-
-$connection = getConnection();
-$context = new Nette\Database\Context($connection);
+$context = getContext();
 
 $email = $_REQUEST['txtEmail'];
 $password = $_REQUEST['txtPassword'];

@@ -25,7 +25,6 @@ $configurator->addConfig(__DIR__ . '/config.neon');
 $container = $configurator->createContainer();
 
 
-
 // Setup router using mod_rewrite detection
 $router = $container->getService('router');
 
