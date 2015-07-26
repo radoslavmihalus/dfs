@@ -2,7 +2,7 @@
 {
     background-color: #D5D0C0;
     margin-top:50px;
-    z-index: 9999;
+    z-index: 1000;
 /*    max-height: 300px;*/
     webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
@@ -45,7 +45,7 @@
 {
     .user-menu
     {
-        z-index: 9999;
+        z-index: 1000;
         /*height:auto;*/
         position: fixed;
         width: 100%;
@@ -58,10 +58,10 @@
     {
         padding:15px 25px 10px 25px;
     }
-    .user-block
+/*    .user-block
     {
         padding:15px 25px 15px 25px;
-    }
+    }*/
     
 }
 @media (min-width: 768px)
@@ -72,7 +72,7 @@
     }
     .user-menu
     {
-        z-index: 9999;
+        z-index: 1000;
         /*height:100%;*/
         position: fixed;
         width: 250px !important;

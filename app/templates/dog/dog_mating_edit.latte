@@ -10,7 +10,7 @@
             <input type="hidden" n:name=dog_id />
             {include dropdown_DatePicker_control, _form=>$_form, description => "Date of mating", placeholder => "Date of mating", id => "ddlDate", name => "ddlDate", tooltip => "Enter the date, when the mating was"}
             {include textbox_control, _form=>$_form, description => "Name of the bitch", placeholder => "Name of the bitch", id => "txtMatingBitchName", name => "txtMatingBitchName", tooltip => "Please enter the bitch name or select bitch from the DOGFORSHOW database for interactivity"}
-            {include image_UploadPicture_control, _form=>$_form, description => "Picture of the bitch", placeholder => "Select picture", id => "txtMatingBitchPicture", name => "txtMatingBitchPicture", tooltip => "Record the bitch picture in JPEG or PNG format. This field is optional"}
+            {include image_UploadPicture_control, _form=>$_form, description => "Picture of the bitch", placeholder => "Select picture", id => "txtMatingBitchPicture", name => "txtMatingBitchPicture", tooltip => "Record the bitch picture in jpg or jpeg format. This field is optional"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
             <button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
         {/form}

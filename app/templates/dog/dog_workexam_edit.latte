@@ -10,7 +10,7 @@
             <input type="hidden" n:name=dog_id />
             {include dropdown_DatePicker_control, _form => $_form, description => "Date exam passed", placeholder => "Please select", id => "ddlDate", name => "ddlDate", tooltip => "Enter the date working exam completed"}
             {include textbox_control, _form => $_form, description => "Type of exam", placeholder => "For example IPO 1", id => "txtWorkExamName", name => "txtWorkExamName", tooltip => "Enter the type of working exam (e.g. IPO 1)"}
-            {include image_UploadPicture_control, _form => $_form, description => "Picture", placeholder => "Select picture", id => "txtWorkExamPicture", name => "txtWorkExamPicture", tooltip => "Record the picture (e.g. diploma received in a working exam or a certificate – in JPG or PNG format. This field is optional"}
+            {include image_UploadPicture_control, _form => $_form, description => "Picture", placeholder => "Select picture", id => "txtWorkExamPicture", name => "txtWorkExamPicture", tooltip => "Record the picture (e.g. diploma received in a working exam or a certificate – in jpg or jpeg format. This field is optional"}
         <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
         <button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
         {/form}

@@ -119,7 +119,7 @@ $router[] = new Route('puppy-edit-profile', 'puppy:puppy_edit_profile');
 $router[] = new Route('puppy-description-add', 'puppy:puppy_description_add');
 $router[] = new Route('puppy-description-edit', 'puppy:puppy_description_edit');
 // Timeline routes
-$router[] = new Route('timeline', 'timeline:timeline');
+$router[] = new Route('timeline', 'timeline:timeline_wall');
 // Pages
 $router[] = new Route('general-terms', 'pages:general_terms');
 $router[] = new Route('cookies-use', 'pages:cookies_use');

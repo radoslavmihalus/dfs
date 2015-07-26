@@ -20,7 +20,7 @@ use Nette\Forms\Form,
     Tracy\Dumper;
 
 function DBHost() {
-    return "localhost";
+    return "31.170.165.185";
 }
 
 function DBName() {

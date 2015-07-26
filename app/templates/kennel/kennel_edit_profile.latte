@@ -1,14 +1,12 @@
 {block content}
 {includeblock '../components/textbox_control.latte'}
 {includeblock '../components/textarea_control.latte'}
-{includeblock '../components/image_UploadPicture_control.latte'}
 {includeblock '../components/dropdown_BreedList_control.latte'}
 <div class="col-lg-8">
     <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
         <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-edit"></i>&nbsp;&nbsp;{_ 'Edit profile'}</h2>
         <ul id="EditProfile" class="nav nav-tabs" style="border-bottom:0px !important;font-size:13px;">
             <li class="active"><a class="EditProfilelink" href="#informations" data-toggle="tab"><i class="fa fa-align-justify"></i>&nbsp;&nbsp;{_ 'Informations'}</a></li>
-            <li><a class="EditProfilelink" href="#pictures" data-toggle="tab"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;{_ 'Pictures'}</a></li>
         </ul>
         <div id="EditProfileContent" class="tab-content">
             <div class="tab-pane fade in active" id="informations">
@@ -23,20 +21,6 @@
                             {include textarea_control, _form => $_form, description => "Kennel description", placeholder => "Kennel description", id => "txtKennelDescription", name => "txtKennelDescription", tooltip => "Enter information about your kennel"}
                             {include dropdown_BreedList_control, _form => $_form, description => "Select the breed bred by your kennel", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose one ore more breeds bred by your kennel"}
                             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
-                        {/form}
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pictures">
-                <div class="panel panel-default registration_block transparent_white">
-                    <div class="panel-body">
-                        {form kennelEditProfileCoverImage}
-                            {include image_UploadPicture_control, _form => $_form, description => "Cover photo", placeholder => "Select picture", id => "txtKennelCoverPhoto", name => "txtKennelCoverPhoto", tooltip => "Cover photo of your kennel in jpeg or jpg format"}
-                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Update'}</button>
-                        {/form}
-                        {form kennelEditProfileImage}
-                            {include image_UploadPicture_control, _form => $_form, description => "Profile picture", placeholder => "Select picture", id => "txtKennelProfilePicture", name => "txtKennelProfilePicture", tooltip => "Profile picture of your kennel in jpeg or jpg format"}
-                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Update'}</button>
                         {/form}
                     </div>
                 </div>

@@ -20,7 +20,7 @@
                         {form puppyEditProfile}
                             <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about puppy'}</span>
                             <hr>
-                            {include dropdown_PlannedLitter_control, _form => $_form, description => "Select your planned litter", placeholder => "Please select", id => "ddlPlannedLitter", name => "ddlPlannedLitter", tooltip => "Please add your planned litter in the kennel menu"}
+                            {include dropdown_PlannedLitter_control, _form => $_form, description => "Select your planned litter", placeholder => "Please select", id => "ddlPlannedLitter", name => "ddlPlannedLitter", tooltip => "Choose your added planned litter or add your planned litter in the kennel menu, section planned litters"}
                             {include radio_DogGender_control, _form => $_form, description => "Gender", placeholder => "Gender", id => "radGender", name => "radGender", tooltip => "Select the puppy’s gender"}
                             {include textbox_control, _form => $_form, description => "Puppy's name", placeholder => "Puppy's name", id => "txtPuppyName", name => "txtPuppyName", tooltip => "Enter the puppy’s name"}
                             {include dropdown_DatePicker_control, _form => $_form, description => "Date of birth", placeholder => "Date of birth", id => "ddlDate", name => "ddlDate", tooltip => "Day, month and year of puppy’s birth"}
