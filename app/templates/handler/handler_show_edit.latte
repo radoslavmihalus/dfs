@@ -21,12 +21,9 @@
         {form formEditShowHandler}
             <h2 class="text-center text-uppercase"><i class="fa fa-clipboard"></i>&nbsp;&nbsp;{_ 'Edit show result'}</h2>
             <hr>
-            {include dropdown_DatePicker_control, _form => $form, description => "Date of show", placeholder => "Date of show", id => "ddlDate", name => "ddlDate"}
-            {include dropdown_ShowType_control, _form => $form, description => "Show type", placeholder => "Show type", id => "ddlShowType", name => "ddlShowType"}
-            {include dropdown_CountryList_control, _form => $form, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry"}
-            {include dropdown_DogList_control, _form => $form, description => "Name of the handled dog", placeholder => "Select or enter the name of the dog", id => "txtHandlerDogName", name => "txtHandlerDogName"}
-            {include textbox_control, _form => $form, description => "Name of judge", placeholder => "Enter the judge’s name", id => "txtJudgeName", name => "txtJudgeName"}
-            {include dropdown_ShowClass_control, _form => $form, description => "Class", placeholder => "Please select", id => "ddlShowClass", name => "ddlShowClass"}
+            {include dropdown_DogList_control, _form => $form, description => "Name of the handled dog", placeholder => "Select or enter the name of the dog", id => "txtHandlerDogName", name => "txtHandlerDogName", tooltip => "Enter the dog’s name or select dog from DOGFORSHOW database for interactivity"}
+            {include textbox_control, _form => $form, description => "Name of judge", placeholder => "Enter the judge’s name", id => "txtJudgeName", name => "txtJudgeName", tooltip => "Enter the judge’s name"}
+            {include dropdown_ShowClass_control, _form => $form, description => "Class", placeholder => "Please select", id => "ddlShowClass", name => "ddlShowClass", tooltip => "Choose class Minor Puppy(3-6 months), Puppy(6-9 months), Junior(9-18 months), Intermediate(15-24 months), Open(from 15 months), Working(from 15 months, with working exam), Champions(from 15 months with ICH or CH title), Veteran(from 8 years), Honor(from 15 months with title ICH, CH, Club Winner, National Winner)"}
             <!-- Minor puppy class -->
             <!-- Assesment Minor puppy-->
             {include checkbox_ShowAssesmentMinorPuppy_control, _form => $form, description => "Assesment", placeholder => "Assesment", id => "chckAssesmentMinorPuppy", name => "chckAssesmentMinorPuppy"}
@@ -69,8 +66,8 @@
             <!-- /Titles -->
             <!-- /Intermediate,Open,Working,Champions,Veterans,Honor-->
             
-            {include textbox_control, _form => $form, description => "Other titles and awards received at the show", placeholder => "Enter other titles achieved at this show (e.g. National Winner)", id => "txtOtherTitle", name => "txtOtherTitle"}         
-            {include image_UploadPicture_control, _form => $form, description => "Image from show", placeholder => "Select picture", id => "txtShowImage", name => "txtShowImage"}
+            {include textbox_control, _form => $form, description => "Other titles and awards received at the show", placeholder => "Enter other titles achieved at this show (e.g. National Winner)", id => "txtOtherTitle", name => "txtOtherTitle", tooltip => "Enter other titles achieved at this show"}         
+            {include image_UploadPicture_control, _form => $form, description => "Image from show", placeholder => "Select picture", id => "txtShowImage", name => "txtShowImage", tooltip => "Record the picture from show in jpg or jpeg format. This field is optional}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
             <button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
         {/form}

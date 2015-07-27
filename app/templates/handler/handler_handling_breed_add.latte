@@ -5,7 +5,7 @@
         {form formAddBreedForHandling}
             <h2 class="text-center text-uppercase"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_ 'Add breeds for handling'}</h2>
             <hr>
-            {include dropdown_BreedList_control, _form => $form, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList"}
+            {include dropdown_BreedList_control, _form => $form, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList",  tooltip => "Select the breeds that you can handle"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
             <button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
         {/form}
