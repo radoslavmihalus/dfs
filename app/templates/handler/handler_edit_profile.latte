@@ -13,24 +13,24 @@
             <div class="tab-pane fade in active" id="informations">
                 <div class="panel panel-default registration_block transparent_white">
                     <div class="panel-body">
-                        <form id="frmEditHandlerProfile">
+                        {form formEditHandlerProfile}
                         <span class="form-secondary-description" style="display:block;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about you'}</span>
                         <hr>
-                        {include textarea_control, description => "Short description about you", placeholder => "Short description", id => "txtHandlerDescritpion", name => "txtHandlerDescritpion"}
-                        {include dropdown_BreedList_control, description => "Select the breed that you can handle", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList"}
-                        <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
-                        </form>
+                        {include textarea_control, _form => $form, description => "Short description about you", placeholder => "Short description", id => "txtHandlerDescritpion", name => "txtHandlerDescritpion"}
+                        {include dropdown_BreedList_control, _form => $form, description => "Select the breed that you can handle", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList"}
+                        <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                        {/form}
                     </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="pictures">
                 <div class="panel panel-default registration_block transparent_white">
                     <div class="panel-body">
-                        <form id="frmEditHandlerProfilePicture">
-                        {include image_UploadPicture_control, description => "Your cover photo", placeholder => "Select picture", id => "txtHandlerCoverPhoto", name => "txtHandlerCoverPhoto"}
-                        {include image_UploadPicture_control, description => "Your profile picture", placeholder => "Select picture", id => "txtHandlerProfilePhoto", name => "txtHandlerProfilePhoto"}
-                        <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
-                        </form>
+                        {form formEditHandlerProfilePicture}
+                        {include image_UploadPicture_control, _form => $form, description => "Your cover photo", placeholder => "Select picture", id => "txtHandlerCoverPhoto", name => "txtHandlerCoverPhoto"}
+                        {include image_UploadPicture_control, _form => $form, description => "Your profile picture", placeholder => "Select picture", id => "txtHandlerProfilePhoto", name => "txtHandlerProfilePhoto"}
+                        <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+                        {/form}
                     </div>
                 </div>
             </div>
