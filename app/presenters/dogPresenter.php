@@ -25,7 +25,11 @@ class dogPresenter extends BasePresenter {
         parent::startup();
     }
 
-    /*     * ******************* view default ******************** */
+    /**
+     * 
+     * Render methods
+     * 
+     */
 
     public function beforeRender() {
         parent::beforeRender();
@@ -99,12 +103,64 @@ class dogPresenter extends BasePresenter {
         $this->template->bog = 0;
         $this->template->bis = 0;
     }
-
-    /*     * ******************* component factories ******************** */
+    
+    /**
+     *  End of render methods
+     */
+    
 
     /**
-     * Edit form factory.
-     * @return Form
+     * Actions
+     */
+    public function actionDog_edit_profile($id) {
+        $this->dog_id = $id;
+    }
+
+    public function actionDog_championschip_edit($id) {
+        $this->title_id = $id;
+    }
+
+    public function actionDog_workexam_edit($id) {
+        $this->workexam_id = $id;
+    }
+
+    public function actionDog_health_edit($id) {
+        $this->health_id = $id;
+    }
+
+    public function actionDog_championschip_add($id = 0) {
+        if ($id == 0)
+            $id = $this->dog_id;
+        $this->dog_id = $id;
+    }
+
+    public function actionDog_coowner_add($id = 0) {
+        if ($id == 0)
+            $id = $this->dog_id;
+        $this->dog_id = $id;
+    }
+
+    public function actionDog_coowner_edit($id = 0) {
+        $this->coowner_id = $id;
+    }
+
+    public function actionDog_mating_edit($id = 0) {
+        $this->mating_id = $id;
+    }
+
+    public function actionDog_mating_add($id = 0) {
+        if ($id == 0)
+            $id = $this->dog_id;
+        $this->dog_id = $id;
+    }
+
+    /**
+     * End of actions
+     */
+
+    /**
+     * 
+     * FormComponents factory
      */
     protected function createComponentFormCreateDogProfile() {
         $form = new Form();
@@ -127,7 +183,7 @@ class dogPresenter extends BasePresenter {
         $form->addCheckbox("chckMating");
         $form->addText("ddlBreedList")->setRequired();
         $form->addText("txtDogName")->setRequired();
-        $form->addUpload("txtDogProfilePhoto")->setRequired();
+        $form->addHidden("txtDogProfilePhoto")->setRequired();
         $form->addText("txtPedigreeRegistrationNumber");
         $form->addText("ddlDate")->setRequired();
         $form->addText("txtDogHeight");
@@ -181,7 +237,7 @@ class dogPresenter extends BasePresenter {
     protected function createComponentFormEditDogProfilePicture() {
         $id = $this->dog_id;
         $form = new Form();
-        $form->addUpload("txtDogProfilePhoto")->setRequired();
+        $form->addHidden("txtDogProfilePhoto")->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfilePictureSucceeded');
         return $form;
     }
@@ -192,7 +248,7 @@ class dogPresenter extends BasePresenter {
         $form->addHidden("dog_id")->setValue($id);
         $form->addText("ddlDate");
         $form->addText("txtChampionshipName");
-        $form->addUpload("txtChampionshipPicture");
+        $form->addHidden("txtChampionshipPicture");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddTitleSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
         return $form;
@@ -208,7 +264,7 @@ class dogPresenter extends BasePresenter {
         $form->addHidden("dog_id")->setValue($row->dog_id);
         $form->addText("ddlDate")->setValue($date);
         $form->addText("txtChampionshipName")->setValue($row->description);
-        $form->addUpload("txtChampionshipPicture");
+        $form->addHidden("txtChampionshipPicture");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditTitleSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
         return $form;
@@ -220,7 +276,7 @@ class dogPresenter extends BasePresenter {
         $form->addHidden("dog_id")->setValue($id);
         $form->addText("ddlDate")->setRequired();
         $form->addText("txtHealthName")->setRequired();
-        $form->addUpload("txtHealthPicture");
+        $form->addHidden("txtHealthPicture");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddHealthSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
         return $form;
@@ -236,7 +292,7 @@ class dogPresenter extends BasePresenter {
         $form->addHidden("dog_id")->setValue($row->dog_id);
         $form->addText("ddlDate")->setValue($date)->setRequired();
         $form->addText("txtHealthName")->setValue($row->description)->setRequired();
-        $form->addUpload("txtHealthPicture");
+        $form->addHidden("txtHealthPicture")->setValue($row->image);
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditHealthSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
         return $form;
@@ -252,7 +308,7 @@ class dogPresenter extends BasePresenter {
         $form->addHidden("dog_id")->setValue($row->dog_id);
         $form->addText("ddlDate")->setValue($date)->setRequired();
         $form->addText("txtMatingBitchName")->setValue($row->description)->setRequired();
-        $form->addUpload("txtMatingBitchPicture");
+        $form->addHidden("txtMatingBitchPicture")->setValue($row->image);
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditMatingSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
         return $form;
@@ -264,7 +320,7 @@ class dogPresenter extends BasePresenter {
         $form->addHidden("dog_id")->setValue($this->dog_id);
         $form->addText("ddlDate")->setValue($date)->setRequired();
         $form->addText("txtMatingBitchName")->setRequired();
-        $form->addUpload("txtMatingBitchPicture");
+        $form->addHidden("txtMatingBitchPicture");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddMatingSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
         return $form;
@@ -280,7 +336,7 @@ class dogPresenter extends BasePresenter {
         $form->addHidden("dog_id")->setValue($row->dog_id);
         $form->addText("ddlDate")->setValue($date)->setRequired();
         $form->addText("txtWorkExamName")->setValue($row->description)->setRequired();
-        $form->addUpload("txtWorkExamPicture");
+        $form->addHidden("txtWorkExamPicture")->setValue($row->image);
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditWorkexamSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
         return $form;
@@ -292,12 +348,67 @@ class dogPresenter extends BasePresenter {
         $form->addHidden("dog_id")->setValue($this->dog_id);
         $form->addText("ddlDate")->setValue($date)->setRequired();
         $form->addText("txtWorkExamName")->setRequired();
-        $form->addUpload("txtWorkExamPicture");
+        $form->addHidden("txtWorkExamPicture");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddWorkexamSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
         return $form;
     }
+
+    protected function createComponentFormAddCoowner() {
+        $id = $this->dog_id;
+
+        $result = $this->database->table("lk_countries")->order("CountryName_en");
+        $countries = array();
+
+        $countries[] = $this->translate("Please select state...");
+
+        foreach ($result as $row) {
+            $countries[$row->CountryName_en] = $row->CountryName_en;
+        }
+
+        $form = new Form();
+        $form->addHidden("dog_id")->setValue($id);
+        $form->addText("txtCoownerName")->setRequired();
+        $form->addSelect("ddlCountry")->setItems($countries)->setRequired();
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddCoownerSucceeded');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        return $form;
+    }
     
+        protected function createComponentFormEditCoowner() {
+        $id = $this->dog_id;
+
+        $result = $this->database->table("lk_countries")->order("CountryName_en");
+        $countries = array();
+
+        $countries[] = $this->translate("Please select state...");
+
+        foreach ($result as $row) {
+            $countries[$row->CountryName_en] = $row->CountryName_en;
+        }
+
+        $result = $this->database->table("tbl_dogs_coowners")->where("id=?", $this->coowner_id)->fetch();
+
+        $form = new Form();
+        $form->addHidden("dog_id")->setValue($id);
+        $form->addText("txtCoownerName")->setValue($result->coowner_name);
+        $form->addSelect("ddlCountry")->setItems($countries)->setValue($result->coowner_state);
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditCoownerSucceeded');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        return $form;
+    }
+
+    /**
+     * 
+     * End of FormComponents factory
+     * 
+     */
+
+    /**
+     * 
+     * Forms actions
+     * 
+     */
     
     public function frmEditDogProfilePictureSucceeded($button) {
         try {
@@ -414,8 +525,7 @@ class dogPresenter extends BasePresenter {
 
         $this->redirect("dog_workexam_list", $this->dog_id);
     }
-    
-    
+
     public function frmDogEditMatingSucceeded($button) {
         try {
             $values = $button->getForm()->getValues();
@@ -458,27 +568,6 @@ class dogPresenter extends BasePresenter {
         $this->redirect("dog_mating_list", $this->dog_id);
     }
 
-    protected function createComponentFormAddCoowner() {
-        $id = $this->dog_id;
-
-        $result = $this->database->table("lk_countries")->order("CountryName_en");
-        $countries = array();
-
-        $countries[] = $this->translate("Please select state...");
-
-        foreach ($result as $row) {
-            $countries[$row->CountryName_en] = $row->CountryName_en;
-        }
-
-        $form = new Form();
-        $form->addHidden("dog_id")->setValue($id);
-        $form->addText("txtCoownerName")->setRequired();
-        $form->addSelect("ddlCountry")->setItems($countries)->setRequired();
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddCoownerSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
-    }
-
     public function frmDogAddCoownerSucceeded($button) {
         try {
             $values = $button->getForm()->getValues();
@@ -491,29 +580,6 @@ class dogPresenter extends BasePresenter {
         $this->redirect("dog_coowner_list", $this->dog_id);
     }
 
-    protected function createComponentFormEditCoowner() {
-        $id = $this->dog_id;
-
-        $result = $this->database->table("lk_countries")->order("CountryName_en");
-        $countries = array();
-
-        $countries[] = $this->translate("Please select state...");
-
-        foreach ($result as $row) {
-            $countries[$row->CountryName_en] = $row->CountryName_en;
-        }
-
-        $result = $this->database->table("tbl_dogs_coowners")->where("id=?", $this->coowner_id)->fetch();
-
-        $form = new Form();
-        $form->addHidden("dog_id")->setValue($id);
-        $form->addText("txtCoownerName")->setValue($result->coowner_name);
-        $form->addSelect("ddlCountry")->setItems($countries)->setValue($result->coowner_state);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditCoownerSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
-    }
-
     public function frmDogEditCoownerSucceeded($button) {
         try {
             $values = $button->getForm()->getValues();
@@ -524,48 +590,6 @@ class dogPresenter extends BasePresenter {
             $this->flashMessage($ex->getMessage(), "Error");
         }
         $this->redirect("dog_coowner_list", $this->dog_id);
-    }
-
-    public function actionDog_edit_profile($id) {
-        $this->dog_id = $id;
-    }
-
-    public function actionDog_championschip_edit($id) {
-        $this->title_id = $id;
-    }
-
-    public function actionDog_workexam_edit($id) {
-        $this->workexam_id = $id;
-    }
-
-    public function actionDog_health_edit($id) {
-        $this->health_id = $id;
-    }
-
-    public function actionDog_championschip_add($id = 0) {
-        if ($id == 0)
-            $id = $this->dog_id;
-        $this->dog_id = $id;
-    }
-
-    public function actionDog_coowner_add($id = 0) {
-        if ($id == 0)
-            $id = $this->dog_id;
-        $this->dog_id = $id;
-    }
-
-    public function actionDog_coowner_edit($id = 0) {
-        $this->coowner_id = $id;
-    }
-
-    public function actionDog_mating_edit($id = 0) {
-        $this->mating_id = $id;
-    }
-
-    public function actionDog_mating_add($id = 0) {
-        if ($id == 0)
-            $id = $this->dog_id;
-        $this->dog_id = $id;
     }
 
     public function frmDogAddTitleSucceeded($button) {

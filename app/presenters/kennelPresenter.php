@@ -173,7 +173,7 @@ class kennelPresenter extends BasePresenter {
         $form = new Form();
         $form->addText('txtKennelName')->setRequired();
         $form->addText('txtKennelFciNumber');
-        $form->addUpload('txtKennelProfilePicture')->setRequired();
+        $form->addHidden('txtKennelProfilePicture')->setRequired();
         $form->addText('txtKennelWebsite');
         $form->addTextArea('txtKennelDescription');
         $form->addText('ddlBreedList')->setRequired();
@@ -189,44 +189,45 @@ class kennelPresenter extends BasePresenter {
             $breeds = $values['ddlBreedList'];
 
             $form = $button->getForm();
+//            $img = $form['txtKennelProfilePicture']->getValue();
 
-            $img = $form['txtKennelProfilePicture']->getValue();
+////var_dump($values['txtKennelProfilePicture']);
+//
+//            $target_path = "uploads/";
+//
+//            $ext = '';
+//
+//            $ext = explode('.', $img->name);
+//
+//            $length = count($ext);
+//
+//            $ext = $ext[$length - 1];
+//
+//            switch ($ext) {
+//                case 'gif':
+//                    $ext = 'gif';
+//                    break;
+//                case 'jpeg':
+//                    $ext = 'jpg';
+//                    break;
+//                case 'jpg':
+//                    $ext = 'jpg';
+//                    break;
+//                case 'png':
+//                    $ext = 'png';
+//                    break;
+//                default :
+//                    throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+//                    break;
+//            }
+//
+//            $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+//
+//            $img->move("$target_path/$filename");
+//
+//            $values['txtKennelProfilePicture'] = "$target_path/$filename";
 
-//var_dump($values['txtKennelProfilePicture']);
-
-            $target_path = "uploads/";
-
-            $ext = '';
-
-            $ext = explode('.', $img->name);
-
-            $length = count($ext);
-
-            $ext = $ext[$length - 1];
-
-            switch ($ext) {
-                case 'gif':
-                    $ext = 'gif';
-                    break;
-                case 'jpeg':
-                    $ext = 'jpg';
-                    break;
-                case 'jpg':
-                    $ext = 'jpg';
-                    break;
-                case 'png':
-                    $ext = 'png';
-                    break;
-                default :
-                    throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-                    break;
-            }
-
-            $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-
-            $img->move("$target_path/$filename");
-
-            $values['txtKennelProfilePicture'] = "$target_path/$filename";
+            //$this->data_model->processImage($img);
 
             $values = $this->data_model->assignFields($values, 'frmKennelCreateProfile');
             $values['user_id'] = $this->logged_in_id;
@@ -315,7 +316,7 @@ class kennelPresenter extends BasePresenter {
     protected function createComponentKennelEditProfileCoverImage() {
         $form = new Form();
 
-        $form->addUpload('txtKennelCoverPhoto')->setRequired();
+        $form->addHidden('txtKennelCoverPhoto')->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileCoverImageSuccess');
 
         return $form;
@@ -324,7 +325,7 @@ class kennelPresenter extends BasePresenter {
     protected function createComponentKennelEditProfileImage() {
         $form = new Form();
 
-        $form->addUpload('txtKennelProfilePicture')->setRequired();
+        $form->addHidden('txtKennelProfilePicture')->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileImageSuccess');
 
         return $form;
@@ -333,41 +334,43 @@ class kennelPresenter extends BasePresenter {
     public function frmEditProfileImageSuccess($button) {
         $values = $button->getForm()->getValues();
 
-        $img = $values['txtKennelProfilePicture'];
+        //$img = $values['txtKennelProfilePicture'];
 
-        $target_path = "uploads/";
+//        $target_path = "uploads/";
+//
+//        $ext = '';
+//
+//        $ext = explode('.', $img->name);
+//
+//        $length = count($ext);
+//
+//        $ext = $ext[$length - 1];
+//
+//        switch ($ext) {
+//            case 'gif':
+//                $ext = 'gif';
+//                break;
+//            case 'jpeg':
+//                $ext = 'jpg';
+//                break;
+//            case 'jpg':
+//                $ext = 'jpg';
+//                break;
+//            case 'png':
+//                $ext = 'png';
+//                break;
+//            default :
+//                throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+//                break;
+//        }
+//
+//        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+//
+//        $img->move("$target_path/$filename");
+//
+//        $values['txtKennelProfilePicture'] = "$target_path/$filename";
 
-        $ext = '';
-
-        $ext = explode('.', $img->name);
-
-        $length = count($ext);
-
-        $ext = $ext[$length - 1];
-
-        switch ($ext) {
-            case 'gif':
-                $ext = 'gif';
-                break;
-            case 'jpeg':
-                $ext = 'jpg';
-                break;
-            case 'jpg':
-                $ext = 'jpg';
-                break;
-            case 'png':
-                $ext = 'png';
-                break;
-            default :
-                throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-                break;
-        }
-
-        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-
-        $img->move("$target_path/$filename");
-
-        $values['txtKennelProfilePicture'] = "$target_path/$filename";
+        //$this->data_model->processImage($img);
 
         $values = $this->data_model->assignFields($values, 'frmEditProfileImage');
         $values['user_id'] = $this->logged_in_id;
@@ -381,41 +384,41 @@ class kennelPresenter extends BasePresenter {
     public function frmEditProfileCoverImageSuccess($button) {
         $values = $button->getForm()->getValues();
 
-        $img = $values['txtKennelCoverPhoto'];
-
-        $target_path = "uploads/";
-
-        $ext = '';
-
-        $ext = explode('.', $img->name);
-
-        $length = count($ext);
-
-        $ext = $ext[$length - 1];
-
-        switch ($ext) {
-            case 'gif':
-                $ext = 'gif';
-                break;
-            case 'jpeg':
-                $ext = 'jpg';
-                break;
-            case 'jpg':
-                $ext = 'jpg';
-                break;
-            case 'png':
-                $ext = 'png';
-                break;
-            default :
-                throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-                break;
-        }
-
-        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-
-        $img->move("$target_path/$filename");
-
-        $values['txtKennelCoverPhoto'] = "$target_path/$filename";
+//        $img = $values['txtKennelCoverPhoto'];
+//
+//        $target_path = "uploads/";
+//
+//        $ext = '';
+//
+//        $ext = explode('.', $img->name);
+//
+//        $length = count($ext);
+//
+//        $ext = $ext[$length - 1];
+//
+//        switch ($ext) {
+//            case 'gif':
+//                $ext = 'gif';
+//                break;
+//            case 'jpeg':
+//                $ext = 'jpg';
+//                break;
+//            case 'jpg':
+//                $ext = 'jpg';
+//                break;
+//            case 'png':
+//                $ext = 'png';
+//                break;
+//            default :
+//                throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+//                break;
+//        }
+//
+//        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+//
+//        $img->move("$target_path/$filename");
+//
+//        $values['txtKennelCoverPhoto'] = "$target_path/$filename";
 
         $values = $this->data_model->assignFields($values, 'frmEditProfileCoverImage');
         $values['user_id'] = $this->logged_in_id;
@@ -431,7 +434,7 @@ class kennelPresenter extends BasePresenter {
 
         $form->addText("ddlDate")->setRequired();
         $form->addText("txtAwardName")->setRequired();
-        $form->addUpload("txtAwardPicture");
+        $form->addHidden("txtAwardPicture");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddAwardSuccess');
 
         return $form;
@@ -450,7 +453,7 @@ class kennelPresenter extends BasePresenter {
 
         $form->addText("ddlDate")->setRequired()->setValue($date);
         $form->addText("txtAwardName")->setRequired()->setValue($row->kennel_award_title);
-        $form->addUpload("txtAwardPicture");
+        $form->addHidden("txtAwardPicture")->setValue($row->kennel_award_image);
         $form->addHidden("hidAwardId")->setValue($row->id);
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditAwardSuccess');
 
@@ -463,40 +466,40 @@ class kennelPresenter extends BasePresenter {
 
             $form = $button->getForm();
 
-            $img = $form['txtAwardPicture']->getValue();
-            $target_path = "uploads/";
-
-            $ext = '';
-
-            $ext = explode('.', $img->name);
-
-            $length = count($ext);
-
-            $ext = $ext[$length - 1];
-
-            switch ($ext) {
-                case 'gif':
-                    $ext = 'gif';
-                    break;
-                case 'jpeg':
-                    $ext = 'jpg';
-                    break;
-                case 'jpg':
-                    $ext = 'jpg';
-                    break;
-                case 'png':
-                    $ext = 'png';
-                    break;
-                default :
-                    throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-                    break;
-            }
-
-            $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-
-            $img->move("$target_path/$filename");
-
-            $values['txtAwardPicture'] = "$target_path/$filename";
+//            $img = $form['txtAwardPicture']->getValue();
+//            $target_path = "uploads/";
+//
+//            $ext = '';
+//
+//            $ext = explode('.', $img->name);
+//
+//            $length = count($ext);
+//
+//            $ext = $ext[$length - 1];
+//
+//            switch ($ext) {
+//                case 'gif':
+//                    $ext = 'gif';
+//                    break;
+//                case 'jpeg':
+//                    $ext = 'jpg';
+//                    break;
+//                case 'jpg':
+//                    $ext = 'jpg';
+//                    break;
+//                case 'png':
+//                    $ext = 'png';
+//                    break;
+//                default :
+//                    throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+//                    break;
+//            }
+//
+//            $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+//
+//            $img->move("$target_path/$filename");
+//
+//            $values['txtAwardPicture'] = "$target_path/$filename";
 
 
             $time = strtotime($values['ddlDate']);
@@ -523,43 +526,43 @@ class kennelPresenter extends BasePresenter {
 
             $form = $button->getForm();
 
-            $img = $form['txtAwardPicture']->getValue();
-
-            if (strlen($img) > 0) {
-                $target_path = "uploads/";
-
-                $ext = '';
-
-                $ext = explode('.', $img->name);
-
-                $length = count($ext);
-
-                $ext = $ext[$length - 1];
-
-                switch ($ext) {
-                    case 'gif':
-                        $ext = 'gif';
-                        break;
-                    case 'jpeg':
-                        $ext = 'jpg';
-                        break;
-                    case 'jpg':
-                        $ext = 'jpg';
-                        break;
-                    case 'png':
-                        $ext = 'png';
-                        break;
-                    default :
-                        throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-                        break;
-                }
-
-                $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-
-                $img->move("$target_path/$filename");
-
-                $values['txtAwardPicture'] = "$target_path/$filename";
-            }
+//            $img = $form['txtAwardPicture']->getValue();
+//
+//            if (strlen($img) > 0) {
+//                $target_path = "uploads/";
+//
+//                $ext = '';
+//
+//                $ext = explode('.', $img->name);
+//
+//                $length = count($ext);
+//
+//                $ext = $ext[$length - 1];
+//
+//                switch ($ext) {
+//                    case 'gif':
+//                        $ext = 'gif';
+//                        break;
+//                    case 'jpeg':
+//                        $ext = 'jpg';
+//                        break;
+//                    case 'jpg':
+//                        $ext = 'jpg';
+//                        break;
+//                    case 'png':
+//                        $ext = 'png';
+//                        break;
+//                    default :
+//                        throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
+//                        break;
+//                }
+//
+//                $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+//
+//                $img->move("$target_path/$filename");
+//
+//                $values['txtAwardPicture'] = "$target_path/$filename";
+//            }
 
             $time = strtotime($values['ddlDate']);
             $values['ddlDate'] = date('Y-m-d', $time);

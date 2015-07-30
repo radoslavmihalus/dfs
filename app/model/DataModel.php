@@ -65,37 +65,40 @@ class DataModel {
      */
 
     function processImage($img) {
-        $target_path = "uploads/";
+//        $target_path = "uploads/";
+//
+//        $ext = '';
+//
+//        $ext = explode('.', $img);
+//
+//        $length = count($ext);
+//
+//        $ext = $ext[$length - 1];
+//
+//        switch ($ext) {
+//            case 'jpeg':
+//                $ext = 'jpg';
+//                break;
+//            case 'jpg':
+//                $ext = 'jpg';
+//                break;
+//            case 'png':
+//                $ext = 'png';
+//                break;
+//            default :
+//                throw new \ErrorException("Only .jpeg / .jpg / .png extensions are allowed", "1");
+//                break;
+//        }
+//
+//        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
+//
+//        $img->move("$target_path/$filename");
+//
+//        $return = "$target_path/$filename";
 
-        $ext = '';
-
-        $ext = explode('.', $img->name);
-
-        $length = count($ext);
-
-        $ext = $ext[$length - 1];
-
-        switch ($ext) {
-            case 'jpeg':
-                $ext = 'jpg';
-                break;
-            case 'jpg':
-                $ext = 'jpg';
-                break;
-            case 'png':
-                $ext = 'png';
-                break;
-            default :
-                throw new \ErrorException("Only .jpeg / .jpg / .png extensions are allowed", "1");
-                break;
-        }
-
-        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-
-        $img->move("$target_path/$filename");
-
-        $return = "$target_path/$filename";
+        $return = $img;
 
         return $return;
     }
+
 }
