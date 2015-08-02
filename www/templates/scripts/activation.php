@@ -17,5 +17,5 @@ if (isset($_GET['alink'])) {
     if ($id > 0)
         $context->query("UPDATE tbl_user SET `active`=1 WHERE ID=$id");
 
-    header("location: http://dfs.fsofts.eu/index.php?activated=1");
+    header("location: ../../../index.php?activated=1");
 }

@@ -156,7 +156,7 @@ class SystemContainer extends Nette\DI\Container
 	 */
 	public function createServiceDatabase__default()
 	{
-		$service = new Nette\Database\Connection('sqlite:/var/www/html/dfs/app/model/demo.db3', NULL, NULL, NULL);
+		$service = new Nette\Database\Connection('mysql:host=localhost;dbname=u147232041_dfs', 'u147232041_dfs', 'dfs123', NULL);
 		Tracy\Debugger::getBlueScreen()->addPanel('Nette\\Bridges\\DatabaseTracy\\ConnectionPanel::renderException');
 		Nette\Database\Helpers::createDebugPanel($service, TRUE, 'default');
 		return $service;
@@ -402,6 +402,7 @@ final class SystemContainer_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_net
 		$service->setTempDirectory('/var/www/html/dfs/app/../temp/cache/latte');
 		$service->setAutoRefresh(TRUE);
 		$service->setContentType('html');
+		$service->setTempDirectory(NULL);
 		return $service;
 	}
 

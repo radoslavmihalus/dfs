@@ -5,7 +5,7 @@ php_flag register_globals off
 # mod_rewrite
 RewriteEngine On
 # v prípade, ze je nutne nastavovat (routujete z ineho adresara ako je webroot)
-#RewriteBase /
+# RewriteBase /
 
 # front controller 
 # hlavny controller (index.php) a obmedzenie requestov na urcite typy suborov 
