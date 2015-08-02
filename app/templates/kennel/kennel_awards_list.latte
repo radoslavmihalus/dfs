@@ -24,7 +24,7 @@
             <span class="text-uppercase text-left">{$row->kennel_award_title}</span>
         </div>
         <div class="col-lg-3 col-md-3 column-spacer">
-            <a href="{$row->kennel_award_image}" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a>
+            <a href="{$row->kennel_award_image}" data-gallery style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a>
         </div>
         <div class="col-lg-3 col-md-3 column-spacer">
             <a n:href="kennel:kennel_awards_edit id => $row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>

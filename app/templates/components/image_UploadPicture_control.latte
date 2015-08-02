@@ -42,6 +42,15 @@
             $("#" + {$name}).val("uploads/" + image.name);
             str = $("#" + {$name}).val();
 
+            if (str == "")
+            {
+                $('#old_image' + {$name}).hide();
+            }
+            else
+            {
+                $('#old_image' + {$name}).show();
+            }
+
             url = "url(" + str + ")";
 
             $('#old_image' + {$name}).css("background-image", url);
@@ -56,11 +65,29 @@
 
     url = "url(" + str + ")";
 
+    if (str == "")
+    {
+        $('#old_image' + {$name}).hide();
+    }
+    else
+    {
+        $('#old_image' + {$name}).show();
+    }
+
     $('#old_image' + {$name}).css("background-image", url);
 
     $("#delete" + {$name}).click(function () {
         $("#" + {$name}).val("");
         str = $("#" + {$name}).val();
+
+        if (str == "")
+        {
+            $('#old_image' + {$name}).hide();
+        }
+        else
+        {
+            $('#old_image' + {$name}).show();
+        }
 
         url = "url(" + str + ")";
 

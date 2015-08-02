@@ -75,6 +75,11 @@
         <!-- Loading animation -->
         <script src="www/js/jquery.nimble.loader.js" type="text/javascript"></script>
         <script src="www/templates/js/pageinit.js" type="text/javascript"></script>
+
+        <!-- gallery js -->
+        <script src="www/js/gallery/jquery.blueimp-gallery.min.js"></script>
+        <script src="www/js/gallery/bootstrap-image-gallery.min.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function ()
             {
@@ -98,6 +103,42 @@
         <!-- user-menu -->
         {include '../menu/user-menu.latte'}
         <!--/user-menu -->
+
+        <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+        <div id="blueimp-gallery" class="blueimp-gallery">
+            <!-- The container for the modal slides -->
+            <div class="slides"></div>
+            <!-- Controls for the borderless lightbox -->
+            <h3 class="title"></h3>
+            <a class="prev">‹</a>
+            <a class="next">›</a>
+            <a class="close">×</a>
+            <a class="play-pause"></a>
+            <ol class="indicator"></ol>
+            <!-- The modal dialog, which will be used to wrap the lightbox content -->
+            <div class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body next"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left prev">
+                                <i class="glyphicon glyphicon-chevron-left"></i>
+                                Previous
+                            </button>
+                            <button type="button" class="btn btn-primary next">
+                                Next
+                                <i class="glyphicon glyphicon-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Main content -->
         <div class="container-fluid content-wrapper">
@@ -126,34 +167,23 @@
                 }).hide();
             });
 
-// zajaxovatění odkazů provedu takto
-            $("a.ajax").live("click", function (event) {
-                event.preventDefault();
+            var borderless = false;
 
-                $.get(this.href);
-
-                // zobrazení spinneru a nastavení jeho pozice
-                $("#ajax-spinner").show().css({
-                    position: "absolute",
-                    left: event.pageX + 20,
-                    top: event.pageY + 40
-                });
-            });
-        </script>        
-        <script src="www/js/gallery/jquery.blueimp-gallery.min.js"></script>
-        <script src="www/js/gallery/bootstrap-image-gallery.js"></script>
+            $('#blueimp-gallery').data('useBootstrapModal', !borderless);
+            $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', borderless);
+        </script>
         {foreach $flashes as $flash}
             <script type="text/javascript">
-            if ({$flash->type} == 'Error')
-                ShowMessageModal(enumNotificationType.error, {$flash->message});
-            if ({$flash->type} == 'Warning')
-                ShowMessageModal(enumNotificationType.warning, {$flash->message});
-            if ({$flash->type} == 'Info')
-                ShowMessageModal(enumNotificationType.information, {$flash->message});
-            if ({$flash->type} == 'Success')
-                ShowMessageModal(enumNotificationType.success, {$flash->message});
-            if ({$flash->type} == 'Confirmation')
-                ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
+                if ({$flash->type} == 'Error')
+                    ShowMessageModal(enumNotificationType.error, {$flash->message});
+                if ({$flash->type} == 'Warning')
+                    ShowMessageModal(enumNotificationType.warning, {$flash->message});
+                if ({$flash->type} == 'Info')
+                    ShowMessageModal(enumNotificationType.information, {$flash->message});
+                if ({$flash->type} == 'Success')
+                    ShowMessageModal(enumNotificationType.success, {$flash->message});
+                if ({$flash->type} == 'Confirmation')
+                    ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
             </script>
         {/foreach}
     </body>
