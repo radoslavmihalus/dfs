@@ -13,21 +13,13 @@ class timelinePresenter extends BasePresenter {
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
         $this->translator = new DFSTranslator();
+        $this->data_model = new \DataModel($database);
     }
 
     protected function startup() {
         parent::startup();
 
-//        $mysection = $this->getSession('userdata');
-//        $myid = $mysection->id;
-//        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
-//
-//        foreach ($userdata as $user) {
-        $this->template->fullname = $user->name . ' ' . $user->surname;
-        $this->template->profile_type = 'Spectator';
-        $this->template->profile_type_icon = 'fa fa-eye'; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
-        $this->template->logged_in_id = 0;
-//        }
+        $this->template->timeline_rows = $this->data_model->getTimeline();
     }
 
     /*     * ******************* view default ******************** */

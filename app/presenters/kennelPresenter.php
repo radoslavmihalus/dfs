@@ -48,7 +48,6 @@ class kennelPresenter extends BasePresenter {
         }
 
 //echo $dditems;
-
         $this->template->dd_breeds_items = $dditems;
     }
 
@@ -84,6 +83,8 @@ class kennelPresenter extends BasePresenter {
             $this->current_user_id = $userRow->user_id;
         }
 
+
+
         $row = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id WHERE tbl_userkennel.id=?", $id)->fetch();
 
         $have_puppies = FALSE;
@@ -107,6 +108,10 @@ class kennelPresenter extends BasePresenter {
         $this->template->state = $state;
 
         $this->template->profile_id = $id;
+
+        $this->template->timeline_rows = $this->data_model->getTimeline($id);
+        $this->template->timeline_name = $name;
+        $this->template->timeline_profile_image = $profile_image;
 
         $this->renderKennel_description_home($id);
         $this->renderKennel_dog_list_home($id);
@@ -189,45 +194,6 @@ class kennelPresenter extends BasePresenter {
             $breeds = $values['ddlBreedList'];
 
             $form = $button->getForm();
-//            $img = $form['txtKennelProfilePicture']->getValue();
-
-////var_dump($values['txtKennelProfilePicture']);
-//
-//            $target_path = "uploads/";
-//
-//            $ext = '';
-//
-//            $ext = explode('.', $img->name);
-//
-//            $length = count($ext);
-//
-//            $ext = $ext[$length - 1];
-//
-//            switch ($ext) {
-//                case 'gif':
-//                    $ext = 'gif';
-//                    break;
-//                case 'jpeg':
-//                    $ext = 'jpg';
-//                    break;
-//                case 'jpg':
-//                    $ext = 'jpg';
-//                    break;
-//                case 'png':
-//                    $ext = 'png';
-//                    break;
-//                default :
-//                    throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-//                    break;
-//            }
-//
-//            $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-//
-//            $img->move("$target_path/$filename");
-//
-//            $values['txtKennelProfilePicture'] = "$target_path/$filename";
-
-            //$this->data_model->processImage($img);
 
             $values = $this->data_model->assignFields($values, 'frmKennelCreateProfile');
             $values['user_id'] = $this->logged_in_id;
@@ -240,6 +206,8 @@ class kennelPresenter extends BasePresenter {
             foreach ($breeds as $breed) {
                 $this->database->query("INSERT INTO link_kennel_breed(kennel_id, breed_name) VALUES(?,?)", $id, $breed);
             }
+
+            $this->data_model->addToTimeline($id, $id, 1, $values['kennel_name'], $values['kennel_profile_picture']);
 
             $this->flashMessage("Your kennel profile has been successfully created.", "Success");
             $this->redirect("kennel:kennel_profile_home", $id);
@@ -306,6 +274,8 @@ class kennelPresenter extends BasePresenter {
                 $this->database->query("INSERT INTO link_kennel_breed(kennel_id, breed_name) VALUES(?,?)", $id, $breed);
             }
 
+            $this->data_model->addToTimeline($id, $id, 2, $row->kennel_name, $row->kennel_profile_picture);
+
             $this->flashMessage("Your kennel profile has been successfully updated.", "Success");
             $this->redirect("kennel:kennel_profile_home", $id);
         } catch (\ErrorException $exc) {
@@ -334,91 +304,21 @@ class kennelPresenter extends BasePresenter {
     public function frmEditProfileImageSuccess($button) {
         $values = $button->getForm()->getValues();
 
-        //$img = $values['txtKennelProfilePicture'];
-
-//        $target_path = "uploads/";
-//
-//        $ext = '';
-//
-//        $ext = explode('.', $img->name);
-//
-//        $length = count($ext);
-//
-//        $ext = $ext[$length - 1];
-//
-//        switch ($ext) {
-//            case 'gif':
-//                $ext = 'gif';
-//                break;
-//            case 'jpeg':
-//                $ext = 'jpg';
-//                break;
-//            case 'jpg':
-//                $ext = 'jpg';
-//                break;
-//            case 'png':
-//                $ext = 'png';
-//                break;
-//            default :
-//                throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-//                break;
-//        }
-//
-//        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-//
-//        $img->move("$target_path/$filename");
-//
-//        $values['txtKennelProfilePicture'] = "$target_path/$filename";
-
-        //$this->data_model->processImage($img);
-
         $values = $this->data_model->assignFields($values, 'frmEditProfileImage');
         $values['user_id'] = $this->logged_in_id;
 
         $mysection = $this->getSession('userdata');
         $myid = $mysection->id;
 
-        $userdata = $this->database->table("tbl_userkennel")->where("user_id = ?", $myid)->update($values);
+        $this->database->table("tbl_userkennel")->where("user_id = ?", $myid)->update($values);
+
+        $userdata = $this->database->table("tbl_userkennel")->where("user_id = ?", $myid)->fetch();
+
+        $this->data_model->addToTimeline($userdata->id, $userdata->id, 3, $userdata->kennel_name, $userdata->kennel_profile_picture);
     }
 
     public function frmEditProfileCoverImageSuccess($button) {
         $values = $button->getForm()->getValues();
-
-//        $img = $values['txtKennelCoverPhoto'];
-//
-//        $target_path = "uploads/";
-//
-//        $ext = '';
-//
-//        $ext = explode('.', $img->name);
-//
-//        $length = count($ext);
-//
-//        $ext = $ext[$length - 1];
-//
-//        switch ($ext) {
-//            case 'gif':
-//                $ext = 'gif';
-//                break;
-//            case 'jpeg':
-//                $ext = 'jpg';
-//                break;
-//            case 'jpg':
-//                $ext = 'jpg';
-//                break;
-//            case 'png':
-//                $ext = 'png';
-//                break;
-//            default :
-//                throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-//                break;
-//        }
-//
-//        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-//
-//        $img->move("$target_path/$filename");
-//
-//        $values['txtKennelCoverPhoto'] = "$target_path/$filename";
 
         $values = $this->data_model->assignFields($values, 'frmEditProfileCoverImage');
         $values['user_id'] = $this->logged_in_id;
@@ -426,7 +326,11 @@ class kennelPresenter extends BasePresenter {
         $mysection = $this->getSession('userdata');
         $myid = $mysection->id;
 
-        $userdata = $this->database->table("tbl_userkennel")->where("user_id = ?", $myid)->update($values);
+        $this->database->table("tbl_userkennel")->where("user_id = ?", $myid)->update($values);
+
+        $userdata = $this->database->table("tbl_userkennel")->where("user_id = ?", $myid)->fetch();
+
+        $this->data_model->addToTimeline($userdata->id, $userdata->id, 4, $userdata->kennel_name, $userdata->kennel_profile_picture);
     }
 
     protected function createComponentFrmAddAward() {
@@ -466,42 +370,6 @@ class kennelPresenter extends BasePresenter {
 
             $form = $button->getForm();
 
-//            $img = $form['txtAwardPicture']->getValue();
-//            $target_path = "uploads/";
-//
-//            $ext = '';
-//
-//            $ext = explode('.', $img->name);
-//
-//            $length = count($ext);
-//
-//            $ext = $ext[$length - 1];
-//
-//            switch ($ext) {
-//                case 'gif':
-//                    $ext = 'gif';
-//                    break;
-//                case 'jpeg':
-//                    $ext = 'jpg';
-//                    break;
-//                case 'jpg':
-//                    $ext = 'jpg';
-//                    break;
-//                case 'png':
-//                    $ext = 'png';
-//                    break;
-//                default :
-//                    throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-//                    break;
-//            }
-//
-//            $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-//
-//            $img->move("$target_path/$filename");
-//
-//            $values['txtAwardPicture'] = "$target_path/$filename";
-
-
             $time = strtotime($values['ddlDate']);
             $values['ddlDate'] = date('Y-m-d', $time);
 
@@ -511,8 +379,10 @@ class kennelPresenter extends BasePresenter {
             $this->database->table("link_kennel_awards")->insert($values);
             $id = $this->database->getInsertId();
 
+            $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 5, date("d.m.Y", strtotime($values['kennel_award_date'])) . " - " . $values['kennel_award_title'], $values['kennel_award_image']);
+
             $this->flashMessage("Your kennel award has been successfully created.", "Success");
-            $this->redirect("kennel:kennel_awards_list", $id);
+            $this->redirect("kennel:kennel_awards_list");
         } catch (\ErrorException $exc) {
             $this->flashMessage($exc->getMessage(), "Error");
         }
@@ -526,44 +396,6 @@ class kennelPresenter extends BasePresenter {
 
             $form = $button->getForm();
 
-//            $img = $form['txtAwardPicture']->getValue();
-//
-//            if (strlen($img) > 0) {
-//                $target_path = "uploads/";
-//
-//                $ext = '';
-//
-//                $ext = explode('.', $img->name);
-//
-//                $length = count($ext);
-//
-//                $ext = $ext[$length - 1];
-//
-//                switch ($ext) {
-//                    case 'gif':
-//                        $ext = 'gif';
-//                        break;
-//                    case 'jpeg':
-//                        $ext = 'jpg';
-//                        break;
-//                    case 'jpg':
-//                        $ext = 'jpg';
-//                        break;
-//                    case 'png':
-//                        $ext = 'png';
-//                        break;
-//                    default :
-//                        throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-//                        break;
-//                }
-//
-//                $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-//
-//                $img->move("$target_path/$filename");
-//
-//                $values['txtAwardPicture'] = "$target_path/$filename";
-//            }
-
             $time = strtotime($values['ddlDate']);
             $values['ddlDate'] = date('Y-m-d', $time);
 
@@ -571,6 +403,8 @@ class kennelPresenter extends BasePresenter {
             //$values['kennel_id'] = $this->logged_in_kennel_id;
 
             $this->database->table("link_kennel_awards")->where("id = ?", $id)->update($values);
+
+            $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 6, date("d.m.Y", strtotime($values['kennel_award_date'])) . " - " . $values['kennel_award_title'], $values['kennel_award_image']);
 
             $this->flashMessage("Your kennel award has been successfully updated.", "Success");
             $this->redirect("kennel:kennel_awards_list");

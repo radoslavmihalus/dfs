@@ -65,40 +65,83 @@ class DataModel {
      */
 
     function processImage($img) {
-//        $target_path = "uploads/";
-//
-//        $ext = '';
-//
-//        $ext = explode('.', $img);
-//
-//        $length = count($ext);
-//
-//        $ext = $ext[$length - 1];
-//
-//        switch ($ext) {
-//            case 'jpeg':
-//                $ext = 'jpg';
-//                break;
-//            case 'jpg':
-//                $ext = 'jpg';
-//                break;
-//            case 'png':
-//                $ext = 'png';
-//                break;
-//            default :
-//                throw new \ErrorException("Only .jpeg / .jpg / .png extensions are allowed", "1");
-//                break;
-//        }
-//
-//        $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-//
-//        $img->move("$target_path/$filename");
-//
-//        $return = "$target_path/$filename";
 
         $return = $img;
 
         return $return;
+    }
+
+    /**
+     * 
+     * @param type $id
+     * @return recordset of timeline rows
+     */
+    function getTimeline($id = 0) {
+        $rows = NULL;
+
+        if ($id == 0)
+            $rows = $this->database->query("SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline order by `date` DESC");
+        else
+            $rows = $this->database->query("SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline where profile_id = ? order by `date` DESC", $id);
+
+        return $rows;
+    }
+
+    /**
+     * 
+     * @param type $profile_id
+     * @param type $event_id
+     * @param type $event_type
+     * @param type $description
+     * @param type $event_image
+     * @return bigint id of inserted timeline item
+     */
+    function addToTimeline($profile_id, $event_id, $event_type, $description = NULL, $event_image = NULL) {
+        /**
+         * event_types :
+         * 
+         * 1 - create profile
+         * 2 - update profile
+         * 3 - kennel change profile image
+         * 4 - kennel change cover image
+         * 5 - kennel add award
+         * 6 - kennel update award
+         * 
+         */
+        
+        $data = array();
+
+        $data['profile_id'] = $profile_id;
+        $data['event_id'] = $event_id;
+        $data['event_type'] = $event_type;
+        $data['event_description'] = $description;
+        $data['event_image'] = $event_image;
+
+        $this->database->table("tbl_timeline")->insert($data);
+        
+        $id = $this->database->getInsertId();
+        
+        return $id;
+    }
+
+    
+    /**
+     * Function delete all timeline items assigned to the event (add and update records)
+     * 
+     * @param type $event_id - id of event
+     */
+    function deleteFromTimelineByEvent($event_id) {
+        $this->database->table("tbl_timeline")->where("event_id=?", $event_id)->delete();
+    }
+
+    /**
+     * Function delete single item from timeline based on timeline item ID
+     * 
+     * 
+     * @param type $id - id of timeline item
+     */
+    function deleteFromTimelineByItem($id) {
+        $this->database->table("tbl_timeline")->where("id=?", $id)->delete();
     }
 
 }

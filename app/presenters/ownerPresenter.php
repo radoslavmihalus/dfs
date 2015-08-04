@@ -133,44 +133,6 @@ class ownerPresenter extends BasePresenter {
         try {
             $values = $button->getForm()->getValues();
 
-            $form = $button->getForm();
-
-            $img = $form['txtOwnerProfilePhoto']->getValue();
-
-            $target_path = "uploads/";
-
-            $ext = '';
-
-            $ext = explode('.', $img->name);
-
-            $length = count($ext);
-
-            $ext = $ext[$length - 1];
-
-            switch ($ext) {
-                case 'gif':
-                    $ext = 'gif';
-                    break;
-                case 'jpeg':
-                    $ext = 'jpg';
-                    break;
-                case 'jpg':
-                    $ext = 'jpg';
-                    break;
-                case 'png':
-                    $ext = 'png';
-                    break;
-                default :
-                    throw new \ErrorException("Only .gif / .jpeg / .jpg / .png extensions are allowed", "1");
-                    break;
-            }
-
-            $filename = \KennelUpdateModel::generateRandomString() . ".$ext";
-
-            $img->move("$target_path/$filename");
-
-            $values['txtOwnerProfilePhoto'] = "$target_path/$filename";
-
             $values = $this->data_model->assignFields($values, 'frmOwnerCreateProfile');
             $values['user_id'] = $this->logged_in_id;
 
