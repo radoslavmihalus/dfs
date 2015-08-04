@@ -70,7 +70,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
             $profile_type_description = "User account";
             $profile_type_icon = "fa fa-eye";
-
+            
             if ($userdata->active_profile_id > 0 && $userdata->active_profile_type > 0) {
                 $this->profile_type = $userdata->active_profile_type;
                 $this->profile_id = $userdata->active_profile_id;

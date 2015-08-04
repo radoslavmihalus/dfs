@@ -30,7 +30,6 @@ class dogPresenter extends BasePresenter {
      * Render methods
      * 
      */
-
     public function beforeRender() {
         parent::beforeRender();
     }
@@ -103,11 +102,10 @@ class dogPresenter extends BasePresenter {
         $this->template->bog = 0;
         $this->template->bis = 0;
     }
-    
+
     /**
      *  End of render methods
      */
-    
 
     /**
      * Actions
@@ -210,15 +208,17 @@ class dogPresenter extends BasePresenter {
             $countries[$row->CountryName_en] = $row->CountryName_en;
         }
 
+        $time = strtotime($profile->date_of_birth);
+        $date = date('d.m.Y', $time);
+
         $sex = array(
             'Dog' => 'Dog',
             'Bitch' => 'Bitch'
         );
 
-        $time = strtotime($profile->date_of_birth);
-        $date = date('d.m.Y', $time);
+        $form->addRadioList("radGender", NULL, $sex)->setValue($profile->dog_gender);
 
-        $form->addRadioList("radGender", NULL, $sex)->setDefaultValue($profile->dog_gender);
+        //$form->addHidden("hidradGender")->setValue($profile->dog_gender);
         $form->addCheckbox("chckMating")->setValue($profile->offer_for_mating);
         $form->addText("ddlBreedList")->setValue($profile->breed_name)->setRequired();
         $form->addText("txtDogName")->setValue($profile->dog_name)->setRequired();
@@ -374,8 +374,8 @@ class dogPresenter extends BasePresenter {
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
         return $form;
     }
-    
-        protected function createComponentFormEditCoowner() {
+
+    protected function createComponentFormEditCoowner() {
         $id = $this->dog_id;
 
         $result = $this->database->table("lk_countries")->order("CountryName_en");
@@ -409,7 +409,6 @@ class dogPresenter extends BasePresenter {
      * Forms actions
      * 
      */
-    
     public function frmEditDogProfilePictureSucceeded($button) {
         try {
             $values = $button->getForm()->getValues();

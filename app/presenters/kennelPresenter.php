@@ -256,6 +256,15 @@ class kennelPresenter extends BasePresenter {
 
             $breeds = $values['ddlBreedList'];
 
+            $breeds = explode(",", $breeds);
+
+            foreach ($breeds as $breed) {
+                $result = $this->database->table("tbl_breeds")->where("BreedName=?", $breed)->count();
+
+                if ($result == 0)
+                    throw new \ErrorException($this->translate("Breed list does not contain entered breed"));
+            }
+
             $values = $this->data_model->assignFields($values, 'frmKennelEditProfile');
 
             var_dump($values);
@@ -267,8 +276,6 @@ class kennelPresenter extends BasePresenter {
             $id = $row->id;
 
             $this->database->table("link_kennel_breed")->where("kennel_id=?", $id)->delete();
-
-            $breeds = explode(",", $breeds);
 
             foreach ($breeds as $breed) {
                 $this->database->query("INSERT INTO link_kennel_breed(kennel_id, breed_name) VALUES(?,?)", $id, $breed);

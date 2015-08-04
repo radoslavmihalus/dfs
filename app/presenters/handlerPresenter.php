@@ -31,7 +31,7 @@ class handlerPresenter extends BasePresenter {
 
     public function renderHandler_awards_list($id = 0) {
         $this->renderDefault($id);
-        $championships = $this->database->table("tbl_handlers_awards")->where("handler_id=?", $id)->fetchAll();
+        $championships = $this->database->table("tbl_handlers_awards")->where("handler_id = ?", $id)->fetchAll();
         $this->template->championships = $championships;
     }
 
