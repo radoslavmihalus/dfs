@@ -299,7 +299,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                         </tr>
 			<tr>
                             <td align="center">
-                                <p style="font-size:15px;"><a href="http://dfs.fsofts.eu" style="padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Login to your account') . '</a></p>
+                                <p style="font-size:15px;"><a href="http://new.dogforshow.com" style="padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Login to your account') . '</a></p>
                             </td>
                         </tr>
                     </table>
@@ -360,7 +360,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                         </tr>
 			<tr>
                             <td align="center">
-                                <p style="font-size:15px;"><a href="http://dfs.fsofts.eu/www/templates/scripts/activation.php?alink=' . $id . '" style="padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Activate account') . '</a></p>
+                                <p style="font-size:15px;"><a href="http://new.dogforshow.com/www/templates/scripts/activation.php?alink=' . $id . '" style="padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Activate account') . '</a></p>
                             </td>
                         </tr>
                     </table>

@@ -14,6 +14,7 @@ database:
 #    dsn: "mysql:host=localhost;dbname=dfs"
 #    user: root
 #    password: L884fv57
+#    dsn: "mysql:host=31.170.165.185;dbname=u147232041_dfs"
     dsn: "mysql:host=localhost;dbname=u147232041_dfs"
     user: u147232041_dfs
     password: dfs123
