@@ -79,12 +79,37 @@ class DataModel {
     function getTimeline($id = 0) {
         $rows = NULL;
 
+        $table = "tmp_" . rand(0, 10);
+        $this->database->query("DROP TABLE IF EXISTS $table");
+
         if ($id == 0)
-            $rows = $this->database->query("SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline order by `date` DESC");
+            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline order by `date` DESC");
         else
-            $rows = $this->database->query("SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline where profile_id = ? order by `date` DESC", $id);
+            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline where profile_id = ? order by `date` DESC", $id);
+
+        $this->database->query("ALTER TABLE `$table` ADD PRIMARY KEY (`id`)");
+        $this->database->query("ALTER TABLE `$table` CHANGE `id` `id` BIGINT( 20 ) NOT NULL AUTO_INCREMENT");
+        
+        $rows = $this->database->table($table)->fetchAll();
 
         return $rows;
+    }
+
+    function getTimelineComments($id = 0) {
+        $rows = NULL;
+
+        $rows = $this->database->table("tbl_comments")->where("timeline_id = ?", $id)->fetchAll();
+
+        return $rows;
+    }
+
+    function addTimelineComment($user_id, $profile_id, $timeline_id, $comment) {
+        $data['user_id'] = $user_id;
+        $data['profile_id'] = $profile_id;
+        $data['timeline_id'] = $timeline_id;
+        $data['comment'] = $comment;
+
+        $this->database->table("tbl_comments")->insert($data);
     }
 
     /**
@@ -108,7 +133,6 @@ class DataModel {
          * 6 - kennel update award
          * 
          */
-        
         $data = array();
 
         $data['profile_id'] = $profile_id;
@@ -118,13 +142,12 @@ class DataModel {
         $data['event_image'] = $event_image;
 
         $this->database->table("tbl_timeline")->insert($data);
-        
+
         $id = $this->database->getInsertId();
-        
+
         return $id;
     }
 
-    
     /**
      * Function delete all timeline items assigned to the event (add and update records)
      * 

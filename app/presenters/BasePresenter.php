@@ -13,6 +13,16 @@ require_once 'www/inc/config_ajax.php';
 /**
  * Base presenter for all application presenters.
  */
+//class CommentTimeline extends \Nette\Application\UI\Form {
+//
+//    private $id;
+//
+//    public function setId($id) {
+//        $this->id = $id;
+//    }
+//
+//}
+
 abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
     public $translator;
@@ -70,7 +80,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
             $profile_type_description = "User account";
             $profile_type_icon = "fa fa-eye";
-            
+
             if ($userdata->active_profile_id > 0 && $userdata->active_profile_type > 0) {
                 $this->profile_type = $userdata->active_profile_type;
                 $this->profile_id = $userdata->active_profile_id;
@@ -240,6 +250,31 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $this->flashMessage($this->translate("Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link") . "<br/><br/><p class=\"text-center\"><a href=\"?resend_al=$id\" class=\"btn btn-danger btn-xl\"><i class=\"fa fa-envelope\"></i>&nbsp;&nbsp;" . $this->translate("Resend registration email") . "</a></p>", "Error");
             } else
                 $this->redirect("user:user_create_profile_switcher");
+        }
+    }
+
+    protected function createComponentCommentTimeline() {
+        return new Nette\Application\UI\Multiplier(function () {
+            $form = new Nette\Application\UI\Form();
+            $form->addHidden("snippet_id");
+            $form->addText("comment")->setRequired();
+            $form->addSubmit('btnSubmit')->onClick[] = array($this, 'commentSucceeded');
+            return $form;
+        });
+    }
+
+    public function commentSucceeded($button) {
+        try {
+            $values = $button->getForm()->getValues();
+
+            $this->data_model->addTimelineComment($this->logged_in_id, $this->profile_id, $values['snippet_id'], $values['comment']);
+
+            if ($this->presenter->isAjax()) {
+                $this->redrawControl('areaComments');
+                //$this->redirect('this');
+            }
+        } catch (\Exception $ex) {
+            $this->flashMessage($ex->getMessage());
         }
     }
 

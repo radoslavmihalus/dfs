@@ -37,7 +37,11 @@
         <link rel="stylesheet" href="www/fonts/glyphicons/font-awesome/css/font-awesome.min.css">
         <!-- Glyphicons PRO -->
         <link rel="stylesheet" href="www/fonts/glyphicons/pro-awesome/css/glyphicons-pro.css">
-        <script src="www/js/jquery.js"></script>
+        <script type="text/javascript" src="www/js/jquery.js"></script>
+        <script type="text/javascript" src="www/js/jquery.nette.js"></script>
+        <script type="text/javascript" src="www/js/jquery.ajaxform.js"></script>
+        <!--        <script src="www/js/nette.ajax.js"></script>-->
+
         <script src="www/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="www/js/fileup/css/jquery.fileupload.css">
         <link rel="stylesheet" href="www/js/fileup/css/jquery.fileupload-ui.css">
@@ -56,6 +60,9 @@
                 left: 50%;
                 top: 50%;
                 margin: -15px 0 0 -15px;
+                width: 32px;
+                height: 32px;
+                z-index: 999;
                 background: white url('www/img/ajax-loader.gif') no-repeat 50% 50%;
                 padding: 13px;
                 border: 2px solid #CCC;
@@ -146,7 +153,9 @@
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
                     {include 'kennel_header.latte'}
                     <div class="col-md-12">
-                        {include content}
+                        {snippet articles}
+                            {include content}
+                        {/snippet}
                     </div>
                 </div>
             </div>
@@ -154,18 +163,9 @@
         <!-- /Main content -->
         <!-- Scripts -->
 
+        <div id="ajax-spinner"></div>
         <script type="text/javascript">
-            $(function () {
-                // vhodně nastylovaný div vložím po načtení stránky
-                $('<div id="ajax-spinner"></div>').appendTo("body").ajaxStop(function () {
-                    // a při události ajaxStop spinner schovám a nastavím mu původní pozici
-                    $(this).hide().css({
-                        position: "fixed",
-                        left: "50%",
-                        top: "50%"
-                    });
-                }).hide();
-            });
+            $("#ajax-spinner").hide();
 
             var borderless = false;
 
@@ -186,5 +186,16 @@
                     ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
             </script>
         {/foreach}
+        <script type="text/javascript">
+            /* Volání AJAXu u všech odkazů s třídou ajax */
+            $("a.ajax").on("click", function (event) {
+                event.preventDefault();
+
+                // zobrazení spinneru a nastavení jeho pozice
+
+                $("#ajax-spinner").show();
+                $.get(this.href);
+            });
+        </script>
     </body>
 </html>

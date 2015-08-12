@@ -38,6 +38,9 @@
         <link href="www/css/tables/pricing-tables.css" rel="stylesheet" type="text/css">
 
         <script src="www/js/jquery.js"></script>
+        <script src="www/js/jquery.nette.js"></script>
+        <script src="www/js/jquery.ajaxform.js"></script>
+
         <script src="www/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="www/js/fileup/css/jquery.fileupload.css">
         <link rel="stylesheet" href="www/js/fileup/css/jquery.fileupload-ui.css">
@@ -113,5 +116,23 @@
                     ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
             </script>
         {/foreach}
+        <script type="text/javascript">
+            /* Volání AJAXu u všech odkazů s třídou ajax */
+            $("a.ajax").live("click", function (event) {
+                event.preventDefault();
+                $.get(this.href);
+            });
+
+            /* AJAXové odeslání formulářů */
+            $("form.ajax").live("submit", function () {
+                $(this).ajaxSubmit();
+                return false;
+            });
+
+            $("form.ajax :submit").live("click", function () {
+                $(this).ajaxSubmit();
+                return false;
+            });
+        </script>
     </body>
 </html>

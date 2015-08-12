@@ -53,6 +53,13 @@ class kennelPresenter extends BasePresenter {
 
     /*     * ******************* view default ******************** */
 
+    public function beforeRender() {
+        parent::beforeRender();
+
+        if ($this->isAjax())
+            $this->invalidateControl('articles');
+    }
+
     public function renderKennel_list() {
         $rows = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state, FALSE as have_puppies FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id")->fetchAll();
 
@@ -109,6 +116,22 @@ class kennelPresenter extends BasePresenter {
 
         $this->template->profile_id = $id;
 
+        // getTimeline        
+//        $rows = NULL;
+//
+//        $table = "tbl_" . rand(100000000, 999999999);
+//
+//        if ($id == 0)
+//            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline order by `date` DESC");
+//        else
+//            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline where profile_id = ? order by `date` DESC", $id);
+//
+//        $this->database->query("ALTER TABLE `$table` ADD PRIMARY KEY (`id`)");
+//        $this->database->query("ALTER TABLE `$table` CHANGE `id` `id` BIGINT( 20 ) NOT NULL AUTO_INCREMENT");
+//        
+//        $rows = $this->database->table($table)->fetchAll();
+        // getTimeline
+        
         $this->template->timeline_rows = $this->data_model->getTimeline($id);
         $this->template->timeline_name = $name;
         $this->template->timeline_profile_image = $profile_image;
