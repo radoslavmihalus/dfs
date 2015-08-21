@@ -42,8 +42,19 @@
                     <div class="dropdown" style="position:absolute;right:10px;">
                         <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><span class="caret"></span></a>
                         <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="Share" style="min-width:50px;right:0;font-size: 12px;z-index:1;">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{_'Remove from timeline'}</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" id="timeline_remove_{$row->id}">{_'Remove from timeline'}</a></li>
                         </ul>
+                        <script type="text/javascript">
+                            $("#timeline_remove_{$row->id}").click(function () {
+                                $.ajax({
+                                    url: '/?do=timelineRemove&id={$row->id}',
+                                    dataType: 'html',
+                                }).done(function (data) {
+//                                    alert("Event deleted");
+                                    $.get(document.href);
+                                });
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
@@ -69,8 +80,8 @@
             {/snippet}
             {foreach $row->related("tbl_comments","timeline_id") as $row_comments}
                 <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-                    <img class="user-block-thumb" src="img/dog1.jpg"/>
-                    <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">Viktorij Dogshow</a></span>
+                    <img class="user-block-thumb" src={DataModel::getProfileImage($row_comments->profile_id)}/>
+                    <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">{DataModel::getProfileName($row_comments->profile_id)}</a></span>
                     <span class="notification-item-event-time">{$row_comments->comment_date_time|date:'%d.%m.%Y'}|&nbsp;{$row_comments->comment_date_time|date:'H:i'}</span>
                     <span class="notification-item-event" style="color:black">{$row_comments->comment}</span>
                 </div>

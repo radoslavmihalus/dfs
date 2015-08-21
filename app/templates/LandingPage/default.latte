@@ -9,6 +9,11 @@
         <meta name="author" content="DOGFORSHOW">
         <script src="www/js/jquery.js"></script>
         <script src="www/js/jquery.form.js"></script>
+
+        <script src="www/js/jquery.nette.js"></script>
+        <script src="www/js/jquery.ajaxform.js"></script>
+        <!--<script src="www/js/nette.ajax.js"></script>-->
+
         <script type="text/javascript" src="www/js/validate/jquery.validate.min.js"></script>
 
         <!-- Scrolling scripts -->
@@ -52,6 +57,22 @@
     </head>
 
     <body role="document" data-spy="scroll" data-target=".navbar" data-offset="12">
+        <!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MTKG8H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(), event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            }
+            )(window, document, 'script', 'dataLayer', 'GTM-MTKG8H');
+        </script>
+        <!-- End Google Tag Manager -->
         <!-- Modal Flash control  -->
         {include '../components/modal_control.latte'}
         <!-- Navigation DOGFORSHOW  -->
@@ -150,27 +171,27 @@
                     <!-- Registered users counters -->
                     <div class="row animated">
                         <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">1.140</p>
+                            <p class="text-center counter_number">{DataModel::getKennelsCount()}</p>
                             <p class="text-center counter_description">{_ 'Kennels'}</p>
                         </div>
                         <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">417</p>
+                            <p class="text-center counter_number">{DataModel::getOwnersCount()}</p>
                             <p class="text-center counter_description">{_ 'Owners'}</p>
                         </div>
                         <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">206</p>
+                            <p class="text-center counter_number">{DataModel::getHandlersCount()}</p>
                             <p class="text-center counter_description">{_ 'Handlers'}</p>
                         </div>
                         <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">660</p>
+                            <p class="text-center counter_number">{DataModel::getDogsCount()}</p>
                             <p class="text-center counter_description">{_ 'Dogs with pedigree'}</p>
                         </div>
                         <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">392</p>
+                            <p class="text-center counter_number">{DataModel::getPlannedLittersCount()}</p>
                             <p class="text-center counter_description">{_ 'Planned litters'}</p>
                         </div>
                         <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">50</p>
+                            <p class="text-center counter_number">0</p>
                             <p class="text-center counter_description">{_ 'Puppies for sale'}</p>
                         </div>
                     </div>
@@ -547,10 +568,19 @@
                                     $("#contactusli").addClass("active");
                                 });
         </script>
+
         {foreach $flashes as $flash}
             <script type="text/javascript">
                 if ({$flash->type} == 'Error')
+                {
+                    $("#login_link").removeClass("active");
+                    $("#register_link").addClass("active");
+                    $("#login").removeClass("active");
+                    $("#login").removeClass("in");
+                    $("#registration").addClass("in");
+                    $("#registration").addClass("active");
                     ShowMessageModal(enumNotificationType.error, {$flash->message});
+                }
                 if ({$flash->type} == 'Warning')
                     ShowMessageModal(enumNotificationType.warning, {$flash->message});
                 if ({$flash->type} == 'Info')

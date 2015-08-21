@@ -8,7 +8,7 @@ use App\Model,
 
 class userPresenter extends BasePresenter {
 
-//    private $database;
+    //private $database;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
@@ -17,7 +17,8 @@ class userPresenter extends BasePresenter {
 
     protected function startup() {
         parent::startup();
-    }
+    }    
+    
 
     public function renderUser_create_profile_switcher() {
         switch ($this->profile_type) {

@@ -52,6 +52,23 @@
     </head>
 
     <body role="document" data-spy="scroll" data-target=".navbar" data-offset="12">
+        <!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MTKG8H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(), event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            }
+            )(window, document, 'script', 'dataLayer', 'GTM-MTKG8H');
+        </script>
+        <!-- End Google Tag Manager -->
+
         <!-- Modal Flash control  -->
         {include '../components/modal_control.latte'}
         {include '../menu/pages_menu.latte'}
@@ -61,7 +78,7 @@
             </div>
             <!-- Reference Carousel -->
         </section>
-        
+
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
@@ -71,9 +88,9 @@
         <script src="www/js/jquery.easing.min.js"></script>
         <script src="www/js/scrolling-nav.js"></script>
         <script>
-                $(function () {
-                    $('[data-toggle="tooltip"]').tooltip()
-                })
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
         </script>
         {foreach $flashes as $flash}
             <script type="text/javascript">
@@ -89,6 +106,6 @@
                     ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
             </script>
         {/foreach}
-        
+
     </body>
 </html>

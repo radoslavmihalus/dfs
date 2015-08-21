@@ -10,11 +10,11 @@ class handlerPresenter extends BasePresenter {
 
     /** @persistent int */
     public $handler_id;
-    public $title_id;
+    public $award_id;
     public $health_id;
     public $coowner_id;
     public $mating_id;
-    public $workexam_id;
+    public $certificate_id;
 
     protected function startup() {
         parent::startup();
@@ -35,54 +35,30 @@ class handlerPresenter extends BasePresenter {
         $this->template->championships = $championships;
     }
 
-    public function renderHandler_coowner_list($id = 0) {
+    public function renderHandler_certificates_list($id = 0) {
         $this->renderDefault($id);
-        $coowners = $this->database->table("tbl_handlers_coowners")->where("handler_id=?", $id)->fetchAll();
-        $this->template->coowners = $coowners;
+        $certificates = $this->database->table("tbl_handlers_certificates")->where("handler_id=?", $id)->fetchAll();
+        $this->template->certificates = $certificates;
     }
 
     public function renderHandler_show_list($id = 0) {
         $this->renderDefault($id);
     }
 
-    public function renderHandler_health_list($id = 0) {
+    public function renderHandler_handling_breed_list($id = 0) {
         $this->renderDefault($id);
-        $healths = $this->database->table("tbl_handlers_health")->where("handler_id=?", $id)->fetchAll();
-        $this->template->healths = $healths;
+        $handling_breeds = $this->database->table("tbl_handler_breed")->where("handler_id=?", $id)->fetchAll();
+        $this->template->handling_breeds = $handling_breeds;
     }
 
-    public function renderHandler_workexam_list($id = 0) {
-        $this->renderDefault($id);
-        $workexams = $this->database->table("tbl_handlers_workexams")->where("handler_id=?", $id)->fetchAll();
-        $this->template->workexams = $workexams;
-    }
-
-    public function renderHandler_mating_list($id = 0) {
-        $this->renderDefault($id);
-        $matings = $this->database->table("tbl_handlers_matings")->where("handler_id=?", $id)->fetchAll();
-        $this->template->matings = $matings;
-    }
-
-    public function renderHandler_list($id = 0) {
-        if ($id > 0)
-            $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND user_id=?", $id, $this->logged_in_id)->fetchAll();
-        else
-            $rows = $this->database->table("tbl_dogs")->fetchAll();
-
-        $this->template->rows = $rows;
-    }
-
-    public function renderHandler_for_mating_list($id = 0) {
-        if ($id > 0)
-            $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND user_id=? AND offer_for_mating=1", $id, $this->logged_in_id)->fetchAll();
-        else
-            $rows = $this->database->table("tbl_dogs")->where("offer_for_mating=1")->fetchAll();
+    public function renderHandler_list() {
+        $rows = $this->database->table("tbl_userhandler")->fetchAll();
 
         $this->template->rows = $rows;
     }
 
     public function renderDefault($id = 0) {
-        $dog = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
+        $dog = $this->database->table("tbl_userhandler")->where("id=?", $id)->fetch();
         $this->template->dog = $dog;
         $this->handler_id = $id;
 
@@ -109,39 +85,21 @@ class handlerPresenter extends BasePresenter {
         $this->handler_id = $id;
     }
 
-    public function actionHandler_championschip_edit($id) {
-        $this->title_id = $id;
+    public function actionHandler_awards_edit($id) {
+        $this->award_id = $id;
     }
 
-    public function actionHandler_workexam_edit($id) {
-        $this->workexam_id = $id;
+    public function actionHandler_certificates_edit($id) {
+        $this->certificate_id = $id;
     }
 
-    public function actionHandler_health_edit($id) {
-        $this->health_id = $id;
-    }
-
-    public function actionHandler_championschip_add($id = 0) {
+    public function actionHandler_awards_add($id = 0) {
         if ($id == 0)
             $id = $this->handler_id;
         $this->handler_id = $id;
     }
 
-    public function actionHandler_coowner_add($id = 0) {
-        if ($id == 0)
-            $id = $this->handler_id;
-        $this->handler_id = $id;
-    }
-
-    public function actionHandler_coowner_edit($id = 0) {
-        $this->coowner_id = $id;
-    }
-
-    public function actionHandler_mating_edit($id = 0) {
-        $this->mating_id = $id;
-    }
-
-    public function actionHandler_mating_add($id = 0) {
+    public function actionHandler_certificates_add($id = 0) {
         if ($id == 0)
             $id = $this->handler_id;
         $this->handler_id = $id;

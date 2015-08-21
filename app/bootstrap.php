@@ -56,6 +56,9 @@ $router[] = new Route('kennel-photogallery', 'kennel:kennel_photogallery');
 $router[] = new Route('kennel-planned-litter-list', 'kennel:kennel_planned_litter_list');
 $router[] = new Route('kennel-friends-list', 'kennel:kennel_friends_list');
 $router[] = new Route('kennel-followers-list', 'kennel:kennel_followers_list');
+$router[] = new Route('kennel-planned-litter-add', 'kennel:kennel_planned_litter_add');
+$router[] = new Route('kennel-planned-litter-edit', 'kennel:kennel_planned_litter_edit');
+
 // Handler routes
 $router[] = new Route('handler-create-profile', 'handler:handler_create_profile');
 $router[] = new Route('handler-edit-profile', 'handler:handler_edit_profile');
@@ -112,8 +115,6 @@ $router[] = new Route('dog-mating-edit', 'dog:dog_mating_edit');
 $router[] = new Route('dog-coowner-list', 'dog:dog_coowner_list');
 $router[] = new Route('dog-coowner-add', 'dog:dog_coowner_add');
 $router[] = new Route('dog-coowner-edit', 'dog:dog_coowner_edit');
-$router[] = new Route('dog-planned-litter-add', 'dog:dog_planned_litter_add');
-$router[] = new Route('dog-planned-litter-edit', 'dog:dog_planned_litter_edit');
 $router[] = new Route('dog-planned-litter-list', 'dog:dog_planned_litter_list');
 // Puppy routes
 $router[] = new Route('puppies-for-sale', 'puppy:puppy_list');

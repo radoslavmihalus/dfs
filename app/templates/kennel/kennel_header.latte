@@ -25,9 +25,9 @@
             <div class="col-md-6" style="padding-top: 15px;">
                 {if $id != $logged_in_profile_id}
                     <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">
-                        <a type="button" class="btn btn-default"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'Add friend'}</a>
-                        <a type="button" class="btn btn-default"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_ 'Follow'}</a>
-                        <a type="button" class="btn btn-default"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Message'}</a>
+<!--                        <a type="button" class="btn btn-default"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'Add friend'}</a>
+                        <a type="button" class="btn btn-default"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_ 'Follow'}</a>-->
+                        <a type="button" class="btn btn-default" n:href="user:user_message_compose"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Message'}</a>
                     </div>
                 {/if}
             </div>
@@ -47,11 +47,11 @@
                         <li><a n:href="kennel:kennel_awards_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Awards'}</a></li>
                         <li><a n:href="kennel:kennel_dog_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Dogs'}</a></li>
                         <li><a n:href="kennel:kennel_planned_litter_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Planned litters'}</a></li>
-                        <li><a n:href="kennel:kennel_puppy_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Puppies for sale'}</a></li>
-                        <li><a n:href="kennel:kennel_photogallery id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Photos'}</a></li>
-                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Videos'}</a></li>
-                        <li><a n:href="kennel:kennel_friends_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Friends'}</a></li>
-                        <li><a n:href="kennel:kennel_followers_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Followers'}</a></li>
+<!--                        <li><a n:href="kennel:kennel_puppy_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Puppies for sale'}</a></li>-->
+<!--                        <li><a n:href="kennel:kennel_photogallery id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Photos'}</a></li>
+                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Videos'}</a></li>-->
+                        <!--<li><a n:href="kennel:kennel_friends_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Friends'}</a></li>-->
+<!--                        <li><a n:href="kennel:kennel_followers_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography ajax">{_ 'Followers'}</a></li>-->
                     </ul>
                 </div>
             </div>

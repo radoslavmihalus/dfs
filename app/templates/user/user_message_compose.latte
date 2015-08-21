@@ -7,20 +7,71 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div style="display:block;float:left;width:100%;padding: 10px 0px 10px 0px;">
-                    <img class="user-block-thumb" src="img/dog1.jpg"/>
-                    <a href="#"><span class="notification-item-header text-uppercase">Viktorij Dogshow</span></a>
-                    <span class="notification-item-event-time">25.6.2014&nbsp;&nbsp;22:30</span>
-                    <span class="notification-item-event" style="color:black">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultricies, tortor sit amet rutrum tempor, ante urna sagittis tellus, vitae tempus est risus id quam. Aliquam interdum lorem quis ipsum congue, quis fermentum elit hendrerit. Pellentesque rutrum, felis ac efficitur iaculis, lorem nisi suscipit eros, nec feugiat magna magna id nibh. Cras elit lorem, tristique blandit accumsan sit amet, dignissim eu odio. Nam maximus tristique malesuada. Maecenas vitae sapien volutpat, tincidunt risus vel, placerat est. Etiam hendrerit, urna eget rhoncus vestibulum, libero sem ultricies ligula, non suscipit felis massa nec erat. Aliquam quis sollicitudin nulla.
-
-                        Duis ut tristique nunc, sit amet pharetra ante. Vestibulum porttitor lorem a enim egestas tempor. Morbi laoreet lacus arcu, non pellentesque massa iaculis eu. Vestibulum tellus eros, pharetra maximus consectetur ut, pulvinar non nibh. Aliquam urna massa, vehicula eget maximus sit amet, tempus non ante. In vehicula tincidunt accumsan. Nunc pulvinar et urna at facilisis. Maecenas consectetur at dolor eu hendrerit. In orci odio, lobortis sed arcu eu, varius eleifend leo. Nullam vulputate ligula vitae tortor efficitur, eu vehicula turpis tincidunt.</span>
+                <div id="areaMessages">
+                    {foreach $messages_rows as $row}
+                        <div style="display:block;float:left;width:100%;padding: 10px 0px 10px 0px;">
+                            <img class="user-block-thumb" src="
+                                 {if $row->from_profile_id > 0}
+                                     {DataModel::getProfileImage($row->from_profile_id)}
+                                 {else}
+                                     {DataModel::getProfileImage($row->from_user_id)}
+                                 {/if}
+                                 "/>
+                            <a href="#"><span class="notification-item-header text-uppercase">
+                                    {if $row->from_profile_id > 0}
+                                        {DataModel::getProfileName($row->from_profile_id)}
+                                    {else}
+                                        {DataModel::getProfileName($row->from_user_id)}
+                                    {/if}
+                                </span></a>
+                            <span class="notification-item-event-time">{$row->message_datetime|date:'%d.%m.%Y'}&nbsp;&nbsp;{$row->message_datetime|date:'H:i:s'}</span>
+                            <span class="notification-item-event" style="color:black">{$row->message}</span>
+                        </div>
+                    {/foreach}
                 </div>
-                <div style="background-color: whitesmoke;display:block;float:left;width:100%;padding: 15px;">
-                    <textarea type="text" style="height:80px;" class="col-md-12 textarea-compose-message form-control contact_textarea font_size_13px" id="txtMessageCompose" placeholder="{_ 'Type your message'}"></textarea>
-                    <button class="btn btn-default btn-sm btn-block">{_ 'Send'}</button>
-                </div>
+                <form n:name=formSendMessage id="formSendMessage" class="ajax">
+                    <div style="background-color: whitesmoke;display:block;float:left;width:100%;padding: 15px;">
+                        <textarea type="text" style="height:80px;" class="col-md-12 textarea-compose-message form-control contact_textarea font_size_13px" id="txtMessageCompose" n:name=txtMessageCompose placeholder="{_ 'Type your message'}"></textarea>
+                        <button class="btn btn-default btn-sm btn-block" n:name=btnSubmit>{_ 'Send'}</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    setInterval(
+            function ()
+            {
+                $.ajax({
+                    url: '/?do=messageCheck',
+                    dataType: 'html',
+                }).done(function (data) {
+                    $("#areaMessages").html(data);
+                });
+            }, 1000
+            );
+
+    $("#formSendMessage").on("submit", function () {
+        //$("#ajax-spinner").show();
+
+        $(this).ajaxSubmit(function (payload) {
+            $.get(document.href);
+            $.nette.success(payload);
+
+        });
+        return false;
+    });
+
+    $("#formSendMessage :submit").on("click", function () {
+        //$("#ajax-spinner").show();
+
+        $(this).ajaxSubmit(function (payload) {
+            $.get(document.href);
+            $.nette.success(payload);
+        });
+        return false;
+    });
+
+</script>
 {/block}

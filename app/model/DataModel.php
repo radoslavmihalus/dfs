@@ -89,7 +89,7 @@ class DataModel {
 
         $this->database->query("ALTER TABLE `$table` ADD PRIMARY KEY (`id`)");
         $this->database->query("ALTER TABLE `$table` CHANGE `id` `id` BIGINT( 20 ) NOT NULL AUTO_INCREMENT");
-        
+
         $rows = $this->database->table($table)->fetchAll();
 
         return $rows;
@@ -103,12 +103,189 @@ class DataModel {
         return $rows;
     }
 
+    static function getProfileImage($id = 0) {
+        require_once 'www/inc/config_ajax.php';
+
+        $image = "";
+
+        $database = getContext();
+
+        if ($id >= 100000000 && $id < 200000000) {
+            $image = "www/img/avatar.jpg";
+        } elseif ($id >= 200000000 && $id < 300000000) {
+            // kennel 200000000
+            // kennel_profile_picture
+            $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
+            $image = $row->kennel_profile_picture;
+        } elseif ($id >= 300000000 && $id < 400000000) {
+            // owner 300000000
+            // owner_profile_picture
+            $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
+            $image = $row->owner_profile_picture;
+        } else {
+            // handler 400000000
+            // handler_profile_picture
+            $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
+            $image = $row->handler_profile_picture;
+        }
+
+        return $image;
+    }
+
+    static function getProfileName($id = 0) {
+        require_once 'www/inc/config_ajax.php';
+
+        $name = "";
+
+        $database = getContext();
+
+        if ($id >= 100000000 && $id < 200000000) {
+            $row = $database->table("tbl_user")->where("id=?", $id)->fetch();
+            $name = $row->name . " " . $row->surname;
+        } elseif ($id >= 200000000 && $id < 300000000) {
+            // kennel 200000000
+            // kennel_profile_picture
+            $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
+            $name = $row->kennel_name;
+        } elseif ($id >= 300000000 && $id < 400000000) {
+            // owner 300000000
+            // owner_profile_picture
+            $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
+            $user_id = $row->user_id;
+            $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+            $name = $row->name . " " . $row->surname;
+        } else {
+            // handler 400000000
+            // handler_profile_picture
+            $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
+            $user_id = $row->user_id;
+            $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+            $name = $row->name . " " . $row->surname;
+        }
+
+        return $name;
+    }
+
+    static function getProfileState($id = 0) {
+        require_once 'www/inc/config_ajax.php';
+
+        $state = "";
+
+        $database = getContext();
+
+        if ($id >= 100000000 && $id < 200000000) {
+            $row = $database->table("tbl_user")->where("id=?", $id)->fetch();
+            $state = $row->state;
+        } elseif ($id >= 200000000 && $id < 300000000) {
+            // kennel 200000000
+            // kennel_profile_picture
+            $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
+            $user_id = $row->user_id;
+            $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+            $state = $row->state;
+        } elseif ($id >= 300000000 && $id < 400000000) {
+            // owner 300000000
+            // owner_profile_picture
+            $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
+            $user_id = $row->user_id;
+            $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+            $state = $row->state;
+        } else {
+            // handler 400000000
+            // handler_profile_picture
+            $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
+            $user_id = $row->user_id;
+            $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+            $state = $row->state;
+        }
+
+        return $state;
+    }
+    
+    
+    //counter functions
+
+    static function getKennelsCount() {
+        require_once 'www/inc/config_ajax.php';
+
+        $database = getContext();
+
+        return $database->table("tbl_userkennel")->count();
+    }
+
+    static function getOwnersCount() {
+        require_once 'www/inc/config_ajax.php';
+
+        $database = getContext();
+
+        return $database->table("tbl_userowner")->count();
+    }
+
+    static function getHandlersCount() {
+        require_once 'www/inc/config_ajax.php';
+
+        $database = getContext();
+
+        return $database->table("tbl_userhandler")->count();
+    }
+
+    static function getDogsCount() {
+        require_once 'www/inc/config_ajax.php';
+
+        $database = getContext();
+
+        return $database->table("tbl_dogs")->count();
+    }
+
+    static function getMattingDogsCount() {
+        require_once 'www/inc/config_ajax.php';
+
+        $database = getContext();
+
+        return $database->table("tbl_dogs")->where("offer_for_mating=1")->count();
+    }
+
+    static function getPlannedLittersCount() {
+        require_once 'www/inc/config_ajax.php';
+
+        $database = getContext();
+
+        return $database->table("tbl_planned_litters")->count();
+    }
+
+    //counter functions
+
+
     function addTimelineComment($user_id, $profile_id, $timeline_id, $comment) {
         $data['user_id'] = $user_id;
         $data['profile_id'] = $profile_id;
         $data['timeline_id'] = $timeline_id;
         $data['comment'] = $comment;
 
+        $row = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
+        $notify_profile_id = $row->profile_id;
+
+        if ($notify_profile_id >= 200000000 && $notify_profile_id < 300000000) {
+            $row = $this->database->table("tbl_userkennel")->where("id=?", $notify_profile_id)->fetch();
+            $notify_user_id = $row->user_id;
+        } elseif ($notify_profile_id >= 300000000 && $notify_profile_id < 400000000) {
+            $row = $this->database->table("tbl_userowner")->where("id=?", $notify_profile_id)->fetch();
+            $notify_user_id = $row->user_id;
+        } else {
+            $row = $this->database->table("tbl_userhandler")->where("id=?", $notify_profile_id)->fetch();
+            $notify_user_id = $row->user_id;
+        }
+
+
+        $notify['notify_user_id'] = $notify_user_id;
+        $notify['notify_profile_id'] = $notify_profile_id;
+        $notify['user_id'] = $user_id;
+        $notify['profile_id'] = $profile_id;
+        $notify['timeline_id'] = $timeline_id;
+        $notify['comment'] = $comment;
+        $notify['type'] = "comment";
+
+        $this->database->table("tbl_notify")->insert($notify);
         $this->database->table("tbl_comments")->insert($data);
     }
 
@@ -131,6 +308,7 @@ class DataModel {
          * 4 - kennel change cover image
          * 5 - kennel add award
          * 6 - kennel update award
+         * 7 - planned litter
          * 
          */
         $data = array();
@@ -163,8 +341,12 @@ class DataModel {
      * 
      * @param type $id - id of timeline item
      */
-    function deleteFromTimelineByItem($id) {
-        $this->database->table("tbl_timeline")->where("id=?", $id)->delete();
+    static function deleteFromTimelineByItem($id) {
+        require_once 'www/inc/config_ajax.php';
+
+        $database = getContext();
+
+        $database->table("tbl_timeline")->where("id=?", $id)->delete();
     }
 
 }

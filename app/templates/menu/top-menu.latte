@@ -4,8 +4,8 @@
             <button type="button" class="navbar-toggle collapsed toogle-margin-zero" style="margin-top: 5px;margin-bottom: 0px;" data-toggle="collapse" data-target="#user-menu">
                 <i class="fa fa-bars"></i>
             </button>
-                <button style="float:left;width:40%;margin-top: 10px" type="button" id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-block btn-default btn-sm"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_ 'Login'}</button>
-                <button style="float:left;width:40%;margin-top: 10px;margin-left: 10px;" type="button" id="btnRegistration" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-block btn-danger btn-sm"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Registration'}</button>
+            <button style="float:left;width:40%;margin-top: 10px" type="button" id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-block btn-default btn-sm"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_ 'Login'}</button>
+            <button style="float:left;width:40%;margin-top: 10px;margin-left: 10px;" type="button" id="btnRegistration" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-block btn-danger btn-sm"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_ 'Registration'}</button>
         </div>
         <div class="modal fade" id="RegistrationModal">
             <div class="modal-dialog">
@@ -46,72 +46,75 @@
             <a n:href="timeline:timeline_wall"><i class="refresh-icon fa fa-list-alt fa-1x"></i></a>
             <div class="notification-bar">
                 <!--                Top menu friend requests -->
-                <div class="dropdown" style="float:left;">
-                    <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="Friend-requests" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<!--                        <span class="badge notify">1</span>-->
-                        <i class="notification-icon fa fa-users fa-1x"></i>
-                        <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu friend-requests" role="menu" aria-labelledby="Friend-requests">
-                        <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Friend requests'}</li>
-                        <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="#">
-                                <img class="user-block-thumb" src="img/dog.jpg"/>
-                                <span class="notification-item-header text-uppercase">Top dog dogforshow kennel</span>
-                                <span class="notification-item-event"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
-                                <span class="notification-item-event-action">
-                                    <button type="button" class="btn btn-default btn-xs">Accept</button>
-                                    <button type="button" class="btn btn-default btn-xs">Delete</button>
-                                </span>
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="#">
-                                <img class="user-block-thumb" src="img/dog3.jpg"/>
-                                <span class="notification-item-header text-uppercase">James lee blunt</span>
-                                <span class="notification-item-event"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
-                                <span class="notification-item-event-action">
-                                    <button type="button" class="btn btn-default btn-xs">Accept</button>
-                                    <button type="button" class="btn btn-default btn-xs">Delete</button>
-                                </span>
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="#">
-                                <img class="user-block-thumb" src="img/dog1.jpg"/>
-                                <span class="notification-item-header text-uppercase">Viktorij Dogshow</span>
-                                <span class="notification-item-event"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
-                                <span class="notification-item-event-action">
-                                    <button type="button" class="btn btn-default btn-xs">Accept</button>
-                                    <button type="button" class="btn btn-default btn-xs">Delete</button>
-                                </span>
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a class="dropdown-footer" href="list-of-friends-requests">
-                                {_ 'View all'}&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <!--                <div class="dropdown" style="float:left;">
+                                    <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="Friend-requests" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="badge notify">1</span>
+                                        <i class="notification-icon fa fa-users fa-1x"></i>
+                                        <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu friend-requests" role="menu" aria-labelledby="Friend-requests">
+                                        <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Friend requests'}</li>
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" href="#">
+                                                <img class="user-block-thumb" src="img/dog.jpg"/>
+                                                <span class="notification-item-header text-uppercase">Top dog dogforshow kennel</span>
+                                                <span class="notification-item-event"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
+                                                <span class="notification-item-event-action">
+                                                    <button type="button" class="btn btn-default btn-xs">Accept</button>
+                                                    <button type="button" class="btn btn-default btn-xs">Delete</button>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" href="#">
+                                                <img class="user-block-thumb" src="img/dog3.jpg"/>
+                                                <span class="notification-item-header text-uppercase">James lee blunt</span>
+                                                <span class="notification-item-event"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
+                                                <span class="notification-item-event-action">
+                                                    <button type="button" class="btn btn-default btn-xs">Accept</button>
+                                                    <button type="button" class="btn btn-default btn-xs">Delete</button>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" href="#">
+                                                <img class="user-block-thumb" src="img/dog1.jpg"/>
+                                                <span class="notification-item-header text-uppercase">Viktorij Dogshow</span>
+                                                <span class="notification-item-event"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'send you a friend request'}</span>
+                                                <span class="notification-item-event-action">
+                                                    <button type="button" class="btn btn-default btn-xs">Accept</button>
+                                                    <button type="button" class="btn btn-default btn-xs">Delete</button>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a class="dropdown-footer" href="list-of-friends-requests">
+                {_ 'View all'}&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>
+            </a>
+        </li>
+    </ul>
+</div>-->
                 <!--                /Top menu friend requests 
                                 Top menu messages -->
                 <div class="dropdown" style="float:left;">
                     <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="Messages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<!--                        <span class="badge notify">4</span>-->
+                        <span class="badge notify" id="messages_count"></span>
                         <i class="notification-icon fa fa-envelope fa-1x"></i>
                         <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu messages" role="menu" aria-labelledby="Messages">
+
                         <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Messages'}</li>
-                        <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="#">
-                                <img class="user-block-thumb" src="img/dog1.jpg"/>
-                                <span class="notification-item-header text-uppercase">Viktorij Dogshow</span>
-                                <span class="notification-item-event-time">25.6.2014&nbsp;&nbsp;22:30</span>
-                                <span class="notification-item-event">Hi my friend, i just want to show you my profile ...</span>
-                            </a>
-                        </li>
+                            {foreach $users_messages as $message}
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" n:href="user:user_message_compose">
+                                    <img class="user-block-thumb" src="{DataModel::getProfileImage($message->profile_id)}"/>
+                                    <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->profile_id)}</span>
+                                    <span class="notification-item-event-time">{$message->message_datetime|date:'%d.%m.%Y'}&nbsp;&nbsp;{$message->message_datetime|date:'H:i:s'}</span>
+                                    <span class="notification-item-event">{$message->message}</span>
+                                </a>
+                            </li>
+                        {/foreach}
                         <li role="presentation">
                             <a class="dropdown-footer" href="message-list">
                                 {_ 'View all'}&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>
@@ -123,13 +126,13 @@
                                 Top menu notifications -->
                 <div class="dropdown" style="float:left;">
                     <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="Notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<!--                        <span class="badge notify">16</span>-->
+                        <span class="badge notify" id="notify_count"></span>
                         <i class="notification-icon fa fa-bell fa-1x"></i>
                         <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="Notifications">
                         <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Notifications'}</li>
-                        <li role="presentation">
+<!--                        <li role="presentation">
                             <a role="menuitem" tabindex="-1" href="#">
                                 <img class="user-block-thumb" src="img/referer1.jpg"/>
                                 <span class="notification-item-header text-uppercase">Faalat rhodesian ridgeback kennel</span>
@@ -147,7 +150,7 @@
                             <a class="dropdown-footer" href="notification-list">
                                 {_ 'View all'}&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>
                             </a>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <!--                /Top menu notifications 
@@ -167,5 +170,59 @@
                 <!--                /Top menu user account -->
             </div>
         </div>
+        <script type="text/javascript">
+            setInterval(
+                    function ()
+                    {
+                        $.ajax({
+                            url: '/?do=newMessagesCount',
+                            dataType: 'html',
+                        }).done(function (data) {
+                            if (data > 0)
+                            {
+                                $("#messages_count").show();
+                                $("#messages_count").html(data);
+                            }
+                            else
+                            {
+                                $("#messages_count").html(data);
+                                $("#messages_count").hide();
+                            }
+                        });
+
+                        $.ajax({
+                            url: '/?do=newNotifyCount',
+                            dataType: 'html',
+                        }).done(function (data) {
+                            if (data > 0)
+                            {
+                                $("#notify_count").show();
+                                $("#notify_count").html(data);
+                            }
+                            else
+                            {
+                                $("#notify_count").html(data);
+                                $("#notify_count").hide();
+                            }
+                        });
+
+                    }, 1000
+                    );
+
+            $("#Notifications").click(function () {
+                $.ajax({
+                    url: '/?do=clearNotify',
+                    dataType: 'html',
+                })
+            });
+
+            $("#Messages").click(function () {
+                $.ajax({
+                    url: '/?do=clearMessages',
+                    dataType: 'html',
+                })
+            });
+
+        </script>
     {/if}
 </nav>

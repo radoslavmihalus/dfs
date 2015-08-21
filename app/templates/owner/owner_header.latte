@@ -19,9 +19,9 @@
             </div>
             <div class="col-md-6" style="padding-top: 15px;">
                 <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">
-                    <a type="button" class="btn btn-default"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'Add friend'}</a>
-                    <a type="button" class="btn btn-default"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_ 'Follow'}</a>
-                    <a type="button" class="btn btn-default"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Message'}</a>
+<!--                    <a type="button" class="btn btn-default"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'Add friend'}</a>
+                    <a type="button" class="btn btn-default"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_ 'Follow'}</a>-->
+                    <a type="button" class="btn btn-default" n:href="user:user_message_compose"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Message'}</a>
                 </div>
             </div>
         </div>
@@ -38,10 +38,10 @@
                     <ul class="nav navbar-nav" style="margin:0px">
                         <li class="active"><a n:href="owner:owner_profile_home id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Home'}</a></li>
                         <li><a n:href="owner:owner_dog_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Dogs'}</a></li>
-                        <li><a n:href="owner:owner_photogallery id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
-                        <li><a n:href="owner:owner_videogallery id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Videos'}</a></li>
-                        <li><a n:href="owner:owner_friends_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Friends'}</a></li>
-                        <li><a n:href="owner:owner_followers_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Followers'}</a></li>
+<!--                        <li><a n:href="owner:owner_photogallery id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
+                        <li><a n:href="owner:owner_videogallery id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Videos'}</a></li>-->
+                        <!--<li><a n:href="owner:owner_friends_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Friends'}</a></li>-->
+<!--                        <li><a n:href="owner:owner_followers_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Followers'}</a></li>-->
                     </ul>
                 </div>
             </div>

@@ -152,6 +152,12 @@ class dogPresenter extends BasePresenter {
         $this->dog_id = $id;
     }
 
+    public function actionDog_show_add($id = 0) {
+        if ($id == 0)
+            $id = $this->dog_id;
+        $this->dog_id = $id;
+    }
+
     /**
      * End of actions
      */
@@ -181,8 +187,8 @@ class dogPresenter extends BasePresenter {
         $form->addCheckbox("chckMating");
         $form->addText("ddlBreedList")->setRequired();
         $form->addText("txtDogName")->setRequired();
-        $form->addHidden("txtDogProfilePhoto")->setRequired();
-        $form->addText("txtPedigreeRegistrationNumber");
+        $form->addText("txtDogProfilePhoto")->setRequired();
+        $form->addText("txtPedigreeRegistrationNumber")->setRequired();
         $form->addText("ddlDate")->setRequired();
         $form->addText("txtDogHeight");
         $form->addText("txtDogWeight");
@@ -222,7 +228,8 @@ class dogPresenter extends BasePresenter {
         $form->addCheckbox("chckMating")->setValue($profile->offer_for_mating);
         $form->addText("ddlBreedList")->setValue($profile->breed_name)->setRequired();
         $form->addText("txtDogName")->setValue($profile->dog_name)->setRequired();
-        $form->addText("txtPedigreeRegistrationNumber")->setValue($profile->dog_registration_number);
+        $form->addText("txtDogProfilePhoto")->setValue($profile->dog_image)->setRequired();
+        $form->addText("txtPedigreeRegistrationNumber")->setValue($profile->dog_registration_number)->setRequired();
         $form->addText("ddlDate")->setValue($date)->setRequired();
         $form->addText("txtDogHeight")->setValue($profile->height);
         $form->addText("txtDogWeight")->setValue($profile->weight);
@@ -230,6 +237,35 @@ class dogPresenter extends BasePresenter {
         $form->addText("ddlDogFather")->setValue($profile->dog_father);
         $form->addText("ddlDogMother")->setValue($profile->dog_mother);
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfileSucceeded');
+
+        return $form;
+    }
+
+    protected function createComponentFormAddShow() {
+        $id = $this->dog_id;
+        $form = new Form();
+
+        $form->addText("ddlDate")->setRequired();
+        $form->addText("txtShowName")->setRequired();
+        $form->addSelect("ddlCountry");//->setRequired();
+        $form->addText("txtJudgeName");
+        $form->addText("txtHandlerName");
+        $form->addSelect("ddlShowClass");//->setRequired();
+        $form->addSelect("ddlShowType");//->setRequired();
+        $form->addCheckboxList("chckAssesmentMinorPuppy");
+        $form->addCheckboxList("chckTitlesMinorPuppy");
+        $form->addCheckboxList("chckTitlesPuppy");
+        $form->addCheckboxList("chckAssesment");
+        $form->addCheckboxList("chckTitlesJunior");
+        $form->addCheckboxList("chckTitlesJuniorBOG");
+        $form->addCheckboxList("chckTitlesJuniorBIS");
+        $form->addCheckboxList("chckTitlesBOG");
+        $form->addCheckboxList("chckTitlesBIS");
+        $form->addCheckboxList("chckTitles");
+        $form->addText("txtOtherTitle");
+        $form->addText("txtShowImage");
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddShowSucceeded');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
 
         return $form;
     }
@@ -677,6 +713,12 @@ class dogPresenter extends BasePresenter {
         } catch (\ErrorException $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
         }
+    }
+
+    public function frmAddShowSucceeded($button) {
+        $values = $button->getForm()->getValues();
+
+        var_dump($values);
     }
 
     public function formCanceled() {

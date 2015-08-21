@@ -106,6 +106,12 @@ class ownerPresenter extends BasePresenter {
         $this->template->rows = $rows;
         $this->renderOwner_profile_home($id);
     }
+    
+    public function renderOwner_list()
+    {
+        $rows = $this->database->table("tbl_userowner")->fetchAll();
+        $this->template->owners = $rows;
+    }
 
     public function renderOwner_dog_list_home($id = 0) {
         if ($id == 0)

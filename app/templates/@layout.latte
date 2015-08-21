@@ -40,6 +40,7 @@
         <script src="www/js/jquery.js"></script>
         <script src="www/js/jquery.nette.js"></script>
         <script src="www/js/jquery.ajaxform.js"></script>
+        <script src="www/js/nette.ajax.js"></script>
 
         <script src="www/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="www/js/fileup/css/jquery.fileupload.css">
@@ -53,6 +54,27 @@
         <script src="www/crop/assets/js/jquery.Jcrop.min.js"></script>
         <script src="www/crop/assets/js/imgSelect.js"></script>
         <style>
+            #ajax-spinner {
+                position:fixed;
+                left: 50%;
+                top: 50%;
+                margin: -15px 0 0 -15px;
+                width: 32px;
+                height: 32px;
+                z-index: 999;
+                background: white url('www/img/ajax-loader.gif') no-repeat 50% 50%;
+                padding: 13px;
+                border: 2px solid #CCC;
+                font-size: 0;
+            }
+            /*            .loading_bar_body {
+                            height: 100%;
+                            width: 100%;
+                            top:0;
+                            left:0;
+                            background: url(img/ajax-loader.gif) no-repeat 50% 50%;
+                        }*/
+
             .loading_bar_body {
                 height: 100%;
                 width: 100%;
@@ -83,6 +105,23 @@
         </script>
     </head>
     <body>
+        <!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MTKG8H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(), event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            }
+            )(window, document, 'script', 'dataLayer', 'GTM-MTKG8H');
+        </script>
+        <!-- End Google Tag Manager -->
+
         <!-- Modal Flash control  -->
         {include 'components/modal_control.latte'}
         <!-- top-menu -->
@@ -116,22 +155,14 @@
                     ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
             </script>
         {/foreach}
+        <div id="ajax-spinner"></div>
         <script type="text/javascript">
+
+            $("#ajax-spinner").hide();
             /* Volání AJAXu u všech odkazů s třídou ajax */
             $("a.ajax").live("click", function (event) {
                 event.preventDefault();
                 $.get(this.href);
-            });
-
-            /* AJAXové odeslání formulářů */
-            $("form.ajax").live("submit", function () {
-                $(this).ajaxSubmit();
-                return false;
-            });
-
-            $("form.ajax :submit").live("click", function () {
-                $(this).ajaxSubmit();
-                return false;
             });
         </script>
     </body>

@@ -8,47 +8,26 @@
 {includeblock '../components/radio_DogGender_control.latte'}
 {includeblock '../components/checkbox_DogMating_control.latte'}
 {includeblock '../components/dropdown_DogList_control.latte'}
-<div class="col-lg-8">
+<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
     <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
-        <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-edit"></i>&nbsp;&nbsp;{_ 'Edit dog profile'}</h2>
-        <ul id="EditProfile" class="nav nav-tabs" style="border-bottom:0px !important;font-size:13px;">
-            <li class="active"><a class="EditProfilelink" href="#informations" data-toggle="tab"><i class="fa fa-align-justify"></i>&nbsp;&nbsp;{_ 'Informations'}</a></li>
-            <li><a class="EditProfilelink" href="#pictures" data-toggle="tab"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;{_ 'Pictures'}</a></li>
-        </ul>
-        <div id="EditProfileContent" class="tab-content">
-            <div class="tab-pane fade in active" id="informations">
-                <div class="panel panel-default registration_block transparent_white">
-                    <div class="panel-body">
-                        {form formEditDogProfile}
-                            <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about your dog'}</span>
-                            <hr>
-                            {include radio_DogGender_control, description => "Gender", placeholder => "Gender", id => "radGender", name => "radGender", tooltip => "Select the dog’s gender", _form => $_form}
-                            {include checkbox_DogMating_control, description => "Offer your dog for mating", placeholder => "Offer your dog for mating", id => "chckMating", name => "chckMating", tooltip => "This option can by selected only for a male dog. After checking this option, your dog will be automatically also in the list of dogs for mating", _form => $_form}
-                            {include dropdown_BreedList_control, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose a breed from the list.", _form => $_form}
-                            {include textbox_control, description => "Dog name", placeholder => "Dog name as shown in the pedigree", id => "txtDogName", name => "txtDogName", tooltip => "Enter your dog’s name as shown in the pedigree certificate. Please dont fill any championships before the name.", _form => $_form}
-                            {include textbox_control, description => "Pedigree registration number", placeholder => "For example SPKP 2667", id => "txtPedigreeRegistrationNumber", name => "txtPedigreeRegistrationNumber", tooltip => "Enter the name of the breed registry at first (e.g. LOSM, SPKP, CSHPK) and then registration number shown in the pedigree certificate", _form => $_form}
-                            {include dropdown_DatePicker_control, description => "Date of birth", placeholder => "Date of birth", id => "ddlDate", name => "ddlDate", tooltip => "Day, month and year of birth of your dog", _form => $_form}
-                            {include textbox_control, description => "Height at the withers (cm)", placeholder => "Height at the withers in centimeters", id => "txtDogHeight", name => "txtDogHeight", tooltip => "Enter the height at withers in centimeters. This information is very good for people, which using the searching dogs for mating with some specific height in withers", _form => $_form}
-                            {include textbox_control, description => "Weight (kg)", placeholder => "Weight of dog in kilograms", id => "txtDogWeight", name => "txtDogWeight", tooltip => "Enter your dog’s weight in kilograms", _form => $_form}
-                            {include dropdown_CountryList_control, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry", tooltip => "Country in which the dog is currently located", _form => $_form}
-                            {include dropdown_DogList_control, description => "Father of the dog", placeholder => "Please select", id => "ddlDogFather", name => "ddlDogFather", tooltip => "Please enter father's name or select father's name from the DOGFORSHOW database for interactive pedigree", _form => $_form}
-                            {include dropdown_DogList_control, description => "Mother of the dog", placeholder => "Please select", id => "ddlDogMother", name => "ddlDogMother", tooltip => "Please enter mother's name or select mother's name from the DOGFORSHOW database for interactive pedigree", _form => $_form}
-                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
-                        {/form}
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pictures">
-                <div class="panel panel-default registration_block transparent_white">
-                    <div class="panel-body">
-                        {form formEditDogProfilePicture}
-                            {include image_UploadPicture_control, description => "Dog profile picture", placeholder => "Select picture", id => "txtDogProfilePhoto", name => "txtDogProfilePhoto", tooltip => "Upload a profile image of your dog in JPG or PNG format", _form => $_form}
-                            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
-                        {/form}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_ 'Edit a dog'}</h2>
+        <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about your dog'}</span>
+        <hr>
+        {form formEditDogProfile}
+            {include radio_DogGender_control, description => "Gender", placeholder => "Gender", id => "radGender", name => "radGender", tooltip => "Select the dog’s gender", _form => $_form}
+            {include checkbox_DogMating_control, description => "Offer your dog for mating", placeholder => "Offer your dog for mating", id => "chckMating", name => "chckMating", tooltip => "This option can by selected only for a male dog. After checking this option, your dog will be automatically also in the list of dogs for mating", _form => $_form}
+            {include dropdown_BreedList_control, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose a breed from the list.", _form => $_form}
+            {include textbox_control, description => "Dog name", placeholder => "Dog name as shown in the pedigree", id => "txtDogName", name => "txtDogName", tooltip => "Enter your dog’s name as shown in the pedigree certificate. Please dont fill any championships before the name.", _form => $_form}
+            {include image_UploadPicture_control, description => "Dog profile picture", placeholder => "Select picture", id => "txtDogProfilePhoto", name => "txtDogProfilePhoto", tooltip => "Upload a profile image of your dog in JPG or PNG format", _form => $_form}
+            {include textbox_control, description => "Pedigree registration number", placeholder => "For example SPKP 2667", id => "txtPedigreeRegistrationNumber", name => "txtPedigreeRegistrationNumber", tooltip => "Enter the name of the breed registry at first (e.g. LOSM, SPKP, CSHPK) and then registration number shown in the pedigree certificate", _form => $_form}
+            {include dropdown_DatePicker_control, description => "Date of birth", placeholder => "Date of birth", id => "ddlDate", name => "ddlDate", tooltip => "Day, month and year of birth of your dog", _form => $_form}
+            {include textbox_control, description => "Height at the withers (cm)", placeholder => "Height at the withers in centimeters", id => "txtDogHeight", name => "txtDogHeight", tooltip => "Enter the height at withers in centimeters. This information is very good for people, which using the searching dogs for mating with some specific height in withers", _form => $_form}
+            {include textbox_control, description => "Weight (kg)", placeholder => "Weight of dog in kilograms", id => "txtDogWeight", name => "txtDogWeight", tooltip => "Enter your dog’s weight in kilograms", _form => $_form}
+            {include dropdown_CountryList_control, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry", tooltip => "Country in which the dog is currently located", _form => $_form}
+            {include dropdown_DogList_control, description => "Father of the dog", placeholder => "Please select", id => "ddlDogFather", name => "ddlDogFather", tooltip => "Please enter father's name or select father's name from the DOGFORSHOW database for interactive pedigree", _form => $_form}
+            {include dropdown_DogList_control, description => "Mother of the dog", placeholder => "Please select", id => "ddlDogMother", name => "ddlDogMother", tooltip => "Please enter mother's name or select mother's name from the DOGFORSHOW database for interactive pedigree", _form => $_form}
+            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+        {/form}
     </div>
 </div>
 {/block}

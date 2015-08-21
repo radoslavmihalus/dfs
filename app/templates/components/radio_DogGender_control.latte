@@ -12,6 +12,44 @@
     $(function () {
         $('[data-toggle="popover"]').popover()
     })
+
+    $("#" + {$id} + "Dog").on("change", function () {
+        if (document.getElementById({$id} + "Dog").checked)
+        {
+            $("#frmMatting").show();
+        }
+        else
+        {
+            document.getElementById("chckMating").checked = false;
+            $("#frmMatting").hide();
+        }
+    });
+
+    $("#" + {$id} + "Bitch").on("change", function () {
+        if (document.getElementById({$id} + "Dog").checked)
+        {
+            $("#frmMatting").show();
+        }
+        else
+        {
+            document.getElementById("chckMating").checked = false;
+            $("#frmMatting").hide();
+        }
+    });
+
+    $(document).ready(function () {
+        //default action for hidding
+        if (document.getElementById({$id} + "Dog").checked)
+        {
+            $("#frmMatting").show();
+        }
+        else
+        {
+            document.getElementById("chckMating").checked = false;
+            $("#frmMatting").hide();
+        }
+    });
+
 //    var sel;
 //    element = "#" + {$id};
 //    sel = $(element).val();

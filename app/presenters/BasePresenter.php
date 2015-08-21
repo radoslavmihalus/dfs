@@ -38,7 +38,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->data_model = new \DataModel($database);
     }
 
-    // return field name for form element
+// return field name for form element
     public function getField($form_name, $element_name) {
         $fields = $this->database->query("SELECT * FROM form_fields WHERE form_name=? AND element_name=?", $form_name, $element_name);
 
@@ -50,7 +50,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         return $return;
     }
 
-    // return array of db fields of form
+// return array of db fields of form
     public function assignFields($valuesArray, $form) {
         $return = array();
 
@@ -189,6 +189,73 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->template->has_user_profile = false;
             $this->template->has_handler_profile = false;
         }
+
+        $this->template->users_messages = $this->getMessagesUsersList();
+        $this->template->messages_rows = $this->database->table("tbl_messages")->order("message_datetime DESC")->fetchAll();
+    }
+
+    public function renderUser_message_compose() {
+        $this->template->users_messages = $this->getMessagesUsersList();
+        $this->template->messages_rows = $this->database->table("tbl_messages")->order("message_datetime ASC")->fetchAll();
+    }
+
+    public function getMessagesUsersList() {
+        $profile_id = $this->profile_id;
+        $user_id = $this->current_user_id;
+
+        $rnd = "tmp_msg_" . rand(1, 10);
+
+//$this->database->query("DROP TABLE IF EXISTS `$rnd`");
+
+        try {
+            $this->database->query("CREATE TABLE `$rnd` (
+ `id` bigint(20) NOT NULL AUTO_INCREMENT,
+ `user_id` bigint(20) DEFAULT NULL,
+ `profile_id` bigint(20) DEFAULT NULL,
+ `message` mediumtext,
+ `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8");
+        } catch (\Exception $ex) {
+            $this->database->query("DELETE FROM `$rnd`");
+        }
+
+        if ($user_id != NULL) {
+            $users = $this->database->table("tbl_messages")->where("from_user_id = ? OR to_user_id = ?", $user_id, $user_id)->order("message_datetime DESC")->limit(5)->fetchAll();
+
+            $myarray = array();
+
+            foreach ($users as $user) {
+                $user_array = array();
+                if ($user->from_user_id != $user_id) {
+                    if (!in_array($user->from_user_id, $myarray)) {
+                        $user_array['user_id'] = $user->from_user_id;
+                        $user_array['message_datetime'] = $user->message_datetime;
+                        $user_array['message'] = $user->message;
+                        $user_array['profile_id'] = $user->from_profile_id;
+
+                        $myarray[] = $user->from_user_id;
+
+                        $this->database->table($rnd)->insert($user_array);
+                    }
+                } else {
+                    if (!in_array($user->to_user_id, $myarray)) {
+                        $user_array['user_id'] = $user->to_user_id;
+                        $user_array['message_datetime'] = $user->message_datetime;
+                        $user_array['message'] = $user->message;
+                        $user_array['profile_id'] = $user->to_profile_id;
+
+                        $myarray[] = $user->to_user_id;
+
+                        $this->database->table($rnd)->insert($user_array);
+                    }
+                }
+            }
+        }
+
+        $user_array = $this->database->table($rnd)->fetchAll();
+
+        return $user_array;
     }
 
     function translate($message) {
@@ -205,15 +272,70 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         }
 
         $form = new Form();
-        $form->addText("txtName")->setRequired();
-        $form->addText("txtSurname")->setRequired();
-        $form->addText("txtEmail")->setRequired();
-        $form->addText("hidddlCountries")->setRequired();
-        $form->addSelect("ddlCountries")->setItems($items)->setRequired();
-        $form->addPassword("txtPassword")->setRequired();
-        $form->addPassword("txtConfirmPassword")->setRequired();
+        $form->addText("txtName");
+        $form->addText("txtSurname");
+        $form->addText("txtEmail");
+        $form->addText("hidddlCountries");
+        $form->addSelect("ddlCountries")->setItems($items);
+        $form->addPassword("txtPassword");
+        $form->addPassword("txtConfirmPassword");
         $form->addSubmit('btnSignIn')->onClick[] = array($this, 'frmSignInSucceeded');
         return $form;
+    }
+
+    public function handleNewMessagesCount() {
+        $messages_count = $this->database->table('tbl_messages')->where("(from_user_id = ? OR to_user_id = ?) AND unreaded = 1", $this->logged_in_id, $this->logged_in_id)->count();
+        echo $messages_count;
+        $this->terminate();
+    }
+
+    public function handleNewNotifyCount() {
+        $messages_count = $this->database->table('tbl_notify')->where("notify_user_id = ? AND unreaded = 1", $this->logged_in_id)->count();
+        echo $messages_count;
+        $this->terminate();
+    }
+
+    public function handleClearNotify() {
+        $user_id = $this->logged_in_id;
+        $this->database->query("UPDATE tbl_notify SET unreaded = 0 WHERE notify_user_id = $user_id");
+    }
+
+    public function handleClearMessages() {
+        $user_id = $this->logged_in_id;
+        $this->database->query("UPDATE tbl_messages SET unreaded = 0 WHERE to_user_id = $user_id");
+    }
+
+    public function handleMessageCheck() {
+        $messages_rows = $this->database->table('tbl_messages')->fetchAll();
+
+        $data = "";
+
+        foreach ($messages_rows as $row) {
+            $data .= '<div style = "display:block;float:left;width:100%;padding: 10px 0px 10px 0px;">';
+
+            if ($row->from_profile_id > 0) {
+                $profile_image = \DataModel::getProfileImage($row->from_profile_id);
+                $profile_name = \DataModel::getProfileName($row->from_profile_id);
+            } else {
+                $profile_image = \DataModel::getProfileImage($row->from_user_id);
+                $profile_name = \DataModel::getProfileName($row->from_user_id);
+            }
+            $data .= '<img class = "user-block-thumb" src = "' . $profile_image . '"/>';
+            $data .= '<a href = "#"><span class = "notification-item-header text-uppercase">' . $profile_name . '</span></a>';
+            $data .= '<span class = "notification-item-event-time">' . date('d.m.Y', strtotime($row->message_datetime)) . '&nbsp;&nbsp;' . date('H:i:s', strtotime($row->message_datetime)) . '</span>';
+            $data .= '<span class = "notification-item-event" style = "color:black">' . nl2br($row->message) . '</span></div>';
+        }
+
+        echo $data;
+        $this->terminate();
+//$this->invalidateControl("areaMessages");
+    }
+
+    public function handleTimelineRemove($id = 0) {
+        if (isset($_GET['id']))
+            $id = $_GET['id'];
+        \DataModel::deleteFromTimelineByItem($id);
+        $this->terminate();
     }
 
     protected function createComponentFrmLogIn() {
@@ -223,6 +345,31 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $form->addCheckbox("chkRemember");
         $form->addSubmit('btnLogin', 'Login')->onClick[] = array($this, 'frmLogInSucceeded');
         return $form;
+    }
+
+    protected function createComponentFormSendMessage() {
+        $form = new Form();
+        $form->addText("txtMessageCompose")->setRequired();
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSendMessageSucceeded');
+
+        return $form;
+    }
+
+    public function frmSendMessageSucceeded($button) {
+        $values = $button->getForm()->getValues();
+
+        $data['message'] = $values['txtMessageCompose'];
+        $data['from_user_id'] = $this->logged_in_id;
+        $data['from_profile_id'] = $this->profile_id;
+        $data['to_user_id'] = $this->logged_in_id;
+        $data['to_profile_id'] = $this->profile_id;
+        $data['unreaded'] = 1;
+        $data['active_from'] = 1;
+        $data['active_to'] = 1;
+
+        $this->database->table("tbl_messages")->insert($data);
+
+        $this->sendPayload();
     }
 
     public function frmLogInSucceeded($button) {
@@ -267,11 +414,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         try {
             $values = $button->getForm()->getValues();
 
+//$row = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+//if ($row->active_profile_id > 0)
             $this->data_model->addTimelineComment($this->logged_in_id, $this->profile_id, $values['snippet_id'], $values['comment']);
 
             if ($this->presenter->isAjax()) {
                 $this->redrawControl('areaComments');
-                //$this->redirect('this');
+//$this->redirect('this');
             }
         } catch (\Exception $ex) {
             $this->flashMessage($ex->getMessage());
@@ -417,49 +566,62 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function frmSignInSucceeded($button) {
-        $is_error = FALSE;
-        $values = $button->getForm()->getValues();
 
-        $exception = '<ul>';
+        try {
+            $is_error = FALSE;
+            $values = $button->getForm()->getValues();
 
-        if ($values['ddlCountries'] == "0")
-            $exception .= "<li>" . $this->translate("Please select state") . "</li>";
+            $exception = '<ul>';
 
-        if ($values['txtPassword'] != $values['txtConfirmPassword']) {
-            $exception .= "<li>" . $this->translate("Password and confirm password does not match") . "</li>";
-        }
+            if ($values['ddlCountries'] == "0")
+                $exception .= "<li>" . $this->translate("Please select state") . "</li>";
 
-        $values = $this->assignFields($values, 'frmSignIn');
+            if ($values['txtPassword'] != $values['txtConfirmPassword']) {
+                $exception .= "<li>" . $this->translate("Password and confirm password does not match") . "</li>";
+            }
 
-        if (preg_match('/[0-9]+/', $values['name']) || preg_match('/[0-9]+/', $values['surname'])) {
-            $exception .= "<li>" . $this->translate("Fields Name and Surname cannot contains digits") . "</li>";
-        }
+            $values = $this->assignFields($values, 'frmSignIn');
 
-        $exception .= '</ul>';
+            if (preg_match('/[0-9]+/', $values['name']) || preg_match('/[0-9]+/', $values['surname'])) {
+                $exception .= "<li>" . $this->translate("Fields Name and Surname cannot contains digits") . "</li>";
+            }
 
-        //echo $exception;
+            if ($values['name'] == "" || $values['surname'] == "") {
+                $exception .= "<li>" . $this->translate("Name and Surname cannot left blank") . "</li>";
+            }
 
-        if ($exception != '<ul></ul>') {
-            $this->flashMessage($exception, "Error");
-            $is_error = TRUE;
-        }
+            if ($values['email'] == "") {
+                $exception .= "<li>" . $this->translate("Email cannot left blank") . "</li>";
+            }
 
-        if (!$is_error) {
-            try {
-                $this->database->table("tbl_user")->insert($values);
-                $userid = $this->database->getInsertId();
+            $exception .= '</ul>';
 
-                $this->sendActivationEmail($values['email'], $values['name'], $userid);
+//echo $exception;
 
-                $this->flashMessage('<ul><li><strong>' . $this->translate('Your registration has been successfully completed') . '</strong></li><li>' . $this->translate('Please check your Email for your user acccount activation') . '</li><li>' . $this->translate('If you have not received the Email yet, please also check your SPAM folder') . '</li></ul>', "Success");
-//var_dump($values);
-            } catch (\Exception $ex) {
-                $this->flashMessage($ex->getMessage(), "Error");
+            if ($exception != '<ul></ul>') {
+                throw new \ErrorException($exception);
                 $is_error = TRUE;
             }
 
-            if (!$is_error)
-                $this->redirect("LandingPage:default");
+            if (!$is_error) {
+                try {
+                    $this->database->table("tbl_user")->insert($values);
+                    $userid = $this->database->getInsertId();
+
+                    $this->sendActivationEmail($values['email'], $values['name'], $userid);
+
+                    $this->flashMessage('<ul><li><strong>' . $this->translate('Your registration has been successfully completed') . '</strong></li><li>' . $this->translate('Please check your Email for your user acccount activation') . '</li><li>' . $this->translate('If you have not received the Email yet, please also check your SPAM folder') . '</li></ul>', "Success");
+//var_dump($values);
+                } catch (\Exception $ex) {
+                    $this->flashMessage($ex->getMessage(), "Error");
+                    $is_error = TRUE;
+                }
+
+                if (!$is_error)
+                    $this->redirect("LandingPage:default");
+            }
+        } catch (\ErrorException $ex) {
+            $this->flashMessage($ex->getMessage(), "Error");
         }
     }
 
@@ -482,8 +644,8 @@ class DFSTranslator implements Nette\Localization\ITranslator {
     public function translate($message, $count = NULL) {
         $actual_link = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-        //$uri = $tmpuri;
-        //$query = "SELECT * FROM tbl_translate where text_to_translate = '$message' AND uri = '$uri'";
+//$uri = $tmpuri;
+//$query = "SELECT * FROM tbl_translate where text_to_translate = '$message' AND uri = '$uri'";
 
         if ($message != NULL) {
             $rows = $this->database->table("tbl_translate")->where("text_to_translate = ?", $message)->fetchAll();

@@ -1,76 +1,78 @@
 {define #dog_planned_litter_list_item}
-<div class="list-item" style="box-shadow: none;padding:0px;margin-bottom: 0px;">
-    <div class="row" style="padding:10px 10px 0px 10px;background-color: #f8f8f8;border:#E0E0E0 1px solid;box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0px 2px 7px rgba(0,0,0,0.1);">
-        <!--  First row  -->
-        <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom: 5px;">
-            <i class="fa fa-home"></i><a n:href="" style="color:black;text-decoration: underline;"><span data-toggle="tooltip" data-placement='top' data-html="true" data-title="{_ 'Name of the kennel'}" style="margin-left: 10px;text-transform: uppercase;font-weight:bold;">La tormenta labradors</span></a>
+{foreach $planned_litter_rows as $row}
+    <div class="list-item" style="box-shadow: none;padding:0px;margin-bottom: 0px;">
+        <div class="row" style="padding:10px 10px 0px 10px;background-color: #f8f8f8;border:#E0E0E0 1px solid;box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0px 2px 7px rgba(0,0,0,0.1);">
+            <!--  First row  -->
+            <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom: 5px;">
+                <i class="fa fa-home"></i><a n:href="" style="color:black;text-decoration: underline;"><span data-toggle="tooltip" data-placement='top' data-html="true" data-title="{_ 'Name of the kennel'}" style="margin-left: 10px;text-transform: uppercase;font-weight:bold;">{DataModel::getProfileName($row->kennel_id)}</span></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;">
+                <i class="fa fa-calendar"></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Name of the planned litter'}" style="margin-left: 10px;font-weight:bold;">{_ 'Planned litter'}&nbsp;{$row->name}</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;">
+                <i class="fa fa-calendar-o" ></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Scheduled date of birth of the puppies'}" style="margin-left: 10px;font-weight:bold;">{$row->month}/{$row->year}</span>
+            </div>
+            <!--  Second row  -->
+            <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
+                <i class="fa fa-tag" ></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}" style="margin-left: 10px;">***Cane corso italiano</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
+                <i class="fa fa-map-marker"></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}" style="margin-left: 10px;">***Czech Republic</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
+                <a n:href="dog:dog_planned_litter_edit" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>
+                <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button>
+            </div>
+            <div class="row" style="padding:5px;">
+                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                    <!--<a n:href="puppy:puppy_create_profile" class="btn btn-danger btn-sm" style="float:left;margin-bottom: 5px;"><i class="fa fa-plus"></i>&nbsp;{_ 'Add puppies'}</a>-->
+                    <button class="btn btn-default btn-sm" style="float:left;margin-left: 5px;margin-bottom: 5px;" data-toggle="collapse" data-target="#Planned_litter_{$row->id}" aria-expanded="false" aria-controls="#Planned_litter_{$row->id}"><i class="fa fa-search"></i>&nbsp;{_ 'View detail'}</button>
+                    <div class="dropdown" style="float:left;margin-left: 5px;">
+                        <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><i class="fa fa-share-alt"></i>&nbsp;{_ 'Share'}&nbsp;<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="Share" style="min-width:50px;">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-facebook-square fa-1x"></i></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-google-plus-square fa-1x"></i></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-twitter-square fa-1x"></i></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-pinterest-square fa-1x"></i></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-tumblr-square fa-1x"></i></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-envelope-square fa-1x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;">
-            <i class="fa fa-calendar"></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Name of the planned litter'}" style="margin-left: 10px;font-weight:bold;">{_ 'Planned litter'}&nbsp;A</span>
-        </div>
-        <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;">
-            <i class="fa fa-calendar-o" ></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Scheduled date of birth of the puppies'}" style="margin-left: 10px;font-weight:bold;">6/2015</span>
-        </div>
-        <!--  Second row  -->
-        <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
-            <i class="fa fa-tag" ></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}" style="margin-left: 10px;">Cane corso italiano</span>
-        </div>
-        <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
-            <i class="fa fa-map-marker"></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}" style="margin-left: 10px;">Czech Republic</span>
-        </div>
-        <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
-            <a n:href="dog:dog_planned_litter_edit" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>
-            <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button>
-        </div>
-        <div class="row" style="padding:5px;">
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                <a n:href="puppy:puppy_create_profile" class="btn btn-danger btn-sm" style="float:left;margin-bottom: 5px;"><i class="fa fa-plus"></i>&nbsp;{_ 'Add puppies'}</a>
-                <button class="btn btn-default btn-sm" style="float:left;margin-left: 5px;margin-bottom: 5px;" data-toggle="collapse" data-target="#Planned_litter_1" aria-expanded="false" aria-controls="#Planned_litter_1"><i class="fa fa-search"></i>&nbsp;{_ 'View detail'}</button>
-                <div class="dropdown" style="float:left;margin-left: 5px;">
-                    <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><i class="fa fa-share-alt"></i>&nbsp;{_ 'Share'}&nbsp;<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="Share" style="min-width:50px;">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-facebook-square fa-1x"></i></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-google-plus-square fa-1x"></i></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-twitter-square fa-1x"></i></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-pinterest-square fa-1x"></i></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-tumblr-square fa-1x"></i></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-envelope-square fa-1x"></i></a></li>
-                    </ul>
+        <div class="collapse" id="Planned_litter_{$row->id}">
+            <div class="row" style="padding-top:10px;margin-left: 0px;margin-right: 0px;">
+                <a n:href="dog:dog_title_list">
+                    <div class="col-lg-6 col-md-6 col-xs-12 padding" style="margin-bottom: 10px;">
+                        <div class="list-item">
+                            <div class="dog-image-profile-thumb" style="background: url('{$row->dog_image}') no-repeat center center; background-size: cover;min-height: 240px;">
+                            </div>
+                            <h3 class="text-uppercase"><i class="fa fa-mars" style="color:#0c9eea;"></i>&nbsp;&nbsp;{$row->dog_name}</h3>
+                            <hr style="margin-bottom: 10px;">
+                            <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;***Dogo argentino</span>
+                            <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;***Slovakia</span>
+                        </div>
+                    </div>
+                </a>
+                <a n:href="dog:dog_title_list">
+                    <div class="col-lg-6 col-md-6 col-xs-12 padding">
+                        <div class="list-item">
+                            <div class="dog-image-profile-thumb" style="background: url('{$row->bitch_image}') no-repeat center center; background-size: cover;min-height: 240px;">
+                            </div>
+                            <h3 class="text-uppercase"><i class="fa fa-venus gender-bitch"></i>&nbsp;&nbsp;{$row->bitch_name}</h3>
+                            <hr style="margin-bottom: 10px;">
+                            <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;***Dogo argentino</span>
+                            <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;***Slovakia</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12 panel-description "><i class="fa fa-paw"></i>&nbsp;&nbsp;{_ 'Puppies'}
                 </div>
             </div>
         </div>
     </div>
-    <div class="collapse" id="Planned_litter_1">
-        <div class="row" style="padding-top:10px;margin-left: 0px;margin-right: 0px;">
-            <a n:href="dog:dog_title_list">
-                <div class="col-lg-6 col-md-6 col-xs-12 padding" style="margin-bottom: 10px;">
-                    <div class="list-item">
-                        <div class="dog-image-profile-thumb">
-                        </div>    
-                        <h3 class="text-uppercase"><i class="fa fa-mars" style="color:#0c9eea;"></i>&nbsp;&nbsp;Bronca la rosa de inca</h3>
-                        <hr style="margin-bottom: 10px;">
-                        <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;Dogo argentino</span>
-                        <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;Slovakia</span>
-                    </div>
-                </div>
-            </a>
-            <a n:href="dog:dog_title_list">
-                <div class="col-lg-6 col-md-6 col-xs-12 padding">
-                    <div class="list-item">
-                        <div class="dog-image-profile-thumb">
-                        </div>    
-                        <h3 class="text-uppercase"><i class="fa fa-venus gender-bitch"></i>&nbsp;&nbsp;Bronca la rosa de inca</h3>
-                        <hr style="margin-bottom: 10px;">
-                        <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;Dogo argentino</span>
-                        <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;Slovakia</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12 panel-description "><i class="fa fa-paw"></i>&nbsp;&nbsp;{_ 'Puppies'}
-            </div>
-        </div>
-    </div>
-</div>
+{/foreach}
 {/define}

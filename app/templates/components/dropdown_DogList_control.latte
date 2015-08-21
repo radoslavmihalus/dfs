@@ -14,7 +14,7 @@
         ajax: {
             url: 'www/templates/scripts/ajax_dogs.php',
             dataType: 'json',
-            minimumInputLength: 0,
+            minimumInputLength: 2,
             quietMillis: 250,
             params: function (term, offset) {
                 // GitHub uses 1-based pages with 30 results, by default
@@ -36,8 +36,9 @@
                 };
             }
         },
-        multiple: false,
-        tokenSeparators: [',']
+        multiple: true,
+        onlyOne: true,
+        tokenSeparators: [','],
                 //value: ['Dogo Argentino']
     });
 
