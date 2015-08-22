@@ -17,12 +17,9 @@
             {include textbox_control, description => "Kennel website", placeholder => "www.yourwebsite.com", id => "txtKennelWebsite", name => "txtKennelWebsite", tooltip => "Enter the website of your kennel", _form => $_form}
             {include textarea_control, description => "Kennel description", placeholder => "Kennel description", id => "txtKennelDescription", name => "txtKennelDescription", tooltip => "Enter some informations about your kennel", _form => $_form}
             {include dropdown_BreedList_control, description => "Select the breed bred by your kennel", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose one ore more breeds bred by your kennel", _form => $_form}
-            <button type="submit" name="btnSubmit" id="btnSubmit" class="btn btn-danger btn-xl pull-right">{_ 'Create profile'}</button>
+            <button type="submit" n:name=btnSubmit id="btnSubmit" class="btn btn-danger btn-xl pull-right">{_ 'Create profile'}</button>
             <!--        </form>-->
         {/form}
     </div>
 </div>
-<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
-<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 {/block}
