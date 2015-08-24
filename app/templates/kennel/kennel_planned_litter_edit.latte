@@ -3,6 +3,8 @@
 {includeblock '../components/dropdown_DogList_control.latte'}
 {includeblock '../components/image_UploadPicture_control.latte'}
 {includeblock '../components/textbox_control.latte'}
+{includeblock '../components/dropdown_CountryList_control.latte'}
+{includeblock '../components/dropdown_BreedList_control.latte'}
 <div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
     <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
         {form formEditPlannedLitter}
@@ -11,7 +13,13 @@
             {include textbox_control, _form=>$_form, description => "Name of the litter or litter ranking", placeholder => "Name of the litter or litter ranking", id => "txtPlannedLitterName", name => "txtPlannedLitterName", tooltip => "Enter the name of the litter or enter the letter of planned litter"}
             {include dropdown_DatePickerPlannedLitter_control, _form=>$_form, description => "Scheduled date of birth of the puppies", placeholder => "Please select", id => "ddlDate", name => "ddlDate", tooltip => "Enter indicative month of birth of puppies as information for prospective buyers"}
             {include dropdown_DogList_control, _form=>$_form, description => "Enter dog’s name", placeholder => "Please select", id => "ddlPlannedLitterDogName", name => "ddlPlannedLitterDogName", tooltip => "Enter dog’s name or select the dog from the DOGFORSHOW database for interactivity"}
+            <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Father of the planned litter'}</span>
+            <hr>
             {include image_UploadPicture_control, _form=>$_form, description => "Picture of the dog", placeholder => "Select picture", id => "txtPlannedLitterDogProfilePhoto", name => "txtPlannedLitterDogProfilePhoto", tooltip => "Upload or change profile picture of the dog in jpg or jpeg format"}
+            {include dropdown_BreedList_control, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose a breed from the list."}
+            {include dropdown_CountryList_control, _form=>$_form, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry", tooltip => "Country in which the dog is currently located"}
+            <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Mother of the planned litter'}</span>
+            <hr>
             {include dropdown_DogList_control, _form=>$_form, description => "Please select the name of the bitch", placeholder => "Please select", id => "ddlPlannedLitterBitchName", name => "ddlPlannedLitterBitchName", tooltip => "Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs"}
             {include image_UploadPicture_control, _form=>$_form, description => "Picture of the bitch", placeholder => "Select picture", id => "txtPlannedLitterBitchProfilePhoto", name => "txtPlannedLitterDogProfilePhoto", tooltip => "Upload or change profile picture of the bitch in jpg or jpeg format"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
