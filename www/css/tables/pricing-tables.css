@@ -96,7 +96,7 @@
   margin: 30px 0 40px;
   position: relative;
   background: #333;
-  border: 1px solid #4d4d4d;
+  border: 1px solid #A5987F;
   -webkit-border-radius: 2px;
   border-radius: 2px;
   text-align: center;
@@ -270,7 +270,7 @@
 }
 .flat-pt .pt-price-block {
   height: 76px;
-  color: #fff;
+  color: #83765E;
   -webkit-transition: all 0.1s ease 0s;
   -moz-transition: all 0.1s ease 0s;
   -o-transition: all 0.1s ease 0s;
@@ -684,17 +684,18 @@
 }
 
 .pt-flat-fireBrick .pt-block {
-  background: #b22222;
-  border-color: #d73030;
+  background: white;
+/*  border-color: #d73030;*/
 }
 .pt-flat-fireBrick .pt-head {
-  background: #b22222;
+  background: #A5987F;
 }
 .pt-flat-fireBrick .pt-list-container:before {
-  background: #d73030;
+  background-color: #756952;
 }
 .pt-flat-fireBrick .pt-price-container {
-  background: #d73030;
+  background: white;
+  color:#83765E;
 }
 .pt-flat-fireBrick .pt-selected .pt-text,
 .pt-flat-fireBrick .pt-block:hover .pt-text,
@@ -709,7 +710,7 @@
 }
 .pt-flat-fireBrick .tooltip-inner {
   color: #fff;
-  background-color: #320909;
+  background-color: #756952;
 }
 .pt-flat-fireBrick .tooltip.top .tooltip-arrow,
 .pt-flat-fireBrick .tooltip.top-left .tooltip-arrow,

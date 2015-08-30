@@ -127,7 +127,7 @@ $router[] = new Route('puppy-description-edit', 'puppy:puppy_description_edit');
 $router[] = new Route('timeline', 'timeline:timeline_wall');
 // Pages
 $router[] = new Route('general-terms', 'pages:general_terms');
-$router[] = new Route('cookies-use', 'pages:cookies_use');
+$router[] = new Route('cookie-policy', 'pages:cookie_policy');
 
 
 
