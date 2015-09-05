@@ -128,8 +128,8 @@ class ownerPresenter extends BasePresenter {
      */
     protected function createComponentOwnerCreateProfile() {
         $form = new Form();
-        $form->addUpload('txtOwnerProfilePhoto');
-        $form->addTextArea('txtOwnerDescritpion');
+        $form->addUpload('txtOwnerProfilePhoto')->setRequired($this->translate("Required field"));
+        $form->addTextArea('txtOwnerDescritpion')->setRequired($this->translate("Required field"));
         $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateOwnerProfileSucceeded');
 
         return $form;
@@ -157,7 +157,7 @@ class ownerPresenter extends BasePresenter {
 
         $row = $this->database->query("SELECT tbl_userowner.* FROM tbl_userowner WHERE tbl_userowner.id=?", $this->logged_in_owner_id)->fetch();
 
-        $form->addTextArea('txtOwnerDescritpion')->setValue($row->owner_description);
+        $form->addTextArea('txtOwnerDescritpion')->setRequired($this->translate("Required field"))->setValue($row->owner_description);
         $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmEditOwnerProfileSucceeded');
 
         return $form;
@@ -165,7 +165,7 @@ class ownerPresenter extends BasePresenter {
 
     public function createComponentOwnerEditCoverPicture() {
         $form = new Form();
-        $form->addUpload('txtOwnerCoverPhoto');
+        $form->addUpload('txtOwnerCoverPhoto')->setRequired($this->translate("Required field"));
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditOwnerCoverPhotoSucceeded');
 
         return $form;
@@ -173,7 +173,7 @@ class ownerPresenter extends BasePresenter {
 
     public function createComponentOwnerEditProfilePicture() {
         $form = new Form();
-        $form->addUpload('txtOwnerProfilePhoto');
+        $form->addUpload('txtOwnerProfilePhoto')->setRequired($this->translate("Required field"));
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditOwnerProfilePhotoSucceeded');
 
         return $form;

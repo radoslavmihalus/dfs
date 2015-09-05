@@ -60,11 +60,11 @@ class LandingPagePresenter extends BasePresenter {
      */
     protected function createComponentFrmContactForm() {
         $form = new Form();
-        $form->addText('txtName');
-        $form->addText('txtSurname');
-        $form->addText('txtEmail');
-        $form->addTextArea('txtMessage');
-        $form->addText('txtVerify');
+        $form->addText('txtName')->setRequired($this->translate("Required field"));
+        $form->addText('txtSurname')->setRequired($this->translate("Required field"));
+        $form->addText('txtEmail')->setRequired($this->translate("Required field"));
+        $form->addTextArea('txtMessage')->setRequired($this->translate("Required field"));
+        $form->addText('txtVerify')->setRequired($this->translate("Required field"));
         $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmContactFormSucceeded');
 
         return $form;

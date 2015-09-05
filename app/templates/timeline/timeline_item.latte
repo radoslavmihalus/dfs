@@ -45,15 +45,15 @@
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" id="timeline_remove_{$row->id}">{_'Remove from timeline'}</a></li>
                         </ul>
                         <script type="text/javascript">
-                            $("#timeline_remove_{$row->id}").click(function () {
-                                $.ajax({
-                                    url: '/?do=timelineRemove&id={$row->id}',
-                                    dataType: 'html',
-                                }).done(function (data) {
+			    $("#timeline_remove_{$row->id}").click(function () {
+				$.ajax({
+				    url: '/?do=timelineRemove&id={$row->id}',
+				    dataType: 'html',
+				}).done(function (data) {
 //                                    alert("Event deleted");
-                                    $.get(document.href);
-                                });
-                            });
+				    $.get(document.href);
+				});
+			    });
                         </script>
                     </div>
                 </div>
@@ -73,8 +73,8 @@
                 <p style="font-size:12px;"> {$row->event_description}</p>
             </div>
             <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
-                <a n:href="#" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;"><span class="badge" style="margin-left: 10px;">0</span></a>
-                <a n:href="#" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;"><span class="badge" style="margin-left: 10px;background-color: #FDB42F;">0</span></a>
+                <a id="like-{$row->id}" href="javascript:void(0)" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;">{DataModel::getTimelineLikesCount($row->id)}</span></a>
+                <a id="unlike-{$row->id}" href="javascript:void(0)" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;" href="javascript:void(0)" id="ylikes-list-{$row->id}"><span class="badge" id="ylikes-count-{$row->id}" style="margin-left: 10px;background-color: #FDB42F;">{DataModel::getTimelineLikesCount($row->id)}</span></a>
             </div>
             {snippet areaComments}
             {/snippet}
@@ -97,28 +97,96 @@
                 </div>
             </form>
             <script type="text/javascript">
-                /* AJAXové odeslání formulářů */
-                $("#commentTimeline-" + {$row->id}).on("submit", function () {
-                    $("#ajax-spinner").show();
+		/* AJAXové odeslání formulářů */
+		$("#commentTimeline-" + {$row->id}).on("submit", function () {
+		    $("#ajax-spinner").show();
 
-                    $(this).ajaxSubmit(function (payload) {
-                        $.nette.success(payload);
+		    $(this).ajaxSubmit(function (payload) {
+			$.nette.success(payload);
 
-                        $.get(document.href);
-                    });
-                    return false;
-                });
+			$.get(document.href);
+		    });
+		    return false;
+		});
 
-                $("#commentTimeline-" + {$row->id} + " :submit").on("click", function () {
-                    $("#ajax-spinner").show();
+		$("#commentTimeline-" + {$row->id} + " :submit").on("click", function () {
+		    $("#ajax-spinner").show();
 
-                    $(this).ajaxSubmit(function (payload) {
-                        $.nette.success(payload);
+		    $(this).ajaxSubmit(function (payload) {
+			$.nette.success(payload);
 
-                        $.get(document.href);
-                    });
-                    return false;
-                });
+			$.get(document.href);
+		    });
+		    return false;
+		});
+
+		$("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
+		{
+		    event.preventDefault();
+
+		    $("#ajax-spinner").show();
+
+		    $.ajax({
+			url: "/?do=LikesList&timeline_id={$row->id}",
+			dataType: 'html',
+		    }).done(function (data) {
+			$("#modalTextInformation").html(data);
+			$("#modalTitleInformation").html({_'Peoples who liked this'});
+			$("#modalFlashInformation").modal("show");
+			$("#ajax-spinner").hide();
+		    });
+		});
+
+		$("#like-{$row->id},#unlike-{$row->id}").on("click", function (event)
+		{
+		    event.preventDefault();
+		    $.ajax({
+			url: "/?do=Like&timeline_id={$row->id}",
+			dataType: 'html',
+		    }).done(function (data) {
+			$("#likes-count-{$row->id}").html(data);
+			$("#ylikes-count-{$row->id}").html(data);
+			$.ajax({
+			    url: "/?do=HasLiked&timeline_id={$row->id}",
+			    dataType: 'html',
+			}).done(function (data) {
+			    if (data > 0)
+			    {
+				$("#like-{$row->id}").hide();
+				$("#likes-count-{$row->id}").hide();
+				$("#unlike-{$row->id}").show();
+				$("#ylikes-count-{$row->id}").show();
+			    }
+			    else
+			    {
+				$("#like-{$row->id}").show();
+				$("#likes-count-{$row->id}").show();
+				$("#unlike-{$row->id}").hide();
+				$("#ylikes-count-{$row->id}").hide();
+			    }
+			});
+		    });
+		});
+
+		$.ajax({
+		    url: "/?do=HasLiked&timeline_id={$row->id}",
+		    dataType: 'html',
+		}).done(function (data) {
+		    if (data > 0)
+		    {
+			$("#like-{$row->id}").hide();
+			$("#likes-count-{$row->id}").hide();
+			$("#unlike-{$row->id}").show();
+			$("#ylikes-count-{$row->id}").show();
+		    }
+		    else
+		    {
+			$("#like-{$row->id}").show();
+			$("#likes-count-{$row->id}").show();
+			$("#unlike-{$row->id}").hide();
+			$("#ylikes-count-{$row->id}").hide();
+		    }
+		});
             </script>
 
         </div>

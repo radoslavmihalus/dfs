@@ -1,4 +1,4 @@
-{layout '@dog_layout.latte'}
+{layout '@puppy_layout.latte'}
 {block content}
 {includeblock '../components/dropdown_DogList_control.latte'}
 <div class="panel-body component col-md-12">
@@ -161,7 +161,7 @@
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
 	    {var $id=$dog_id}
-            <a n:href="dog:dog_pedigree_edit id=>$id" class="btn btn-danger btn-sm pull-right">{_ 'Edit'}</a>
+            <a n:href="puppy:puppy_pedigree_edit id=>$id" class="btn btn-danger btn-sm pull-right">{_ 'Edit'}</a>
         </div>
     </div>
     <!-- /Pedigree view -->

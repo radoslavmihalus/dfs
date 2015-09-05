@@ -25,7 +25,7 @@
             </div>
             <div class="row" style="padding:5px;">
                 <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                    <!--<a n:href="puppy:puppy_create_profile" class="btn btn-danger btn-sm" style="float:left;margin-bottom: 5px;"><i class="fa fa-plus"></i>&nbsp;{_ 'Add puppies'}</a>-->
+                    <a n:href="puppy:puppy_create_profile plid => $row->id" class="btn btn-danger btn-sm" style="float:left;margin-bottom: 5px;"><i class="fa fa-plus"></i>&nbsp;{_ 'Add puppies'}</a>
                     <button class="btn btn-default btn-sm" style="float:left;margin-left: 5px;margin-bottom: 5px;" data-toggle="collapse" data-target="#Planned_litter_{$row->id}" aria-expanded="false" aria-controls="#Planned_litter_{$row->id}"><i class="fa fa-search"></i>&nbsp;{_ 'View detail'}</button>
                     <div class="dropdown" style="float:left;margin-left: 5px;">
                         <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><i class="fa fa-share-alt"></i>&nbsp;{_ 'Share'}&nbsp;<span class="caret"></span></a>
@@ -70,9 +70,15 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-xs-12 panel-description "><i class="fa fa-paw"></i>&nbsp;&nbsp;{_ 'Puppies'}
-                </div>
-            </div>
-        </div>
+		</div>
+		{includeblock '../puppy/puppy_list_item.latte'}
+		{foreach $row->related("tbl_puppies.planned_litter_id") as $puppy}
+		    <div class="col-lg-4 col-md-6 col-xs-12 padding">
+			{include puppy_list_item row=>$puppy}
+		    </div>
+		{/foreach}
+	    </div>
+	</div>
     </div>
 {/foreach}
 {/define}

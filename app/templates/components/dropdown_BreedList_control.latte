@@ -7,61 +7,59 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        $('[data-toggle="popover"]').popover();
-    });
-</script>
+    $('[data-toggle="popover"]').popover();
+    });</script>
 <script type="text/javascript">
-    $("#tags-input-" + {$id}).selectivity({
-        ajax: {
-            url: 'www/templates/scripts/ajax_breed.php',
-            dataType: 'json',
-            minimumInputLength: 0,
-            quietMillis: 250,
-            params: function (term, offset) {
-                // GitHub uses 1-based pages with 30 results, by default
-                return {
-                    q: term,
-                    page: offset
-                };
-            },
-            processItem: function (item) {
-                return {
-                    id: item.name,
-                    text: item.name,
-                    description: item.name
-                };
-            },
-            results: function (data) {
-                return {
-                    results: data.items
-                };
-            }
-        },
-        multiple: true,
-        tokenSeparators: [',']
-                //value: ['Dogo Argentino']
+	    $("#tags-input-" + {$id}).selectivity({
+    ajax: {
+    url: 'www/templates/scripts/ajax_breed.php',
+	    dataType: 'json',
+	    minimumInputLength: 0,
+	    quietMillis: 250,
+	    params: function (term, offset) {
+	    // GitHub uses 1-based pages with 30 results, by default
+	    return {
+	    q: term,
+		    page: offset
+	    };
+	    },
+	    processItem: function (item) {
+	    return {
+	    id: item.name,
+		    text: item.name,
+		    description: item.name
+	    };
+	    },
+	    results: function (data) {
+	    return {
+	    results: data.items
+	    };
+	    }
+    },
+	    multiple: true,
+	    tokenSeparators: [','],
+    {if $onlyOne}
+	    onlyOne: true,
+    {/if}
+    neededSelect: true //must be choosen from available options
+	    //value: ['Dogo Argentino']
     });
-
-    $('#tags-input-' + {$id}).on('change', function (item)
+	    $('#tags-input-' + {$id}).on('change', function (item)
     {
-        $("#hid-tags-input-" + {$id}).val(item.value);
+    $("#hid-tags-input-" + {$id}).val(item.value);
     });
-
-    var mystr = $('#hid-tags-input-' + {$id}).val();
-
-    if (mystr.length > 1)
+	    var mystr = $('#hid-tags-input-' + {$id}).val();
+	    if (mystr.length > 1)
     {
-        var a = mystr.split(","),
-                i;
-
-        $('#hid-tags-input-' + {$id}).val("");
-
-        for (i = 0; i < a.length; i++) {
-            $('#tags-input-' + {$id}).selectivity('add', {
-                id: a[i],
-                text: a[i]
-            });
-        }
+    var a = mystr.split(","),
+	    i;
+	    $('#hid-tags-input-' + {$id}).val("");
+	    for (i = 0; i < a.length; i++) {
+    $('#tags-input-' + {$id}).selectivity('add', {
+    id: a[i],
+	    text: a[i]
+    });
+    }
     }
 </script>
 {/define}

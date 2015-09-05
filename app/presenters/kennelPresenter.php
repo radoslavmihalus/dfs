@@ -207,12 +207,12 @@ class kennelPresenter extends BasePresenter {
     protected function createComponentKennelCreateProfile() {
 
         $form = new Form();
-        $form->addText('txtKennelName')->setRequired();
+        $form->addText('txtKennelName')->setRequired($this->translate("Required field"));
         $form->addText('txtKennelFciNumber');
-        $form->addText('txtKennelProfilePicture')->setRequired();
+        $form->addText('txtKennelProfilePicture')->setRequired($this->translate("Required field"));
         $form->addText('txtKennelWebsite');
         $form->addTextArea('txtKennelDescription');
-        $form->addText('ddlBreedList')->setRequired();
+        $form->addText('ddlBreedList')->setRequired($this->translate("Required field"));
         $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateProfileSucceeded');
 
         return $form;
@@ -270,11 +270,11 @@ class kennelPresenter extends BasePresenter {
             $i++;
         }
 
-        $form->addText('txtKennelName')->setValue($data->kennel_name)->setRequired();
+        $form->addText('txtKennelName')->setValue($data->kennel_name)->setRequired($this->translate("Required field"));
         $form->addText('txtKennelFciNumber')->setValue($data->kennel_fci_number);
         $form->addText('txtKennelWebsite')->setValue($data->kennel_website);
         $form->addTextArea('txtKennelDescription')->setValue($data->kennel_description);
-        $form->addText("ddlBreedList")->setValue($breeds)->setRequired();
+        $form->addText("ddlBreedList")->setValue($breeds)->setRequired($this->translate("Required field"));
         $this->template->breeds = $breeds;
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileSucceeded');
 
@@ -324,7 +324,7 @@ class kennelPresenter extends BasePresenter {
     protected function createComponentKennelEditProfileCoverImage() {
         $form = new Form();
 
-        $form->addHidden('txtKennelCoverPhoto')->setRequired();
+        $form->addHidden('txtKennelCoverPhoto')->setRequired($this->translate("Required field"));
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileCoverImageSuccess');
 
         return $form;
@@ -333,7 +333,7 @@ class kennelPresenter extends BasePresenter {
     protected function createComponentKennelEditProfileImage() {
         $form = new Form();
 
-        $form->addHidden('txtKennelProfilePicture')->setRequired();
+        $form->addHidden('txtKennelProfilePicture')->setRequired($this->translate("Required field"));
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileImageSuccess');
 
         return $form;
@@ -374,8 +374,8 @@ class kennelPresenter extends BasePresenter {
     protected function createComponentFrmAddAward() {
         $form = new Form();
 
-        $form->addText("ddlDate")->setRequired();
-        $form->addText("txtAwardName")->setRequired();
+        $form->addText("ddlDate")->setRequired($this->translate("Required field"));
+        $form->addText("txtAwardName")->setRequired($this->translate("Required field"));
         $form->addHidden("txtAwardPicture");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddAwardSuccess');
 
@@ -393,8 +393,8 @@ class kennelPresenter extends BasePresenter {
         $time = strtotime($row->kennel_award_date);
         $date = date('d.m.Y', $time);
 
-        $form->addText("ddlDate")->setRequired()->setValue($date);
-        $form->addText("txtAwardName")->setRequired()->setValue($row->kennel_award_title);
+        $form->addText("ddlDate")->setRequired($this->translate("Required field"))->setValue($date);
+        $form->addText("txtAwardName")->setRequired($this->translate("Required field"))->setValue($row->kennel_award_title);
         $form->addHidden("txtAwardPicture")->setValue($row->kennel_award_image);
         $form->addHidden("hidAwardId")->setValue($row->id);
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditAwardSuccess');
@@ -469,13 +469,15 @@ class kennelPresenter extends BasePresenter {
             $months[$i] = $i;
         }
 
-        $form->addSelect("ddlDateYear")->setItems($years);
-        $form->addSelect("ddlDateMonth")->setItems($months); //->setRequired();
-        $form->addText("txtPlannedLitterName"); //->setRequired();
-        $form->addText("ddlPlannedLitterDogName"); //->setRequired();
-        $form->addText("ddlPlannedLitterBitchName"); //->setRequired();
-        $form->addText("txtPlannedLitterDogProfilePhoto"); //->setRequired();
-        $form->addText("txtPlannedLitterBitchProfilePhoto"); //->setRequired();
+        $form->addSelect("ddlDateYear")->setRequired($this->translate("Required field"))->setItems($years);
+        $form->addSelect("ddlDateMonth")->setRequired($this->translate("Required field"))->setItems($months); //->setRequired();
+        $form->addText("txtPlannedLitterName")->setRequired($this->translate("Required field")); //->setRequired();
+        $form->addText("ddlPlannedLitterDogName")->setRequired($this->translate("Required field")); //->setRequired();
+        $form->addText("ddlPlannedLitterBitchName")->setRequired($this->translate("Required field")); //->setRequired();
+        $form->addText("txtPlannedLitterDogProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
+        $form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
+        $form->addText("ddlBreedList")->setRequired($this->translate("Required field")); //->setRequired();
+        $form->addText("ddlCountry")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddPlannedLitterSuccess');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmAddPlannedLitterCancel');
 
@@ -527,5 +529,4 @@ class kennelPresenter extends BasePresenter {
             $this->flashMessage($ex->getMessage(), "Error");
         }
     }
-
 }

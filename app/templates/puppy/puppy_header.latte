@@ -1,11 +1,13 @@
 {block content}
+{var $plannedLitter = DataModel::getPlannedLitterById($dog->planned_litter_id)}
+{var $mother = DataModel::getPlannedLitterMother($dog->planned_litter_id)}
 <div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body component">
         <div class="row">
             <div class="col-lg-6 col-md-12 col-xs-12">
-                <h1 class="profile_type_heading text-uppercase" style="margin-top: 0px;"><i class="fa fa-paw"></i>&nbsp;&nbsp;Puppy hasta blasta<a style="text-transform: capitalize;margin-left: 15px;" n:href="puppy:puppy_edit_profile" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button></h1>
-                <a n:href="kennel:kennel_profile_home">
-                    <span data-toggle="tooltip" data-placement='top' title="{_ 'Kennel'}" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>La Rosa de inca</span>
+                <h1 class="profile_type_heading text-uppercase" style="margin-top: 0px;"><i class="fa fa-paw"></i>&nbsp;&nbsp;{$dog->puppy_name}<a style="text-transform: capitalize;margin-left: 15px;" n:href="puppy:puppy_edit_profile id => $dog->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button></h1>
+                <a n:href="kennel:kennel_profile_home id => $dog->profile_id">
+                    <span data-toggle="tooltip" data-placement='top' title="{_ 'Kennel'}" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>{DataModel::getProfileName($dog->profile_id)}</span>
                 </a>
             </div>
             <div class="col-lg-6 col-md-12 col-xs-12">
@@ -20,21 +22,22 @@
         <hr style="margin-bottom: 5px;margin-top: 5px;">
         <div class="row">
             <div class="col-md-6">
-                <div class="dog-image-profile-thumb">
+                <div class="dog-image-profile-thumb" style="background: url('{$dog->puppy_photo}') no-repeat center center; background-size: cover;min-height: 240px;">
                     <span class="puppy-info-forsale" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'For sale'}</span>
 <!--                    <span class="puppy-info-reserved" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Reserved'}</span>-->
 <!--                    <span class="puppy-info-sold" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Sold'}</span>-->
                 </div>
             </div>
             <div class="col-md-6">
+
                 <ul class="dog-information-list">
-                    <li><a n:href="kennel:kennel_planned_litter_list" style="color:#a5987f;text-decoration: underline;"><span class="panel-description" data-toggle="tooltip" data-placement='top' title="{_ 'Planned litter'}"><i class="fa fa-calendar" style="margin-right: 10px;"></i>Planned litter</span></a></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i><strong>Dogo Argentino</strong></span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}"><i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>Bitch<!--<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i>Dog--></span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>21.10.2012</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i>Slovakia</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>Dahud del Cavdillo</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>Bronca Charismatic</span></li>
+                    <li><a n:href="kennel:kennel_planned_litter_list id=>$dog->profile_id" style="color:#a5987f;text-decoration: underline;"><span class="panel-description" data-toggle="tooltip" data-placement='top' title="{_ 'Planned litter'}"><i class="fa fa-calendar" style="margin-right: 10px;"></i>{$plannedLitter->name}</span></a></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i><strong>{$mother->breed_name}</strong></span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}">{if $dog->puppy_gender=="Bitch"}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_ $dog->puppy_gender}</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog->date_of_birth|date:'%d.%m.%Y'}</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i>{$dog->country}</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->dog_name}</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->bitch_name}</span></li>
                 </ul>
                 <button style="margin-top: 10px" class="btn btn-default btn-lg"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</button>
             </div>
@@ -49,8 +52,8 @@
             <div class="container-fluid profile-menu">
                 <div class="collapse navbar-collapse" id="profile-menu" role="navigation" style="padding: 0px;">
                     <ul class="nav navbar-nav" style="margin:0px;">
-                        <li><a n:href="puppy:puppy_description" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Description'}</a></li>
-                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Pedigree'}</a></li>
+                        <li><a n:href="puppy:puppy_description id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Description'}</a></li>
+                        <li><a n:href="puppy:puppy_pedigree_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Pedigree'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
                     </ul>
                 </div>
@@ -60,7 +63,7 @@
 </div>
 <script>
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
+	$('[data-toggle="tooltip"]').tooltip()
     })
 </script>
 {/block}

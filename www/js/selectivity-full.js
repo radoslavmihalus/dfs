@@ -2940,6 +2940,8 @@ _dereq_(4); _dereq_(5); _dereq_(6); _dereq_(8); _dereq_(9); _dereq_(10); _dereq_
                                         this._rerenderSelection();
                                         if (options.onlyOne)
                                         this.options.onlyOne = true;
+                                        if (options.neededSelect)
+                                        this.options.neededSelect = true;
                                         if (!options.positionDropdown) {
                                 this.options.positionDropdown = function($el, $selectEl) {
                                 var offset = $selectEl.offset(),
@@ -3232,8 +3234,11 @@ _dereq_(4); _dereq_(5); _dereq_(6); _dereq_(8); _dereq_(9); _dereq_(10); _dereq_
                                 _createTokenBlur: function() {
 
                                 var term = this.$searchInput.val();
+				if((this.results.length > 0) || (this.options.neededSelect)){
+                                }else{
                                         if (term.length > 1)
-                                        this.add(term);
+					    this.add(term);
+				}
                                 },
                                 /**
                                  * @private

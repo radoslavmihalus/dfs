@@ -22,7 +22,7 @@ class dogPresenter extends BasePresenter {
     public $workexam_id;
 
     protected function startup() {
-        parent::startup();
+	parent::startup();
     }
 
     /**
@@ -31,76 +31,84 @@ class dogPresenter extends BasePresenter {
      * 
      */
     public function beforeRender() {
-        parent::beforeRender();
+	parent::beforeRender();
+    }
+
+    public function renderDog_pedigree_list($id = 0) {
+	$this->renderDefault($id);
+	$dog = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
+	$pedigree = $this->database->table("tbl_pedigree")->where("dog_name=?", $dog->dog_name)->fetch();
+	$this->template->dog_name = $dog->dog_name;
+	$this->template->pedigree = $pedigree;
     }
 
     public function renderDog_championschip_list($id = 0) {
-        $this->renderDefault($id);
-        $championships = $this->database->table("tbl_dogs_championship")->where("dog_id=?", $id)->fetchAll();
-        $this->template->championships = $championships;
+	$this->renderDefault($id);
+	$championships = $this->database->table("tbl_dogs_championship")->where("dog_id=?", $id)->fetchAll();
+	$this->template->championships = $championships;
     }
 
     public function renderDog_coowner_list($id = 0) {
-        $this->renderDefault($id);
-        $coowners = $this->database->table("tbl_dogs_coowners")->where("dog_id=?", $id)->fetchAll();
-        $this->template->coowners = $coowners;
+	$this->renderDefault($id);
+	$coowners = $this->database->table("tbl_dogs_coowners")->where("dog_id=?", $id)->fetchAll();
+	$this->template->coowners = $coowners;
     }
 
     public function renderDog_show_list($id = 0) {
-        $this->renderDefault($id);
+	$this->renderDefault($id);
     }
 
     public function renderDog_health_list($id = 0) {
-        $this->renderDefault($id);
-        $healths = $this->database->table("tbl_dogs_health")->where("dog_id=?", $id)->fetchAll();
-        $this->template->healths = $healths;
+	$this->renderDefault($id);
+	$healths = $this->database->table("tbl_dogs_health")->where("dog_id=?", $id)->fetchAll();
+	$this->template->healths = $healths;
     }
 
     public function renderDog_workexam_list($id = 0) {
-        $this->renderDefault($id);
-        $workexams = $this->database->table("tbl_dogs_workexams")->where("dog_id=?", $id)->fetchAll();
-        $this->template->workexams = $workexams;
+	$this->renderDefault($id);
+	$workexams = $this->database->table("tbl_dogs_workexams")->where("dog_id=?", $id)->fetchAll();
+	$this->template->workexams = $workexams;
     }
 
     public function renderDog_mating_list($id = 0) {
-        $this->renderDefault($id);
-        $matings = $this->database->table("tbl_dogs_matings")->where("dog_id=?", $id)->fetchAll();
-        $this->template->matings = $matings;
+	$this->renderDefault($id);
+	$matings = $this->database->table("tbl_dogs_matings")->where("dog_id=?", $id)->fetchAll();
+	$this->template->matings = $matings;
     }
 
     public function renderDog_list($id = 0) {
-        if ($id > 0)
-            $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND user_id=?", $id, $this->logged_in_id)->fetchAll();
-        else
-            $rows = $this->database->table("tbl_dogs")->fetchAll();
+	if ($id > 0)
+	    $rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->fetchAll();
+	else
+	    $rows = $this->database->table("tbl_dogs")->fetchAll();
 
-        $this->template->rows = $rows;
+	$this->template->rows = $rows;
     }
 
     public function renderDog_for_mating_list($id = 0) {
-        if ($id > 0)
-            $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND user_id=? AND offer_for_mating=1", $id, $this->logged_in_id)->fetchAll();
-        else
-            $rows = $this->database->table("tbl_dogs")->where("offer_for_mating=1")->fetchAll();
+	if ($id > 0)
+	    $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND offer_for_mating=1", $id)->fetchAll();
+	else
+	    $rows = $this->database->table("tbl_dogs")->where("offer_for_mating=1")->fetchAll();
 
-        $this->template->rows = $rows;
+	$this->template->rows = $rows;
     }
 
     public function renderDefault($id = 0) {
-        $dog = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
-        $this->template->dog = $dog;
-        $this->dog_id = $id;
+	$dog = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
+	$this->template->dog = $dog;
+	$this->dog_id = $id;
 
-        $this->template->cajc = 0;
-        $this->template->jbob = 0;
-        $this->template->jbog = 0;
-        $this->template->jbis = 0;
-        $this->template->cac = 0;
-        $this->template->cacib = 0;
-        $this->template->bos = 0;
-        $this->template->bob = 0;
-        $this->template->bog = 0;
-        $this->template->bis = 0;
+	$this->template->cajc = 0;
+	$this->template->jbob = 0;
+	$this->template->jbog = 0;
+	$this->template->jbis = 0;
+	$this->template->cac = 0;
+	$this->template->cacib = 0;
+	$this->template->bos = 0;
+	$this->template->bob = 0;
+	$this->template->bog = 0;
+	$this->template->bis = 0;
     }
 
     /**
@@ -111,327 +119,392 @@ class dogPresenter extends BasePresenter {
      * Actions
      */
     public function actionDog_edit_profile($id) {
-        $this->dog_id = $id;
+	$this->dog_id = $id;
     }
 
     public function actionDog_championschip_edit($id) {
-        $this->title_id = $id;
+	$this->title_id = $id;
     }
 
     public function actionDog_workexam_edit($id) {
-        $this->workexam_id = $id;
+	$this->workexam_id = $id;
     }
 
     public function actionDog_health_edit($id) {
-        $this->health_id = $id;
+	$this->health_id = $id;
     }
 
     public function actionDog_championschip_add($id = 0) {
-        if ($id == 0)
-            $id = $this->dog_id;
-        $this->dog_id = $id;
+	if ($id == 0)
+	    $id = $this->dog_id;
+	$this->dog_id = $id;
     }
 
     public function actionDog_coowner_add($id = 0) {
-        if ($id == 0)
-            $id = $this->dog_id;
-        $this->dog_id = $id;
+	if ($id == 0)
+	    $id = $this->dog_id;
+	$this->dog_id = $id;
     }
 
     public function actionDog_coowner_edit($id = 0) {
-        $this->coowner_id = $id;
+	$this->coowner_id = $id;
     }
 
     public function actionDog_mating_edit($id = 0) {
-        $this->mating_id = $id;
+	$this->mating_id = $id;
     }
 
     public function actionDog_mating_add($id = 0) {
-        if ($id == 0)
-            $id = $this->dog_id;
-        $this->dog_id = $id;
+	if ($id == 0)
+	    $id = $this->dog_id;
+	$this->dog_id = $id;
+    }
+
+    public function actionDog_pedigree_edit($id = 0) {
+	if ($id == 0)
+	    $id = $this->dog_id;
+	$this->dog_id = $id;
     }
 
     public function actionDog_show_add($id = 0) {
-        if ($id == 0)
-            $id = $this->dog_id;
-        $this->dog_id = $id;
+	if ($id == 0)
+	    $id = $this->dog_id;
+	$this->dog_id = $id;
     }
 
     /**
      * End of actions
      */
+    public function handleDeleteDog($id = 0) {
+	$id = $_GET['id'];
+	$row = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
+	if ($row->user_id == $this->logged_in_id) {
+	    //$this->database->table("tbl_dogs")->where("dog_id=?", $id)->delete();
+	    $this->database->table("tbl_dogs")->where("id=?", $id)->delete();
+	}
+	$this->redirect("kennel:kennel_dog_list", array("id" => $this->profile_id));
+    }
+
+    public function handleDeleteChampionship($id = 0) {
+	$id = $_GET['id'];
+	$row = $this->database->table("tbl_dogs_championship")->where("id=?", $id)->fetch();
+	$row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
+	if ($row->user_id == $this->logged_in_id) {
+	    $this->database->table("tbl_dogs_championship")->where("id=?", $id)->delete();
+	}
+	$this->redirect("dog:dog_championschip_list", array("id" => $row->id));
+    }
 
     /**
      * 
      * FormComponents factory
      */
     protected function createComponentFormCreateDogProfile() {
-        $form = new Form();
+	$form = new Form();
 
-        $result = $this->database->table("lk_countries")->order("CountryName_en");
-        $countries = array();
+	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$countries = array();
 
-        $countries[] = $this->translate("Please select state...");
+	//$countries[] = $this->translate("Please select state...");
 
-        foreach ($result as $row) {
-            $countries[$row->CountryName_en] = $row->CountryName_en;
-        }
+	foreach ($result as $row) {
+	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	}
 
-        $sex = array(
-            'Dog' => 'Dog',
-            'Bitch' => 'Bitch'
-        );
+	$sex = array(
+	    'Dog' => 'Dog',
+	    'Bitch' => 'Bitch'
+	);
 
-        $form->addRadioList("radGender", NULL, $sex)->setRequired();
-        $form->addCheckbox("chckMating");
-        $form->addText("ddlBreedList")->setRequired();
-        $form->addText("txtDogName")->setRequired();
-        $form->addText("txtDogProfilePhoto")->setRequired();
-        $form->addText("txtPedigreeRegistrationNumber")->setRequired();
-        $form->addText("ddlDate")->setRequired();
-        $form->addText("txtDogHeight");
-        $form->addText("txtDogWeight");
-        $form->addSelect("ddlCountry")->setItems($countries)->setRequired();
-        $form->addText("ddlDogFather");
-        $form->addText("ddlDogMother");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmCreateDogProfileSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	$form->addRadioList("radGender", NULL, $sex)->setRequired($this->translate("Required field"));
+	$form->addCheckbox("chckMating");
+	$form->addText("ddlBreedList")->setRequired($this->translate("Required field"));
+	$form->addText("txtDogName")->setRequired($this->translate("Required field"));
+	$form->addText("txtDogProfilePhoto")->setRequired($this->translate("Required field"));
+	$form->addText("txtPedigreeRegistrationNumber")->setRequired($this->translate("Required field"));
+	$form->addText("ddlDate")->setRequired($this->translate("Required field"));
+	$form->addText("txtDogHeight");
+	$form->addText("txtDogWeight");
+	$form->addSelect("ddlCountry")->setPrompt($this->translate("Please select state..."))->setRequired($this->translate("Required field"));
+	$form->addText("ddlDogFather")->setRequired($this->translate("Required field"));
+	$form->addText("ddlDogMother")->setRequired($this->translate("Required field"));
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmCreateDogProfileSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
 
-        return $form;
+	return $form;
     }
 
     protected function createComponentFormEditDogProfile() {
-        $id = $this->dog_id;
-        $form = new Form();
+	$id = $this->dog_id;
+	$form = new Form();
 
-        $profile = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
+	$profile = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
 
-        $result = $this->database->table("lk_countries")->order("CountryName_en");
-        $countries = array();
+	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$countries = array();
 
-        foreach ($result as $row) {
-            $countries[$row->CountryName_en] = $row->CountryName_en;
-        }
+	foreach ($result as $row) {
+	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	}
 
-        $time = strtotime($profile->date_of_birth);
-        $date = date('d.m.Y', $time);
+	$time = strtotime($profile->date_of_birth);
+	$date = date('d.m.Y', $time);
 
-        $sex = array(
-            'Dog' => 'Dog',
-            'Bitch' => 'Bitch'
-        );
+	$sex = array(
+	    'Dog' => 'Dog',
+	    'Bitch' => 'Bitch'
+	);
 
-        $form->addRadioList("radGender", NULL, $sex)->setValue($profile->dog_gender);
+	$form->addRadioList("radGender", NULL, $sex)->setValue($profile->dog_gender)->setRequired($this->translate("Required field"));
 
-        //$form->addHidden("hidradGender")->setValue($profile->dog_gender);
-        $form->addCheckbox("chckMating")->setValue($profile->offer_for_mating);
-        $form->addText("ddlBreedList")->setValue($profile->breed_name)->setRequired();
-        $form->addText("txtDogName")->setValue($profile->dog_name)->setRequired();
-        $form->addText("txtDogProfilePhoto")->setValue($profile->dog_image)->setRequired();
-        $form->addText("txtPedigreeRegistrationNumber")->setValue($profile->dog_registration_number)->setRequired();
-        $form->addText("ddlDate")->setValue($date)->setRequired();
-        $form->addText("txtDogHeight")->setValue($profile->height);
-        $form->addText("txtDogWeight")->setValue($profile->weight);
-        $form->addSelect("ddlCountry")->setItems($countries)->setValue($profile->country)->setRequired();
-        $form->addText("ddlDogFather")->setValue($profile->dog_father);
-        $form->addText("ddlDogMother")->setValue($profile->dog_mother);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfileSucceeded');
+	//$form->addHidden("hidradGender")->setValue($profile->dog_gender);
+	$form->addCheckbox("chckMating")->setValue($profile->offer_for_mating);
+	$form->addText("ddlBreedList")->setValue($profile->breed_name)->setRequired();
+	$form->addText("txtDogName")->setValue($profile->dog_name)->setRequired();
+	$form->addText("txtDogProfilePhoto")->setValue($profile->dog_image)->setRequired();
+	$form->addText("txtPedigreeRegistrationNumber")->setValue($profile->dog_registration_number)->setRequired();
+	$form->addText("ddlDate")->setValue($date)->setRequired();
+	$form->addText("txtDogHeight")->setValue($profile->height);
+	$form->addText("txtDogWeight")->setValue($profile->weight);
+	$form->addSelect("ddlCountry")->setItems($countries)->setValue($profile->country)->setRequired();
+	$form->addText("ddlDogFather")->setValue($profile->dog_father);
+	$form->addText("ddlDogMother")->setValue($profile->dog_mother);
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfileSucceeded');
 
-        return $form;
+	return $form;
     }
 
     protected function createComponentFormAddShow() {
-        $id = $this->dog_id;
-        $form = new Form();
+	$id = $this->dog_id;
+	$form = new Form();
 
-        $form->addText("ddlDate")->setRequired();
-        $form->addText("txtShowName")->setRequired();
-        $form->addSelect("ddlCountry");//->setRequired();
-        $form->addText("txtJudgeName");
-        $form->addText("txtHandlerName");
-        $form->addSelect("ddlShowClass");//->setRequired();
-        $form->addSelect("ddlShowType");//->setRequired();
-        $form->addCheckboxList("chckAssesmentMinorPuppy");
-        $form->addCheckboxList("chckTitlesMinorPuppy");
-        $form->addCheckboxList("chckTitlesPuppy");
-        $form->addCheckboxList("chckAssesment");
-        $form->addCheckboxList("chckTitlesJunior");
-        $form->addCheckboxList("chckTitlesJuniorBOG");
-        $form->addCheckboxList("chckTitlesJuniorBIS");
-        $form->addCheckboxList("chckTitlesBOG");
-        $form->addCheckboxList("chckTitlesBIS");
-        $form->addCheckboxList("chckTitles");
-        $form->addText("txtOtherTitle");
-        $form->addText("txtShowImage");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddShowSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	$form->addText("ddlDate")->setRequired();
+	$form->addText("txtShowName")->setRequired();
+	$form->addSelect("ddlCountry"); //->setRequired();
+	$form->addText("txtJudgeName");
+	$form->addText("txtHandlerName");
+	$form->addSelect("ddlShowClass"); //->setRequired();
+	$form->addSelect("ddlShowType"); //->setRequired();
+	$form->addCheckboxList("chckAssesmentMinorPuppy");
+	$form->addCheckboxList("chckTitlesMinorPuppy");
+	$form->addCheckboxList("chckTitlesPuppy");
+	$form->addCheckboxList("chckAssesment");
+	$form->addCheckboxList("chckTitlesJunior");
+	$form->addCheckboxList("chckTitlesJuniorBOG");
+	$form->addCheckboxList("chckTitlesJuniorBIS");
+	$form->addCheckboxList("chckTitlesBOG");
+	$form->addCheckboxList("chckTitlesBIS");
+	$form->addCheckboxList("chckTitles");
+	$form->addText("txtOtherTitle");
+	$form->addText("txtShowImage");
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddShowSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
 
-        return $form;
+	return $form;
     }
 
     protected function createComponentFormEditDogProfilePicture() {
-        $id = $this->dog_id;
-        $form = new Form();
-        $form->addHidden("txtDogProfilePhoto")->setRequired();
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfilePictureSucceeded');
-        return $form;
+	$id = $this->dog_id;
+	$form = new Form();
+	$form->addHidden("txtDogProfilePhoto")->setRequired();
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfilePictureSucceeded');
+	return $form;
     }
 
     protected function createComponentFormAddTitle() {
-        $id = $this->dog_id;
-        $form = new Form();
-        $form->addHidden("dog_id")->setValue($id);
-        $form->addText("ddlDate");
-        $form->addText("txtChampionshipName");
-        $form->addHidden("txtChampionshipPicture");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddTitleSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
+	$id = $this->dog_id;
+	$form = new Form();
+	$form->addHidden("dog_id")->setValue($id);
+	$form->addText("ddlDate");
+	$form->addText("txtChampionshipName");
+	$form->addHidden("txtChampionshipPicture");
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddTitleSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	return $form;
+    }
+
+    protected function createComponentFormAddPedigree() {
+	$dog = $this->database->table("tbl_dogs")->where("id=?", $this->dog_id)->fetch();
+
+	$txtF = \DataModel::getFatherName($dog->dog_name);
+	$txt1 = \DataModel::getFatherName($txtF);
+	$txt2 = \DataModel::getFatherName($txt1);
+	$txt3 = \DataModel::getMotherName($txt1);
+	$txt4 = \DataModel::getMotherName($txtF);
+	$txt5 = \DataModel::getFatherName($txt4);
+	$txt6 = \DataModel::getMotherName($txt4);
+
+
+	$txtM = \DataModel::getMotherName($dog->dog_name);
+	$txt7 = \DataModel::getFatherName($txtM);
+	$txt8 = \DataModel::getFatherName($txt7);
+	$txt9 = \DataModel::getMotherName($txt7);
+	$txt10 = \DataModel::getMotherName($txtM);
+	$txt11 = \DataModel::getFatherName($txt10);
+	$txt12 = \DataModel::getMotherName($txt10);
+
+
+	$form = new Form();
+	$form->addText("txtPedigreeFather")->setValue($txtF)->setRequired();
+	$form->addText("txtPedigreeMother")->setValue($txtM)->setRequired();
+	$form->addText("txtPedigree1")->setValue($txt1)->setRequired();
+	$form->addText("txtPedigree2")->setValue($txt2)->setRequired();
+	$form->addText("txtPedigree3")->setValue($txt3)->setRequired();
+	$form->addText("txtPedigree4")->setValue($txt4)->setRequired();
+	$form->addText("txtPedigree5")->setValue($txt5)->setRequired();
+	$form->addText("txtPedigree6")->setValue($txt6)->setRequired();
+	$form->addText("txtPedigree7")->setValue($txt7)->setRequired();
+	$form->addText("txtPedigree8")->setValue($txt8)->setRequired();
+	$form->addText("txtPedigree9")->setValue($txt9)->setRequired();
+	$form->addText("txtPedigree10")->setValue($txt10)->setRequired();
+	$form->addText("txtPedigree11")->setValue($txt11)->setRequired();
+	$form->addText("txtPedigree12")->setValue($txt12)->setRequired();
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddPedigreeSucceeded');
+	return $form;
     }
 
     protected function createComponentFormEditTitle() {
-        $row = $this->database->table("tbl_dogs_championship")->where("id=?", $this->title_id)->fetch();
-        $form = new Form();
+	$row = $this->database->table("tbl_dogs_championship")->where("id=?", $this->title_id)->fetch();
+	$form = new Form();
 
-        $time = strtotime($row->date);
-        $date = date('d.m.Y', $time);
+	$time = strtotime($row->date);
+	$date = date('d.m.Y', $time);
 
-        $form->addHidden("dog_id")->setValue($row->dog_id);
-        $form->addText("ddlDate")->setValue($date);
-        $form->addText("txtChampionshipName")->setValue($row->description);
-        $form->addHidden("txtChampionshipPicture");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditTitleSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
+	$form->addHidden("dog_id")->setValue($row->dog_id);
+	$form->addText("ddlDate")->setValue($date);
+	$form->addText("txtChampionshipName")->setValue($row->description);
+	$form->addHidden("txtChampionshipPicture");
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditTitleSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	return $form;
     }
 
     protected function createComponentFormAddHealth() {
-        $id = $this->dog_id;
-        $form = new Form();
-        $form->addHidden("dog_id")->setValue($id);
-        $form->addText("ddlDate")->setRequired();
-        $form->addText("txtHealthName")->setRequired();
-        $form->addHidden("txtHealthPicture");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddHealthSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
+	$id = $this->dog_id;
+	$form = new Form();
+	$form->addHidden("dog_id")->setValue($id);
+	$form->addText("ddlDate")->setRequired();
+	$form->addText("txtHealthName")->setRequired();
+	$form->addHidden("txtHealthPicture");
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddHealthSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	return $form;
     }
 
     protected function createComponentFormEditHealth() {
-        $row = $this->database->table("tbl_dogs_health")->where("id=?", $this->health_id)->fetch();
-        $form = new Form();
+	$row = $this->database->table("tbl_dogs_health")->where("id=?", $this->health_id)->fetch();
+	$form = new Form();
 
-        $time = strtotime($row->date);
-        $date = date('d.m.Y', $time);
+	$time = strtotime($row->date);
+	$date = date('d.m.Y', $time);
 
-        $form->addHidden("dog_id")->setValue($row->dog_id);
-        $form->addText("ddlDate")->setValue($date)->setRequired();
-        $form->addText("txtHealthName")->setValue($row->description)->setRequired();
-        $form->addHidden("txtHealthPicture")->setValue($row->image);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditHealthSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
+	$form->addHidden("dog_id")->setValue($row->dog_id);
+	$form->addText("ddlDate")->setValue($date)->setRequired();
+	$form->addText("txtHealthName")->setValue($row->description)->setRequired();
+	$form->addHidden("txtHealthPicture")->setValue($row->image);
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditHealthSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	return $form;
     }
 
     protected function createComponentFormEditMating() {
-        $row = $this->database->table("tbl_dogs_matings")->where("id=?", $this->mating_id)->fetch();
-        $form = new Form();
+	$row = $this->database->table("tbl_dogs_matings")->where("id=?", $this->mating_id)->fetch();
+	$form = new Form();
 
-        $time = strtotime($row->date);
-        $date = date('d.m.Y', $time);
+	$time = strtotime($row->date);
+	$date = date('d.m.Y', $time);
 
-        $form->addHidden("dog_id")->setValue($row->dog_id);
-        $form->addText("ddlDate")->setValue($date)->setRequired();
-        $form->addText("txtMatingBitchName")->setValue($row->description)->setRequired();
-        $form->addHidden("txtMatingBitchPicture")->setValue($row->image);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditMatingSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
+	$form->addHidden("dog_id")->setValue($row->dog_id);
+	$form->addText("ddlDate")->setValue($date)->setRequired();
+	$form->addText("txtMatingBitchName")->setValue($row->description)->setRequired();
+	$form->addHidden("txtMatingBitchPicture")->setValue($row->image);
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditMatingSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	return $form;
     }
 
     protected function createComponentFormAddMating() {
-        $form = new Form();
+	$form = new Form();
 
-        $form->addHidden("dog_id")->setValue($this->dog_id);
-        $form->addText("ddlDate")->setValue($date)->setRequired();
-        $form->addText("txtMatingBitchName")->setRequired();
-        $form->addHidden("txtMatingBitchPicture");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddMatingSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
+	$form->addHidden("dog_id")->setValue($this->dog_id);
+	$form->addText("ddlDate")->setValue($date)->setRequired();
+	$form->addText("txtMatingBitchName")->setRequired();
+	$form->addHidden("txtMatingBitchPicture");
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddMatingSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	return $form;
     }
 
     protected function createComponentFormEditWorkExam() {
-        $row = $this->database->table("tbl_dogs_workexams")->where("id=?", $this->workexam_id)->fetch();
-        $form = new Form();
+	$row = $this->database->table("tbl_dogs_workexams")->where("id=?", $this->workexam_id)->fetch();
+	$form = new Form();
 
-        $time = strtotime($row->date);
-        $date = date('d.m.Y', $time);
+	$time = strtotime($row->date);
+	$date = date('d.m.Y', $time);
 
-        $form->addHidden("dog_id")->setValue($row->dog_id);
-        $form->addText("ddlDate")->setValue($date)->setRequired();
-        $form->addText("txtWorkExamName")->setValue($row->description)->setRequired();
-        $form->addHidden("txtWorkExamPicture")->setValue($row->image);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditWorkexamSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
+	$form->addHidden("dog_id")->setValue($row->dog_id);
+	$form->addText("ddlDate")->setValue($date)->setRequired();
+	$form->addText("txtWorkExamName")->setValue($row->description)->setRequired();
+	$form->addHidden("txtWorkExamPicture")->setValue($row->image);
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditWorkexamSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	return $form;
     }
 
     protected function createComponentFormAddWorkExam() {
-        $form = new Form();
+	$form = new Form();
 
-        $form->addHidden("dog_id")->setValue($this->dog_id);
-        $form->addText("ddlDate")->setValue($date)->setRequired();
-        $form->addText("txtWorkExamName")->setRequired();
-        $form->addHidden("txtWorkExamPicture");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddWorkexamSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
+	$form->addHidden("dog_id")->setValue($this->dog_id);
+	$form->addText("ddlDate")->setValue($date)->setRequired();
+	$form->addText("txtWorkExamName")->setRequired();
+	$form->addHidden("txtWorkExamPicture");
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddWorkexamSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	return $form;
     }
 
     protected function createComponentFormAddCoowner() {
-        $id = $this->dog_id;
+	$id = $this->dog_id;
 
-        $result = $this->database->table("lk_countries")->order("CountryName_en");
-        $countries = array();
+	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$countries = array();
 
-        $countries[] = $this->translate("Please select state...");
+	$countries[] = $this->translate("Please select state...");
 
-        foreach ($result as $row) {
-            $countries[$row->CountryName_en] = $row->CountryName_en;
-        }
+	foreach ($result as $row) {
+	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	}
 
-        $form = new Form();
-        $form->addHidden("dog_id")->setValue($id);
-        $form->addText("txtCoownerName")->setRequired();
-        $form->addSelect("ddlCountry")->setItems($countries)->setRequired();
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddCoownerSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
+	$form = new Form();
+	$form->addHidden("dog_id")->setValue($id);
+	$form->addText("txtCoownerName")->setRequired();
+	$form->addSelect("ddlCountry")->setItems($countries)->setRequired();
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddCoownerSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	return $form;
     }
 
     protected function createComponentFormEditCoowner() {
-        $id = $this->dog_id;
+	$id = $this->dog_id;
 
-        $result = $this->database->table("lk_countries")->order("CountryName_en");
-        $countries = array();
+	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$countries = array();
 
-        $countries[] = $this->translate("Please select state...");
+	$countries[] = $this->translate("Please select state...");
 
-        foreach ($result as $row) {
-            $countries[$row->CountryName_en] = $row->CountryName_en;
-        }
+	foreach ($result as $row) {
+	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	}
 
-        $result = $this->database->table("tbl_dogs_coowners")->where("id=?", $this->coowner_id)->fetch();
+	$result = $this->database->table("tbl_dogs_coowners")->where("id=?", $this->coowner_id)->fetch();
 
-        $form = new Form();
-        $form->addHidden("dog_id")->setValue($id);
-        $form->addText("txtCoownerName")->setValue($result->coowner_name);
-        $form->addSelect("ddlCountry")->setItems($countries)->setValue($result->coowner_state);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditCoownerSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
-        return $form;
+	$form = new Form();
+	$form->addHidden("dog_id")->setValue($id);
+	$form->addText("txtCoownerName")->setValue($result->coowner_name);
+	$form->addSelect("ddlCountry")->setItems($countries)->setValue($result->coowner_state);
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditCoownerSucceeded');
+	$form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+	return $form;
     }
 
     /**
@@ -446,283 +519,309 @@ class dogPresenter extends BasePresenter {
      * 
      */
     public function frmEditDogProfilePictureSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
-            $values["txtDogProfilePhoto"] = $this->data_model->processImage($values['txtDogProfilePhoto']);
-            $values = $this->data_model->assignFields($values, "frmEditDogProfilePicture");
-            $this->database->table("tbl_dogs_championship")->where("id=?", $this->dog_id)->update($values);
-        } catch (\ErrorException $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
+	try {
+	    $values = $button->getForm()->getValues();
+	    $values["txtDogProfilePhoto"] = $this->data_model->processImage($values['txtDogProfilePhoto']);
+	    $values = $this->data_model->assignFields($values, "frmEditDogProfilePicture");
+	    $this->database->table("tbl_dogs_championship")->where("id=?", $this->dog_id)->update($values);
+	} catch (\ErrorException $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
     }
 
     public function frmDogEditTitleSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
+	try {
+	    $values = $button->getForm()->getValues();
 
-            $time = strtotime($values['ddlDate']);
-            $values['ddlDate'] = date('Y-m-d', $time);
+	    $time = strtotime($values['ddlDate']);
+	    $values['ddlDate'] = date('Y-m-d', $time);
 
-            $values["txtChampionshipPicture"] = $this->data_model->processImage($values['txtChampionshipPicture']);
+	    $values["txtChampionshipPicture"] = $this->data_model->processImage($values['txtChampionshipPicture']);
 
-            $values = $this->data_model->assignFields($values, "frmDogAddTitle");
+	    $values = $this->data_model->assignFields($values, "frmDogAddTitle");
 
-            unset($values["dog_id"]);
+	    unset($values["dog_id"]);
 
-            $this->database->table("tbl_dogs_championship")->where("id=?", $this->title_id)->update($values);
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
+	    $this->database->table("tbl_dogs_championship")->where("id=?", $this->title_id)->update($values);
+	} catch (\Exception $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
 
-        $this->redirect("dog_championschip_list", $this->dog_id);
+	$this->redirect("dog_championschip_list", $this->dog_id);
+    }
+
+    public function frmAddPedigreeSucceeded($button) {
+	try {
+	    $dog = $this->database->table("tbl_dogs")->where("id=?", $this->dog_id)->fetch();
+	    $values = $button->getForm()->getValues();
+
+	    $this->data_model->setParents($dog->dog_name, $values['txtPedigreeFather'], $values['txtPedigreeMother']);
+	    $this->data_model->setParents($values['txtPedigreeFather'], $values['txtPedigree1'], $values['txtPedigree4']);
+	    $this->data_model->setParents($values['txtPedigreeMother'], $values['txtPedigree7'], $values['txtPedigree10']);
+	    $this->data_model->setParents($values['txtPedigree1'], $values['txtPedigree2'], $values['txtPedigree3']);
+	    $this->data_model->setParents($values['txtPedigree7'], $values['txtPedigree8'], $values['txtPedigree9']);
+	    $this->data_model->setParents($values['txtPedigree4'], $values['txtPedigree5'], $values['txtPedigree6']);
+	    $this->data_model->setParents($values['txtPedigree10'], $values['txtPedigree11'], $values['txtPedigree12']);
+	} catch (\Exception $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
+	$this->redirect("dog:dog_pedigree_list", array("id" => $this->dog_id));
     }
 
     public function frmDogEditHealthSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
+	try {
+	    $values = $button->getForm()->getValues();
 
-            $time = strtotime($values['ddlDate']);
-            $values['ddlDate'] = date('Y-m-d', $time);
+	    $time = strtotime($values['ddlDate']);
+	    $values['ddlDate'] = date('Y-m-d', $time);
 
-            $values["txtHealthPicture"] = $this->data_model->processImage($values['txtHealthPicture']);
+	    $values["txtHealthPicture"] = $this->data_model->processImage($values['txtHealthPicture']);
 
-            $values = $this->data_model->assignFields($values, "frmDogAddHealth");
+	    $values = $this->data_model->assignFields($values, "frmDogAddHealth");
 
-            unset($values["dog_id"]);
+	    unset($values["dog_id"]);
 
-            $this->database->table("tbl_dogs_health")->where("id=?", $this->health_id)->update($values);
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
+	    $this->database->table("tbl_dogs_health")->where("id=?", $this->health_id)->update($values);
+	} catch (\Exception $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
 
-        $this->redirect("dog_health_list", $this->dog_id);
+	$this->redirect("dog_health_list", $this->dog_id);
     }
 
     public function frmDogAddHealthSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
+	try {
+	    $values = $button->getForm()->getValues();
 
-            $time = strtotime($values['ddlDate']);
-            $values['ddlDate'] = date('Y-m-d', $time);
+	    $time = strtotime($values['ddlDate']);
+	    $values['ddlDate'] = date('Y-m-d', $time);
 
-            $values["txtHealthPicture"] = $this->data_model->processImage($values['txtHealthPicture']);
+	    $values["txtHealthPicture"] = $this->data_model->processImage($values['txtHealthPicture']);
 
-            $values = $this->data_model->assignFields($values, "frmDogAddHealth");
+	    $values = $this->data_model->assignFields($values, "frmDogAddHealth");
 
-            //unset($values["dog_id"]);
+	    //unset($values["dog_id"]);
 
-            $this->database->table("tbl_dogs_health")->insert($values);
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
+	    $this->database->table("tbl_dogs_health")->insert($values);
+	} catch (\Exception $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
 
-        $this->redirect("dog_health_list", $this->dog_id);
+	$this->redirect("dog_health_list", $this->dog_id);
     }
 
     public function frmDogEditWorkexamSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
+	try {
+	    $values = $button->getForm()->getValues();
 
-            $time = strtotime($values['ddlDate']);
-            $values['ddlDate'] = date('Y-m-d', $time);
+	    $time = strtotime($values['ddlDate']);
+	    $values['ddlDate'] = date('Y-m-d', $time);
 
-            $values["txtWorkExamPicture"] = $this->data_model->processImage($values['txtWorkExamPicture']);
+	    $values["txtWorkExamPicture"] = $this->data_model->processImage($values['txtWorkExamPicture']);
 
-            $values = $this->data_model->assignFields($values, "frmDogAddWorkexam");
+	    $values = $this->data_model->assignFields($values, "frmDogAddWorkexam");
 
-            unset($values["dog_id"]);
+	    unset($values["dog_id"]);
 
-            $this->database->table("tbl_dogs_workexams")->where("id=?", $this->workexam_id)->update($values);
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
+	    $this->database->table("tbl_dogs_workexams")->where("id=?", $this->workexam_id)->update($values);
+	} catch (\Exception $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
 
-        $this->redirect("dog_workexam_list", $this->dog_id);
+	$this->redirect("dog_workexam_list", $this->dog_id);
     }
 
     public function frmDogAddWorkexamSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
+	try {
+	    $values = $button->getForm()->getValues();
 
-            $time = strtotime($values['ddlDate']);
-            $values['ddlDate'] = date('Y-m-d', $time);
+	    $time = strtotime($values['ddlDate']);
+	    $values['ddlDate'] = date('Y-m-d', $time);
 
-            $values["txtWorkExamPicture"] = $this->data_model->processImage($values['txtWorkExamPicture']);
+	    $values["txtWorkExamPicture"] = $this->data_model->processImage($values['txtWorkExamPicture']);
 
-            $values = $this->data_model->assignFields($values, "frmDogAddWorkexam");
+	    $values = $this->data_model->assignFields($values, "frmDogAddWorkexam");
 
-            //unset($values["dog_id"]);
+	    //unset($values["dog_id"]);
 
-            $this->database->table("tbl_dogs_workexams")->insert($values);
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
+	    $this->database->table("tbl_dogs_workexams")->insert($values);
+	} catch (\Exception $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
 
-        $this->redirect("dog_workexam_list", $this->dog_id);
+	$this->redirect("dog_workexam_list", $this->dog_id);
     }
 
     public function frmDogEditMatingSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
+	try {
+	    $values = $button->getForm()->getValues();
 
-            $time = strtotime($values['ddlDate']);
-            $values['ddlDate'] = date('Y-m-d', $time);
+	    $time = strtotime($values['ddlDate']);
+	    $values['ddlDate'] = date('Y-m-d', $time);
 
-            $values["txtMatingBitchPicture"] = $this->data_model->processImage($values['txtMatingBitchPicture']);
+	    $values["txtMatingBitchPicture"] = $this->data_model->processImage($values['txtMatingBitchPicture']);
 
-            $values = $this->data_model->assignFields($values, "frmDogAddMating");
+	    $values = $this->data_model->assignFields($values, "frmDogAddMating");
 
-            unset($values["dog_id"]);
+	    unset($values["dog_id"]);
 
-            $this->database->table("tbl_dogs_matings")->where("id=?", $this->mating_id)->update($values);
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
+	    $this->database->table("tbl_dogs_matings")->where("id=?", $this->mating_id)->update($values);
+	} catch (\Exception $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
 
-        $this->redirect("dog_mating_list", $this->dog_id);
+	$this->redirect("dog_mating_list", $this->dog_id);
     }
 
     public function frmDogAddMatingSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
+	try {
+	    $values = $button->getForm()->getValues();
 
-            $time = strtotime($values['ddlDate']);
-            $values['ddlDate'] = date('Y-m-d', $time);
+	    $time = strtotime($values['ddlDate']);
+	    $values['ddlDate'] = date('Y-m-d', $time);
 
-            $values["txtMatingBitchPicture"] = $this->data_model->processImage($values['txtMatingBitchPicture']);
+	    $values["txtMatingBitchPicture"] = $this->data_model->processImage($values['txtMatingBitchPicture']);
 
-            $values = $this->data_model->assignFields($values, "frmDogAddMating");
+	    $values = $this->data_model->assignFields($values, "frmDogAddMating");
 
-            //unset($values["dog_id"]);
+	    //unset($values["dog_id"]);
 
-            $this->database->table("tbl_dogs_matings")->insert($values);
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
+	    $this->database->table("tbl_dogs_matings")->insert($values);
+	} catch (\Exception $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
 
-        $this->redirect("dog_mating_list", $this->dog_id);
+	$this->redirect("dog_mating_list", $this->dog_id);
     }
 
     public function frmDogAddCoownerSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
-            $values = $this->data_model->assignFields($values, "frmDogAddCoowner");
-            $this->database->table("tbl_dogs_coowners")->insert($values);
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-            exit;
-        }
-        $this->redirect("dog_coowner_list", $this->dog_id);
+	try {
+	    $values = $button->getForm()->getValues();
+	    $values = $this->data_model->assignFields($values, "frmDogAddCoowner");
+	    $this->database->table("tbl_dogs_coowners")->insert($values);
+	} catch (\Exception $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	    exit;
+	}
+	$this->redirect("dog_coowner_list", $this->dog_id);
     }
 
     public function frmDogEditCoownerSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
-            $values = $this->data_model->assignFields($values, "frmDogAddCoowner");
-            unset($values["dog_id"]);
-            $this->database->table("tbl_dogs_coowners")->where("id=?", $this->coowner_id)->update($values);
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
-        $this->redirect("dog_coowner_list", $this->dog_id);
+	try {
+	    $values = $button->getForm()->getValues();
+	    $values = $this->data_model->assignFields($values, "frmDogAddCoowner");
+	    unset($values["dog_id"]);
+	    $this->database->table("tbl_dogs_coowners")->where("id=?", $this->coowner_id)->update($values);
+	} catch (\Exception $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
+	$this->redirect("dog_coowner_list", $this->dog_id);
     }
 
     public function frmDogAddTitleSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
+	try {
+	    $values = $button->getForm()->getValues();
 
-            $values['txtChampionshipPicture'] = $this->data_model->processImage($values['txtChampionshipPicture']);
+	    $values['txtChampionshipPicture'] = $this->data_model->processImage($values['txtChampionshipPicture']);
 
-            $time = strtotime($values['ddlDate']);
-            $values['ddlDate'] = date('Y-m-d', $time);
+	    $time = strtotime($values['ddlDate']);
+	    $values['ddlDate'] = date('Y-m-d', $time);
 
-            $values = $this->data_model->assignFields($values, "frmDogAddTitle");
+	    $values = $this->data_model->assignFields($values, "frmDogAddTitle");
 
-            $this->database->table("tbl_dogs_championship")->insert($values);
+	    $this->database->table("tbl_dogs_championship")->insert($values);
 
-            $this->flashMessage("Title successfully added.", "Success");
-        } catch (\ErrorException $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
-        $this->redirect("dog_championschip_list", $this->dog_id);
+	    $this->flashMessage("Title successfully added.", "Success");
+	} catch (\ErrorException $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
+	$this->redirect("dog_championschip_list", $this->dog_id);
     }
 
     public function frmCreateDogProfileSucceeded($button) {
-        try {
+	try {
 
-            $values = $button->getForm()->getValues();
+	    $values = $button->getForm()->getValues();
 
-            $values['txtDogProfilePhoto'] = $this->data_model->processImage($values['txtDogProfilePhoto']);
+	    $values['txtDogProfilePhoto'] = $this->data_model->processImage($values['txtDogProfilePhoto']);
 
-            $time = strtotime($values['ddlDate']);
-            $values['ddlDate'] = date('Y-m-d', $time);
+	    $time = strtotime($values['ddlDate']);
+	    $values['ddlDate'] = date('Y-m-d', $time);
 
-            $values = $this->data_model->assignFields($values, "frmCreateDogProfile");
-            $values['user_id'] = $this->logged_in_id;
-            $values['profile_id'] = $this->profile_id;
+	    $values = $this->data_model->assignFields($values, "frmCreateDogProfile");
+	    $values['user_id'] = $this->logged_in_id;
+	    $values['profile_id'] = $this->profile_id;
 
-            $this->database->table("tbl_dogs")->insert($values);
+	    $this->database->table("tbl_dogs")->insert($values);
 
-            $this->flashMessage("Your dog profile successfully created.", "Success");
+	    $father_name = $values['dog_father'];
+	    $mother_name = $values['dog_mother'];
+	    $this->data_model->setParents($values['dog_name'], $father_name, $mother_name);
 
-            switch ($this->profile_type) {
-                case 1:
-                    $this->redirect("kennel:kennel_profile_home", $this->profile_id);
-                    break;
-                case 2:
-                    $this->redirect("owner:owner_profile_home", $this->profile_id);
-                    break;
-                case 3:
-                    $this->redirect("handler:handler_profile_home", $this->profile_id);
-                    break;
-            }
-        } catch (\ErrorException $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
+	    $this->flashMessage("Your dog profile successfully created.", "Success");
+
+	    switch ($this->profile_type) {
+		case 1:
+		    $this->redirect("kennel:kennel_profile_home", $this->profile_id);
+		    break;
+		case 2:
+		    $this->redirect("owner:owner_profile_home", $this->profile_id);
+		    break;
+		case 3:
+		    $this->redirect("handler:handler_profile_home", $this->profile_id);
+		    break;
+	    }
+	} catch (\ErrorException $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
     }
 
     public function frmEditDogProfileSucceeded($button) {
-        try {
+	try {
 
-            $values = $button->getForm()->getValues();
+	    $values = $button->getForm()->getValues();
 
-            //$values['txtDogProfilePhoto'] = $this->data_model->processImage($values['txtDogProfilePhoto']);
+	    //$values['txtDogProfilePhoto'] = $this->data_model->processImage($values['txtDogProfilePhoto']);
 
-            $time = strtotime($values['ddlDate']);
-            $values['ddlDate'] = date('Y-m-d', $time);
+	    $time = strtotime($values['ddlDate']);
+	    $values['ddlDate'] = date('Y-m-d', $time);
 
-            $values = $this->data_model->assignFields($values, "frmCreateDogProfile");
-            $values['user_id'] = $this->logged_in_id;
-            $values['profile_id'] = $this->profile_id;
+	    $values = $this->data_model->assignFields($values, "frmCreateDogProfile");
+	    $values['user_id'] = $this->logged_in_id;
+	    $values['profile_id'] = $this->profile_id;
 
-            $this->database->table("tbl_dogs")->where("id=?", $this->dog_id)->update($values);
+	    $this->database->table("tbl_dogs")->where("id=?", $this->dog_id)->update($values);
 
-            $this->flashMessage("Your dog profile successfully created.", "Success");
+	    $father_name = $values['dog_father'];
+	    $mother_name = $values['dog_mother'];
+	    $this->data_model->setParents($values['dog_name'], $father_name, $mother_name);
 
-            switch ($this->profile_type) {
-                case 1:
-                    $this->redirect("kennel:kennel_profile_home", $this->profile_id);
-                    break;
-                case 2:
-                    $this->redirect("owner:owner_profile_home", $this->profile_id);
-                    break;
-                case 3:
-                    $this->redirect("handler:handler_profile_home", $this->profile_id);
-                    break;
-            }
-        } catch (\ErrorException $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
+	    $this->flashMessage("Your dog profile successfully created.", "Success");
+
+	    switch ($this->profile_type) {
+		case 1:
+		    $this->redirect("kennel:kennel_profile_home", $this->profile_id);
+		    break;
+		case 2:
+		    $this->redirect("owner:owner_profile_home", $this->profile_id);
+		    break;
+		case 3:
+		    $this->redirect("handler:handler_profile_home", $this->profile_id);
+		    break;
+	    }
+	} catch (\ErrorException $ex) {
+	    $this->flashMessage($ex->getMessage(), "Error");
+	}
     }
 
     public function frmAddShowSucceeded($button) {
-        $values = $button->getForm()->getValues();
+	$values = $button->getForm()->getValues();
 
-        var_dump($values);
+	var_dump($values);
     }
 
     public function formCanceled() {
-        $this->redirect('dog:dog_championschip_list', $this->dog_id);
+	$this->redirect('dog:dog_championschip_list', $this->dog_id);
     }
 
 }

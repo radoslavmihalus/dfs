@@ -1,17 +1,19 @@
 {define #puppy_list_item}
-<a n:href="puppy:puppy_description">
+
+<a n:href="puppy:puppy_description id=>$row->id">
+    {var $mother = DataModel::getPlannedLitterMother($row->planned_litter_id)}
     <div class="list-item">
-        <div class="dog-image-profile-thumb">
+        <div class="dog-image-profile-thumb" style="background: url('{$row->puppy_photo}') no-repeat center center; background-size: cover;min-height: 240px;">
             <span class="puppy-info-forsale" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'For sale'}</span>
 <!--        <span class="puppy-info-reserved" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Reserved'}</span>-->
 <!--        <span class="puppy-info-sold" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Sold'}</span>-->
         </div>
-        <h3 class="text-uppercase">Puppy from Bronca Pinca</h3>
+        <h3 class="text-uppercase">{$row->puppy_name}</h3>
         <hr style="margin-bottom: 10px;">
-        <span class="list-item-breed"><i class="fa fa-tag"></i>&nbsp;&nbsp;Dogo argentino</span>
-        <span class="list-item-gender"><i class="fa fa-mars" style="color:#0c9eea;"></i>&nbsp;&nbsp;Dog</span>
-        <span class="list-item-location"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Slovakia</span>
-        <span class="list-item-regdate"><i class="fa fa-star"></i>&nbsp;&nbsp;25.6.2015</span>
+        <span class="list-item-breed"><i class="fa fa-tag"></i>&nbsp;&nbsp;{$mother->breed_name}</span>
+        <span class="list-item-gender"><i class="fa fa-mars" style="color:#0c9eea;"></i>&nbsp;&nbsp;{$row->puppy_gender}</span>
+        <span class="list-item-location"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{$row->country}</span>
+        <span class="list-item-regdate"><i class="fa fa-star"></i>&nbsp;&nbsp;{$row->date_of_birth}</span>
     </div>
 </a>
 {/define}

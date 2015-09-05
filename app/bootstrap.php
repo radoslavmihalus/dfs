@@ -109,6 +109,7 @@ $router[] = new Route('dog-health-list', 'dog:dog_health_list');
 $router[] = new Route('dog-health-add', 'dog:dog_health_add');
 $router[] = new Route('dog-health-edit', 'dog:dog_health_edit');
 $router[] = new Route('dog-pedigree', 'dog:dog_pedigree_list');
+$router[] = new Route('dog-pedigree-edit', 'dog:dog_pedigree_edit');
 $router[] = new Route('dog-mating-list', 'dog:dog_mating_list');
 $router[] = new Route('dog-mating-add', 'dog:dog_mating_add');
 $router[] = new Route('dog-mating-edit', 'dog:dog_mating_edit');
@@ -119,6 +120,8 @@ $router[] = new Route('dog-planned-litter-list', 'dog:dog_planned_litter_list');
 // Puppy routes
 $router[] = new Route('puppies-for-sale', 'puppy:puppy_list');
 $router[] = new Route('puppy-profile', 'puppy:puppy_description');
+$router[] = new Route('puppy-pedigree', 'puppy:puppy_pedigree_list');
+$router[] = new Route('puppy-pedigree-edit', 'puppy:puppy_pedigree_edit');
 $router[] = new Route('puppy-create-profile', 'puppy:puppy_create_profile');
 $router[] = new Route('puppy-edit-profile', 'puppy:puppy_edit_profile');
 $router[] = new Route('puppy-description-add', 'puppy:puppy_description_add');

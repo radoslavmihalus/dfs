@@ -16,7 +16,7 @@
             <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Father of the planned litter'}</span>
             <hr>
             {include image_UploadPicture_control, _form=>$_form, description => "Picture of the dog", placeholder => "Select picture", id => "txtPlannedLitterDogProfilePhoto", name => "txtPlannedLitterDogProfilePhoto", tooltip => "Upload or change profile picture of the dog in jpg or jpeg format"}
-            {include dropdown_BreedList_control, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose a breed from the list."}
+            {include dropdown_BreedList_control _form=>$_form, onlyOne=>true, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose a breed from the list."}
             {include dropdown_CountryList_control, _form=>$_form, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry", tooltip => "Country in which the dog is currently located"}
             <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Mother of the planned litter'}</span>
             <hr>
