@@ -87,12 +87,12 @@
                 </div>
             {/foreach}
 
-            <form n:name="commentTimeline-{$row->id}" id="commentTimeline-{$row->id}" class="ajax">
+            <form n:name="commentTimeline-{$row->id}" id="commentTimeline-{$row->id}" class="ajax no-live-validation">
                 <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;">
                     <input type="hidden" n:name=snippet_id value="{$row->id}" />
-                    <input type="text" n:name=comment class="form-control font_size_13px" style="z-index: 0;" placeholder="{_ 'Write a comment'}...">
+                    <input type="text" n:name=comment class="form-control font_size_13px no-live-validation" style="z-index: 0;" placeholder="{_ 'Write a comment'}...">
                     <span class="input-group-btn">
-                        <button class="btn btn-default font_size_13px" type="submit" n:name=btnSubmit><i class="fa fa-comment fa-1x"></i></button>
+                        <button class="btn btn-default font_size_13px no-live-validation" id="submitTimeline-{$row->id}" n:name=btnSubmit><i class="fa fa-comment fa-1x"></i></button>
                     </span>
                 </div>
             </form>
@@ -119,6 +119,18 @@
 		    });
 		    return false;
 		});
+
+//		$("#submitTimeline-{$row->id}").on("click", function () {
+//		    $("#ajax-spinner").show();
+//
+//		    $(this).ajaxSubmit(function (payload) {
+//			$.nette.success(payload);
+//
+//			$.get(document.href);
+//		    });
+//		    return false;
+//		});
+
 
 		$("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
 		{

@@ -432,7 +432,7 @@ LiveForm.removeClass = function (el, className) {
 	for (i = 0; i < form.elements.length; i++) {
 	    elem = form.elements[i];
 
-	    if (elem.tagName && !(elem.tagName.toLowerCase() in {input: 1, select: 1, textarea: 1, button: 1})) {
+	    if (elem.tagName && !(elem.tagName.toLowerCase() in {span: 1, input: 1, select: 1, textarea: 1, button: 1})) {
 		continue;
 
 	    } else if (elem.type === 'radio') {
@@ -669,7 +669,7 @@ LiveForm.removeClass = function (el, className) {
 	var i;
 	Nette.toggles = {};
 	for (i = 0; i < form.elements.length; i++) {
-	    if (form.elements[i].tagName.toLowerCase() in {input: 1, select: 1, textarea: 1, button: 1}) {
+	    if (form.elements[i].tagName.toLowerCase() in {span: 1, input: 1, select: 1, textarea: 1, button: 1}) {
 		Nette.toggleControl(form.elements[i], null, null, !elem);
 	    }
 	}

@@ -33,6 +33,12 @@
         <link rel="stylesheet" href="www/fonts/glyphicons/font-awesome/css/font-awesome.min.css">
         <!-- Glyphicons PRO -->
         <link rel="stylesheet" href="www/fonts/glyphicons/pro-awesome/css/glyphicons-pro.css">
+	<!-- Top Menu section definition -->
+	<link href="www/css/top-menu.css" rel="stylesheet">
+	<!-- User Menu section definition -->
+	<link href="www/css/user-menu.css" rel="stylesheet">
+	<!-- Profile Menu section definition -->
+	<link href="www/css/profile-menu.css" rel="stylesheet">
         <style>
             body {
                 padding-top:70px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -61,17 +67,17 @@
         <!-- Google Tag Manager -->
         <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MTKG8H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <script>
-            (function (w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({
-                    'gtm.start': new Date().getTime(), event: 'gtm.js'
-                });
-                var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-                j.async = true;
-                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
-                f.parentNode.insertBefore(j, f);
-            }
-            )(window, document, 'script', 'dataLayer', 'GTM-MTKG8H');
+	    (function (w, d, s, l, i) {
+		w[l] = w[l] || [];
+		w[l].push({
+		    'gtm.start': new Date().getTime(), event: 'gtm.js'
+		});
+		var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+		j.async = true;
+		j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+		f.parentNode.insertBefore(j, f);
+	    }
+	    )(window, document, 'script', 'dataLayer', 'GTM-MTKG8H');
         </script>
         <!-- End Google Tag Manager -->
         <!-- Modal Flash control  -->
@@ -202,90 +208,90 @@
                             <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['geochart']}]}"></script>
                             <div id="regions_div" style="width:100%"></div>
                             <script type="text/javascript">
-                                google.setOnLoadCallback(drawRegionsMap);
+				google.setOnLoadCallback(drawRegionsMap);
 
-                                function drawRegionsMap() {
+				function drawRegionsMap() {
 
-                                    var data = google.visualization.arrayToDataTable([
-                                        ['Country', 'Name'],
-                                        ['Czech Republic', 2568],
-                                        ['Slovakia', 2568],
-                                        ['Serbia', 2568],
-                                        ['United States', 2568],
-                                        ['Lithuania', 2568],
-                                        ['Hungary', 2568],
-                                        ['Poland', 2568],
-                                        ['Romania', 2568],
-                                        ['Italy', 2568],
-                                        ['United Kingdom', 2568],
-                                        ['Germany', 2568],
-                                        ['Austria', 2568],
-                                        ['Kosovo', 2568],
-                                        ['Russia', 2568],
-                                        ['Bulgaria', 2568],
-                                        ['France', 2568],
-                                        ['Croatia', 2568],
-                                        ['Ukraine', 2568],
-                                        ['Portugal', 2568],
-                                        ['Finland', 2568],
-                                        ['Spain', 2568],
-                                        ['Japan', 2568],
-                                        ['Australia', 2568],
-                                        ['Latvia', 2568],
-                                        ['Slovenia', 2568],
-                                        ['Denmark', 2568],
-                                        ['Sweden', 2568],
-                                        ['Philippines', 2568],
-                                        ['Greece', 2568],
-                                        ['Netherland', 2568],
-                                        ['Canada', 2568],
-                                        ['Norway', 2568],
-                                        ['Bosnia & Herzegovina', 2568],
-                                        ['China', 2568],
-                                        ['Brazil', 2568],
-                                        ['Belgium', 2568],
-                                        ['Ireland', 2568],
-                                        ['Montenegro', 2568],
-                                        ['Switzerland', 2568],
-                                        ['Estonia', 2568],
-                                        ['India', 2568],
-                                        ['South Korea', 2568],
-                                        ['Argentina', 2568],
-                                        ['Indonesia', 2568],
-                                        ['Thailand', 2568],
-                                        ['Malta', 2568],
-                                        ['Mexico', 2568],
-                                        ['South Africa', 2568],
-                                        ['New Zealand', 2568]
-                                    ]);
+				    var data = google.visualization.arrayToDataTable([
+					['Country', 'Name'],
+					['Czech Republic', 2568],
+					['Slovakia', 2568],
+					['Serbia', 2568],
+					['United States', 2568],
+					['Lithuania', 2568],
+					['Hungary', 2568],
+					['Poland', 2568],
+					['Romania', 2568],
+					['Italy', 2568],
+					['United Kingdom', 2568],
+					['Germany', 2568],
+					['Austria', 2568],
+					['Kosovo', 2568],
+					['Russia', 2568],
+					['Bulgaria', 2568],
+					['France', 2568],
+					['Croatia', 2568],
+					['Ukraine', 2568],
+					['Portugal', 2568],
+					['Finland', 2568],
+					['Spain', 2568],
+					['Japan', 2568],
+					['Australia', 2568],
+					['Latvia', 2568],
+					['Slovenia', 2568],
+					['Denmark', 2568],
+					['Sweden', 2568],
+					['Philippines', 2568],
+					['Greece', 2568],
+					['Netherland', 2568],
+					['Canada', 2568],
+					['Norway', 2568],
+					['Bosnia & Herzegovina', 2568],
+					['China', 2568],
+					['Brazil', 2568],
+					['Belgium', 2568],
+					['Ireland', 2568],
+					['Montenegro', 2568],
+					['Switzerland', 2568],
+					['Estonia', 2568],
+					['India', 2568],
+					['South Korea', 2568],
+					['Argentina', 2568],
+					['Indonesia', 2568],
+					['Thailand', 2568],
+					['Malta', 2568],
+					['Mexico', 2568],
+					['South Africa', 2568],
+					['New Zealand', 2568]
+				    ]);
 
-                                    var options = {
-                                        legend: 'none',
-                                        colorAxis: {
-                                            colors: ['#fff', 'black', '#fff']
-                                        },
-                                        enableRegionInteractivity: 0,
-                                        backgroundColor: 'transparent',
-                                        datalessRegionColor: 'transparent',
-                                        defaultColor: '#fff'
-                                    };
+				    var options = {
+					legend: 'none',
+					colorAxis: {
+					    colors: ['#fff', 'black', '#fff']
+					},
+					enableRegionInteractivity: 0,
+					backgroundColor: 'transparent',
+					datalessRegionColor: 'transparent',
+					defaultColor: '#fff'
+				    };
 
-                                    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+				    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
-                                    chart.draw(data, options);
-                                }
+				    chart.draw(data, options);
+				}
 
-                                /*                                window.onresize = function () {
-                                 var mywidth;
-                                 mywidth = $(window).width() - 60;
-                                 
-                                 $("#region_div").html(" ");
-                                 
-                                 $("#region_div").height("auto");
-                                 $("#region_div").width(mywidth);
-                                 $("#region_div").html(" ");
-                                 drawRegionsMap();
-                                 };*/
+				/*                                window.onresize = function () {
+				 var mywidth;
+				 mywidth = $(window).width() - 60;
+				 
+				 $("#region_div").html(" ");
+				 
+				 $("#region_div").height("auto");
+				 $("#region_div").width(mywidth);
+				 $("#region_div").html(" ");
+				 drawRegionsMap();
+				 };*/
                             </script>
                         </div>
                     </div>
@@ -468,128 +474,128 @@
         <script src="www/js/jquery.easing.min.js"></script>
         <script src="www/js/scrolling-nav.js"></script>
         <script>
-                                $(function () {
-                                    $('[data-toggle="tooltip"]').tooltip()
-                                });
+				$(function () {
+				    $('[data-toggle="tooltip"]').tooltip()
+				});
 
-                                $("#logo").click(function (event)
-                                {
-                                    event.preventDefault();
-                                    var target = "#join";
+				$("#logo").click(function (event)
+				{
+				    event.preventDefault();
+				    var target = "#join";
 
-                                    $('html,body').animate({
-                                        scrollTop: $(target).offset().top - 69
-                                    }, 800, 'easeInOutCirc');
+				    $('html,body').animate({
+					scrollTop: $(target).offset().top - 69
+				    }, 800, 'easeInOutCirc');
 
-                                    $("#joinmeli").removeClass("active");
-                                    $("#whoweareli").removeClass("active");
-                                    $("#howwegrowli").removeClass("active");
-                                    $("#whatweofferli").removeClass("active");
-                                    $("#contactusli").removeClass("active");
-                                });
+				    $("#joinmeli").removeClass("active");
+				    $("#whoweareli").removeClass("active");
+				    $("#howwegrowli").removeClass("active");
+				    $("#whatweofferli").removeClass("active");
+				    $("#contactusli").removeClass("active");
+				});
 
-                                $("#joinme").click(function () {
-                                    $("#login_link").removeClass("active");
-                                    $("#register_link").addClass("active");
-                                    $("#login").removeClass("in");
-                                    $("#login").removeClass("active");
-                                    $("#registration").addClass("in");
-                                    $("#registration").addClass("active");
+				$("#joinme").click(function () {
+				    $("#login_link").removeClass("active");
+				    $("#register_link").addClass("active");
+				    $("#login").removeClass("in");
+				    $("#login").removeClass("active");
+				    $("#registration").addClass("in");
+				    $("#registration").addClass("active");
 
-                                    event.preventDefault();
-                                    var target = "#join";
+				    event.preventDefault();
+				    var target = "#join";
 
-                                    $('html,body').animate({
-                                        scrollTop: $(target).offset().top - 69
-                                    }, 800, 'easeInOutCirc');
+				    $('html,body').animate({
+					scrollTop: $(target).offset().top - 69
+				    }, 800, 'easeInOutCirc');
 
-                                    $("#joinmeli").addClass("active");
-                                    $("#whoweareli").removeClass("active");
-                                    $("#howwegrowli").removeClass("active");
-                                    $("#whatweofferli").removeClass("active");
-                                    $("#contactusli").removeClass("active");
-                                });
+				    $("#joinmeli").addClass("active");
+				    $("#whoweareli").removeClass("active");
+				    $("#howwegrowli").removeClass("active");
+				    $("#whatweofferli").removeClass("active");
+				    $("#contactusli").removeClass("active");
+				});
 
-                                $('#whoweare').click(function (event) {
-                                    event.preventDefault();
-                                    var target = "#discover";
+				$('#whoweare').click(function (event) {
+				    event.preventDefault();
+				    var target = "#discover";
 
-                                    $('html,body').animate({
-                                        scrollTop: $(target).offset().top - 89
-                                    }, 800, 'easeInOutCirc');
+				    $('html,body').animate({
+					scrollTop: $(target).offset().top - 89
+				    }, 800, 'easeInOutCirc');
 
-                                    $("#joinmeli").removeClass("active");
-                                    $("#whoweareli").addClass("active");
-                                    $("#howwegrowli").removeClass("active");
-                                    $("#whatweofferli").removeClass("active");
-                                    $("#contactusli").removeClass("active");
-                                });
+				    $("#joinmeli").removeClass("active");
+				    $("#whoweareli").addClass("active");
+				    $("#howwegrowli").removeClass("active");
+				    $("#whatweofferli").removeClass("active");
+				    $("#contactusli").removeClass("active");
+				});
 
-                                $('#howwegrow').click(function (event) {
-                                    event.preventDefault();
-                                    var target = "#follow";
+				$('#howwegrow').click(function (event) {
+				    event.preventDefault();
+				    var target = "#follow";
 
-                                    $('html,body').animate({
-                                        scrollTop: $(target).offset().top - 69
-                                    }, 800, 'easeInOutCirc');
-                                    $("#joinmeli").removeClass("active");
-                                    $("#whoweareli").removeClass("active");
-                                    $("#howwegrowli").addClass("active");
-                                    $("#whatweofferli").removeClass("active");
-                                    $("#contactusli").removeClass("active");
-                                });
+				    $('html,body').animate({
+					scrollTop: $(target).offset().top - 69
+				    }, 800, 'easeInOutCirc');
+				    $("#joinmeli").removeClass("active");
+				    $("#whoweareli").removeClass("active");
+				    $("#howwegrowli").addClass("active");
+				    $("#whatweofferli").removeClass("active");
+				    $("#contactusli").removeClass("active");
+				});
 
-                                $('#whatweoffer').click(function (event) {
-                                    event.preventDefault();
-                                    var target = "#about";
+				$('#whatweoffer').click(function (event) {
+				    event.preventDefault();
+				    var target = "#about";
 
-                                    $('html,body').animate({
-                                        scrollTop: $(target).offset().top - 89
-                                    }, 800, 'easeInOutCirc');
+				    $('html,body').animate({
+					scrollTop: $(target).offset().top - 89
+				    }, 800, 'easeInOutCirc');
 
-                                    $("#joinmeli").removeClass("active");
-                                    $("#whoweareli").removeClass("active");
-                                    $("#howwegrowli").removeClass("active");
-                                    $("#whatweofferli").addClass("active");
-                                    $("#contactusli").removeClass("active");
-                                });
+				    $("#joinmeli").removeClass("active");
+				    $("#whoweareli").removeClass("active");
+				    $("#howwegrowli").removeClass("active");
+				    $("#whatweofferli").addClass("active");
+				    $("#contactusli").removeClass("active");
+				});
 
-                                $('#contactus').click(function (event) {
-                                    event.preventDefault();
-                                    var target = "#contact";
+				$('#contactus').click(function (event) {
+				    event.preventDefault();
+				    var target = "#contact";
 
-                                    $('html,body').animate({
-                                        scrollTop: $(target).offset().top - 69
-                                    }, 800, 'easeInOutCirc');
+				    $('html,body').animate({
+					scrollTop: $(target).offset().top - 69
+				    }, 800, 'easeInOutCirc');
 
-                                    $("#joinmeli").removeClass("active");
-                                    $("#whoweareli").removeClass("active");
-                                    $("#howwegrowli").removeClass("active");
-                                    $("#whatweofferli").removeClass("active");
-                                    $("#contactusli").addClass("active");
-                                });
+				    $("#joinmeli").removeClass("active");
+				    $("#whoweareli").removeClass("active");
+				    $("#howwegrowli").removeClass("active");
+				    $("#whatweofferli").removeClass("active");
+				    $("#contactusli").addClass("active");
+				});
         </script>
 
         {foreach $flashes as $flash}
             <script type="text/javascript">
-                if ({$flash->type} == 'Error')
-                {
-                    $("#login_link").removeClass("active");
-                    $("#register_link").addClass("active");
-                    $("#login").removeClass("active");
-                    $("#login").removeClass("in");
-                    $("#registration").addClass("in");
-                    $("#registration").addClass("active");
-                    ShowMessageModal(enumNotificationType.error, {$flash->message});
-                }
-                if ({$flash->type} == 'Warning')
-                    ShowMessageModal(enumNotificationType.warning, {$flash->message});
-                if ({$flash->type} == 'Info')
-                    ShowMessageModal(enumNotificationType.information, {$flash->message});
-                if ({$flash->type} == 'Success')
-                    ShowMessageModal(enumNotificationType.success, {$flash->message});
-                if ({$flash->type} == 'Confirmation')
-                    ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
+		if ({$flash->type} == 'Error')
+		{
+		    $("#login_link").removeClass("active");
+		    $("#register_link").addClass("active");
+		    $("#login").removeClass("active");
+		    $("#login").removeClass("in");
+		    $("#registration").addClass("in");
+		    $("#registration").addClass("active");
+		    ShowMessageModal(enumNotificationType.error, {$flash->message});
+		}
+		if ({$flash->type} == 'Warning')
+		    ShowMessageModal(enumNotificationType.warning, {$flash->message});
+		if ({$flash->type} == 'Info')
+		    ShowMessageModal(enumNotificationType.information, {$flash->message});
+		if ({$flash->type} == 'Success')
+		    ShowMessageModal(enumNotificationType.success, {$flash->message});
+		if ({$flash->type} == 'Confirmation')
+		    ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
             </script>
         {/foreach}
 

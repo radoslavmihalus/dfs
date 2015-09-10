@@ -1,3 +1,4 @@
+{layout '../@forms_layout.latte'}
 {block content}
 {includeblock '../components/dropdown_BreedList_control.latte'}
 <div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
@@ -5,10 +6,10 @@
         {form formAddBreedForHandling}
             <h2 class="text-center text-uppercase"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_ 'Add breeds for handling'}</h2>
             <hr>
-            {include dropdown_BreedList_control, _form => $form, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList",  tooltip => "Select the breeds that you can handle"}
+            {include dropdown_BreedList_control, _form => $_form, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList",  tooltip => "Select the breeds that you can handle"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
-            <button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
+            <!--<button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>-->
         {/form}
     </div>
-</div>  
+</div>
 {/block}

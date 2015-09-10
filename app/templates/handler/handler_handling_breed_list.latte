@@ -18,11 +18,9 @@
     <div class="row" style="padding:10px;">
         <div class="col-lg-12 col-md-12 column-spacer">
             <ul>
-                <li style="display: inline-block;margin-right: 15px;"><i class="fa fa-tag" style="margin-right: 10px;"></i>Dogo Argentino</li>
-                <li style="display: inline-block;margin-right: 15px;"><i class="fa fa-tag" style="margin-right: 10px;"></i>Golden Retriever</li>
-                <li style="display: inline-block;margin-right: 15px;"><i class="fa fa-tag" style="margin-right: 10px;"></i>Cane Corso Italiano</li>
-                <li style="display: inline-block;margin-right: 15px;"><i class="fa fa-tag" style="margin-right: 10px;"></i>Preso de Canarrio</li>
-                <li style="display: inline-block;margin-right: 15px;"><i class="fa fa-tag" style="margin-right: 10px;"></i>German Shepherd</li>
+		{foreach $handling_breeds as $handling_breed}
+                <li style="display: inline-block;margin-right: 15px;"><i class="fa fa-tag" style="margin-right: 10px;"></i>{$handling_breed->breed_name}</li>
+		{/foreach}
             </ul>
         </div>
     </div>

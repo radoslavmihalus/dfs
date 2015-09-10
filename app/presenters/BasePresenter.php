@@ -447,7 +447,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 	    $this->flashMessage($this->translate("Wrong username or password."), "Warning");
 	} else {
 	    if ($activated == 0) {
-		$this->flashMessage($this->translate("Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link") . "<br/><br/><p class=\"text-center\"><a href=\"?resend_al=$id\" class=\"btn btn-danger btn-xl\"><i class=\"fa fa-envelope\"></i>&nbsp;&nbsp;" . $this->translate("Resend registration email") . "</a></p>", "Error");
+		$this->flashMessage($this->translate("Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link") . "<br/><br/><p class=\"text-center\"><a href=\"?resend_al=$id\" class=\"btn btn-danger btn-xl\"><i class=\"fa fa-envelope\"></i>&nbsp;&nbsp;" . $this->translate("Resend registration email") . "</a></p>", "Warning");
 	    } else
 		$this->redirect("user:user_create_profile_switcher");
 	}
@@ -502,7 +502,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 	    }
 
 	    if ($password == '') {
-		$this->flashMessage($this->translate("User with this e-mail, is not in our database"), "Error");
+		$this->flashMessage($this->translate("User with this e-mail, is not in our database"), "Warning");
 		throw new \ErrorException();
 	    }
 

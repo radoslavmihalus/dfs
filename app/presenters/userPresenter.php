@@ -86,12 +86,12 @@ class userPresenter extends BasePresenter {
 
         $form = new Form();
         $form->addText('txtName')
-                ->setRequired('Please enter.')->setValue($name);
+                ->setRequired('Required field')->setValue($name);
         $form->addText('txtSurname')
-                ->setRequired('Please enter.')->setValue($surname);
+                ->setRequired('Required field')->setValue($surname);
         $form->addText('txtEmail')
-                ->setRequired('Please enter.')->setDisabled()->setValue($email);
-        $form->addSelect('ddlCountries')->setItems($countries)->setValue($country)->setRequired();
+                ->setRequired('Required field')->setDisabled()->setValue($email);
+        $form->addSelect('ddlCountries')->setItems($countries)->setValue($country)->setRequired('Required field');
         $form->addText('txtAddress')->setValue($address);
         $form->addText('txtTown')->setValue($city);
         $form->addText('txtZip')->setValue($zip);
@@ -127,11 +127,11 @@ class userPresenter extends BasePresenter {
     protected function createComponentUserEditPassword() {
         $form = new Form();
         $form->addText('txtOldPassword')->setValue("")
-                ->setRequired('Please enter.');
+                ->setRequired('Required field');
         $form->addText('txtNewPassword')->setValue("")
-                ->setRequired('Please enter.');
+                ->setRequired('Required field');
         $form->addText('txtConfirmPassword')->setValue("")
-                ->setRequired('Please enter.');
+                ->setRequired('Required field');
         $form->addSubmit('submit')
                 ->onClick[] = array($this, 'editPasswordSucceeded');
 

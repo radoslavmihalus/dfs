@@ -1,19 +1,34 @@
 {block content}
+{includeblock '../components/image_UploadPicture_modal_control.latte'}
+{include image_UploadPicture_modal_control name=>'cover', aspect_x => 16, aspect_y => 5, description => "Update cover photo"}
+{include image_UploadPicture_modal_control name=>'profile', aspect_x => 10, aspect_y => 10, description => "Select profile image"}
 <div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body component">
-        <div class="profile-header-image">
+	<div class="profile-header-image" style="{if $have_background_image} background: url('{$background_image}')no-repeat center center;background-size:cover;background-position:50% 20%; {else} background-color:#D5D0C0; background-image: none{/if}">
+	    <a href="javascript:void(0)" onclick="ShowUploadModal('cover')"><i class="fa fa-camera fa-2x change-cover-icon"><span style="vertical-align: middle;display: block;float: right;padding-top: 5px;margin-left: 5px;font-size:13px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;">{_ 'Update cover photo'}</span></i></a>
+		    {if !$have_background_image}
+		    {/if}
+		    {*if $have_puppies*}
+	<!--                <span class="list-puppy-info-detail"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>-->
+	    {*/if*}
+	    <div class="pull-left image-profile-thumb">
+		<a href="javascript:void(0)" onclick="ShowUploadModal('profile')"><i class="fa fa-camera fa-2x change-image-icon"></i></a>
+		<a href="{$profile_image}" data-gallery><img src="{$profile_image}"></a>
+	    </div>
+	</div>
+<!--        <div class="profile-header-image">
             <img src="img/referer1.jpg" class="pull-left image-profile-thumb">
-        </div>
+        </div>-->
         <div class="row">
             <div class="col-md-6">
-                <h1 class="profile_type_heading text-uppercase">Michal Slepanek</h1>
+                <h1 class="profile_type_heading text-uppercase">{$handler_name}</h1>
                 <span class="profile-type-description"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_ 'Handler'}</span>
-                <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Slovakia</span>
+                <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{$state}</span>
             </div>
             <div class="col-md-6" style="padding-top: 15px;">
                 <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">
-                    <a type="button" class="btn btn-default"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'Add friend'}</a>
-                    <a type="button" class="btn btn-default"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_ 'Follow'}</a>
+<!--                    <a type="button" class="btn btn-default"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'Add friend'}</a>
+                    <a type="button" class="btn btn-default"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_ 'Follow'}</a>-->
                     <a type="button" class="btn btn-default"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Message'}</a>
                 </div>
             </div>
@@ -29,15 +44,15 @@
             <div class="container-fluid profile-menu">
                 <div class="collapse navbar-collapse" id="profile-menu" role="navigation" style="padding: 0px;">
                     <ul class="nav navbar-nav" style="margin:0px;">
-                        <li class="active"><a n:href="handler:handler_profile_home" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Home'}</a></li>
-                        <li><a n:href="handler:handler_handling_breed_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Breeds for handling'}</a></li>
-                        <li><a n:href="handler:handler_awards_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Awards'}</a></li>
-                        <li><a n:href="handler:handler_certificates_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Certificates'}</a></li>
-                        <li><a n:href="handler:handler_show_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Show results'}</a></li>
+                        <li class="active"><a n:href="handler:handler_profile_home id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Home'}</a></li>
+                        <li><a n:href="handler:handler_handling_breed_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Breeds for handling'}</a></li>
+                        <li><a n:href="handler:handler_awards_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Awards'}</a></li>
+                        <li><a n:href="handler:handler_certificates_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Certificates'}</a></li>
+                        <li><a n:href="handler:handler_show_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Show results'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Videos'}</a></li>
-                        <li><a n:href="handler:handler_friends_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Friends'}</a></li>
-                        <li><a n:href="handler:handler_followers_list" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Followers'}</a></li>
+<!--                        <li><a n:href="handler:handler_friends_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Friends'}</a></li>
+                        <li><a n:href="handler:handler_followers_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Followers'}</a></li>-->
                     </ul>
                 </div>
             </div>

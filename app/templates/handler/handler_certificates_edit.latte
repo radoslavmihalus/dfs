@@ -1,3 +1,4 @@
+{layout '../@forms_layout.latte'}
 {block content}
 {includeblock '../components/textbox_control.latte'}
 {includeblock '../components/image_UploadPicture_control.latte'}
@@ -7,11 +8,11 @@
         {form formEditCertificate}
             <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-list-alt"></i>&nbsp;&nbsp;{_ 'Edit certificate'}</h2>
             <hr>
-            {include dropdown_DatePicker_control, _form => $form, description => "Date certificate passed", placeholder => "Please select", id => "ddlDate", name => "ddlDate", tooltip=>"Select date certificate was obtained"}
-            {include textbox_control, _form => $form, description => "Name of the certificate", placeholder => "Name of the certificate", id => "txtCertificateName", name => "txtCertificateName", tooltip=>"Name of the certificate"}
-            {include image_UploadPicture_control, _form => $form, description => "Picture", placeholder => "Select picture", id => "txtCertificatePicture", name => "txtCertificatePicture", tooltip=>"Picture of certificate in jpeg or jpg format"}
+            {include dropdown_DatePicker_control, _form => $_form, description => "Date certificate passed", placeholder => "Please select", id => "ddlDate", name => "ddlDate", tooltip=>"Select date certificate was obtained"}
+            {include textbox_control, _form => $_form, description => "Name of the certificate", placeholder => "Name of the certificate", id => "txtCertificateName", name => "txtCertificateName", tooltip=>"Name of the certificate"}
+            {include image_UploadPicture_control, _form => $_form, description => "Picture", placeholder => "Select picture", id => "txtCertificatePicture", name => "txtCertificatePicture", tooltip=>"Picture of certificate in jpeg or jpg format"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
-            <button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>
+            <!--<button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>-->
         {/form}
     </div>
 </div>  

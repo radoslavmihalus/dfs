@@ -432,11 +432,13 @@ class DataModel {
 	 * 
 	 * 1 - create profile
 	 * 2 - update profile
-	 * 3 - kennel change profile image
-	 * 4 - kennel change cover image
-	 * 5 - kennel add award
-	 * 6 - kennel update award
+	 * 3 - change profile image
+	 * 4 - change cover image
+	 * 5 - add award
+	 * 6 - update award
 	 * 7 - planned litter
+	 * 8 - add certificate
+	 * 9 - update certificate
 	 * 
 	 */
 	$data = array();
