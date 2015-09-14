@@ -2,6 +2,7 @@
 {block content}
 {includeblock '../components/textbox_control.latte'}
 {includeblock '../components/dropdown_CountryList_control.latte'}
+{includeblock '../components/dropdown_Language_control.latte'}
 {includeblock '../components/dropdown_YearPicker_control.latte'}
 {includeblock '../components/textbox_Password_control.latte'}
 <div class="col-lg-8">
@@ -23,6 +24,7 @@
                             {include textbox_control, _form => $_form, description => "Surname", placeholder => "Surname", id => "txtSurname", name => "txtSurname", tooltip => "Your surname without numeric signs"}
                             {include textbox_control, _form => $_form, eye=> "1", description => "Email", placeholder => "Email", id => "txtEmail", name => "txtEmail", tooltip => "Your email"}
                             {include dropdown_CountryList_control, _form => $_form, description => "Country", placeholder => "Please select", id => "ddlCountries", name => "ddlCountries", tooltip => "Country where you live"}
+                            {include dropdown_Language_control, _form => $_form, description => "Language", placeholder => "Please select", id => "ddlLanguage", name => "ddlLanguage", tooltip => "Language for current user"}
                             <span class="form-secondary-description text-uppercase" style="display:block;margin-top:30px;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Additional account informations'}</span>
                             <span style="font-size: 13px;display:block;"><i style="color:#c12e2a;font-size:18px;" class="fa fa-eye-slash"></i> {_ 'Informations marked with this sign will not be accessible to the public or exploited for commercial use by third parties'}</span>
                             <hr>

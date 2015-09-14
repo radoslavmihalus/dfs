@@ -61,6 +61,10 @@
         <link rel="stylesheet" href="www/css/image-gallery/css/bootstrap-image-gallery.min.css">
         <script src="www/js/image-gallery/bootstrap-image-gallery.min.js" type="text/javascript"></script>   
         <script src="www/js/live-form-validation.js" type="text/javascript"></script>
+
+	<!-- bootstrap select -->
+	<link rel="stylesheet" href="www/css/bootstrap-select.min.css">
+	<script type="text/javascript" src="www/js/bootstrap-select.min.js"></script>
     </head>
 
     <body role="document" data-spy="scroll" data-target=".navbar" data-offset="12">
@@ -95,13 +99,32 @@
                     <a class="navbar-brand logotyp" id="logo" href="#">
                         <img alt="Brand" style="width:150px;" src="www/img/logo.png">
                     </a>
-                    <div class="btn-group dropdown" style="float:left;margin-top: 20px;">
-                        <a class="btn btn-default dropdown-toggle" type="button" id="Lang" data-toggle="dropdown">EN &nbsp;<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="Lang" style="min-width:50px;">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">EN</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">SK</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CZ</a></li>
-                        </ul>
+                    <div id="ddlLang" class="btn-group dropdown" style="float:left;margin-top: 20px">
+			<select class="selectpicker">
+			    <option value="en" {if $lang=="en"}selected{/if}>EN</option>
+			    <option value="sk" {if $lang=="sk"}selected{/if}>SK</option>
+			    <option value="cz" {if $lang=="cz"}selected{/if}>CZ</option>
+			    <option value="hu" {if $lang=="hu"}selected{/if}>HU</option>
+			</select>
+			<!--                        <a class="btn btn-default dropdown-toggle" type="button" id="Lang" data-toggle="dropdown">EN &nbsp;<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="Lang" style="min-width:50px;">
+						    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">EN</a></li>
+						    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">SK</a></li>
+						    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CZ</a></li>
+						</ul>-->
+
+			<script type="text/javascript">
+			    $("#ddlLang").on("change", function () {
+				var val = $("#ddlLang option:selected").text();
+
+				$.ajax({
+				    url: '/?do=changeLang&lang=' + val,
+				    dataType: 'html',
+				}).done(function (data) {
+				    window.location.href = document.location.href;
+				});
+			    });
+			</script>
                     </div>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -292,7 +315,7 @@
 				 $("#region_div").html(" ");
 				 drawRegionsMap();
 				 };*/
-                            </script>
+			    </script>
                         </div>
                     </div>
                 </div>
@@ -598,6 +621,10 @@
 		    ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
             </script>
         {/foreach}
+
+	<script type="text/javascript">
+
+	</script>
 
         <!--            <script type="text/javascript">
                         ShowMessageModal(enumNotificationType.confirmation, "Lol");

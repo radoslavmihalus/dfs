@@ -1,22 +1,30 @@
 {define #checkbox_ShowTitlesPuppy_control}
-<div class="form-group">
+<div class="form-group" id="div-{$name}">
     <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
         <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description}</span>
         <div class="checkbox">
             <label style="font-size: 13px;">
-                <input type="checkbox" id="{$id}" n:name="{$name}:BestPuppy1" value="BestPuppy1">Best puppy male & female 1
+                <input type="checkbox" class="{$id}" id="{$id}" n:name="{$name}:BestPuppy1" value="BestPuppy1">Best puppy male & female 1
             </label>
         </div>
         <div class="checkbox">
             <label style="font-size: 13px;">
-                <input type="checkbox" id="{$id}" n:name="{$name}:BestPuppy2" value="BestPuppy2">Best puppy male & female 2
+                <input type="checkbox" class="{$id}" id="{$id}" n:name="{$name}:BestPuppy2" value="BestPuppy2">Best puppy male & female 2
             </label>
         </div>
         <div class="checkbox">
             <label style="font-size: 13px;">
-                <input type="checkbox" id="{$id}" n:name="{$name}:BestPuppy3" value="BestPuppy3">Best puppy male & female 3
+                <input type="checkbox" class="{$id}" id="{$id}" n:name="{$name}:BestPuppy3" value="BestPuppy3">Best puppy male & female 3
             </label>
         </div>
     </div>
+    <script type="text/javascript">
+	$(function () {
+	    $("input:checkbox." + {$id}).click(function () {
+		$("input:checkbox." + {$id}).not($(this)).removeAttr("checked");
+		$(this).attr("checked", $(this).attr("checked"));
+	    });
+	});
+    </script>
 </div>
 {/define}

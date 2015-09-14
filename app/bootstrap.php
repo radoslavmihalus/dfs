@@ -18,8 +18,8 @@ error_reporting(E_ERROR);
 // Enable RobotLoader - this will load all classes automatically
 $configurator->setTempDirectory(__DIR__ . '/../temp');
 $configurator->createRobotLoader()
-        ->addDirectory(__DIR__)
-        ->register();
+	->addDirectory(__DIR__)
+	->register();
 
 // Create Dependency Injection container from config.neon file
 $configurator->addConfig(__DIR__ . '/config.neon');
@@ -28,6 +28,8 @@ $container = $configurator->createContainer();
 
 // Setup router using mod_rewrite detection
 $router = $container->getService('router');
+
+//Nette\Environment::getSession()->setExpiration("+ 365 days");
 
 // routy
 $router[] = new Route('index.php', 'LandingPage:default');

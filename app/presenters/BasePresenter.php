@@ -67,8 +67,19 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
     protected function startup() {
 	parent::startup();
+
 	$this->translator = new DFSTranslator();
+
+	try {
+	    $mysection = $this->getSession('language');
+
+	    $this->translator->lang = $mysection->lang;
+	} catch (\Exception $ex) {
+	    $this->translator->lang = "en";
+	}
+
 	$this->template->setTranslator($this->translator);
+	$this->template->lang = $this->translator->lang;
 
 	try {
 	    $mysection = $this->getSession('userdata');
@@ -76,6 +87,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 	    $this->logged_in_id = $myid;
 	    $this->current_user_id = $myid;
 	    $userdata = $this->database->table("tbl_user")->where("id = ?", $myid)->fetch();
+	    $mysection->lang = $userdata->lang;
+
+
+	    if (strlen($mysection->lang) < 2)
+		$mysection->lang = "en";
+
+	    $this->translator->lang = $mysection->lang;
 
 	    $profile_table = "";
 	    $profile_id = 0;
@@ -122,6 +140,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 	    $this->template->profile_type = $profile_type_description;
 	    $this->template->profile_type_icon = $profile_type_icon; //handler - glyphicons glyphicons-shirt ... owner - fa fa-user
 	    $this->template->logged_in_id = $myid;
+	    $this->template->lang = $mysection->lang;
+
 
 	    $this->template->profile_type_id = $userdata->active_profile_type;
 	    $this->template->profile_id = $profile_id;
@@ -291,6 +311,15 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 	return $form;
     }
 
+    public function handleChangeLang($lang) {
+	$mysection = $this->getSession('language');
+
+	$lang = strtolower($lang);
+
+	$mysection->lang = $lang;
+	$this->terminate();
+    }
+
     public function handleLike($timeline_id) {
 	$count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
 
@@ -440,6 +469,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 	    $user_section->name = $row->name;
 	    $user_section->surname = $row->surname;
 	    $user_section->id = $row->id;
+	    $user_section->lang = $row->lang;
 	    $activated = $row->active;
 	}
 
@@ -689,8 +719,10 @@ class DFSTranslator implements Nette\Localization\ITranslator {
      * @return string
      */
     private $database;
+    public $lang;
 
     public function __construct() { //Nette\Database\Context $database) {
+	$this->lang = "en";
 	$this->database = getContext();
     }
 
@@ -705,14 +737,31 @@ class DFSTranslator implements Nette\Localization\ITranslator {
 	    $id = 0;
 
 	    foreach ($rows as $row) {
+
 		$id = $row->id;
-		$message = $row->translated_text;
+		switch ($this->lang) {
+		    case "en":
+			$message = $row->translated_text_en;
+			break;
+		    case "cz":
+			$message = $row->translated_text_cz;
+			break;
+		    case "sk":
+			$message = $row->translated_text_sk;
+			break;
+		    case "hu":
+			$message = $row->translated_text_hu;
+			break;
+		}
 	    }
 
 	    if ($id == 0) {
 		$values = array();
 		$values["text_to_translate"] = $message;
-		$values["translated_text"] = $message;
+		$values["translated_text_en"] = $message;
+		$values["translated_text_cz"] = $message;
+		$values["translated_text_sk"] = $message;
+		$values["translated_text_hu"] = $message;
 		$values["lang"] = "en";
 		$values["url"] = $actual_link;
 		$this->database->table("tbl_translate")->insert($values);

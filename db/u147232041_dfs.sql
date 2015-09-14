@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 05, 2015 at 04:01 PM
+-- Generation Time: Sep 14, 2015 at 09:59 AM
 -- Server version: 5.5.44-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.11
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `forms` (
   `table_name` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `form_name_UNIQUE` (`form_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `forms`
@@ -62,7 +62,9 @@ INSERT INTO `forms` (`id`, `form_name`, `table_name`) VALUES
 (20, 'frmDogAddHealth', 'tbl_dogs_health'),
 (21, 'frmDogAddMating', 'tbl_dogs_matings'),
 (22, 'frmDogAddWorkexam', 'tbl_dogs_workexams'),
-(23, 'frmPlannedLitter', 'tbl_planned_litters');
+(23, 'frmPlannedLitter', 'tbl_planned_litters'),
+(24, 'frmCreateHandlerProfile', 'tbl_userhandler'),
+(25, 'frmHandlerEditProfile', 'tbl_userhandler');
 
 -- --------------------------------------------------------
 
@@ -77,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `form_fields` (
   `element_name` varchar(150) DEFAULT NULL,
   `field_name` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=91 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=95 ;
 
 --
 -- Dumping data for table `form_fields`
@@ -173,7 +175,11 @@ INSERT INTO `form_fields` (`id`, `form_name`, `element_name`, `field_name`) VALU
 (87, 'frmPlannedLitter', 'ddlPlannedLitterBitchName', 'bitch_name'),
 (88, 'frmPlannedLitter', 'txtPlannedLitterDogProfilePhoto', 'dog_image'),
 (89, 'frmPlannedLitter', 'txtPlannedLitterBitchProfilePhoto', 'bitch_image'),
-(90, 'frmPlannedLitter', 'kennel_id', 'kennel_id');
+(90, 'frmPlannedLitter', 'kennel_id', 'kennel_id'),
+(91, 'frmCreateHandlerProfile', 'txtHandlerProfilePhoto', 'handler_profile_picture'),
+(92, 'frmCreateHandlerProfile', 'txtHandlerDescritpion', 'handler_description'),
+(93, 'frmHandlerEditProfile', 'txtHandlerDescription', 'handler_description'),
+(94, 'frmEditUser', 'ddlLanguage', 'lang');
 
 -- --------------------------------------------------------
 
@@ -203,7 +209,19 @@ CREATE TABLE IF NOT EXISTS `link_kennel_breed` (
   `kennel_id` bigint(20) NOT NULL,
   `breed_name` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `link_kennel_breed`
+--
+
+INSERT INTO `link_kennel_breed` (`id`, `kennel_id`, `breed_name`) VALUES
+(1, 200000000, 'Labrador Retriever'),
+(2, 200000001, 'Labrador Retriever'),
+(3, 200000002, 'Labrador Retriever'),
+(6, 1, 'Labrador Retriever'),
+(7, 400000000, 'Labrador Retriever'),
+(8, 400000000, 'Golden Retriever');
 
 -- --------------------------------------------------------
 
@@ -948,7 +966,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dogs_championship` (
   `description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1000000000 ;
 
 -- --------------------------------------------------------
 
@@ -963,7 +981,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dogs_coowners` (
   `coowner_name` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `coowner_state` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1100000000 ;
 
 -- --------------------------------------------------------
 
@@ -979,7 +997,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dogs_health` (
   `description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1200000000 ;
 
 -- --------------------------------------------------------
 
@@ -995,7 +1013,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dogs_matings` (
   `description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1400000000 ;
 
 -- --------------------------------------------------------
 
@@ -1006,20 +1024,57 @@ CREATE TABLE IF NOT EXISTS `tbl_dogs_matings` (
 DROP TABLE IF EXISTS `tbl_dogs_shows`;
 CREATE TABLE IF NOT EXISTS `tbl_dogs_shows` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `dog_id` bigint(20) DEFAULT NULL,
-  `date_of_show` date DEFAULT NULL,
-  `type_of_show` varchar(250) DEFAULT NULL,
-  `name_of_show` varchar(250) DEFAULT NULL,
-  `country` varchar(250) DEFAULT NULL,
-  `name_of_judge` varchar(250) DEFAULT NULL,
-  `name_of_handler` varchar(250) DEFAULT NULL,
-  `class_of_show` varchar(250) DEFAULT NULL,
-  `assesment` varchar(250) DEFAULT NULL,
-  `titles` mediumtext,
-  `other_titles` mediumtext,
-  `image` varchar(250) DEFAULT NULL,
+  `dog_id` bigint(20) NOT NULL,
+  `show_name` varchar(250) NOT NULL,
+  `show_type` varchar(250) NOT NULL,
+  `show_country` varchar(250) NOT NULL,
+  `handler_name` varchar(250) NOT NULL,
+  `judge_name` varchar(250) NOT NULL,
+  `show_class` varchar(100) NOT NULL,
+  `VP1` int(11) NOT NULL,
+  `VP2` int(11) NOT NULL,
+  `VP3` int(11) NOT NULL,
+  `VP` int(11) NOT NULL,
+  `BestMinorPuppy1` int(11) NOT NULL,
+  `BestMinorPuppy2` int(11) NOT NULL,
+  `BestMinorPuppy3` int(11) NOT NULL,
+  `BestPuppy1` int(11) NOT NULL,
+  `BestPuppy2` int(11) NOT NULL,
+  `BestPuppy3` int(11) NOT NULL,
+  `EXC1` int(11) NOT NULL,
+  `EXC2` int(11) NOT NULL,
+  `EXC3` int(11) NOT NULL,
+  `EXC4` int(11) NOT NULL,
+  `VG1` int(11) NOT NULL,
+  `VG2` int(11) NOT NULL,
+  `VG3` int(11) NOT NULL,
+  `VG4` int(11) NOT NULL,
+  `CAJC` int(11) NOT NULL,
+  `JBOB` int(11) NOT NULL,
+  `BOB` int(11) NOT NULL,
+  `BOS` int(11) NOT NULL,
+  `JBOG1` int(11) NOT NULL,
+  `JBOG2` int(11) NOT NULL,
+  `JBOG3` int(11) NOT NULL,
+  `JBIS1` int(11) NOT NULL,
+  `JBIS2` int(11) NOT NULL,
+  `JBIS3` int(11) NOT NULL,
+  `BOG1` int(11) NOT NULL,
+  `BOG2` int(11) NOT NULL,
+  `BOG3` int(11) NOT NULL,
+  `BIS1` int(11) NOT NULL,
+  `BIS2` int(11) NOT NULL,
+  `BIS3` int(11) NOT NULL,
+  `CAC` int(11) NOT NULL,
+  `RESCAC` int(11) NOT NULL,
+  `CACIB` int(11) NOT NULL,
+  `RESCACIB` int(11) NOT NULL,
+  `other_title` text NOT NULL,
+  `show_image` varchar(250) NOT NULL,
+  `show_date` date NOT NULL,
+  `show_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=800000000 ;
 
 -- --------------------------------------------------------
 
@@ -1035,7 +1090,7 @@ CREATE TABLE IF NOT EXISTS `tbl_dogs_workexams` (
   `description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1600000000 ;
 
 -- --------------------------------------------------------
 
@@ -1069,18 +1124,18 @@ INSERT INTO `tbl_fci_groups` (`ID`, `FCIName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_handlers_awards`
+-- Table structure for table `tbl_handler_awards`
 --
 
-DROP TABLE IF EXISTS `tbl_handlers_awards`;
-CREATE TABLE IF NOT EXISTS `tbl_handlers_awards` (
+DROP TABLE IF EXISTS `tbl_handler_awards`;
+CREATE TABLE IF NOT EXISTS `tbl_handler_awards` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `handler_id` bigint(20) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1800000000 ;
 
 -- --------------------------------------------------------
 
@@ -1091,10 +1146,10 @@ CREATE TABLE IF NOT EXISTS `tbl_handlers_awards` (
 DROP TABLE IF EXISTS `tbl_handler_breed`;
 CREATE TABLE IF NOT EXISTS `tbl_handler_breed` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `kennel_id` bigint(20) NOT NULL,
+  `handler_id` bigint(20) NOT NULL,
   `breed_name` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2000000000 ;
 
 -- --------------------------------------------------------
 
@@ -1110,7 +1165,84 @@ CREATE TABLE IF NOT EXISTS `tbl_handler_certificates` (
   `description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2200000000 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_handler_shows`
+--
+
+DROP TABLE IF EXISTS `tbl_handler_shows`;
+CREATE TABLE IF NOT EXISTS `tbl_handler_shows` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `handler_id` bigint(20) NOT NULL,
+  `show_id` bigint(20) NOT NULL COMMENT 'for handler shows',
+  `dog_name` varchar(250) NOT NULL,
+  `judge_name` varchar(250) NOT NULL,
+  `show_class` varchar(100) NOT NULL,
+  `VP1` int(11) NOT NULL,
+  `VP2` int(11) NOT NULL,
+  `VP3` int(11) NOT NULL,
+  `VP` int(11) NOT NULL,
+  `BestMinorPuppy1` int(11) NOT NULL,
+  `BestMinorPuppy2` int(11) NOT NULL,
+  `BestMinorPuppy3` int(11) NOT NULL,
+  `BestPuppy1` int(11) NOT NULL,
+  `BestPuppy2` int(11) NOT NULL,
+  `BestPuppy3` int(11) NOT NULL,
+  `EXC1` int(11) NOT NULL,
+  `EXC2` int(11) NOT NULL,
+  `EXC3` int(11) NOT NULL,
+  `EXC4` int(11) NOT NULL,
+  `VG1` int(11) NOT NULL,
+  `VG2` int(11) NOT NULL,
+  `VG3` int(11) NOT NULL,
+  `VG4` int(11) NOT NULL,
+  `CAJC` int(11) NOT NULL,
+  `JBOB` int(11) NOT NULL,
+  `BOB` int(11) NOT NULL,
+  `BOS` int(11) NOT NULL,
+  `JBOG1` int(11) NOT NULL,
+  `JBOG2` int(11) NOT NULL,
+  `JBOG3` int(11) NOT NULL,
+  `JBIS1` int(11) NOT NULL,
+  `JBIS2` int(11) NOT NULL,
+  `JBIS3` int(11) NOT NULL,
+  `BOG1` int(11) NOT NULL,
+  `BOG2` int(11) NOT NULL,
+  `BOG3` int(11) NOT NULL,
+  `BIS1` int(11) NOT NULL,
+  `BIS2` int(11) NOT NULL,
+  `BIS3` int(11) NOT NULL,
+  `CAC` int(11) NOT NULL,
+  `RESCAC` int(11) NOT NULL,
+  `CACIB` int(11) NOT NULL,
+  `RESCACIB` int(11) NOT NULL,
+  `other_title` text NOT NULL,
+  `show_image` varchar(250) NOT NULL,
+  `show_date` date NOT NULL,
+  `show_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2400000000 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_handler_show_groups`
+--
+
+DROP TABLE IF EXISTS `tbl_handler_show_groups`;
+CREATE TABLE IF NOT EXISTS `tbl_handler_show_groups` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `handler_id` bigint(20) NOT NULL,
+  `show_date` date NOT NULL,
+  `show_name` varchar(250) NOT NULL,
+  `show_type` varchar(250) NOT NULL,
+  `show_country` varchar(250) NOT NULL,
+  `create_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2600000000 ;
 
 -- --------------------------------------------------------
 
@@ -1127,7 +1259,7 @@ CREATE TABLE IF NOT EXISTS `tbl_likes` (
   `like_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `timeline_id` (`timeline_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1169,14 +1301,7 @@ CREATE TABLE IF NOT EXISTS `tbl_notify` (
   `notify_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `unreaded` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `tbl_notify`
---
-
-INSERT INTO `tbl_notify` (`id`, `notify_user_id`, `notify_profile_id`, `user_id`, `profile_id`, `timeline_id`, `comment`, `type`, `notify_datetime`, `unreaded`) VALUES
-(1, 100000000, 200000000, 100000000, 200000000, 2, 'lololo', 'comment', '2015-08-29 21:15:19', 0);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1192,7 +1317,24 @@ CREATE TABLE IF NOT EXISTS `tbl_pedigree` (
   `mother_name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dog_name` (`dog_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_photos`
+--
+
+DROP TABLE IF EXISTS `tbl_photos`;
+CREATE TABLE IF NOT EXISTS `tbl_photos` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
+  `profile_id` bigint(20) NOT NULL,
+  `image` varchar(250) NOT NULL,
+  `description` mediumtext NOT NULL,
+  `added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2800000000 ;
 
 -- --------------------------------------------------------
 
@@ -1263,538 +1405,581 @@ DROP TABLE IF EXISTS `tbl_translate`;
 CREATE TABLE IF NOT EXISTS `tbl_translate` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `text_to_translate` mediumtext COLLATE utf8_unicode_ci,
-  `translated_text` mediumtext COLLATE utf8_unicode_ci,
+  `translated_text_de` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `translated_text_en` mediumtext COLLATE utf8_unicode_ci,
+  `translated_text_hu` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `translated_text_cz` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `translated_text_sk` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `lang` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
   `url` mediumtext COLLATE utf8_unicode_ci,
   `uri` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_uri` (`text_to_translate`(300))
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=519 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=557 ;
 
 --
 -- Dumping data for table `tbl_translate`
 --
 
-INSERT INTO `tbl_translate` (`id`, `text_to_translate`, `translated_text`, `lang`, `url`, `uri`) VALUES
-(1, 'Registration', 'Registration', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(2, 'About DOGFORSHOW', 'About DOGFORSHOW', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(3, 'Contact', 'Contact', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(4, 'We support breeding of happy and healthy dogs with pedigree', 'We support breeding of happy and healthy dogs with pedigree', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(5, 'Login', 'Login', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(6, 'Afghanistan', 'Afghanistan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(7, 'Albania', 'Albania', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(8, 'Algeria', 'Algeria', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(9, 'Andorra', 'Andorra', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(10, 'Argentina', 'Argentina', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(11, 'Armenia', 'Armenia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(12, 'Australia', 'Australia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(13, 'Austria', 'Austria', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(14, 'Azerbaidjan', 'Azerbaidjan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(15, 'Bahrain', 'Bahrain', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(16, 'Bangladesh', 'Bangladesh', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(17, 'Belarus', 'Belarus', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(18, 'Belgium', 'Belgium', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(19, 'Bolivia', 'Bolivia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(20, 'Bosnia-Herzegovina', 'Bosnia-Herzegovina', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(21, 'Brazil', 'Brazil', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(22, 'Bulgaria', 'Bulgaria', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(23, 'Canada', 'Canada', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(24, 'Colombia', 'Colombia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(25, 'Costa Rica', 'Costa Rica', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(26, 'Croatia', 'Croatia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(27, 'Cuba', 'Cuba', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(28, 'Cyprus', 'Cyprus', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(29, 'Czech Republic', 'Czech Republic', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(30, 'Denmark', 'Denmark', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(31, 'Dominican Republic', 'Dominican Republic', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(32, 'Ecuador', 'Ecuador', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(33, 'Egypt', 'Egypt', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(34, 'El Salvador', 'El Salvador', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(35, 'Estonia', 'Estonia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(36, 'Ethiopia', 'Ethiopia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(37, 'Faroe Islands', 'Faroe Islands', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(38, 'Finland', 'Finland', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(39, 'France', 'France', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(40, 'Georgia', 'Georgia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(41, 'Germany', 'Germany', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(42, 'Ghana', 'Ghana', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(43, 'Gibraltar', 'Gibraltar', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(44, 'Great Britain', 'Great Britain', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(45, 'Greece', 'Greece', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(46, 'Guatemala', 'Guatemala', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(47, 'Honduras', 'Honduras', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(48, 'Hungary', 'Hungary', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(49, 'Chad', 'Chad', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(50, 'Chile', 'Chile', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(51, 'China', 'China', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(52, 'Iceland', 'Iceland', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(53, 'India', 'India', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(54, 'Indonesia', 'Indonesia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(55, 'Iran', 'Iran', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(56, 'Iraq', 'Iraq', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(57, 'Ireland', 'Ireland', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(58, 'Israel', 'Israel', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(59, 'Italy', 'Italy', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(60, 'Japan', 'Japan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(61, 'Jordan', 'Jordan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(62, 'Kazakhstan', 'Kazakhstan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(63, 'Kenya', 'Kenya', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(64, 'Kuwait', 'Kuwait', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(65, 'Latvia', 'Latvia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(66, 'Lebanon', 'Lebanon', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(67, 'Libya', 'Libya', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(68, 'Liechtenstein', 'Liechtenstein', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(69, 'Lithuania', 'Lithuania', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(70, 'Luxembourg', 'Luxembourg', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(71, 'Macedonia', 'Macedonia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(72, 'Madagascar', 'Madagascar', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(73, 'Malaysia', 'Malaysia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(74, 'Malta', 'Malta', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(75, 'Marshall Islands', 'Marshall Islands', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(76, 'Mexico', 'Mexico', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(77, 'Moldova', 'Moldova', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(78, 'Monaco', 'Monaco', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(79, 'Morocco', 'Morocco', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(80, 'Nepal', 'Nepal', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(81, 'Netherlands', 'Netherlands', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(82, 'New Zealand', 'New Zealand', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(83, 'Nicaragua', 'Nicaragua', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(84, 'Nigeria', 'Nigeria', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(85, 'Norway', 'Norway', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(86, 'Oman', 'Oman', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(87, 'Pakistan', 'Pakistan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(88, 'Panama', 'Panama', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(89, 'Paraguay', 'Paraguay', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(90, 'Peru', 'Peru', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(91, 'Philippines', 'Philippines', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(92, 'Poland', 'Poland', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(93, 'Portugal', 'Portugal', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(94, 'Puerto Rico', 'Puerto Rico', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(95, 'Qatar', 'Qatar', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(96, 'Republic of Kore', 'Republic of Kore', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(97, 'Republic of Montenegro', 'Republic of Montenegro', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(98, 'Romania', 'Romania', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(99, 'Russia', 'Russia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(100, 'San Marino', 'San Marino', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(101, 'Saudi Arabia', 'Saudi Arabia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(102, 'Serbia', 'Serbia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(103, 'Seychelles', 'Seychelles', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(104, 'Singapore', 'Singapore', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(105, 'Slovakia', 'Slovakia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(106, 'Slovenia', 'Slovenia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(107, 'South Africa', 'South Africa', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(108, 'Spain', 'Spain', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(109, 'Sri Lanka', 'Sri Lanka', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(110, 'Sweden', 'Sweden', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(111, 'Switzerland', 'Switzerland', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(112, 'Syria', 'Syria', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(113, 'Taiwan', 'Taiwan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(114, 'Thailand', 'Thailand', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(115, 'Tunisia', 'Tunisia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(116, 'Turkey', 'Turkey', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(117, 'Uganda', 'Uganda', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(118, 'Ukraine', 'Ukraine', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(119, 'United Arab Emirates', 'United Arab Emirates', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(120, 'Uruguay', 'Uruguay', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(121, 'USA', 'USA', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(122, 'Uzbekistan', 'Uzbekistan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(123, 'Venezuela', 'Venezuela', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(124, 'Vietnam', 'Vietnam', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(125, 'Name', 'Name', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(126, 'Surname', 'Surname', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(127, 'Email', 'Email', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(128, 'Password', 'Password', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(129, 'Confirm password', 'Confirm password', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(130, 'Register', 'Register', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(131, 'Forgot your password', 'Forgot your password', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(132, 'Your email', 'Your email', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(133, 'Send', 'Send', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(134, 'Remember me', 'Remember me', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(135, 'Forgot password', 'Forgot password', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(136, 'International social network dedicated to owners of dogs with pedigree, kennels and handlers, which help them to present themselves, communicate with each other and motivate each other. Forget about the classic advertising portals and join to the fast growing community from all over the world.', 'International social network dedicated to owners of dogs with pedigree, kennels and handlers, which help them to present themselves, communicate with each other and motivate each other. Forget about the classic advertising portals and join to the fast growing community from all over the world.', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(137, 'Kennels', 'Kennels', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(138, 'Owners', 'Owners', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(139, 'Handlers', 'Handlers', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(140, 'Dogs with pedigree', 'Dogs with pedigree', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(141, 'Puppies for sale', 'Puppies for sale', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(142, 'Planned litters', 'Planned litters', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(143, 'Stud dogs', 'Stud dogs', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(144, 'Best in show', 'Best in show', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(145, 'Follow with us how we are growing', 'Follow with us how we are growing', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(146, 'Present internationally on the right place', 'Present internationally on the right place', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(147, 'Possibility to create your own kennel, owners and handlers profile', 'Possibility to create your own kennel, owners and handlers profile', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(148, 'Create unique profiles of your dogs with possibility to offer your dog at stud', 'Create unique profiles of your dogs with possibility to offer your dog at stud', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(149, 'Add dogshow successes, awards, titles, working exams, health informations, photos and videos', 'Add dogshow successes, awards, titles, working exams, health informations, photos and videos', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(150, 'Inform about planned litters and offer puppies for sale', 'Inform about planned litters and offer puppies for sale', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(151, 'Create friendships and communicate with each other', 'Create friendships and communicate with each other', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(152, 'Take opportunity to be contacted by potential buyers from all over the world', 'Take opportunity to be contacted by potential buyers from all over the world', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(153, 'Contact us', 'Contact us', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(154, 'Please contact us via the contact form below if you have any questions, issues or if you are interested in advertising on the DOGFORSHOW', 'Please contact us via the contact form below if you have any questions, issues or if you are interested in advertising on the DOGFORSHOW', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(155, 'Message', 'Message', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(156, 'Verify', 'Verify', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(157, 'Follow us', 'Follow us', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(158, 'DOGFORSHOW on facebook', 'DOGFORSHOW on facebook', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(159, 'DOGFORSHOW on Google+', 'DOGFORSHOW on Google+', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(160, 'DOGFORSHOW on Twitter', 'DOGFORSHOW on Twitter', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(161, 'DOGFORSHOW on Pinterest', 'DOGFORSHOW on Pinterest', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(162, 'DOGFORSHOW on Tumblr', 'DOGFORSHOW on Tumblr', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(163, 'Friend requests', 'Friend requests', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(164, 'send you a friend request', 'send you a friend request', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(165, 'View all', 'View all', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(166, 'Messages', 'Messages', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(167, 'Notifications', 'Notifications', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(168, 'comment your post', 'comment your post', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(169, 'like your post', 'like your post', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(170, 'User account', 'User account', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(171, 'Account settings', 'Account settings', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(172, 'Delete account', 'Delete account', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(173, 'Logout', 'Logout', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(174, 'Kennel', 'Kennel', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(175, 'Profile settings', 'Profile settings', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(176, 'Switch profile', 'Switch profile', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(177, 'Edit profile', 'Edit profile', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(178, 'Delete profile', 'Delete profile', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(179, 'My Profile', 'My Profile', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(180, 'Home', 'Home', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(181, 'Awards', 'Awards', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(182, 'Dogs', 'Dogs', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(183, 'Photos', 'Photos', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(184, 'Videos', 'Videos', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(185, 'Friends', 'Friends', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(186, 'Followers', 'Followers', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(187, 'Breeds for handling', 'Breeds for handling', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(188, 'Certificates', 'Certificates', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(189, 'Show results', 'Show results', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(190, 'About us', 'About us', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(191, 'Terms & conditions', 'Terms & conditions', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(192, 'Return policy', 'Return policy', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(193, 'Lists', 'Lists', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(194, 'Owners of purebred dogs', 'Owners of purebred dogs', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(195, 'Dogs for mating', 'Dogs for mating', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(196, 'Active profile', 'Active profile', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(197, 'Create a clear profile of your kennel', 'Create a clear profile of your kennel', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(198, 'Create unique profiles of your dogs', 'Create unique profiles of your dogs', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(199, 'Offer your dogs at stud', 'Offer your dogs at stud', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(200, 'Inform about planned litters', 'Inform about planned litters', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(201, 'Offer puppies for sale from planned litters', 'Offer puppies for sale from planned litters', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(202, 'Add awards and titles of your dogs', 'Add awards and titles of your dogs', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(203, 'Add dogshow successes and keep show history of your dog in one place', 'Add dogshow successes and keep show history of your dog in one place', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(204, 'Add working exams and health informations', 'Add working exams and health informations', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(205, 'Add pedigrees', 'Add pedigrees', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(206, 'Add photos of your dogs', 'Add photos of your dogs', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(207, 'Share your succeses on social networks', 'Share your succeses on social networks', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(208, 'Communicate with other members of DOGFORSHOW', 'Communicate with other members of DOGFORSHOW', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(209, 'Owner of purebred dog', 'Owner of purebred dog', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(210, 'Create profile', 'Create profile', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(211, 'Create a clear owner profile', 'Create a clear owner profile', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(212, 'Possibility to migrate on kennel profile', 'Possibility to migrate on kennel profile', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(213, 'Handler', 'Handler', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(214, 'Create a clear handler profile', 'Create a clear handler profile', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(215, 'Add awards and certificates', 'Add awards and certificates', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(216, 'Add your dogshow successes and titles', 'Add your dogshow successes and titles', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(217, 'Add breeds list for handling', 'Add breeds list for handling', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(218, 'Add photos', 'Add photos', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(219, 'Offer your handling services', 'Offer your handling services', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(220, 'Share successes via social networks', 'Share successes via social networks', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
-(221, 'Update cover photo', 'Update cover photo', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(222, 'Upload', 'Upload', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(223, 'Take picture', 'Take picture', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(224, 'Save Image', 'Save Image', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(225, 'New Snapshot', 'New Snapshot', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(226, 'Capture', 'Capture', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(227, 'Cancel', 'Cancel', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(228, 'Close', 'Close', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(229, 'Select profile image', 'Select profile image', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(230, 'We have puppies', 'We have puppies', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(231, 'Add friend', 'Add friend', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(232, 'Follow', 'Follow', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(233, 'FCI number', 'FCI number', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(234, 'Breeds bred by our kennel', 'Breeds bred by our kennel', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(235, 'Add', 'Add', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(236, 'There are currently no added records', 'There are currently no added records', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(237, 'Bitches', 'Bitches', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(238, 'Timeline events', 'Timeline events', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(239, 'Write a comment', 'Write a comment', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
-(240, 'Jednoduchosť, dostupnosť, prehľadnosť a krásna grafika portálu ma oslovila a pridala som na ňu svoju chovateľskú stanicu. Jej celkový dosah a návštevnosť na webe sú výbornou prezentáciou úspešných jedincov a vynikajúcou podporou pre skutočných chovateľov.', 'Jednoduchosť, dostupnosť, prehľadnosť a krásna grafika portálu ma oslovila a pridala som na ňu svoju chovateľskú stanicu. Jej celkový dosah a návštevnosť na webe sú výbornou prezentáciou úspešných jedincov a vynikajúcou podporou pre skutočných chovateľov.', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(241, 'Myslím že je to skvelý nápad vytvoriť rozsiahlu databázu chovateľov, ich chovných staníc, krycích psov a handlerov. Držím palce aby sa Vaša databáza aj naďalej rozrastala a aby o nej vedeli ľudia z celého sveta!', 'Myslím že je to skvelý nápad vytvoriť rozsiahlu databázu chovateľov, ich chovných staníc, krycích psov a handlerov. Držím palce aby sa Vaša databáza aj naďalej rozrastala a aby o nej vedeli ľudia z celého sveta!', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(242, 'Pekná a prehľadná stránka, user friendly s veľmi prijemným vizuálom. Teším sa z nej, pomôže mi mať prehľad v mojich absolvovaných vystavách ako aj odreprezentovať moje psy a chovnú stanicu.', 'Pekná a prehľadná stránka, user friendly s veľmi prijemným vizuálom. Teším sa z nej, pomôže mi mať prehľad v mojich absolvovaných vystavách ako aj odreprezentovať moje psy a chovnú stanicu.', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
-(243, 'Edit award', 'Edit award', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
-(244, 'Date of the award', 'Date of the award', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
-(245, 'Select date when award was obtained', 'Select date when award was obtained', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
-(246, 'Name of the award', 'Name of the award', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
-(247, 'Picture', 'Picture', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
-(248, 'Picture of award in jpeg or jpg format', 'Picture of award in jpeg or jpg format', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
-(249, 'Select picture', 'Select picture', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
-(250, 'Edit', 'Edit', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
-(251, 'Purebred dogs', 'Purebred dogs', 'en', 'http://dfs.fsofts.eu/list-of-dogs', NULL),
-(252, 'Share', 'Share', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(253, 'Breed', 'Breed', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(254, 'Gender', 'Gender', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(255, 'Date of birth', 'Date of birth', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(256, 'Pedigree registration number', 'Pedigree registration number', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(257, 'Height at the withers (cm)', 'Height at the withers (cm)', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(258, 'Weight (kg)', 'Weight (kg)', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(259, 'Country', 'Country', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(260, 'Father', 'Father', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(261, 'Mother', 'Mother', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(262, 'Championships', 'Championships', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(263, 'Working exams', 'Working exams', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(264, 'Health', 'Health', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(265, 'Pedigree', 'Pedigree', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(266, 'Matings', 'Matings', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(267, 'Coowners', 'Coowners', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(268, 'Championchips', 'Championchips', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
-(269, 'Remove from friends', 'Remove from friends', 'en', 'http://dfs.fsofts.eu/list-of-kennels', NULL),
-(270, 'Website', 'Website', 'en', 'http://dfs.fsofts.eu/kennel-profile?id=2', NULL),
-(271, 'Delete', 'Delete', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
-(272, 'Bitch', 'Bitch', 'en', 'http://dfs.fsofts.eu/dog-profile?id=1', NULL),
-(273, 'Class', 'Class', 'en', 'http://dfs.fsofts.eu/dog-show-list?id=1&dog_id=1', NULL),
-(274, 'Champion', 'Champion', 'en', 'http://dfs.fsofts.eu/dog-show-list?id=1&dog_id=1', NULL),
-(275, 'Judge', 'Judge', 'en', 'http://dfs.fsofts.eu/dog-show-list?id=1&dog_id=1', NULL),
-(276, 'This feature is unavailable to view on small screens', 'This feature is unavailable to view on small screens', 'en', 'http://dfs.fsofts.eu/dog-pedigree?id=1&dog_id=1', NULL),
-(277, 'Name of the father', 'Name of the father', 'en', 'http://dfs.fsofts.eu/dog-pedigree?id=1&dog_id=1', NULL),
-(278, 'Add championchip', 'Add championchip', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
-(279, 'Date of Championship award', 'Date of Championship award', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
-(280, 'Select date when the championship was awarded', 'Select date when the championship was awarded', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
-(281, 'Championship', 'Championship', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
-(282, 'Enter a championship (e.g. Junior Champion of Slovakia). For better clarity of your dog’s profile, please enter only one title at a time.', 'Enter a championship (e.g. Junior Champion of Slovakia). For better clarity of your dog’s profile, please enter only one title at a time.', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
-(283, 'Junior champion of Hungary', 'Junior champion of Hungary', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
-(284, 'Upload the image (e.g. diploma received for each degree, or certificate – in jpg or jpeg format). This field is optional', 'Upload the image (e.g. diploma received for each degree, or certificate – in jpg or jpeg format). This field is optional', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
-(285, 'Edit championship', 'Edit championship', 'en', 'http://dfs.fsofts.eu/dog-championschip-edit?id=1&dog_id=1', NULL),
-(286, 'Edit show result', 'Edit show result', 'en', 'http://dfs.fsofts.eu/dog-show-edit?dog_id=1', NULL),
-(287, 'Date of show', 'Date of show', 'en', 'http://dfs.fsofts.eu/dog-show-edit?dog_id=1', NULL),
-(288, 'Select the date on which the show was held', 'Select the date on which the show was held', 'en', 'http://dfs.fsofts.eu/dog-show-edit?dog_id=1', NULL),
-(289, 'Add show result', 'Add show result', 'en', 'http://dfs.fsofts.eu/dog-show-add?dog_id=1', NULL),
-(290, 'Edit working exam', 'Edit working exam', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
-(291, 'Date exam passed', 'Date exam passed', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
-(292, 'Enter the date working exam completed', 'Enter the date working exam completed', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
-(293, 'Type of exam', 'Type of exam', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
-(294, 'Enter the type of working exam (e.g. IPO 1)', 'Enter the type of working exam (e.g. IPO 1)', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
-(295, 'For example IPO 1', 'For example IPO 1', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
-(296, 'Record the picture (e.g. diploma received in a working exam or a certificate – in jpg or jpeg format. This field is optional', 'Record the picture (e.g. diploma received in a working exam or a certificate – in jpg or jpeg format. This field is optional', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
-(297, 'Add working exam', 'Add working exam', 'en', 'http://dfs.fsofts.eu/dog-workexam-add?dog_id=1', NULL),
-(298, 'Add health record', 'Add health record', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
-(299, 'Date of the health record', 'Date of the health record', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
-(300, 'Enter the date the health record was issued', 'Enter the date the health record was issued', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
-(301, 'Description of the health record', 'Description of the health record', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
-(302, 'Enter a description or type of health record (e.g. HD, ED)', 'Enter a description or type of health record (e.g. HD, ED)', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
-(303, 'Hip Dysplasia', 'Hip Dysplasia', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
-(304, 'Record the picture (e.g. health report – image in jpg or jpeg format). This field is optional', 'Record the picture (e.g. health report – image in jpg or jpeg format). This field is optional', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
-(305, 'Add mating', 'Add mating', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
-(306, 'Date of mating', 'Date of mating', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
-(307, 'Enter the date, when the mating was', 'Enter the date, when the mating was', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
-(308, 'Name of the bitch', 'Name of the bitch', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
-(309, 'Please enter the bitch name or select bitch from the DOGFORSHOW database for interactivity', 'Please enter the bitch name or select bitch from the DOGFORSHOW database for interactivity', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
-(310, 'Picture of the bitch', 'Picture of the bitch', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
-(311, 'Record the bitch picture in jpg or jpeg format. This field is optional', 'Record the bitch picture in jpg or jpeg format. This field is optional', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
-(312, 'Edit dog profile', 'Edit dog profile', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(313, 'Informations', 'Informations', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(314, 'Pictures', 'Pictures', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(315, 'Basic informations about your dog', 'Basic informations about your dog', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(316, 'Select the dog’s gender', 'Select the dog’s gender', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(317, 'Dog', 'Dog', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(318, 'Offer your dog for mating', 'Offer your dog for mating', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(319, 'This option can by selected only for a male dog. After checking this option, your dog will be automatically also in the list of dogs for mating', 'This option can by selected only for a male dog. After checking this option, your dog will be automatically also in the list of dogs for mating', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(320, 'Yes', 'Yes', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(321, 'Select breed', 'Select breed', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(322, 'Choose a breed from the list.', 'Choose a breed from the list.', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(323, 'Please select', 'Please select', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(324, 'Dog name', 'Dog name', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(325, 'Enter your dog’s name as shown in the pedigree certificate. Please dont fill any championships before the name.', 'Enter your dog’s name as shown in the pedigree certificate. Please dont fill any championships before the name.', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(326, 'Dog name as shown in the pedigree', 'Dog name as shown in the pedigree', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(327, 'Enter the name of the breed registry at first (e.g. LOSM, SPKP, CSHPK) and then registration number shown in the pedigree certificate', 'Enter the name of the breed registry at first (e.g. LOSM, SPKP, CSHPK) and then registration number shown in the pedigree certificate', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(328, 'For example SPKP 2667', 'For example SPKP 2667', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(329, 'Day, month and year of birth of your dog', 'Day, month and year of birth of your dog', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(330, 'Enter the height at withers in centimeters. This information is very good for people, which using the searching dogs for mating with some specific height in withers', 'Enter the height at withers in centimeters. This information is very good for people, which using the searching dogs for mating with some specific height in withers', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(331, 'Height at the withers in centimeters', 'Height at the withers in centimeters', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(332, 'Enter your dog’s weight in kilograms', 'Enter your dog’s weight in kilograms', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(333, 'Weight of dog in kilograms', 'Weight of dog in kilograms', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(334, 'Country in which the dog is currently located', 'Country in which the dog is currently located', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(335, 'Father of the dog', 'Father of the dog', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(336, 'Please enter father''s name or select father''s name from the DOGFORSHOW database for interactive pedigree', 'Please enter father''s name or select father''s name from the DOGFORSHOW database for interactive pedigree', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(337, 'Mother of the dog', 'Mother of the dog', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(338, 'Please enter mother''s name or select mother''s name from the DOGFORSHOW database for interactive pedigree', 'Please enter mother''s name or select mother''s name from the DOGFORSHOW database for interactive pedigree', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(339, 'Dog profile picture', 'Dog profile picture', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(340, 'Upload a profile image of your dog in JPG or PNG format', 'Upload a profile image of your dog in JPG or PNG format', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
-(341, 'Please select state...', 'Please select state...', 'en', 'http://dfs.fsofts.eu/dog-coowner-add?dog_id=1', NULL),
-(342, 'Add coowner', 'Add coowner', 'en', 'http://dfs.fsofts.eu/dog-coowner-add?dog_id=1', NULL),
-(343, 'Name of the coowner', 'Name of the coowner', 'en', 'http://dfs.fsofts.eu/dog-coowner-add?dog_id=1', NULL),
-(344, 'Name and surname of co-owner', 'Name and surname of co-owner', 'en', 'http://dfs.fsofts.eu/dog-coowner-add?dog_id=1', NULL),
-(345, 'Please select country, where are the co-owner situated', 'Please select country, where are the co-owner situated', 'en', 'http://dfs.fsofts.eu/dog-coowner-add?dog_id=1', NULL),
-(346, 'Add award', 'Add award', 'en', 'http://dfs.fsofts.eu/kennel-awards-add', NULL),
-(347, 'Password change', 'Password change', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(348, 'Account informations', 'Account informations', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(349, 'Informations marked with this sign will not be accessible to the public or exploited for commercial use by third parties', 'Informations marked with this sign will not be accessible to the public or exploited for commercial use by third parties', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(350, 'Your name without numeric signs', 'Your name without numeric signs', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(351, 'Your surname without numeric signs', 'Your surname without numeric signs', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(352, 'Country where you live', 'Country where you live', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(353, 'Additional account informations', 'Additional account informations', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(354, 'Address', 'Address', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(355, 'Your address', 'Your address', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(356, 'Town', 'Town', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(357, 'Town where you live', 'Town where you live', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(358, 'ZIP', 'ZIP', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(359, 'Enter the zip code of the place where you live', 'Enter the zip code of the place where you live', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(360, 'Phone number', 'Phone number', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(361, 'Your phone number', 'Your phone number', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(362, 'Year of birth', 'Year of birth', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(363, 'Your year of birth', 'Your year of birth', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(364, 'Save', 'Save', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(365, 'Old password', 'Old password', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(366, 'Type your old password', 'Type your old password', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(367, 'New password', 'New password', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(368, 'Type your new password', 'Type your new password', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(369, 'Confirm new password', 'Confirm new password', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(370, 'Confirm your new password', 'Confirm your new password', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
-(371, 'Basic informations about your kennel', 'Basic informations about your kennel', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
-(372, 'Kennel name', 'Kennel name', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
-(373, 'Name of your kennel', 'Name of your kennel', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
-(374, 'Fill the FCI number in the form 1580/2015. If you are non FCI kennel, please leave this field empty', 'Fill the FCI number in the form 1580/2015. If you are non FCI kennel, please leave this field empty', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
-(375, 'Kennel website', 'Kennel website', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
-(376, 'Enter the website of your kennel', 'Enter the website of your kennel', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
-(377, 'www.yourwebsite.com', 'www.yourwebsite.com', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
-(378, 'Kennel description', 'Kennel description', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
-(379, 'Enter information about your kennel', 'Enter information about your kennel', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
-(380, 'Select the breed bred by your kennel', 'Select the breed bred by your kennel', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
-(381, 'Choose one ore more breeds bred by your kennel', 'Choose one ore more breeds bred by your kennel', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
-(382, 'Owner of purebred dog profile', 'Owner of purebred dog profile', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
-(383, 'Basic informations about you', 'Basic informations about you', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
-(384, 'Your profile picture', 'Your profile picture', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
-(385, 'Your profile picture in jpeg or jpg format', 'Your profile picture in jpeg or jpg format', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
-(386, 'Short description about you', 'Short description about you', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
-(387, 'Enter some informations about yourself', 'Enter some informations about yourself', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
-(388, 'Short description', 'Short description', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
-(389, 'Add a dog', 'Add a dog', 'en', 'http://dfs.fsofts.eu/add-dog', NULL),
-(390, 'Available for mating', 'Available for mating', 'en', 'http://dfs.fsofts.eu/kennel-profile?id=1&_fid=mbbn', NULL),
-(391, 'Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link', 'Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link', 'en', 'http://localhost/dfs/index.php', NULL),
-(392, 'Resend registration email', 'Resend registration email', 'en', 'http://localhost/dfs/index.php', NULL),
-(393, 'Welcome to DOGFORSHOW', 'Welcome to DOGFORSHOW', 'en', 'http://localhost/dfs/index.php?resend_al=2', NULL),
-(394, 'Hello', 'Hello', 'en', 'http://localhost/dfs/index.php?resend_al=2', NULL),
-(395, 'Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link', 'Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link', 'en', 'http://localhost/dfs/index.php?resend_al=2', NULL),
-(396, 'Activate account', 'Activate account', 'en', 'http://localhost/dfs/index.php?resend_al=2', NULL),
-(397, 'This email was automatically sent by DOGFORSHOW system. Please dont reply on this email', 'This email was automatically sent by DOGFORSHOW system. Please dont reply on this email', 'en', 'http://localhost/dfs/index.php?resend_al=2', NULL),
-(398, 'Wrong username or password.', 'Wrong username or password.', 'en', 'http://www.dogshow.com/index.php', NULL),
-(399, 'Your registration has been successfully completed', 'Your registration has been successfully completed', 'en', 'http://www.dogshow.com/index.php', NULL),
-(400, 'Please check your Email for your user acccount activation', 'Please check your Email for your user acccount activation', 'en', 'http://www.dogshow.com/index.php', NULL),
-(401, 'If you have not received the Email yet, please also check your SPAM folder', 'If you have not received the Email yet, please also check your SPAM folder', 'en', 'http://www.dogshow.com/index.php', NULL),
-(402, 'Kennel profile', 'Kennel profile', 'en', 'http://www.dogshow.com/kennel-create-profile', NULL),
-(403, 'Kennel profile picture', 'Kennel profile picture', 'en', 'http://www.dogshow.com/kennel-create-profile', NULL),
-(404, 'Profile picture of your kennel in jpeg or jpg format', 'Profile picture of your kennel in jpeg or jpg format', 'en', 'http://www.dogshow.com/kennel-create-profile', NULL),
-(405, 'Enter some informations about your kennel', 'Enter some informations about your kennel', 'en', 'http://www.dogshow.com/kennel-create-profile', NULL),
-(406, 'Owner', 'Owner', 'en', 'http://www.dogshow.com/owner-profile?_fid=oerz', NULL),
-(407, 'About me', 'About me', 'en', 'http://www.dogshow.com/owner-profile?_fid=oerz', NULL),
-(408, 'Name of the kennel', 'Name of the kennel', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
-(409, 'Name of the planned litter', 'Name of the planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
-(410, 'Planned litter', 'Planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
-(411, 'Scheduled date of birth of the puppies', 'Scheduled date of birth of the puppies', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
-(412, 'Add puppies', 'Add puppies', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
-(413, 'View detail', 'View detail', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
-(414, 'Puppies', 'Puppies', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
-(415, 'Edit awards', 'Edit awards', 'en', 'http://www.dogshow.com/kennel-profile', NULL),
-(416, 'Remove from timeline', 'Remove from timeline', 'en', 'http://www.dogshow.com/kennel-profile', NULL),
-(417, 'Like', 'Like', 'en', 'http://www.dogshow.com/kennel-profile', NULL),
-(418, 'Profile updated', 'Profile updated', 'en', 'http://www.dogshow.com/kennel-profile?id=200000000&_fid=9dff', NULL),
-(419, 'Add awards', 'Add awards', 'en', 'http://www.dogshow.com/kennel-profile?id=200000000', NULL),
-(420, 'Add show', 'Add show', 'en', 'http://www.dogshow.com/handler-show-list?handler_id=0', NULL),
-(421, 'Add result', 'Add result', 'en', 'http://www.dogshow.com/handler-show-list?handler_id=0', NULL),
-(422, 'Delete messages', 'Delete messages', 'en', 'http://www.dogshow.com/message-list', NULL),
-(423, 'Type your message', 'Type your message', 'en', 'http://www.dogshow.com/message-compose', NULL),
-(424, 'Breed list does not contain entered breed', 'Breed list does not contain entered breed', 'en', 'http://www.dogshow.com/kennel-edit-profile', NULL),
-(425, 'Respected breeder, judge, writer', 'Respected breeder, judge, writer', 'en', 'http://www.dogshow.com/index.php', NULL),
-(426, 'I am very impressed with the quality of what I have seen so far on the DOGFORSHOW. I wish for website to have much circulation, as I am sure that it will benefit people, whether dog owners or others.', 'I am very impressed with the quality of what I have seen so far on the DOGFORSHOW. I wish for website to have much circulation, as I am sure that it will benefit people, whether dog owners or others.', 'en', 'http://www.dogshow.com/index.php', NULL),
-(427, 'Unlike', 'Unlike', 'en', 'http://www.dogshow.com/timeline', NULL),
-(428, 'For sale', 'For sale', 'en', 'http://www.dogshow.com/kennel-puppy-list?id=200000000', NULL),
-(429, 'Reserved', 'Reserved', 'en', 'http://www.dogshow.com/kennel-puppy-list?id=200000000', NULL),
-(430, 'Sold', 'Sold', 'en', 'http://www.dogshow.com/kennel-puppy-list?id=200000000', NULL),
-(431, 'Search', 'Search', 'en', 'http://www.dogshow.com/list-of-owners', NULL),
-(432, 'Edit a dog', 'Edit a dog', 'en', 'http://www.dogshow.com/dog-profile-edit?id=500000000&dog_id=500000000', NULL),
-(433, 'Show type', 'Show type', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(434, 'Select type of exhibition', 'Select type of exhibition', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(435, 'Name of the show', 'Name of the show', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(436, 'Enter the name of show (e.g. World dog show Budapest)', 'Enter the name of show (e.g. World dog show Budapest)', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(437, 'Enter the show name', 'Enter the show name', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(438, 'Select country in which show was held', 'Select country in which show was held', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(439, 'Name of judge', 'Name of judge', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(440, 'Enter the judge’s name', 'Enter the judge’s name', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(441, 'Name of handler', 'Name of handler', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL);
-INSERT INTO `tbl_translate` (`id`, `text_to_translate`, `translated_text`, `lang`, `url`, `uri`) VALUES
-(442, 'Enter the handler’s name or select handler from DOGFORSHOW database for interactivity. If you dont have any handler, please just leave it empty', 'Enter the handler’s name or select handler from DOGFORSHOW database for interactivity. If you dont have any handler, please just leave it empty', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(443, 'Enter the handler’s name', 'Enter the handler’s name', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(444, 'Choose class Minor Puppy(3-6 months), Puppy(6-9 months), Junior(9-18 months), Intermediate(15-24 months), Open(from 15 months), Working(from 15 months, with working exam), Champions(from 15 months with ICH or CH title), Veteran(from 8 years), Honor(from 15 months with title ICH, CH, Club Winner, National Winner)', 'Choose class Minor Puppy(3-6 months), Puppy(6-9 months), Junior(9-18 months), Intermediate(15-24 months), Open(from 15 months), Working(from 15 months, with working exam), Champions(from 15 months with ICH or CH title), Veteran(from 8 years), Honor(from 15 months with title ICH, CH, Club Winner, National Winner)', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(445, 'Assesment', 'Assesment', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(446, 'Best minor puppy', 'Best minor puppy', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(447, 'Best puppy male & female', 'Best puppy male & female', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(448, 'Titles', 'Titles', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(449, 'Junior Best of Group', 'Junior Best of Group', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(450, 'Junior Best in Show', 'Junior Best in Show', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(451, 'Best of Group', 'Best of Group', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(452, 'Other titles and awards received at the show', 'Other titles and awards received at the show', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(453, 'Enter other titles achieved at this show', 'Enter other titles achieved at this show', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(454, 'e.g. National Winner', 'e.g. National Winner', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(455, 'Image from show', 'Image from show', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(456, 'Record the picture from show in jpg or jpeg format. This field is optional', 'Record the picture from show in jpg or jpeg format. This field is optional', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
-(457, 'Add planned litter', 'Add planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(458, 'Name of the litter or litter ranking', 'Name of the litter or litter ranking', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(459, 'Enter the name of the litter or enter the letter of planned litter', 'Enter the name of the litter or enter the letter of planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(460, 'Enter indicative month of birth of puppies as information for prospective buyers', 'Enter indicative month of birth of puppies as information for prospective buyers', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(461, 'Enter dog’s name', 'Enter dog’s name', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(462, 'Enter dog’s name or select the dog from the DOGFORSHOW database for interactivity', 'Enter dog’s name or select the dog from the DOGFORSHOW database for interactivity', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(463, 'Picture of the dog', 'Picture of the dog', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(464, 'Upload or change profile picture of the dog in jpg or jpeg format', 'Upload or change profile picture of the dog in jpg or jpeg format', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(465, 'Please select the name of the bitch', 'Please select the name of the bitch', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(466, 'Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs', 'Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(467, 'Upload or change profile picture of the bitch in jpg or jpeg format', 'Upload or change profile picture of the bitch in jpg or jpeg format', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(468, 'Name of planned litter can''t be empty', 'Name of planned litter can''t be empty', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(469, 'Dog name can''t be empty', 'Dog name can''t be empty', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(470, 'Dog image can''t be empty', 'Dog image can''t be empty', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(471, 'Bitch name can''t be empty', 'Bitch name can''t be empty', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(472, 'Bitch image can''t be empty', 'Bitch image can''t be empty', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(473, 'Please select state', 'Please select state', 'en', 'http://www.dogshow.com/index.php', NULL),
-(474, 'Name and Surname cannot left blank', 'Name and Surname cannot left blank', 'en', 'http://www.dogshow.com/index.php', NULL),
-(475, 'Password and confirm password does not match', 'Password and confirm password does not match', 'en', 'http://www.dogshow.com/index.php', NULL),
-(476, 'Fields Name and Surname cannot contains digits', 'Fields Name and Surname cannot contains digits', 'en', 'http://www.dogshow.com/index.php', NULL),
-(477, 'Email cannot left blank', 'Email cannot left blank', 'en', 'http://www.dogshow.com/index.php', NULL),
-(478, 'Profile created', 'Profile created', 'en', 'http://www.dogshow.com/kennel-profile?id=1&_fid=hpgn', NULL),
-(479, 'Select or enter the name of the dog', 'Select or enter the name of the dog', 'en', 'http://www.dogshow.com/dog-pedigree', NULL),
-(480, 'Name of the dog', 'Name of the dog', 'en', 'http://www.dogshow.com/dog-pedigree', NULL),
-(481, 'Name of the mother', 'Name of the mother', 'en', 'http://www.dogshow.com/dog-pedigree', NULL),
-(482, 'No', 'No', 'en', 'http://www.dogshow.com/dog-profile?id=1', NULL),
-(483, 'Are you sure you want to delete this dog?', 'Are you sure you want to delete this dog?', 'en', 'http://www.dogshow.com/dog-profile?id=1', NULL),
-(484, 'Question', 'Question', 'en', 'http://www.dogshow.com/dog-profile?id=1', NULL),
-(485, 'Are you sure you want to delete this profile?', 'Are you sure you want to delete this profile?', 'en', 'http://www.dogshow.com/dog-profile?id=2', NULL),
-(486, 'Are you sure you want to delete this record?', 'Are you sure you want to delete this record?', 'en', 'http://www.dogshow.com/dog-profile?id=5&dog_id=5&_fid=yvc6', NULL),
-(487, 'By clicking Register, you agree to our', 'By clicking Register, you agree to our', 'en', 'http://www.dogshow.com/index.php', NULL),
-(488, 'General terms', 'General terms', 'en', 'http://www.dogshow.com/index.php', NULL),
-(489, 'and you have read our', 'and you have read our', 'en', 'http://www.dogshow.com/index.php', NULL),
-(490, 'Cookie policy', 'Cookie policy', 'en', 'http://www.dogshow.com/index.php', NULL),
-(491, 'Father of the planned litter', 'Father of the planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(492, 'Mother of the planned litter', 'Mother of the planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
-(493, 'Please select planned litter...', 'Please select planned litter...', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(494, 'Add a puppy', 'Add a puppy', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(495, 'Basic informations about puppy', 'Basic informations about puppy', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(496, 'Select your planned litter', 'Select your planned litter', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(497, 'Choose your added planned litter or add your planned litter in the kennel menu, section planned litters', 'Choose your added planned litter or add your planned litter in the kennel menu, section planned litters', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(498, 'Select the puppy’s gender', 'Select the puppy’s gender', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(499, 'Puppy''s name', 'Puppy''s name', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(500, 'Enter the puppy’s name', 'Enter the puppy’s name', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(501, 'Picture of puppy', 'Picture of puppy', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(502, 'Upload a profile picture of puppy in PNG, JPG or GIF format', 'Upload a profile picture of puppy in PNG, JPG or GIF format', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(503, 'Day, month and year of puppy’s birth', 'Day, month and year of puppy’s birth', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(504, 'Country in which the puppy is currently located', 'Country in which the puppy is currently located', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
-(505, 'Share on Facebook', 'Share on Facebook', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
-(506, 'Share on Google+', 'Share on Google+', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
-(507, 'Share on Twitter', 'Share on Twitter', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
-(508, 'Share on Pinterest', 'Share on Pinterest', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
-(509, 'Share on Tumblr', 'Share on Tumblr', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
-(510, 'Post to a friend', 'Post to a friend', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
-(511, 'I am interested', 'I am interested', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
-(512, 'Description', 'Description', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
-(513, 'Edit puppy profile', 'Edit puppy profile', 'en', 'http://www.dogshow.com/puppy-edit-profile', NULL),
-(514, 'Peoples who liked this', 'Peoples who liked this', 'en', 'http://www.dogshow.com/kennel-profile', NULL),
-(515, 'Required field', 'Required field', 'en', 'http://www.dogshow.com/index.php', NULL),
-(516, 'User with this e-mail, is not in our database', 'User with this e-mail, is not in our database', 'en', 'http://172.16.46.5/dfs/index.php', NULL),
-(517, 'Login to your account', 'Login to your account', 'en', 'http://172.16.46.5/dfs/index.php', NULL),
-(518, 'Your password has been successfully sent to your e-mail', 'Your password has been successfully sent to your e-mail', 'en', 'http://172.16.46.5/dfs/index.php', NULL);
+INSERT INTO `tbl_translate` (`id`, `text_to_translate`, `translated_text_de`, `translated_text_en`, `translated_text_hu`, `translated_text_cz`, `translated_text_sk`, `lang`, `url`, `uri`) VALUES
+(1, 'Registration', 'Registration', 'Registration', 'Regisztráció', 'Registration', 'Registrovať', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(2, 'About DOGFORSHOW', 'About DOGFORSHOW', 'About DOGFORSHOW', 'DOGFORSHOWról', 'About DOGFORSHOW', 'O DOGFORSHOW', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(3, 'Contact', 'Contact', 'Contact', 'Elérhetőség', 'Contact', 'Kontakt', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(4, 'We support breeding of happy and healthy dogs with pedigree', 'We support breeding of happy and healthy dogs with pedigree', 'We support breeding of happy and healthy dogs with pedigree', 'Támogatjuk az egészséges és boldog törzskönyvi kutyák tenyésztését', 'We support breeding of happy and healthy dogs with pedigree', 'Podporujeme chov šťastných a zdravých psov s preukazom pôvodu', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(5, 'Login', 'Login', 'Login', 'Bejelentkezés', 'Login', 'Prihlásiť', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(6, 'Afghanistan', 'Afghanistan', 'Afghanistan', 'Afganisztán', 'Afghanistan', 'Afganistan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(7, 'Albania', 'Albania', 'Albania', 'Albánia', 'Albania', 'Albánsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(8, 'Algeria', 'Algeria', 'Algeria', 'Algéria', 'Algeria', 'Alžírsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(9, 'Andorra', 'Andorra', 'Andorra', 'Andorra', 'Andorra', 'Andorra', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(10, 'Argentina', 'Argentina', 'Argentina', 'Argentína', 'Argentina', 'Argentína', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(11, 'Armenia', 'Armenia', 'Armenia', 'Örményország', 'Armenia', 'Arménsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(12, 'Australia', 'Australia', 'Australia', 'Ausztrália', 'Australia', 'Austrália', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(13, 'Austria', 'Austria', 'Austria', 'Ausztria', 'Austria', 'Rakúsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(14, 'Azerbaidjan', 'Azerbaidjan', 'Azerbaidjan', 'Azerbajdzsán', 'Azerbaidjan', 'Azerbajdžan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(15, 'Bahrain', 'Bahrain', 'Bahrain', 'Bahrain', 'Bahrain', 'Bahrajn', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(16, 'Bangladesh', 'Bangladesh', 'Bangladesh', 'Bangladesh', 'Bangladesh', 'Bangladéš', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(17, 'Belarus', 'Belarus', 'Belarus', 'Belorusszia', 'Belarus', 'Bielorusko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(18, 'Belgium', 'Belgium', 'Belgium', 'Belgium', 'Belgium', 'Belgicko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(19, 'Bolivia', 'Bolivia', 'Bolivia', 'Bolívia', 'Bolivia', 'Bolívia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(20, 'Bosnia-Herzegovina', 'Bosnia-Herzegovina', 'Bosnia-Herzegovina', 'Bosznia-Hercegovina', 'Bosnia-Herzegovina', 'Bosna a Hercegovina', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(21, 'Brazil', 'Brazil', 'Brazil', 'Brazília', 'Brazil', 'Brazília', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(22, 'Bulgaria', 'Bulgaria', 'Bulgaria', 'Bulgária', 'Bulgaria', 'Bulharsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(23, 'Canada', 'Canada', 'Canada', 'Kanada', 'Canada', 'Kanada', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(24, 'Colombia', 'Colombia', 'Colombia', 'Kolumbia', 'Colombia', 'Kolumbia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(25, 'Costa Rica', 'Costa Rica', 'Costa Rica', 'Costa Rica', 'Costa Rica', 'Kostarika', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(26, 'Croatia', 'Croatia', 'Croatia', 'Horvátország', 'Croatia', 'Chorvátsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(27, 'Cuba', 'Cuba', 'Cuba', 'Kuba', 'Cuba', 'Kuba', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(28, 'Cyprus', 'Cyprus', 'Cyprus', 'Ciprusi Köztársaság / Ciprus', 'Cyprus', 'Cyprus', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(29, 'Czech Republic', 'Czech Republic', 'Czech Republic', 'Cseh Köztársaság / Csehország', 'Czech Republic', 'Česká republika', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(30, 'Denmark', 'Denmark', 'Denmark', 'Dán Királyság / Dánia', 'Denmark', 'Dánsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(31, 'Dominican Republic', 'Dominican Republic', 'Dominican Republic', 'Dominikai Köztársaság', 'Dominican Republic', 'Dominikánska Republika', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(32, 'Ecuador', 'Ecuador', 'Ecuador', 'Ecuadori Köztársaság / Ecuador', 'Ecuador', 'Ekvádor', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(33, 'Egypt', 'Egypt', 'Egypt', 'Egyiptom', 'Egypt', 'Egypt', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(34, 'El Salvador', 'El Salvador', 'El Salvador', 'El Salvardor', 'El Salvador', 'El Salvador', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(35, 'Estonia', 'Estonia', 'Estonia', 'Észt Köztársaság / Észtország', 'Estonia', 'Estónsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(36, 'Ethiopia', 'Ethiopia', 'Ethiopia', 'Etiópia', 'Ethiopia', 'Etiópia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(37, 'Faroe Islands', 'Faroe Islands', 'Faroe Islands', 'Feröer-szigetek', 'Faroe Islands', 'Faerské ostrovy', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(38, 'Finland', 'Finland', 'Finland', 'Finnország', 'Finland', 'Fínsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(39, 'France', 'France', 'France', 'Franciaország', 'France', 'Francúzsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(40, 'Georgia', 'Georgia', 'Georgia', 'Grúzia', 'Georgia', 'Gruzínsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(41, 'Germany', 'Germany', 'Germany', 'Németország', 'Germany', 'Nemecko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(42, 'Ghana', 'Ghana', 'Ghana', 'Ghána', 'Ghana', 'Ghana', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(43, 'Gibraltar', 'Gibraltar', 'Gibraltar', 'Gibraltár', 'Gibraltar', 'Gibraltár', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(44, 'Great Britain', 'Great Britain', 'Great Britain', 'Nagy-Britannia', 'Great Britain', 'Veľká Británia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(45, 'Greece', 'Greece', 'Greece', 'Görögország', 'Greece', 'Grécko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(46, 'Guatemala', 'Guatemala', 'Guatemala', 'Guatemala', 'Guatemala', 'Guatemala', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(47, 'Honduras', 'Honduras', 'Honduras', 'Honduras', 'Honduras', 'Honduras', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(48, 'Hungary', 'Hungary', 'Hungary', 'Magyarország', 'Hungary', 'Maďarsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(49, 'Chad', 'Chad', 'Chad', 'Csád', 'Chad', 'Čad', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(50, 'Chile', 'Chile', 'Chile', 'Chile', 'Chile', 'Čile', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(51, 'China', 'China', 'China', 'Kína', 'China', 'Čína', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(52, 'Iceland', 'Iceland', 'Iceland', 'Izland', 'Iceland', 'Island', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(53, 'India', 'India', 'India', 'India', 'India', 'India', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(54, 'Indonesia', 'Indonesia', 'Indonesia', 'Indonézia', 'Indonesia', 'Indonézia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(55, 'Iran', 'Iran', 'Iran', 'Irán', 'Iran', 'Irán', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(56, 'Iraq', 'Iraq', 'Iraq', 'Irak', 'Iraq', 'Irak', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(57, 'Ireland', 'Ireland', 'Ireland', 'Írország', 'Ireland', 'Írsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(58, 'Israel', 'Israel', 'Israel', 'Izrael', 'Israel', 'Izrael', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(59, 'Italy', 'Italy', 'Italy', 'Olaszország', 'Italy', 'Taliansko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(60, 'Japan', 'Japan', 'Japan', 'Japán', 'Japan', 'Japonsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(61, 'Jordan', 'Jordan', 'Jordan', 'Jordánia', 'Jordan', 'Jordánsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(62, 'Kazakhstan', 'Kazakhstan', 'Kazakhstan', 'Kazahsztán', 'Kazakhstan', 'Kazachstan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(63, 'Kenya', 'Kenya', 'Kenya', 'Kenya', 'Kenya', 'Keňa', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(64, 'Kuwait', 'Kuwait', 'Kuwait', 'Kuvait', 'Kuwait', 'Kuvajt', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(65, 'Latvia', 'Latvia', 'Latvia', 'Lettország', 'Latvia', 'Lotyšsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(66, 'Lebanon', 'Lebanon', 'Lebanon', 'Libanon', 'Lebanon', 'Libanon', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(67, 'Libya', 'Libya', 'Libya', 'Líbia', 'Libya', 'Líbya', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(68, 'Liechtenstein', 'Liechtenstein', 'Liechtenstein', 'Liechtenstein', 'Liechtenstein', 'Lichtenštajnsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(69, 'Lithuania', 'Lithuania', 'Lithuania', 'Litvánia', 'Lithuania', 'Litva', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(70, 'Luxembourg', 'Luxembourg', 'Luxembourg', 'Luxembourg', 'Luxembourg', 'Luxembursko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(71, 'Macedonia', 'Macedonia', 'Macedonia', 'Macedónia', 'Macedonia', 'Macedónsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(72, 'Madagascar', 'Madagascar', 'Madagascar', 'Madagaszkár', 'Madagascar', 'Madagaskar', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(73, 'Malaysia', 'Malaysia', 'Malaysia', 'Malaysia', 'Malaysia', 'Malajzia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(74, 'Malta', 'Malta', 'Malta', 'Málta', 'Malta', 'Malta', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(75, 'Marshall Islands', 'Marshall Islands', 'Marshall Islands', 'Marshall-szigetek', 'Marshall Islands', 'Marshallove ostrovy', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(76, 'Mexico', 'Mexico', 'Mexico', 'Mexikó', 'Mexico', 'Mexiko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(77, 'Moldova', 'Moldova', 'Moldova', 'Moldova', 'Moldova', 'Moldavsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(78, 'Monaco', 'Monaco', 'Monaco', 'Monaco', 'Monaco', 'Monako', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(79, 'Morocco', 'Morocco', 'Morocco', 'Marokkó', 'Morocco', 'Maroko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(80, 'Nepal', 'Nepal', 'Nepal', 'Nepál', 'Nepal', 'Nepál', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(81, 'Netherlands', 'Netherlands', 'Netherlands', 'Hollandia ', 'Netherlands', 'Holandsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(82, 'New Zealand', 'New Zealand', 'New Zealand', 'Új Zéland', 'New Zealand', 'Nový Zéland', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(83, 'Nicaragua', 'Nicaragua', 'Nicaragua', 'Nicaragua', 'Nicaragua', 'Nikaragua', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(84, 'Nigeria', 'Nigeria', 'Nigeria', 'Nigéria', 'Nigeria', 'Nigéria', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(85, 'Norway', 'Norway', 'Norway', 'Norvégia', 'Norway', 'Nórsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(86, 'Oman', 'Oman', 'Oman', 'Oman', 'Oman', 'Omán', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(87, 'Pakistan', 'Pakistan', 'Pakistan', 'Pakisztán', 'Pakistan', 'Pakistan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(88, 'Panama', 'Panama', 'Panama', 'Panama', 'Panama', 'Panama', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(89, 'Paraguay', 'Paraguay', 'Paraguay', 'Paraguay', 'Paraguay', 'Paraguaj', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(90, 'Peru', 'Peru', 'Peru', 'Peru', 'Peru', 'Peru', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(91, 'Philippines', 'Philippines', 'Philippines', 'Fülöp-szigetek', 'Philippines', 'Filipíny', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(92, 'Poland', 'Poland', 'Poland', 'Lengyelország', 'Poland', 'Poľsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(93, 'Portugal', 'Portugal', 'Portugal', 'Portugália', 'Portugal', 'Portugalsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(94, 'Puerto Rico', 'Puerto Rico', 'Puerto Rico', 'Puerto Rico', 'Puerto Rico', 'Puerto Rico', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(95, 'Qatar', 'Qatar', 'Qatar', 'Katar', 'Qatar', 'Katar', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(96, 'Republic of Kore', 'Republic of Kore', 'Republic of Kore', 'Koreai Köztársaság', 'Republic of Kore', 'Južná Kórea', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(97, 'Republic of Montenegro', 'Republic of Montenegro', 'Republic of Montenegro', 'Montenegrói Köztársaság', 'Republic of Montenegro', 'Čierna Hora', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(98, 'Romania', 'Romania', 'Romania', 'Románia', 'Romania', 'Rumunsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(99, 'Russia', 'Russia', 'Russia', 'Oroszország', 'Russia', 'Rusko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(100, 'San Marino', 'San Marino', 'San Marino', 'San Marino', 'San Marino', 'San Marino', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(101, 'Saudi Arabia', 'Saudi Arabia', 'Saudi Arabia', 'Szaud-Arábia', 'Saudi Arabia', 'Saudská Arábia', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(102, 'Serbia', 'Serbia', 'Serbia', 'Szerbia', 'Serbia', 'Srbsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(103, 'Seychelles', 'Seychelles', 'Seychelles', 'Seychelle-szigetek', 'Seychelles', 'Seychely', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(104, 'Singapore', 'Singapore', 'Singapore', 'Szingapúr', 'Singapore', 'Singapur', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(105, 'Slovakia', 'Slovakia', 'Slovakia', 'Szlovákia', 'Slovakia', 'Slovensko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(106, 'Slovenia', 'Slovenia', 'Slovenia', 'Szlovénia', 'Slovenia', 'Slovinsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(107, 'South Africa', 'South Africa', 'South Africa', 'Dél-Afrika', 'South Africa', 'Juhoafrická republika', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(108, 'Spain', 'Spain', 'Spain', 'Spanyolország', 'Spain', 'Španielsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(109, 'Sri Lanka', 'Sri Lanka', 'Sri Lanka', 'Sri Lanka', 'Sri Lanka', 'Srí Lanka', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(110, 'Sweden', 'Sweden', 'Sweden', 'Svédország', 'Sweden', 'Švédsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(111, 'Switzerland', 'Switzerland', 'Switzerland', 'Svájc', 'Switzerland', 'Švajčiarsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(112, 'Syria', 'Syria', 'Syria', 'Szíria', 'Syria', 'Sýria', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(113, 'Taiwan', 'Taiwan', 'Taiwan', 'Tajvan', 'Taiwan', 'Taiwan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(114, 'Thailand', 'Thailand', 'Thailand', 'Thaiföld', 'Thailand', 'Thajsko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(115, 'Tunisia', 'Tunisia', 'Tunisia', 'Tunézia', 'Tunisia', 'Tunisko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(116, 'Turkey', 'Turkey', 'Turkey', 'Törökország', 'Turkey', 'Turecko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(117, 'Uganda', 'Uganda', 'Uganda', 'Uganda', 'Uganda', 'Uganda', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(118, 'Ukraine', 'Ukraine', 'Ukraine', 'Ukrajna', 'Ukraine', 'Ukrajina', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(119, 'United Arab Emirates', 'United Arab Emirates', 'United Arab Emirates', 'Egyesült Arab Emírségek', 'United Arab Emirates', 'Spojené arabské emiráty', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(120, 'Uruguay', 'Uruguay', 'Uruguay', 'Uruguay', 'Uruguay', 'Uruguaj', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(121, 'USA', 'USA', 'USA', 'Amerikai Egyesült Államok', 'USA', 'USA', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(122, 'Uzbekistan', 'Uzbekistan', 'Uzbekistan', 'Üzbegisztán', 'Uzbekistan', 'Uzbekistan', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(123, 'Venezuela', 'Venezuela', 'Venezuela', 'Venezuela', 'Venezuela', 'Venezuela', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(124, 'Vietnam', 'Vietnam', 'Vietnam', 'Vietnám', 'Vietnam', 'Vietnam', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(125, 'Name', 'Name', 'Name', 'Név', 'Name', 'Meno', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(126, 'Surname', 'Surname', 'Surname', 'Vezetéknév', 'Surname', 'Priezvisko', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(127, 'Email', 'Email', 'Email', 'Email', 'Email', 'Email', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(128, 'Password', 'Password', 'Password', 'Jelszó', 'Password', 'Heslo', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(129, 'Confirm password', 'Confirm password', 'Confirm password', 'Jelszó megerősítése', 'Confirm password', 'Potvrdenie hesla', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(130, 'Register', 'Register', 'Register', 'Regisztráció', 'Register', 'Regitrovať', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(131, 'Forgot your password', 'Forgot your password', 'Forgot your password', 'Elfelejtette jelszavát', 'Forgot your password', 'Zabudli ste heslo', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(132, 'Your email', 'Your email', 'Your email', 'Email címe', 'Your email', 'Váš email', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(133, 'Send', 'Send', 'Send', 'Elküldés', 'Send', 'Odoslať', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(134, 'Remember me', 'Remember me', 'Remember me', 'Emlékezz rám', 'Remember me', 'Zapamätať si ma', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(135, 'Forgot password', 'Forgot password', 'Forgot password', 'Elfelejtett jelszó', 'Forgot password', 'Zabudnuté heslo', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(136, 'International social network dedicated to owners of dogs with pedigree, kennels and handlers, which help them to present themselves, communicate with each other and motivate each other. Forget about the classic advertising portals and join to the fast growing community from all over the world.', 'International social network dedicated to owners of dogs with pedigree, kennels and handlers, which help them to present themselves, communicate with each other and motivate each other. Forget about the classic advertising portals and join to the fast growing community from all over the world.', 'International social network dedicated to owners of dogs with pedigree, kennels and handlers, which helps them to present themselves, communicate with each other and motivate each other. Forget about the classic advertising portals and join to the fast growing community from all over the world.', 'Nemzetközi közösségi háló törzskönyves kutya tenyésztők, tulajdonosok, kennelek és handlerek számára.', 'International social network dedicated to owners of dogs with pedigree, kennels and handlers, which help them to present themselves, communicate with each other and motivate each other. Forget about the classic advertising portals and join to the fast growing community from all over the world.', 'Medzinárodná sociálna sieť venovaná chovateľským staniciam, majiteľom a handlerom psov s preukazom pôvodu. Vytvorte si prehľadný profil s množstvom funkcií, komunikujte s ostatnými užívateľmi a navzájom sa inšpirujte. Zabudnite na klasické inzertné portály a pridajte sa ešte dnes k rýchlorastúcej komunite majiteľov psov s preukazom pôvodu z celého sveta.', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(137, 'Kennels', 'Kennels', 'Kennels', 'Kennelek', 'Kennels', 'Chovateľské stanice', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(138, 'Owners', 'Owners', 'Owners', 'Tulajdonosok', 'Owners', 'Majitelia psov', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(139, 'Handlers', 'Handlers', 'Handlers', 'Handlerek', 'Handlers', 'Handlery', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(140, 'Dogs with pedigree', 'Dogs with pedigree', 'Dogs with pedigree', 'Törzskönyves kutyák', 'Dogs with pedigree', 'Psy s preukazom pôvodu', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(141, 'Puppies for sale', 'Puppies for sale', 'Puppies for sale', 'Eladó kiskutyák', 'Puppies for sale', 'Šteniatká na predaj', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(142, 'Planned litters', 'Planned litters', 'Planned litters', 'Tervezett párosítások', 'Planned litters', 'Plánované vrhy', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(143, 'Stud dogs', 'Stud dogs', 'Stud dogs', 'Tenyészkutyák', 'Stud dogs', 'Chovní psy', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(144, 'Best in show', 'Best in show', 'Best in show', 'Best in show', 'Best in show', 'Best in Show', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(145, 'Follow with us how we are growing', 'Follow with us how we are growing', 'Follow with us how we are growing', 'Kövesse velünk, hogyan nő a közösség', 'Follow with us how we are growing', 'Sledujte spolu s nami ako rastieme', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(146, 'Present internationally on the right place', 'Present internationally on the right place', 'Present internationally on the right place', 'Nemzetközileg prezentáljon a megfelelő helyen', 'Present internationally on the right place', 'Prezentujte sa medzinárodne na tom správnom mieste', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(147, 'Possibility to create your own kennel, owners and handlers profile', 'Possibility to create your own kennel, owners and handlers profile', 'Possibility to create your own kennel, owners and handlers profile', 'Lehetőség saját kennel, kutya tulajdonos és handler profil létrehozása', 'Possibility to create your own kennel, owners and handlers profile', 'Vytvorte si profil chovateľskej stanice, majiteľa a handlera', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(148, 'Create unique profiles of your dogs with possibility to offer your dog at stud', 'Create unique profiles of your dogs with possibility to offer your dog at stud', 'Create unique profiles of your dogs with possibility to offer your stud dogs', 'Készítsen egyedi profilt a kutyájának és használja ki a lehetőséget kínálni őt mint tenyészkant', 'Create unique profiles of your dogs with possibility to offer your dog at stud', 'Vytvorte si unikátne profily Vašich psov s možnosťou ponuky na krytie', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(149, 'Add dogshow successes, awards, titles, working exams, health informations, photos and videos', 'Add dogshow successes, awards, titles, working exams, health informations, photos and videos', 'Add dogshow successes, awards, titles, working exams, health informations, photos and videos', 'Tüntesse fel kutyakiállítási eredményeit, díjait, címeit, munkavizsgáit, egészségügyi szűréseit, fenyképeit és videójait', 'Add dogshow successes, awards, titles, working exams, health informations, photos and videos', 'Pridávajte výstavné úspechy, ocenenia, tituly, pracovné skúšky, informácie o zdraví, fotografie a videá', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(150, 'Inform about planned litters and offer puppies for sale', 'Inform about planned litters and offer puppies for sale', 'Inform about planned litters and offer puppies for sale', 'Informálja többieket a tervezett párosításairól és kínálja kiskutyáit ', 'Inform about planned litters and offer puppies for sale', 'Informujte o plánovaných vrhoch ', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(151, 'Create friendships and communicate with each other', 'Create friendships and communicate with each other', 'Create friendships and communicate with each other', 'Hozzon létre új barátságokat és kommunikáljon velük', 'Create friendships and communicate with each other', 'Vytvárajte priateľstvá a navzájom spolu komunikujte', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(152, 'Take opportunity to be contacted by potential buyers from all over the world', 'Take opportunity to be contacted by potential buyers from all over the world', 'Take the opportunity to be contacted by potential buyers from all over the world', 'Használja ki a lehetőséget, hogy a potenciális vásárlók kapcsolatba lépjenek magával világ minden tájáról', 'Take opportunity to be contacted by potential buyers from all over the world', 'Využite jedinečnú príležitosť kontaktovania potencionálnymi záujemcami z celého sveta', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(153, 'Contact us', 'Contact us', 'Contact us', 'Lépjen kapcsolatba velünk', 'Contact us', 'Kontaktujte nás', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(154, 'Please contact us via the contact form below if you have any questions, issues or if you are interested in advertising on the DOGFORSHOW', 'Please contact us via the contact form below if you have any questions, issues or if you are interested in advertising on the DOGFORSHOW', 'Please contact us via the contact form below if you have any questions, issues or if you are interested in advertising on the DOGFORSHOW', 'Kérjük, lépjen kapcsolatba velünk az alábbi űrlap segítségével, ha bármilyen kérdése van, problémája, vagy DOGFORSHOW hirdetéssel kapcsolatos kérdései vannak.', 'Please contact us via the contact form below if you have any questions, issues or if you are interested in advertising on the DOGFORSHOW', 'V prípade akýchkoľvek otázok, nezrovnalostí alebo v prípade záujmu o reklamu na portáli DOGFORSHOW nás neváhajte kontaktovať prostredníctvom nižšie uvedeného kontaktného formulára.', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(155, 'Message', 'Message', 'Message', 'Üzenet', 'Message', 'Vaša správa', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(156, 'Verify', 'Verify', 'Verify', 'Megerősít', 'Verify', 'Overenie', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(157, 'Follow us', 'Follow us', 'Follow us', 'Kövess minket', 'Follow us', 'Sledujte nás', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(158, 'DOGFORSHOW on facebook', 'DOGFORSHOW on facebook', 'DOGFORSHOW on facebook', 'DOGFORSHOW a facebook-on', 'DOGFORSHOW on facebook', 'DOGFORSHOW na Facebooku', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(159, 'DOGFORSHOW on Google+', 'DOGFORSHOW on Google+', 'DOGFORSHOW on Google+', 'DOGFORSHOW a Google+-on', 'DOGFORSHOW on Google+', 'DOGFORSHOW na Google+', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(160, 'DOGFORSHOW on Twitter', 'DOGFORSHOW on Twitter', 'DOGFORSHOW on Twitter', 'DOGFORSHOW a Twitter-en', 'DOGFORSHOW on Twitter', 'DOGFORSHOW na Twitter', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(161, 'DOGFORSHOW on Pinterest', 'DOGFORSHOW on Pinterest', 'DOGFORSHOW on Pinterest', 'DOGFORSHOW a Pinterest-en', 'DOGFORSHOW on Pinterest', 'DOGFORSHOW na Pintereste', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(162, 'DOGFORSHOW on Tumblr', 'DOGFORSHOW on Tumblr', 'DOGFORSHOW on Tumblr', 'DOGFORSHOW a Tumblr-en', 'DOGFORSHOW on Tumblr', 'DOGFORSHOW na Tumblr', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(163, 'Friend requests', 'Friend requests', 'Friend requests', 'Ismerősök jelölése', 'Friend requests', 'Žiadosti o priateľstvo', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(164, 'send you a friend request', 'send you a friend request', 'sent you a friend request', 'ismerősnek jelölt', 'send you a friend request', 'vás žiada o priateľstvo', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(165, 'View all', 'View all', 'View all', 'Mindet megnéz', 'View all', 'Zobraziť všetko', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(166, 'Messages', 'Messages', 'Messages', 'Üzenetek', 'Messages', 'Správy', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(167, 'Notifications', 'Notifications', 'Notifications', 'Értesítések', 'Notifications', 'Upozornenia', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(168, 'comment your post', 'comment your post', 'commented on your post', 'hozzászólt a bejegyzésedhez', 'comment your post', 'okomentoval váš príspevok', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(169, 'like your post', 'like your post', 'likes your post', 'kedveli a bejegyzésedet', 'like your post', 'sa páči váš príspevok', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(170, 'User account', 'User account', 'User account', 'Felhasználói fiók', 'User account', 'Užívateľský účet', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(171, 'Account settings', 'Account settings', 'Account settings', 'Beállítások', 'Account settings', 'Nastaviť účet', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(172, 'Delete account', 'Delete account', 'Delete account', 'Fiók törlése', 'Delete account', 'Zmazať účet', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(173, 'Logout', 'Logout', 'Logout', 'Kijelentkezés', 'Logout', 'Odhlásiť', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(174, 'Kennel', 'Kennel', 'Kennel', 'Kennel', 'Kennel', 'Chovateľská stanica', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(175, 'Profile settings', 'Profile settings', 'Profile settings', 'Adatlap szerkesztése', 'Profile settings', 'Nastaviť profil', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(176, 'Switch profile', 'Switch profile', 'Switch profile', 'Adatlap átváltása', 'Switch profile', 'Prepnúť profil', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(177, 'Edit profile', 'Edit profile', 'Edit profile', 'Adatlap módosítása', 'Edit profile', 'Upraviť profil', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(178, 'Delete profile', 'Delete profile', 'Delete profile', 'Adatlap törlése', 'Delete profile', 'Zmazať profil', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(179, 'My Profile', 'My Profile', 'My Profile', 'Adatlapom', 'My Profile', 'Môj profil', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(180, 'Home', 'Home', 'Home', 'Kezdőlap', 'Home', 'Domov', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(181, 'Awards', 'Awards', 'Awards', 'Díjak', 'Awards', 'Ocenenia', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(182, 'Dogs', 'Dogs', 'Dogs', 'Kutyák', 'Dogs', 'Psy', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(183, 'Photos', 'Photos', 'Photos', 'Fenyképek', 'Photos', 'Fotografie', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(184, 'Videos', 'Videos', 'Videos', 'Videók', 'Videos', 'Videá', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(185, 'Friends', 'Friends', 'Friends', 'Barátok', 'Friends', 'Priatelia', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(186, 'Followers', 'Followers', 'Followers', 'Követők', 'Followers', 'Sledujúci', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(187, 'Breeds for handling', 'Breeds for handling', 'Breeds for handling', 'Felvezetendő fajták', 'Breeds for handling', 'Plemená pre handling', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(188, 'Certificates', 'Certificates', 'Certificates', 'Bizonyítványok', 'Certificates', 'Certifikáty', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(189, 'Show results', 'Show results', 'Show results', 'Kiállítási eredmények', 'Show results', 'Výstavnú úspechy', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(190, 'About us', 'About us', 'About us', 'Rólunk', 'About us', 'O nás', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(191, 'Terms & conditions', 'Terms & conditions', 'Terms & conditions', 'Felhasználási feltételek', 'Terms & conditions', 'Všobecné podmienky', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(192, 'Return policy', 'Return policy', 'Return policy', 'Visszatérési irányelv', 'Return policy', 'Reklamačné podmienky', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(193, 'Lists', 'Lists', 'Lists', 'Listák', 'Lists', 'Zoznamy', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(194, 'Owners of purebred dogs', 'Owners of purebred dogs', 'Owners of purebred dogs', 'Törzskönyves kutyák tulajdonosai', 'Owners of purebred dogs', 'Majitelia psov s PP', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(195, 'Dogs for mating', 'Dogs for mating', 'Stud dogs', 'Tenyészkutyák', 'Dogs for mating', 'Chovní psy', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(196, 'Active profile', 'Active profile', 'Active profile', 'Aktív adatlap', 'Active profile', 'Aktívny profil', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(197, 'Create a clear profile of your kennel', 'Create a clear profile of your kennel', 'Create a clear profile of your kennel', 'Hozzon létre egy egyértelmű adatlapot a kenneléről', 'Create a clear profile of your kennel', 'Prehľadný profil chovateľskej stanice', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(198, 'Create unique profiles of your dogs', 'Create unique profiles of your dogs', 'Create unique profiles of your dogs', 'Készítsen egyedi adatlapokat kutyáiról', 'Create unique profiles of your dogs', 'Unikátne profily psov', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(199, 'Offer your dogs at stud', 'Offer your dogs at stud', 'Offer your stud dogs', 'Kínálja tenyészkutyáit ???', 'Offer your dogs at stud', 'Možnosť ponuky psa na krytie', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(200, 'Inform about planned litters', 'Inform about planned litters', 'Inform about planned litters', 'Informálja többieket a tervezett párosításairól', 'Inform about planned litters', 'Pridávanie plánovaných vrhov', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(201, 'Offer puppies for sale from planned litters', 'Offer puppies for sale from planned litters', 'Offer puppies for sale from planned litters', 'Kínálja kiskutyáit a tervezett párosításaiból', 'Offer puppies for sale from planned litters', 'Ponuka šteniatok na predaj', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(202, 'Add awards and titles of your dogs', 'Add awards and titles of your dogs', 'Add awards and titles of your dogs', 'Tüntesse fel kutyái díjait és címeit', 'Add awards and titles of your dogs', 'Pridávanie ocenení a titulov ', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(203, 'Add dogshow successes and keep show history of your dog in one place', 'Add dogshow successes and keep show history of your dog in one place', 'Add dogshow successes and keep show history of your dog in one place', 'Tüntesse fel kutyakiállítási eredményeit és folyamatosan kövesse a kutya eredményeit, mindezt egy helyen', 'Add dogshow successes and keep show history of your dog in one place', 'Pridávanie výstavných úspechov s prehľadnou výstavnou históriou', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(204, 'Add working exams and health informations', 'Add working exams and health informations', 'Add working exams and health informations', 'Tüntesse fel kutyái munka vizsgáit és egészségügyi szűréseit', 'Add working exams and health informations', 'Pridávanie pracovných skúšok', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(205, 'Add pedigrees', 'Add pedigrees', 'Add pedigrees', 'Töltse ki kutyái törzskönyvét', 'Add pedigrees', 'Pridávanie interaktívnych rodokmeňov', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(206, 'Add photos of your dogs', 'Add photos of your dogs', 'Add photos of your dogs', 'Töltse fel kutyái képeit', 'Add photos of your dogs', 'Pridávanie fotografií', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(207, 'Share your succeses on social networks', 'Share your succeses on social networks', 'Share your succeses on social networks', 'Osztja meg kutyái sikereit a többi közösségi hálón', 'Share your succeses on social networks', 'Zdieľanie vašich úspechov prostedníctvom sociálnych sietí', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(208, 'Communicate with other members of DOGFORSHOW', 'Communicate with other members of DOGFORSHOW', 'Communicate with other members of DOGFORSHOW', 'Kommunikáljon a többi DOGFORSHOW taggal', 'Communicate with other members of DOGFORSHOW', 'Komunikovanie s ostatnými členmi DOGFORSHOW', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(209, 'Owner of purebred dog', 'Owner of purebred dog', 'Owner of purebred dog', 'Törzskönyves kutya tulajdonosa', 'Owner of purebred dog', 'Majiteľ psa s preukazom pôvodu', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(210, 'Create profile', 'Create profile', 'Create profile', 'Hozzon létre egy adatlapot', 'Create profile', 'Vytvoriť profil', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(211, 'Create a clear owner profile', 'Create a clear owner profile', 'Create a clear owner''s profile', 'Hozzon létre egy egyértelmű kutya tulajdonosi adatlapot ', 'Create a clear owner profile', 'Prehľadný profil majiteľa psa s preukazom pôvodu', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(212, 'Possibility to migrate on kennel profile', 'Possibility to migrate on kennel profile', 'Possibility to migrate to kennel''s profile', 'Lehetőség migrálni tulajdonos adatlapról egy kennel adatlapra', 'Possibility to migrate on kennel profile', 'Možnosť zmeny profilu na chovateľskú stanicu', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(213, 'Handler', 'Handler', 'Handler', 'Handler ', 'Handler', 'Handler', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(214, 'Create a clear handler profile', 'Create a clear handler profile', 'Create a clear handler''s profile', 'Hozzon létre egy egyértelmű handler adatlapot ', 'Create a clear handler profile', 'Prehľadný profil handlera', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(215, 'Add awards and certificates', 'Add awards and certificates', 'Add awards and certificates', 'Töltse fel díjait és bizonyítványait', 'Add awards and certificates', 'Pridávanie ocenení a certifikátov', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(216, 'Add your dogshow successes and titles', 'Add your dogshow successes and titles', 'Add your dogshow successes and titles', 'Töltse fel kutyakiállítási sikereit és címeit', 'Add your dogshow successes and titles', 'Pridávanie výstavných úspechov', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(217, 'Add breeds list for handling', 'Add breeds list for handling', 'Add your list of breeds for handling', 'Tüntesse fel az Ön által felvezetni kívánt fajtákat', 'Add breeds list for handling', 'Pridanie zoznamu plemien pre handling', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(218, 'Add photos', 'Add photos', 'Add photos', 'Töltse fel képeit', 'Add photos', 'Pridávanie fotografií', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(219, 'Offer your handling services', 'Offer your handling services', 'Offer your handling services', 'Kínálja handler szolgáltatásait', 'Offer your handling services', 'Možnosť ponuky Vašich služieb handlingu', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(220, 'Share successes via social networks', 'Share successes via social networks', 'Share successes via social networks', 'Osztja meg sikereit a többi közösségi hálón', 'Share successes via social networks', 'Zdieľanie úspechov prostedníctvom sociálnych sietí', 'en', 'http://dfs.fsofts.eu/switch-profile', NULL),
+(221, 'Update cover photo', 'Update cover photo', 'Update cover photo', 'Töltse fel a borítóképét', 'Update cover photo', 'Aktualizovať titulnú fotku', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(222, 'Upload', 'Upload', 'Upload', 'Töltés', 'Upload', 'Nahrať', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(223, 'Take picture', 'Take picture', 'Take picture', 'Készíts fotót', 'Take picture', 'Urobiť snímku', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(224, 'Save Image', 'Save Image', 'Save Image', 'Kép mentése', 'Save Image', 'Uložiť obrázok', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(225, 'New Snapshot', 'New Snapshot', 'New Snapshot', 'Új pillanatkép', 'New Snapshot', 'Nová snímka', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(226, 'Capture', 'Capture', 'Capture', 'Készítés', 'Capture', 'Odfotiť', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(227, 'Cancel', 'Cancel', 'Cancel', 'Mégsem', 'Cancel', 'Zrušiť', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(228, 'Close', 'Close', 'Close', 'Bezár', 'Close', 'Zavrieť', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(229, 'Select profile image', 'Select profile image', 'Select profile image', 'Profilkép kiválasztása', 'Select profile image', 'Zvoliť profilový obrázok', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(230, 'We have puppies', 'We have puppies', 'We have puppies', 'Vannak kiskutyáink', 'We have puppies', 'Máme šteniatka', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(231, 'Add friend', 'Add friend', 'Add friend', 'Ismerős hozzáadása', 'Add friend', 'Pridať priateľa', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(232, 'Follow', 'Follow', 'Follow', 'Követés', 'Follow', 'Sledovať', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(233, 'FCI number', 'FCI number', 'FCI number', 'FCI szám', 'FCI number', 'FCI číslo', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(234, 'Breeds bred by our kennel', 'Breeds bred by our kennel', 'Breeds bred by our kennel', 'Fajták, amiket kennelük tenyészt', 'Breeds bred by our kennel', 'Plemená chované ', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(235, 'Add', 'Add', 'Add', 'Hozzáad', 'Add', 'Pridať', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(236, 'There are currently no added records', 'There are currently no added records', 'There are currently no added records', 'Jelenleg nincs hozzáadott bejegyzés', 'There are currently no added records', 'Momentálne nie sú pridané žiadne záznamy', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(237, 'Bitches', 'Bitches', 'Bitches', 'Szukák', 'Bitches', 'Feny', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(238, 'Timeline events', 'Timeline events', 'Timeline events', 'Idővonal események', 'Timeline events', 'Časová os', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(239, 'Write a comment', 'Write a comment', 'Write a comment', 'Írj egy megjegyzést', 'Write a comment', 'Napísať komentár', 'en', 'http://dfs.fsofts.eu/kennel-profile', NULL),
+(240, 'Jednoduchosť, dostupnosť, prehľadnosť a krásna grafika portálu ma oslovila a pridala som na ňu svoju chovateľskú stanicu. Jej celkový dosah a návštevnosť na webe sú výbornou prezentáciou úspešných jedincov a vynikajúcou podporou pre skutočných chovateľov.', 'Jednoduchosť, dostupnosť, prehľadnosť a krásna grafika portálu ma oslovila a pridala som na ňu svoju chovateľskú stanicu. Jej celkový dosah a návštevnosť na webe sú výbornou prezentáciou úspešných jedincov a vynikajúcou podporou pre skutočných chovateľov.', 'Simplicity, accessibility, clarity and beautiful graphics of the website have charmed me and I have added my kennel to it. Its overall reach and audience on the web is an excellent presentation of successful individuals and excellent support for real breeders.', 'Egyszerűség, hozzáférhetőség, egyértelműség és a gyönyörű grafika volt az, ami a honlapon elbűvölt, és e-miatt adtam hozzá a kennelemet. Az elérése és a látogatottsága kitűnő a sikeres tenyésztők bemutatására és kiváló támogatást nyújt a valódi tenyésztőknek.', 'Jednoduchosť, dostupnosť, prehľadnosť a krásna grafika portálu ma oslovila a pridala som na ňu svoju chovateľskú stanicu. Jej celkový dosah a návštevnosť na webe sú výbornou prezentáciou úspešných jedincov a vynikajúcou podporou pre skutočných chovateľov.', 'Jednoduchosť, dostupnosť, prehľadnosť a krásna grafika portálu ma oslovila a pridala som na ňu svoju chovateľskú stanicu. Jej celkový dosah a návštevnosť na webe sú výbornou prezentáciou úspešných jedincov a vynikajúcou podporou pre skutočných chovateľov.', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(241, 'Myslím že je to skvelý nápad vytvoriť rozsiahlu databázu chovateľov, ich chovných staníc, krycích psov a handlerov. Držím palce aby sa Vaša databáza aj naďalej rozrastala a aby o nej vedeli ľudia z celého sveta!', 'Myslím že je to skvelý nápad vytvoriť rozsiahlu databázu chovateľov, ich chovných staníc, krycích psov a handlerov. Držím palce aby sa Vaša databáza aj naďalej rozrastala a aby o nej vedeli ľudia z celého sveta!', 'I think it''s a great idea to create a large database of breeders, kennels, stud dogs and handlers. Good luck to you and wish that your database will grow each day and people from the whole world will know about it!', 'Azt hiszem, ez egy jó ötlet létrehozni egy nagy adatbázist a tenyésztőkkel, kennelekkel, tenyészkutyákkal és handlerekkel. Sok szerencsét nektek és azt kívánom, hogy az adatbázis növekedjen minden egyes nappal és az emberek az egész világból tudjanak róla!', 'Myslím že je to skvelý nápad vytvoriť rozsiahlu databázu chovateľov, ich chovných staníc, krycích psov a handlerov. Držím palce aby sa Vaša databáza aj naďalej rozrastala a aby o nej vedeli ľudia z celého sveta!', 'Myslím že je to skvelý nápad vytvoriť rozsiahlu databázu chovateľov, ich chovných staníc, krycích psov a handlerov. Držím palce aby sa Vaša databáza aj naďalej rozrastala a aby o nej vedeli ľudia z celého sveta!', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(242, 'Pekná a prehľadná stránka, user friendly s veľmi prijemným vizuálom. Teším sa z nej, pomôže mi mať prehľad v mojich absolvovaných vystavách ako aj odreprezentovať moje psy a chovnú stanicu.', 'Pekná a prehľadná stránka, user friendly s veľmi prijemným vizuálom. Teším sa z nej, pomôže mi mať prehľad v mojich absolvovaných vystavách ako aj odreprezentovať moje psy a chovnú stanicu.', 'Nice and well organized website, user friendly with nice visuals. I enjoy it, it helps me to keep track of my attended dog shows and represent my dogs and kennel.', 'Szép, jól szervezett honlap, user friendly és szép látványt nyújt a felhasználóknak. Nagyon tetszik és segít nekem nyomon követni az eddigi kiállításaimat, képviseli a kutyáimat és kennelemet.', 'Pekná a prehľadná stránka, user friendly s veľmi prijemným vizuálom. Teším sa z nej, pomôže mi mať prehľad v mojich absolvovaných vystavách ako aj odreprezentovať moje psy a chovnú stanicu.', 'Pekná a prehľadná stránka, user friendly s veľmi prijemným vizuálom. Teším sa z nej, pomôže mi mať prehľad v mojich absolvovaných vystavách ako aj odreprezentovať moje psy a chovnú stanicu.', 'en', 'http://dfs.fsofts.eu/index.php', NULL),
+(243, 'Edit award', 'Edit award', 'Edit an award', 'Díj módosítása', 'Edit award', 'Upraviť ocenenie', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
+(244, 'Date of the award', 'Date of the award', 'Date of the award ', 'Díj időpontja', 'Date of the award', 'Dátum získania ocenenia', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
+(245, 'Select date when award was obtained', 'Select date when award was obtained', 'Select the date when award was obtained', 'Válassza ki az időpontot, amikor a díjat nyerte', 'Select date when award was obtained', 'Vyberte dátum, kedy bolo ecenenie získané', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
+(246, 'Name of the award', 'Name of the award', 'Name of the award', 'Díj neve', 'Name of the award', 'Názov ocenenia', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
+(247, 'Picture', 'Picture', 'Picture', 'Fenykép', 'Picture', 'Obrázok', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
+(248, 'Picture of award in jpeg or jpg format', 'Picture of award in jpeg or jpg format', 'Picture of the award in jpeg or jpg format', 'Díj fenyképe jpeg vagy jpg formátumban', 'Picture of award in jpeg or jpg format', 'Obrázok ocenenia v jpeg alebo jpg formáte', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
+(249, 'Select picture', 'Select picture', 'Select a picture', 'Kép kiválasztása', 'Select picture', 'Zvoliť obrázok', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
+(250, 'Edit', 'Edit', 'Edit', 'Módosítás', 'Edit', 'Upraviť', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
+(251, 'Purebred dogs', 'Purebred dogs', 'Purebred dogs', 'Törzskönyves kutyák', 'Purebred dogs', 'Psy s preukazom pôvodu', 'en', 'http://dfs.fsofts.eu/list-of-dogs', NULL),
+(252, 'Share', 'Share', 'Share', 'Megosztás', 'Share', 'Zdielať', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(253, 'Breed', 'Breed', 'Breed', 'Fajta', 'Breed', 'Rasa', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(254, 'Gender', 'Gender', 'Gender', 'Nem', 'Gender', 'Pohlavie', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(255, 'Date of birth', 'Date of birth', 'Date of birth', 'Születési dátum', 'Date of birth', 'Dátum narodenia', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(256, 'Pedigree registration number', 'Pedigree registration number', 'Pedigree registration number', 'Törzskönyvi szám', 'Pedigree registration number', 'Pedigree No', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(257, 'Height at the withers (cm)', 'Height at the withers (cm)', 'Height at the withers (cm)', 'Marmagasság (cm)', 'Height at the withers (cm)', 'Výška v kohútiku (cm)', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(258, 'Weight (kg)', 'Weight (kg)', 'Weight (kg)', 'Súly (kg)', 'Weight (kg)', 'Váha (kg)', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(259, 'Country', 'Country', 'Country', 'Ország', 'Country', 'Krajina', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(260, 'Father', 'Father', 'Father (Sire)', 'Apa ', 'Father', 'Otec', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL);
+INSERT INTO `tbl_translate` (`id`, `text_to_translate`, `translated_text_de`, `translated_text_en`, `translated_text_hu`, `translated_text_cz`, `translated_text_sk`, `lang`, `url`, `uri`) VALUES
+(261, 'Mother', 'Mother', 'Mother (Dam)', 'Anya', 'Mother', 'Matka', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(262, 'Championships', 'Championships', 'Championships', 'Championátusok', 'Championships', 'Šampionáty', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(263, 'Working exams', 'Working exams', 'Working exams', 'Munkavizsgák', 'Working exams', 'Pracovné skúšky', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(264, 'Health', 'Health', 'Health', 'Egészség', 'Health', 'Zdravie', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(265, 'Pedigree', 'Pedigree', 'Pedigree ', 'Törzskönyv', 'Pedigree', 'Rodokmeň', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(266, 'Matings', 'Matings', 'Matings', 'Fedezések', 'Matings', 'Krytia', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(267, 'Coowners', 'Coowners', 'Co-owners', 'Társtulajdonosok', 'Coowners', 'Spolumajitelia', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(268, 'Championchips', 'Championchips', 'Championships', 'Championátusok', 'Championchips', 'Šampionáty', 'en', 'http://dfs.fsofts.eu/dog-profile?id=2', NULL),
+(269, 'Remove from friends', 'Remove from friends', 'Remove from friends', 'Ismerős törlése', 'Remove from friends', 'Odobrať z priateľov', 'en', 'http://dfs.fsofts.eu/list-of-kennels', NULL),
+(270, 'Website', 'Website', 'Website', 'Weboldal', 'Website', 'Webstránka', 'en', 'http://dfs.fsofts.eu/kennel-profile?id=2', NULL),
+(271, 'Delete', 'Delete', 'Delete', 'Törlés', 'Delete', 'Odstrániť', 'en', 'http://dfs.fsofts.eu/kennel-awards-edit?id=1', NULL),
+(272, 'Bitch', 'Bitch', 'Bitch', 'Szuka', 'Bitch', 'Fena', 'en', 'http://dfs.fsofts.eu/dog-profile?id=1', NULL),
+(273, 'Class', 'Class', 'Class', 'Osztály', 'Class', 'Trieda', 'en', 'http://dfs.fsofts.eu/dog-show-list?id=1&dog_id=1', NULL),
+(274, 'Champion', 'Champion', 'Champion', 'Champion', 'Champion', 'Šampión', 'en', 'http://dfs.fsofts.eu/dog-show-list?id=1&dog_id=1', NULL),
+(275, 'Judge', 'Judge', 'Judge', 'Bíró', 'Judge', 'Rozhodca', 'en', 'http://dfs.fsofts.eu/dog-show-list?id=1&dog_id=1', NULL),
+(276, 'This feature is unavailable to view on small screens', 'This feature is unavailable to view on small screens', 'This feature is unavailable to view on small screens', 'Ez a szolgáltatás nem elérhető megtekinteni kis képernyőn', 'This feature is unavailable to view on small screens', 'Táto funkcia nie je prístupná pre zariadenia s malým rozlíšením obrazovky', 'en', 'http://dfs.fsofts.eu/dog-pedigree?id=1&dog_id=1', NULL),
+(277, 'Name of the father', 'Name of the father', 'Name of the father (sire)', 'Apa neve', 'Name of the father', 'Meno otca', 'en', 'http://dfs.fsofts.eu/dog-pedigree?id=1&dog_id=1', NULL),
+(278, 'Add championchip', 'Add championchip', 'Add championship', 'Championátus hozzáadása', 'Add championchip', 'Pridať šampionát', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
+(279, 'Date of Championship award', 'Date of Championship award', 'Date of the Championship award', 'Championátus időpontja', 'Date of Championship award', 'Dátum získania šampionátu', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
+(280, 'Select date when the championship was awarded', 'Select date when the championship was awarded', 'Select date when the championship was awarded', 'Válassza ki az időpontot, amikor a Championátust megszerezte', 'Select date when the championship was awarded', 'Vyberte dátum, kedy bolo šampionát získaný', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
+(281, 'Championship', 'Championship', 'Championship', 'Championátus', 'Championship', 'Šampionát', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
+(282, 'Enter a championship (e.g. Junior Champion of Slovakia). For better clarity of your dog’s profile, please enter only one title at a time.', 'Enter a championship (e.g. Junior Champion of Slovakia). For better clarity of your dog’s profile, please enter only one title at a time.', 'Enter the championship (e.g. Junior Champion of Slovakia). For better clarity of your dog’s profile, please enter only one title at a time.', 'Írja be a championátust (pl. Junior Champion of Slovakia). Kérjük, írjon csak egy címet egy időben a jobb érthetőség végett.', 'Enter a championship (e.g. Junior Champion of Slovakia). For better clarity of your dog’s profile, please enter only one title at a time.', 'Zadajte názov šampionátu (napr. Junior šampión Slovenska). Pre lepšiu prehľadnosť zadávajte prosím naraz iba jeden šampionát ', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
+(283, 'Junior champion of Hungary', 'Junior champion of Hungary', 'Junior Champion of Hungary', 'Hungária Junior Champion', 'Junior champion of Hungary', 'Junior šampión Maďarska', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
+(284, 'Upload the image (e.g. diploma received for each degree, or certificate – in jpg or jpeg format). This field is optional', 'Upload the image (e.g. diploma received for each degree, or certificate – in jpg or jpeg format). This field is optional', 'Upload the image (e.g. diploma received for each degree, or certificate – in jpg or jpeg format). This field is optional', 'Kép feltöltése (pl.a diplomáról, bizonyítványról - jpeg vagy jpg formátumban) Ez a mező nem kötelező', 'Upload the image (e.g. diploma received for each degree, or certificate – in jpg or jpeg format). This field is optional', 'Nahrajte obrázok (diplom alebo certifikát vo formáte jpg alebo jpeg )', 'en', 'http://dfs.fsofts.eu/dog-championschip-add?dog_id=1', NULL),
+(285, 'Edit championship', 'Edit championship', 'Edit the championship', 'Championátus módosítása', 'Edit championship', 'Úprava šampionátu', 'en', 'http://dfs.fsofts.eu/dog-championschip-edit?id=1&dog_id=1', NULL),
+(286, 'Edit show result', 'Edit show result', 'Edit the show result', 'Kutyakiállítás eredmény módosítása', 'Edit show result', 'Úprava výstavného výsledku', 'en', 'http://dfs.fsofts.eu/dog-show-edit?dog_id=1', NULL),
+(287, 'Date of show', 'Date of show', 'Date of the show', 'Kutyakiállítás időpontja', 'Date of show', 'Dátum výstavy', 'en', 'http://dfs.fsofts.eu/dog-show-edit?dog_id=1', NULL),
+(288, 'Select the date on which the show was held', 'Select the date on which the show was held', 'Select the date on which the show was held', 'Válassza ki az időpontot, amikor a kutyakiállítás tartott', 'Select the date on which the show was held', 'Vyberte dátum, kedy sa výstava konala', 'en', 'http://dfs.fsofts.eu/dog-show-edit?dog_id=1', NULL),
+(289, 'Add show result', 'Add show result', 'Add show result', 'Kutyakiállítási eredmény hozzáadása', 'Add show result', 'Pridanie výstavného výsledku', 'en', 'http://dfs.fsofts.eu/dog-show-add?dog_id=1', NULL),
+(290, 'Edit working exam', 'Edit working exam', 'Edit the working exam', 'Munkavizsga módosítása', 'Edit working exam', 'Úprava pracovnej skúšky', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
+(291, 'Date exam passed', 'Date exam passed', 'Date of passed exam', 'Munkavizsga időpontja', 'Date exam passed', 'Dátum absolvovania pracovnej skúšky', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
+(292, 'Enter the date working exam completed', 'Enter the date working exam completed', 'Enter the date when working exam was completed', 'Válassza ki az időpontot, amikor a munkavizsgát megszerezte', 'Enter the date working exam completed', 'Vyberte dátum absolvovania pracovnej skúšky', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
+(293, 'Type of exam', 'Type of exam', 'Type of the exam', 'Munkavizsga típusa', 'Type of exam', 'Typ pracovnej skúšky', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
+(294, 'Enter the type of working exam (e.g. IPO 1)', 'Enter the type of working exam (e.g. IPO 1)', 'Enter the type of working exam (e.g. IPO 1)', 'Írja be a munkavizsga típusát (pl. IPO 1)', 'Enter the type of working exam (e.g. IPO 1)', 'Zadajte názov alebo typ pracovnej skúšky (napríklad IPO1)', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
+(295, 'For example IPO 1', 'For example IPO 1', 'For example IPO 1', 'Pl. IPO 1', 'For example IPO 1', 'napríklad IPO1', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
+(296, 'Record the picture (e.g. diploma received in a working exam or a certificate – in jpg or jpeg format. This field is optional', 'Record the picture (e.g. diploma received in a working exam or a certificate – in jpg or jpeg format. This field is optional', 'Upload the picture (e.g. diploma received in a working exam or a certificate – in jpg or jpeg format. This field is optional', 'Kép feltöltése (pl.a diplomaról, bizonyítványról - jpeg vagy jpg formátumban) Ez a mező nem kötelező', 'Record the picture (e.g. diploma received in a working exam or a certificate – in jpg or jpeg format. This field is optional', 'Nahrajte obrázok (diplom alebo certifikát vo formáte jpg alebo jpeg )', 'en', 'http://dfs.fsofts.eu/dog-workexam-edit?id=1&dog_id=1', NULL),
+(297, 'Add working exam', 'Add working exam', 'Add working exam', 'Munkavizsga hozzáadása', 'Add working exam', 'Pridanie pracovnej skúšky', 'en', 'http://dfs.fsofts.eu/dog-workexam-add?dog_id=1', NULL),
+(298, 'Add health record', 'Add health record', 'Add health record', 'Egészségügyi szűrés hozzáadása', 'Add health record', 'Pridanie zdravotného záznamu', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
+(299, 'Date of the health record', 'Date of the health record', 'Date of the health record', 'Egészségügyi szűrés időpontja', 'Date of the health record', 'Dátum zdravotného vyšetrenia', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
+(300, 'Enter the date the health record was issued', 'Enter the date the health record was issued', 'Enter the date when health record was issued', 'Válassza ki az időpontot, amikor az egészségügyi szűrést megcsináltatta', 'Enter the date the health record was issued', 'Vyberte dátum kedy bolo zdravotné vyšetrenie absolvované', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
+(301, 'Description of the health record', 'Description of the health record', 'Description of the health record', 'Egészségügyi szűrés leírása', 'Description of the health record', 'Typ zdravotného vyšetrenia', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
+(302, 'Enter a description or type of health record (e.g. HD, ED)', 'Enter a description or type of health record (e.g. HD, ED)', 'Enter a description or type of health record (e.g. HD, ED)', 'Írja be az egészségügyi szűrés típusát (pl. HD/csípő diszplázia, ED/könyök diszplázia)', 'Enter a description or type of health record (e.g. HD, ED)', 'Zadajte popis alebo ty zdravotného vyšetrenia (napríklad HD, ED)', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
+(303, 'Hip Dysplasia', 'Hip Dysplasia', 'Hip Dysplasia', 'Csípő diszplázia', 'Hip Dysplasia', 'napríklad HD A/A', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
+(304, 'Record the picture (e.g. health report – image in jpg or jpeg format). This field is optional', 'Record the picture (e.g. health report – image in jpg or jpeg format). This field is optional', 'Upload the picture (e.g. health report – image in jpg or jpeg format). This field is optional', 'Kép feltöltése (pl.az egészségügyi szűrésről - jpeg vagy jpg formátumban) Ez a mező nem kötelező', 'Record the picture (e.g. health report – image in jpg or jpeg format). This field is optional', 'Nahrajte obrázok (zdravotný záznam vo formáte jpg alebo jpeg )', 'en', 'http://dfs.fsofts.eu/dog-health-add?dog_id=1', NULL),
+(305, 'Add mating', 'Add mating', 'Add mating', 'Fedezés hozzáadása', 'Add mating', 'Pridanie krytia', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
+(306, 'Date of mating', 'Date of mating', 'Date of mating', 'Fedezés időpontja', 'Date of mating', 'Dátum krytia', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
+(307, 'Enter the date, when the mating was', 'Enter the date, when the mating was', 'Enter the date when mating was accomplished', 'Válassza ki az időpontot, amikor a fedezés megtörtént', 'Enter the date, when the mating was', 'Vyberte dátum, kedy prebehlo krytie', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
+(308, 'Name of the bitch', 'Name of the bitch', 'Name of the bitch', 'Szuka neve', 'Name of the bitch', 'Meno suky', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
+(309, 'Please enter the bitch name or select bitch from the DOGFORSHOW database for interactivity', 'Please enter the bitch name or select bitch from the DOGFORSHOW database for interactivity', 'Please enter the bitch''s name or select the bitch from the DOGFORSHOW database for interactivity', 'Kérjük, adja meg a szuka nevét, vagy választja ki őt a DOGFORSHOW interaktív adatbázisából ', 'Please enter the bitch name or select bitch from the DOGFORSHOW database for interactivity', 'Zadajte meno suky alebo vyberte meno suky z DOGFORSHOW databázy pre interaktivitu', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
+(310, 'Picture of the bitch', 'Picture of the bitch', 'Picture of the bitch', 'Szuka fenyképe', 'Picture of the bitch', 'Obrázok suky', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
+(311, 'Record the bitch picture in jpg or jpeg format. This field is optional', 'Record the bitch picture in jpg or jpeg format. This field is optional', 'Upload the bitch''s picture in jpg or jpeg format. This field is optional', 'Kép feltöltése a szukától jpeg vagy jpg formátumban. Ez a mező nem kötelező', 'Record the bitch picture in jpg or jpeg format. This field is optional', 'Nahrajte obrázok suky vo formáte jpg alebo jpeg. Obrázok nie je povinný', 'en', 'http://dfs.fsofts.eu/dog-mating-add?dog_id=1', NULL),
+(312, 'Edit dog profile', 'Edit dog profile', 'Edit the dog''s profile', 'Kutya adatlapja módosítása', 'Edit dog profile', 'Upraviť profil psa', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(313, 'Informations', 'Informations', 'Informations', 'Információk', 'Informations', 'Informácie', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(314, 'Pictures', 'Pictures', 'Pictures', 'Fenyképek', 'Pictures', 'Obrázky', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(315, 'Basic informations about your dog', 'Basic informations about your dog', 'Basic informations about your dog', 'Alapvető információk a kutyájáról', 'Basic informations about your dog', 'Základné informácie o vašom psovi', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(316, 'Select the dog’s gender', 'Select the dog’s gender', 'Select the dog’s gender', 'Válassza ki a kutya nemét', 'Select the dog’s gender', 'Vyberte pohlavie', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(317, 'Dog', 'Dog', 'Dog', 'Kutya', 'Dog', 'Pes', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(318, 'Offer your dog for mating', 'Offer your dog for mating', 'Offer your dog as a stud dog', 'Kínálja kutyáját fedezésre', 'Offer your dog for mating', 'Ponúknuť psa na krytie', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(319, 'This option can by selected only for a male dog. After checking this option, your dog will be automatically also in the list of dogs for mating', 'This option can by selected only for a male dog. After checking this option, your dog will be automatically also in the list of dogs for mating', 'This option is available only for males. After checking this option, your dog will be automatically added also to the list of stud dogs.', 'Ez a lehetőség csak a kanok számára elérhető. Ha él ezzel a lehetőséggel, akkor a tenyészkanja automatikusan bekerül a többi tenyészkan közé.', 'This option can by selected only for a male dog. After checking this option, your dog will be automatically also in the list of dogs for mating', 'Táto možnosť môže byť vybraná iba v prípade, že pohlavie jedinca je pes', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(320, 'Yes', 'Yes', 'Yes', 'Igen', 'Yes', 'Áno', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(321, 'Select breed', 'Select breed', 'Select breed', 'Fajta kiválasztása', 'Select breed', 'Vyberte plemeno', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(322, 'Choose a breed from the list.', 'Choose a breed from the list.', 'Choose the breed from the list.', 'Válasszon egy fajtát a listából.', 'Choose a breed from the list.', 'Vyberte plemeno zo zoznamu ', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(323, 'Please select', 'Please select', 'Please select', 'Kérem válasszon', 'Please select', 'Vyberte si', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(324, 'Dog name', 'Dog name', 'Dog''s name', 'Kutya neve', 'Dog name', 'Meno psa', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(325, 'Enter your dog’s name as shown in the pedigree certificate. Please dont fill any championships before the name.', 'Enter your dog’s name as shown in the pedigree certificate. Please dont fill any championships before the name.', 'Enter your dog’s name which is shown in the pedigree certificate. Please don''t fill any championships before the name.', 'Adja meg a kutya nevét, ami a törzskönyvében szerepel. Kérjük, ne írjon semmi championátust a neve elé.', 'Enter your dog’s name as shown in the pedigree certificate. Please dont fill any championships before the name.', 'Zadajte meno psa tak, ako má uvedené v preukaze o pôvode psa. Pred menom nevypĺňajte žiadne dosiahnuté šampionáty', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(326, 'Dog name as shown in the pedigree', 'Dog name as shown in the pedigree', 'Dog name which is shown in the pedigree', 'Kutya neve ami a törzskönyvében szerepel.', 'Dog name as shown in the pedigree', 'Meno psa ako je uvedené v rodokmeni', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(327, 'Enter the name of the breed registry at first (e.g. LOSM, SPKP, CSHPK) and then registration number shown in the pedigree certificate', 'Enter the name of the breed registry at first (e.g. LOSM, SPKP, CSHPK) and then registration number shown in the pedigree certificate', 'Enter the name of the breed registry at first (e.g. LOSM, SPKP, CSHPK) and then registration number which is shown in the pedigree certificate', 'Írja be a törzskönyvi jelét (pl. LOSM, SPKP, CSHPK) és ezután írja be a törzskönyvi számát, ami látható a törzskönyvében', 'Enter the name of the breed registry at first (e.g. LOSM, SPKP, CSHPK) and then registration number shown in the pedigree certificate', 'Zadajte zápis v plemenej knihe v tvare (napríklad LOSM, SPKP, CMKU, CSHPK) a následne registračné číslo', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(328, 'For example SPKP 2667', 'For example SPKP 2667', 'For example SPKP 2667', 'Pl. SPKP 2667', 'For example SPKP 2667', 'napríklad SPKP 2667', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(329, 'Day, month and year of birth of your dog', 'Day, month and year of birth of your dog', 'Day, month and year of birth of your dog', 'Kutya születési dátuma (nap, hónap, év)', 'Day, month and year of birth of your dog', 'Deň, mesiac a rok narodenia psa', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(330, 'Enter the height at withers in centimeters. This information is very good for people, which using the searching dogs for mating with some specific height in withers', 'Enter the height at withers in centimeters. This information is very good for people, which using the searching dogs for mating with some specific height in withers', 'Enter the height at withers in centimeters. This information is very useful for people who are using the searching of dogs for mating with some specific height in withers', 'Írja be a marmagasságot centiméterben. Ez az információ nagyon hasznos azok számára, akik használják a keresést és konkrét magasság érdekli őket.', 'Enter the height at withers in centimeters. This information is very good for people, which using the searching dogs for mating with some specific height in withers', 'Zadajte výšku v kohútiku v centimetroch. Táto informácia je veľmi užitočná pre ľudí, ktorí hľadajú napríklad psov na krytie so špecifickou výškou', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(331, 'Height at the withers in centimeters', 'Height at the withers in centimeters', 'Height at the withers in centimeters', 'Marmagasság centiméterben', 'Height at the withers in centimeters', 'Výsška v kohútiku v centimetroch', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(332, 'Enter your dog’s weight in kilograms', 'Enter your dog’s weight in kilograms', 'Enter your dog’s weight in kilograms', 'Írja be a kutyája súlyát kilogramban', 'Enter your dog’s weight in kilograms', 'Zadajte váhu psa v kilogramoch', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(333, 'Weight of dog in kilograms', 'Weight of dog in kilograms', 'Weight of the dog in kilograms', 'Kutya súlya kilogramban', 'Weight of dog in kilograms', 'Váha psa v kilogramoch', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(334, 'Country in which the dog is currently located', 'Country in which the dog is currently located', 'Country in which the dog is currently located', 'Ország ahol a kutya tartózkodik', 'Country in which the dog is currently located', 'Názov štátu v ktorom sa pes momentálne nachádza', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(335, 'Father of the dog', 'Father of the dog', 'Father (sire) of the dog', 'Kutya apja', 'Father of the dog', 'Otec psa', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(336, 'Please enter father''s name or select father''s name from the DOGFORSHOW database for interactive pedigree', 'Please enter father''s name or select father''s name from the DOGFORSHOW database for interactive pedigree', 'Please enter the father''s name or select father''s name from the DOGFORSHOW database for interactive pedigree', 'Kérjük, adja meg a kutya apja nevét, vagy választja ki őt a DOGFORSHOW interaktív adatbázisából ', 'Please enter father''s name or select father''s name from the DOGFORSHOW database for interactive pedigree', 'Zadajte meno otca psa alebo vyberte meno otca psa z DOGFORSHOW databázy pre interaktivitu', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(337, 'Mother of the dog', 'Mother of the dog', 'Mother (dam) of the dog', 'Kutya anyja', 'Mother of the dog', 'Matka psa', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(338, 'Please enter mother''s name or select mother''s name from the DOGFORSHOW database for interactive pedigree', 'Please enter mother''s name or select mother''s name from the DOGFORSHOW database for interactive pedigree', 'Please enter the mother''s name or select mother''s name from the DOGFORSHOW database for interactive pedigree', 'Kérjük, adja meg a kutya anyja nevét, vagy választja ki őt a DOGFORSHOW interaktív adatbázisából ', 'Please enter mother''s name or select mother''s name from the DOGFORSHOW database for interactive pedigree', 'Zadajte meno matky psa alebo vyberte meno matky psa z DOGFORSHOW databázy pre interaktivitu', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(339, 'Dog profile picture', 'Dog profile picture', 'Dog''s profile picture', 'Kutya profilképe', 'Dog profile picture', 'Profilový obrázok psa', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(340, 'Upload a profile image of your dog in JPG or PNG format', 'Upload a profile image of your dog in JPG or PNG format', 'Upload a profile image of your dog in JPG or PNG format', 'Profilkép feltöltése JPG vagy PNG formátumban', 'Upload a profile image of your dog in JPG or PNG format', 'Nahrajte profilový obrázok psa vo formáte jpg alebo jpeg', 'en', 'http://dfs.fsofts.eu/dog-profile-edit?id=1&dog_id=1', NULL),
+(341, 'Please select state...', 'Please select state...', 'Please select the state...', 'Kérem válasszon országot', 'Please select state...', 'Prosím vyberte štát', 'en', 'http://dfs.fsofts.eu/dog-coowner-add?dog_id=1', NULL),
+(342, 'Add coowner', 'Add coowner', 'Add co-owner', 'Társtulajdonos hozzáadása', 'Add coowner', 'Pridanie spolumajiteľa', 'en', 'http://dfs.fsofts.eu/dog-coowner-add?dog_id=1', NULL),
+(343, 'Name of the coowner', 'Name of the coowner', 'Name of the co-owner', 'Társtulajdonos neve', 'Name of the coowner', 'Meno spolumajiteľa', 'en', 'http://dfs.fsofts.eu/dog-coowner-add?dog_id=1', NULL),
+(344, 'Name and surname of co-owner', 'Name and surname of co-owner', 'Name and surname of the co-owner', 'Társtulajdonos keresztneve és vezetékneve', 'Name and surname of co-owner', 'Meno a priezvisko spolumajiteľa', 'en', 'http://dfs.fsofts.eu/dog-coowner-add?dog_id=1', NULL),
+(345, 'Please select country, where are the co-owner situated', 'Please select country, where are the co-owner situated', 'Please select country where the co-owner lives', 'Kérem válasszon országot, ahol a társtulajdonos lakik', 'Please select country, where are the co-owner situated', 'Prosím vyberte štát, v ktorom sa spolumajiteľ nachádza', 'en', 'http://dfs.fsofts.eu/dog-coowner-add?dog_id=1', NULL),
+(346, 'Add award', 'Add award', 'Add award', 'Díj hozzáadása', 'Add award', 'Pridanie ocenenia', 'en', 'http://dfs.fsofts.eu/kennel-awards-add', NULL),
+(347, 'Password change', 'Password change', 'Password change', 'Jelszócsere', 'Password change', 'Zmeniť heslo', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(348, 'Account informations', 'Account informations', 'Account informations', 'Fiók beállitások', 'Account informations', 'Informácie o účte', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(349, 'Informations marked with this sign will not be accessible to the public or exploited for commercial use by third parties', 'Informations marked with this sign will not be accessible to the public or exploited for commercial use by third parties', 'Informations marked with this sign will not be accessible to the public or exploited for commercial use by third parties', 'Információk jelöltek ezzel a jellel nem lesznek hozzáférhetők a nyilvánosságnak vagy nem lesznek kereskedelmi használatra felhasználva harmadik fél által', 'Informations marked with this sign will not be accessible to the public or exploited for commercial use by third parties', 'Informations marked with this sign will not be accessible to the public or exploited for commercial use by third parties', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(350, 'Your name without numeric signs', 'Your name without numeric signs', 'Your name without numeric signs', 'Az Ön neve numerikus jelek nélkül', 'Your name without numeric signs', 'Vaše meno bez číslic', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(351, 'Your surname without numeric signs', 'Your surname without numeric signs', 'Your surname without numeric signs', 'Az Ön vezetékneve numerikus jelek nélkül', 'Your surname without numeric signs', 'Vaše priezvisko bez číslic', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(352, 'Country where you live', 'Country where you live', 'Country where you live', 'Az ország, ahol él', 'Country where you live', 'Štát v ktorom žijete', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(353, 'Additional account informations', 'Additional account informations', 'Additional account informations', 'További fiók információk', 'Additional account informations', 'Doplnkové informácie o účte', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(354, 'Address', 'Address', 'Address', 'Cím', 'Address', 'Adresa', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(355, 'Your address', 'Your address', 'Your address', 'Az Ön címe', 'Your address', 'Vaša adresa', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(356, 'Town', 'Town', 'Town', 'Város', 'Town', 'Mesto', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(357, 'Town where you live', 'Town where you live', 'Town where you live', 'A város ahol él', 'Town where you live', 'Mesto v ktorom žijete', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(358, 'ZIP', 'ZIP', 'ZIP', 'Irányítószám', 'ZIP', 'PSČ', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(359, 'Enter the zip code of the place where you live', 'Enter the zip code of the place where you live', 'Enter the zip code of the place where you live', 'Írja be a hely irányítószámát, ahol él', 'Enter the zip code of the place where you live', 'Zadajte poštové smerovacie číslo ', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(360, 'Phone number', 'Phone number', 'Phone number', 'Telefonszám', 'Phone number', 'Telefónne číslo', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(361, 'Your phone number', 'Your phone number', 'Your phone number', 'Az Ön telefonszáma', 'Your phone number', 'Zadajte telefóne číslo v medzinárodnom tvare napríklad +42xxxxxxxxxx', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(362, 'Year of birth', 'Year of birth', 'Year of birth', 'Születési év', 'Year of birth', 'Rok narodenia', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(363, 'Your year of birth', 'Your year of birth', 'Your year of birth', 'Az Ön születési éve', 'Your year of birth', 'Váš rok narodenia', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(364, 'Save', 'Save', 'Save', 'Mentés', 'Save', 'Uložiť', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(365, 'Old password', 'Old password', 'Old password', 'Régi jelszó', 'Old password', 'Staré heslo', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(366, 'Type your old password', 'Type your old password', 'Type your old password', 'Írja be a régi jelszavát', 'Type your old password', 'Zadajte vaše staré heslo', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(367, 'New password', 'New password', 'New password', 'Új jelszó', 'New password', 'Nové heslo', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(368, 'Type your new password', 'Type your new password', 'Type your new password', 'Írja be az új jelszavát', 'Type your new password', 'Zadajte vaše nové heslo', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(369, 'Confirm new password', 'Confirm new password', 'Confirm new password', 'Erősítse meg az új jelszót', 'Confirm new password', 'Potvrďte vaše nové heslo', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(370, 'Confirm your new password', 'Confirm your new password', 'Confirm your new password', 'Erősítse meg az új jelszavát', 'Confirm your new password', 'Zadajte ešte raz vaše nové heslo ', 'en', 'http://dfs.fsofts.eu/edit-account', NULL),
+(371, 'Basic informations about your kennel', 'Basic informations about your kennel', 'Basic informations about your kennel', 'Alapvető információk a kenneléről', 'Basic informations about your kennel', 'Základné informácie o vašej chovateľskej stanici', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
+(372, 'Kennel name', 'Kennel name', 'Kennel name', 'Kennel név', 'Kennel name', 'Názov chovateľskej stanice', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
+(373, 'Name of your kennel', 'Name of your kennel', 'Name of your kennel', 'A kennel neve', 'Name of your kennel', 'Zadajte názov vašej chovateľskej stanice', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
+(374, 'Fill the FCI number in the form 1580/2015. If you are non FCI kennel, please leave this field empty', 'Fill the FCI number in the form 1580/2015. If you are non FCI kennel, please leave this field empty', 'Fill the FCI number in the form 1580/2015. If you are non FCI kennel, please leave this field empty', 'Írja be az FCI számot ebben a formátumban - 1580/2015. Ha nem FCI kennel, kérjük hagyja üresen a mezőt', 'Fill the FCI number in the form 1580/2015. If you are non FCI kennel, please leave this field empty', 'Zadajte FCI číslo chovateľskej stanice v tvare napríklad 1580/2015. Pokiaľ nie ste FCI chovateľská stanica, nevypĺňajte toto pole', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
+(375, 'Kennel website', 'Kennel website', 'Kennel''s website', 'Kennel weboldala', 'Kennel website', 'Webstránka vašej chovateľskej stanice', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
+(376, 'Enter the website of your kennel', 'Enter the website of your kennel', 'Enter the website of your kennel', 'Írja be a kennel weboldalát', 'Enter the website of your kennel', 'Zadajte adresu webstránky vašej chovateľskej stanice v tvare www.vasastranka.com', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
+(377, 'www.yourwebsite.com', 'www.yourwebsite.com', 'www.yourwebsite.com', 'www.yourwebsite.com', 'www.yourwebsite.com', 'www.yourwebsite.com', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
+(378, 'Kennel description', 'Kennel description', 'Kennel''s description', 'Kennel leírása', 'Kennel description', 'Popis chovateľskej stanice', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
+(379, 'Enter information about your kennel', 'Enter information about your kennel', 'Enter some informations about your kennel', 'Írjon valami információt kenneléről', 'Enter information about your kennel', 'Zadajte informácie o vašej chovateľskej stanici', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
+(380, 'Select the breed bred by your kennel', 'Select the breed bred by your kennel', 'Select the breed(s) bred by your kennel', 'Válasszon fajtát (fajtákat) amiket kennelük tenyészt', 'Select the breed bred by your kennel', 'Vyberte plemeno, ktorého chovu sa venuje vaša chovateľská stanica', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
+(381, 'Choose one ore more breeds bred by your kennel', 'Choose one ore more breeds bred by your kennel', 'Choose one or more breeds bred by your kennel', 'Válasszon egy vagy több fajtát, amiket kennelük tenyészt', 'Choose one ore more breeds bred by your kennel', 'Vyberte zo zoznamu plemien jedno alebo viacej plemien ktorého chovu sa venuje vaša chovateľská stanica', 'en', 'http://dfs.fsofts.eu/kennel-edit-profile', NULL),
+(382, 'Owner of purebred dog profile', 'Owner of purebred dog profile', 'Owner of purebred dog''s profile', 'Kutya tulajdonos adatlapja', 'Owner of purebred dog profile', 'Majiteľ psa s preukazom pôvodu', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
+(383, 'Basic informations about you', 'Basic informations about you', 'Basic informations about you', 'Alapvető információk Önről', 'Basic informations about you', 'Základné ifnormácie o vás', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
+(384, 'Your profile picture', 'Your profile picture', 'Your profile picture', 'Az Ön profilképe', 'Your profile picture', 'Váš profilový obrázok', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
+(385, 'Your profile picture in jpeg or jpg format', 'Your profile picture in jpeg or jpg format', 'Your profile picture in jpeg or jpg format', 'Az Ön profilképe jpeg vagy jpg formátumban', 'Your profile picture in jpeg or jpg format', 'Nahrajte váš profilový obrázok vo formáte jpg alebo jpeg', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
+(386, 'Short description about you', 'Short description about you', 'Short description about you', 'Rövid leírás Önről', 'Short description about you', 'Krátky popis o vás', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
+(387, 'Enter some informations about yourself', 'Enter some informations about yourself', 'Enter some informations about yourself', 'Írjon valami információt Önről', 'Enter some informations about yourself', 'Zadajte krátky popis o vás', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
+(388, 'Short description', 'Short description', 'Short description', 'Rövid leírás', 'Short description', 'Krátky popis', 'en', 'http://dfs.fsofts.eu/owner-create-profile', NULL),
+(389, 'Add a dog', 'Add a dog', 'Add a dog', 'Add a dog', 'Add a dog', 'Add a dog', 'en', 'http://dfs.fsofts.eu/add-dog', NULL),
+(390, 'Available for mating', 'Available for mating', 'Available for mating', 'Available for mating', 'Available for mating', 'Available for mating', 'en', 'http://dfs.fsofts.eu/kennel-profile?id=1&_fid=mbbn', NULL),
+(391, 'Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link', 'Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link', 'Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link', 'Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link', 'Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link', 'Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link', 'en', 'http://localhost/dfs/index.php', NULL),
+(392, 'Resend registration email', 'Resend registration email', 'Resend registration email', 'Resend registration email', 'Resend registration email', 'Resend registration email', 'en', 'http://localhost/dfs/index.php', NULL),
+(393, 'Welcome to DOGFORSHOW', 'Welcome to DOGFORSHOW', 'Welcome to DOGFORSHOW', 'Welcome to DOGFORSHOW', 'Welcome to DOGFORSHOW', 'Welcome to DOGFORSHOW', 'en', 'http://localhost/dfs/index.php?resend_al=2', NULL),
+(394, 'Hello', 'Hello', 'Hello', 'Hello', 'Hello', 'Hello', 'en', 'http://localhost/dfs/index.php?resend_al=2', NULL),
+(395, 'Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link', 'Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link', 'Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link', 'Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link', 'Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link', 'Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link', 'en', 'http://localhost/dfs/index.php?resend_al=2', NULL),
+(396, 'Activate account', 'Activate account', 'Activate account', 'Activate account', 'Activate account', 'Activate account', 'en', 'http://localhost/dfs/index.php?resend_al=2', NULL),
+(397, 'This email was automatically sent by DOGFORSHOW system. Please dont reply on this email', 'This email was automatically sent by DOGFORSHOW system. Please dont reply on this email', 'This email was automatically sent by DOGFORSHOW system. Please dont reply on this email', 'This email was automatically sent by DOGFORSHOW system. Please dont reply on this email', 'This email was automatically sent by DOGFORSHOW system. Please dont reply on this email', 'This email was automatically sent by DOGFORSHOW system. Please dont reply on this email', 'en', 'http://localhost/dfs/index.php?resend_al=2', NULL),
+(398, 'Wrong username or password.', 'Wrong username or password.', 'Wrong username or password.', 'Wrong username or password.', 'Wrong username or password.', 'Wrong username or password.', 'en', 'http://www.dogshow.com/index.php', NULL),
+(399, 'Your registration has been successfully completed', 'Your registration has been successfully completed', 'Your registration has been successfully completed', 'Your registration has been successfully completed', 'Your registration has been successfully completed', 'Your registration has been successfully completed', 'en', 'http://www.dogshow.com/index.php', NULL),
+(400, 'Please check your Email for your user acccount activation', 'Please check your Email for your user acccount activation', 'Please check your Email for your user acccount activation', 'Please check your Email for your user acccount activation', 'Please check your Email for your user acccount activation', 'Please check your Email for your user acccount activation', 'en', 'http://www.dogshow.com/index.php', NULL),
+(401, 'If you have not received the Email yet, please also check your SPAM folder', 'If you have not received the Email yet, please also check your SPAM folder', 'If you have not received the Email yet, please also check your SPAM folder', 'If you have not received the Email yet, please also check your SPAM folder', 'If you have not received the Email yet, please also check your SPAM folder', 'If you have not received the Email yet, please also check your SPAM folder', 'en', 'http://www.dogshow.com/index.php', NULL),
+(402, 'Kennel profile', 'Kennel profile', 'Kennel profile', 'Kennel profile', 'Kennel profile', 'Kennel profile', 'en', 'http://www.dogshow.com/kennel-create-profile', NULL),
+(403, 'Kennel profile picture', 'Kennel profile picture', 'Kennel profile picture', 'Kennel profile picture', 'Kennel profile picture', 'Kennel profile picture', 'en', 'http://www.dogshow.com/kennel-create-profile', NULL),
+(404, 'Profile picture of your kennel in jpeg or jpg format', 'Profile picture of your kennel in jpeg or jpg format', 'Profile picture of your kennel in jpeg or jpg format', 'Profile picture of your kennel in jpeg or jpg format', 'Profile picture of your kennel in jpeg or jpg format', 'Profile picture of your kennel in jpeg or jpg format', 'en', 'http://www.dogshow.com/kennel-create-profile', NULL),
+(405, 'Enter some informations about your kennel', 'Enter some informations about your kennel', 'Enter some informations about your kennel', 'Enter some informations about your kennel', 'Enter some informations about your kennel', 'Enter some informations about your kennel', 'en', 'http://www.dogshow.com/kennel-create-profile', NULL),
+(406, 'Owner', 'Owner', 'Owner', 'Owner', 'Owner', 'Owner', 'en', 'http://www.dogshow.com/owner-profile?_fid=oerz', NULL),
+(407, 'About me', 'About me', 'About me', 'About me', 'About me', 'About me', 'en', 'http://www.dogshow.com/owner-profile?_fid=oerz', NULL),
+(408, 'Name of the kennel', 'Name of the kennel', 'Name of the kennel', 'Name of the kennel', 'Name of the kennel', 'Name of the kennel', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
+(409, 'Name of the planned litter', 'Name of the planned litter', 'Name of the planned litter', 'Name of the planned litter', 'Name of the planned litter', 'Name of the planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
+(410, 'Planned litter', 'Planned litter', 'Planned litter', 'Planned litter', 'Planned litter', 'Planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
+(411, 'Scheduled date of birth of the puppies', 'Scheduled date of birth of the puppies', 'Scheduled date of birth of the puppies', 'Scheduled date of birth of the puppies', 'Scheduled date of birth of the puppies', 'Scheduled date of birth of the puppies', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
+(412, 'Add puppies', 'Add puppies', 'Add puppies', 'Add puppies', 'Add puppies', 'Add puppies', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
+(413, 'View detail', 'View detail', 'View detail', 'View detail', 'View detail', 'View detail', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
+(414, 'Puppies', 'Puppies', 'Puppies', 'Puppies', 'Puppies', 'Puppies', 'en', 'http://www.dogshow.com/kennel-planned-litter-list?id=200000000', NULL),
+(415, 'Edit awards', 'Edit awards', 'Edit awards', 'Edit awards', 'Edit awards', 'Edit awards', 'en', 'http://www.dogshow.com/kennel-profile', NULL),
+(416, 'Remove from timeline', 'Remove from timeline', 'Remove from timeline', 'Remove from timeline', 'Remove from timeline', 'Remove from timeline', 'en', 'http://www.dogshow.com/kennel-profile', NULL),
+(417, 'Like', 'Like', 'Like', 'Like', 'Like', 'Like', 'en', 'http://www.dogshow.com/kennel-profile', NULL),
+(418, 'Profile updated', 'Profile updated', 'Profile updated', 'Profile updated', 'Profile updated', 'Profile updated', 'en', 'http://www.dogshow.com/kennel-profile?id=200000000&_fid=9dff', NULL),
+(419, 'Add awards', 'Add awards', 'Add awards', 'Add awards', 'Add awards', 'Add awards', 'en', 'http://www.dogshow.com/kennel-profile?id=200000000', NULL),
+(420, 'Add show', 'Add show', 'Add show', 'Add show', 'Add show', 'Add show', 'en', 'http://www.dogshow.com/handler-show-list?handler_id=0', NULL),
+(421, 'Add result', 'Add result', 'Add result', 'Add result', 'Add result', 'Add result', 'en', 'http://www.dogshow.com/handler-show-list?handler_id=0', NULL),
+(422, 'Delete messages', 'Delete messages', 'Delete messages', 'Delete messages', 'Delete messages', 'Delete messages', 'en', 'http://www.dogshow.com/message-list', NULL),
+(423, 'Type your message', 'Type your message', 'Type your message', 'Type your message', 'Type your message', 'Type your message', 'en', 'http://www.dogshow.com/message-compose', NULL),
+(424, 'Breed list does not contain entered breed', 'Breed list does not contain entered breed', 'Breed list does not contain entered breed', 'Breed list does not contain entered breed', 'Breed list does not contain entered breed', 'Breed list does not contain entered breed', 'en', 'http://www.dogshow.com/kennel-edit-profile', NULL),
+(425, 'Respected breeder, judge, writer', 'Respected breeder, judge, writer', 'Respected breeder, judge, writer', 'Respected breeder, judge, writer', 'Respected breeder, judge, writer', 'Respected breeder, judge, writer', 'en', 'http://www.dogshow.com/index.php', NULL),
+(426, 'I am very impressed with the quality of what I have seen so far on the DOGFORSHOW. I wish for website to have much circulation, as I am sure that it will benefit people, whether dog owners or others.', 'I am very impressed with the quality of what I have seen so far on the DOGFORSHOW. I wish for website to have much circulation, as I am sure that it will benefit people, whether dog owners or others.', 'I am very impressed with the quality of what I have seen so far on the DOGFORSHOW. I wish for website to have much circulation, as I am sure that it will benefit people, whether dog owners or others.', 'I am very impressed with the quality of what I have seen so far on the DOGFORSHOW. I wish for website to have much circulation, as I am sure that it will benefit people, whether dog owners or others.', 'I am very impressed with the quality of what I have seen so far on the DOGFORSHOW. I wish for website to have much circulation, as I am sure that it will benefit people, whether dog owners or others.', 'I am very impressed with the quality of what I have seen so far on the DOGFORSHOW. I wish for website to have much circulation, as I am sure that it will benefit people, whether dog owners or others.', 'en', 'http://www.dogshow.com/index.php', NULL),
+(427, 'Unlike', 'Unlike', 'Unlike', 'Unlike', 'Unlike', 'Unlike', 'en', 'http://www.dogshow.com/timeline', NULL),
+(428, 'For sale', 'For sale', 'For sale', 'For sale', 'For sale', 'For sale', 'en', 'http://www.dogshow.com/kennel-puppy-list?id=200000000', NULL),
+(429, 'Reserved', 'Reserved', 'Reserved', 'Reserved', 'Reserved', 'Reserved', 'en', 'http://www.dogshow.com/kennel-puppy-list?id=200000000', NULL),
+(430, 'Sold', 'Sold', 'Sold', 'Sold', 'Sold', 'Sold', 'en', 'http://www.dogshow.com/kennel-puppy-list?id=200000000', NULL),
+(431, 'Search', 'Search', 'Search', 'Search', 'Search', 'Search', 'en', 'http://www.dogshow.com/list-of-owners', NULL),
+(432, 'Edit a dog', 'Edit a dog', 'Edit a dog', 'Edit a dog', 'Edit a dog', 'Edit a dog', 'en', 'http://www.dogshow.com/dog-profile-edit?id=500000000&dog_id=500000000', NULL),
+(433, 'Show type', 'Show type', 'Show type', 'Show type', 'Show type', 'Show type', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(434, 'Select type of exhibition', 'Select type of exhibition', 'Select type of exhibition', 'Select type of exhibition', 'Select type of exhibition', 'Select type of exhibition', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(435, 'Name of the show', 'Name of the show', 'Name of the show', 'Name of the show', 'Name of the show', 'Name of the show', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL);
+INSERT INTO `tbl_translate` (`id`, `text_to_translate`, `translated_text_de`, `translated_text_en`, `translated_text_hu`, `translated_text_cz`, `translated_text_sk`, `lang`, `url`, `uri`) VALUES
+(436, 'Enter the name of show (e.g. World dog show Budapest)', 'Enter the name of show (e.g. World dog show Budapest)', 'Enter the name of show (e.g. World dog show Budapest)', 'Enter the name of show (e.g. World dog show Budapest)', 'Enter the name of show (e.g. World dog show Budapest)', 'Enter the name of show (e.g. World dog show Budapest)', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(437, 'Enter the show name', 'Enter the show name', 'Enter the show name', 'Enter the show name', 'Enter the show name', 'Enter the show name', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(438, 'Select country in which show was held', 'Select country in which show was held', 'Select country in which show was held', 'Select country in which show was held', 'Select country in which show was held', 'Select country in which show was held', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(439, 'Name of judge', 'Name of judge', 'Name of judge', 'Name of judge', 'Name of judge', 'Name of judge', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(440, 'Enter the judge’s name', 'Enter the judge’s name', 'Enter the judge’s name', 'Enter the judge’s name', 'Enter the judge’s name', 'Enter the judge’s name', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(441, 'Name of handler', 'Name of handler', 'Name of handler', 'Name of handler', 'Name of handler', 'Name of handler', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(442, 'Enter the handler’s name or select handler from DOGFORSHOW database for interactivity. If you dont have any handler, please just leave it empty', 'Enter the handler’s name or select handler from DOGFORSHOW database for interactivity. If you dont have any handler, please just leave it empty', 'Enter the handler’s name or select handler from DOGFORSHOW database for interactivity. If you dont have any handler, please just leave it empty', 'Enter the handler’s name or select handler from DOGFORSHOW database for interactivity. If you dont have any handler, please just leave it empty', 'Enter the handler’s name or select handler from DOGFORSHOW database for interactivity. If you dont have any handler, please just leave it empty', 'Enter the handler’s name or select handler from DOGFORSHOW database for interactivity. If you dont have any handler, please just leave it empty', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(443, 'Enter the handler’s name', 'Enter the handler’s name', 'Enter the handler’s name', 'Enter the handler’s name', 'Enter the handler’s name', 'Enter the handler’s name', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(444, 'Choose class Minor Puppy(3-6 months), Puppy(6-9 months), Junior(9-18 months), Intermediate(15-24 months), Open(from 15 months), Working(from 15 months, with working exam), Champions(from 15 months with ICH or CH title), Veteran(from 8 years), Honor(from 15 months with title ICH, CH, Club Winner, National Winner)', 'Choose class Minor Puppy(3-6 months), Puppy(6-9 months), Junior(9-18 months), Intermediate(15-24 months), Open(from 15 months), Working(from 15 months, with working exam), Champions(from 15 months with ICH or CH title), Veteran(from 8 years), Honor(from 15 months with title ICH, CH, Club Winner, National Winner)', 'Choose class Minor Puppy(3-6 months), Puppy(6-9 months), Junior(9-18 months), Intermediate(15-24 months), Open(from 15 months), Working(from 15 months, with working exam), Champions(from 15 months with ICH or CH title), Veteran(from 8 years), Honor(from 15 months with title ICH, CH, Club Winner, National Winner)', 'Choose class Minor Puppy(3-6 months), Puppy(6-9 months), Junior(9-18 months), Intermediate(15-24 months), Open(from 15 months), Working(from 15 months, with working exam), Champions(from 15 months with ICH or CH title), Veteran(from 8 years), Honor(from 15 months with title ICH, CH, Club Winner, National Winner)', 'Choose class Minor Puppy(3-6 months), Puppy(6-9 months), Junior(9-18 months), Intermediate(15-24 months), Open(from 15 months), Working(from 15 months, with working exam), Champions(from 15 months with ICH or CH title), Veteran(from 8 years), Honor(from 15 months with title ICH, CH, Club Winner, National Winner)', 'Choose class Minor Puppy(3-6 months), Puppy(6-9 months), Junior(9-18 months), Intermediate(15-24 months), Open(from 15 months), Working(from 15 months, with working exam), Champions(from 15 months with ICH or CH title), Veteran(from 8 years), Honor(from 15 months with title ICH, CH, Club Winner, National Winner)', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(445, 'Assesment', 'Assesment', 'Assesment', 'Assesment', 'Assesment', 'Assesment', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(446, 'Best minor puppy', 'Best minor puppy', 'Best minor puppy', 'Best minor puppy', 'Best minor puppy', 'Best minor puppy', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(447, 'Best puppy male & female', 'Best puppy male & female', 'Best puppy male & female', 'Best puppy male & female', 'Best puppy male & female', 'Best puppy male & female', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(448, 'Titles', 'Titles', 'Titles', 'Titles', 'Titles', 'Titles', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(449, 'Junior Best of Group', 'Junior Best of Group', 'Junior Best of Group', 'Junior Best of Group', 'Junior Best of Group', 'Junior Best of Group', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(450, 'Junior Best in Show', 'Junior Best in Show', 'Junior Best in Show', 'Junior Best in Show', 'Junior Best in Show', 'Junior Best in Show', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(451, 'Best of Group', 'Best of Group', 'Best of Group', 'Best of Group', 'Best of Group', 'Best of Group', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(452, 'Other titles and awards received at the show', 'Other titles and awards received at the show', 'Other titles and awards received at the show', 'Other titles and awards received at the show', 'Other titles and awards received at the show', 'Other titles and awards received at the show', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(453, 'Enter other titles achieved at this show', 'Enter other titles achieved at this show', 'Enter other titles achieved at this show', 'Enter other titles achieved at this show', 'Enter other titles achieved at this show', 'Enter other titles achieved at this show', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(454, 'e.g. National Winner', 'e.g. National Winner', 'e.g. National Winner', 'e.g. National Winner', 'e.g. National Winner', 'e.g. National Winner', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(455, 'Image from show', 'Image from show', 'Image from show', 'Image from show', 'Image from show', 'Image from show', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(456, 'Record the picture from show in jpg or jpeg format. This field is optional', 'Record the picture from show in jpg or jpeg format. This field is optional', 'Record the picture from show in jpg or jpeg format. This field is optional', 'Record the picture from show in jpg or jpeg format. This field is optional', 'Record the picture from show in jpg or jpeg format. This field is optional', 'Record the picture from show in jpg or jpeg format. This field is optional', 'en', 'http://www.dogshow.com/dog-show-add?dog_id=500000000', NULL),
+(457, 'Add planned litter', 'Add planned litter', 'Add planned litter', 'Add planned litter', 'Add planned litter', 'Add planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(458, 'Name of the litter or litter ranking', 'Name of the litter or litter ranking', 'Name of the litter or litter ranking', 'Name of the litter or litter ranking', 'Name of the litter or litter ranking', 'Name of the litter or litter ranking', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(459, 'Enter the name of the litter or enter the letter of planned litter', 'Enter the name of the litter or enter the letter of planned litter', 'Enter the name of the litter or enter the letter of planned litter', 'Enter the name of the litter or enter the letter of planned litter', 'Enter the name of the litter or enter the letter of planned litter', 'Enter the name of the litter or enter the letter of planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(460, 'Enter indicative month of birth of puppies as information for prospective buyers', 'Enter indicative month of birth of puppies as information for prospective buyers', 'Enter indicative month of birth of puppies as information for prospective buyers', 'Enter indicative month of birth of puppies as information for prospective buyers', 'Enter indicative month of birth of puppies as information for prospective buyers', 'Enter indicative month of birth of puppies as information for prospective buyers', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(461, 'Enter dog’s name', 'Enter dog’s name', 'Enter dog’s name', 'Enter dog’s name', 'Enter dog’s name', 'Enter dog’s name', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(462, 'Enter dog’s name or select the dog from the DOGFORSHOW database for interactivity', 'Enter dog’s name or select the dog from the DOGFORSHOW database for interactivity', 'Enter dog’s name or select the dog from the DOGFORSHOW database for interactivity', 'Enter dog’s name or select the dog from the DOGFORSHOW database for interactivity', 'Enter dog’s name or select the dog from the DOGFORSHOW database for interactivity', 'Enter dog’s name or select the dog from the DOGFORSHOW database for interactivity', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(463, 'Picture of the dog', 'Picture of the dog', 'Picture of the dog', 'Picture of the dog', 'Picture of the dog', 'Picture of the dog', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(464, 'Upload or change profile picture of the dog in jpg or jpeg format', 'Upload or change profile picture of the dog in jpg or jpeg format', 'Upload or change profile picture of the dog in jpg or jpeg format', 'Upload or change profile picture of the dog in jpg or jpeg format', 'Upload or change profile picture of the dog in jpg or jpeg format', 'Upload or change profile picture of the dog in jpg or jpeg format', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(465, 'Please select the name of the bitch', 'Please select the name of the bitch', 'Please select the name of the bitch', 'Please select the name of the bitch', 'Please select the name of the bitch', 'Please select the name of the bitch', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(466, 'Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs', 'Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs', 'Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs', 'Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs', 'Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs', 'Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(467, 'Upload or change profile picture of the bitch in jpg or jpeg format', 'Upload or change profile picture of the bitch in jpg or jpeg format', 'Upload or change profile picture of the bitch in jpg or jpeg format', 'Upload or change profile picture of the bitch in jpg or jpeg format', 'Upload or change profile picture of the bitch in jpg or jpeg format', 'Upload or change profile picture of the bitch in jpg or jpeg format', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(468, 'Name of planned litter can''t be empty', 'Name of planned litter can''t be empty', 'Name of planned litter can''t be empty', 'Name of planned litter can''t be empty', 'Name of planned litter can''t be empty', 'Name of planned litter can''t be empty', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(469, 'Dog name can''t be empty', 'Dog name can''t be empty', 'Dog name can''t be empty', 'Dog name can''t be empty', 'Dog name can''t be empty', 'Dog name can''t be empty', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(470, 'Dog image can''t be empty', 'Dog image can''t be empty', 'Dog image can''t be empty', 'Dog image can''t be empty', 'Dog image can''t be empty', 'Dog image can''t be empty', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(471, 'Bitch name can''t be empty', 'Bitch name can''t be empty', 'Bitch name can''t be empty', 'Bitch name can''t be empty', 'Bitch name can''t be empty', 'Bitch name can''t be empty', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(472, 'Bitch image can''t be empty', 'Bitch image can''t be empty', 'Bitch image can''t be empty', 'Bitch image can''t be empty', 'Bitch image can''t be empty', 'Bitch image can''t be empty', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(473, 'Please select state', 'Please select state', 'Please select state', 'Please select state', 'Please select state', 'Please select state', 'en', 'http://www.dogshow.com/index.php', NULL),
+(474, 'Name and Surname cannot left blank', 'Name and Surname cannot left blank', 'Name and Surname cannot left blank', 'Name and Surname cannot left blank', 'Name and Surname cannot left blank', 'Name and Surname cannot left blank', 'en', 'http://www.dogshow.com/index.php', NULL),
+(475, 'Password and confirm password does not match', 'Password and confirm password does not match', 'Password and confirm password does not match', 'Password and confirm password does not match', 'Password and confirm password does not match', 'Password and confirm password does not match', 'en', 'http://www.dogshow.com/index.php', NULL),
+(476, 'Fields Name and Surname cannot contains digits', 'Fields Name and Surname cannot contains digits', 'Fields Name and Surname cannot contains digits', 'Fields Name and Surname cannot contains digits', 'Fields Name and Surname cannot contains digits', 'Fields Name and Surname cannot contains digits', 'en', 'http://www.dogshow.com/index.php', NULL),
+(477, 'Email cannot left blank', 'Email cannot left blank', 'Email cannot left blank', 'Email cannot left blank', 'Email cannot left blank', 'Email cannot left blank', 'en', 'http://www.dogshow.com/index.php', NULL),
+(478, 'Profile created', 'Profile created', 'Profile created', 'Profile created', 'Profile created', 'Profile created', 'en', 'http://www.dogshow.com/kennel-profile?id=1&_fid=hpgn', NULL),
+(479, 'Select or enter the name of the dog', 'Select or enter the name of the dog', 'Select or enter the name of the dog', 'Select or enter the name of the dog', 'Select or enter the name of the dog', 'Select or enter the name of the dog', 'en', 'http://www.dogshow.com/dog-pedigree', NULL),
+(480, 'Name of the dog', 'Name of the dog', 'Name of the dog', 'Name of the dog', 'Name of the dog', 'Name of the dog', 'en', 'http://www.dogshow.com/dog-pedigree', NULL),
+(481, 'Name of the mother', 'Name of the mother', 'Name of the mother', 'Name of the mother', 'Name of the mother', 'Name of the mother', 'en', 'http://www.dogshow.com/dog-pedigree', NULL),
+(482, 'No', 'No', 'No', 'No', 'No', 'No', 'en', 'http://www.dogshow.com/dog-profile?id=1', NULL),
+(483, 'Are you sure you want to delete this dog?', 'Are you sure you want to delete this dog?', 'Are you sure you want to delete this dog?', 'Are you sure you want to delete this dog?', 'Are you sure you want to delete this dog?', 'Are you sure you want to delete this dog?', 'en', 'http://www.dogshow.com/dog-profile?id=1', NULL),
+(484, 'Question', 'Question', 'Question', 'Question', 'Question', 'Question', 'en', 'http://www.dogshow.com/dog-profile?id=1', NULL),
+(485, 'Are you sure you want to delete this profile?', 'Are you sure you want to delete this profile?', 'Are you sure you want to delete this profile?', 'Are you sure you want to delete this profile?', 'Are you sure you want to delete this profile?', 'Are you sure you want to delete this profile?', 'en', 'http://www.dogshow.com/dog-profile?id=2', NULL),
+(486, 'Are you sure you want to delete this record?', 'Are you sure you want to delete this record?', 'Are you sure you want to delete this record?', 'Are you sure you want to delete this record?', 'Are you sure you want to delete this record?', 'Are you sure you want to delete this record?', 'en', 'http://www.dogshow.com/dog-profile?id=5&dog_id=5&_fid=yvc6', NULL),
+(487, 'By clicking Register, you agree to our', 'By clicking Register, you agree to our', 'By clicking Register, you agree to our', 'By clicking Register, you agree to our', 'By clicking Register, you agree to our', 'By clicking Register, you agree to our', 'en', 'http://www.dogshow.com/index.php', NULL),
+(488, 'General terms', 'General terms', 'General terms', 'General terms', 'General terms', 'General terms', 'en', 'http://www.dogshow.com/index.php', NULL),
+(489, 'and you have read our', 'and you have read our', 'and you have read our', 'and you have read our', 'and you have read our', 'and you have read our', 'en', 'http://www.dogshow.com/index.php', NULL),
+(490, 'Cookie policy', 'Cookie policy', 'Cookie policy', 'Cookie policy', 'Cookie policy', 'Cookie policy', 'en', 'http://www.dogshow.com/index.php', NULL),
+(491, 'Father of the planned litter', 'Father of the planned litter', 'Father of the planned litter', 'Father of the planned litter', 'Father of the planned litter', 'Father of the planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(492, 'Mother of the planned litter', 'Mother of the planned litter', 'Mother of the planned litter', 'Mother of the planned litter', 'Mother of the planned litter', 'Mother of the planned litter', 'en', 'http://www.dogshow.com/kennel-planned-litter-add', NULL),
+(493, 'Please select planned litter...', 'Please select planned litter...', 'Please select planned litter...', 'Please select planned litter...', 'Please select planned litter...', 'Please select planned litter...', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(494, 'Add a puppy', 'Add a puppy', 'Add a puppy', 'Add a puppy', 'Add a puppy', 'Add a puppy', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(495, 'Basic informations about puppy', 'Basic informations about puppy', 'Basic informations about puppy', 'Basic informations about puppy', 'Basic informations about puppy', 'Basic informations about puppy', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(496, 'Select your planned litter', 'Select your planned litter', 'Select your planned litter', 'Select your planned litter', 'Select your planned litter', 'Select your planned litter', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(497, 'Choose your added planned litter or add your planned litter in the kennel menu, section planned litters', 'Choose your added planned litter or add your planned litter in the kennel menu, section planned litters', 'Choose your added planned litter or add your planned litter in the kennel menu, section planned litters', 'Choose your added planned litter or add your planned litter in the kennel menu, section planned litters', 'Choose your added planned litter or add your planned litter in the kennel menu, section planned litters', 'Choose your added planned litter or add your planned litter in the kennel menu, section planned litters', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(498, 'Select the puppy’s gender', 'Select the puppy’s gender', 'Select the puppy’s gender', 'Select the puppy’s gender', 'Select the puppy’s gender', 'Select the puppy’s gender', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(499, 'Puppy''s name', 'Puppy''s name', 'Puppy''s name', 'Puppy''s name', 'Puppy''s name', 'Puppy''s name', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(500, 'Enter the puppy’s name', 'Enter the puppy’s name', 'Enter the puppy’s name', 'Enter the puppy’s name', 'Enter the puppy’s name', 'Enter the puppy’s name', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(501, 'Picture of puppy', 'Picture of puppy', 'Picture of puppy', 'Picture of puppy', 'Picture of puppy', 'Picture of puppy', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(502, 'Upload a profile picture of puppy in PNG, JPG or GIF format', 'Upload a profile picture of puppy in PNG, JPG or GIF format', 'Upload a profile picture of puppy in PNG, JPG or GIF format', 'Upload a profile picture of puppy in PNG, JPG or GIF format', 'Upload a profile picture of puppy in PNG, JPG or GIF format', 'Upload a profile picture of puppy in PNG, JPG or GIF format', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(503, 'Day, month and year of puppy’s birth', 'Day, month and year of puppy’s birth', 'Day, month and year of puppy’s birth', 'Day, month and year of puppy’s birth', 'Day, month and year of puppy’s birth', 'Day, month and year of puppy’s birth', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(504, 'Country in which the puppy is currently located', 'Country in which the puppy is currently located', 'Country in which the puppy is currently located', 'Country in which the puppy is currently located', 'Country in which the puppy is currently located', 'Country in which the puppy is currently located', 'en', 'http://www.dogshow.com/puppy-create-profile?plid=1', NULL),
+(505, 'Share on Facebook', 'Share on Facebook', 'Share on Facebook', 'Share on Facebook', 'Share on Facebook', 'Share on Facebook', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
+(506, 'Share on Google+', 'Share on Google+', 'Share on Google+', 'Share on Google+', 'Share on Google+', 'Share on Google+', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
+(507, 'Share on Twitter', 'Share on Twitter', 'Share on Twitter', 'Share on Twitter', 'Share on Twitter', 'Share on Twitter', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
+(508, 'Share on Pinterest', 'Share on Pinterest', 'Share on Pinterest', 'Share on Pinterest', 'Share on Pinterest', 'Share on Pinterest', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
+(509, 'Share on Tumblr', 'Share on Tumblr', 'Share on Tumblr', 'Share on Tumblr', 'Share on Tumblr', 'Share on Tumblr', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
+(510, 'Post to a friend', 'Post to a friend', 'Post to a friend', 'Post to a friend', 'Post to a friend', 'Post to a friend', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
+(511, 'I am interested', 'I am interested', 'I am interested', 'I am interested', 'I am interested', 'I am interested', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
+(512, 'Description', 'Description', 'Description', 'Description', 'Description', 'Description', 'en', 'http://www.dogshow.com/puppy-profile', NULL),
+(513, 'Edit puppy profile', 'Edit puppy profile', 'Edit puppy profile', 'Edit puppy profile', 'Edit puppy profile', 'Edit puppy profile', 'en', 'http://www.dogshow.com/puppy-edit-profile', NULL),
+(514, 'Peoples who liked this', 'Peoples who liked this', 'Peoples who liked this', 'Peoples who liked this', 'Peoples who liked this', 'Peoples who liked this', 'en', 'http://www.dogshow.com/kennel-profile', NULL),
+(515, 'Required field', 'Required field', 'Required field', 'Required field', 'Required field', 'Required field', 'en', 'http://www.dogshow.com/index.php', NULL),
+(516, 'User with this e-mail, is not in our database', 'User with this e-mail, is not in our database', 'User with this e-mail, is not in our database', 'User with this e-mail, is not in our database', 'User with this e-mail, is not in our database', 'User with this e-mail, is not in our database', 'en', 'http://172.16.46.5/dfs/index.php', NULL),
+(517, 'Login to your account', 'Login to your account', 'Login to your account', 'Login to your account', 'Login to your account', 'Login to your account', 'en', 'http://172.16.46.5/dfs/index.php', NULL),
+(518, 'Your password has been successfully sent to your e-mail', 'Your password has been successfully sent to your e-mail', 'Your password has been successfully sent to your e-mail', 'Your password has been successfully sent to your e-mail', 'Your password has been successfully sent to your e-mail', 'Your password has been successfully sent to your e-mail', 'en', 'http://172.16.46.5/dfs/index.php', NULL),
+(519, 'Handler profile', 'Handler profile', 'Handler profile', 'Handler profile', 'Handler profile', 'Handler profile', 'en', 'http://www.dogshow.com/handler-create-profile', NULL),
+(520, 'Select the breed that you can handle', 'Select the breed that you can handle', 'Select the breed that you can handle', 'Select the breed that you can handle', 'Select the breed that you can handle', 'Select the breed that you can handle', 'en', 'http://www.dogshow.com/handler-create-profile', NULL),
+(521, 'Select the breeds that you can handle', 'Select the breeds that you can handle', 'Select the breeds that you can handle', 'Select the breeds that you can handle', 'Select the breeds that you can handle', 'Select the breeds that you can handle', 'en', 'http://www.dogshow.com/handler-create-profile', NULL),
+(522, 'Your cover photo', 'Your cover photo', 'Your cover photo', 'Your cover photo', 'Your cover photo', 'Your cover photo', 'en', 'http://www.dogshow.com/handler-edit-profile', NULL),
+(523, 'Add breeds for handling', 'Add breeds for handling', 'Add breeds for handling', 'Add breeds for handling', 'Add breeds for handling', 'Add breeds for handling', 'en', 'http://www.dogshow.com/handler-handling-breed-add', NULL),
+(524, 'Record has been successfully added.', 'Record has been successfully added.', 'Record has been successfully added.', 'Record has been successfully added.', 'Record has been successfully added.', 'Record has been successfully added.', 'en', 'http://www.dogshow.com/handler-awards-add?handler_id=400000000', NULL),
+(525, 'Record has been successfully updated.', 'Record has been successfully updated.', 'Record has been successfully updated.', 'Record has been successfully updated.', 'Record has been successfully updated.', 'Record has been successfully updated.', 'en', 'http://www.dogshow.com/handler-awards-edit?id=7', NULL),
+(526, 'Add certificate', 'Add certificate', 'Add certificate', 'Add certificate', 'Add certificate', 'Add certificate', 'en', 'http://www.dogshow.com/handler-certificates-add?handler_id=400000000', NULL),
+(527, 'Date of certificate passed', 'Date of certificate passed', 'Date of certificate passed', 'Date of certificate passed', 'Date of certificate passed', 'Date of certificate passed', 'en', 'http://www.dogshow.com/handler-certificates-add?handler_id=400000000', NULL),
+(528, 'Select date certificate was obtained', 'Select date certificate was obtained', 'Select date certificate was obtained', 'Select date certificate was obtained', 'Select date certificate was obtained', 'Select date certificate was obtained', 'en', 'http://www.dogshow.com/handler-certificates-add?handler_id=400000000', NULL),
+(529, 'Name of the certificate', 'Name of the certificate', 'Name of the certificate', 'Name of the certificate', 'Name of the certificate', 'Name of the certificate', 'en', 'http://www.dogshow.com/handler-certificates-add?handler_id=400000000', NULL),
+(530, 'Picture of certificate in jpeg or jpg format', 'Picture of certificate in jpeg or jpg format', 'Picture of certificate in jpeg or jpg format', 'Picture of certificate in jpeg or jpg format', 'Picture of certificate in jpeg or jpg format', 'Picture of certificate in jpeg or jpg format', 'en', 'http://www.dogshow.com/handler-certificates-add?handler_id=400000000', NULL),
+(531, 'Edit certificate', 'Edit certificate', 'Edit certificate', 'Edit certificate', 'Edit certificate', 'Edit certificate', 'en', 'http://www.dogshow.com/handler-certificates-edit?id=1', NULL),
+(532, 'Date certificate passed', 'Date certificate passed', 'Date certificate passed', 'Date certificate passed', 'Date certificate passed', 'Date certificate passed', 'en', 'http://www.dogshow.com/handler-certificates-edit?id=1', NULL),
+(533, 'Name of the handled dog', 'Name of the handled dog', 'Name of the handled dog', 'Name of the handled dog', 'Name of the handled dog', 'Name of the handled dog', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(534, 'Enter the dog’s name or select dog from DOGFORSHOW database for interactivity', 'Enter the dog’s name or select dog from DOGFORSHOW database for interactivity', 'Enter the dog’s name or select dog from DOGFORSHOW database for interactivity', 'Enter the dog’s name or select dog from DOGFORSHOW database for interactivity', 'Enter the dog’s name or select dog from DOGFORSHOW database for interactivity', 'Enter the dog’s name or select dog from DOGFORSHOW database for interactivity', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(535, 'Enter other titles achieved at this show (e.g. National Winner)', 'Enter other titles achieved at this show (e.g. National Winner)', 'Enter other titles achieved at this show (e.g. National Winner)', 'Enter other titles achieved at this show (e.g. National Winner)', 'Enter other titles achieved at this show (e.g. National Winner)', 'Enter other titles achieved at this show (e.g. National Winner)', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(536, 'Minor Puppy', 'Minor Puppy', 'Minor Puppy', 'Minor Puppy', 'Minor Puppy', 'Minor Puppy', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(537, 'Puppy', 'Puppy', 'Puppy', 'Puppy', 'Puppy', 'Puppy', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(538, 'Junior', 'Junior', 'Junior', 'Junior', 'Junior', 'Junior', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(539, 'Intermediate', 'Intermediate', 'Intermediate', 'Intermediate', 'Intermediate', 'Intermediate', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(540, 'Open', 'Open', 'Open', 'Open', 'Open', 'Open', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(541, 'Working', 'Working', 'Working', 'Working', 'Working', 'Working', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(542, 'Champions', 'Champions', 'Champions', 'Champions', 'Champions', 'Champions', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(543, 'Veteran', 'Veteran', 'Veteran', 'Veteran', 'Veteran', 'Veteran', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(544, 'Honor', 'Honor', 'Honor', 'Honor', 'Honor', 'Honor', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(545, 'Please select...', 'Please select...', 'Please select...', 'Please select...', 'Please select...', 'Please select...', 'en', 'http://www.dogshow.com/handler-show-add', NULL),
+(546, 'Language', 'Language', 'Language', 'Language', 'Language', 'Language', 'en', 'http://www.dogshow.com/edit-account', NULL),
+(547, 'Language for current user', 'Language for current user', 'Language for current user', 'Language for current user', 'Language for current user', 'Language for current user', 'en', 'http://www.dogshow.com/edit-account', NULL),
+(548, 'Regional', '', 'Regional', 'Regional', 'Regional', 'Regional', 'en', 'http://www.dogshow.com/handler-show-add-name', NULL),
+(549, 'Club', '', 'Club', 'Club', 'Club', 'Club', 'en', 'http://www.dogshow.com/handler-show-add-name', NULL),
+(550, 'Special CAC', '', 'Special CAC', 'Special CAC', 'Special CAC', 'Special CAC', 'en', 'http://www.dogshow.com/handler-show-add-name', NULL),
+(551, 'National CAC', '', 'National CAC', 'National CAC', 'National CAC', 'National CAC', 'en', 'http://www.dogshow.com/handler-show-add-name', NULL),
+(552, 'National CAC, NW', '', 'National CAC, NW', 'National CAC, NW', 'National CAC, NW', 'National CAC, NW', 'en', 'http://www.dogshow.com/handler-show-add-name', NULL),
+(553, 'International CACIB', '', 'International CACIB', 'International CACIB', 'International CACIB', 'International CACIB', 'en', 'http://www.dogshow.com/handler-show-add-name', NULL),
+(554, 'European show', '', 'European show', 'European show', 'European show', 'European show', 'en', 'http://www.dogshow.com/handler-show-add-name', NULL),
+(555, 'World show', '', 'World show', 'World show', 'World show', 'World show', 'en', 'http://www.dogshow.com/handler-show-add-name', NULL),
+(556, 'MinorPuppy', '', 'MinorPuppy', 'MinorPuppy', 'MinorPuppy', 'MinorPuppy', 'en', 'http://www.dogshow.com/handler-show-list', NULL);
 
 -- --------------------------------------------------------
 
@@ -1818,6 +2003,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   `active` int(11) NOT NULL DEFAULT '0',
   `active_profile_id` bigint(20) NOT NULL DEFAULT '0',
   `active_profile_type` int(11) NOT NULL DEFAULT '0',
+  `lang` varchar(4) NOT NULL DEFAULT 'en',
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
@@ -1848,15 +2034,7 @@ CREATE TABLE IF NOT EXISTS `tbl_usergroup` (
   `is_default` bit(1) NOT NULL DEFAULT b'0',
   `is_public` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `tbl_usergroup`
---
-
-INSERT INTO `tbl_usergroup` (`id`, `user_id`, `group_name`, `is_default`, `is_public`) VALUES
-(1, 1, 'Public', b'1', b'1'),
-(2, 2, 'Public', b'1', b'1');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1870,6 +2048,7 @@ CREATE TABLE IF NOT EXISTS `tbl_userhandler` (
   `user_id` bigint(20) NOT NULL,
   `handler_fci_number` varchar(20) DEFAULT NULL,
   `handler_profile_picture` blob,
+  `handler_background_image` blob NOT NULL,
   `handler_website` varchar(150) DEFAULT NULL,
   `handler_description` text,
   `handler_create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1921,655 +2100,20 @@ CREATE TABLE IF NOT EXISTS `tbl_userowner` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tmp_0`
+-- Table structure for table `tbl_videos`
 --
 
-DROP TABLE IF EXISTS `tmp_0`;
-CREATE TABLE IF NOT EXISTS `tmp_0` (
+DROP TABLE IF EXISTS `tbl_videos`;
+CREATE TABLE IF NOT EXISTS `tbl_videos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
-  `event_type` int(11) DEFAULT NULL,
-  `event_description` mediumtext,
-  `event_image` mediumtext,
-  `date` timestamp NULL DEFAULT NULL,
-  `timeline_profile_image` longblob,
-  `timeline_name` varchar(150) DEFAULT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `profile_id` bigint(20) NOT NULL,
+  `image` text NOT NULL,
+  `video` text NOT NULL,
+  `description` mediumtext NOT NULL,
+  `added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tmp_0`
---
-
-INSERT INTO `tmp_0` (`id`, `profile_id`, `event_id`, `event_type`, `event_description`, `event_image`, `date`, `timeline_profile_image`, `timeline_name`) VALUES
-(2, 200000000, 1, 5, '29.07.2015 - Best Awards show 2010', '', '2015-08-29 20:37:20', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel'),
-(4, 200000000, 200000000, 2, 'Labradors kennel', 'uploads/VqHnvmskrx.jpg', '2015-09-01 08:00:22', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_1`
---
-
-DROP TABLE IF EXISTS `tmp_1`;
-CREATE TABLE IF NOT EXISTS `tmp_1` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
-  `event_type` int(11) DEFAULT NULL,
-  `event_description` mediumtext,
-  `event_image` mediumtext,
-  `date` timestamp NULL DEFAULT NULL,
-  `timeline_profile_image` longblob,
-  `timeline_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tmp_1`
---
-
-INSERT INTO `tmp_1` (`id`, `profile_id`, `event_id`, `event_type`, `event_description`, `event_image`, `date`, `timeline_profile_image`, `timeline_name`) VALUES
-(2, 200000000, 1, 5, '29.07.2015 - Best Awards show 2010', '', '2015-08-29 20:37:20', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel'),
-(4, 200000000, 200000000, 2, 'Labradors kennel', 'uploads/VqHnvmskrx.jpg', '2015-09-01 08:00:22', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_2`
---
-
-DROP TABLE IF EXISTS `tmp_2`;
-CREATE TABLE IF NOT EXISTS `tmp_2` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
-  `event_type` int(11) DEFAULT NULL,
-  `event_description` mediumtext,
-  `event_image` mediumtext,
-  `date` timestamp NULL DEFAULT NULL,
-  `timeline_profile_image` longblob,
-  `timeline_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tmp_2`
---
-
-INSERT INTO `tmp_2` (`id`, `profile_id`, `event_id`, `event_type`, `event_description`, `event_image`, `date`, `timeline_profile_image`, `timeline_name`) VALUES
-(2, 200000000, 1, 5, '29.07.2015 - Best Awards show 2010', '', '2015-08-29 20:37:20', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel'),
-(4, 200000000, 200000000, 2, 'Labradors kennel', 'uploads/VqHnvmskrx.jpg', '2015-09-01 08:00:22', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_3`
---
-
-DROP TABLE IF EXISTS `tmp_3`;
-CREATE TABLE IF NOT EXISTS `tmp_3` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
-  `event_type` int(11) DEFAULT NULL,
-  `event_description` mediumtext,
-  `event_image` mediumtext,
-  `date` timestamp NULL DEFAULT NULL,
-  `timeline_profile_image` longblob,
-  `timeline_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_4`
---
-
-DROP TABLE IF EXISTS `tmp_4`;
-CREATE TABLE IF NOT EXISTS `tmp_4` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
-  `event_type` int(11) DEFAULT NULL,
-  `event_description` mediumtext,
-  `event_image` mediumtext,
-  `date` timestamp NULL DEFAULT NULL,
-  `timeline_profile_image` longblob,
-  `timeline_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tmp_4`
---
-
-INSERT INTO `tmp_4` (`id`, `profile_id`, `event_id`, `event_type`, `event_description`, `event_image`, `date`, `timeline_profile_image`, `timeline_name`) VALUES
-(2, 200000000, 1, 5, '29.07.2015 - Best Awards show 2010', '', '2015-08-29 20:37:20', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel'),
-(4, 200000000, 200000000, 2, 'Labradors kennel', 'uploads/VqHnvmskrx.jpg', '2015-09-01 08:00:22', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_5`
---
-
-DROP TABLE IF EXISTS `tmp_5`;
-CREATE TABLE IF NOT EXISTS `tmp_5` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
-  `event_type` int(11) DEFAULT NULL,
-  `event_description` mediumtext,
-  `event_image` mediumtext,
-  `date` timestamp NULL DEFAULT NULL,
-  `timeline_profile_image` longblob,
-  `timeline_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tmp_5`
---
-
-INSERT INTO `tmp_5` (`id`, `profile_id`, `event_id`, `event_type`, `event_description`, `event_image`, `date`, `timeline_profile_image`, `timeline_name`) VALUES
-(2, 200000000, 1, 5, '29.07.2015 - Best Awards show 2010', '', '2015-08-29 20:37:20', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel'),
-(4, 200000000, 200000000, 2, 'Labradors kennel', 'uploads/VqHnvmskrx.jpg', '2015-09-01 08:00:22', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_6`
---
-
-DROP TABLE IF EXISTS `tmp_6`;
-CREATE TABLE IF NOT EXISTS `tmp_6` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
-  `event_type` int(11) DEFAULT NULL,
-  `event_description` mediumtext,
-  `event_image` mediumtext,
-  `date` timestamp NULL DEFAULT NULL,
-  `timeline_profile_image` longblob,
-  `timeline_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tmp_6`
---
-
-INSERT INTO `tmp_6` (`id`, `profile_id`, `event_id`, `event_type`, `event_description`, `event_image`, `date`, `timeline_profile_image`, `timeline_name`) VALUES
-(2, 200000000, 1, 5, '29.07.2015 - Best Awards show 2010', '', '2015-08-29 20:37:20', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel'),
-(4, 200000000, 200000000, 2, 'Labradors kennel', 'uploads/VqHnvmskrx.jpg', '2015-09-01 08:00:22', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_7`
---
-
-DROP TABLE IF EXISTS `tmp_7`;
-CREATE TABLE IF NOT EXISTS `tmp_7` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
-  `event_type` int(11) DEFAULT NULL,
-  `event_description` mediumtext,
-  `event_image` mediumtext,
-  `date` timestamp NULL DEFAULT NULL,
-  `timeline_profile_image` longblob,
-  `timeline_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tmp_7`
---
-
-INSERT INTO `tmp_7` (`id`, `profile_id`, `event_id`, `event_type`, `event_description`, `event_image`, `date`, `timeline_profile_image`, `timeline_name`) VALUES
-(2, 200000000, 1, 5, '29.07.2015 - Best Awards show 2010', '', '2015-08-29 20:37:20', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel'),
-(4, 200000000, 200000000, 2, 'Labradors kennel', 'uploads/VqHnvmskrx.jpg', '2015-09-01 08:00:22', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_8`
---
-
-DROP TABLE IF EXISTS `tmp_8`;
-CREATE TABLE IF NOT EXISTS `tmp_8` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
-  `event_type` int(11) DEFAULT NULL,
-  `event_description` mediumtext,
-  `event_image` mediumtext,
-  `date` timestamp NULL DEFAULT NULL,
-  `timeline_profile_image` longblob,
-  `timeline_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tmp_8`
---
-
-INSERT INTO `tmp_8` (`id`, `profile_id`, `event_id`, `event_type`, `event_description`, `event_image`, `date`, `timeline_profile_image`, `timeline_name`) VALUES
-(2, 200000000, 1, 5, '29.07.2015 - Best Awards show 2010', '', '2015-08-29 20:37:20', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel'),
-(4, 200000000, 200000000, 2, 'Labradors kennel', 'uploads/VqHnvmskrx.jpg', '2015-09-01 08:00:22', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_9`
---
-
-DROP TABLE IF EXISTS `tmp_9`;
-CREATE TABLE IF NOT EXISTS `tmp_9` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
-  `event_type` int(11) DEFAULT NULL,
-  `event_description` mediumtext,
-  `event_image` mediumtext,
-  `date` timestamp NULL DEFAULT NULL,
-  `timeline_profile_image` longblob,
-  `timeline_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tmp_9`
---
-
-INSERT INTO `tmp_9` (`id`, `profile_id`, `event_id`, `event_type`, `event_description`, `event_image`, `date`, `timeline_profile_image`, `timeline_name`) VALUES
-(2, 200000000, 1, 5, '29.07.2015 - Best Awards show 2010', '', '2015-08-29 20:37:20', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel'),
-(4, 200000000, 200000000, 2, 'Labradors kennel', 'uploads/VqHnvmskrx.jpg', '2015-09-01 08:00:22', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_10`
---
-
-DROP TABLE IF EXISTS `tmp_10`;
-CREATE TABLE IF NOT EXISTS `tmp_10` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `event_id` bigint(20) DEFAULT NULL,
-  `event_type` int(11) DEFAULT NULL,
-  `event_description` mediumtext,
-  `event_image` mediumtext,
-  `date` timestamp NULL DEFAULT NULL,
-  `timeline_profile_image` longblob,
-  `timeline_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tmp_10`
---
-
-INSERT INTO `tmp_10` (`id`, `profile_id`, `event_id`, `event_type`, `event_description`, `event_image`, `date`, `timeline_profile_image`, `timeline_name`) VALUES
-(2, 200000000, 1, 5, '29.07.2015 - Best Awards show 2010', '', '2015-08-29 20:37:20', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel'),
-(4, 200000000, 200000000, 2, 'Labradors kennel', 'uploads/VqHnvmskrx.jpg', '2015-09-01 08:00:22', 0x75706c6f6164732f5671486e766d736b72782e6a7067, 'Labradors kennel');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_msg_1`
---
-
-DROP TABLE IF EXISTS `tmp_msg_1`;
-CREATE TABLE IF NOT EXISTS `tmp_msg_1` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2720 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_msg_2`
---
-
-DROP TABLE IF EXISTS `tmp_msg_2`;
-CREATE TABLE IF NOT EXISTS `tmp_msg_2` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2613 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_msg_3`
---
-
-DROP TABLE IF EXISTS `tmp_msg_3`;
-CREATE TABLE IF NOT EXISTS `tmp_msg_3` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2880 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_msg_4`
---
-
-DROP TABLE IF EXISTS `tmp_msg_4`;
-CREATE TABLE IF NOT EXISTS `tmp_msg_4` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2855 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_msg_5`
---
-
-DROP TABLE IF EXISTS `tmp_msg_5`;
-CREATE TABLE IF NOT EXISTS `tmp_msg_5` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2861 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_msg_6`
---
-
-DROP TABLE IF EXISTS `tmp_msg_6`;
-CREATE TABLE IF NOT EXISTS `tmp_msg_6` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2615 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_msg_7`
---
-
-DROP TABLE IF EXISTS `tmp_msg_7`;
-CREATE TABLE IF NOT EXISTS `tmp_msg_7` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2750 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_msg_8`
---
-
-DROP TABLE IF EXISTS `tmp_msg_8`;
-CREATE TABLE IF NOT EXISTS `tmp_msg_8` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2683 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_msg_9`
---
-
-DROP TABLE IF EXISTS `tmp_msg_9`;
-CREATE TABLE IF NOT EXISTS `tmp_msg_9` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2870 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tmp_msg_10`
---
-
-DROP TABLE IF EXISTS `tmp_msg_10`;
-CREATE TABLE IF NOT EXISTS `tmp_msg_10` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2570 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `_tmp_msg_1`
---
-
-DROP TABLE IF EXISTS `_tmp_msg_1`;
-CREATE TABLE IF NOT EXISTS `_tmp_msg_1` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `_tmp_msg_2`
---
-
-DROP TABLE IF EXISTS `_tmp_msg_2`;
-CREATE TABLE IF NOT EXISTS `_tmp_msg_2` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `_tmp_msg_2`
---
-
-INSERT INTO `_tmp_msg_2` (`id`, `user_id`, `profile_id`, `message`, `message_datetime`) VALUES
-(1, 100000000, 200000000, 'Lolol ja som prva message', '2015-08-20 13:50:38');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `_tmp_msg_3`
---
-
-DROP TABLE IF EXISTS `_tmp_msg_3`;
-CREATE TABLE IF NOT EXISTS `_tmp_msg_3` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `_tmp_msg_3`
---
-
-INSERT INTO `_tmp_msg_3` (`id`, `user_id`, `profile_id`, `message`, `message_datetime`) VALUES
-(1, 100000000, 200000000, 'Lolol ja som prva message', '2015-08-20 13:50:38');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `_tmp_msg_4`
---
-
-DROP TABLE IF EXISTS `_tmp_msg_4`;
-CREATE TABLE IF NOT EXISTS `_tmp_msg_4` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `_tmp_msg_5`
---
-
-DROP TABLE IF EXISTS `_tmp_msg_5`;
-CREATE TABLE IF NOT EXISTS `_tmp_msg_5` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `_tmp_msg_5`
---
-
-INSERT INTO `_tmp_msg_5` (`id`, `user_id`, `profile_id`, `message`, `message_datetime`) VALUES
-(1, 100000000, 200000000, 'Lolol ja som prva message', '2015-08-20 13:50:38');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `_tmp_msg_7`
---
-
-DROP TABLE IF EXISTS `_tmp_msg_7`;
-CREATE TABLE IF NOT EXISTS `_tmp_msg_7` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `_tmp_msg_7`
---
-
-INSERT INTO `_tmp_msg_7` (`id`, `user_id`, `profile_id`, `message`, `message_datetime`) VALUES
-(1, 100000000, 200000000, 'Lolol ja som prva message', '2015-08-20 13:50:38');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `_tmp_msg_8`
---
-
-DROP TABLE IF EXISTS `_tmp_msg_8`;
-CREATE TABLE IF NOT EXISTS `_tmp_msg_8` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `_tmp_msg_8`
---
-
-INSERT INTO `_tmp_msg_8` (`id`, `user_id`, `profile_id`, `message`, `message_datetime`) VALUES
-(1, 100000000, 200000000, 'Lolol ja som prva message', '2015-08-20 13:50:38');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `_tmp_msg_9`
---
-
-DROP TABLE IF EXISTS `_tmp_msg_9`;
-CREATE TABLE IF NOT EXISTS `_tmp_msg_9` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `_tmp_msg_9`
---
-
-INSERT INTO `_tmp_msg_9` (`id`, `user_id`, `profile_id`, `message`, `message_datetime`) VALUES
-(2, 100000000, 200000000, 'Lolol ja som prva message', '2015-08-20 13:50:38');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `_tmp_msg_10`
---
-
-DROP TABLE IF EXISTS `_tmp_msg_10`;
-CREATE TABLE IF NOT EXISTS `_tmp_msg_10` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `profile_id` bigint(20) DEFAULT NULL,
-  `message` mediumtext,
-  `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `_tmp_msg_10`
---
-
-INSERT INTO `_tmp_msg_10` (`id`, `user_id`, `profile_id`, `message`, `message_datetime`) VALUES
-(1, 100000000, 200000000, 'Lolol ja som prva message', '2015-08-20 13:50:38');
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3000000000 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

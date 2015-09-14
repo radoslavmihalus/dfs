@@ -12,6 +12,8 @@ class handlerPresenter extends BasePresenter {
     public $handler_id;
     public $award_id;
     public $certificate_id;
+    public $show_id;
+    public $show_group_id;
     private $logged_in_handler_id;
 
     protected function startup() {
@@ -74,6 +76,10 @@ class handlerPresenter extends BasePresenter {
 	if ($id == 0)
 	    $id = $this->logged_in_handler_id;
 	$this->renderHandler_profile_home($id);
+
+	$handler_shows = $this->database->table("tbl_handler_show_groups")->where("handler_id=?", $id)->fetchAll();
+
+	$this->template->handler_shows = $handler_shows;
     }
 
     public function renderHandler_handling_breed_list($id = 0) {
@@ -199,6 +205,14 @@ class handlerPresenter extends BasePresenter {
 	if ($id == 0)
 	    $id = $this->logged_in_handler_id;
 	$this->handler_id = $id;
+    }
+
+    public function actionHandler_show_edit($id = 0) {
+	$this->show_id = $id;
+    }
+
+    public function actionHandler_show_add($show_id = 0) {
+	$this->show_group_id = $show_id;
     }
 
     /**
@@ -406,7 +420,7 @@ class handlerPresenter extends BasePresenter {
 
 	$form->addText("txtHandlerDogName")->setRequired();
 	$form->addText("txtJudgeName");
-	$form->addSelect("ddlShowClass")->setPrompt($this->translate("Please select..."))->setItems($class)->setRequired();
+	$form->addSelect("ddlShowClass")->setPrompt($this->translate("Please select"))->setItems($class)->setRequired();
 	$form->addCheckboxList("chckAssesmentMinorPuppy")->setItems($assesment_minor_puppy);
 	$form->addCheckboxList("chckTitlesMinorPuppy")->setItems($titles_minor_puppy);
 	$form->addCheckboxList("chckTitlesPuppy")->setItems($titles_puppy);
@@ -420,6 +434,261 @@ class handlerPresenter extends BasePresenter {
 	$form->addText("txtOtherTitle");
 	$form->addText("txtShowImage");
 	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmHandlerAddShowSucceeded');
+
+	return $form;
+    }
+
+    protected function createComponentFormEditShowHandler() {
+	$form = new Form();
+
+	$show = $this->database->table("tbl_handler_shows")->where("id=?", $this->show_id)->fetch();
+
+	$class = array();
+
+	$class["MinorPuppy"] = $this->translate("Minor Puppy");
+	$class["Puppy"] = $this->translate("Puppy");
+	$class["Junior"] = $this->translate("Junior");
+	$class["Intermediate"] = $this->translate("Intermediate");
+	$class["Open"] = $this->translate("Open");
+	$class["Working"] = $this->translate("Working");
+	$class["Champions"] = $this->translate("Champions");
+	$class["Veteran"] = $this->translate("Veteran");
+	$class["Honor"] = $this->translate("Honor");
+
+
+	$assesment_minor_puppy = array();
+	$assesment_minor_puppy["VP1"] = "VP1";
+	$assesment_minor_puppy["VP2"] = "VP2";
+	$assesment_minor_puppy["VP3"] = "VP3";
+	$assesment_minor_puppy["VP"] = "VP";
+
+	$sel_assesment_minor_puppy = array();
+	if ($show->VP1 == 1)
+	    $sel_assesment_minor_puppy["VP1"] = "VP1";
+	if ($show->VP2 == 1)
+	    $sel_assesment_minor_puppy["VP2"] = "VP2";
+	if ($show->VP3 == 1)
+	    $sel_assesment_minor_puppy["VP3"] = "VP3";
+	if ($show->VP == 1)
+	    $sel_assesment_minor_puppy["VP"] = "VP";
+
+	$titles_minor_puppy = array();
+	$titles_minor_puppy["BestMinorPuppy1"] = "BestMinorPuppy1";
+	$titles_minor_puppy["BestMinorPuppy2"] = "BestMinorPuppy2";
+	$titles_minor_puppy["BestMinorPuppy3"] = "BestMinorPuppy3";
+
+	$sel_titles_minor_puppy = array();
+	if ($show->BestMinorPuppy1 == 1)
+	    $sel_titles_minor_puppy["BestMinorPuppy1"] = "BestMinorPuppy1";
+	if ($show->BestMinorPuppy2 == 1)
+	    $sel_titles_minor_puppy["BestMinorPuppy2"] = "BestMinorPuppy2";
+	if ($show->BestMinorPuppy3 == 1)
+	    $sel_titles_minor_puppy["BestMinorPuppy3"] = "BestMinorPuppy3";
+
+	$titles_puppy = array();
+	$titles_puppy["BestPuppy1"] = "BestPuppy1";
+	$titles_puppy["BestPuppy2"] = "BestPuppy2";
+	$titles_puppy["BestPuppy3"] = "BestPuppy3";
+
+	$sel_titles_puppy = array();
+	if ($show->BestPuppy1 == 1)
+	    $sel_titles_puppy["BestPuppy1"] = "BestPuppy1";
+	if ($show->BestPuppy2 == 1)
+	    $sel_titles_puppy["BestPuppy2"] = "BestPuppy2";
+	if ($show->BestPuppy3 == 1)
+	    $sel_titles_puppy["BestPuppy3"] = "BestPuppy3";
+
+	$assesment = array();
+	$assesment["EXC1"] = "EXC1";
+	$assesment["EXC2"] = "EXC2";
+	$assesment["EXC3"] = "EXC3";
+	$assesment["EXC4"] = "EXC4";
+	$assesment["VG1"] = "VG1";
+	$assesment["VG2"] = "VG2";
+	$assesment["VG3"] = "VG3";
+	$assesment["VG4"] = "VG4";
+
+	$sel_assesment = array();
+	if ($show->EXC1 == 1)
+	    $sel_assesment["EXC1"] = "EXC1";
+	if ($show->EXC2 == 1)
+	    $sel_assesment["EXC2"] = "EXC2";
+	if ($show->EXC3 == 1)
+	    $sel_assesment["EXC3"] = "EXC3";
+	if ($show->EXC4 == 1)
+	    $sel_assesment["EXC4"] = "EXC4";
+	if ($show->VG1 == 1)
+	    $sel_assesment["VG1"] = "VG1";
+	if ($show->VG2 == 1)
+	    $sel_assesment["VG2"] = "VG2";
+	if ($show->VG3 == 1)
+	    $sel_assesment["VG3"] = "VG3";
+	if ($show->VG4 == 1)
+	    $sel_assesment["VG4"] = "VG4";
+
+	$titles_junior = array();
+	$titles_junior["CAJC"] = "CAJC";
+	$titles_junior["JBOB"] = "JBOB";
+	$titles_junior["BOB"] = "BOB";
+	$titles_junior["BOS"] = "BOS";
+
+	$sel_titles_junior = array();
+	if ($show->CAJC == 1)
+	    $sel_titles_junior["CAJC"] = "CAJC";
+	if ($show->JBOB == 1)
+	    $sel_titles_junior["JBOB"] = "JBOB";
+	if ($show->BOB == 1)
+	    $sel_titles_junior["BOB"] = "BOB";
+	if ($show->BOS == 1)
+	    $sel_titles_junior["BOS"] = "BOS";
+
+	$titles_junior_bog = array();
+	$titles_junior_bog["JBOG1"] = "JBOG1";
+	$titles_junior_bog["JBOG2"] = "JBOG2";
+	$titles_junior_bog["JBOG3"] = "JBOG3";
+
+	$sel_titles_junior_bog = array();
+	if ($show->JBOG1 == 1)
+	    $sel_titles_junior_bog["JBOG1"] = "JBOG1";
+	if ($show->JBOG2 == 1)
+	    $sel_titles_junior_bog["JBOG2"] = "JBOG2";
+	if ($show->JBOG3 == 1)
+	    $sel_titles_junior_bog["JBOG3"] = "JBOG3";
+
+
+	$titles_junior_bis = array();
+	$titles_junior_bis["JBIS1"] = "JBIS1";
+	$titles_junior_bis["JBIS2"] = "JBIS2";
+	$titles_junior_bis["JBIS3"] = "JBIS3";
+
+	$sel_titles_junior_bis = array();
+	if ($show->JBIS1 == 1)
+	    $sel_titles_junior_bis["JBIS1"] = "JBIS1";
+	if ($show->JBIS2 == 1)
+	    $sel_titles_junior_bis["JBIS2"] = "JBIS2";
+	if ($show->JBIS3 == 1)
+	    $sel_titles_junior_bis["JBIS3"] = "JBIS3";
+
+	$titles_bog = array();
+	$titles_bog["BOG1"] = "BOG1";
+	$titles_bog["BOG2"] = "BOG2";
+	$titles_bog["BOG3"] = "BOG3";
+
+	$sel_titles_bog = array();
+	if ($show->BOG1 == 1)
+	    $sel_titles_bog["BOG1"] = "BOG1";
+	if ($show->BOG2 == 1)
+	    $sel_titles_bog["BOG2"] = "BOG2";
+	if ($show->BOG3 == 1)
+	    $sel_titles_bog["BOG3"] = "BOG3";
+
+	$titles_bis = array();
+	$titles_bis["BIS1"] = "BIS1";
+	$titles_bis["BIS2"] = "BIS2";
+	$titles_bis["BIS3"] = "BIS3";
+
+	$sel_titles_bis = array();
+	if ($show->BIS1 == 1)
+	    $sel_titles_bis["BIS1"] = "BIS1";
+	if ($show->BIS2 == 1)
+	    $sel_titles_bis["BIS2"] = "BIS2";
+	if ($show->BIS3 == 1)
+	    $sel_titles_bis["BIS3"] = "BIS3";
+
+	$titles = array();
+	$titles["CAC"] = "CAC";
+	$titles["RESCAC"] = "RESCAC";
+	$titles["CACIB"] = "CACIB";
+	$titles["RESCACIB"] = "RESCACIB";
+	$titles["BOS"] = "BOS";
+	$titles["BOB"] = "BOB";
+
+	$sel_titles = array();
+	if ($show->CAC == 1)
+	    $sel_titles["CAC"] = "CAC";
+	if ($show->RESCAC == 1)
+	    $sel_titles["RESCAC"] = "RESCAC";
+	if ($show->CACIB == 1)
+	    $sel_titles["CACIB"] = "CACIB";
+	if ($show->RESCACIB == 1)
+	    $sel_titles["RESCACIB"] = "RESCACIB";
+	if ($show->BOS == 1)
+	    $sel_titles["BOS"] = "BOS";
+	if ($show->BOB == 1)
+	    $sel_titles["BOB"] = "BOB";
+
+	$form->addText("txtHandlerDogName")->setValue($show->dog_name)->setRequired();
+	$form->addText("txtJudgeName")->setValue($show->judge_name);
+	$form->addSelect("ddlShowClass")->setPrompt($this->translate("Please select"))->setItems($class)->setValue($show->show_class)->setRequired();
+	$form->addCheckboxList("chckAssesmentMinorPuppy")->setItems($assesment_minor_puppy)->setValue($sel_assesment_minor_puppy);
+	$form->addCheckboxList("chckTitlesMinorPuppy")->setItems($titles_minor_puppy)->setValue($sel_titles_minor_puppy);
+	$form->addCheckboxList("chckTitlesPuppy")->setItems($titles_puppy)->setValue($sel_titles_puppy);
+	$form->addCheckboxList("chckAssesment")->setItems($assesment)->setValue($sel_assesment);
+	$form->addCheckboxList("chckTitlesJunior")->setItems($titles_junior)->setValue($sel_titles_junior);
+	$form->addCheckboxList("chckTitlesJuniorBOG")->setItems($titles_junior_bog)->setValue($sel_titles_junior_bog);
+	$form->addCheckboxList("chckTitlesJuniorBIS")->setItems($titles_junior_bis)->setValue($sel_titles_junior_bis);
+	$form->addCheckboxList("chckTitlesBOG")->setItems($titles_bog)->setValue($sel_titles_bog);
+	$form->addCheckboxList("chckTitlesBIS")->setItems($titles_bis)->setValue($sel_titles_bis);
+	$form->addCheckboxList("chckTitles")->setItems($titles)->setValue($sel_titles);
+	$form->addText("txtOtherTitle")->setValue($show->other_title);
+	$form->addText("txtShowImage")->setValue($show->show_image);
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmHandlerEditShowSucceeded');
+
+	return $form;
+    }
+
+    function createComponentFormAddShowNameHandler() {
+	$form = new Form();
+
+	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$countries = array();
+	foreach ($result as $row) {
+	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	}
+
+	$show_types = array();
+	$show_types["Regional"] = $this->translate("Regional");
+	$show_types["Club"] = $this->translate("Club");
+	$show_types["SpecialCAC"] = $this->translate("Special CAC");
+	$show_types["NationalCAC"] = $this->translate("National CAC");
+	$show_types["NationalCACNW"] = $this->translate("National CAC, NW");
+	$show_types["InternationalCACIB"] = $this->translate("International CACIB");
+	$show_types["EuropeanShow"] = $this->translate("European show");
+	$show_types["WorldShow"] = $this->translate("World show");
+
+	$form->addText("ddlDate")->setRequired();
+	$form->addSelect("ddlShowType")->setItems($show_types)->setPrompt("Please select")->setRequired();
+	$form->addText("txtShowName")->setRequired();
+	$form->addSelect("ddlCountry")->setItems($countries)->setPrompt("Please select")->setRequired();
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmHandlerAddShowNameSucceeded');
+
+	return $form;
+    }
+
+    function createComponentFormEditShowNameHandler() {
+	$form = new Form();
+
+	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$countries = array();
+	foreach ($result as $row) {
+	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	}
+
+	$show_types = array();
+	$show_types["Regional"] = $this->translate("Regional");
+	$show_types["Club"] = $this->translate("Club");
+	$show_types["SpecialCAC"] = $this->translate("Special CAC");
+	$show_types["NationalCAC"] = $this->translate("National CAC");
+	$show_types["NationalCACNW"] = $this->translate("National CAC, NW");
+	$show_types["InternationalCACIB"] = $this->translate("International CACIB");
+	$show_types["EuropeanShow"] = $this->translate("European show");
+	$show_types["WorldShow"] = $this->translate("World show");
+
+	$form->addText("ddlDate")->setRequired();
+	$form->addSelect("ddlShowType")->setItems($show_types)->setPrompt("Please select")->setRequired();
+	$form->addText("txtShowName")->setRequired();
+	$form->addSelect("ddlCountry")->setItems($countries)->setPrompt("Please select")->setRequired();
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmHandlerEditShowNameSucceeded');
 
 	return $form;
     }
@@ -637,9 +906,12 @@ class handlerPresenter extends BasePresenter {
 
 	$data = array();
 
+	$data['show_id'] = $this->show_group_id;
 	$data['dog_name'] = $values->txtHandlerDogName;
 	$data['judge_name'] = $values->txtJudgeName;
 	$data['show_class'] = $values->ddlShowClass;
+
+	$data['handler_id'] = $this->logged_in_handler_id;
 
 	foreach ($values->chckAssesmentMinorPuppy as $item) {
 	    $data[$item] = 1;
@@ -686,7 +958,84 @@ class handlerPresenter extends BasePresenter {
 	$data['show_image'] = $values->txtShowImage;
 
 	$this->database->table("tbl_handler_shows")->insert($data);
-	
+
+	$this->redirect("handler_show_list");
+    }
+
+    public function frmHandlerEditShowSucceeded($button) {
+	$values = $button->getForm()->getValues();
+
+	$data = array();
+
+	$data['dog_name'] = $values->txtHandlerDogName;
+	$data['judge_name'] = $values->txtJudgeName;
+	$data['show_class'] = $values->ddlShowClass;
+
+	$data['handler_id'] = $this->logged_in_handler_id;
+
+	foreach ($values->chckAssesmentMinorPuppy as $item) {
+	    $data[$item] = 1;
+	}
+
+	foreach ($values->chckTitlesMinorPuppy as $item) {
+	    $data[$item] = 1;
+	}
+
+	foreach ($values->chckTitlesPuppy as $item) {
+	    $data[$item] = 1;
+	}
+
+	foreach ($values->chckAssesment as $item) {
+	    $data[$item] = 1;
+	}
+
+	foreach ($values->chckTitlesJunior as $item) {
+	    $data[$item] = 1;
+	}
+
+	foreach ($values->chckTitlesJuniorBOG as $item) {
+	    $data[$item] = 1;
+	}
+
+	foreach ($values->chckTitlesJuniorBIS as $item) {
+	    $data[$item] = 1;
+	}
+
+	foreach ($values->chckTitlesBOG as $item) {
+	    $data[$item] = 1;
+	}
+
+	foreach ($values->chckTitlesBIS as $item) {
+	    $data[$item] = 1;
+	}
+
+	foreach ($values->chckTitles as $item) {
+	    $data[$item] = 1;
+	}
+
+	$data['other_title'] = $values->txtOtherTitle;
+
+	$data['show_image'] = $values->txtShowImage;
+
+	$this->database->table("tbl_handler_shows")->where("id=?", $this->show_id)->update($data);
+
+	$this->redirect("handler_show_list");
+    }
+
+    public function frmHandlerAddShowNameSucceeded($button) {
+	$values = $button->getForm()->getValues();
+	$data = array();
+	$time = strtotime($values['ddlDate']);
+	$values['ddlDate'] = date('Y-m-d', $time);
+
+	//ddlDate,ddlShowType,txtShowName,ddlCountry
+	$data['handler_id'] = $this->logged_in_handler_id;
+	$data['show_date'] = $values->ddlDate;
+	$data['show_name'] = $values->txtShowName;
+	$data['show_type'] = $values->ddlShowType;
+	$data['show_country'] = $values->ddlCountry;
+
+	$this->database->table("tbl_handler_show_groups")->insert($data);
 	$this->redirect("handler_show_list");
     }
 

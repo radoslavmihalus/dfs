@@ -73,63 +73,17 @@
 
 <div id="modalFlashWarning" class="modal fade">
     <div class="modal-dialog">
-        <div class="modal-content" style="float:left;">
+        <div class="modal-content">
             <div class="modal-header" style="color: #c12e2a">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <i class="fa fa-exclamation-circle fa-1x" style="float:left;margin-right: 5px;font-size:22px;"></i>
                 <h4 class="modal-title" id="modalTitleWarning" style="font-weight:bold;font-size:15px;"></h4>
             </div>
             <div class="modal-body">
-                <img src="{DataModel::getProfileImage(200000000)}" class="img-responsive" style="margin-left: auto;margin-right: auto;margin-bottom: 10px;">
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-                    <img class="user-block-thumb" src="uploads/d5rnoENDs1.jpg">
-                    <span class="notification-item-header text-uppercase"><a style="color:#a5987f;" href="#">Labradors kennel</a></span>
-                    <span class="notification-item-event-time">10.09.2015|&nbsp;13:43</span>
-                    <span class="notification-item-event" style="color:black">bla bla bla</span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-                    <img class="user-block-thumb" src={DataModel::getProfileImage(100000000)}>
-                    <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">{DataModel::getProfileName(100000000)}</a></span>
-                    <span class="notification-item-event-time">31.03.2015&nbsp;22:06</span>
-                    <span class="notification-item-event" style="color:black">Bla bla bla</span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-                    <img class="user-block-thumb" src={DataModel::getProfileImage(200000000)}>
-                    <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">{DataModel::getProfileName(200000000)}</a></span>
-                    <span class="notification-item-event-time">31.03.2015&nbsp;22:06</span>
-                    <span class="notification-item-event" style="color:black">Bla bla bla</span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-                    <img class="user-block-thumb" src={DataModel::getProfileImage(200000000)}>
-                    <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">{DataModel::getProfileName(200000000)}</a></span>
-                    <span class="notification-item-event-time">31.03.2015&nbsp;22:06</span>
-                    <span class="notification-item-event" style="color:black">Bla bla bla</span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-                    <img class="user-block-thumb" src={DataModel::getProfileImage(200000000)}>
-                    <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">{DataModel::getProfileName(200000000)}</a></span>
-                    <span class="notification-item-event-time">31.03.2015&nbsp;22:06</span>
-                    <span class="notification-item-event" style="color:black">Bla bla bla</span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-                    <img class="user-block-thumb" src={DataModel::getProfileImage(200000000)}>
-                    <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">{DataModel::getProfileName(200000000)}</a></span>
-                    <span class="notification-item-event-time">31.03.2015&nbsp;22:06</span>
-                    <span class="notification-item-event" style="color:black">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget risus sed risus tempor ultricies. Nam rhoncus augue lectus. Quisque sed tempus magna, ac pellentesque magna. Morbi dignissim, tellus sit amet sodales molestie, felis nisl egestas odio, id porta elit nisl ac libero. Praesent dolor elit, finibus sed tortor vitae, mattis porta tortor. Pellentesque eu interdum dui. Aenean tortor ligula, dignissim facilisis metus eu, egestas varius sapien. Vestibulum laoreet vel quam sed sollicitudin. Nunc quis vehicula leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et augue id nisi tempor pulvinar. Proin a porta velit, sit amet mattis turpis. Phasellus sit amet ipsum malesuada, scelerisque ante sed, varius sem. Duis ultricies lacus nec odio auctor, vitae interdum quam aliquam.</span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-                    <img class="user-block-thumb" src={DataModel::getProfileImage(200000000)}>
-                    <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">{DataModel::getProfileName(200000000)}</a></span>
-                    <span class="notification-item-event-time">31.03.2015&nbsp;22:06</span>
-                    <span class="notification-item-event" style="color:black">Bla bla bla</span>
-                </div>
-                <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;margin-bottom: 10px;">
-                    <input type="hidden" value="11" name="snippet_id" id="frm-commentTimeline-11-snippet_id">
-                    <input type="text" class="form-control font_size_13px no-live-validation" style="z-index: 0;" placeholder="Write a comment..." name="comment" id="frm-commentTimeline-11-comment" required="" data-nette-rules="">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default font_size_13px no-live-validation" id="submitTimeline-11" type="submit" name="btnSubmit"><i class="fa fa-comment fa-1x"></i></button>
-                    </span>
-                </div>
+                <p id="modalTextWarning"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

@@ -176,63 +176,69 @@ class DataModel {
     static function getProfileImage($id = 0) {
 	require_once 'www/inc/config_ajax.php';
 
-	$image = "";
+	try {
+	    $image = "";
 
-	$database = getContext();
+	    $database = getContext();
 
-	if ($id >= 100000000 && $id < 200000000) {
+	    if ($id >= 100000000 && $id < 200000000) {
+		$image = "www/img/avatar.jpg";
+	    } elseif ($id >= 200000000 && $id < 300000000) {
+		// kennel 200000000
+		// kennel_profile_picture
+		$row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
+		$image = $row->kennel_profile_picture;
+	    } elseif ($id >= 300000000 && $id < 400000000) {
+		// owner 300000000
+		// owner_profile_picture
+		$row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
+		$image = $row->owner_profile_picture;
+	    } else {
+		// handler 400000000
+		// handler_profile_picture
+		$row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
+		$image = $row->handler_profile_picture;
+	    }
+	} catch (\Exception $ex) {
 	    $image = "www/img/avatar.jpg";
-	} elseif ($id >= 200000000 && $id < 300000000) {
-	    // kennel 200000000
-	    // kennel_profile_picture
-	    $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
-	    $image = $row->kennel_profile_picture;
-	} elseif ($id >= 300000000 && $id < 400000000) {
-	    // owner 300000000
-	    // owner_profile_picture
-	    $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
-	    $image = $row->owner_profile_picture;
-	} else {
-	    // handler 400000000
-	    // handler_profile_picture
-	    $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
-	    $image = $row->handler_profile_picture;
 	}
-
 	return $image;
     }
 
     static function getProfileName($id = 0) {
 	require_once 'www/inc/config_ajax.php';
 
-	$name = "";
+	try {
+	    $name = "";
 
-	$database = getContext();
+	    $database = getContext();
 
-	if ($id >= 100000000 && $id < 200000000) {
-	    $row = $database->table("tbl_user")->where("id=?", $id)->fetch();
-	    $name = $row->name . " " . $row->surname;
-	} elseif ($id >= 200000000 && $id < 300000000) {
-	    // kennel 200000000
-	    // kennel_profile_picture
-	    $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
-	    $name = $row->kennel_name;
-	} elseif ($id >= 300000000 && $id < 400000000) {
-	    // owner 300000000
-	    // owner_profile_picture
-	    $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
-	    $user_id = $row->user_id;
-	    $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
-	    $name = $row->name . " " . $row->surname;
-	} else {
-	    // handler 400000000
-	    // handler_profile_picture
-	    $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
-	    $user_id = $row->user_id;
-	    $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
-	    $name = $row->name . " " . $row->surname;
+	    if ($id >= 100000000 && $id < 200000000) {
+		$row = $database->table("tbl_user")->where("id=?", $id)->fetch();
+		$name = $row->name . " " . $row->surname;
+	    } elseif ($id >= 200000000 && $id < 300000000) {
+		// kennel 200000000
+		// kennel_profile_picture
+		$row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
+		$name = $row->kennel_name;
+	    } elseif ($id >= 300000000 && $id < 400000000) {
+		// owner 300000000
+		// owner_profile_picture
+		$row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
+		$user_id = $row->user_id;
+		$row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+		$name = $row->name . " " . $row->surname;
+	    } else {
+		// handler 400000000
+		// handler_profile_picture
+		$row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
+		$user_id = $row->user_id;
+		$row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+		$name = $row->name . " " . $row->surname;
+	    }
+	} catch (\Exception $ex) {
+	    $name = "DFS user";
 	}
-
 	return $name;
     }
 
@@ -268,36 +274,39 @@ class DataModel {
     static function getProfileState($id = 0) {
 	require_once 'www/inc/config_ajax.php';
 
-	$state = "";
+	try {
+	    $state = "";
 
-	$database = getContext();
+	    $database = getContext();
 
-	if ($id >= 100000000 && $id < 200000000) {
-	    $row = $database->table("tbl_user")->where("id=?", $id)->fetch();
-	    $state = $row->state;
-	} elseif ($id >= 200000000 && $id < 300000000) {
-	    // kennel 200000000
-	    // kennel_profile_picture
-	    $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
-	    $user_id = $row->user_id;
-	    $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
-	    $state = $row->state;
-	} elseif ($id >= 300000000 && $id < 400000000) {
-	    // owner 300000000
-	    // owner_profile_picture
-	    $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
-	    $user_id = $row->user_id;
-	    $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
-	    $state = $row->state;
-	} else {
-	    // handler 400000000
-	    // handler_profile_picture
-	    $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
-	    $user_id = $row->user_id;
-	    $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
-	    $state = $row->state;
+	    if ($id >= 100000000 && $id < 200000000) {
+		$row = $database->table("tbl_user")->where("id=?", $id)->fetch();
+		$state = $row->state;
+	    } elseif ($id >= 200000000 && $id < 300000000) {
+		// kennel 200000000
+		// kennel_profile_picture
+		$row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
+		$user_id = $row->user_id;
+		$row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+		$state = $row->state;
+	    } elseif ($id >= 300000000 && $id < 400000000) {
+		// owner 300000000
+		// owner_profile_picture
+		$row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
+		$user_id = $row->user_id;
+		$row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+		$state = $row->state;
+	    } else {
+		// handler 400000000
+		// handler_profile_picture
+		$row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
+		$user_id = $row->user_id;
+		$row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+		$state = $row->state;
+	    }
+	} catch (\Exception $ex) {
+	    $state = "N/A";
 	}
-
 	return $state;
     }
 
@@ -327,7 +336,7 @@ class DataModel {
 
 	$row = $database->table("tbl_planned_litters")->where("id=?", $id)->fetch();
 	$row = $database->table("tbl_dogs")->where("dog_name=?", $row->bitch_name)->fetch();
-	
+
 	return $row;
     }
 
@@ -478,15 +487,90 @@ class DataModel {
 
 	$database->table("tbl_timeline")->where("id=?", $id)->delete();
     }
-    
-    static function getTimelineLikesCount($id)
-    {
+
+    static function getTimelineLikesCount($id) {
 	require_once 'www/inc/config_ajax.php';
 
 	$database = getContext();
 
 	$count = $database->table("tbl_likes")->where("timeline_id=?", $id)->count();
-	
+
 	return $count;
+    }
+
+//    	$this->template->cajc = 0;
+//	$this->template->jbob = 0;
+//	$this->template->jbog = 0;
+//	$this->template->jbis = 0;
+//	$this->template->cac = 0;
+//	$this->template->cacib = 0;
+//	$this->template->bos = 0;
+//	$this->template->bob = 0;
+//	$this->template->bog = 0;
+//	$this->template->bis = 0;
+
+
+    static function getDogTitles($dog_id) {
+	require_once 'www/inc/config_ajax.php';
+
+	$database = getContext();
+
+	$cnt_array = array();
+	try {
+	    $cnt_array['CAJC'] = $database->table("tbl_dogs_shows")->where("dog_id=?", $dog_id)->where("CAJC=1")->count();
+	    $cnt_array['JBOB'] = $database->table("tbl_dogs_shows")->where("dog_id=?", $dog_id)->where("JBOB=1")->count();
+	    $cnt_array['JBOG'] = $database->table("tbl_dogs_shows")->where("dog_id=?", $dog_id)->where("JBOG1=1")->count();
+	    $cnt_array['JBIS'] = $database->table("tbl_dogs_shows")->where("dog_id=?", $dog_id)->where("JBIS1=1")->count();
+	    $cnt_array['CAC'] = $database->table("tbl_dogs_shows")->where("dog_id=?", $dog_id)->where("CAC=1")->count();
+	    $cnt_array['CACIB'] = $database->table("tbl_dogs_shows")->where("dog_id=?", $dog_id)->where("CACIB=1")->count();
+	    $cnt_array['BOS'] = $database->table("tbl_dogs_shows")->where("dog_id=?", $dog_id)->where("BOS=1")->count();
+	    $cnt_array['BOB'] = $database->table("tbl_dogs_shows")->where("dog_id=?", $dog_id)->where("BOB=1")->count();
+	    $cnt_array['BOG'] = $database->table("tbl_dogs_shows")->where("dog_id=?", $dog_id)->where("BOG1=1")->count();
+	    $cnt_array['BIS'] = $database->table("tbl_dogs_shows")->where("dog_id=?", $dog_id)->where("BIS1=1")->count();
+	} catch (\Exception $ex) {
+	    $cnt_array['CAJC'] = 0;
+	    $cnt_array['JBOB'] = 0;
+	    $cnt_array['JBOG'] = 0;
+	    $cnt_array['JBIS'] = 0;
+	    $cnt_array['CAC'] = 0;
+	    $cnt_array['CACIB'] = 0;
+	    $cnt_array['BOS'] = 0;
+	    $cnt_array['BOB'] = 0;
+	    $cnt_array['BOG'] = 0;
+	    $cnt_array['BIS'] = 0;
+	}
+	return $cnt_array;
+    }
+
+    static function getHandlerTitles($handler_id) {
+	require_once 'www/inc/config_ajax.php';
+
+	$database = getContext();
+
+	$cnt_array = array();
+	try {
+	    $cnt_array['CAJC'] = $database->table("tbl_handler_shows")->where("handler_id=?", $handler_id)->where("CAJC=1")->count();
+	    $cnt_array['JBOB'] = $database->table("tbl_handler_shows")->where("handler_id=?", $handler_id)->where("JBOB=1")->count();
+	    $cnt_array['JBOG'] = $database->table("tbl_handler_shows")->where("handler_id=?", $handler_id)->where("JBOG1=1")->count();
+	    $cnt_array['JBIS'] = $database->table("tbl_handler_shows")->where("handler_id=?", $handler_id)->where("JBIS1=1")->count();
+	    $cnt_array['CAC'] = $database->table("tbl_handler_shows")->where("handler_id=?", $handler_id)->where("CAC=1")->count();
+	    $cnt_array['CACIB'] = $database->table("tbl_handler_shows")->where("handler_id=?", $handler_id)->where("CACIB=1")->count();
+	    $cnt_array['BOS'] = $database->table("tbl_handler_shows")->where("handler_id=?", $handler_id)->where("BOS=1")->count();
+	    $cnt_array['BOB'] = $database->table("tbl_handler_shows")->where("handler_id=?", $handler_id)->where("BOB=1")->count();
+	    $cnt_array['BOG'] = $database->table("tbl_handler_shows")->where("handler_id=?", $handler_id)->where("BOG1=1")->count();
+	    $cnt_array['BIS'] = $database->table("tbl_handler_shows")->where("handler_id=?", $handler_id)->where("BIS1=1")->count();
+	} catch (\Exception $ex) {
+	    $cnt_array['CAJC'] = 0;
+	    $cnt_array['JBOB'] = 0;
+	    $cnt_array['JBOG'] = 0;
+	    $cnt_array['JBIS'] = 0;
+	    $cnt_array['CAC'] = 0;
+	    $cnt_array['CACIB'] = 0;
+	    $cnt_array['BOS'] = 0;
+	    $cnt_array['BOB'] = 0;
+	    $cnt_array['BOG'] = 0;
+	    $cnt_array['BIS'] = 0;
+	}
+	return $cnt_array;
     }
 }

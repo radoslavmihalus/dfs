@@ -127,9 +127,9 @@ class ownerPresenter extends BasePresenter {
      */
     protected function createComponentOwnerCreateProfile() {
 	$form = new Form();
-	$form->addUpload('txtOwnerProfilePhoto')->setRequired($this->translate("Required field"));
+	$form->addText('txtOwnerProfilePhoto')->setRequired($this->translate("Required field"));
 	$form->addTextArea('txtOwnerDescritpion')->setRequired($this->translate("Required field"));
-	$form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateOwnerProfileSucceeded');
+	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmCreateOwnerProfileSucceeded');
 
 	return $form;
     }
@@ -138,15 +138,15 @@ class ownerPresenter extends BasePresenter {
 	try {
 	    $values = $button->getForm()->getValues();
 
-	    $values = $this->data_model->assignFields($values, 'frmOwnerCreateProfile');
-	    $values['user_id'] = $this->logged_in_id;
+	    $data = $this->data_model->assignFields($values, 'frmOwnerCreateProfile');
+	    $data['user_id'] = $this->logged_in_id;
 
-	    $this->database->table("tbl_userowner")->insert($values);
+	    $this->database->table("tbl_userowner")->insert($data);
 	    $id = $this->database->getInsertId();
 
-	    $this->data_model->addToTimeline($id, $id, 1, \DataModel::getProfileName($id), $values['owner_profile_picture']);
+	    $this->data_model->addToTimeline($id, $id, 1, \DataModel::getProfileName($id), $data['owner_profile_picture']);
 
-	    $this->flashMessage("Your owner profile has been successfully created.", "Success");
+	    $this->flashMessage("Your profile has been successfully created.", "Success");
 	    $this->redirect("owner:owner_profile_home");
 	} catch (\ErrorException $exc) {
 	    $this->flashMessage($exc->getMessage(), "Error");
@@ -166,7 +166,7 @@ class ownerPresenter extends BasePresenter {
 
     public function createComponentOwnerEditCoverPicture() {
 	$form = new Form();
-	$form->addUpload('txtOwnerCoverPhoto')->setRequired($this->translate("Required field"));
+	$form->addText('txtOwnerCoverPhoto')->setRequired($this->translate("Required field"));
 	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditOwnerCoverPhotoSucceeded');
 
 	return $form;
@@ -174,7 +174,7 @@ class ownerPresenter extends BasePresenter {
 
     public function createComponentOwnerEditProfilePicture() {
 	$form = new Form();
-	$form->addUpload('txtOwnerProfilePhoto')->setRequired($this->translate("Required field"));
+	$form->addText('txtOwnerProfilePhoto')->setRequired($this->translate("Required field"));
 	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditOwnerProfilePhotoSucceeded');
 
 	return $form;
@@ -190,7 +190,7 @@ class ownerPresenter extends BasePresenter {
 
 	    $this->data_model->addToTimeline($this->logged_in_owner_id, $this->logged_in_owner_id, 2, \DataModel::getProfileName($this->logged_in_owner_id), $values['owner_profile_picture']);
 	    
-	    $this->flashMessage("Your owner profile has been successfully updated.", "Success");
+	    $this->flashMessage("Your profile has been successfully updated.", "Success");
 	    $this->redirect("owner:owner_profile_home");
 	} catch (\ErrorException $exc) {
 	    $this->flashMessage($exc->getMessage(), "Error");

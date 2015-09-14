@@ -1,22 +1,30 @@
 {define #checkbox_ShowTitlesBOG_control}
-<div class="form-group">
+<div class="form-group" id="div-{$name}">
     <div class="col-md-12" style="margin-bottom: 10px;">
         <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description}</span>
         <div class="checkbox">
             <label style="font-size: 13px;">
-                <input type="checkbox" id="{$id}" n:name="{$name}:BOG1" value="BOG1">BOG 1
+                <input type="checkbox" class="{$id}" id="{$id}" n:name="{$name}:BOG1" value="BOG1">BOG 1
             </label>
         </div>
         <div class="checkbox">
             <label style="font-size: 13px;">
-                <input type="checkbox" id="{$id}" n:name="{$name}:BOG2" value="BOG2">BOG 2
+                <input type="checkbox" class="{$id}" id="{$id}" n:name="{$name}:BOG2" value="BOG2">BOG 2
             </label>
         </div>
         <div class="checkbox">
             <label style="font-size: 13px;">
-                <input type="checkbox" id="{$id}" n:name="{$name}:BOG3" value="BOG3">BOG 3
+                <input type="checkbox" class="{$id}" id="{$id}" n:name="{$name}:BOG3" value="BOG3">BOG 3
             </label>
         </div>
     </div>
+    <script type="text/javascript">
+	$(function () {
+	    $("input:checkbox." + {$id}).click(function () {
+		$("input:checkbox." + {$id}).not($(this)).removeAttr("checked");
+		$(this).attr("checked", $(this).attr("checked"));
+	    });
+	});
+    </script>
 </div>
 {/define}

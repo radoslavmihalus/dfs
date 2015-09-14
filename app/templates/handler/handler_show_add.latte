@@ -33,20 +33,18 @@
             {include checkbox_ShowTitlesMinorPuppy_control, _form => $_form, description => "Best minor puppy", placeholder => "Best minor puppy", id => "chckTitlesMinorPuppy", name => "chckTitlesMinorPuppy"}
             <!-- /Titles Minor puppy-->
             <!-- /Minor puppy -->
-            
             <!-- Puppy class -->
-            <!-- Assesment Puppy-->
-            <!--{ include checkbox_ShowAssesmentMinorPuppy_control, _form => $_form, description => "Assesment", placeholder => "Assesment", id => "chckAssesmentMinorPuppy", name => "chckAssesmentMinorPuppy"}-->
-            <!-- /Assesment Puppy-->
             <!-- Titles Puppy-->
             {include checkbox_ShowTitlesPuppy_control, _form => $_form, description => "Best puppy male & female", placeholder => "Best puppy male & female", id => "chckTitlesPuppy", name => "chckTitlesPuppy"}
             <!-- /Titles Puppy-->
             <!-- /Puppy -->
-            
             <!-- Junior class -->
             <!-- Assesment Junior-->
             {include checkbox_ShowAssesment_control, _form => $_form, description => "Assesment", placeholder => "Assesment", id => "chckAssesment", name => "chckAssesment"}
             <!-- /Assesment Junior-->
+            <!-- Titles -->
+            {include checkbox_ShowTitles_control, _form => $_form, description => "Titles", placeholder => "Titles", id => "chckTitles", name => "chckTitles"}
+            <!-- /Titles -->
             <!-- Titles Junior-->
             {include checkbox_ShowTitlesJunior_control, _form => $_form, description => "Titles", placeholder => "Titles", id => "chckTitlesJunior", name => "chckTitlesJunior"}
             {include checkbox_ShowTitlesJuniorBOG_control, _form => $_form, description => "Junior Best of Group", placeholder => "Junior BOG", id => "chckTitlesJuniorBOG", name => "chckTitlesJuniorBOG"}
@@ -55,23 +53,163 @@
             {include checkbox_ShowTitlesBIS_control, _form => $_form, description => "Best in Show", placeholder => "Best in Show", id => "chckTitlesBIS", name => "chckTitlesBIS"}
             <!-- /Titles Junior-->
             <!-- /Junior -->
-            
-            <!-- Intermediate,Open,Working,Champions,Veterans,Honor-->
-            <!-- Assesment -->
-            <!--{ include checkbox_ShowAssesment_control, _form => $_form, description => "Assesment", placeholder => "Assesment", id => "chckAssesment", name => "chckAssesment"}-->
-            <!-- /Assesment -->
-            <!-- Titles -->
-            {include checkbox_ShowTitles_control, _form => $_form, description => "Titles", placeholder => "Titles", id => "chckTitles", name => "chckTitles"}
-<!--            { include checkbox_ShowTitlesBOG_control, _form => $_form, description => "Best of Group", placeholder => "Best of Group", id => "chckTitlesBOG", name => "chckTitlesBOG"}
-            { include checkbox_ShowTitlesBIS_control, _form => $_form, description => "Best in Show", placeholder => "Best in Show", id => "chckTitlesBIS", name => "chckTitlesBIS"}-->
-            <!-- /Titles -->
-            <!-- /Intermediate,Open,Working,Champions,Veterans,Honor-->
-            
+
             {include textbox_control, _form => $_form, description => "Other titles and awards received at the show", placeholder => "Enter other titles achieved at this show (e.g. National Winner)", id => "txtOtherTitle", name => "txtOtherTitle", tooltip => "Enter other titles achieved at this show"}         
             {include image_UploadPicture_control, _form => $_form, description => "Image from show", placeholder => "Select picture", id => "txtShowImage", name => "txtShowImage", tooltip => "Record the picture from show in jpg or jpeg format. This field is optional"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
-            <!--<button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>-->
         {/form}
     </div>
-</div> 
+
+    <script type="text/javascript">
+	$("#ddlShowClass").on("change", function ()
+	{
+	    switch ($('#ddlShowClass option:selected').val())
+	    {
+		case "MinorPuppy":
+		    $("#div-chckAssesmentMinorPuppy").show();
+		    $("#div-chckTitlesMinorPuppy").show();
+		    $("#div-chckTitlesPuppy").hide();
+		    $("#div-chckAssesment").hide();
+		    $("#div-chckTitlesJunior").hide();
+		    $("#div-chckTitlesJuniorBOG").hide();
+		    $("#div-chckTitlesJuniorBIS").hide();
+		    $("#div-chckTitlesBOG").hide();
+		    $("#div-chckTitlesBIS").hide();
+		    $("#div-chckTitles").hide();
+
+		    $('#div-chckTitlesPuppy input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckAssesment input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesJunior input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesJuniorBOG input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesJuniorBIS input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesBOG input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesBIS input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitles input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+
+		    break;
+		case "Puppy":
+		    $("#div-chckAssesmentMinorPuppy").show();
+		    $("#div-chckTitlesMinorPuppy").hide();
+		    $("#div-chckTitlesPuppy").show();
+		    $("#div-chckAssesment").hide();
+		    $("#div-chckTitlesJunior").hide();
+		    $("#div-chckTitlesJuniorBOG").hide();
+		    $("#div-chckTitlesJuniorBIS").hide();
+		    $("#div-chckTitlesBOG").hide();
+		    $("#div-chckTitlesBIS").hide();
+		    $("#div-chckTitles").hide();
+
+		    $('#div-chckTitlesMinorPuppy input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckAssesment input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesJunior input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesJuniorBOG input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesJuniorBIS input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesBOG input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesBIS input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitles input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+
+		    break;
+		case "Junior":
+		    $("#div-chckAssesmentMinorPuppy").hide();
+		    $("#div-chckTitlesMinorPuppy").hide();
+		    $("#div-chckTitlesPuppy").hide();
+		    $("#div-chckAssesment").show();
+		    $("#div-chckTitlesJunior").show();
+		    $("#div-chckTitlesJuniorBOG").show();
+		    $("#div-chckTitlesJuniorBIS").show();
+		    $("#div-chckTitlesBOG").show();
+		    $("#div-chckTitlesBIS").show();
+		    $("#div-chckTitles").hide();
+
+		    $('#div-chckAssesmentMinorPuppy input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesMinorPuppy input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesPuppy input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitles input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    break;
+		default:
+		    $("#div-chckAssesmentMinorPuppy").hide();
+		    $("#div-chckTitlesMinorPuppy").hide();
+		    $("#div-chckTitlesPuppy").hide();
+		    $("#div-chckAssesment").show();
+		    $("#div-chckTitlesJunior").hide();
+		    $("#div-chckTitlesJuniorBOG").hide();
+		    $("#div-chckTitlesJuniorBIS").hide();
+		    $("#div-chckTitlesBOG").show();
+		    $("#div-chckTitlesBIS").show();
+		    $("#div-chckTitles").show();
+
+		    $('#div-chckAssesmentMinorPuppy input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesMinorPuppy input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesPuppy input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesJunior input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesJuniorBOG input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    $('#div-chckTitlesJuniorBIS input:checked').each(function () {
+			($(this).attr('checked', false));
+		    });
+		    break;
+	    }
+	})
+
+	$("#div-chckAssesmentMinorPuppy").hide();
+	$("#div-chckTitlesMinorPuppy").hide();
+	$("#div-chckTitlesPuppy").hide();
+	$("#div-chckAssesment").hide();
+	$("#div-chckTitlesJunior").hide();
+	$("#div-chckTitlesJuniorBOG").hide();
+	$("#div-chckTitlesJuniorBIS").hide();
+	$("#div-chckTitlesBOG").hide();
+	$("#div-chckTitlesBIS").hide();
+	$("#div-chckTitles").hide();
+    </script>
+</div>
 {/block}
