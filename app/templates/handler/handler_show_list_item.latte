@@ -29,7 +29,12 @@
 		    <span class="text-left" style="color:#777;"><a href="" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a></span>
 		</div>
 		<div class="col-lg-5 col-md-4 column-spacer">
-		    <a href="" style="text-decoration: none;text-transform: uppercase"><span style="color:#FF9B00;" data-toggle="tooltip" data-placement='top' title="Dog"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{$row->dog_name}</span></a>
+		    {if DataModel::haveDogProfile($row->dog_name)}
+			{var $dog = DataModel::getDogProfileByName($row->dog_name)}
+			<a n:href="dog:dog_championschip_list id=>$dog->id" style="text-decoration: none;text-transform: uppercase"><span style="color:#FF9B00;" data-toggle="tooltip" data-placement='top' title="Dog"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{$row->dog_name}</span></a>
+		    {else}
+			<span style="color:#FF9B00;" data-toggle="tooltip" data-placement='top' title="Dog"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{$row->dog_name}</span>
+		    {/if}
 		</div>
 		<div class="col-lg-3 col-md-3 column-spacer">
 		    <span class="text-left" style="color:#777;">{_ 'Class'}: {_$row->show_class}</span>

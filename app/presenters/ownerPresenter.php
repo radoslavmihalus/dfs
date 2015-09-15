@@ -127,9 +127,9 @@ class ownerPresenter extends BasePresenter {
      */
     protected function createComponentOwnerCreateProfile() {
 	$form = new Form();
-	$form->addText('txtOwnerProfilePhoto')->setRequired($this->translate("Required field"));
+	$form->addText('txtOwnerProfilePhoto');//->setRequired($this->translate("Required field"));
 	$form->addTextArea('txtOwnerDescritpion')->setRequired($this->translate("Required field"));
-	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmCreateOwnerProfileSucceeded');
+	$form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateOwnerProfileSucceeded');
 
 	return $form;
     }

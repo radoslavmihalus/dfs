@@ -226,10 +226,10 @@ class handlerPresenter extends BasePresenter {
     protected function createComponentFormCreateHandlerProfile() {
 	$form = new Form();
 
-	$form->addText("ddlBreedList")->setRequired($this->translate("Required field"));
-	$form->addText("txtHandlerProfilePhoto")->setRequired($this->translate("Required field"));
-	$form->addTextArea("txtHandlerDescription")->setRequired($this->translate("Required field"));
-	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmCreateHandlerProfileSucceeded');
+	$form->addText("ddlBreedList","label")->setRequired($this->translate("Required field"));
+	$form->addText("txtHandlerProfilePhoto","label")->setRequired($this->translate("Required field"));
+	$form->addTextArea("txtHandlerDescription","label")->setRequired($this->translate("Required field"));
+	$form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateHandlerProfileSucceeded');
 
 	return $form;
     }
@@ -842,7 +842,7 @@ class handlerPresenter extends BasePresenter {
 	    $breeds = explode(",", $breeds);
 
 	    foreach ($breeds as $breed) {
-		$this->database->query("INSERT INTO tbl_handler_breed(kennel_id, breed_name) VALUES(?,?)", $id, $breed);
+		$this->database->query("INSERT INTO tbl_handler_breed(handler_id, breed_name) VALUES(?,?)", $id, $breed);
 	    }
 
 	    $this->data_model->addToTimeline($id, $id, 1, \DataModel::getProfileName($id), $values['handler_profile_picture']);
