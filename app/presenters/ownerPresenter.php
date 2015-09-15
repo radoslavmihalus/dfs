@@ -149,7 +149,7 @@ class ownerPresenter extends BasePresenter {
 	    $this->flashMessage("Your profile has been successfully created.", "Success");
 	    $this->redirect("owner:owner_profile_home");
 	} catch (\ErrorException $exc) {
-	    $this->flashMessage($exc->getMessage(), "Error");
+	    $this->flashMessage($exc->getMessage(), "Warning");
 	}
     }
 

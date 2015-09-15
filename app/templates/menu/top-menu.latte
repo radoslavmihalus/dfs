@@ -130,9 +130,9 @@
                         <i class="notification-icon fa fa-bell fa-1x"></i>
                         <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
                     </a>
-                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="Notifications">
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="Notifications" id="notify">
                         <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Notifications'}</li>
-<!--                        <li role="presentation">
+			<!--                        <li role="presentation">
                             <a role="menuitem" tabindex="-1" href="#">
                                 <img class="user-block-thumb" src="img/referer1.jpg"/>
                                 <span class="notification-item-header text-uppercase">Faalat rhodesian ridgeback kennel</span>
@@ -213,7 +213,10 @@
                 $.ajax({
                     url: '/?do=clearNotify',
                     dataType: 'html',
-                })
+                }).done(function(data){
+		    $(".notify_item").remove();
+		    $("#notify").append(data);
+		})
             });
 
             $("#Messages").click(function () {

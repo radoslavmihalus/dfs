@@ -400,6 +400,8 @@ class DataModel {
 	$data['comment'] = $comment;
 
 	$row = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
+	$data['event_id'] = $row->event_id;
+	
 	$notify_profile_id = $row->profile_id;
 
 	if ($notify_profile_id >= 200000000 && $notify_profile_id < 300000000) {

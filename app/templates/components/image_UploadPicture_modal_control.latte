@@ -48,9 +48,9 @@
                     $("#modalFlashUpload" + {$name}).modal("hide");
                     $.ajax({
                         url: "www/templates/scripts/ajax_update_profile_image.php?profile_type={$profile_type_id}&profile_id={$profile_id}&image_type=" + {$name} + "&image_name=" + image.name
-                    }).done(function () {
+                    }).complete(function () {
                         //alert(image.name);
-                        document.location.href = window.location.href;
+                        window.location.href = document.location.href;
                     });
                 },
                 crop: {

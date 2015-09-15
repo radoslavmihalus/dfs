@@ -52,6 +52,11 @@ function ShowUploadModal(parType)
     $("#modalFlashUpload" + parType).modal('show');
 }
 
+function ShowGaleryModal(par_Id)
+{
+    $("#modalFlashGallery" + par_Id).modal('show');
+}
+
 function ShowMessageModal(messageType, message)
 {
     var title = "";

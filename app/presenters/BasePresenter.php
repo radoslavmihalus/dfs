@@ -330,6 +330,18 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 	    $data['user_id'] = $this->logged_in_id;
 	    $data['profile_id'] = $this->profile_id;
 	    $this->database->table("tbl_likes")->insert($data);
+
+	    $timeline = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
+
+	    $notify['notify_user_id'] = \DataModel::getUserIdByProfileId($timeline->profile_id);
+	    $notify['notify_profile_id'] = $timeline->profile_id;
+	    $notify['user_id'] = $this->logged_in_id;
+	    $notify['profile_id'] = $this->profile_id;
+	    $notify['timeline_id'] = $timeline_id;
+	    $notify['comment'] = "";
+	    $notify['type'] = "like";
+
+	    $this->database->table("tbl_notify")->insert($notify);
 	}
 
 	echo \DataModel::getTimelineLikesCount($timeline_id);
@@ -379,7 +391,27 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
     public function handleClearNotify() {
 	$user_id = $this->logged_in_id;
+
+	$rows = $this->database->table("tbl_notify")->where("notify_user_id=?", $user_id)->order("notify_datetime DESC")->limit(10)->fetchAll();
+
+	$notify = "";
+
+	foreach ($rows as $row) {
+	    $notify .= '<li role="presentation" class="notify_item">
+                            <a role="menuitem" tabindex="-1" href="#">
+                                <img class="user-block-thumb" src="' . \DataModel::getProfileImage($row->profile_id) . '"/>
+                                <span class="notification-item-header text-uppercase">' . \DataModel::getProfileName($row->profile_id) . '</span>';
+	    if ($row->type == 'comment')
+		$notify .= '<span class="notification-item-event"><i class="fa fa-comment"></i>&nbsp;&nbsp;' . $this->translate('comment your post') . '</span>';
+	    elseif ($row->type == 'like')
+		$notify .= '<span class="notification-item-event"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;' . $this->translate('like your post') . '</span>';
+	    $notify .= '</a></li>';
+	}
+
 	$this->database->query("UPDATE tbl_notify SET unreaded = 0 WHERE notify_user_id = $user_id");
+
+	echo $notify;
+	$this->terminate();
     }
 
     public function handleClearMessages() {

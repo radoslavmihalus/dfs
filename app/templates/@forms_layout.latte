@@ -56,14 +56,9 @@
         {/foreach}
         <div id="ajax-spinner"></div>
         <script type="text/javascript">
-	    $('.selectpicker').selectpicker();
+//	    $('.selectpicker').selectpicker();
 
 	    $("#ajax-spinner").hide();
-	    /* Volání AJAXu u všech odkazů s třídou ajax */
-	    $("a.ajax").live("click", function (event) {
-		event.preventDefault();
-		$.get(this.href);
-	    });
         </script>
     </body>
 </html>
