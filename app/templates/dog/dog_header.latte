@@ -22,11 +22,11 @@
                 <h1 class="profile_type_heading text-uppercase" style="margin-top: 0px;"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{$dog->dog_name}<a style="text-transform: capitalize;margin-left: 15px;" n:href="dog:dog_edit_profile id=>$dog->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" id="dog_delete" type="button"><i class="fa fa-trash"></i></button></h1>
                         {if ($active_profile_type == 1)}
                     <a n:href="kennel:kennel_profile_home id=>$dog->profile_id">
-                        <span data-toggle="tooltip" data-placement='top' title="Kennel" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>{DataModel::getProfileName($dog->profile_id)}</span>
+                        <span data-toggle="tooltip" data-placement='top' title="{_'Kennel'}" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>{DataModel::getProfileName($dog->profile_id)}</span>
                     </a>
                 {else}
                     <a n:href="owner:owner_profile_home id=>$dog->profile_id">
-                        <span data-toggle="tooltip" data-placement='top' title="Owner" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>{DataModel::getProfileName($dog->profile_id)}</span>
+                        <span data-toggle="tooltip" data-placement='top' title="{_'Owner'}" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>{DataModel::getProfileName($dog->profile_id)}</span>
                     </a>
                 {/if}
             </div>
@@ -46,7 +46,7 @@
         </div>
         <hr style="margin-bottom: 5px;margin-top: 5px;">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
 		<a href="{$dog->dog_image}" data-gallery>
 		    <div class="dog-image-profile-thumb" style="background: url('{$dog->dog_image}') no-repeat center center; background-size: cover; min-height: 240px;">
 			{if $dog->offer_for_mating==1}
@@ -59,7 +59,7 @@
 		    </div>
 		</a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <ul class="dog-information-list">
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i><strong>{$dog->breed_name}</strong></span></li>
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}">{if $dog->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$dog->dog_gender}</span></li>
