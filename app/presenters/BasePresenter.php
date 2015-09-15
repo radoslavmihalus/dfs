@@ -72,7 +72,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
 	try {
 	    $mysection = $this->getSession('language');
-
 	    $this->translator->lang = $mysection->lang;
 	} catch (\Exception $ex) {
 	    $this->translator->lang = "en";
@@ -307,7 +306,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 	$form->addSelect("hidddlCountries")->setItems($items)->setPrompt($this->translate("Please select state..."))->setRequired($this->translate("Required field"));
 	$form->addPassword("txtPassword")->setRequired($this->translate("Required field"));
 	$form->addPassword("txtConfirmPassword")->setRequired($this->translate("Required field"));
-	$form->addSubmit('btnSignIn')->onClick[] = array($this, 'frmSignInSucceeded');
+	$form->addSubmit('btnSignIn', 'Sign in')->onClick[] = array($this, 'frmSignInSucceeded');
 	return $form;
     }
 
@@ -688,8 +687,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
 	    $exception = '<ul>';
 
-	    if ($values['ddlCountries'] == "0")
-		$exception .= "<li>" . $this->translate("Please select state") . "</li>";
+//	    if ($values['hidddlCountries'] == "0")
+//		$exception .= "<li>" . $this->translate("Please select state") . "</li>";
 
 	    if ($values['txtPassword'] != $values['txtConfirmPassword']) {
 		$exception .= "<li>" . $this->translate("Password and confirm password does not match") . "</li>";
@@ -719,6 +718,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 	    }
 
 	    if (!$is_error) {
+		try {
+		    $mysection = $this->getSession('language');
+		    $values['lang'] = $mysection->lang;
+		} catch (\Exception $ex) {
+		    $values['lang'] = 'en';
+		}
 		try {
 		    $this->database->table("tbl_user")->insert($values);
 		    $userid = $this->database->getInsertId();

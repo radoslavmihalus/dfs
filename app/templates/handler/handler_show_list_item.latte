@@ -26,7 +26,9 @@
 	{foreach $show->related("tbl_handler_shows","show_id") as $row}
 	    <div class="row" style="padding:10px 10px 0px 10px;font-size:12px">
 		<div class="col-lg-1 col-md-2 column-spacer">
-		    <span class="text-left" style="color:#777;"><a href="" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a></span>
+		    {if (strlen($row->show_image)>2)}
+			<span class="text-left" style="color:#777;"><a href="{$row->show_image}" data-gallery style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a></span>
+			    {/if}
 		</div>
 		<div class="col-lg-5 col-md-4 column-spacer">
 		    {if DataModel::haveDogProfile($row->dog_name)}
