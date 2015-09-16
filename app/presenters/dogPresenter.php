@@ -211,7 +211,17 @@ class dogPresenter extends BasePresenter {
     protected function createComponentFormCreateDogProfile() {
 	$form = new Form();
 
-	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+		$lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$countries = array();
 
 	//$countries[] = $this->translate("Please select state...");
@@ -249,7 +259,17 @@ class dogPresenter extends BasePresenter {
 
 	$profile = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
 
-	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+	    $lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$countries = array();
 
 	foreach ($result as $row) {
@@ -445,8 +465,17 @@ class dogPresenter extends BasePresenter {
 
     protected function createComponentFormAddCoowner() {
 	$id = $this->dog_id;
+	$lang = "en";
 
-	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+	    $lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$countries = array();
 
 	$countries[] = $this->translate("Please select state...");
@@ -467,7 +496,17 @@ class dogPresenter extends BasePresenter {
     protected function createComponentFormEditCoowner() {
 	$id = $this->dog_id;
 
-	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+	    $lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$countries = array();
 
 	$countries[] = $this->translate("Please select state...");
@@ -563,7 +602,17 @@ class dogPresenter extends BasePresenter {
 	$titles["BOS"] = "BOS";
 	$titles["BOB"] = "BOB";
 
-	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+	    $lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$countries = array();
 	foreach ($result as $row) {
 	    $countries[$row->CountryName_en] = $row->CountryName_en;
@@ -782,7 +831,17 @@ class dogPresenter extends BasePresenter {
 	if ($show->BOB == 1)
 	    $sel_titles["BOB"] = "BOB";
 
-	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+	    $lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$countries = array();
 	foreach ($result as $row) {
 	    $countries[$row->CountryName_en] = $row->CountryName_en;

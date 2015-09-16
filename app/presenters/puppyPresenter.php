@@ -69,7 +69,16 @@ class puppyPresenter extends BasePresenter {
 
     protected function createComponentFormPuppyCreateProfile() {
 
-	$result = $this->database->table("lk_countries")->order("CountryName_en")->fetchAll();
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+	    $lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang")->fetchAll();
 	$countries = array();
 
 	$countries[] = $this->translate("Please select state...");
@@ -111,7 +120,16 @@ class puppyPresenter extends BasePresenter {
     protected function createComponentFormPuppyEditProfile() {
 	$puppy = $this->database->table("tbl_puppies")->where("id=?", $this->dog_id)->fetch();
 
-	$result = $this->database->table("lk_countries")->order("CountryName_en")->fetchAll();
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+	    $lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang")->fetchAll();
 	$countries = array();
 
 	$countries[] = $this->translate("Please select state...");

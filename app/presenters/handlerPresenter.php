@@ -640,7 +640,17 @@ class handlerPresenter extends BasePresenter {
     function createComponentFormAddShowNameHandler() {
 	$form = new Form();
 
-	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+	    $lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$countries = array();
 	foreach ($result as $row) {
 	    $countries[$row->CountryName_en] = $row->CountryName_en;
@@ -668,7 +678,16 @@ class handlerPresenter extends BasePresenter {
     function createComponentFormEditShowNameHandler() {
 	$form = new Form();
 
-	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+	    $lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$countries = array();
 	foreach ($result as $row) {
 	    $countries[$row->CountryName_en] = $row->CountryName_en;

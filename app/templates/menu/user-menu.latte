@@ -32,210 +32,218 @@
         {/if}
         <ul class="nav nav-stacked user-menu-links" id="accordion1">
             {if $logged_in_id>0}
-                <li class="panel">
-                    <button n:href="user:user_create_profile_switcher" class="btn btn-danger btn-xl btn-block" style="padding:12px 12px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;{_ 'Create profile'}</button>
-                </li>
-                <li class="panel">
-                    <a data-toggle="collapse" data-parent="#accordion1" href="#ProfileMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'Profile settings'}</a>
-                    <ul id="ProfileMenu" class="collapse panel-collapse">
-                        <li>
-                            <a n:href="user:user_create_profile_switcher"><i class="fa fa-exchange"></i>&nbsp;&nbsp;{_'Switch profile'}</a>
-                        </li>
-                        <li>
-                            <a n:href="{$edit_url}"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;{_'Edit profile'}</a>
-                        </li>
-                        <li>
-                            <a n:href="#"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;{_'Delete profile'}</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- Kennel menu -->
-                {if ($active_profile_type == 1)}
-                    <li class="panel">
-                        <a data-toggle="collapse" data-parent="#accordion1" href="#KennelMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
-                        <ul id="KennelMenu" class="collapse panel-collapse">
-                            <li>
-                                <a n:href="kennel:kennel_profile_home"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{_'Home'}</a>
-                            </li>
-                            <li>
-                                <a n:href="kennel:kennel_awards_list"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_'Awards'}</a>
-                            </li>
-                            <li>
-                                <a n:href="kennel:kennel_dog_list"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Dogs'}</a>
-                            </li>
-                            <li>
-                                <a n:href=""><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}</a>
-                            </li>
-                            <!--                            <li>
-                                                            <a href="#"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Puppies for sale'}</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_'Photos'}</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_'Videos'}</a>
-                                                        </li>
-                                                        <li>
-                                                            <a n:href="kennel:kennel_friends_list"><i class="fa fa-users"></i>&nbsp;&nbsp;{_'Friends'}</a>
-                                                        </li>
-                                                        <li>
-                                                            <a n:href="kennel:kennel_followers_list"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_'Followers'}</a>
-                                                        </li>-->
-                        </ul>
-                    </li>
-                {elseif ($active_profile_type == 2)}
-                    <!-- Owner menu -->
-                    <li class="panel"> 
-                        <a data-toggle="collapse" data-parent="#accordion1" href="#OwnerMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
-                        <ul id="OwnerMenu" class="collapse panel-collapse">
-                            <li>
-                                <a href="#"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{_'Home'}</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Dogs'}</a>
-                            </li>
-                            <!--                            <li>
-                                                            <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_'Photos'}</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_'Videos'}</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;{_'Friends'}</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_'Followers'}</a>
-                                                        </li>-->
-                        </ul>
-                    </li>
-                {elseif  ($active_profile_type == 3)}
-                    <!-- Handler menu -->
-                    <li class="panel"> 
-                        <a data-toggle="collapse" data-parent="#accordion1" href="#HandlerMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
-                        <ul id="HandlerMenu" class="collapse panel-collapse">
-                            <li>
-                                <a href="#"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{_'Home'}</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Breeds for handling'}</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_'Awards'}</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Certificates'}</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Show results'}</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_'Photos'}</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_'Videos'}</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;{_'Friends'}</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_'Followers'}</a>
-                            </li>
-                        </ul>
-                    </li>
-                {/if}
-            {/if}
+		{if ($profile_url=="#")}
+		    <li class="panel">
+			<button id="btnCreateProfileSwitcher" class="btn btn-danger btn-xl btn-block" style="padding:12px 12px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;{_ 'Create profile'}</button>
+			<script type="text/javascript">
+			    $("#btnCreateProfileSwitcher").on("click", function (event) {
+				window.location.href = "switch-profile";
+			    })
+			</script>
+		    </li>
+		{else}
+		    <li class="panel">
+			<a data-toggle="collapse" data-parent="#accordion1" href="#ProfileMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'Profile settings'}</a>
+			<ul id="ProfileMenu" class="collapse panel-collapse">
+			    <li>
+				<a n:href="user:user_create_profile_switcher"><i class="fa fa-exchange"></i>&nbsp;&nbsp;{_'Switch profile'}</a>
+			    </li>
+			    <li>
+				<a n:href="{$edit_url}"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;{_'Edit profile'}</a>
+			    </li>
+			    <li>
+				<a n:href="#"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;{_'Delete profile'}</a>
+			    </li>
+			</ul>
+		    </li>
+		{/if}
+		<!-- Kennel menu -->
+		{if ($active_profile_type == 1)}
+		    <li class="panel">
+			<a data-toggle="collapse" data-parent="#accordion1" href="#KennelMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
+			<ul id="KennelMenu" class="collapse panel-collapse">
+			    <li>
+				<a n:href="kennel:kennel_profile_home"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{_'Home'}</a>
+			    </li>
+			    <li>
+				<a n:href="kennel:kennel_awards_list"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_'Awards'}</a>
+			    </li>
+			    <li>
+				<a n:href="kennel:kennel_dog_list"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Dogs'}</a>
+			    </li>
+			    <li>
+				<a n:href=""><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}</a>
+			    </li>
+			    <!--                            <li>
+							    <a href="#"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Puppies for sale'}</a>
+							</li>
+							<li>
+							    <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_'Photos'}</a>
+							</li>
+							<li>
+							    <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_'Videos'}</a>
+							</li>
+							<li>
+							    <a n:href="kennel:kennel_friends_list"><i class="fa fa-users"></i>&nbsp;&nbsp;{_'Friends'}</a>
+							</li>
+							<li>
+							    <a n:href="kennel:kennel_followers_list"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_'Followers'}</a>
+							</li>-->
+			</ul>
+		    </li>
+		{elseif ($active_profile_type == 2)}
+		    <!-- Owner menu -->
+		    <li class="panel"> 
+			<a data-toggle="collapse" data-parent="#accordion1" href="#OwnerMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
+			<ul id="OwnerMenu" class="collapse panel-collapse">
+			    <li>
+				<a href="#"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{_'Home'}</a>
+			    </li>
+			    <li>
+				<a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Dogs'}</a>
+			    </li>
+			    <!--                            <li>
+							    <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_'Photos'}</a>
+							</li>
+							<li>
+							    <a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_'Videos'}</a>
+							</li>
+							<li>
+							    <a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;{_'Friends'}</a>
+							</li>
+							<li>
+							    <a href="#"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_'Followers'}</a>
+							</li>-->
+			</ul>
+		    </li>
+		{elseif  ($active_profile_type == 3)}
+		    <!-- Handler menu -->
+		    <li class="panel"> 
+			<a data-toggle="collapse" data-parent="#accordion1" href="#HandlerMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
+			<ul id="HandlerMenu" class="collapse panel-collapse">
+			    <li>
+				<a href="#"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{_'Home'}</a>
+			    </li>
+			    <li>
+				<a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Breeds for handling'}</a>
+			    </li>
+			    <li>
+				<a href="#"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_'Awards'}</a>
+			    </li>
+			    <li>
+				<a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Certificates'}</a>
+			    </li>
+			    <li>
+				<a href="#"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Show results'}</a>
+			    </li>
+			    <li>
+				<a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_'Photos'}</a>
+			    </li>
+			    <li>
+				<a href="#"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_'Videos'}</a>
+			    </li>
+			    <li>
+				<a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;{_'Friends'}</a>
+			    </li>
+			    <li>
+				<a href="#"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_'Followers'}</a>
+			    </li>
+			</ul>
+		    </li>
+		{/if}
+	    {/if}
 
-            <li class="panel">
-                <div>DOGFORSHOW</div>
-            </li>
-            <!--            <li>
-                            <div class="input-group custom-search-form search">
-                                <input type="text" class="form-control search-bar-typing" placeholder="Search DOGFORSHOW ...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </li>-->
-            <li class="panel"> 
-                <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowAbout"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i>{_ 'About us'}</a>
-                <ul id="DogforshowAbout" class="collapse panel-collapse">
-                    <li>
-                        <a n:href="pages:general_terms"><i class="fa fa-gavel"></i>&nbsp;&nbsp;{_'General terms'}</a>
-                    </li>
-                    <li>
-                        <a n:href="pages:cookie_policy"><i class="fa fa-leanpub"></i>&nbsp;&nbsp;{_'Cookie policy'}</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="panel"> 
-                <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowLists"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i>{_ 'Lists'}</a>
-                <ul id="DogforshowLists" class="collapse panel-collapse">
-                    <li>
-                        <a n:href="kennel:kennel_list"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Kennels'}<span class="badge" style="float:right">{DataModel::getKennelsCount()}</span></a>
-                    </li>
-                    <li>
-                        <a n:href="owner:owner_list"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{_'Owners of purebred dogs'}<span class="badge" style="float:right">{DataModel::getOwnersCount()}</span></a>
-                    </li>
-                    <li>
-                        <a n:href="handler:handler_list"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_'Handlers'}<span class="badge" style="float:right">{DataModel::getHandlersCount()}</span></a>
-                    </li>
-                    <li>
-                        <a n:href="dog:dog_list"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Dogs'}<span class="badge" style="float:right">{DataModel::getDogsCount()}</span></a>
-                    </li>
-                    <li>
-                        <a n:href="dog:dog_for_mating_list"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_'Dogs for mating'}<span class="badge" style="float:right">{DataModel::getMattingDogsCount()}</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}<span class="badge" style="float:right">{DataModel::getPlannedLittersCount()}</span></a>
-                    </li>
-                    <li>
-                        <a n:href="puppy:puppy_list"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Puppies for sale'}<span class="badge" style="float:right">0</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_'Best in show'}<span class="badge" style="float:right">0</span></a>
-                    </li>
-                </ul>
-            </li>
-            <li class="panel"> 
-                <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowFollow"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i>{_ 'Follow us'}</a>
-                <ul id="DogforshowFollow" class="collapse panel-collapse">
-                    <li>
-                        <a href="https://www.facebook.com/dogforshow" target="_blank"><i class="fa fa-facebook-official"></i>&nbsp;&nbsp;Facebook</a>
-                    </li>
-                    <li>
-                        <a href="https://plus.google.com/+Dogforshow" target="_blank"><i class="fa fa-google-plus-square"></i>&nbsp;&nbsp;Google +</a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/DOGFORSHOW" target="_blank"><i class="fa fa-twitter-square"></i>&nbsp;&nbsp;Twitter</a>
-                    </li>
-                    <li>
-                        <a href="https://www.pinterest.com/DOGFORSHOW" target="_blank"><i class="fa fa-pinterest-square"></i>&nbsp;&nbsp;Pinterest</a>
-                    </li>
-                    <li>
-                        <a href="http://dog-for-show.tumblr.com/" target="_blank"><i class="fa fa-tumblr-square"></i>&nbsp;&nbsp;Tumblr</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="panel"> 
-                <a data-toggle="collapse" data-parent="#accordion1" href=""><i style="color:rgb(131, 118, 94);float:right" class="fa fa-envelope"></i>{_ 'Contact'}</a>
-            </li>
-        </ul>
+	    <li class="panel">
+		<div>DOGFORSHOW</div>
+	    </li>
+	    <!--            <li>
+			    <div class="input-group custom-search-form search">
+				<input type="text" class="form-control search-bar-typing" placeholder="Search DOGFORSHOW ...">
+				<span class="input-group-btn">
+				    <button class="btn btn-default" type="button">
+					<i class="fa fa-search"></i>
+				    </button>
+				</span>
+			    </div>
+			</li>-->
+	    <li class="panel"> 
+		<a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowAbout"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i>{_ 'About us'}</a>
+		<ul id="DogforshowAbout" class="collapse panel-collapse">
+		    <li>
+			<a n:href="pages:general_terms"><i class="fa fa-gavel"></i>&nbsp;&nbsp;{_'General terms'}</a>
+		    </li>
+		    <li>
+			<a n:href="pages:cookie_policy"><i class="fa fa-leanpub"></i>&nbsp;&nbsp;{_'Cookie policy'}</a>
+		    </li>
+		</ul>
+	    </li>
+	    <li class="panel"> 
+		<a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowLists"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i>{_ 'Lists'}</a>
+		<ul id="DogforshowLists" class="collapse panel-collapse">
+		    <li>
+			<a n:href="kennel:kennel_list"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Kennels'}<span class="badge" style="float:right">{DataModel::getKennelsCount()}</span></a>
+		    </li>
+		    <li>
+			<a n:href="owner:owner_list"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{_'Owners of purebred dogs'}<span class="badge" style="float:right">{DataModel::getOwnersCount()}</span></a>
+		    </li>
+		    <li>
+			<a n:href="handler:handler_list"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_'Handlers'}<span class="badge" style="float:right">{DataModel::getHandlersCount()}</span></a>
+		    </li>
+		    <li>
+			<a n:href="dog:dog_list"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Dogs'}<span class="badge" style="float:right">{DataModel::getDogsCount()}</span></a>
+		    </li>
+		    <li>
+			<a n:href="dog:dog_for_mating_list"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_'Dogs for mating'}<span class="badge" style="float:right">{DataModel::getMattingDogsCount()}</span></a>
+		    </li>
+		    <li>
+			<a href="#"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}<span class="badge" style="float:right">{DataModel::getPlannedLittersCount()}</span></a>
+		    </li>
+		    <li>
+			<a n:href="puppy:puppy_list"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Puppies for sale'}<span class="badge" style="float:right">0</span></a>
+		    </li>
+		    <li>
+			<a href="#"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_'Best in show'}<span class="badge" style="float:right">0</span></a>
+		    </li>
+		</ul>
+	    </li>
+	    <li class="panel"> 
+		<a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowFollow"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i>{_ 'Follow us'}</a>
+		<ul id="DogforshowFollow" class="collapse panel-collapse">
+		    <li>
+			<a href="https://www.facebook.com/dogforshow" target="_blank"><i class="fa fa-facebook-official"></i>&nbsp;&nbsp;Facebook</a>
+		    </li>
+		    <li>
+			<a href="https://plus.google.com/+Dogforshow" target="_blank"><i class="fa fa-google-plus-square"></i>&nbsp;&nbsp;Google +</a>
+		    </li>
+		    <li>
+			<a href="https://twitter.com/DOGFORSHOW" target="_blank"><i class="fa fa-twitter-square"></i>&nbsp;&nbsp;Twitter</a>
+		    </li>
+		    <li>
+			<a href="https://www.pinterest.com/DOGFORSHOW" target="_blank"><i class="fa fa-pinterest-square"></i>&nbsp;&nbsp;Pinterest</a>
+		    </li>
+		    <li>
+			<a href="http://dog-for-show.tumblr.com/" target="_blank"><i class="fa fa-tumblr-square"></i>&nbsp;&nbsp;Tumblr</a>
+		    </li>
+		</ul>
+	    </li>
+	    <li class="panel"> 
+		<a data-toggle="collapse" data-parent="#accordion1" href=""><i style="color:rgb(131, 118, 94);float:right" class="fa fa-envelope"></i>{_ 'Contact'}</a>
+	    </li>
+	</ul>
     </div>
 </div>
 <script type="text/javascript">
-//    $(document).ready(function () {
-//        showLoadingAnimation();
-//        $.ajax("templates/scripts/get.php?login")
-//                .done(function (result) {
-//                    $("#userName").html(result);
-//                })
-//                .fail(function () {
-//                    //alert("error");
-//                })
-//                .always(function () {
-//                    hideLoadingAnimation();
-//                });
-//    });
+    //    $(document).ready(function () {
+    //        showLoadingAnimation();
+    //        $.ajax("templates/scripts/get.php?login")
+    //                .done(function (result) {
+    //                    $("#userName").html(result);
+    //                })
+    //                .fail(function () {
+    //                    //alert("error");
+    //                })
+    //                .always(function () {
+    //                    hideLoadingAnimation();
+    //                });
+    //    });
 </script>

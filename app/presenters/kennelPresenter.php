@@ -473,6 +473,25 @@ class kennelPresenter extends BasePresenter {
 	    $months[$i] = $i;
 	}
 
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+	    $lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+
+	$countries = array();
+	
+	$rows = $this->database->table("lk_countries")->order("CountryName_$lang")->fetchAll();
+	
+	foreach ($rows as $country)
+	{
+	    $countries[$country->CountryName_en] = $country->CountryName_en;
+	}
+	
 	$form->addSelect("ddlDateYear")->setRequired($this->translate("Required field"))->setItems($years);
 	$form->addSelect("ddlDateMonth")->setRequired($this->translate("Required field"))->setItems($months); //->setRequired();
 	$form->addText("txtPlannedLitterName")->setRequired($this->translate("Required field")); //->setRequired();
@@ -481,9 +500,9 @@ class kennelPresenter extends BasePresenter {
 	$form->addText("txtPlannedLitterDogProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
 	$form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
 	$form->addText("ddlBreedList")->setRequired($this->translate("Required field")); //->setRequired();
-	$form->addText("ddlCountry")->setRequired($this->translate("Required field")); //->setRequired();
+	$form->addSelect("ddlCountry")->setItems($countries)->setPrompt($this->translate("Please select country..."))->setRequired($this->translate("Required field")); //->setRequired();
 	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddPlannedLitterSuccess');
-	$form->addSubmit('btnCancel')->onClick[] = array($this, 'frmAddPlannedLitterCancel');
+	//$form->addSubmit('btnCancel')->onClick[] = array($this, 'frmAddPlannedLitterCancel');
 
 	return $form;
     }

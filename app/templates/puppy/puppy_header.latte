@@ -35,7 +35,7 @@
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i><strong>{$mother->breed_name}</strong></span></li>
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}">{if $dog->puppy_gender=="Bitch"}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_ $dog->puppy_gender}</span></li>
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog->date_of_birth|date:'%d.%m.%Y'}</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i>{$dog->country}</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i>{_$dog->country}</span></li>
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->dog_name}</span></li>
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->bitch_name}</span></li>
                 </ul>

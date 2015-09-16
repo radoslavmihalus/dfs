@@ -51,7 +51,16 @@ class userPresenter extends BasePresenter {
      * @return Form
      */
     protected function createComponentUserEditAccount() {
-	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+		$lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$countries = array();
 
 	$langs = array();

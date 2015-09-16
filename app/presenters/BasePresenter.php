@@ -88,6 +88,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 	    $userdata = $this->database->table("tbl_user")->where("id = ?", $myid)->fetch();
 	    $mysection->lang = $userdata->lang;
 
+	    $section = $this->getSession('language');
+	    $section->lang = $userdata->lang;
+
 
 	    if (strlen($mysection->lang) < 2)
 		$mysection->lang = "en";
@@ -290,7 +293,17 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     protected function createComponentFrmSignIn() {
-	$result = $this->database->table("lk_countries")->order("CountryName_en");
+	$lang = "en";
+
+	try {
+	    $section = $this->getSession('language');
+	    if (strlen($section->lang) > 1)
+		$lang = strtolower($section->lang);
+	} catch (Exception $ex) {
+	    $lang = "en";
+	}
+
+	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$items = array();
 
 	//$items["0"] = "Please select state ...";

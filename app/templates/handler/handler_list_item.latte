@@ -7,7 +7,7 @@
         </div>    
         <h3 class="text-uppercase"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{DataModel::getProfileName($post->id)}</h3>
         <hr style="margin-bottom: 10px;">
-        <span class="list-item-location"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{DataModel::getProfileState($post->id)}</span>
+        <span class="list-item-location"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{_DataModel::getProfileState($post->id)}</span>
         <span class="list-item-regdate"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{$post->handler_create_date|date:'%d.%m.%Y'}</span>
     </div>
 </a>
