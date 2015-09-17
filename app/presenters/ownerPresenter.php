@@ -146,7 +146,7 @@ class ownerPresenter extends BasePresenter {
 
 	    $this->data_model->addToTimeline($id, $id, 1, \DataModel::getProfileName($id), $data['owner_profile_picture']);
 
-	    $this->flashMessage("Your profile has been successfully created.", "Success");
+	    $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
 	    $this->redirect("owner:owner_profile_home");
 	} catch (\ErrorException $exc) {
 	    $this->flashMessage($exc->getMessage(), "Warning");
@@ -190,7 +190,7 @@ class ownerPresenter extends BasePresenter {
 
 	    $this->data_model->addToTimeline($this->logged_in_owner_id, $this->logged_in_owner_id, 2, \DataModel::getProfileName($this->logged_in_owner_id), $values['owner_profile_picture']);
 	    
-	    $this->flashMessage("Your profile has been successfully updated.", "Success");
+	    $this->flashMessage($this->translate("Profile has been successfully updated."), "Success");
 	    $this->redirect("owner:owner_profile_home");
 	} catch (\ErrorException $exc) {
 	    $this->flashMessage($exc->getMessage(), "Error");
@@ -243,7 +243,7 @@ class ownerPresenter extends BasePresenter {
 
 	    $this->database->table("tbl_userowner")->where("id = ?", $this->logged_in_owner_id)->update($values);
 
-	    $this->flashMessage("Your cover photo has been successfully updated.", "Success");
+	    $this->flashMessage($this->translate("Record has been successfully updated."), "Success");
 	    $this->redirect("owner:owner_profile_home");
 	} catch (\ErrorException $exc) {
 	    $this->flashMessage($exc->getMessage(), "Error");
@@ -296,7 +296,7 @@ class ownerPresenter extends BasePresenter {
 
 	    $this->database->table("tbl_userowner")->where("id = ?", $this->logged_in_owner_id)->update($values);
 
-	    $this->flashMessage("Your profile photo has been successfully updated.", "Success");
+	    $this->flashMessage($this->translate("Record has been successfully updated."), "Success");
 	    $this->redirect("owner:owner_profile_home");
 	} catch (\ErrorException $exc) {
 	    $this->flashMessage($exc->getMessage(), "Error");

@@ -22,7 +22,7 @@ class LandingPagePresenter extends BasePresenter {
 
         if (isset($_GET['activated']))
         {
-            $this->flashMessage("Account has been successfully activated.", "Success");
+            $this->flashMessage($this->translate("Account has been successfully activated."), "Success");
             $this->redirect("default");
         }
 
@@ -35,7 +35,7 @@ class LandingPagePresenter extends BasePresenter {
 
             $this->sendActivationEmail($mail_to, $name_to, $userid);
 
-            $this->flashMessage("Your activation link has been successfully sent.", "Success");
+            $this->flashMessage($this->translate("Your activation link has been successfully sent."), "Success");
             
             $this->redirect("default");
         }
@@ -43,7 +43,7 @@ class LandingPagePresenter extends BasePresenter {
 
     public function renderLogout() {
         $this->session->destroy();
-        $this->flashMessage("You have been successsfully logged out", "Info");
+        $this->flashMessage($this->translate("You have been successsfully logged out"), "Info");
         $this->redirect("default");
     }
 
@@ -92,7 +92,7 @@ class LandingPagePresenter extends BasePresenter {
                 $mailer = new SendmailMailer();
                 $mailer->send($mail);
 
-                $this->flashMessage("Your message was been successfully sent. We will contact you as soon as possible.", "Info");
+                $this->flashMessage($this->translate("Your message was been successfully sent. We will contact you as soon as possible."), "Info");
             }
         } catch (\Exception $ex) {
             $this->flashMessage($ex->getMessage(), "Error");

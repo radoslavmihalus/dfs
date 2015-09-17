@@ -244,7 +244,7 @@ class kennelPresenter extends BasePresenter {
 
 	    $this->data_model->addToTimeline($id, $id, 1, $values['kennel_name'], $values['kennel_profile_picture']);
 
-	    $this->flashMessage("Your profile has been successfully created.", "Success");
+	    $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
 	    $this->redirect("kennel:kennel_profile_home");
 	} catch (\ErrorException $exc) {
 	    $this->flashMessage($exc->getMessage(), "Error");
@@ -318,7 +318,7 @@ class kennelPresenter extends BasePresenter {
 
 	    $this->data_model->addToTimeline($id, $id, 2, $row->kennel_name, $row->kennel_profile_picture);
 
-	    $this->flashMessage("Your kennel profile has been successfully updated.", "Success");
+	    $this->flashMessage($this->translate("Profile has been successfully updated."), "Success");
 	    $this->redirect("kennel:kennel_profile_home", $id);
 	} catch (\ErrorException $exc) {
 	    $this->flashMessage($exc->getMessage(), "Error");
@@ -423,7 +423,7 @@ class kennelPresenter extends BasePresenter {
 
 	    $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 5, date("d.m.Y", strtotime($values['kennel_award_date'])) . " - " . $values['kennel_award_title'], $values['kennel_award_image']);
 
-	    $this->flashMessage("Your kennel award has been successfully created.", "Success");
+	    $this->flashMessage($this->translate("Record has been successfully added."), "Success");
 	    $this->redirect("kennel:kennel_awards_list");
 	} catch (\ErrorException $exc) {
 	    $this->flashMessage($exc->getMessage(), "Error");
@@ -448,7 +448,7 @@ class kennelPresenter extends BasePresenter {
 
 	    $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 6, date("d.m.Y", strtotime($values['kennel_award_date'])) . " - " . $values['kennel_award_title'], $values['kennel_award_image']);
 
-	    $this->flashMessage("Your kennel award has been successfully updated.", "Success");
+	    $this->flashMessage($this->translate("Record has been successfully updated."), "Success");
 	    $this->redirect("kennel:kennel_awards_list");
 	} catch (\ErrorException $exc) {
 	    $this->flashMessage($exc->getMessage(), "Error");
@@ -489,7 +489,7 @@ class kennelPresenter extends BasePresenter {
 	
 	foreach ($rows as $country)
 	{
-	    $countries[$country->CountryName_en] = $country->CountryName_en;
+	    $countries[$country->CountryName_en] = $this->translate($country->CountryName_en);
 	}
 	
 	$form->addSelect("ddlDateYear")->setRequired($this->translate("Required field"))->setItems($years);

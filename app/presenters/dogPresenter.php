@@ -227,7 +227,7 @@ class dogPresenter extends BasePresenter {
 	//$countries[] = $this->translate("Please select state...");
 
 	foreach ($result as $row) {
-	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	    $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
 	}
 
 	$sex = array(
@@ -273,7 +273,7 @@ class dogPresenter extends BasePresenter {
 	$countries = array();
 
 	foreach ($result as $row) {
-	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	    $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
 	}
 
 	$time = strtotime($profile->date_of_birth);
@@ -295,7 +295,7 @@ class dogPresenter extends BasePresenter {
 	$form->addText("ddlDate")->setValue($date)->setRequired();
 	$form->addText("txtDogHeight")->setValue($profile->height);
 	$form->addText("txtDogWeight")->setValue($profile->weight);
-	$form->addSelect("ddlCountry")->setItems($countries)->setPrompt("Please select")->setValue($profile->country)->setRequired();
+	$form->addSelect("ddlCountry")->setItems($countries)->setPrompt($this->translate("Please select"))->setValue($profile->country)->setRequired();
 	$form->addText("ddlDogFather")->setValue($profile->dog_father);
 	$form->addText("ddlDogMother")->setValue($profile->dog_mother);
 	$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfileSucceeded');
@@ -481,7 +481,7 @@ class dogPresenter extends BasePresenter {
 	$countries[] = $this->translate("Please select state...");
 
 	foreach ($result as $row) {
-	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	    $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
 	}
 
 	$form = new Form();
@@ -512,7 +512,7 @@ class dogPresenter extends BasePresenter {
 	$countries[] = $this->translate("Please select state...");
 
 	foreach ($result as $row) {
-	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	    $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
 	}
 
 	$result = $this->database->table("tbl_dogs_coowners")->where("id=?", $this->coowner_id)->fetch();
@@ -615,7 +615,7 @@ class dogPresenter extends BasePresenter {
 	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$countries = array();
 	foreach ($result as $row) {
-	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	    $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
 	}
 
 	$show_types = array();
@@ -629,9 +629,9 @@ class dogPresenter extends BasePresenter {
 	$show_types["WorldShow"] = $this->translate("World show");
 
 	$form->addText("ddlDate")->setRequired();
-	$form->addSelect("ddlShowType")->setItems($show_types)->setPrompt("Please select")->setRequired();
+	$form->addSelect("ddlShowType")->setItems($show_types)->setPrompt($this->translate("Please select"))->setRequired();
 	$form->addText("txtShowName")->setRequired();
-	$form->addSelect("ddlCountry")->setItems($countries)->setPrompt("Please select")->setRequired();
+	$form->addSelect("ddlCountry")->setItems($countries)->setPrompt($this->translate("Please select"))->setRequired();
 	$form->addText("txtHandlerName")->setRequired();
 	$form->addText("txtJudgeName");
 	$form->addSelect("ddlShowClass")->setPrompt($this->translate("Please select"))->setItems($class)->setRequired();
@@ -844,7 +844,7 @@ class dogPresenter extends BasePresenter {
 	$result = $this->database->table("lk_countries")->order("CountryName_$lang");
 	$countries = array();
 	foreach ($result as $row) {
-	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	    $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
 	}
 
 	$show_types = array();
@@ -861,9 +861,9 @@ class dogPresenter extends BasePresenter {
 	$date = date('d.m.Y', $time);
 
 	$form->addText("ddlDate")->setValue($date)->setRequired();
-	$form->addSelect("ddlShowType")->setItems($show_types)->setValue($show->show_type)->setPrompt("Please select")->setRequired();
+	$form->addSelect("ddlShowType")->setItems($show_types)->setValue($show->show_type)->setPrompt($this->translate("Please select"))->setRequired();
 	$form->addText("txtShowName")->setValue($show->show_name)->setRequired();
-	$form->addSelect("ddlCountry")->setItems($countries)->setValue($show->show_country)->setPrompt("Please select")->setRequired();
+	$form->addSelect("ddlCountry")->setItems($countries)->setValue($show->show_country)->setPrompt($this->translate("Please select"))->setRequired();
 	$form->addText("txtHandlerName")->setValue($show->handler_name)->setRequired();
 	$form->addText("txtJudgeName")->setValue($show->judge_name);
 	$form->addSelect("ddlShowClass")->setPrompt($this->translate("Please select"))->setItems($class)->setValue($show->show_class)->setRequired();
@@ -1108,7 +1108,7 @@ class dogPresenter extends BasePresenter {
 
 	    $this->database->table("tbl_dogs_championship")->insert($values);
 
-	    $this->flashMessage("Title successfully added.", "Success");
+	    $this->flashMessage($this->translate("Record has been successfully added."), "Success");
 	} catch (\ErrorException $ex) {
 	    $this->flashMessage($ex->getMessage(), "Error");
 	}
@@ -1135,7 +1135,7 @@ class dogPresenter extends BasePresenter {
 	    $mother_name = $values['dog_mother'];
 	    $this->data_model->setParents($values['dog_name'], $father_name, $mother_name);
 
-	    $this->flashMessage("Your dog profile successfully created.", "Success");
+	    $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
 
 	    switch ($this->profile_type) {
 		case 1:
@@ -1173,7 +1173,7 @@ class dogPresenter extends BasePresenter {
 	    $mother_name = $values['dog_mother'];
 	    $this->data_model->setParents($values['dog_name'], $father_name, $mother_name);
 
-	    $this->flashMessage("Your dog profile successfully created.", "Success");
+	    $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
 
 	    switch ($this->profile_type) {
 		case 1:

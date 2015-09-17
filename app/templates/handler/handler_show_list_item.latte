@@ -12,8 +12,8 @@
 	</div>
 	<div class="col-lg-3 col-md-3 column-spacer">
 	    <span style="font-weight:bold;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{_$show->show_country}</span>
-	    <a n:href="handler:handler_show_edit_name" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>
-	    <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></a>
+	    <a n:href="handler:handler_show_edit_name show_id=>$show->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
+	    <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_'Delete'}" type="button"><i class="fa fa-trash"></i></a>
 	</div>
 	<div class="row" style="padding:5px;">
 	    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -71,6 +71,10 @@
 			{if $row->VG4==1}VG4,{/if}
 			{if $row->CAJC==1}CAJC,{/if}
 			{if $row->JBOB==1}JBOB,{/if}
+			{if $row->CAC==1}CAC,{/if}
+			{if $row->RESCAC==1}RESCAC,{/if}
+			{if $row->CACIB==1}CACIB,{/if}
+			{if $row->RESCACIB==1}RESCACIB,{/if}
 			{if $row->BOB==1}BOB,{/if}
 			{if $row->BOS==1}BOS,{/if}
 			{if $row->JBOG1==1}JBOG1,{/if}
@@ -85,10 +89,6 @@
 			{if $row->BIS1==1}BIS1,{/if}
 			{if $row->BIS2==1}BIS2,{/if}
 			{if $row->BIS3==1}BIS3,{/if}
-			{if $row->CAC==1}CAC,{/if}
-			{if $row->RESCAC==1}RESCAC,{/if}
-			{if $row->CACIB==1}CACIB,{/if}
-			{if $row->RESCACIB==1}RESCACIB,{/if}
 		    </span>
 		</div>
 		<div class="col-lg-3 col-md-3 column-spacer">

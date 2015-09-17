@@ -84,7 +84,7 @@ class puppyPresenter extends BasePresenter {
 	$countries[] = $this->translate("Please select state...");
 
 	foreach ($result as $row) {
-	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	    $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
 	}
 
 	$result = $this->database->table("tbl_planned_litters")->where("kennel_id=?", $this->profile_id)->order("year DESC, month DESC")->fetchAll();
@@ -135,7 +135,7 @@ class puppyPresenter extends BasePresenter {
 	$countries[] = $this->translate("Please select state...");
 
 	foreach ($result as $row) {
-	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	    $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
 	}
 
 	$result = $this->database->table("tbl_planned_litters")->where("kennel_id=?", $this->profile_id)->order("year DESC, month DESC")->fetchAll();

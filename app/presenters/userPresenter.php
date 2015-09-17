@@ -72,7 +72,7 @@ class userPresenter extends BasePresenter {
 	$langs['sk'] = 'sk';
 
 	foreach ($result as $row) {
-	    $countries[$row->CountryName_en] = $row->CountryName_en;
+	    $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
 	}
 
 	$yt = date('Y');
@@ -108,8 +108,8 @@ class userPresenter extends BasePresenter {
 		->setRequired('Required field')->setValue($surname);
 	$form->addText('txtEmail')
 		->setRequired('Required field')->setDisabled()->setValue($email);
-	$form->addSelect('ddlCountries')->setItems($countries)->setPrompt("Please select")->setValue($country)->setRequired('Required field');
-	$form->addSelect('ddlLanguage')->setItems($langs)->setPrompt("Please select")->setValue($lang)->setRequired('Required field');
+	$form->addSelect('ddlCountries')->setItems($countries)->setPrompt($this->translate("Please select"))->setValue($country)->setRequired('Required field');
+	$form->addSelect('ddlLanguage')->setItems($langs)->setPrompt($this->translate("Please select"))->setValue($lang)->setRequired('Required field');
 	$form->addText('txtAddress')->setValue($address);
 	$form->addText('txtTown')->setValue($city);
 	$form->addText('txtZip')->setValue($zip);
@@ -134,7 +134,7 @@ class userPresenter extends BasePresenter {
 
 	$userdata = $this->database->table("tbl_user")->where("id = ?", $myid)->update($values);
 
-	$this->flashMessage("User updated successfully", "Success");
+	$this->flashMessage($this->translate("User updated successfully"), "Success");
 	$this->redirect('user:user_edit_account');
     }
 
@@ -180,7 +180,7 @@ class userPresenter extends BasePresenter {
 
 	    $userdata = $this->database->table("tbl_user")->where("id = ?", $myid)->update($values);
 
-	    $this->flashMessage("Password changed successfully. Please log in with your new password.", "Success");
+	    $this->flashMessage($this->translate("Password changed successfully. Please log in with your new password."), "Success");
 	    $this->redirect('LandingPage:default');
 	} catch (\ErrorException $ex) {
 	    $this->flashMessage($ex->getMessage(), "Error");

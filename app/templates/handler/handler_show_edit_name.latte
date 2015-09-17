@@ -13,7 +13,7 @@
             {include dropdown_ShowType_control, _form=>$_form, description => "Show type", placeholder => "Show type", id => "ddlShowType", name => "ddlShowType", tooltip => "Select type of exhibition"}
             {include textbox_control, _form=>$_form, description => "Name of the show", placeholder => "Enter the show name", id => "txtShowName", name => "txtShowName", tooltip => "Enter the name of show (e.g. World dog show Budapest)"}
             {include dropdown_CountryList_control, _form=>$_form, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry", tooltip => "Select country in which show was held"}
-            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
+            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
         {/form}
     </div>
 </div>
