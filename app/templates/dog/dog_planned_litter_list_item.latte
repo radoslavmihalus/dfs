@@ -13,11 +13,12 @@
                 <i class="fa fa-calendar-o" ></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Scheduled date of birth of the puppies'}" style="margin-left: 10px;font-weight:bold;">{$row->month}/{$row->year}</span>
             </div>
             <!--  Second row  -->
+            {var $mother=DataModel::getPlannedLitterMother($row->id)}
             <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
-                <i class="fa fa-tag" ></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}" style="margin-left: 10px;">***Cane corso italiano</span>
+                <i class="fa fa-tag" ></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}" style="margin-left: 10px;">{$mother->breed_name}</span>
             </div>
             <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
-                <i class="fa fa-map-marker"></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}" style="margin-left: 10px;">***Czech Republic</span>
+                <i class="fa fa-map-marker"></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}" style="margin-left: 10px;">{$mother->country}</span>
             </div>
             <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
                 <a n:href="dog:dog_planned_litter_edit" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>
@@ -55,30 +56,30 @@
                         </div>
                     </div>
                 </a>
-                <a n:href="dog:dog_title_list">
+                <a n:href="dog:dog_title_list id=>$mother->id">
                     <div class="col-lg-6 col-md-6 col-xs-12 padding">
                         <div class="list-item">
-                            <div class="dog-image-profile-thumb" style="background: url('{$row->bitch_image}') no-repeat center center; background-size: cover;min-height: 240px;">
+                            <div class="dog-image-profile-thumb" style="background: url('{$mother->dog_image}') no-repeat center center; background-size: cover;min-height: 240px;">
                             </div>
                             <h3 class="text-uppercase"><i class="fa fa-venus gender-bitch"></i>&nbsp;&nbsp;{$row->bitch_name}</h3>
                             <hr style="margin-bottom: 10px;">
-                            <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;***Dogo argentino</span>
-                            <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;***Slovakia</span>
+                            <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{$mother->breed_name}</span>
+                            <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{$mother->country}</span>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-xs-12 panel-description "><i class="fa fa-paw"></i>&nbsp;&nbsp;{_ 'Puppies'}
-		</div>
-		{includeblock '../puppy/puppy_list_item.latte'}
-		{foreach $row->related("tbl_puppies.planned_litter_id") as $puppy}
-		    <div class="col-lg-4 col-md-6 col-xs-12 padding">
-			{include puppy_list_item row=>$puppy}
-		    </div>
-		{/foreach}
-	    </div>
-	</div>
+                </div>
+                {includeblock '../puppy/puppy_list_item.latte'}
+                {foreach $row->related("tbl_puppies.planned_litter_id") as $puppy}
+                    <div class="col-lg-4 col-md-6 col-xs-12 padding">
+                        {include puppy_list_item row=>$puppy}
+                    </div>
+                {/foreach}
+            </div>
+        </div>
     </div>
 {/foreach}
 {/define}
