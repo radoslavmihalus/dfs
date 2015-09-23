@@ -377,7 +377,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $time = date('H:i:s', $datetime);
             $return .= '<div style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;" class="col-lg-12 col-md-12 col-xs-12">';
             $return .= '<img src="' . \DataModel::getProfileImage($row->profile_id) . '" class="user-block-thumb">';
-            $return .= '<span class="notification-item-header text-uppercase"><a href="#error: Destination must be non-empty string." style="color:#a5987f;">' . \DataModel::getProfileName($row->profile_id) . '</a></span>';
+            $url = \DataModel::getProfileLinkUrl($row->profile_id, TRUE) . "?id=" . $row->profile_id;
+            $return .= '<span class="notification-item-header text-uppercase"><a href="' . $url . '" style="color:#a5987f;">' . \DataModel::getProfileName($row->profile_id) . '</a></span>';
             $return .= '<span class="notification-item-event-time">' . $date . '|&nbsp;' . $time . '</span>';
             $return.='<span style="color:black" class="notification-item-event"></span>';
             $return .= '</div>';
@@ -392,7 +393,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public function handleNewMessagesCount() {
         $messages_count = $this->database->table('tbl_messages')->where("(from_user_id = ? OR to_user_id = ?) AND unreaded = 1", $this->logged_in_id, $this->logged_in_id)->count();
         echo $messages_count;
-        $this->terminate();
+        //$this->terminate();
     }
 
     public function handleNewNotifyCount() {
@@ -515,6 +516,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $user_section->id = $row->id;
             $user_section->lang = $row->lang;
             $activated = $row->active;
+            $profile_id = $row->active_profile_id;
         }
 
         if ($id == 0) {
@@ -522,8 +524,27 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         } else {
             if ($activated == 0) {
                 $this->flashMessage($this->translate("Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link") . "<br/><br/><p class=\"text-center\"><a href=\"?resend_al=$id\" class=\"btn btn-danger btn-xl\"><i class=\"fa fa-envelope\"></i>&nbsp;&nbsp;" . $this->translate("Resend registration email") . "</a></p>", "Warning");
-            } else
-                $this->redirect("user:user_create_profile_switcher");
+            } else {
+                if ($profile_id > 0) {
+                    $type = \DataModel::getProfileType($profile_id);
+                    switch ($type) {
+                        case 1:
+                            $this->redirect("kennel:kennel_profile_home");
+                            break;
+                        case 2:
+                            $this->redirect("owner:owner_profile_home");
+                            break;
+                        case 3:
+                            $this->redirect("handler:handler_profile_home");
+                            break;
+                        default :
+                            $this->redirect("user:user_create_profile_switcher");
+                            break;
+                    }
+                } else {
+                    $this->redirect("user:user_create_profile_switcher");
+                }
+            }
         }
     }
 

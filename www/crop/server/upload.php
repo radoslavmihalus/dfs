@@ -48,6 +48,35 @@ function processImageFile($image) {
     return $filename;
 }
 
+function processImageFileUploaded($image) {
+    $target_path = "../../../uploads/";
+    
+    $ext = '';
+
+    $ext = explode('.', $image);
+
+    $length = count($ext);
+
+    $ext = $ext[$length - 1];
+
+    switch ($ext) {
+        case 'jpeg':
+            $ext = 'jpg';
+            break;
+        case 'jpg':
+            $ext = 'jpg';
+            break;
+        case 'png':
+            $ext = 'png';
+            break;
+    }
+    
+    $filename = generateRandomString() . ".$ext";
+    copy($image, "$target_path/$filename");
+    
+    return $filename;
+}
+
 $options = array(
     // Upload directory
     'upload_dir' => '../files/',
@@ -94,6 +123,7 @@ $options = array(
     'upload_complete' => function($image, $instance) {
         // Here you can save the image to database
         // using $image->name to get the image name 
+        $image->name = processImageFileUploaded($image->path);
     },
     /**
      * 	Before crop callback

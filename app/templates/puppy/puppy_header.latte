@@ -28,9 +28,9 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="dog-image-profile-thumb" style="background: url('{$dog->puppy_photo}') no-repeat center center; background-size: cover;min-height: 240px;">
-                    <span class="puppy-info-forsale" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'For sale'}</span>
-<!--                    <span class="puppy-info-reserved" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Reserved'}</span>-->
-<!--                    <span class="puppy-info-sold" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Sold'}</span>-->
+                    <span {if ($dog->puppy_state=="ForSale")}class="puppy-info-forsale"{elseif (($dog->puppy_state=="Reserved"))}class="puppy-info-reserved"{else}class="puppy-info-sold"{/if}style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ $dog->puppy_state}</span>
+<!--                    <span  style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Reserved'}</span>-->
+<!--                    <span  style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Sold'}</span>-->
                 </div>
             </div>
             <div class="col-md-8">
@@ -41,8 +41,20 @@
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}">{if $dog->puppy_gender=="Bitch"}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_ $dog->puppy_gender}</span></li>
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog->date_of_birth|date:'%d.%m.%Y'}</span></li>
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i>{_$dog->country}</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->dog_name}</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->bitch_name}</span></li>
+                            {if DataModel::haveDogProfile($plannedLitter->dog_name)}
+                                {var $father=DataModel::getDogProfileByName($plannedLitter->dog_name)}
+                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i><a n:href="dog:dog_championschip_list id=>$father->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$plannedLitter->dog_name}</a></span></li>
+                                {else}
+                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}" style="text-transform: uppercase"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->dog_name}</span></li>
+                            {/if}
+                            {if DataModel::haveDogProfile($plannedLitter->bitch_name)}
+                                {var $mother=DataModel::getDogProfileByName($plannedLitter->bitch_name)}
+                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i><a n:href="dog:dog_championschip_list id=>$mother->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$plannedLitter->bitch_name}</a></span></li>
+                                {else}
+                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}" style="text-transform: uppercase"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->bitch_name}</span></li>
+                            {/if}
+<!--                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->dog_name}</span></li>
+                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->bitch_name}</span></li>-->
                 </ul>
                 <button style="margin-top: 10px" class="btn btn-default btn-lg"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</button>
             </div>

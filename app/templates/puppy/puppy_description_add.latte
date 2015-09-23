@@ -7,7 +7,7 @@
             <h2 class="text-center text-uppercase"><i class="fa fa-file-text"></i>&nbsp;&nbsp;{_ 'Add description'}</h2>
             <hr>
             {include textarea_control, _form => $_form, description => "Puppy description", placeholder => "Puppy description", id => "txtPuppyDescription", name => "txtPuppyDescription", tooltip => "Enter some informations about puppy"}
-            <button type="submit" class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
+            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
             <!--<button type="submit" class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>-->
         {/form}
     </div>

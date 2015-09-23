@@ -3,26 +3,25 @@
         <div class="modal-content" style="float:left;">
             <div class="modal-header" style="color: #c12e2a">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <i class="fa fa-exclamation-circle fa-1x" style="float:left;margin-right: 5px;font-size:22px;"></i>
-                <h4 class="modal-title" id="modalTitleWarning" style="font-weight:bold;font-size:15px;"></h4>
+                <h4 class="modal-title" id="modalTitleWarning" style="font-weight:bold;font-size:15px;">{DataModel::getPhotoDescription($row->id)}</h4>
             </div>
             <div class="modal-body">
-                <img src="DataModel::getPhotoImage($row->id)" class="img-responsive" style="margin-left: auto;margin-right: auto;margin-bottom: 10px;">
-<!--		{ foreach $row->related("tbl_comments","event_id") as $row_comments}
-		    <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-			<img class="user-block-thumb" src={DataModel::getProfileImage($row_comments->profile_id)}/>
-			<span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">{DataModel::getProfileName($row_comments->profile_id)}</a></span>
-			<span class="notification-item-event-time">{$row_comments->comment_date_time|date:'%d.%m.%Y'}|&nbsp;{$row_comments->comment_date_time|date:'H:i'}</span>
-			<span class="notification-item-event" style="color:black">{$row_comments->comment}</span>
-		    </div>
-		{ /foreach}-->
-<!--                <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;margin-bottom: 10px;">
-                    <input type="hidden" value="{$row->id}" name="snippet_id" id="frm-commentTimeline-{$row->id}-snippet_id">
-                    <input type="text" class="form-control font_size_13px no-live-validation" style="z-index: 0;" placeholder="Write a comment..." name="comment" id="frm-commentTimeline-{$row->id}-comment" required="" data-nette-rules="">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default font_size_13px no-live-validation" id="submitTimeline-{$row->id}" type="submit" name="btnSubmit"><i class="fa fa-comment fa-1x"></i></button>
-                    </span>
-                </div>-->
+                <a data-dismiss="modal"><img src="{DataModel::getPhotoImage($row->id)}" class="img-responsive" style="margin-left: auto;margin-right: auto;margin-bottom: 10px;"></a>
+                {foreach $row->related("tbl_comments","event_id") as $row_comments}
+                <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
+                    <img class="user-block-thumb" src={DataModel::getProfileImage($row_comments->profile_id)}/>
+                    <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">{DataModel::getProfileName($row_comments->profile_id)}</a></span>
+                    <span class="notification-item-event-time">{$row_comments->comment_date_time|date:'%d.%m.%Y'}|&nbsp;{$row_comments->comment_date_time|date:'H:i'}</span>
+                    <span class="notification-item-event" style="color:black">{$row_comments->comment}</span>
+                </div>
+                {/foreach}
+                <!--                <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;margin-bottom: 10px;">
+                                    <input type="hidden" value="{$row->id}" name="snippet_id" id="frm-commentTimeline-{$row->id}-snippet_id">
+                                    <input type="text" class="form-control font_size_13px no-live-validation" style="z-index: 0;" placeholder="Write a comment..." name="comment" id="frm-commentTimeline-{$row->id}-comment" required="" data-nette-rules="">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default font_size_13px no-live-validation" id="submitTimeline-{$row->id}" type="submit" name="btnSubmit"><i class="fa fa-comment fa-1x"></i></button>
+                                    </span>
+                                </div>-->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

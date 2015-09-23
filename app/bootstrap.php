@@ -35,6 +35,9 @@ $router = $container->getService('router');
 $router[] = new Route('index.php', 'LandingPage:default');
 //$router[] = new Route('forgot-password', 'LandingPage:forgot_password');
 //$router[] = new Route('reset-password', 'LandingPage:reset_password');
+// Base routes
+$router[] = new Route('add-photo', 'photo:photo_add');
+$router[] = new Route('edit-photo', 'photo:photo_edit');
 // User routes
 $router[] = new Route('switch-profile', 'user:user_create_profile_switcher');
 $router[] = new Route('premium-account', 'user:user_premium');

@@ -5,9 +5,10 @@
             <div class="timeline-heading">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-xs-12">
-                        <img class="user-block-thumb" src="{$row->timeline_profile_image}" style="position:absolute;left:15px;top:0px;"/>
-                        <a href="">    
-                            <span class="notification-item-header text-uppercase" style="width:auto;margin-left:55px;font-family: 'Roboto Condensed', sans-serif;font-size: 15px !important;">{$row->timeline_name}</span><br>
+                        <img class="user-block-thumb" src="{DataModel::getProfileImage($row->profile_id)}" style="position:absolute;left:15px;top:0px;"/>
+                        {var $url = DataModel::getProfileLinkUrl($row->profile_id)}
+                        <a n:href="$url id=>$row->profile_id">
+                            <span class="notification-item-header text-uppercase" style="width:auto;margin-left:55px;font-family: 'Roboto Condensed', sans-serif;font-size: 15px !important;">{DataModel::getProfileName($row->profile_id)}</span><br>
                         </a>
                     </div>
                     <div class="col-lg-12 col-md-12 col-xs-12">
@@ -29,6 +30,25 @@
                         {if ($row->event_type == 6)}
                             <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-certificate"></i></span>&nbsp;&nbsp;{_'Edit award'}</h3>
                         {/if}
+                        {if ($row->event_type == 7)}
+                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-calendar"></i></span>&nbsp;&nbsp;{_'Add planned litter'}</h3>
+                        {/if}
+                        {if ($row->event_type == 8)}
+                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-list-alt"></i></span>&nbsp;&nbsp;{_'Add certificate'}</h3>
+                        {/if}
+                        {if ($row->event_type == 10)}
+                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-camera"></i></span>&nbsp;&nbsp;{_'Add photo'}</h3>
+                        {/if}
+                        {if ($row->event_type == 11)}
+                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-clipboard"></i></span>&nbsp;&nbsp;{_'Add show result'}</h3>
+                        {/if}
+                        {if ($row->event_type == 12)}
+                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-dog"></i></span>&nbsp;&nbsp;{_'Add dog'}</h3>
+                        {/if}
+                        {if ($row->event_type == 13)}
+                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-paw"></i></span>&nbsp;&nbsp;{_'Add puppy for sale'}</h3>
+                        {/if}
+
                         <!--                    <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-tag"></i></span>&nbsp;&nbsp;Add breeds for handling</h3>
                                             <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-clipboard"></i></span>&nbsp;&nbsp;Add show result</h3>
                                             <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-list-alt"></i></span>&nbsp;&nbsp;Add certificate</h3>
@@ -45,15 +65,15 @@
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" id="timeline_remove_{$row->id}">{_'Remove from timeline'}</a></li>
                         </ul>
                         <script type="text/javascript">
-			    $("#timeline_remove_{$row->id}").click(function () {
-				$.ajax({
-				    url: '/?do=timelineRemove&id={$row->id}',
-				    dataType: 'html',
-				}).done(function (data) {
+                            $("#timeline_remove_{$row->id}").click(function () {
+                                $.ajax({
+                                    url: '/?do=timelineRemove&id={$row->id}',
+                                    dataType: 'html',
+                                }).done(function (data) {
 //                                    alert("Event deleted");
-				    $.get(document.href);
-				});
-			    });
+                                    $.get(document.href);
+                                });
+                            });
                         </script>
                     </div>
                 </div>
@@ -81,7 +101,8 @@
             {foreach $row->related("tbl_comments","timeline_id") as $row_comments}
                 <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
                     <img class="user-block-thumb" src={DataModel::getProfileImage($row_comments->profile_id)}/>
-                    <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">{DataModel::getProfileName($row_comments->profile_id)}</a></span>
+                    {var $linkurl = DataModel::getProfileLinkUrl($row_comments->profile_id)}
+                    <span class="notification-item-header text-uppercase"><a n:href="$linkurl id=>$row_comments->profile_id" style="color:#a5987f;">{DataModel::getProfileName($row_comments->profile_id)}</a></span>
                     <span class="notification-item-event-time">{$row_comments->comment_date_time|date:'%d.%m.%Y'}|&nbsp;{$row_comments->comment_date_time|date:'H:i'}</span>
                     <span class="notification-item-event" style="color:black">{$row_comments->comment}</span>
                 </div>
@@ -97,28 +118,28 @@
                 </div>
             </form>
             <script type="text/javascript">
-		/* AJAXové odeslání formulářů */
-		$("#commentTimeline-" + {$row->id}).on("submit", function () {
-		    $("#ajax-spinner").show();
+                /* AJAXové odeslání formulářů */
+                $("#commentTimeline-" + {$row->id}).on("submit", function () {
+                    $("#ajax-spinner").show();
 
-		    $(this).ajaxSubmit(function (payload) {
-			$.nette.success(payload);
+                    $(this).ajaxSubmit(function (payload) {
+                        $.nette.success(payload);
 
-			$.get(document.href);
-		    });
-		    return false;
-		});
+                        $.get(document.href);
+                    });
+                    return false;
+                });
 
-		$("#commentTimeline-" + {$row->id} + " :submit").on("click", function () {
-		    $("#ajax-spinner").show();
+                $("#commentTimeline-" + {$row->id} + " :submit").on("click", function () {
+                    $("#ajax-spinner").show();
 
-		    $(this).ajaxSubmit(function (payload) {
-			$.nette.success(payload);
+                    $(this).ajaxSubmit(function (payload) {
+                        $.nette.success(payload);
 
-			$.get(document.href);
-		    });
-		    return false;
-		});
+                        $.get(document.href);
+                    });
+                    return false;
+                });
 
 //		$("#submitTimeline-{$row->id}").on("click", function () {
 //		    $("#ajax-spinner").show();
@@ -132,73 +153,73 @@
 //		});
 
 
-		$("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
-		{
-		    event.preventDefault();
+                $("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
+                {
+                    event.preventDefault();
 
-		    $("#ajax-spinner").show();
+                    $("#ajax-spinner").show();
 
-		    $.ajax({
-			url: "/?do=LikesList&timeline_id={$row->id}",
-			dataType: 'html',
-		    }).done(function (data) {
-			$("#modalTextInformation").html(data);
-			$("#modalTitleInformation").html({_'Peoples who liked this'});
-			$("#modalFlashInformation").modal("show");
-			$("#ajax-spinner").hide();
-		    });
-		});
+                    $.ajax({
+                        url: "/?do=LikesList&timeline_id={$row->id}",
+                        dataType: 'html',
+                    }).done(function (data) {
+                        $("#modalTextInformation").html(data);
+                        $("#modalTitleInformation").html({_'Peoples who liked this'});
+                        $("#modalFlashInformation").modal("show");
+                        $("#ajax-spinner").hide();
+                    });
+                });
 
-		$("#like-{$row->id},#unlike-{$row->id}").on("click", function (event)
-		{
-		    event.preventDefault();
-		    $.ajax({
-			url: "/?do=Like&timeline_id={$row->id}",
-			dataType: 'html',
-		    }).done(function (data) {
-			$("#likes-count-{$row->id}").html(data);
-			$("#ylikes-count-{$row->id}").html(data);
-			$.ajax({
-			    url: "/?do=HasLiked&timeline_id={$row->id}",
-			    dataType: 'html',
-			}).done(function (data) {
-			    if (data > 0)
-			    {
-				$("#like-{$row->id}").hide();
-				$("#likes-count-{$row->id}").hide();
-				$("#unlike-{$row->id}").show();
-				$("#ylikes-count-{$row->id}").show();
-			    }
-			    else
-			    {
-				$("#like-{$row->id}").show();
-				$("#likes-count-{$row->id}").show();
-				$("#unlike-{$row->id}").hide();
-				$("#ylikes-count-{$row->id}").hide();
-			    }
-			});
-		    });
-		});
+                $("#like-{$row->id},#unlike-{$row->id}").on("click", function (event)
+                {
+                    event.preventDefault();
+                    $.ajax({
+                        url: "/?do=Like&timeline_id={$row->id}",
+                        dataType: 'html',
+                    }).done(function (data) {
+                        $("#likes-count-{$row->id}").html(data);
+                        $("#ylikes-count-{$row->id}").html(data);
+                        $.ajax({
+                            url: "/?do=HasLiked&timeline_id={$row->id}",
+                            dataType: 'html',
+                        }).done(function (data) {
+                            if (data > 0)
+                            {
+                                $("#like-{$row->id}").hide();
+                                $("#likes-count-{$row->id}").hide();
+                                $("#unlike-{$row->id}").show();
+                                $("#ylikes-count-{$row->id}").show();
+                            }
+                            else
+                            {
+                                $("#like-{$row->id}").show();
+                                $("#likes-count-{$row->id}").show();
+                                $("#unlike-{$row->id}").hide();
+                                $("#ylikes-count-{$row->id}").hide();
+                            }
+                        });
+                    });
+                });
 
-		$.ajax({
-		    url: "/?do=HasLiked&timeline_id={$row->id}",
-		    dataType: 'html',
-		}).done(function (data) {
-		    if (data > 0)
-		    {
-			$("#like-{$row->id}").hide();
-			$("#likes-count-{$row->id}").hide();
-			$("#unlike-{$row->id}").show();
-			$("#ylikes-count-{$row->id}").show();
-		    }
-		    else
-		    {
-			$("#like-{$row->id}").show();
-			$("#likes-count-{$row->id}").show();
-			$("#unlike-{$row->id}").hide();
-			$("#ylikes-count-{$row->id}").hide();
-		    }
-		});
+                $.ajax({
+                    url: "/?do=HasLiked&timeline_id={$row->id}",
+                    dataType: 'html',
+                }).done(function (data) {
+                    if (data > 0)
+                    {
+                        $("#like-{$row->id}").hide();
+                        $("#likes-count-{$row->id}").hide();
+                        $("#unlike-{$row->id}").show();
+                        $("#ylikes-count-{$row->id}").show();
+                    }
+                    else
+                    {
+                        $("#like-{$row->id}").show();
+                        $("#likes-count-{$row->id}").show();
+                        $("#unlike-{$row->id}").hide();
+                        $("#ylikes-count-{$row->id}").hide();
+                    }
+                });
             </script>
 
         </div>

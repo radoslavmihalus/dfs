@@ -9,16 +9,17 @@
         <div class="btn btn-default btn-sm imgs-upload"><i class="fa fa-upload"></i>&nbsp;&nbsp;{_ 'Upload'}</div> <!-- .imgs-upload -->
         <button type="button" class="btn btn-default btn-sm imgs-webcam"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Take picture'}</button> <!-- .imgs-webcam -->
 
-        <!-- Webcam & Crop containers -->
-        <div class="imgs-webcam-container"></div> <!-- .imgs-webcam-container -->
-        <div class="imgs-crop-container"></div> <!-- .imgs-crop-container -->
+        {if ($needed_crop==1)}
+            <!-- Webcam & Crop containers -->
+            <div class="imgs-webcam-container"></div> <!-- .imgs-webcam-container -->
+            <div class="imgs-crop-container"></div> <!-- .imgs-crop-container -->
 
-        <!-- Action buttons -->
-        <button type="button" class="btn btn-danger btn-sm imgs-save">{_'Save Image'}</button> <!-- .imgs-save -->
-        <button type="button" class="btn btn-danger btn-sm imgs-newsnap">{_'New Snapshot'}</button> <!-- .imgs-newsnap -->
-        <button type="button" class="btn btn-danger btn-sm imgs-capture">{_'Capture'}</button> <!-- .imgs-capture -->
-        <button type="button" class="btn btn-default btn-sm imgs-cancel">{_'Cancel'}</button> <!-- .imgs-cancel -->
-
+            <!-- Action buttons -->
+            <button type="button" class="btn btn-danger btn-sm imgs-save">{_'Save Image'}</button> <!-- .imgs-save -->
+            <button type="button" class="btn btn-danger btn-sm imgs-newsnap">{_'New Snapshot'}</button> <!-- .imgs-newsnap -->
+            <button type="button" class="btn btn-danger btn-sm imgs-capture">{_'Capture'}</button> <!-- .imgs-capture -->
+            <button type="button" class="btn btn-default btn-sm imgs-cancel">{_'Cancel'}</button> <!-- .imgs-cancel -->
+        {/if}
         <div class="imgs-alert alert" style="margin-top: 10px;font-size:13px;"></div> <!-- .imgs-alert -->
     </div>
     <!--    <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
@@ -33,65 +34,75 @@
 <!--<table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>-->
 <script>
     $(function () {
-        $('[data-toggle="popover"]').popover()
+    $('[data-toggle="popover"]').popover()
     })
 </script>
 <script>
-    new ImgSelect($('#imgselect_container' + {$name}), {
-        cropComplete: function (image) {
+            new ImgSelect($('#imgselect_container' + {$name}), {
+    {if ($needed_crop==1)}
+            cropComplete: function (image) {
             $("#" + {$name}).val("uploads/" + image.name);
-            str = $("#" + {$name}).val();
-
-            if (str == "")
+                    str = $("#" + {$name}).val();
+                    if (str == "")
             {
-                $('#old_image' + {$name}).hide();
+            $('#old_image' + {$name}).hide();
             }
             else
             {
-                $('#old_image' + {$name}).show();
+            $('#old_image' + {$name}).show();
             }
 
             url = "url(" + str + ")";
+                    $('#old_image' + {$name}).css("background-image", url);
+            },
+                    crop: {
+                    aspectRatio: {$aspect_x} / {$aspect_y},
+                            setSelect: [0, 0, {$aspect_x} * 15, {$aspect_y} * 15]
+                    }
+    {else}
+            uploadComplete: function (image) {
+            $("#" + {$name}).val("uploads/" + image.name);
+                    str = $("#" + {$name}).val();
+                    if (str == "")
+            {
+            $('#old_image' + {$name}).hide();
+            }
+            else
+            {
+            $('#old_image' + {$name}).show();
+            }
 
-            $('#old_image' + {$name}).css("background-image", url);
-        },
-        crop: {
-            aspectRatio: {$aspect_x} / {$aspect_y},
-            setSelect: [0, 0, {$aspect_x} * 15, {$aspect_y} * 15]
-        }
-    });
-
-    str = $("#" + {$name}).val();
-
-    url = "url(" + str + ")";
-
-    if (str == "")
+            url = "url(" + str + ")";
+                    $('#old_image' + {$name}).css("background-image", url);
+            }
+    {/if}
+            });
+            str = $("#" + {$name}).val();
+            url = "url(" + str + ")";
+            if (str == "")
     {
-        $('#old_image' + {$name}).hide();
+    $('#old_image' + {$name}).hide();
     }
     else
     {
-        $('#old_image' + {$name}).show();
+    $('#old_image' + {$name}).show();
     }
 
     $('#old_image' + {$name}).css("background-image", url);
+            $("#delete" + {$name}).click(function () {
+    $("#" + {$name}).val("");
+            str = $("#" + {$name}).val();
+            if (str == "")
+    {
+    $('#old_image' + {$name}).hide();
+    }
+    else
+    {
+    $('#old_image' + {$name}).show();
+    }
 
-    $("#delete" + {$name}).click(function () {
-        $("#" + {$name}).val("");
-        str = $("#" + {$name}).val();
-
-        if (str == "")
-        {
-            $('#old_image' + {$name}).hide();
-        }
-        else
-        {
-            $('#old_image' + {$name}).show();
-        }
-
-        url = "url(" + str + ")";
-
-        $('#old_image' + {$name}).css("background-image", url);
+    url = "url(" + str + ")";
+            $('#old_image' + {$name}).css("background-image", url);
     });
 </script>
 {/define}

@@ -20,8 +20,7 @@ class LandingPagePresenter extends BasePresenter {
     protected function startup() {
         parent::startup();
 
-        if (isset($_GET['activated']))
-        {
+        if (isset($_GET['activated'])) {
             $this->flashMessage($this->translate("Account has been successfully activated."), "Success");
             $this->redirect("default");
         }
@@ -36,7 +35,7 @@ class LandingPagePresenter extends BasePresenter {
             $this->sendActivationEmail($mail_to, $name_to, $userid);
 
             $this->flashMessage($this->translate("Your activation link has been successfully sent."), "Success");
-            
+
             $this->redirect("default");
         }
     }
@@ -47,9 +46,37 @@ class LandingPagePresenter extends BasePresenter {
         $this->redirect("default");
     }
 
+    public function beforeRender() {
+        if ($this->logged_in_id > 0) {
+            $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+            $profile_id = $user->active_profile_id;
+
+            if ($profile_id > 0) {
+                $type = \DataModel::getProfileType($profile_id);
+                switch ($type) {
+                    case 1:
+                        $this->redirect("kennel:kennel_profile_home");
+                        break;
+                    case 2:
+                        $this->redirect("owner:owner_profile_home");
+                        break;
+                    case 3:
+                        $this->redirect("handler:handler_profile_home");
+                        break;
+                    default :
+                        $this->redirect("user:user_create_profile_switcher");
+                        break;
+                }
+            }
+        }
+        parent::beforeRender();
+    }
+
+
     /*     * ******************* view default ******************** */
 
     public function renderDefault() {
+        
     }
 
     /*     * ******************* component factories ******************** */

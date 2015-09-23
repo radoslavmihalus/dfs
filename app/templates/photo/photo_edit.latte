@@ -1,0 +1,19 @@
+{layout '../@forms_layout.latte'}
+{{block content}
+{includeblock '../components/textbox_control.latte'}
+{includeblock '../components/textarea_control.latte'}
+{includeblock '../components/image_UploadPicture_control.latte'}
+{includeblock '../components/dropdown_DatePicker_control.latte'}
+<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
+    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
+        {form formEditPhoto}
+            <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_ 'Edit photo'}</h2>
+            <hr>
+            {include textbox_control, _form => $_form, description => "Name of the award", placeholder => "Description of the photo", id => "txtPhotoName", name => "txtPhotoName", tooltip=>"Description of the photo"}
+            {include image_UploadPicture_control, _form => $form, description => "Picture", placeholder => "Select picture", id => "txtPhoto", name => "txtPhoto", tooltip=>"Photo in jpeg or jpg format"}
+            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
+            <!--<button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>-->
+        {/form}
+    </div>
+</div>  
+    {/block}

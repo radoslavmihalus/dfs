@@ -160,6 +160,22 @@ class kennelPresenter extends BasePresenter {
 	$this->renderKennel_profile_home($id);
     }
 
+    public function renderKennel_puppy_list($id = 0) {
+	if ($id == 0)
+	    $id = $this->logged_in_kennel_id;
+	$rows = $this->database->table("tbl_planned_litters")->where("kennel_id=?", $id)->fetchAll();
+	$this->template->planned_litters = $rows;
+	$this->renderKennel_profile_home($id);
+    }
+
+    public function renderKennel_photogallery($id = 0) {
+	if ($id == 0)
+	    $id = $this->logged_in_kennel_id;
+	$rows = $this->database->table("tbl_photos")->where("profile_id=?", $id)->fetchAll();
+	$this->template->photos = $rows;
+	$this->renderKennel_profile_home($id);
+    }
+
     public function renderKennel_dog_list_home($id = 0) {
 	if ($id == 0)
 	    $id = $this->logged_in_kennel_id;

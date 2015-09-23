@@ -3,10 +3,10 @@
 {includeblock '../components/modal_confirmation.latte'}
 
 {var $profile_url = ""}
-{if ($active_profile_type == 1)}
+{if ($current_profile_type == 1)}
     {var $profile_url = "kennel:kennel_profile_home"}
     {var $edit_url = "kennel:kennel_edit_profile"}
-{elseif ($active_profile_type == 2)}
+{elseif ($current_profile_type == 2)}
     {var $profile_url = "owner:owner_profile_home"}
     {var $edit_url = "owner:owner_edit_profile"}
 {else}
@@ -20,13 +20,13 @@
             {include modalConfirmation description=>"Are you sure you want to delete this profile?", id => $dog->id, do => "deleteDog"}
             <div class="col-lg-6 col-md-12 col-xs-12">
                 <h1 class="profile_type_heading text-uppercase" style="margin-top: 0px;"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{$dog->dog_name}<a style="text-transform: capitalize;margin-left: 15px;" n:href="dog:dog_edit_profile id=>$dog->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" id="dog_delete" type="button"><i class="fa fa-trash"></i></button></h1>
-                        {if ($active_profile_type == 1)}
+                        {if ($current_profile_type == 1)}
                     <a n:href="kennel:kennel_profile_home id=>$dog->profile_id">
                         <span data-toggle="tooltip" data-placement='top' title="{_'Kennel'}" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>{DataModel::getProfileName($dog->profile_id)}</span>
                     </a>
                 {else}
                     <a n:href="owner:owner_profile_home id=>$dog->profile_id">
-                        <span data-toggle="tooltip" data-placement='top' title="{_'Owner'}" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>{DataModel::getProfileName($dog->profile_id)}</span>
+                        <span data-toggle="tooltip" data-placement='top' title="{_'Owner'}" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-user" style="margin-right: 10px;"></i>{DataModel::getProfileName($dog->profile_id)}</span>
                     </a>
                 {/if}
             </div>
@@ -47,17 +47,17 @@
         <hr style="margin-bottom: 5px;margin-top: 5px;">
         <div class="row">
             <div class="col-md-4">
-		<a href="{$dog->dog_image}" data-gallery>
-		    <div class="dog-image-profile-thumb" style="background: url('{$dog->dog_image}') no-repeat center center; background-size: cover; min-height: 240px;">
-			{if $dog->offer_for_mating==1}
-			    <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
-			    {/if}
+                <a href="{$dog->dog_image}" data-gallery>
+                    <div class="dog-image-profile-thumb" style="background: url('{$dog->dog_image}') no-repeat center center; background-size: cover; min-height: 240px;">
+                        {if $dog->offer_for_mating==1}
+                            <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
+                            {/if}
 
-			{if ($bis>0 || $jbis>0)}
-			    <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
-			    {/if}
-		    </div>
-		</a>
+                        {if ($bis>0 || $jbis>0)}
+                            <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
+                            {/if}
+                    </div>
+                </a>
             </div>
             <div class="col-md-8">
                 <ul class="dog-information-list">
@@ -68,8 +68,18 @@
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Height at the withers (cm)'}"><i class="fa fa-arrows-v" style="margin-right: 10px;color:#777;"></i>{$dog->height}&nbsp;cm</span></li>
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Weight (kg)'}"><i class="fa fa-tachometer" style="margin-right: 10px;color:#777;"></i>{$dog->weight}&nbsp;kg</span></li>
                     <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i>{_$dog->country}</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i><a style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$dog->dog_father}</a></span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i><a style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$dog->dog_mother}</a></span></li>
+                            {if DataModel::haveDogProfile($dog->dog_father)}
+                                {var $father=DataModel::getDogProfileByName($dog->dog_father)}
+                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i><a n:href="dog:dog_championschip_list id=>$father->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$dog->dog_father}</a></span></li>
+                                {else}
+                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}" style="text-transform: uppercase"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>{$dog->dog_father}</span></li>
+                            {/if}
+                            {if DataModel::haveDogProfile($dog->dog_mother)}
+                                {var $mother=DataModel::getDogProfileByName($dog->dog_mother)}
+                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i><a n:href="dog:dog_championschip_list id=>$mother->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$dog->dog_mother}</a></span></li>
+                                {else}
+                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}" style="text-transform: uppercase"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>{$dog->dog_mother}</span></li>
+                            {/if}
                 </ul>
             </div>
         </div>
@@ -164,7 +174,9 @@
                         <li><a n:href="dog_pedigree_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Pedigree'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Videos'}</a></li>
-                        <li><a n:href="dog_mating_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Matings'}</a></li>
+                            {if ($dog->dog_gender == "Dog")}
+                            <li><a n:href="dog_mating_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Matings'}</a></li>
+                            {/if}
                         <li><a n:href="dog_coowner_list id=>$dog->id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Coowners'}</a></li>
                     </ul>
                 </div>
@@ -174,11 +186,11 @@
 </div>
 <script>
     $(function () {
-	$('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip()
     });
 
     $("#dog_delete").on("click", function () {
-	$("#modalFlashConfirmation" + {$dog->id}).modal("show");
+        $("#modalFlashConfirmation" + {$dog->id}).modal("show");
     });
 
 </script>

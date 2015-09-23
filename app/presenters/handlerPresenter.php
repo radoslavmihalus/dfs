@@ -939,53 +939,69 @@ class handlerPresenter extends BasePresenter {
         $data['show_class'] = $values->ddlShowClass;
 
         $data['handler_id'] = $this->logged_in_handler_id;
-
+        
+        $result = "";
+        
         foreach ($values->chckAssesmentMinorPuppy as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesMinorPuppy as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesPuppy as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckAssesment as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesJunior as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesJuniorBOG as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesJuniorBIS as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesBOG as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesBIS as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitles as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         $data['other_title'] = $values->txtOtherTitle;
+            $result .= $data['other_title'];
 
         $data['show_image'] = $values->txtShowImage;
 
         $this->database->table("tbl_handler_shows")->insert($data);
-
+        $id=$this->database->getInsertId();
+        
+        $this->data_model->addToTimeline($this->logged_in_handler_id, $id, 11, $result, $values->txtShowImage);
+        
         $this->redirect("handler_show_list");
     }
 
