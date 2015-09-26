@@ -95,8 +95,8 @@
 		    <span style="margin-right: 5px; color:#777;">{$row->other_title}</span>
 		</div>
 		<div class="col-lg-3 col-md-3 column-spacer">
-		    <a n:href="handler:handler_show_edit id=>$row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>
-		    <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button>
+		    <a n:href="handler:handler_show_edit id=>$row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
+		    <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
 		</div>
 	    </div>
 	{/foreach}

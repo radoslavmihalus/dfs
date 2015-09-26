@@ -70,7 +70,7 @@
                 </a>
             </div>
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-xs-12 panel-description "><i class="fa fa-paw"></i>&nbsp;&nbsp;{_ 'Puppies'}
+                <div class="col-lg-12 col-md-12 col-xs-12 panel-description" style="margin-bottom:10px;"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_ 'Puppies'}
                 </div>
                 {includeblock '../puppy/puppy_list_item.latte'}
                 {foreach $row->related("tbl_puppies.planned_litter_id") as $puppy}

@@ -27,8 +27,8 @@
                 <a href="{$row->image}" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a>
             </div>
             <div class="col-lg-3 col-md-3 column-spacer">
-                <a n:href="dog:dog_workexam_edit id => $row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>
-                <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button>
+                <a n:href="dog:dog_workexam_edit id => $row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
+                <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
             </div>
         </div>
     {/foreach}

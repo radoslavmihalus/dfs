@@ -1,338 +1,46 @@
-.top-menu
-{
-    border-bottom: #CCCCCC 1px solid;
+.top-menu{border-bottom:#CCCCCC 1px solid;}
+.refresh-icon{float:left;padding:10px 10px 0px 0px;margin-top:8px;margin-bottom:0px;color:#919191;cursor:pointer;}
+.toogle-margin-zero{margin-right:0px !important;}
+.refresh-icon:active{color:#6d6c6c;}
+.refresh-icon:hover{color:#6d6c6c;}
+.notification-bar{float:right;display:block}
+.notification-icon{cursor:pointer;}
+.notification-icon-caret{}
+.notification-bar a:link{padding:20px 10px 10px 10px;display:block;float:left;color:#BBBBBB !important;text-decoration:none;}
+.notification-bar a:visited{display:block;float:left;color:#BBBBBB !important;text-decoration:none;}
+.notification-bar a:focus{display:block;float:left;color:#919191 !important;text-decoration:none;background-color:#eeeeee;}
+.notification-bar a:hover{display:block;float:left;color:#919191 !important;text-decoration:none;}
+.user-account{width:200px;top:48px;left:-152px;border-radius:0px;}
+ul.dropdown-menu.user-account > li > a{display:block;width:100%;padding:10px;color:black !important;font-size:13px;}
+@media (max-width:767px){.notifications{width:250px;top:48px;left:-128px;border-radius:0px;}
+ul.dropdown-menu.notifications > li > a{display:block;width:100%;padding:10px;color:black !important;font-size:11px;border-bottom:whitesmoke 1px solid;}
+ul.dropdown-menu.notifications > li > a.dropdown-footer{display:block;text-align:center;width:100%;padding:10px;text-transform:uppercase;color:#777 !important;font-size:12px;}
+.messages{width:250px;top:48px;left:-80px;border-radius:0px;}
+ul.dropdown-menu.messages > li > a{display:block;width:100%;padding:10px;color:black !important;font-size:11px;border-bottom:whitesmoke 1px solid;}
+ul.dropdown-menu.messages > li > a.dropdown-footer{display:block;text-align:center;width:100%;padding:10px;text-transform:uppercase;color:#777 !important;font-size:12px;}
+.friend-requests{width:250px;top:48px;left:-32px;border-radius:0px;}
+ul.dropdown-menu.friend-requests > li > a{display:block;width:100%;padding:10px;color:black !important;font-size:11px;border-bottom:whitesmoke 1px solid;}
+ul.dropdown-menu.friend-requests > li > a.dropdown-footer{display:block;text-align:center;width:100%;padding:10px;text-transform:uppercase;color:#777 !important;font-size:12px;}
 }
-.refresh-icon
-{
-    float: left;
-    padding: 10px 10px 0px 0px;
-    margin-top: 8px;
-    margin-bottom: 0px;
-    color:#919191;
-    cursor:pointer;
+@media (min-width:767px){.notifications{width:430px;top:48px;left:-380px;border-radius:0px;}
+ul.dropdown-menu.notifications > li > a{display:block;width:100%;padding:10px;color:black !important;font-size:12px;border-bottom:whitesmoke 1px solid;}
+ul.dropdown-menu.notifications > li > a.dropdown-footer{display:block;text-align:center;width:100%;padding:10px;text-transform:uppercase;color:#777 !important;font-size:12px;}
+.messages{width:430px;top:48px;left:-380px;border-radius:0px;}
+ul.dropdown-menu.messages > li > a{display:block;width:100%;padding:10px;color:black !important;font-size:12px;border-bottom:whitesmoke 1px solid;}
+ul.dropdown-menu.messages > li > a.dropdown-footer{display:block;text-align:center;width:100%;padding:10px;text-transform:uppercase;color:#777 !important;font-size:12px;}
+.friend-requests{width:430px;top:48px;left:-377px;border-radius:0px;}
+ul.dropdown-menu.friend-requests > li > a{display:block;width:100%;padding:10px;color:black !important;font-size:12px;border-bottom:whitesmoke 1px solid;}
+ul.dropdown-menu.friend-requests > li > a.dropdown-footer{display:block;text-align:center;width:100%;padding:10px;text-transform:uppercase;color:#777 !important;font-size:12px;}
 }
-.toogle-margin-zero
-{
-    margin-right: 0px !important;
+.notification-item-header{font-weight:700;color:#a5987f;font-size:12px;white-space:normal;display:block;width:70%;float:left;}
+.notification-item-event{white-space:normal;display:block;width:70%;float:left;text-align:justify;}
+.notification-item-event-action{display:block;width:70%;float:left;}
+.notification-item-event-time{display:block;width:70%;float:left;color:#777;font-size:11px;}
+.textarea-compose-message{width:100%;margin-bottom:10px;}
+@media (min-width:1000px){.notification-item-header{font-weight:700;color:#a5987f;font-size:12px;white-space:normal;display:block;width:85%;float:left;}
+.notification-item-event{white-space:normal;display:block;width:85%;float:left;text-align:justify;}
+.notification-item-event-action{display:block;width:85%;float:left;}
+.notification-item-event-time{display:block;width:85%;float:left;color:#777;font-size:11px;}
+.textarea-compose-message{width:100%;margin-bottom:10px;}
 }
-.refresh-icon:active
-{
-    color:#6d6c6c;
-}
-.refresh-icon:hover
-{
-    color:#6d6c6c;
-}
-.notification-bar
-{
-    float:right;
-    display:block
-}
-.notification-icon
-{
-    cursor:pointer;
-}
-.notification-icon-caret
-{
-}
-.notification-bar a:link
-{
-    padding:20px 10px 10px 10px;
-    display:block;
-    float:left;
-    color:#BBBBBB !important;
-    text-decoration:none;
-}
-.notification-bar a:visited
-{
-    display:block;
-    float:left;
-    color:#BBBBBB !important;
-    text-decoration:none;
-}
-.notification-bar a:focus
-{
-    display:block;
-    float:left;
-    color:#919191 !important;
-    text-decoration:none;
-    background-color:#eeeeee;
-}
-.notification-bar a:hover
-{
-    display:block;
-    float:left;
-    color:#919191 !important;
-    text-decoration: none;
-}
-.user-account
-{
-    width:200px;
-    top:48px;
-    left:-152px;
-    border-radius:0px;
-}
-ul.dropdown-menu.user-account > li > a
-{
-    display:block;
-    width:100%;
-    padding: 10px;
-    color:black !important;
-    font-size: 13px;
-}
-@media (max-width: 767px)
-{
-    .notifications
-    {
-        width:250px;
-        top:48px;
-        left:-128px;
-        border-radius:0px;
-    }
-    ul.dropdown-menu.notifications > li > a
-    {
-        display:block;
-        width:100%;
-        padding: 10px;
-        color:black !important;
-        font-size: 11px;
-        border-bottom: whitesmoke 1px solid;
-    }
-    ul.dropdown-menu.notifications > li > a.dropdown-footer
-    {
-        display:block;
-        text-align: center;
-        width:100%;
-        padding: 10px;
-        text-transform: uppercase;
-        color:#777 !important;
-        font-size: 12px;
-    }
-    .messages
-    {
-        width:250px;
-        top:48px;
-        left:-80px;
-        border-radius:0px;
-    }
-    ul.dropdown-menu.messages > li > a
-    {
-        display:block;
-        width:100%;
-        padding: 10px;
-        color:black !important;
-        font-size: 11px;
-        border-bottom: whitesmoke 1px solid;
-    }
-    ul.dropdown-menu.messages > li > a.dropdown-footer
-    {
-        display:block;
-        text-align: center;
-        width:100%;
-        padding: 10px;
-        text-transform: uppercase;
-        color:#777 !important;
-        font-size: 12px;
-    }
-    .friend-requests
-    {
-        width:250px;
-        top:48px;
-        left:-32px;
-        border-radius:0px;
-    }
-    ul.dropdown-menu.friend-requests > li > a
-    {
-        display:block;
-        width:100%;
-        padding: 10px;
-        color:black !important;
-        font-size: 11px;
-        border-bottom: whitesmoke 1px solid;
-    }
-    ul.dropdown-menu.friend-requests > li > a.dropdown-footer
-    {
-        display:block;
-        text-align: center;
-        width:100%;
-        padding: 10px;
-        text-transform: uppercase;
-        color:#777 !important;
-        font-size: 12px;
-    }
-}
-@media (min-width: 767px)
-{
-    .notifications
-    {
-        width:430px;
-        top:48px;
-        left:-380px;
-        border-radius:0px;
-    }
-    ul.dropdown-menu.notifications > li > a
-    {
-        display:block;
-        width:100%;
-        padding: 10px;
-        color:black !important;
-        font-size: 12px;
-        border-bottom: whitesmoke 1px solid;
-    }
-    ul.dropdown-menu.notifications > li > a.dropdown-footer
-    {
-        display:block;
-        text-align: center;
-        width:100%;
-        padding: 10px;
-        text-transform: uppercase;
-        color:#777 !important;
-        font-size: 12px;
-    }
-    .messages
-    {
-        width:430px;
-        top:48px;
-        left:-380px;
-        border-radius:0px;
-    }
-    ul.dropdown-menu.messages > li > a
-    {
-        display:block;
-        width:100%;
-        padding: 10px;
-        color:black !important;
-        font-size: 12px;
-        border-bottom: whitesmoke 1px solid;
-    }
-    ul.dropdown-menu.messages > li > a.dropdown-footer
-    {
-        display:block;
-        text-align: center;
-        width:100%;
-        padding: 10px;
-        text-transform: uppercase;
-        color:#777 !important;
-        font-size: 12px;
-    }
-    .friend-requests
-    {
-        width:430px;
-        top:48px;
-        left:-377px;
-        border-radius:0px;
-    }
-    ul.dropdown-menu.friend-requests > li > a
-    {
-        display:block;
-        width:100%;
-        padding: 10px;
-        color:black !important;
-        font-size: 12px;
-        border-bottom: whitesmoke 1px solid;
-    }
-    ul.dropdown-menu.friend-requests > li > a.dropdown-footer
-    {
-        display:block;
-        text-align: center;
-        width:100%;
-        padding: 10px;
-        text-transform: uppercase;
-        color:#777 !important;
-        font-size: 12px;
-    }
-}
-.notification-item-header
-{
-    font-weight: 700;
-    color:#a5987f;
-    font-size:12px;
-    white-space: normal;
-    display:block;
-    width:70%;
-    float:left;
-}
-.notification-item-event
-{
-    white-space: normal;
-    display:block;
-    width:70%;
-    float:left;
-    text-align: justify;
-}
-.notification-item-event-action
-{
-    display:block;
-    width:70%;
-    float:left;
-}
-.notification-item-event-time
-{
-    display:block;
-    width:70%;
-    float:left;
-    color:#777;
-    font-size:11px;
-}
-.textarea-compose-message
-{
-    width:100%;
-    margin-bottom: 10px;
-}
-
-@media (min-width: 1000px)
-{
-    .notification-item-header
-    {
-        font-weight: 700;
-        color:#a5987f;
-        font-size:12px;
-        white-space: normal;
-        display:block;
-        width:85%;
-        float:left;
-    }
-    .notification-item-event
-    {
-        white-space: normal;
-        display:block;
-        width:85%;
-        float:left;
-        text-align: justify;
-    }
-    .notification-item-event-action
-    {
-        display:block;
-        width:85%;
-        float:left;
-    }
-    .notification-item-event-time
-    {
-        display:block;
-        width:85%;
-        float:left;
-        color:#777;
-        font-size:11px;
-    }
-    .textarea-compose-message
-    {
-        width:100%;
-        margin-bottom: 10px;
-    }
-}
-
-.notify
-{
-    position:absolute;
-    background-color: #D21414;
-    top:8px;
-    font-size:11px;
-    padding: 4px 6px 4px 6px;
-    z-index: 10;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius:10px;
-
-}
+.notify{position:absolute;background-color:#D21414;top:8px;font-size:11px;padding:4px 6px 4px 6px;z-index:10;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:10px;}

@@ -24,8 +24,8 @@
             <span class="text-left"><i class="fa fa-map-marker" style="color:#777"></i>&nbsp;&nbsp;{$coowner->coowner_state}</span>
         </div>
         <div class="col-lg-4 col-md-4 column-spacer">
-            <a n:href="dog:dog_coowner_edit id=>$coowner->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a>
-            <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button>
+            <a n:href="dog:dog_coowner_edit id=>$coowner->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
+            <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
         </div>
     </div>
     {/foreach}

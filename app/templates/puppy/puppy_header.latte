@@ -5,7 +5,7 @@
     <div class="panel-body component">
         <div class="row">
             <div class="col-lg-6 col-md-12 col-xs-12">
-                <h1 class="profile_type_heading text-uppercase" style="margin-top: 0px;"><i class="fa fa-paw"></i>&nbsp;&nbsp;{$dog->puppy_name}<a style="text-transform: capitalize;margin-left: 15px;" n:href="puppy:puppy_edit_profile id => $dog->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="Edit" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="Delete" type="button"><i class="fa fa-trash"></i></button></h1>
+                <h1 class="profile_type_heading text-uppercase" style="margin-top: 0px;"><i class="fa fa-paw"></i>&nbsp;&nbsp;{$dog->puppy_name}<a style="text-transform: capitalize;margin-left: 15px;" n:href="puppy:puppy_edit_profile id => $dog->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button></h1>
                 <a n:href="kennel:kennel_profile_home id => $dog->profile_id">
                     <span data-toggle="tooltip" data-placement='top' title="{_ 'Kennel'}" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>{DataModel::getProfileName($dog->profile_id)}</span>
                 </a>
