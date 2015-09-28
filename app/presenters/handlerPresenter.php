@@ -132,7 +132,7 @@ class handlerPresenter extends BasePresenter {
         }
         $row = $this->database->query("SELECT tbl_userhandler.*, tbl_user.name, tbl_user.surname, tbl_user.state FROM tbl_userhandler INNER JOIN tbl_user ON tbl_user.id = tbl_userhandler.user_id WHERE tbl_userhandler.id=?", $id)->fetch();
 
-        $have_puppies = FALSE;
+        $have_puppies = \DataModel::havePuppies($id);
 
         $profile_image = $row->handler_profile_picture;
         $logged_in_profile_id = $row->id;
@@ -221,6 +221,33 @@ class handlerPresenter extends BasePresenter {
 
     /**
      * End of actions
+     */
+
+    /**
+     * handlers
+     */
+    public function handleDeleteAward($id) {
+        $certificate = $this->database->table("tbl_handler_awards")->where("id=?", $id)->fetch();
+        $handler = $this->database->table("tbl_userhandler")->where("id=?", $certificate->handler_id)->fetch();
+
+        if ($this->logged_in_id == $handler->user_id)
+            $this->database->table("tbl_handler_awards")->where("id=?", $id)->delete();
+
+        $this->redirect("handler_awards_list", array("id" => $handler->id));
+    }
+
+    public function handleDeleteCertificate($id) {
+        $certificate = $this->database->table("tbl_handler_certificates")->where("id=?", $id)->fetch();
+        $handler = $this->database->table("tbl_userhandler")->where("id=?", $certificate->handler_id)->fetch();
+
+        if ($this->logged_in_id == $handler->user_id)
+            $this->database->table("tbl_handler_awards")->where("id=?", $id)->delete();
+
+        $this->redirect("handler_certificates_list", array("id" => $handler->id));
+    }
+
+    /**
+     * End of handlers
      */
 
     /**
@@ -715,7 +742,7 @@ class handlerPresenter extends BasePresenter {
         $form->addSelect("ddlShowType")->setItems($show_types)->setValue($show->show_type)->setPrompt($this->translate("Please select"))->setRequired();
         $form->addText("txtShowName")->setValue($show->show_name)->setRequired();
         $form->addSelect("ddlCountry")->setItems($countries)->setValue($show->show_country)->setPrompt($this->translate("Please select"))->setRequired();
-        $form->addSubmit("btnSubmit","Edit")->onClick[] = array($this, 'frmHandlerEditShowNameSucceeded');
+        $form->addSubmit("btnSubmit", "Edit")->onClick[] = array($this, 'frmHandlerEditShowNameSucceeded');
 
         return $form;
     }
@@ -939,9 +966,9 @@ class handlerPresenter extends BasePresenter {
         $data['show_class'] = $values->ddlShowClass;
 
         $data['handler_id'] = $this->logged_in_handler_id;
-        
+
         $result = "";
-        
+
         foreach ($values->chckAssesmentMinorPuppy as $item) {
             $data[$item] = 1;
             $result .= $this->translate($item) . ",";
@@ -993,15 +1020,15 @@ class handlerPresenter extends BasePresenter {
         }
 
         $data['other_title'] = $values->txtOtherTitle;
-            $result .= $data['other_title'];
+        $result .= $data['other_title'];
 
         $data['show_image'] = $values->txtShowImage;
 
         $this->database->table("tbl_handler_shows")->insert($data);
-        $id=$this->database->getInsertId();
-        
+        $id = $this->database->getInsertId();
+
         $this->data_model->addToTimeline($this->logged_in_handler_id, $id, 11, $result, $values->txtShowImage);
-        
+
         $this->redirect("handler_show_list");
     }
 
@@ -1015,6 +1042,45 @@ class handlerPresenter extends BasePresenter {
         $data['show_class'] = $values->ddlShowClass;
 
         $data['handler_id'] = $this->logged_in_handler_id;
+
+        $data['VP1'] = 0;
+        $data['VP2'] = 0;
+        $data['VP3'] = 0;
+        $data['VP'] = 0;
+        $data['BestMinorPuppy1'] = 0;
+        $data['BestMinorPuppy2'] = 0;
+        $data['BestMinorPuppy3'] = 0;
+        $data['BestPuppy1'] = 0;
+        $data['BestPuppy2'] = 0;
+        $data['BestPuppy3'] = 0;
+        $data['EXC1'] = 0;
+        $data['EXC2'] = 0;
+        $data['EXC3'] = 0;
+        $data['EXC4'] = 0;
+        $data['VG1'] = 0;
+        $data['VG2'] = 0;
+        $data['VG3'] = 0;
+        $data['VG4'] = 0;
+        $data['CAJC'] = 0;
+        $data['JBOB'] = 0;
+        $data['BOB'] = 0;
+        $data['BOS'] = 0;
+        $data['JBOG1'] = 0;
+        $data['JBOG2'] = 0;
+        $data['JBOG3'] = 0;
+        $data['JBIS1'] = 0;
+        $data['JBIS2'] = 0;
+        $data['JBIS3'] = 0;
+        $data['BOG1'] = 0;
+        $data['BOG2'] = 0;
+        $data['BOG3'] = 0;
+        $data['BIS1'] = 0;
+        $data['BIS2'] = 0;
+        $data['BIS3'] = 0;
+        $data['CAC'] = 0;
+        $data['RESCAC'] = 0;
+        $data['CACIB'] = 0;
+        $data['RESCACIB'] = 0;
 
         foreach ($values->chckAssesmentMinorPuppy as $item) {
             $data[$item] = 1;

@@ -1,4 +1,5 @@
 {layout '@handler_layout.latte'}
+{includeblock '../components/modal_confirmation.latte'}
 {block content}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
@@ -15,31 +16,37 @@
             </div>-->
     <!-- / Message -->
     {foreach $championships as $championship}
-	<!-- Title item -->
-	<div class="row" style="padding:10px;border-bottom: 1px solid #eee;">
-	    <div class="col-lg-1 col-md-2 column-spacer">
-		<span class="text-left" style="color:#777;">{$championship->date|date:'%d.%m.%Y'}</span>
-	    </div>
-	    <div class="col-lg-5 col-md-4 column-spacer">
-		<span class="text-uppercase text-left">{$championship->description}</span>
-	    </div>
-	    <div class="col-lg-3 col-md-3 column-spacer">
-		{if (strlen($championship->image)>2)}
-		    <a href="{$championship->image}" data-gallery title="{$championship->description}" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a>
-		    {/if}
-	    </div>
-	    <div class="col-lg-3 col-md-3 column-spacer">
-		<a n:href="handler:handler_awards_edit id=>$championship->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
-		<button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
-	    </div>
-	</div>
-	<!-- /Title item -->
+        <!-- Title item -->
+        <div class="row" style="padding:10px;border-bottom: 1px solid #eee;">
+            <div class="col-lg-1 col-md-2 column-spacer">
+                <span class="text-left" style="color:#777;">{$championship->date|date:'%d.%m.%Y'}</span>
+            </div>
+            <div class="col-lg-5 col-md-4 column-spacer">
+                <span class="text-uppercase text-left">{$championship->description}</span>
+            </div>
+            <div class="col-lg-3 col-md-3 column-spacer">
+                {if (strlen($championship->image)>1)}
+                    <a href="{$championship->image}" data-gallery title="{$championship->description}" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a>
+                    {/if}
+            </div>
+            <div class="col-lg-3 col-md-3 column-spacer">
+                <a n:href="handler:handler_awards_edit id=>$championship->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
+                <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
+            </div>
+            {include modalConfirmation description=>"Are you sure you want to delete this record?", id => $row->id, do => "deleteAward"}
+            <script type="text/javascript">
+            $("#award_delete{$row->id}").on("click", function () {
+                $("#modalFlashConfirmation{$row->id}").modal("show");
+            });
+            </script>
+        </div>
+        <!-- /Title item -->
     {/foreach}
 </div>
 
 <script>
     $(function () {
-	$('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
 {/block}

@@ -28,9 +28,11 @@
                 <hr style="margin-top: 0px;">
                 {includeblock '../puppy/puppy_list_item.latte'}
                 {foreach $planned_litter->related("tbl_puppies","planned_litter_id") as $row}
-                    <div class="col-lg-4 col-md-6 col-xs-12 padding">
-                        {include puppy_list_item row=>$row}
-                    </div>
+                    {if ($row->puppy_state=='ForSale')}
+                        <div class="col-lg-4 col-md-6 col-xs-12 padding">
+                            {include puppy_list_item row=>$row}
+                        </div>
+                    {/if}
                 {/foreach}
             </div>
         {/foreach}

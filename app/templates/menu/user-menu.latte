@@ -1,3 +1,21 @@
+<div id="modalFlashConfirmation{$profile_id}" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="color: #FDB42F;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <i class="fa fa-question-circle fa-1x" style="float:left;margin-right: 5px;font-size:22px;"></i>
+                <h4 class="modal-title" id="modalTitleConfirmation" style="font-weight:bold;font-size:15px;">{_"Question"}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{_'Are you sure you want to delete your profile? If you will agree, your dogs profiles will be deleted too.'}</p>
+            </div>
+            <div class="modal-footer">
+                <a n:href="deleteProfile! $profile_id" class="btn btn-default" id="confirm{$profile_id}">{_"Yes"}</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{_"No"}</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <div class="container-fluid user-menu" >
     <div class="collapse navbar-collapse" id="user-menu" role="navigation" style="padding: 0px;">
         {if $logged_in_id>0}
@@ -52,7 +70,12 @@
                                 <a n:href="{$edit_url}"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;{_'Edit profile'}</a>
                             </li>
                             <li>
-                                <a n:href="#"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;{_'Delete profile'}</a>
+                                <a href="#" id="delete_profile{$profile_id}"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;{_'Delete profile'}</a>
+                                <script type="text/javascript">
+                                    $("#delete_profile{$profile_id}").on("click", function () {
+                                        $("#modalFlashConfirmation{$profile_id}").modal("show");
+                                    });
+                                </script>
                             </li>
                         </ul>
                     </li>

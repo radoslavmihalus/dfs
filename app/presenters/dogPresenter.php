@@ -45,7 +45,7 @@ class dogPresenter extends BasePresenter {
 
     public function renderDog_championschip_list($id = 0) {
         $this->renderDefault($id);
-        $championships = $this->database->table("tbl_dogs_championship")->where("dog_id=?", $id)->fetchAll();
+        $championships = $this->database->table("tbl_dogs_championship")->where("dog_id=?", $id)->order("date DESC")->fetchAll();
         $this->template->championships = $championships;
     }
 
@@ -57,25 +57,25 @@ class dogPresenter extends BasePresenter {
 
     public function renderDog_show_list($id = 0) {
         $this->renderDefault($id);
-        $dog_shows = $this->database->table("tbl_dogs_shows")->where("dog_id=?", $this->dog_id)->fetchAll();
+        $dog_shows = $this->database->table("tbl_dogs_shows")->where("dog_id=?", $this->dog_id)->order("show_date DESC")->fetchAll();
         $this->template->dog_shows = $dog_shows;
     }
 
     public function renderDog_health_list($id = 0) {
         $this->renderDefault($id);
-        $healths = $this->database->table("tbl_dogs_health")->where("dog_id=?", $id)->fetchAll();
+        $healths = $this->database->table("tbl_dogs_health")->where("dog_id=?", $id)->order("date DESC")->fetchAll();
         $this->template->healths = $healths;
     }
 
     public function renderDog_workexam_list($id = 0) {
         $this->renderDefault($id);
-        $workexams = $this->database->table("tbl_dogs_workexams")->where("dog_id=?", $id)->fetchAll();
+        $workexams = $this->database->table("tbl_dogs_workexams")->where("dog_id=?", $id)->order("date DESC")->fetchAll();
         $this->template->workexams = $workexams;
     }
 
     public function renderDog_mating_list($id = 0) {
         $this->renderDefault($id);
-        $matings = $this->database->table("tbl_dogs_matings")->where("dog_id=?", $id)->fetchAll();
+        $matings = $this->database->table("tbl_dogs_matings")->where("dog_id=?", $id)->order("date DESC")->fetchAll();
         $this->template->matings = $matings;
     }
 
@@ -204,6 +204,66 @@ class dogPresenter extends BasePresenter {
             $this->database->table("tbl_dogs_championship")->where("id=?", $id)->delete();
         }
         $this->redirect("dog:dog_championschip_list", array("id" => $row->id));
+    }
+
+    public function handleDeleteCoowner($id = 0) {
+        $id = $_GET['id'];
+        $row = $this->database->table("tbl_dogs_coowners")->where("id=?", $id)->fetch();
+        $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
+        if ($row->user_id == $this->logged_in_id) {
+            $this->database->table("tbl_dogs_coowners")->where("id=?", $id)->delete();
+        }
+        $this->redirect("dog:dog_coowner_list", array("id" => $row->id));
+    }
+
+    public function handleDeleteHealth($id = 0) {
+        $id = $_GET['id'];
+        $row = $this->database->table("tbl_dogs_health")->where("id=?", $id)->fetch();
+        $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
+        if ($row->user_id == $this->logged_in_id) {
+            $this->database->table("tbl_dogs_health")->where("id=?", $id)->delete();
+        }
+        $this->redirect("dog:dog_health_list", array("id" => $row->id));
+    }
+
+    public function handleDeleteMating($id = 0) {
+        $id = $_GET['id'];
+        $row = $this->database->table("tbl_dogs_matings")->where("id=?", $id)->fetch();
+        $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
+        if ($row->user_id == $this->logged_in_id) {
+            $this->database->table("tbl_dogs_matings")->where("id=?", $id)->delete();
+        }
+        $this->redirect("dog:dog_mating_list", array("id" => $row->id));
+    }
+
+//    public function handleDeletePlannedLitter($id = 0) {
+//        $id = $_GET['id'];
+//        $row = $this->database->table("tbl_planned_litters")->where("id=?", $id)->fetch();
+//        $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
+//        if ($row->user_id == $this->logged_in_id) {
+//            $this->database->table("tbl_dogs_matings")->where("id=?", $id)->delete();
+//        }
+//        $this->redirect("dog:dog_mating_list", array("id" => $row->id));
+//    }
+
+    public function handleDeleteShow($id = 0) {
+        $id = $_GET['id'];
+        $row = $this->database->table("tbl_dogs_shows")->where("id=?", $id)->fetch();
+        $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
+        if ($row->user_id == $this->logged_in_id) {
+            $this->database->table("tbl_dogs_shows")->where("id=?", $id)->delete();
+        }
+        $this->redirect("dog:dog_show_list", array("id" => $row->id));
+    }
+
+    public function handleDeleteWorkexam($id = 0) {
+        $id = $_GET['id'];
+        $row = $this->database->table("tbl_dogs_workexams")->where("id=?", $id)->fetch();
+        $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
+        if ($row->user_id == $this->logged_in_id) {
+            $this->database->table("tbl_dogs_workexams")->where("id=?", $id)->delete();
+        }
+        $this->redirect("dog:dog_workexam_list", array("id" => $row->id));
     }
 
     /**
@@ -634,7 +694,7 @@ class dogPresenter extends BasePresenter {
         $form->addSelect("ddlShowType")->setItems($show_types)->setPrompt($this->translate("Please select"))->setRequired();
         $form->addText("txtShowName")->setRequired();
         $form->addSelect("ddlCountry")->setItems($countries)->setPrompt($this->translate("Please select"))->setRequired();
-        $form->addText("txtHandlerName")->setRequired();
+        $form->addText("txtHandlerName");
         $form->addText("txtJudgeName");
         $form->addSelect("ddlShowClass")->setPrompt($this->translate("Please select"))->setItems($class)->setRequired();
         $form->addCheckboxList("chckAssesmentMinorPuppy")->setItems($assesment_minor_puppy);
@@ -866,7 +926,7 @@ class dogPresenter extends BasePresenter {
         $form->addSelect("ddlShowType")->setItems($show_types)->setValue($show->show_type)->setPrompt($this->translate("Please select"))->setRequired();
         $form->addText("txtShowName")->setValue($show->show_name)->setRequired();
         $form->addSelect("ddlCountry")->setItems($countries)->setValue($show->show_country)->setPrompt($this->translate("Please select"))->setRequired();
-        $form->addText("txtHandlerName")->setValue($show->handler_name)->setRequired();
+        $form->addText("txtHandlerName")->setValue($show->handler_name);
         $form->addText("txtJudgeName")->setValue($show->judge_name);
         $form->addSelect("ddlShowClass")->setPrompt($this->translate("Please select"))->setItems($class)->setValue($show->show_class)->setRequired();
         $form->addCheckboxList("chckAssesmentMinorPuppy")->setItems($assesment_minor_puppy)->setValue($sel_assesment_minor_puppy);
@@ -1137,9 +1197,9 @@ class dogPresenter extends BasePresenter {
             $father_name = $values['dog_father'];
             $mother_name = $values['dog_mother'];
             $this->data_model->setParents($values['dog_name'], $father_name, $mother_name);
-            $this->data_model->addToTimeline($this->profile_id, $id, 12, $values['dog_name'], $values['dog_image']);           
-            
-            
+            $this->data_model->addToTimeline($this->profile_id, $id, 12, $values['dog_name'], $values['dog_image']);
+
+
             $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
 
             switch ($this->profile_type) {
@@ -1274,6 +1334,45 @@ class dogPresenter extends BasePresenter {
         $data['show_type'] = $values->ddlShowType;
         $data['show_country'] = $values->ddlCountry;
 
+        $data['VP1'] = 0;
+        $data['VP2'] = 0;
+        $data['VP3'] = 0;
+        $data['VP'] = 0;
+        $data['BestMinorPuppy1'] = 0;
+        $data['BestMinorPuppy2'] = 0;
+        $data['BestMinorPuppy3'] = 0;
+        $data['BestPuppy1'] = 0;
+        $data['BestPuppy2'] = 0;
+        $data['BestPuppy3'] = 0;
+        $data['EXC1'] = 0;
+        $data['EXC2'] = 0;
+        $data['EXC3'] = 0;
+        $data['EXC4'] = 0;
+        $data['VG1'] = 0;
+        $data['VG2'] = 0;
+        $data['VG3'] = 0;
+        $data['VG4'] = 0;
+        $data['CAJC'] = 0;
+        $data['JBOB'] = 0;
+        $data['BOB'] = 0;
+        $data['BOS'] = 0;
+        $data['JBOG1'] = 0;
+        $data['JBOG2'] = 0;
+        $data['JBOG3'] = 0;
+        $data['JBIS1'] = 0;
+        $data['JBIS2'] = 0;
+        $data['JBIS3'] = 0;
+        $data['BOG1'] = 0;
+        $data['BOG2'] = 0;
+        $data['BOG3'] = 0;
+        $data['BIS1'] = 0;
+        $data['BIS2'] = 0;
+        $data['BIS3'] = 0;
+        $data['CAC'] = 0;
+        $data['RESCAC'] = 0;
+        $data['CACIB'] = 0;
+        $data['RESCACIB'] = 0;
+
         foreach ($values->chckAssesmentMinorPuppy as $item) {
             $data[$item] = 1;
         }
@@ -1320,7 +1419,7 @@ class dogPresenter extends BasePresenter {
 
         $this->database->table("tbl_dogs_shows")->where("id=?", $this->show_id)->update($data);
 
-        $this->redirect("dog_show_list");
+        $this->redirect("dog:dog_show_list", array(id => $this->dog_id));
     }
 
     public function formCanceled() {

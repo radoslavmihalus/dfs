@@ -39,6 +39,25 @@
             });
         </script>
     {else}
+        <div id="modalFlashConfirmation{$logged_in_id}" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="color: #FDB42F;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <i class="fa fa-question-circle fa-1x" style="float:left;margin-right: 5px;font-size:22px;"></i>
+                        <h4 class="modal-title" id="modalTitleConfirmation" style="font-weight:bold;font-size:15px;">{_"Question"}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{_'Are you sure you want to delete your user account? If you will agree, all of your profiles and dogs profiles will be deleted too.'}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a n:href="deleteProfile! $logged_in_id" class="btn btn-default" id="confirm{$logged_in_id}">{_"Yes"}</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{_"No"}</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
         <div class="container-fluid top-menu">
             <button type="button" class="navbar-toggle collapsed toogle-margin-zero" style="margin-top: 5px;margin-bottom: 0px;" data-toggle="collapse" data-target="#user-menu">
                 <i class="fa fa-bars"></i>
@@ -132,7 +151,7 @@
                     </a>
                     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="Notifications" id="notify">
                         <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Notifications'}</li>
-			<!--                        <li role="presentation">
+                        <!--                        <li role="presentation">
                             <a role="menuitem" tabindex="-1" href="#">
                                 <img class="user-block-thumb" src="img/referer1.jpg"/>
                                 <span class="notification-item-header text-uppercase">Faalat rhodesian ridgeback kennel</span>
@@ -148,9 +167,9 @@
                         </li>
                         <li role="presentation">
                             <a class="dropdown-footer" href="notification-list">
-                                {_ 'View all'}&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>
-                            </a>
-                        </li>-->
+                        {_ 'View all'}&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>
+                    </a>
+                </li>-->
                     </ul>
                 </div>
                 <!--                /Top menu notifications 
@@ -163,10 +182,16 @@
                     <ul class="dropdown-menu user-account" role="menu" aria-labelledby="UserAccount">
                         <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'User account'}</li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" n:href="user:user_edit_account"><i class="fa fa-cog "></i>&nbsp;&nbsp;{_ 'Account settings'}</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-trash "></i>&nbsp;&nbsp;{_ 'Delete account'}</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" n:href="LandingPage:logout"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;{_ 'Logout'}</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" id="profile_delete{$logged_in_id}"><i class="fa fa-trash "></i>&nbsp;&nbsp;{_ 'Delete account'}</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" n:href="logout!"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;{_ 'Logout'}</a></li>
                     </ul>
                 </div>
+                <script type="text/javascript">
+                    $("#profile_delete{$logged_in_id}").on("click", function () {
+                        $("#modalFlashConfirmation{$logged_in_id}").modal("show");
+                    });
+                </script>
+
                 <!--                /Top menu user account -->
             </div>
         </div>
@@ -213,10 +238,10 @@
                 $.ajax({
                     url: '/?do=clearNotify',
                     dataType: 'html',
-                }).done(function(data){
-		    $(".notify_item").remove();
-		    $("#notify").append(data);
-		})
+                }).done(function (data) {
+                    $(".notify_item").remove();
+                    $("#notify").append(data);
+                })
             });
 
             $("#Messages").click(function () {

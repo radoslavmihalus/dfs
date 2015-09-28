@@ -17,7 +17,6 @@
     <!-- / Message -->
     <!-- Title item -->
     {foreach $championships as $row}
-        {include modalConfirmation description=>"Are you sure you want to delete this record?", id => $row->id, do => "deleteChampionship"}
         <div class="row" style="padding:10px;border-bottom: 1px solid #eee;">
             <div class="col-lg-1 col-md-2 column-spacer">
                 <span class="text-left" style="color:#777;">{$row->date|date:'%d.%m.%Y'}</span>
@@ -26,12 +25,15 @@
                 <span class="text-uppercase text-left">{$row->description}</span>
             </div>
             <div class="col-lg-3 col-md-3 column-spacer">
-                <a href="{$row->image}" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a>
+                {if (strlen($row->image)>1)}
+                    <a href="{$row->image}" style="color:#777;margin-right: 5px;" data-gallery><i class="fa fa-image fa-1x"></i></a>
+                    {/if}
             </div>
             <div class="col-lg-3 col-md-3 column-spacer">
                 <a n:href="dog:dog_championschip_edit id => $row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
                 <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" id="championship_delete{$row->id}" type="button"><i class="fa fa-trash"></i></button>
             </div>
+            {include modalConfirmation description=>"Are you sure you want to delete this record?", id => $row->id, do => "deleteChampionship"}
             <script type="text/javascript">
                 $("#championship_delete{$row->id}").on("click", function () {
                     $("#modalFlashConfirmation{$row->id}").modal("show");

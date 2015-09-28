@@ -1,5 +1,6 @@
 {layout '@dog_layout.latte'}
 {block content}
+{includeblock '../components/modal_confirmation.latte'}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
         <div class="panel-description"><i class="fa fa-heartbeat"></i>&nbsp;&nbsp;{_ 'Health'}<a n:href="dog:dog_health_add" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
@@ -24,13 +25,22 @@
                 <span class="text-uppercase text-left">{$row->description}</span>
             </div>
             <div class="col-lg-3 col-md-3 column-spacer">
-                <a href="{$row->image}" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a>
+                {if (strlen($row->image)>1)}
+                    <a href="{$row->image}" style="color:#777;margin-right: 5px;" data-gallery><i class="fa fa-image fa-1x"></i></a>
+                    {/if}
             </div>
             <div class="col-lg-3 col-md-3 column-spacer">
                 <a n:href="dog:dog_health_edit id => $row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
-                <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
+                <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' id="health_delete{$row->id}" title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
             </div>
         </div>
+        {include modalConfirmation description=>"Are you sure you want to delete this record?", id => $row->id, do => "deleteHealth"}
+        <script type="text/javascript">
+            $("#health_delete{$row->id}").on("click", function () {
+                $("#modalFlashConfirmation{$row->id}").modal("show");
+            });
+        </script>
+
     {/foreach}
     <!-- /Title item -->
 </div>

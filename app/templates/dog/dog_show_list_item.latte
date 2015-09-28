@@ -1,86 +1,95 @@
 {define #dog_show_list_item}
+{includeblock '../components/modal_confirmation.latte'}
 {foreach $dog_shows as $row}
     <div class="row" style="padding:0px 10px 0px 10px;">
-	<div class="col-lg-1 col-md-2 column-spacer">
-	    <span class="text-left" style="color:#777;">{$row->show_date|date:'%d.%m.%Y'}</span>
-	</div>
-	<div class="col-lg-5 col-md-4 column-spacer">
-	    <span class="text-uppercase text-left" style="font-weight:bold;">{$row->show_name}</span>
-	</div>
-	<div class="col-lg-3 col-md-3 column-spacer">
-	    <span style="margin-right: 5px;font-weight:bold;">{$row->show_type}</span>
-	</div>
-	<div class="col-lg-3 col-md-3 column-spacer">
-	    <span style="font-weight:bold;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{$row->show_country}</span>
-	</div>
+        <div class="col-lg-1 col-md-2 column-spacer">
+            <span class="text-left" style="color:#777;">{$row->show_date|date:'%d.%m.%Y'}</span>
+        </div>
+        <div class="col-lg-5 col-md-4 column-spacer">
+            <span class="text-uppercase text-left" style="font-weight:bold;">{$row->show_name}</span>
+        </div>
+        <div class="col-lg-3 col-md-3 column-spacer">
+            <span style="margin-right: 5px;font-weight:bold;">{$row->show_type}</span>
+        </div>
+        <div class="col-lg-3 col-md-3 column-spacer">
+            <span style="font-weight:bold;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{$row->show_country}</span>
+        </div>
     </div>
     <div class="row" style="padding:0px 10px 0px 10px;font-size:12px">
-	<div class="col-lg-1 col-md-2 column-spacer">
-	    <span class="text-left" style="color:#777;"><a href="" style="color:#777;margin-right: 5px;"><i class="fa fa-image fa-1x"></i></a></span>
-	</div>
-	<div class="col-lg-5 col-md-4 column-spacer">
-	    <span class="text-left" style="color:#777;">{_ 'Class'}: {_$row->show_class}</span>
-	</div>
-	<div class="col-lg-3 col-md-3 column-spacer">
-	    <span style="margin-right: 5px;color:#777;">{_ 'Judge'}: {$row->judge_name}</span>
-	</div>
-	<div class="col-lg-3 col-md-3 column-spacer">
-	    <a href="" style="text-decoration: none; text-transform: uppercase;"><span style="color:#FF9B00;" data-toggle="tooltip" data-placement='top' title="Handler"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{$row->handler_name}</span></a>
-	</div>
+        <div class="col-lg-1 col-md-2 column-spacer">
+            {if (strlen($row->show_image)>1)}
+                <span class="text-left" style="color:#777;"><a href="{$row->show_image}" style="color:#777;margin-right: 5px;" data-gallery><i class="fa fa-image fa-1x"></i></a></span>
+                    {/if}
+        </div>
+        <div class="col-lg-5 col-md-4 column-spacer">
+            <span class="text-left" style="color:#777;">{_ 'Class'}: {_$row->show_class}</span>
+        </div>
+        <div class="col-lg-3 col-md-3 column-spacer">
+            <span style="margin-right: 5px;color:#777;">{_ 'Judge'}: {$row->judge_name}</span>
+        </div>
+        <div class="col-lg-3 col-md-3 column-spacer">
+            <a href="" style="text-decoration: none; text-transform: uppercase;"><span style="color:#FF9B00;" data-toggle="tooltip" data-placement='top' title="Handler"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{$row->handler_name}</span></a>
+        </div>
     </div>
     <div class="row" style="padding:0px 10px 0px 10px;border-bottom: 1px solid #eee;font-size:12px">
-	<div class="col-lg-1 col-md-2 column-spacer">
-	    <span class="text-left" style="color:#777;"></span>
-	</div>
-	<div class="col-lg-5 col-md-4 column-spacer">
-	    <span class="text-left" style="color:#777;">
-		{if $row->VP1==1}VP1,{/if}
-		{if $row->VP2==1}VP2,{/if}
-		{if $row->VP3==1}VP3,{/if}
-		{if $row->VP==1}VP,{/if}
-		{if $row->BestMinorPuppy1==1}Best minor puppy 1,{/if}
-		{if $row->BestMinorPuppy2==1}Best minor puppy 2,{/if}
-		{if $row->BestMinorPuppy3==1}Best minor puppy 3,{/if}
-		{if $row->BestPuppy1==1}Best puppy male & female 1,{/if}
-		{if $row->BestPuppy2==1}Best puppy male & female 2,{/if}
-		{if $row->BestPuppy3==1}Best puppy male & female 3,{/if}
-		{if $row->EXC1==1}EXC1,{/if}
-		{if $row->EXC2==1}EXC2,{/if}
-		{if $row->EXC3==1}EXC3,{/if}
-		{if $row->EXC4==1}EXC4,{/if}
-		{if $row->VG1==1}VG1,{/if}
-		{if $row->VG2==1}VG2,{/if}
-		{if $row->VG3==1}VG3,{/if}
-		{if $row->VG4==1}VG4,{/if}
-		{if $row->CAJC==1}CAJC,{/if}
-		{if $row->JBOB==1}JBOB,{/if}
-		{if $row->CAC==1}CAC,{/if}
-		{if $row->RESCAC==1}RESCAC,{/if}
-		{if $row->CACIB==1}CACIB,{/if}
-		{if $row->RESCACIB==1}RESCACIB,{/if}
-		{if $row->BOB==1}BOB,{/if}
-		{if $row->BOS==1}BOS,{/if}
-		{if $row->JBOG1==1}JBOG1,{/if}
-		{if $row->JBOG2==1}JBOG2,{/if}
-		{if $row->JBOG3==1}JBOG3,{/if}
-		{if $row->JBIS1==1}JBIS1,{/if}
-		{if $row->JBIS2==1}JBIS2,{/if}
-		{if $row->JBIS3==1}JBIS3,{/if}
-		{if $row->BOG1==1}BOG1,{/if}
-		{if $row->BOG2==1}BOG2,{/if}
-		{if $row->BOG3==1}BOG3,{/if}
-		{if $row->BIS1==1}BIS1,{/if}
-		{if $row->BIS2==1}BIS2,{/if}
-		{if $row->BIS3==1}BIS3,{/if}
-	    </span>
-	</div>
-	<div class="col-lg-3 col-md-3 column-spacer">
-	    <span style="margin-right: 5px; color:#777;">{$row->other_title}</span>
-	</div>
-	<div class="col-lg-3 col-md-3 column-spacer">
-	    <a n:href="dog:dog_show_edit id=>$row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
-	    <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
-	</div>
+        <div class="col-lg-1 col-md-2 column-spacer">
+            <span class="text-left" style="color:#777;"></span>
+        </div>
+        <div class="col-lg-5 col-md-4 column-spacer">
+            <span class="text-left" style="color:#777;">
+                {if $row->VP1==1}VP1,{/if}
+                {if $row->VP2==1}VP2,{/if}
+                {if $row->VP3==1}VP3,{/if}
+                {if $row->VP==1}VP,{/if}
+                {if $row->BestMinorPuppy1==1}Best minor puppy 1,{/if}
+                {if $row->BestMinorPuppy2==1}Best minor puppy 2,{/if}
+                {if $row->BestMinorPuppy3==1}Best minor puppy 3,{/if}
+                {if $row->BestPuppy1==1}Best puppy male & female 1,{/if}
+                {if $row->BestPuppy2==1}Best puppy male & female 2,{/if}
+                {if $row->BestPuppy3==1}Best puppy male & female 3,{/if}
+                {if $row->EXC1==1}EXC1,{/if}
+                {if $row->EXC2==1}EXC2,{/if}
+                {if $row->EXC3==1}EXC3,{/if}
+                {if $row->EXC4==1}EXC4,{/if}
+                {if $row->VG1==1}VG1,{/if}
+                {if $row->VG2==1}VG2,{/if}
+                {if $row->VG3==1}VG3,{/if}
+                {if $row->VG4==1}VG4,{/if}
+                {if $row->CAJC==1}CAJC,{/if}
+                {if $row->JBOB==1}JBOB,{/if}
+                {if $row->CAC==1}CAC,{/if}
+                {if $row->RESCAC==1}RESCAC,{/if}
+                {if $row->CACIB==1}CACIB,{/if}
+                {if $row->RESCACIB==1}RESCACIB,{/if}
+                {if $row->BOB==1}BOB,{/if}
+                {if $row->BOS==1}BOS,{/if}
+                {if $row->JBOG1==1}JBOG1,{/if}
+                {if $row->JBOG2==1}JBOG2,{/if}
+                {if $row->JBOG3==1}JBOG3,{/if}
+                {if $row->JBIS1==1}JBIS1,{/if}
+                {if $row->JBIS2==1}JBIS2,{/if}
+                {if $row->JBIS3==1}JBIS3,{/if}
+                {if $row->BOG1==1}BOG1,{/if}
+                {if $row->BOG2==1}BOG2,{/if}
+                {if $row->BOG3==1}BOG3,{/if}
+                {if $row->BIS1==1}BIS1,{/if}
+                {if $row->BIS2==1}BIS2,{/if}
+                {if $row->BIS3==1}BIS3,{/if}
+            </span>
+        </div>
+        <div class="col-lg-3 col-md-3 column-spacer">
+            <span style="margin-right: 5px; color:#777;">{$row->other_title}</span>
+        </div>
+        <div class="col-lg-3 col-md-3 column-spacer">
+            <a n:href="dog:dog_show_edit id=>$row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
+            <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' id="show_delete{$row->id}" title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
+        </div>
+        {include modalConfirmation description=>"Are you sure you want to delete this record?", id => $row->id, do => "deleteShow"}
+        <script type="text/javascript">
+            $("#show_delete{$row->id}").on("click", function () {
+                $("#modalFlashConfirmation{$row->id}").modal("show");
+            });
+        </script>
     </div>
 {/foreach}
 {/define}

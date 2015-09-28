@@ -242,6 +242,19 @@ class DataModel {
         return $name;
     }
 
+    static function havePuppies($profile_id) {
+        require_once 'www/inc/config_ajax.php';
+
+        $database = getContext();
+
+        $cnt = $database->table("tbl_puppies")->where("profile_id=?", $profile_id)->where("puppy_state=?", "ForSale")->count();
+
+        if ($cnt > 0)
+            return TRUE;
+        else
+            return FALSE;
+    }
+
     static function getUserIdByProfileId($id = 0) {
         require_once 'www/inc/config_ajax.php';
 
