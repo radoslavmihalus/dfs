@@ -412,7 +412,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         foreach ($rows as $row) {
             $notify .= '<li role="presentation" class="notify_item">
-                            <a role="menuitem" tabindex="-1" href="#">
+                            <a role="menuitem" tabindex="-1" href="' . \DataModel::getProfileLinkUrl($row->notify_profile_id, TRUE) . '#timelineid' . $row->timeline_id . '">
                                 <img class="user-block-thumb" src="' . \DataModel::getProfileImage($row->profile_id) . '"/>
                                 <span class="notification-item-header text-uppercase">' . \DataModel::getProfileName($row->profile_id) . '</span>';
             if ($row->type == 'comment')
