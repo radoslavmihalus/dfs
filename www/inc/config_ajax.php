@@ -76,3 +76,15 @@ function getContext() {
 
     return $context;
 }
+
+function getImportConnection() {
+    $connection = new Nette\Database\Connection('mysql:host=' . DBHost() . ';dbname=nh2093800db', DBUser(), DBPassword());
+    return $connection;
+}
+
+function getImportContext() {
+    $connection = getConnection();
+    $context = new Nette\Database\Context($connection);
+
+    return $context;
+}

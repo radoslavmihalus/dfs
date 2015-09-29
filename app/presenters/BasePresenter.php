@@ -147,6 +147,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
             $this->template->profile_type_id = $userdata->active_profile_type;
             $this->template->profile_id = $profile_id;
+            $this->template->active_profile_id = $this->profile_id;
 
             $counter = 0;
             $type_cnt = 0;
@@ -411,7 +412,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         foreach ($rows as $row) {
             $notify .= '<li role="presentation" class="notify_item">
-                            <a role="menuitem" tabindex="-1" href="#">
+                            <a role="menuitem" tabindex="-1" href="' . \DataModel::getProfileLinkUrl($row->notify_profile_id, TRUE) . '#timelineid' . $row->timeline_id . '">
                                 <img class="user-block-thumb" src="' . \DataModel::getProfileImage($row->profile_id) . '"/>
                                 <span class="notification-item-header text-uppercase">' . \DataModel::getProfileName($row->profile_id) . '</span>';
             if ($row->type == 'comment')
@@ -463,6 +464,90 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $id = $_GET['id'];
         \DataModel::deleteFromTimelineByItem($id);
         $this->terminate();
+    }
+
+    public function handleDeleteProfile($id) {
+        $type = \DataModel::getProfileType($id);
+        $error = true;
+
+
+        switch ($type) {
+            case 0:
+                $profile = $this->database->table("tbl_user")->where("id=?", $id)->fetch();
+                if ($profile->id == $this->logged_in_id) {
+                    $error = FALSE;
+                    $this->database->table("tbl_user")->where("id=?", $id)->delete();
+                    $this->database->table("tbl_dogs")->where("user_id=?", $id)->delete();
+
+                    $profiles = $this->database->table("tbl_userkennel")->where("user_id=?", $id)->fetchAll();
+                    foreach ($profiles as $prof) {
+                        $this->database->table("tbl_timeline")->where("profile_id=?", $prof->id)->delete();
+                    }
+
+                    $profiles = $this->database->table("tbl_userowner")->where("user_id=?", $id)->fetchAll();
+                    foreach ($profiles as $prof) {
+                        $this->database->table("tbl_timeline")->where("profile_id=?", $prof->id)->delete();
+                    }
+
+                    $profiles = $this->database->table("tbl_userhandler")->where("user_id=?", $id)->fetchAll();
+                    foreach ($profiles as $prof) {
+                        $this->database->table("tbl_timeline")->where("profile_id=?", $prof->id)->delete();
+                    }
+
+                    $this->database->table("tbl_userkennel")->where("user_id=?", $id)->delete();
+                    $this->database->table("tbl_userowner")->where("user_id=?", $id)->delete();
+                    $this->database->table("tbl_userhandler")->where("user_id=?", $id)->delete();
+                    
+                    $this->handleLogout();
+                }
+                break;
+            case 1:
+                $profile = $this->database->table("tbl_userkennel")->where("id=?", $id)->fetch();
+                if ($profile->user_id == $this->logged_in_id) {
+                    $error = FALSE;
+                    $data = array();
+                    $data['active_profile_id'] = 0;
+                    $data['active_profile_type'] = 0;
+                    $this->database->table("tbl_user")->where("id=?", $profile->user_id)->update($data);
+                    $this->database->table("tbl_dogs")->where("profile_id=?", $id)->delete();
+                    $this->database->table("tbl_userkennel")->where("id=?", $id)->delete();
+                    $this->database->table("tbl_timeline")->where("profile_id=?", $id)->delete();
+                }
+                break;
+            case 2:
+                $profile = $this->database->table("tbl_userowner")->where("id=?", $id)->fetch();
+                if ($profile->user_id == $this->logged_in_id) {
+                    $error = FALSE;
+                    $data = array();
+                    $data['active_profile_id'] = 0;
+                    $data['active_profile_type'] = 0;
+                    $this->database->table("tbl_user")->where("id=?", $profile->user_id)->update($data);
+                    $this->database->table("tbl_dogs")->where("profile_id=?", $id)->delete();
+                    $this->database->table("tbl_userowner")->where("id=?", $id)->delete();
+                    $this->database->table("tbl_timeline")->where("profile_id=?", $id)->delete();
+                }
+                break;
+            case 3:
+                $profile = $this->database->table("tbl_userhandler")->where("id=?", $id)->fetch();
+                if ($profile->user_id == $this->logged_in_id) {
+                    $error = FALSE;
+                    $data = array();
+                    $data['active_profile_id'] = 0;
+                    $data['active_profile_type'] = 0;
+                    $this->database->table("tbl_user")->where("id=?", $profile->user_id)->update($data);
+                    $this->database->table("tbl_userhandler")->where("id=?", $id)->delete();
+                    $this->database->table("tbl_timeline")->where("profile_id=?", $id)->delete();
+                }
+                break;
+        }
+
+        $this->redirect("user:user_create_profile_switcher");
+    }
+
+    public function handleLogout() {
+        $this->session->destroy();
+        $this->flashMessage($this->translate("You have been successsfully logged out"), "Info");
+        $this->redirect("LandingPage:default");
     }
 
     protected function createComponentFrmLogIn() {

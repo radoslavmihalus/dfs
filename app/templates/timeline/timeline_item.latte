@@ -1,6 +1,6 @@
 {define #timeline_item}
 {foreach $timeline_rows as $row}
-    <li>
+    <li id="timelineid{$row->id}">
         <div class="timeline-panel">
             <div class="timeline-heading">
                 <div class="row">
@@ -92,10 +92,16 @@
             <div class="timeline-body col-lg-12 col-md-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
                 <p style="font-size:12px;"> {$row->event_description}</p>
             </div>
-            <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
-                <a id="like-{$row->id}" href="javascript:void(0)" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;">{DataModel::getTimelineLikesCount($row->id)}</span></a>
-                <a id="unlike-{$row->id}" href="javascript:void(0)" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;" href="javascript:void(0)" id="ylikes-list-{$row->id}"><span class="badge" id="ylikes-count-{$row->id}" style="margin-left: 10px;background-color: #FDB42F;">{DataModel::getTimelineLikesCount($row->id)}</span></a>
-            </div>
+            {if ($active_profile_id>0)}
+                <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
+                    <a id="like-{$row->id}" href="javascript:void(0)" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;">{DataModel::getTimelineLikesCount($row->id)}</span></a>
+                    <a id="unlike-{$row->id}" href="javascript:void(0)" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;" href="javascript:void(0)" id="ylikes-list-{$row->id}"><span class="badge" id="ylikes-count-{$row->id}" style="margin-left: 10px;background-color: #FDB42F;">{DataModel::getTimelineLikesCount($row->id)}</span></a>
+                </div>
+            {else}
+                <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
+                    <a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;">{DataModel::getTimelineLikesCount($row->id)}</span></a>
+                </div>
+            {/if}
             {snippet areaComments}
             {/snippet}
             {foreach $row->related("tbl_comments","timeline_id") as $row_comments}
@@ -108,15 +114,17 @@
                 </div>
             {/foreach}
 
-            <form n:name="commentTimeline-{$row->id}" id="commentTimeline-{$row->id}" class="ajax no-live-validation">
-                <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;">
-                    <input type="hidden" n:name=snippet_id value="{$row->id}" />
-                    <input type="text" n:name=comment class="form-control font_size_13px no-live-validation" style="z-index: 0;" placeholder="{_ 'Write a comment'}...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default font_size_13px no-live-validation" id="submitTimeline-{$row->id}" n:name=btnSubmit><i class="fa fa-comment fa-1x"></i></button>
-                    </span>
-                </div>
-            </form>
+            {if ($active_profile_id>0)}
+                <form n:name="commentTimeline-{$row->id}" id="commentTimeline-{$row->id}" class="ajax no-live-validation">
+                    <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;">
+                        <input type="hidden" n:name=snippet_id value="{$row->id}" />
+                        <input type="text" n:name=comment class="form-control font_size_13px no-live-validation" style="z-index: 0;" placeholder="{_ 'Write a comment'}...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default font_size_13px no-live-validation" id="submitTimeline-{$row->id}" n:name=btnSubmit><i class="fa fa-comment fa-1x"></i></button>
+                        </span>
+                    </div>
+                </form>
+            {/if}
             <script type="text/javascript">
                 /* AJAXové odeslání formulářů */
                 $("#commentTimeline-" + {$row->id}).on("submit", function () {
@@ -141,16 +149,16 @@
                     return false;
                 });
 
-//		$("#submitTimeline-{$row->id}").on("click", function () {
-//		    $("#ajax-spinner").show();
-//
-//		    $(this).ajaxSubmit(function (payload) {
-//			$.nette.success(payload);
-//
-//			$.get(document.href);
-//		    });
-//		    return false;
-//		});
+                //		$("#submitTimeline-{$row->id}").on("click", function () {
+                //		    $("#ajax-spinner").show();
+                //
+                //		    $(this).ajaxSubmit(function (payload) {
+                //			$.nette.success(payload);
+                //
+                //			$.get(document.href);
+                //		    });
+                //		    return false;
+                //		});
 
 
                 $("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
@@ -221,7 +229,6 @@
                     }
                 });
             </script>
-
         </div>
     </li>
     <!-- Planned litter -->

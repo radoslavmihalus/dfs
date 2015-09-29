@@ -1,5 +1,4 @@
 {define #dog_list_item}
-{var $i=0}
 {if isset($gender)}
     {if $gender==$row->dog_gender}
         <a n:href="dog:dog_championschip_list id => $row->id">
@@ -21,7 +20,6 @@
                 <span class="list-item-regdate"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{$row->date_of_birth|date:'%d.%m.%Y'}</span>
             </div>
         </a>
-        {var $i=$i+1}
     {/if}
 {else}
     <a n:href="dog:dog_championschip_list id => $row->id">
@@ -43,16 +41,15 @@
             <span class="list-item-regdate"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{$row->date_of_birth|date:'%d.%m.%Y'}</span>
         </div>
     </a>
-    {var $i=$i+1}
 {/if}
 {if $i==0}
-    <div class="row">
+<!--    <div class="row">
         <div class="col-md-12">
             <div class="message-brown" role="alert">
                 <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
             </div>
         </div>
-    </div>
+    </div>-->
 {/if}
 {/define}
 <script>
