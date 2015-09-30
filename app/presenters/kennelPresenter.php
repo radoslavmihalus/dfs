@@ -157,9 +157,15 @@ class kennelPresenter extends BasePresenter {
     public function renderKennel_planned_litter_list($id = 0) {
         if ($id == 0)
             $id = $this->logged_in_kennel_id;
-        $rows = $this->database->table("tbl_planned_litters")->where("kennel_id=?", $id)->fetchAll();
+        $rows = $this->database->table("tbl_planned_litters")->where("kennel_id=?", $id)->order("year,month DESC")->fetchAll();
         $this->template->planned_litter_rows = $rows;
         $this->renderKennel_profile_home($id);
+    }
+
+    public function renderPlanned_litter_list($id = 0) {
+        $rows = $this->database->table("tbl_planned_litters")->order("year,month DESC")->fetchAll();
+        $this->template->planned_litter_rows = $rows;
+        //$this->renderKennel_profile_home($id);
     }
 
     public function renderKennel_puppy_list($id = 0) {

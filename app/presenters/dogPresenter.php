@@ -435,7 +435,7 @@ class dogPresenter extends BasePresenter {
         $form->addHidden("dog_id")->setValue($row->dog_id);
         $form->addText("ddlDate")->setValue($date);
         $form->addText("txtChampionshipName")->setValue($row->description);
-        $form->addHidden("txtChampionshipPicture");
+        $form->addHidden("txtChampionshipPicture")->setValue($row->image);
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditTitleSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
         return $form;

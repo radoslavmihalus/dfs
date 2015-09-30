@@ -63,6 +63,7 @@ $router[] = new Route('kennel-friends-list', 'kennel:kennel_friends_list');
 $router[] = new Route('kennel-followers-list', 'kennel:kennel_followers_list');
 $router[] = new Route('kennel-planned-litter-add', 'kennel:kennel_planned_litter_add');
 $router[] = new Route('kennel-planned-litter-edit', 'kennel:kennel_planned_litter_edit');
+$router[] = new Route('list-of-planned-litters', 'kennel:planned_litter_list');
 
 // Handler routes
 $router[] = new Route('handler-create-profile', 'handler:handler_create_profile');

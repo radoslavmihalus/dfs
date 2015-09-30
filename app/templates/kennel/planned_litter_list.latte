@@ -1,0 +1,24 @@
+{block content}
+<div class="panel-default col-lg-12 col-md-12 col-xs-12" style="font-size: 13px;min-width: 244px">
+    <h1><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_ 'Planned litters'}</h1>
+    <!-- List profile component -->
+    <!-- Message -->
+    <!--        <div class="row">
+                <div class="col-md-12">
+                    <div class="message-brown" role="alert">
+                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+                    </div>
+                </div>
+            </div>-->
+    <!-- / Message -->
+    <div class="panel-body component col-md-12">
+        {includeblock '../dog/dog_planned_litter_list_item.latte'}
+        {include dog_planned_litter_list_item}
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+{/block}

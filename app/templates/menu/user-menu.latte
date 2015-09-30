@@ -95,10 +95,10 @@
                                 <a n:href="kennel:kennel_dog_list"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Dogs'}</a>
                             </li>
                             <li>
-                                <a n:href=""><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}</a>
+                                <a n:href="kennel:kennel_planned_litter_list"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Puppies for sale'}</a>
+                                <a n:href="kennel:kennel_puppy_list"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Puppies for sale'}</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_'Photos'}</a>
@@ -219,7 +219,7 @@
                         <a n:href="dog:dog_for_mating_list"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_'Dogs for mating'}<span class="badge" style="float:right">{DataModel::getMattingDogsCount()}</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}<span class="badge" style="float:right">{DataModel::getPlannedLittersCount()}</span></a>
+                        <a n:href="kennel:planned_litter_list"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}<span class="badge" style="float:right">{DataModel::getPlannedLittersCount()}</span></a>
                     </li>
                     <li>
                         <a n:href="puppy:puppy_list"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Puppies for sale'}<span class="badge" style="float:right">0</span></a>
