@@ -96,14 +96,14 @@ class kennelPresenter extends BasePresenter {
             $this->current_user_id = $userRow->user_id;
         }
 
-
-
         $row = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id WHERE tbl_userkennel.id=?", $id)->fetch();
+
+        $user_row = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
 
         $have_puppies = \DataModel::havePuppies($id);
 
         $profile_image = $row->kennel_profile_picture;
-        $logged_in_profile_id = $row->id;
+        $this->logged_in_profile_id = $user_row->active_profile_id;
         $name = $row->kennel_name;
         if (strlen($row->kennel_background_image) > 2) {
             $have_background_image = TRUE;
@@ -114,11 +114,12 @@ class kennelPresenter extends BasePresenter {
 
         $this->template->have_puppies = $have_puppies;
         $this->template->profile_image = $profile_image;
-        $this->template->logged_in_profile_id = $logged_in_profile_id;
+        $this->template->logged_in_profile_id = $this->logged_in_profile_id;
         $this->template->kennel_name = $name;
         $this->template->have_background_image = $have_background_image;
         $this->template->background_image = $background_image;
         $this->template->state = $state;
+        $this->template->logged_in_id = $this->logged_in_id;
 
         $this->template->profile_id = $id;
 
@@ -149,7 +150,7 @@ class kennelPresenter extends BasePresenter {
     public function renderKennel_dog_list($id = 0) {
         if ($id == 0)
             $id = $this->logged_in_kennel_id;
-        $rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->order("id DESC")->fetchAll();
+        $rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->order("id ASC")->fetchAll();
         $this->template->rows = $rows;
         $this->renderKennel_profile_home($id);
     }

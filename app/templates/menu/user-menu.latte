@@ -13,9 +13,9 @@
                 <a n:href="deleteProfile! $profile_id" class="btn btn-default" id="confirm{$profile_id}">{_"Yes"}</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">{_"No"}</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->
 <div class="container-fluid user-menu" >
     <div class="collapse navbar-collapse" id="user-menu" role="navigation" style="padding: 0px;">
         {if $logged_in_id>0}
@@ -36,7 +36,7 @@
 
             <a n:href="{$profile_url}">
                 <div class="user-block">
-                    {if ($has_owner_profile || $has_kennel_profile || $has_handler_profile) && $profile_id > 0}
+                    {if ($has_owner_profile || $has_kennel_profile || $has_handler_profile) && $logged_in_profile_id > 0}
                         <img class="user-block-thumb" src="{$profile_home_image}" />
                         <p class="user-block-type"><i class="{$profile_type_icon}"></i>&nbsp;&nbsp;</i>{_$profile_type}</p>
                         <p class="text-uppercase user-block-name" id="userName">{$fullname}</p>
@@ -52,7 +52,11 @@
             {if $logged_in_id>0}
                 {if ($profile_url=="#")}
                     <li class="panel">
-                        <button id="btnCreateProfileSwitcher" class="btn btn-danger btn-xl btn-block" style="padding:12px 12px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;{_ 'Create profile'}</button>
+                        {if (DataModel::getUserProfilesCount($logged_in_id)>0)}
+                            <button id="btnCreateProfileSwitcher" class="btn btn-danger btn-xl btn-block" style="padding:12px 12px;"><i class="fa fa-exchange"></i>&nbsp;&nbsp;{_ 'Switch profile'}</button>
+                        {else}
+                            <button id="btnCreateProfileSwitcher" class="btn btn-danger btn-xl btn-block" style="padding:12px 12px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;{_ 'Create profile'}</button>
+                        {/if}
                         <script type="text/javascript">
                             $("#btnCreateProfileSwitcher").on("click", function (event) {
                                 window.location.href = "switch-profile";

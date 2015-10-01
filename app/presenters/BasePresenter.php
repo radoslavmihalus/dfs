@@ -30,6 +30,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $profile_type;
     public $profile_id;
     public $logged_in_id;
+    public $logged_in_profile_id;
     public $data_model;
     public $current_user_id;
     public $receiver_user_id;
@@ -207,9 +208,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
                 $this->database->table("tbl_user")->where("id=?", $myid)->update($profile_data);
             }
+
+            $user_row = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+            $this->logged_in_profile_id = $user_row->active_profile_id;
+            $this->template->logged_in_profile_id = $this->logged_in_profile_id;
         } catch (\Exception $ex) {
             $this->template->logged_in_id = 0;
             $this->logged_in_id = 0;
+            $this->logged_in_profile_id = 0;
             $this->template->has_kennel_profile = false;
             $this->template->has_user_profile = false;
             $this->template->has_handler_profile = false;
@@ -394,7 +400,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public function handleNewMessagesCount() {
         $messages_count = $this->database->table('tbl_messages')->where("(from_user_id = ? OR to_user_id = ?) AND unreaded = 1", $this->logged_in_id, $this->logged_in_id)->count();
         echo $messages_count;
-        //$this->terminate();
+        $this->terminate();
     }
 
     public function handleNewNotifyCount() {
@@ -497,7 +503,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     $this->database->table("tbl_userkennel")->where("user_id=?", $id)->delete();
                     $this->database->table("tbl_userowner")->where("user_id=?", $id)->delete();
                     $this->database->table("tbl_userhandler")->where("user_id=?", $id)->delete();
-                    
+
                     $this->handleLogout();
                 }
                 break;

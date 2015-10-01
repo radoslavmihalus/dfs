@@ -63,14 +63,19 @@ class ownerPresenter extends BasePresenter {
 	    $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->update($profile_data);
 	    $this->current_user_id = $this->logged_in_id;
 	    parent::startup();
-	}
+        } else {
+            $userRow = $this->database->table("tbl_userowner")->where("id=?", $id)->fetch();
+            $this->current_user_id = $userRow->user_id;
+        }
 
 	$row = $this->database->query("SELECT tbl_userowner.*, concat(tbl_user.name,' ',tbl_user.surname) as fullname, tbl_user.state FROM tbl_userowner INNER JOIN tbl_user ON tbl_user.id = tbl_userowner.user_id WHERE tbl_userowner.id=?", $id)->fetch();
+
+        $user_row = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
 
 	$have_puppies = FALSE;
 
 	$profile_image = $row->owner_profile_picture;
-	$logged_in_profile_id = $row->id;
+	$this->logged_in_profile_id = $user_row->active_profile_id;
 	$name = $row->fullname;
 	if (strlen($row->owner_background_image) > 2) {
 	    $have_background_image = TRUE;
@@ -81,11 +86,12 @@ class ownerPresenter extends BasePresenter {
 
 	$this->template->have_puppies = $have_puppies;
 	$this->template->profile_image = $profile_image;
-	$this->template->logged_in_profile_id = $logged_in_profile_id;
+	$this->template->logged_in_profile_id = $this->logged_in_profile_id;
 	$this->template->owner_name = $name;
 	$this->template->have_background_image = $have_background_image;
 	$this->template->background_image = $background_image;
 	$this->template->state = $state;
+        $this->template->profile_id = $id;
 
 	$this->renderOwner_description_home($id);
 	$this->renderOwner_dog_list_home($id);

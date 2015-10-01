@@ -193,11 +193,15 @@ class DataModel {
                 // owner_profile_picture
                 $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
                 $image = $row->owner_profile_picture;
-            } else {
+            } elseif ($id >= 400000000 && $id < 500000000) {
                 // handler 400000000
                 // handler_profile_picture
                 $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
                 $image = $row->handler_profile_picture;
+            }
+            else
+            {
+                $image = "www/img/avatar.jpg";
             }
         } catch (\Exception $ex) {
             $image = "www/img/avatar.jpg";
@@ -228,12 +232,16 @@ class DataModel {
                 $user_id = $row->user_id;
                 $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
                 $name = $row->name . " " . $row->surname;
-            } else {
+            } elseif ($id >= 400000000 && $id < 500000000) {
                 // handler 400000000
                 // handler_profile_picture
                 $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
                 $user_id = $row->user_id;
                 $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+                $name = $row->name . " " . $row->surname;
+            } else
+            {
+                $row = $database->table("tbl_user")->where("id=?", $id)->fetch();
                 $name = $row->name . " " . $row->surname;
             }
         } catch (\Exception $ex) {
@@ -671,6 +679,26 @@ class DataModel {
                     return "";
                     break;
             }
+        }
+    }
+    
+    static function getUserProfilesCount($user_id)
+    {
+        try {
+            require_once 'www/inc/config_ajax.php';
+
+            $profiles = 0;
+            
+            $database = getContext();
+
+            $profiles = $profiles + $database->table("tbl_userkennel")->where("user_id=?", $user_id)->count();
+            $profiles = $profiles + $database->table("tbl_userhandler")->where("user_id=?", $user_id)->count();
+            $profiles = $profiles + $database->table("tbl_userowner")->where("user_id=?", $user_id)->count();
+            
+            return $profiles;
+
+        } catch (\Exception $ex) {
+            return 0;
         }
     }
 

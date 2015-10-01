@@ -131,11 +131,12 @@ class handlerPresenter extends BasePresenter {
             $this->current_user_id = $userRow->user_id;
         }
         $row = $this->database->query("SELECT tbl_userhandler.*, tbl_user.name, tbl_user.surname, tbl_user.state FROM tbl_userhandler INNER JOIN tbl_user ON tbl_user.id = tbl_userhandler.user_id WHERE tbl_userhandler.id=?", $id)->fetch();
+        $user_row = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
 
         $have_puppies = \DataModel::havePuppies($id);
 
         $profile_image = $row->handler_profile_picture;
-        $logged_in_profile_id = $row->id;
+        $this->logged_in_profile_id = $user_row->active_profile_id;
         $name = $row->name . ' ' . $row->surname;
         if (strlen($row->handler_background_image) > 2) {
             $have_background_image = TRUE;
@@ -146,7 +147,7 @@ class handlerPresenter extends BasePresenter {
 
         $this->template->have_puppies = $have_puppies;
         $this->template->profile_image = $profile_image;
-        $this->template->logged_in_profile_id = $logged_in_profile_id;
+        $this->template->logged_in_profile_id = $this->logged_in_profile_id;
         $this->template->owner_name = $name;
         $this->template->have_background_image = $have_background_image;
         $this->template->background_image = $background_image;
@@ -258,7 +259,7 @@ class handlerPresenter extends BasePresenter {
         $form = new Form();
 
         $form->addText("ddlBreedList", "label")->setRequired($this->translate("Required field"));
-        $form->addText("txtHandlerProfilePhoto", "label")->setRequired($this->translate("Required field"));
+        $form->addText("txtHandlerProfilePhoto")->setRequired($this->translate("Required field"));
         $form->addTextArea("txtHandlerDescription", "label")->setRequired($this->translate("Required field"));
         $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateHandlerProfileSucceeded');
 
