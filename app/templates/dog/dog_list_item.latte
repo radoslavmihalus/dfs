@@ -15,7 +15,7 @@
                 <h3 class="text-uppercase">{$row->dog_name}</h3>
                 <hr style="margin-bottom: 10px;">
                 <span class="list-item-breed"><i class="fa fa-tag"></i>&nbsp;&nbsp;{$row->breed_name}</span>
-                <span class="list-item-gender">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$row->dog_gender}</span>
+                <span class="list-item-gender">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$row->dog_gender}</span>
                 <span class="list-item-location"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{_$row->country}</span>
                 <span class="list-item-regdate"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{$row->registration_date|date:'%d.%m.%Y'}</span>
             </div>
@@ -35,10 +35,10 @@
             </div>
             <h3 class="text-uppercase">{$row->dog_name}</h3>
             <hr style="margin-bottom: 10px;">
-            <span class="list-item-breed"><i class="fa fa-tag"></i>&nbsp;&nbsp;{$row->breed_name}</span>
-            <span class="list-item-gender">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$row->dog_gender}</span>
-            <span class="list-item-location"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{_$row->country}</span>
-            <span class="list-item-regdate"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{$row->registration_date|date:'%d.%m.%Y'}</span>
+            <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{$row->breed_name}</span>
+            <span class="list-item-gender">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$row->dog_gender}</span>
+            <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_$row->country}</span>
+            <span class="list-item-regdate"><i class="fa fa-clock-o" data-toggle="tooltip" data-placement='top' title="{_ 'Registration date'}"></i>&nbsp;&nbsp;{$row->registration_date|date:'%d.%m.%Y'}</span>
         </div>
     </a>
 {/if}

@@ -7,17 +7,22 @@
                     <div class="pull-left image-profile-thumb" style="top:40px;">
                         <img src="{$row->kennel_profile_picture}">
                     </div>
-                    <button class="btn btn-danger btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'Remove from friends'}" type="button"><i class="fa fa-trash"></i></button>
+                    <a n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></a>
                         {if (DataModel::havePuppies($row->id))}
                         <span class="list-puppy-info" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>
                     {/if}
                 </div>
                 <h3 class="text-uppercase"><i class="fa fa-home"></i>&nbsp;&nbsp;{$row->kennel_name}</h3>
                 <hr style="margin-bottom: 10px;">
-                <span class="list-item-location"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{_$row->state}</span>
-                <span class="list-item-regdate"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{$row->kennel_create_date|date:'%d.%m.%Y'}</span>
+                <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_$row->state}</span>
+                <span class="list-item-regdate"><i class="fa fa-clock-o" data-toggle="tooltip" data-placement='top' title="{_ 'Registration date'}"></i>&nbsp;&nbsp;{$row->kennel_create_date|date:'%d.%m.%Y'}</span>
             </div>
         </a>
     </div>
 {/foreach}
 {/define}
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
