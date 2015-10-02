@@ -2,6 +2,7 @@
 {block content}
 {includeblock '../components/dropdown_DatePickerPlannedLitter_control.latte'}
 {includeblock '../components/dropdown_DogList_control.latte'}
+{includeblock '../components/dropdown_BitchList_control.latte'}
 {includeblock '../components/image_UploadPicture_control.latte'}
 {includeblock '../components/textbox_control.latte'}
 {includeblock '../components/dropdown_CountryList_control.latte'}
@@ -13,15 +14,15 @@
             <hr>
             {include textbox_control, _form=>$_form, description => "Name of the litter or litter ranking", placeholder => "Name of the litter or litter ranking", id => "txtPlannedLitterName", name => "txtPlannedLitterName", tooltip => "Enter the name of the litter or enter the letter of planned litter"}
             {include dropdown_DatePickerPlannedLitter_control, _form=>$_form, description => "Scheduled date of birth of the puppies", placeholder => "Please select", id => "ddlDate", name => "ddlDate", tooltip => "Enter indicative month of birth of puppies as information for prospective buyers"}
-            {include dropdown_DogList_control, _form=>$_form, description => "Enter dog’s name", placeholder => "Please select", id => "ddlPlannedLitterDogName", name => "ddlPlannedLitterDogName", tooltip => "Enter dog’s name or select the dog from the DOGFORSHOW database for interactivity"}
             <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Father of the planned litter'}</span>
             <hr>
+            {include dropdown_DogList_control, _form=>$_form, description => "Enter dog’s name", placeholder => "Please select", id => "ddlPlannedLitterDogName", name => "ddlPlannedLitterDogName", tooltip => "Enter dog’s name or select the dog from the DOGFORSHOW database for interactivity"}
             {include image_UploadPicture_control, _form=>$_form, description => "Picture of the dog", placeholder => "Select picture", id => "txtPlannedLitterDogProfilePhoto", name => "txtPlannedLitterDogProfilePhoto", tooltip => "Upload or change profile picture of the dog in jpg or jpeg format"}
             {include dropdown_BreedList_control _form=>$_form, onlyOne=>true, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose a breed from the list."}
             {include dropdown_CountryList_control, _form=>$_form, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry", tooltip => "Country in which the dog is currently located"}
             <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Mother of the planned litter'}</span>
             <hr>
-            {include dropdown_DogList_control, _form=>$_form, needed_select => 1, description => "Please select the name of the bitch", placeholder => "Please select", id => "ddlPlannedLitterBitchName", name => "ddlPlannedLitterBitchName", tooltip => "Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs"}
+            {include dropdown_BitchList_control, _form=>$_form, needed_select => 1, description => "Please select the name of the bitch", placeholder => "Please select", id => "ddlPlannedLitterBitchName", name => "ddlPlannedLitterBitchName", tooltip => "Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
             <!--<button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>-->
         </form>
@@ -52,7 +53,7 @@
                     }
 
                     $('#old_imagetxtPlannedLitterDogProfilePhoto').css("background-image", url);
-                    $("#delete" + {$name}).click(function () {
+                    $("#deletetxtPlannedLitterDogProfilePhoto").click(function () {
                         $("#txtPlannedLitterDogProfilePhoto").val("");
                         str = $("#txtPlannedLitterDogProfilePhoto").val();
                         if (str == "")
@@ -97,7 +98,50 @@
                 }).done(function (data) {
                     $('#ddlCountry').val(data);
                 });
+            } else
+            if (event.removed)
+            {
+                //image
+                $("#txtPlannedLitterDogProfilePhoto").val("");
+                str = $("#txtPlannedLitterDogProfilePhoto").val();
+                url = "url(" + str + ")";
+                if (str == "")
+                {
+                    $('#old_imagetxtPlannedLitterDogProfilePhoto').hide();
+                }
+                else
+                {
+                    $('#old_imagetxtPlannedLitterDogProfilePhoto').show();
+                }
+
+                $('#old_imagetxtPlannedLitterDogProfilePhoto').css("background-image", url);
+                $("#deletetxtPlannedLitterDogProfilePhoto").click(function () {
+                    $("#txtPlannedLitterDogProfilePhoto").val("");
+                    str = $("#txtPlannedLitterDogProfilePhoto").val();
+                    if (str == "")
+                    {
+                        $('#old_imagetxtPlannedLitterDogProfilePhoto').hide();
+                    }
+                    else
+                    {
+                        $('#old_imagetxtPlannedLitterDogProfilePhoto').show();
+                    }
+
+                    url = "url(" + str + ")";
+                    $('#old_imagetxtPlannedLitterDogProfilePhoto').css("background-image", url);
+                });
+
+                //breed
+                var val = $('#tags-input-ddlBreedList').selectivity('value');
+                val = val.toString();
+                $('#tags-input-ddlBreedList').selectivity('remove', val);
+                $('#hid-tags-input-ddlBreedList').val("");
+
+                //state
+                $('#ddlCountry').val("");
+
             }
+
         });
     </script>
 </div>

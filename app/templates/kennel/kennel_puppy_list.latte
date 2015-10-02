@@ -17,15 +17,15 @@
                             </div>
                         </div>-->
                 <!-- / Message -->
-                <div class="row">
+<!--                <div class="row">
                     <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom: 5px;font-weight:bold;">
                         <i class="fa fa-calendar"></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Name of the planned litter'}" style="margin-left: 10px;">{_ 'Planned litter'}&nbsp;{$planned_litter->name}</span>
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom: 5px;font-weight:bold;">
                         <i class="fa fa-calendar-o" ></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Scheduled date of birth of the puppies'}" style="margin-left: 10px;">{$planned_litter->month}/{$planned_litter->year}</span>
                     </div>
-                </div>
-                <hr style="margin-top: 0px;">
+                </div>-->
+                <!--<hr style="margin-top: 0px;">-->
                 {includeblock '../puppy/puppy_list_item.latte'}
                 {foreach $planned_litter->related("tbl_puppies","planned_litter_id") as $row}
                     {if ($row->puppy_state=='ForSale')}

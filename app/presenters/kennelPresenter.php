@@ -371,6 +371,8 @@ class kennelPresenter extends BasePresenter {
             $months[$i] = $i;
         }
 
+
+
         $lang = "en";
 
         try {
@@ -389,11 +391,17 @@ class kennelPresenter extends BasePresenter {
             $countries[$country->CountryName_en] = $this->translate($country->CountryName_en);
         }
 
+        $rows = $this->database->table("tbl_dogs")->where("profile_id = ?", $this->logged_in_kennel_id)->where("dog_gender=?", "Bitch")->fetchAll();
+        $bitches = array();
+        foreach ($rows as $bitch) {
+            $bitches[$bitch->dog_name] = $bitch->dog_name;
+        }
+
         $form->addSelect("ddlDateYear")->setRequired($this->translate("Required field"))->setItems($years);
         $form->addSelect("ddlDateMonth")->setRequired($this->translate("Required field"))->setItems($months); //->setRequired();
         $form->addText("txtPlannedLitterName")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("ddlPlannedLitterDogName")->setRequired($this->translate("Required field")); //->setRequired();
-        $form->addText("ddlPlannedLitterBitchName")->setRequired($this->translate("Required field")); //->setRequired();
+        $form->addSelect("ddlPlannedLitterBitchName")->setPrompt($this->translate("Please select"))->setItems($bitches)->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("txtPlannedLitterDogProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
         //$form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("ddlBreedList")->setRequired($this->translate("Required field")); //->setRequired();
@@ -442,11 +450,18 @@ class kennelPresenter extends BasePresenter {
             $countries[$country->CountryName_en] = $this->translate($country->CountryName_en);
         }
 
+        $rows = $this->database->table("tbl_dogs")->where("profile_id = ?", $this->logged_in_kennel_id)->where("dog_gender=?", "Bitch")->fetchAll();
+        $bitches = array();
+        foreach ($rows as $bitch) {
+            $bitches[$bitch->dog_name] = $bitch->dog_name;
+        }
+
         $form->addSelect("ddlDateYear")->setRequired($this->translate("Required field"))->setItems($years)->setValue($pl->year);
         $form->addSelect("ddlDateMonth")->setRequired($this->translate("Required field"))->setItems($months)->setValue($pl->month); //->setRequired();
         $form->addText("txtPlannedLitterName")->setRequired($this->translate("Required field"))->setValue($pl->name); //->setRequired();
         $form->addText("ddlPlannedLitterDogName")->setRequired($this->translate("Required field"))->setValue($pl->dog_name); //->setRequired();
-        $form->addText("ddlPlannedLitterBitchName")->setRequired($this->translate("Required field"))->setValue($pl->bitch_name); //->setRequired();
+        $form->addSelect("ddlPlannedLitterBitchName")->setPrompt($this->translate("Please select"))->setItems($bitches)->setRequired($this->translate("Required field"))->setValue($pl->bitch_name); //->setRequired();
+        //$form->addText("ddlPlannedLitterBitchName")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("txtPlannedLitterDogProfilePhoto")->setRequired($this->translate("Required field"))->setValue($pl->dog_image); //->setRequired();
         //$form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("ddlBreedList")->setRequired($this->translate("Required field"))->setValue($pl->dog_breed); //->setRequired();

@@ -1,7 +1,7 @@
 {define #kennel_list_item}
 {foreach $result as $row}
-    <div class="col-lg-4 col-md-6 col-xs-12 padding">
-        <a n:href="kennel:kennel_profile_home id => $row->id">
+    <a n:href="kennel:kennel_profile_home id => $row->id" style="float: left;display:block;">
+        <div class="col-lg-4 col-md-6 col-xs-12 padding">
             <div class="list-item">
                 <div class="profile-header-image" style="height:200px;{if (strlen($row->kennel_background_image)>2)} background: url('{$row->kennel_background_image}')no-repeat center center;background-size:cover;background-position:50% 20%; {else} background-color:#D5D0C0; background-image: none{/if}">
                     <div class="pull-left image-profile-thumb" style="top:40px;">
@@ -17,8 +17,8 @@
                 <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_$row->state}</span>
                 <span class="list-item-regdate"><i class="fa fa-clock-o" data-toggle="tooltip" data-placement='top' title="{_ 'Registration date'}"></i>&nbsp;&nbsp;{$row->kennel_create_date|date:'%d.%m.%Y'}</span>
             </div>
-        </a>
-    </div>
+        </div>
+    </a>
 {/foreach}
 {/define}
 <script>
