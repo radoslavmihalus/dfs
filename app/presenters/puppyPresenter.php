@@ -76,6 +76,18 @@ class puppyPresenter extends BasePresenter {
         $this->dog_id = $id;
     }
 
+    /*     * ******************* handle methods ******************** */
+
+    public function handleDeletePuppy($id = 0) {
+        $id = $_GET['id'];
+        $row = $this->database->table("tbl_puppies")->where("id=?", $id)->fetch();
+        if ($row->user_id == $this->logged_in_id) {
+            $this->database->table("tbl_puppies")->where("id=?", $id)->delete();
+            $kennel = $this->database->table("tbl_userkennel")->where("user_id=?", $row->user_id)->fetch();
+            $this->redirect("kennel:kennel_puppy_list", array("id" => $kennel->id));
+        }
+    }
+
     /*     * ******************* component factories ******************** */
 
     protected function createComponentFormPuppyCreateProfile() {

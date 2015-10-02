@@ -139,6 +139,63 @@ class DataModel {
         return $row;
     }
 
+    static function haveHandlerProfile($handler_name) {
+        require_once 'www/inc/config_ajax.php';
+        $database = getContext();
+
+        $full_name = explode(" ", $handler_name);
+
+        if ($full_name[0] == NULL)
+            $full_name[0] = "";
+
+        if ($full_name[1] == NULL)
+            $full_name[1] = "";
+
+        $id = "0";
+
+        $rows = $database->table("tbl_user")->where("name=?", $full_name[0])->where("surname=?", $full_name[1])->fetchAll();
+
+        foreach ($rows as $row) {
+            $count = $database->table("tbl_userhandler")->where("user_id=?", $row->id)->count();
+
+            if ($count > 0)
+                $id .= "," . $row->id;
+        }
+
+        if ($id != "0")
+            return TRUE;
+        else
+            return FALSE;
+    }
+
+    static function getHandlerProfileByName($handler_name) {
+        require_once 'www/inc/config_ajax.php';
+        $database = getContext();
+
+        $full_name = explode(" ", $handler_name);
+
+        if ($full_name[0] == NULL)
+            $full_name[0] = "";
+
+        if ($full_name[1] == NULL)
+            $full_name[1] = "";
+
+        $id = 0;
+
+        $rows = $database->table("tbl_user")->where("name=?", $full_name[0])->where("surname=?", $full_name[1])->fetchAll();
+
+        foreach ($rows as $row) {
+            $count = $database->table("tbl_userhandler")->where("user_id=?", $row->id)->count();
+
+            if ($count > 0)
+                $id = $row->id;
+        }
+
+        $row = $database->table("tbl_userhandler")->where("user_id=?", $id)->fetch();
+
+        return $row;
+    }
+
     static function getMotherName($dogName) {
         require_once 'www/inc/config_ajax.php';
         $database = getContext();
@@ -745,8 +802,8 @@ class DataModel {
                     break;
             }
         }
-    }    
-    
+    }
+
     static function getUserProfilesCount($user_id) {
         try {
             require_once 'www/inc/config_ajax.php';

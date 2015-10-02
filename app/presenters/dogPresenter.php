@@ -81,9 +81,9 @@ class dogPresenter extends BasePresenter {
 
     public function renderDog_list($id = 0) {
         if ($id > 0)
-            $rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->fetchAll();
+            $rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->order("id DESC")->fetchAll();
         else
-            $rows = $this->database->table("tbl_dogs")->fetchAll();
+            $rows = $this->database->table("tbl_dogs")->order("id DESC")->fetchAll();
 
         $this->template->rows = $rows;
     }

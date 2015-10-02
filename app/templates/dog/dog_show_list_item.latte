@@ -9,10 +9,10 @@
             <span class="text-uppercase text-left" style="font-weight:bold;">{$row->show_name}</span>
         </div>
         <div class="col-lg-3 col-md-3 column-spacer">
-            <span style="margin-right: 5px;font-weight:bold;">{$row->show_type}</span>
+            <span style="margin-right: 5px;font-weight:bold;">{_$row->show_type}</span>
         </div>
         <div class="col-lg-3 col-md-3 column-spacer">
-            <span style="font-weight:bold;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{$row->show_country}</span>
+            <span style="font-weight:bold;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{_$row->show_country}</span>
         </div>
     </div>
     <div class="row" style="padding:0px 10px 0px 10px;font-size:12px">
@@ -28,7 +28,12 @@
             <span style="margin-right: 5px;color:#777;">{_ 'Judge'}: {$row->judge_name}</span>
         </div>
         <div class="col-lg-3 col-md-3 column-spacer">
-            <a href="" style="text-decoration: none; text-transform: uppercase;"><span style="color:#FF9B00;" data-toggle="tooltip" data-placement='top' title="Handler"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{$row->handler_name}</span></a>
+            {if (DataModel::haveHandlerProfile($row->handler_name))}
+                {var $handler = DataModel::getHandlerProfileByName($row->handler_name)}
+                <a n:href="handler:handler_profile_home id=>$handler->id" style="text-decoration: none; text-transform: uppercase;"><span style="color:#FF9B00;" data-toggle="tooltip" data-placement='top' title="Handler"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{$row->handler_name}</span></a>
+            {else}
+                <span style="color:#FF9B00; text-transform: uppercase" data-toggle="tooltip" data-placement='top' title="Handler"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{$row->handler_name}</span>
+            {/if}
         </div>
     </div>
     <div class="row" style="padding:0px 10px 0px 10px;border-bottom: 1px solid #eee;font-size:12px">
