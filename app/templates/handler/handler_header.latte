@@ -13,7 +13,7 @@
 	    {*/if*}
 	    <div class="pull-left image-profile-thumb">
 		<a href="javascript:void(0)" onclick="ShowUploadModal('profile')"><i class="fa fa-camera fa-2x change-image-icon"></i></a>
-		<a href="{$profile_image}" data-gallery><img src="{$profile_image}"></a>
+		<a href="{DataModel::getProfileImage($profile_id)}" data-gallery><img src="{DataModel::getProfileImage($profile_id)}"></a>
 	    </div>
 	</div>
 <!--        <div class="profile-header-image">
@@ -21,7 +21,7 @@
         </div>-->
         <div class="row">
             <div class="col-md-6">
-                <h1 class="profile_type_heading text-uppercase">{$handler_name}</h1>
+                <h1 class="profile_type_heading text-uppercase">{DataModel::getProfileName($profile_id)}</h1>
                 <span class="profile-type-description"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_ 'Handler'}</span>
                 <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{_$state}</span>
             </div>
@@ -49,7 +49,7 @@
                         <li><a n:href="handler:handler_awards_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Awards'}</a></li>
                         <li><a n:href="handler:handler_certificates_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Certificates'}</a></li>
                         <li><a n:href="handler:handler_show_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Show results'}</a></li>
-                        <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
+                        <li><a n:href="handler:handler_photogallery id=>$profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Photos'}</a></li>
                         <li><a href="#" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Videos'}</a></li>
 <!--                        <li><a n:href="handler:handler_friends_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Friends'}</a></li>
                         <li><a n:href="handler:handler_followers_list id => $profile_id" class="page-scroll text-uppercase landing_navbar_typography">{_ 'Followers'}</a></li>-->

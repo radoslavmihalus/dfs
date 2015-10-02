@@ -1,8 +1,8 @@
-{layout '@owner_layout.latte'}
+{layout '@puppy_layout.latte'}
 {block content}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<a n:href="photo:photo_add profile_id=>$profile_id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        <div class="panel-description"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<a n:href="photo:photo_add profile_id=>$dog->id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
         </div>
     </div>
     <!-- Message -->

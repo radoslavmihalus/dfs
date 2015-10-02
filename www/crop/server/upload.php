@@ -1,10 +1,12 @@
 <?php
 
 //error_reporting(0);
-// header('Access-Control-Allow-Origin: yourwebsite.com');
-// header('Access-Control-Allow-Origin: www.yourwebsite.com');
-
 session_start();
+
+header('Access-Control-Allow-Origin: dogforshow.com');
+header('Access-Control-Allow-Origin: new.dogforshow.com');
+
+//echo 'kokot';
 
 require_once('ImgSelect.php');
 require_once('../../inc/config_ajax.php');

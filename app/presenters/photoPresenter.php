@@ -82,6 +82,7 @@ class photoPresenter extends BasePresenter {
         } catch (\Exception $ex) {
             
         }
+        $this->redirect(\DataModel::getGalleryProfileLinkUrl($this->photo_profile_id), array(id => $this->photo_profile_id));
     }
 
     public function frmEditPhotoSucceeded($button) {
@@ -92,9 +93,12 @@ class photoPresenter extends BasePresenter {
             $data['description'] = $values->txtPhotoName;
 
             $this->database->table("tbl_photos")->where("id=?", $this->photo_id)->update($data);
+
+            $photo = $this->database->table("tbl_photos")->where("id=?", $this->photo_id)->fetch();
         } catch (\Exception $ex) {
             
         }
+        $this->redirect(\DataModel::getGalleryProfileLinkUrl($photo->profile_id), array(id => $this->profile_id));
     }
 
 }

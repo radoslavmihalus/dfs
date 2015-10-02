@@ -108,7 +108,7 @@
             // supporting background-size="contain", which excludes IE < 9).
             // Set to "cover", to make images cover all available space (requires
             // support for background-size="cover", which excludes IE < 9):
-            stretchImages: false,
+            stretchImages: "contain",
             // Toggle the controls on pressing the Return key:
             toggleControlsOnReturn: true,
             // Toggle the automatic slideshow interval on pressing the Space key:
@@ -120,15 +120,15 @@
             // Close the gallery when clicking on an empty slide area:
             closeOnSlideClick: true,
             // Close the gallery by swiping up or down:
-            closeOnSwipeUpOrDown: true,
+            closeOnSwipeUpOrDown: false,
             // Emulate touch events on mouse-pointer devices such as desktop browsers:
             emulateTouchEvents: true,
             // Stop touch events from bubbling up to ancestor elements of the Gallery:
             stopTouchEventsPropagation: false,
             // Hide the page scrollbars:
-            hidePageScrollbars: true,
+            hidePageScrollbars: false,
             // Stops any touches on the container from scrolling the page:
-            disableScroll: true,
+            disableScroll: false,
             // Carousel mode (shortcut for carousel specific options):
             carousel: false,
             // Allow continuous navigation, moving from last to first

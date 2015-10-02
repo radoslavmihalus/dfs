@@ -17,15 +17,88 @@
             <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Father of the planned litter'}</span>
             <hr>
             {include image_UploadPicture_control, _form=>$_form, description => "Picture of the dog", placeholder => "Select picture", id => "txtPlannedLitterDogProfilePhoto", name => "txtPlannedLitterDogProfilePhoto", tooltip => "Upload or change profile picture of the dog in jpg or jpeg format"}
-            {include dropdown_BreedList_control, _form=>$_form, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose a breed from the list."}
+            {include dropdown_BreedList_control, onlyOne => true, _form=>$_form, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose a breed from the list."}
             {include dropdown_CountryList_control, _form=>$_form, description => "Country", placeholder => "Please select", id => "ddlCountry", name => "ddlCountry", tooltip => "Country in which the dog is currently located"}
             <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Mother of the planned litter'}</span>
             <hr>
             {include dropdown_DogList_control, _form=>$_form, description => "Please select the name of the bitch", placeholder => "Please select", id => "ddlPlannedLitterBitchName", name => "ddlPlannedLitterBitchName", tooltip => "Please select one of your added bitches. If you dont have any bitch to select, you must at first add your bitch in to your dogs"}
-            {include image_UploadPicture_control, _form=>$_form, description => "Picture of the bitch", placeholder => "Select picture", id => "txtPlannedLitterBitchProfilePhoto", name => "txtPlannedLitterDogProfilePhoto", tooltip => "Upload or change profile picture of the bitch in jpg or jpeg format"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
             <!--<button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>-->
         {/form}
     </div>
+    <script type="text/javascript">
+        $("#tags-input-ddlPlannedLitterDogName").on("change", function (event)
+        {
+            if (event.added)
+            {
+                var dogname = event.value;
+
+                //image
+                $.ajax({
+                    url: '/?do=getDogImage&name=' + dogname,
+                    dataType: 'html',
+                }).done(function (data) {
+                    $("#txtPlannedLitterDogProfilePhoto").val(data);
+                    str = $("#txtPlannedLitterDogProfilePhoto").val();
+                    url = "url(" + str + ")";
+                    if (str == "")
+                    {
+                        $('#old_imagetxtPlannedLitterDogProfilePhoto').hide();
+                    }
+                    else
+                    {
+                        $('#old_imagetxtPlannedLitterDogProfilePhoto').show();
+                    }
+
+                    $('#old_imagetxtPlannedLitterDogProfilePhoto').css("background-image", url);
+                    $("#delete" + {$name}).click(function () {
+                        $("#txtPlannedLitterDogProfilePhoto").val("");
+                        str = $("#txtPlannedLitterDogProfilePhoto").val();
+                        if (str == "")
+                        {
+                            $('#old_imagetxtPlannedLitterDogProfilePhoto').hide();
+                        }
+                        else
+                        {
+                            $('#old_imagetxtPlannedLitterDogProfilePhoto').show();
+                        }
+
+                        url = "url(" + str + ")";
+                        $('#old_imagetxtPlannedLitterDogProfilePhoto').css("background-image", url);
+                    });
+                });
+
+                //breed
+                $.ajax({
+                    url: '/?do=getDogBreed&name=' + dogname,
+                    dataType: 'html',
+                }).done(function (data) {
+                    $('#hid-tags-input-ddlBreedList').val(data);
+                    var mystr = $('#hid-tags-input-ddlBreedList').val();
+                    if (mystr.length > 1)
+                    {
+                        var a = mystr.split(","),
+                                i;
+                        $('#hid-tags-input-ddlBreedList').val("");
+                        for (i = 0; i < a.length; i++) {
+                            $('#tags-input-ddlBreedList').selectivity('add', {
+                                id: a[i],
+                                text: a[i]
+                            });
+                        }
+                    }
+                });
+
+                //state
+                $.ajax({
+                    url: '/?do=getDogState&name=' + dogname,
+                    dataType: 'html',
+                }).done(function (data) {
+                    $('#ddlCountry').val(data);
+                });
+            }
+        });
+    </script>
+
 </div>
 {/block}

@@ -16,6 +16,7 @@ class kennelPresenter extends BasePresenter {
 //    private $database;
     private $logged_in_kennel_id;
     private $award_id;
+    private $planned_litter_id;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
@@ -220,6 +221,10 @@ class kennelPresenter extends BasePresenter {
         $this->award_id = $id;
     }
 
+    public function actionKennel_planned_litter_edit($id) {
+        $this->planned_litter_id = $id;
+    }
+
     /*     * ******** actions ************* */
 
     /*     * ******** handlers ************* */
@@ -232,6 +237,19 @@ class kennelPresenter extends BasePresenter {
             $this->database->table("link_kennel_awards")->where("id=?", $id)->delete();
 
         $this->redirect("kennel_awards_list", array("id" => $kennel->id));
+    }
+
+    public function handleDeletePlannedLitter($id) {
+        $pl = $this->database->table("tbl_planned_litters")->where("id=?", $id)->fetch();
+        $kennel = $this->database->table("tbl_userkennel")->where("id=?", $pl->kennel_id)->fetch();
+
+        if ($kennel->user_id == $this->logged_in_id) {
+            $this->database->table("tbl_planned_litters")->where("id=?", $id)->delete();
+            $this->database->table("tbl_puppies")->where("planned_litter_id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
+        }
+
+        $this->redirect("kennel_planned_litter_list", array("id" => $kennel->id));
     }
 
     /*     * ******** handlers ************* */
@@ -377,10 +395,63 @@ class kennelPresenter extends BasePresenter {
         $form->addText("ddlPlannedLitterDogName")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("ddlPlannedLitterBitchName")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("txtPlannedLitterDogProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
-        $form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
+        //$form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("ddlBreedList")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addSelect("ddlCountry")->setItems($countries)->setPrompt($this->translate("Please select country..."))->setRequired($this->translate("Required field")); //->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddPlannedLitterSuccess');
+        //$form->addSubmit('btnCancel')->onClick[] = array($this, 'frmAddPlannedLitterCancel');
+
+        return $form;
+    }
+
+    protected function createComponentFormEditPlannedLitter() {
+        $pl = $this->database->table("tbl_planned_litters")->where("id=?", $this->planned_litter_id)->fetch();
+
+        $form = new Form();
+
+        $years = array();
+        $months = array();
+
+        $y = date("Y");
+        $yf = $y + 3;
+        $yt = $y - 10;
+
+        for ($i = $yf; $i > $yt; $i--) {
+            $years[$i] = $i;
+        }
+
+        for ($i = 1; $i < 13; $i++) {
+            $months[$i] = $i;
+        }
+
+        $lang = "en";
+
+        try {
+            $section = $this->getSession('language');
+            if (strlen($section->lang) > 1)
+                $lang = strtolower($section->lang);
+        } catch (Exception $ex) {
+            $lang = "en";
+        }
+
+        $countries = array();
+
+        $rows = $this->database->table("lk_countries")->order("CountryName_$lang")->fetchAll();
+
+        foreach ($rows as $country) {
+            $countries[$country->CountryName_en] = $this->translate($country->CountryName_en);
+        }
+
+        $form->addSelect("ddlDateYear")->setRequired($this->translate("Required field"))->setItems($years)->setValue($pl->year);
+        $form->addSelect("ddlDateMonth")->setRequired($this->translate("Required field"))->setItems($months)->setValue($pl->month); //->setRequired();
+        $form->addText("txtPlannedLitterName")->setRequired($this->translate("Required field"))->setValue($pl->name); //->setRequired();
+        $form->addText("ddlPlannedLitterDogName")->setRequired($this->translate("Required field"))->setValue($pl->dog_name); //->setRequired();
+        $form->addText("ddlPlannedLitterBitchName")->setRequired($this->translate("Required field"))->setValue($pl->bitch_name); //->setRequired();
+        $form->addText("txtPlannedLitterDogProfilePhoto")->setRequired($this->translate("Required field"))->setValue($pl->dog_image); //->setRequired();
+        //$form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
+        $form->addText("ddlBreedList")->setRequired($this->translate("Required field"))->setValue($pl->dog_breed); //->setRequired();
+        $form->addSelect("ddlCountry")->setItems($countries)->setPrompt($this->translate("Please select country..."))->setRequired($this->translate("Required field"))->setValue($pl->dog_state); //->setRequired();
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditPlannedLitterSuccess');
         //$form->addSubmit('btnCancel')->onClick[] = array($this, 'frmAddPlannedLitterCancel');
 
         return $form;
@@ -551,36 +622,93 @@ class kennelPresenter extends BasePresenter {
                 $exc .= "<li>" . $this->translate("Name of planned litter can't be empty") . "</li>";
             }
 
-            if ($values['ddlPlannedLitterDogName'] == "") {
-                $exc .= "<li>" . $this->translate("Dog name can't be empty") . "</li>";
-            }
-
-            if ($values['ddlPlannedLitterDogName'] == "") {
-                $exc .= "<li>" . $this->translate("Dog image can't be empty") . "</li>";
-            }
-
-            if ($values['ddlPlannedLitterDogName'] == "") {
-                $exc .= "<li>" . $this->translate("Bitch name can't be empty") . "</li>";
-            }
-
-            if ($values['ddlPlannedLitterDogName'] == "") {
-                $exc .= "<li>" . $this->translate("Bitch image can't be empty") . "</li>";
-            }
-
             $exc .= "</ul>";
+
+            $data['kennel_id'] = $this->logged_in_kennel_id;
+
+            //$values = $this->data_model->assignFields($values, "frmPlannedLitter");
+
+            $data['name'] = $values['txtPlannedLitterName'];
+
+            $data['year'] = $values['ddlDateYear'];
+            $data['month'] = $values['ddlDateMonth'];
+
+            $data['dog_name'] = $values['ddlPlannedLitterDogName'];
+            $data['dog_breed'] = $values['ddlBreedList'];
+            $data['dog_state'] = $values['ddlCountry'];
+            $data['dog_image'] = $values['txtPlannedLitterDogProfilePhoto'];
+
+            $data['bitch_name'] = $values['ddlPlannedLitterBitchName'];
+
+            if (\DataModel::haveDogProfile($data['bitch_name'])) {
+                $bitch = \DataModel::getDogProfileByName($data['bitch_name']);
+
+                $data['bitch_breed'] = $bitch->breed_name;
+                $data['bitch_state'] = $bitch->country;
+                $data['bitch_image'] = $bitch->dog_image;
+            } else {
+                $exc .= "<li>" . $this->translate("Bitch must be registered in our database.") . "</li>";
+            }
 
             if ($exc != "<ul></ul>")
                 throw new \ErrorException($exc);
 
 
-            $values['kennel_id'] = $this->logged_in_kennel_id;
-
-            $values = $this->data_model->assignFields($values, "frmPlannedLitter");
-
-            $this->database->table("tbl_planned_litters")->insert($values);
+            $this->database->table("tbl_planned_litters")->insert($data);
             $id = $this->database->getInsertId();
 
-            $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 7, $values['name'] . " - " . $values['month'] . "/" . $values['year'], $values['dog_image']);
+            $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 7, $data['name'] . " - " . $data['month'] . "/" . $data['year'], $data['dog_image']);
+            $this->redirect("kennel_planned_litter_list", array(id => $this->logged_in_kennel_id));
+        } catch (\ErrorException $ex) {
+            $this->flashMessage($ex->getMessage(), "Error");
+        }
+    }
+
+    public function frmEditPlannedLitterSuccess($button) {
+        try {
+            $values = $button->getForm()->getValues();
+
+            $exc = "<ul>";
+
+            if ($values['txtPlannedLitterName'] == "") {
+                $exc .= "<li>" . $this->translate("Name of planned litter can't be empty") . "</li>";
+            }
+
+            $exc .= "</ul>";
+
+            //$data['kennel_id'] = $this->logged_in_kennel_id;
+            //$values = $this->data_model->assignFields($values, "frmPlannedLitter");
+
+            $data['name'] = $values['txtPlannedLitterName'];
+
+            $data['year'] = $values['ddlDateYear'];
+            $data['month'] = $values['ddlDateMonth'];
+
+            $data['dog_name'] = $values['ddlPlannedLitterDogName'];
+            $data['dog_breed'] = $values['ddlBreedList'];
+            $data['dog_state'] = $values['ddlCountry'];
+            $data['dog_image'] = $values['txtPlannedLitterDogProfilePhoto'];
+
+            $data['bitch_name'] = $values['ddlPlannedLitterBitchName'];
+
+            if (\DataModel::haveDogProfile($data['bitch_name'])) {
+                $bitch = \DataModel::getDogProfileByName($data['bitch_name']);
+
+                $data['bitch_breed'] = $bitch->breed_name;
+                $data['bitch_state'] = $bitch->country;
+                $data['bitch_image'] = $bitch->dog_image;
+            } else {
+                $exc .= "<li>" . $this->translate("Bitch must be registered in our database.") . "</li>";
+            }
+
+            if ($exc != "<ul></ul>")
+                throw new \ErrorException($exc);
+
+
+            $this->database->table("tbl_planned_litters")->where("id=?", $this->planned_litter_id)->update($data);
+            //$id = $this->database->getInsertId();
+
+            $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 7, $data['name'] . " - " . $data['month'] . "/" . $data['year'], $data['dog_image']);
             $this->redirect("kennel_planned_litter_list", array(id => $this->logged_in_kennel_id));
         } catch (\ErrorException $ex) {
             $this->flashMessage($ex->getMessage(), "Error");

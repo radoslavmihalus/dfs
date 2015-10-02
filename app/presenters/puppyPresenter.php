@@ -49,6 +49,13 @@ class puppyPresenter extends BasePresenter {
         $this->dog_id = $id;
     }
 
+    public function renderPuppy_photogallery($id) {
+        $rows = $this->database->table("tbl_photos")->where("profile_id=?", $id)->fetchAll();
+        $this->template->photos = $rows;
+        $this->renderDefault($id);
+//        $this->renderKennel_profile_home($id);
+    }
+
     /*     * ******************* action methods ******************** */
 
     public function actionPuppy_create_profile($plid = 0) {

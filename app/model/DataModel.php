@@ -198,9 +198,7 @@ class DataModel {
                 // handler_profile_picture
                 $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
                 $image = $row->handler_profile_picture;
-            }
-            else
-            {
+            } else {
                 $image = "www/img/avatar.jpg";
             }
         } catch (\Exception $ex) {
@@ -239,8 +237,7 @@ class DataModel {
                 $user_id = $row->user_id;
                 $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
                 $name = $row->name . " " . $row->surname;
-            } else
-            {
+            } else {
                 $row = $database->table("tbl_user")->where("id=?", $id)->fetch();
                 $name = $row->name . " " . $row->surname;
             }
@@ -282,11 +279,21 @@ class DataModel {
             // owner_profile_picture
             $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
             $ret_id = $row->user_id;
-        } else {
+        } elseif ($id >= 400000000 && $id < 500000000) {
             // handler 400000000
             // handler_profile_picture
             $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
             $ret_id = $row->user_id;
+        } elseif ($id >= 500000000 && $id < 600000000) {
+            // dog
+            $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
+            $ret_id = $row->user_id;
+        } elseif ($id >= 600000000 && $id < 700000000) {
+            // puppy
+            $row = $database->table("tbl_puppies")->where("id=?", $id)->fetch();
+            $ret_id = $row->user_id;
+        } else {
+            $ret_id = 0;
         }
 
         return $ret_id;
@@ -660,6 +667,12 @@ class DataModel {
                 case ($profile_id >= 400000000 && $profile_id < 500000000):
                     return "handler-profile";
                     break;
+                case ($profile_id >= 500000000 && $profile_id < 600000000):
+                    return "dog-profile";
+                    break;
+                case ($profile_id >= 600000000 && $profile_id < 700000000):
+                    return "puppy-profile";
+                    break;
                 default :
                     return "";
                     break;
@@ -675,28 +688,78 @@ class DataModel {
                 case ($profile_id >= 400000000 && $profile_id < 500000000):
                     return "handler:handler_profile_home";
                     break;
+                case ($profile_id >= 500000000 && $profile_id < 600000000):
+                    return "dog:dog_championschip_list";
+                    break;
+                case ($profile_id >= 600000000 && $profile_id < 700000000):
+                    return "puppy:puppy_description";
+                    break;
                 default :
                     return "";
                     break;
             }
         }
     }
+
+    static function getGalleryProfileLinkUrl($profile_id, $generated = FALSE) {
+        if ($generated) {
+//            switch ($profile_id) {
+//                case ($profile_id >= 200000000 && $profile_id < 300000000):
+//                    return "kennel-profile";
+//                    break;
+//                case ($profile_id >= 300000000 && $profile_id < 400000000):
+//                    return "owner-profile";
+//                    break;
+//                case ($profile_id >= 400000000 && $profile_id < 500000000):
+//                    return "handler-profile";
+//                    break;
+//                case ($profile_id >= 500000000 && $profile_id < 600000000):
+//                    return "dog-profile";
+//                    break;
+//                case ($profile_id >= 600000000 && $profile_id < 700000000):
+//                    return "puppy-profile";
+//                    break;
+//                default :
+//                    return "";
+//                    break;
+//            }
+        } else {
+            switch ($profile_id) {
+                case ($profile_id >= 200000000 && $profile_id < 300000000):
+                    return "kennel:kennel_photogallery";
+                    break;
+                case ($profile_id >= 300000000 && $profile_id < 400000000):
+                    return "owner:owner_photogallery";
+                    break;
+                case ($profile_id >= 400000000 && $profile_id < 500000000):
+                    return "handler:handler_photogallery";
+                    break;
+                case ($profile_id >= 500000000 && $profile_id < 600000000):
+                    return "dog:dog_photogallery";
+                    break;
+                case ($profile_id >= 600000000 && $profile_id < 700000000):
+                    return "puppy:puppy_photogallery";
+                    break;
+                default :
+                    return "";
+                    break;
+            }
+        }
+    }    
     
-    static function getUserProfilesCount($user_id)
-    {
+    static function getUserProfilesCount($user_id) {
         try {
             require_once 'www/inc/config_ajax.php';
 
             $profiles = 0;
-            
+
             $database = getContext();
 
             $profiles = $profiles + $database->table("tbl_userkennel")->where("user_id=?", $user_id)->count();
             $profiles = $profiles + $database->table("tbl_userhandler")->where("user_id=?", $user_id)->count();
             $profiles = $profiles + $database->table("tbl_userowner")->where("user_id=?", $user_id)->count();
-            
-            return $profiles;
 
+            return $profiles;
         } catch (\Exception $ex) {
             return 0;
         }

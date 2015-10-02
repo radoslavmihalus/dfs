@@ -125,6 +125,13 @@ class ownerPresenter extends BasePresenter {
 	$this->template->rows = $rows;
     }
 
+    public function renderOwner_photogallery($id = 0) {
+        if ($id == 0)
+            $id = $this->logged_in_owner_id;
+        $rows = $this->database->table("tbl_photos")->where("profile_id=?", $id)->fetchAll();
+        $this->template->photos = $rows;
+        $this->renderOwner_profile_home($id);
+    }
     /*     * ******************* component factories ******************** */
 
     /**

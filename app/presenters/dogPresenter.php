@@ -97,6 +97,12 @@ class dogPresenter extends BasePresenter {
         $this->template->rows = $rows;
     }
 
+    public function renderDog_photogallery($id = 0) {
+        $rows = $this->database->table("tbl_photos")->where("profile_id=?", $id)->fetchAll();
+        $this->template->photos = $rows;
+        $this->renderDefault($id);
+    }
+
     public function renderDefault($id = 0) {
         $dog = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
         $this->template->dog = $dog;

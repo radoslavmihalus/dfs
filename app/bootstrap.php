@@ -86,6 +86,7 @@ $router[] = new Route('handler-show-add', 'handler:handler_show_add');
 $router[] = new Route('handler-show-edit', 'handler:handler_show_edit');
 $router[] = new Route('handler-friends-list', 'handler:handler_friends_list');
 $router[] = new Route('handler-followers-list', 'handler:handler_followers_list');
+$router[] = new Route('handler-photogallery', 'handler:handler_photogallery');
 // Owner routes
 $router[] = new Route('owner-create-profile', 'owner:owner_create_profile');
 $router[] = new Route('owner-edit-profile', 'owner:owner_edit_profile');
@@ -96,6 +97,7 @@ $router[] = new Route('owner-photogallery', 'owner:owner_photogallery');
 $router[] = new Route('owner-videogallery', 'owner:owner_videogallery');
 $router[] = new Route('owner-friends-list', 'owner:owner_friends_list');
 $router[] = new Route('owner-followers-list', 'owner:owner_followers_list');
+$router[] = new Route('owner-photogallery', 'owner:owner_photogallery');
 // Dog routes
 $router[] = new Route('list-of-dogs', 'dog:dog_list');
 $router[] = new Route('best-in-show', 'dog:dog_list_bestinshow');
@@ -123,6 +125,7 @@ $router[] = new Route('dog-coowner-list', 'dog:dog_coowner_list');
 $router[] = new Route('dog-coowner-add', 'dog:dog_coowner_add');
 $router[] = new Route('dog-coowner-edit', 'dog:dog_coowner_edit');
 $router[] = new Route('dog-planned-litter-list', 'dog:dog_planned_litter_list');
+$router[] = new Route('dog-photogallery', 'dog:dog_photogallery');
 // Puppy routes
 $router[] = new Route('puppies-for-sale', 'puppy:puppy_list');
 $router[] = new Route('puppy-profile', 'puppy:puppy_description');
@@ -132,14 +135,12 @@ $router[] = new Route('puppy-create-profile', 'puppy:puppy_create_profile');
 $router[] = new Route('puppy-edit-profile', 'puppy:puppy_edit_profile');
 $router[] = new Route('puppy-description-add', 'puppy:puppy_description_add');
 $router[] = new Route('puppy-description-edit', 'puppy:puppy_description_edit');
+$router[] = new Route('puppy-photogallery', 'puppy:puppy_photogallery');
 // Timeline routes
 $router[] = new Route('timeline', 'timeline:timeline_wall');
 // Pages
 $router[] = new Route('general-terms', 'pages:general_terms');
 $router[] = new Route('cookie-policy', 'pages:cookie_policy');
-
-
-
 
 // routy
 

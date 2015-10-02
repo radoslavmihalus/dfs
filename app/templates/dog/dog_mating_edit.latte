@@ -3,6 +3,7 @@
 {includeblock '../components/image_UploadPicture_control.latte'}
 {includeblock '../components/dropdown_DatePicker_control.latte'}
 {includeblock '../components/textbox_control.latte'}
+{includeblock '../components/dropdown_DogList_control.latte'}
 <div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
     <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
         {form formEditMating}
@@ -10,11 +11,57 @@
             <hr>
             <input type="hidden" n:name=dog_id />
             {include dropdown_DatePicker_control, _form=>$_form, description => "Date of mating", placeholder => "Date of mating", id => "ddlDate", name => "ddlDate", tooltip => "Enter the date, when the mating was"}
-            {include textbox_control, _form=>$_form, description => "Name of the bitch", placeholder => "Name of the bitch", id => "txtMatingBitchName", name => "txtMatingBitchName", tooltip => "Please enter the bitch name or select bitch from the DOGFORSHOW database for interactivity"}
+            {include dropdown_DogList_control, _form=>$_form, description => "Name of the bitch", placeholder => "Name of the bitch", id => "txtMatingBitchName", name => "txtMatingBitchName", tooltip => "Please enter the bitch name or select bitch from the DOGFORSHOW database for interactivity"}
+            <!--{ include textbox_control, _form=>$_form, description => "Name of the bitch", placeholder => "Name of the bitch", id => "txtMatingBitchName", name => "txtMatingBitchName", tooltip => "Please enter the bitch name or select bitch from the DOGFORSHOW database for interactivity"}-->
             {include image_UploadPicture_control, _form=>$_form, description => "Picture of the bitch", placeholder => "Select picture", id => "txtMatingBitchPicture", name => "txtMatingBitchPicture", tooltip => "Record the bitch picture in jpg or jpeg format. This field is optional"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
             <!--<button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>-->
         {/form}
     </div>
-</div>  
+
+    <script type="text/javascript">
+        $("#tags-input-txtMatingBitchName").on("change", function (event)
+        {
+            if (event.added)
+            {
+                var dogname = event.value;
+                //image
+                $.ajax({
+                    url: '/?do=getDogImage&name=' + dogname,
+                    dataType: 'html',
+                }).done(function (data) {
+                    $("#txtMatingBitchPicture").val(data);
+                    str = $("#txtMatingBitchPicture").val();
+                    url = "url(" + str + ")";
+                    if (str == "")
+                    {
+                        $('#old_imagetxtMatingBitchPicture').hide();
+                    }
+                    else
+                    {
+                        $('#old_imagetxtMatingBitchPicture').show();
+                    }
+
+                    $('#old_imagetxtMatingBitchPicture').css("background-image", url);
+                    $("#deletetxtMatingBitchPicture").click(function () {
+                        $("#txtMatingBitchPicture").val("");
+                        str = $("#txtMatingBitchPicture").val();
+                        if (str == "")
+                        {
+                            $('#old_imagetxtMatingBitchPicture').hide();
+                        }
+                        else
+                        {
+                            $('#old_imagetxtMatingBitchPicture').show();
+                        }
+
+                        url = "url(" + str + ")";
+                        $('#old_imagetxtMatingBitchPicture').css("background-image", url);
+                    });
+                });
+            }
+        });
+    </script>
+
+</div>
 {/block}

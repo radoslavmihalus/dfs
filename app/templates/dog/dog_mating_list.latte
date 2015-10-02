@@ -22,7 +22,12 @@
                 <span class="text-left" style="color:#777;">{$row->date|date:'%d.%m.%Y'}</span>
             </div>
             <div class="col-lg-5 col-md-4 column-spacer">
-                <a href="" style="text-decoration: none;text-transform: uppercase"><span style="color:#FF9B00;"><i class="fa fa-venus"></i>&nbsp;&nbsp;{$row->description}</span></a>
+                {if DataModel::haveDogProfile($row->description)}
+                    {var $bitch = DataModel::getDogProfileByName($row->description)}
+                    <a n:href="dog:dog_championschip_list id=>$bitch->id" style="text-decoration: none;text-transform: uppercase"><span style="color:#FF9B00;"><i class="fa fa-venus"></i>&nbsp;&nbsp;{$row->description}</span></a>
+                {else}
+                    <span style="color:#FF9B00;"><i class="fa fa-venus"></i>&nbsp;&nbsp;{$row->description}</span>
+                {/if}
             </div>
             <div class="col-lg-3 col-md-3 column-spacer">
                 {if (strlen($row->image)>1)}

@@ -556,6 +556,36 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->redirect("LandingPage:default");
     }
 
+    public function handleGetDogImage($name) {
+        if (\DataModel::haveDogProfile($name)) {
+            $dog = $this->database->table("tbl_dogs")->where("dog_name=?", $name)->fetch();
+            echo $dog->dog_image;
+        } else {
+            echo '';
+        }
+        $this->terminate();
+    }
+
+    public function handleGetDogBreed($name) {
+        if (\DataModel::haveDogProfile($name)) {
+            $dog = $this->database->table("tbl_dogs")->where("dog_name=?", $name)->fetch();
+            echo $dog->breed_name;
+        } else {
+            echo '';
+        }
+        $this->terminate();
+    }
+
+    public function handleGetDogState($name) {
+        if (\DataModel::haveDogProfile($name)) {
+            $dog = $this->database->table("tbl_dogs")->where("dog_name=?", $name)->fetch();
+            echo $dog->country;
+        } else {
+            echo '';
+        }
+        $this->terminate();
+    }
+
     protected function createComponentFrmLogIn() {
         $form = new Form();
         $form->addText("txtEmail")->setRequired($this->translate("Required field"));
