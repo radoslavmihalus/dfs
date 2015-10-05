@@ -94,7 +94,7 @@ function ShowMessageModal(messageType, message)
     }
 
 
-    $("#modalTitle" + dlgmodal).html(title);
+    //$("#modalTitle" + dlgmodal).html(title);
     $("#modalText" + dlgmodal).html(message);
 
     $("#modalFlash" + dlgmodal).modal('show');
