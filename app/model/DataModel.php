@@ -599,16 +599,35 @@ class DataModel {
         $database->table("tbl_timeline")->where("id=?", $id)->delete();
     }
 
-    static function getTimelineLikesCount($id) {
+    static function getTimelineLikesCount($timeline_id = 0, $event_id = 0) {
         require_once 'www/inc/config_ajax.php';
 
         $database = getContext();
 
-        $count = $database->table("tbl_likes")->where("timeline_id=?", $id)->count();
+        if ($timeline_id != 0)
+            $count = $database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->count();
+        elseif ($event_id != 0)
+            $count = $database->table("tbl_likes")->where("event_id=?", $event_id)->count();
+        else
+            $count = 0;
 
         return $count;
     }
 
+    static function getTimelineCommentsCount($timeline_id = 0, $event_id = 0) {
+        require_once 'www/inc/config_ajax.php';
+
+        $database = getContext();
+
+        if ($timeline_id != 0)
+            $count = $database->table("tbl_comments")->where("timeline_id=?", $timeline_id)->count();
+        elseif ($event_id != 0)
+            $count = $database->table("tbl_comments")->where("event_id=?", $event_id)->count();
+        else
+            $count = 0;
+
+        return $count;
+    }
 //    	$this->template->cajc = 0;
 //	$this->template->jbob = 0;
 //	$this->template->jbog = 0;
@@ -760,26 +779,7 @@ class DataModel {
 
     static function getGalleryProfileLinkUrl($profile_id, $generated = FALSE) {
         if ($generated) {
-//            switch ($profile_id) {
-//                case ($profile_id >= 200000000 && $profile_id < 300000000):
-//                    return "kennel-profile";
-//                    break;
-//                case ($profile_id >= 300000000 && $profile_id < 400000000):
-//                    return "owner-profile";
-//                    break;
-//                case ($profile_id >= 400000000 && $profile_id < 500000000):
-//                    return "handler-profile";
-//                    break;
-//                case ($profile_id >= 500000000 && $profile_id < 600000000):
-//                    return "dog-profile";
-//                    break;
-//                case ($profile_id >= 600000000 && $profile_id < 700000000):
-//                    return "puppy-profile";
-//                    break;
-//                default :
-//                    return "";
-//                    break;
-//            }
+            
         } else {
             switch ($profile_id) {
                 case ($profile_id >= 200000000 && $profile_id < 300000000):
@@ -796,6 +796,24 @@ class DataModel {
                     break;
                 case ($profile_id >= 600000000 && $profile_id < 700000000):
                     return "puppy:puppy_photogallery";
+                    break;
+                default :
+                    return "";
+                    break;
+            }
+        }
+    }
+
+    static function getDogsProfileLinkUrl($profile_id, $generated = FALSE) {
+        if ($generated) {
+            
+        } else {
+            switch ($profile_id) {
+                case ($profile_id >= 200000000 && $profile_id < 300000000):
+                    return "kennel:kennel_dog_list";
+                    break;
+                case ($profile_id >= 300000000 && $profile_id < 400000000):
+                    return "owner:owner_dog_list";
                     break;
                 default :
                     return "";

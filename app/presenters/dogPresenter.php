@@ -199,7 +199,7 @@ class dogPresenter extends BasePresenter {
             //$this->database->table("tbl_dogs")->where("dog_id=?", $id)->delete();
             $this->database->table("tbl_dogs")->where("id=?", $id)->delete();
         }
-        $this->redirect("kennel:kennel_dog_list", array("id" => $this->profile_id));
+        $this->redirect(\DataModel::getDogsProfileLinkUrl($this->logged_in_profile_id), array("id" => $this->logged_in_profile_id));
     }
 
     public function handleDeleteChampionship($id = 0) {

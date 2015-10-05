@@ -93,6 +93,10 @@ class ownerPresenter extends BasePresenter {
 	$this->template->state = $state;
         $this->template->profile_id = $id;
 
+        $this->template->timeline_rows = $this->data_model->getTimeline($id);
+        $this->template->timeline_name = $name;
+        $this->template->timeline_profile_image = $profile_image;
+        
 	$this->renderOwner_description_home($id);
 	$this->renderOwner_dog_list_home($id);
     }

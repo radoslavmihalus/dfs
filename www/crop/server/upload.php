@@ -32,7 +32,7 @@ function processImageFile($image) {
 
     $ext = $ext[$length - 1];
 
-    switch ($ext) {
+    switch (strtolower($ext)) {
         case 'jpeg':
             $ext = 'jpg';
             break;
@@ -61,7 +61,7 @@ function processImageFileUploaded($image) {
 
     $ext = $ext[$length - 1];
 
-    switch ($ext) {
+    switch (strtolower($ext)) {
         case 'jpeg':
             $ext = 'jpg';
             break;

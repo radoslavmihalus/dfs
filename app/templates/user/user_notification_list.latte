@@ -7,18 +7,19 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" href="#">
-                    <img class="user-block-thumb" src="img/referer1.jpg"/>
-                    <span class="notification-item-header text-uppercase">Faalat rhodesian ridgeback kennel</span>
-                    <span class="notification-item-event" style="color:black;"><i class="fa fa-comment"></i>&nbsp;&nbsp;{_ 'comment your post'}</span>
-                </a>
-                <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" href="#">
-                    <img class="user-block-thumb" src="img/referer2.jpg"/>
-                    <span class="notification-item-header text-uppercase">Stephen Charles King</span>
-                    <span class="notification-item-event" style="color:black;"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;{_ 'like your post'}</span>
-                </a>
+                {foreach $notifications_list as $row}
+                    <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" href="{DataModel::getProfileLinkUrl($row->notify_profile_id,TRUE)}#timelineid{$row->timeline_id}">
+                        <img class="user-block-thumb" src="{DataModel::getProfileImage($row->profile_id)}"/>
+                        <span class="notification-item-header text-uppercase">{DataModel::getProfileName($row->profile_id)}</span>
+                        {if ($row->type == 'comment')}
+                            <span class="notification-item-event" style="color:black;"><i class="fa fa-comment"></i>&nbsp;&nbsp;{_ 'comment your post'}</span>
+                        {else}
+                            <span class="notification-item-event" style="color:black;"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;{_ 'like your post'}</span>
+                        {/if}
+                    </a>
+                {/foreach}
             </div>
         </div>
     </div>
 </div>
-                {/block}
+{/block}

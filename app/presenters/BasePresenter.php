@@ -339,13 +339,21 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->terminate();
     }
 
-    public function handleLike($timeline_id) {
-        $count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
+    public function handleLike($timeline_id = 0, $event_id = 0) {
+        $timeline = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
+        if ($timeline_id != 0)
+            $count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
+        elseif ($event_id != 0)
+            $count = $this->database->table("tbl_likes")->where("event_id=?", $event_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
+        else {
+            $this->terminate();
+        }
 
         if ($count > 0)
             $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->delete();
         else {
             $data['timeline_id'] = $timeline_id;
+            $data['event_id'] = $timeline->event_id;
             $data['user_id'] = $this->logged_in_id;
             $data['profile_id'] = $this->profile_id;
             $this->database->table("tbl_likes")->insert($data);
@@ -363,19 +371,32 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->database->table("tbl_notify")->insert($notify);
         }
 
-        echo \DataModel::getTimelineLikesCount($timeline_id);
+        echo \DataModel::getTimelineLikesCount($timeline_id, $event_id);
         $this->terminate();
     }
 
-    public function handleHasLiked($timeline_id) {
-        $count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
-
+    public function handleHasLiked($timeline_id = 0, $event_id = 0) {
+        if ($timeline_id != 0)
+            $count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
+        elseif ($event_id > 0)
+            $count = $this->database->table("tbl_likes")->where("event_id=?", $event_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
+        else {
+            echo 0;
+            $this->terminate();
+        }
         echo $count;
         $this->terminate();
     }
 
-    public function handleLikesList($timeline_id) {
-        $rows = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->order("like_datetime DESC")->fetchAll();
+    public function handleLikesList($timeline_id = 0, $event_id = 0) {
+        if ($timeline_id != 0)
+            $rows = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->order("like_datetime DESC")->fetchAll();
+        elseif ($event_id > 0)
+            $rows = $this->database->table("tbl_likes")->where("event_id=?", $event_id)->order("like_datetime DESC")->fetchAll();
+        else {
+            echo "";
+            $this->terminate();
+        }
 
         $return = '<div class="container-fluid" style="padding:5px 0px 5px 0px">';
         foreach ($rows as $row) {
@@ -409,11 +430,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->terminate();
     }
 
-    public function handleClearNotify() {
+    public function handleClearNotify($limit = 3) {
         $user_id = $this->logged_in_id;
 
-        $rows = $this->database->table("tbl_notify")->where("notify_user_id=?", $user_id)->order("notify_datetime DESC")->limit(10)->fetchAll();
-
+        if ($limit > 0)
+            $rows = $this->database->table("tbl_notify")->where("notify_user_id=?", $user_id)->order("notify_datetime DESC")->limit($limit)->fetchAll();
+        else
+            $rows = $this->database->table("tbl_notify")->where("notify_user_id=?", $user_id)->order("notify_datetime DESC")->fetchAll();
+        
         $notify = "";
 
         foreach ($rows as $row) {
@@ -427,6 +451,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $notify .= '<span class="notification-item-event"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;' . $this->translate('like your post') . '</span>';
             $notify .= '</a></li>';
         }
+
+        $notify .= '<li role="presentation"><a class="dropdown-footer" href="notification-list">' . $this->translate("View all") . '&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></a></li>';
 
         $this->database->query("UPDATE tbl_notify SET unreaded = 0 WHERE notify_user_id = $user_id");
 
