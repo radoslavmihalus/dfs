@@ -7,7 +7,7 @@
             </div>
             <button n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></button>
         </div>    
-        <h3 class="text-uppercase"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{DataModel::getProfileName($post->id)}</h3>
+        <h3 class="text-uppercase" style="height:40px;"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{DataModel::getProfileName($post->id)}</h3>
         <hr style="margin-bottom: 10px;">
         <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_DataModel::getProfileState($post->id)}</span>
         <span class="list-item-regdate"><i class="fa fa-clock-o" data-toggle="tooltip" data-placement='top' title="{_ 'Registration date'}"></i>&nbsp;&nbsp;{$post->handler_create_date|date:'%d.%m.%Y'}</span>

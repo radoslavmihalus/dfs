@@ -4,15 +4,17 @@
         <a n:href="dog:dog_championschip_list id => $row->id">
             <div class="list-item">
                 <div class="dog-image-profile-thumb" style="background: url('{$row->dog_image}') no-repeat center center; background-size: cover;min-height: 240px;">
+                    <div style="position:absolute;top:15px;left:30px;width:auto;">
                     {if $row->offer_for_mating==1}
                         <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
                         {/if}
-
+                    <span class="for-sale-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'For sale'}"><i class="fa fa-eur"></i></span>    
                     {if ($bis>0 || $jbis>0)}
                             <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
                             {/if}
+                    </div>
                 </div>
-                <h3 class="text-uppercase">{$row->dog_name}</h3>
+                <h3 class="text-uppercase" style="height:40px;">{$row->dog_name}</h3>
                 <hr style="margin-bottom: 10px;">
                 <span class="list-item-breed"><i class="fa fa-tag"></i>&nbsp;&nbsp;{$row->breed_name}</span>
                 <span class="list-item-gender">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$row->dog_gender}</span>
@@ -25,15 +27,17 @@
     <a n:href="dog:dog_championschip_list id => $row->id">
         <div class="list-item">
             <div class="dog-image-profile-thumb" style="background: url('{$row->dog_image}') no-repeat center center; background-size: cover;min-height: 240px;">
+                <div style="position:absolute;top:15px;left:30px;width:auto;">
                 {if $row->offer_for_mating==1}
                     <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
                     {/if}
-
+                <span class="for-sale-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'For sale'}"><i class="fa fa-eur"></i></span>
                 {if ($bis>0 || $jbis>0)}
-                    <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
-                    {/if}
+                            <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
+                            {/if}
+                </div>
             </div>
-            <h3 class="text-uppercase">{$row->dog_name}</h3>
+            <h3 class="text-uppercase" style="height:40px;">{$row->dog_name}</h3>
             <hr style="margin-bottom: 10px;">
             <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{$row->breed_name}</span>
             <span class="list-item-gender">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$row->dog_gender}</span>

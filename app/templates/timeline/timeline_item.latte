@@ -94,12 +94,12 @@
             </div>
             {if ($active_profile_id>0)}
                 <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
-                    <a id="like-{$row->id}" href="javascript:void(0)" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;">{DataModel::getTimelineLikesCount($row->id)}</span></a>
-                    <a id="unlike-{$row->id}" href="javascript:void(0)" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;" href="javascript:void(0)" id="ylikes-list-{$row->id}"><span class="badge" id="ylikes-count-{$row->id}" style="margin-left: 10px;background-color: #FDB42F;">{DataModel::getTimelineLikesCount($row->id)}</span></a>
+                    <a id="like-{$row->id}" href="javascript:void(0)" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount($row->id)}</span></a>
+                    <a id="unlike-{$row->id}" href="javascript:void(0)" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;" href="javascript:void(0)" id="ylikes-list-{$row->id}"><span class="badge" id="ylikes-count-{$row->id}" style="margin-left: 10px;background-color: #FDB42F;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount($row->id)}</span></a>
                 </div>
             {else}
                 <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
-                    <a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;">{DataModel::getTimelineLikesCount($row->id)}</span></a>
+                    <a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount($row->id)}</span></a>
                 </div>
             {/if}
             {snippet areaComments}
@@ -109,6 +109,7 @@
                     <img class="user-block-thumb" src="www/templates/scripts/image.php?image={DataModel::getProfileImage($row_comments->profile_id)}"/>
                     {var $linkurl = DataModel::getProfileLinkUrl($row_comments->profile_id)}
                     <span class="notification-item-header text-uppercase"><a n:href="$linkurl id=>$row_comments->profile_id" style="color:#a5987f;">{DataModel::getProfileName($row_comments->profile_id)}</a></span>
+                    <a style="position:absolute;right:10px;cursor:pointer;color:gray;font-size:13px;" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}"><i class="fa fa-times"></i></a>
                     <span class="notification-item-event-time">{$row_comments->comment_date_time|date:'%d.%m.%Y'}|&nbsp;{$row_comments->comment_date_time|date:'H:i'}</span>
                     <span class="notification-item-event" style="color:black">{$row_comments->comment}</span>
                 </div>
@@ -231,6 +232,11 @@
                         $("#ylikes-count-{$row->id}").hide();
                     }
                 });
+            </script>
+            <script>
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
             </script>
         </div>
     </li>
