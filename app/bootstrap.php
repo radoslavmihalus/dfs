@@ -102,6 +102,7 @@ $router[] = new Route('owner-photogallery', 'owner:owner_photogallery');
 $router[] = new Route('list-of-dogs', 'dog:dog_list');
 $router[] = new Route('best-in-show', 'dog:dog_list_bestinshow');
 $router[] = new Route('list-of-dogs-for-mating', 'dog:dog_for_mating_list');
+$router[] = new Route('list-of-bis-dogs', 'dog:dog_bis_list');
 $router[] = new Route('add-dog', 'dog:dog_create_profile');
 $router[] = new Route('dog-profile-edit', 'dog:dog_edit_profile');
 $router[] = new Route('dog-profile', 'dog:dog_championschip_list');

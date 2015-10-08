@@ -83,9 +83,9 @@ class DataModel {
         $this->database->query("DROP TABLE IF EXISTS $table");
 
         if ($id == 0)
-            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline order by `date` DESC");
+            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline order by `date` DESC LIMIT 5");
         else
-            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline where profile_id = ? order by `date` DESC", $id);
+            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline where profile_id = ? order by `date` DESC LIMIT 5", $id);
 
         $this->database->query("ALTER TABLE `$table` ADD PRIMARY KEY (`id`)");
         $this->database->query("ALTER TABLE `$table` CHANGE `id` `id` BIGINT( 20 ) NOT NULL AUTO_INCREMENT");
@@ -628,6 +628,7 @@ class DataModel {
 
         return $count;
     }
+
 //    	$this->template->cajc = 0;
 //	$this->template->jbob = 0;
 //	$this->template->jbog = 0;
@@ -840,4 +841,45 @@ class DataModel {
         }
     }
 
+    static function isBIS($dog_id) {
+        try {
+            require_once 'www/inc/config_ajax.php';
+
+            $titles = \DataModel::getDogTitles($dog_id);
+            if ($titles['JBIS'] || $titles['BIS'])
+                return TRUE;
+            else
+                return FALSE;
+        } catch (\Exception $ex) {
+            return FALSE;
+        }
+    }
+
+    static function getBISCount() {
+        try {
+            require_once 'www/inc/config_ajax.php';
+
+            $database = getContext();
+
+            $count = $database->table("tbl_dogs_shows")->where("BIS1=? OR JBIS1=?", 1, 1)->group("dog_id")->count();
+
+            return $count;
+        } catch (\Exception $ex) {
+            return 0;
+        }
+    }
+
+    static function getPuppiesForSaleCount() {
+        try {
+            require_once 'www/inc/config_ajax.php';
+
+            $database = getContext();
+
+            $count = $database->table("tbl_puppies")->where("puppy_state=?", "ForSale")->count();
+
+            return $count;
+        } catch (\Exception $ex) {
+            return 0;
+        }
+    }
 }

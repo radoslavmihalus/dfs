@@ -452,7 +452,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $notify .= '</a></li>';
         }
 
-        $notify .= '<li role="presentation"><a class="dropdown-footer" href="notification-list">' . $this->translate("View all") . '&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></a></li>';
+        $notify .= '<li role="presentation" class="notify_item"><a class="dropdown-footer" href="notification-list">' . $this->translate("View all") . '&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></a></li>';
 
         $this->database->query("UPDATE tbl_notify SET unreaded = 0 WHERE notify_user_id = $user_id");
 

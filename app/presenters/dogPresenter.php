@@ -88,6 +88,27 @@ class dogPresenter extends BasePresenter {
         $this->template->rows = $rows;
     }
 
+    public function renderDog_bis_list() {
+        $rows_bis = $this->database->table("tbl_dogs_shows")->where("JBIS1=1 OR BIS1=1")->fetchAll();
+
+        $i = 0;
+
+        $ids = "";
+
+        foreach ($rows_bis as $row) {
+            if ($i == 0)
+                $ids .= $row->dog_id;
+            else
+                $ids .= "," . $row->dog_id;
+
+            $i++;
+        }
+
+        $rows = $this->database->query("SELECT * FROM tbl_dogs WHERE id IN ($ids) ORDER BY id DESC");
+
+        $this->template->rows = $rows;
+    }
+
     public function renderDog_for_mating_list($id = 0) {
         if ($id > 0)
             $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND offer_for_mating=1", $id)->fetchAll();
@@ -1272,6 +1293,9 @@ class dogPresenter extends BasePresenter {
         $data['judge_name'] = $values->txtJudgeName;
         $data['show_class'] = $values->ddlShowClass;
 
+        $time = strtotime($values['ddlDate']);
+        $values['ddlDate'] = date('Y-m-d', $time);
+
         $data['show_date'] = $values->ddlDate;
         $data['show_name'] = $values->txtShowName;
         $data['show_type'] = $values->ddlShowType;
@@ -1334,6 +1358,9 @@ class dogPresenter extends BasePresenter {
         $data['handler_name'] = $values->txtHandlerName;
         $data['judge_name'] = $values->txtJudgeName;
         $data['show_class'] = $values->ddlShowClass;
+
+        $time = strtotime($values['ddlDate']);
+        $values['ddlDate'] = date('Y-m-d', $time);
 
         $data['show_date'] = $values->ddlDate;
         $data['show_name'] = $values->txtShowName;

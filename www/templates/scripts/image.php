@@ -3,7 +3,6 @@
 $filename = "../../../" . $_GET['image'];
 
 $percent = 1.0; // if you want to scale down first
-$imagethumbsize = 600; // thumbnail size (area cropped in middle of image)
 // Content type
 header('Content-type: image/jpeg');
 
@@ -23,7 +22,7 @@ if($imagethumbsize>$new_height)
 }
 
 // Resample
-$image_p = imagecreatetruecolor($imagethumbsize , $imagethumbsize);  // true color for best quality
+$image_p = imagecreatetruecolor($width , $height);  // true color for best quality
 $image = imagecreatefromjpeg($filename);
 
 // basically take this line and put in your versin the -($new_width/2) + ($imagethumbsize/2) & -($new_height/2) + ($imagethumbsize/2) for
@@ -32,11 +31,12 @@ $image = imagecreatefromjpeg($filename);
 // AND
 // -($new_height/2) + ($imagethumbsize/2)
 // are the trick
-imagecopyresampled($image_p, $image, -($new_width/2) + ($imagethumbsize/2), -($new_height/2) + ($imagethumbsize/2), 0, 0, $new_width , $new_width , $width, $height);
+//imagecopyresampled($image_p, $image, -($new_width/2) + ($imagethumbsize/2), -($new_height/2) + ($imagethumbsize/2), 0, 0, $new_width , $new_width , $width, $height);
+imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width , $height , $width, $height);
 
 // Output
 
-imagejpeg($image_p, null, 100);
+imagejpeg($image_p, null, 10);
 
 imagedestroy($image);
 ?>

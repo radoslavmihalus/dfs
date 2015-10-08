@@ -184,7 +184,7 @@
                         <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_for_mating_list" role="button">{_ 'Stud dogs'}</a>
                     </div>
                     <div class="col-md-3 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_list_bestinshow" role="button">{_ 'Best in show'}</a>
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_bis_list" role="button">{_ 'Best in show'}</a>
                     </div>
                 </div>
             </div>
@@ -221,7 +221,7 @@
                             <p class="text-center counter_description">{_ 'Planned litters'}</p>
                         </div>
                         <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">0</p>
+                            <p class="text-center counter_number">{DataModel::getPuppiesForSaleCount()}</p>
                             <p class="text-center counter_description">{_ 'Puppies for sale'}</p>
                         </div>
                     </div>

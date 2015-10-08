@@ -5,7 +5,7 @@
         <div class="row" style="padding:10px 10px 0px 10px;background-color: #f8f8f8;border:#E0E0E0 1px solid;box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0px 2px 7px rgba(0,0,0,0.1);">
             <!--  First row  -->
             <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom: 5px;">
-                <i class="fa fa-home"></i><a n:href="" style="color:black;text-decoration: underline;"><span data-toggle="tooltip" data-placement='top' data-html="true" data-title="{_ 'Name of the kennel'}" style="margin-left: 10px;text-transform: uppercase;font-weight:bold;">{DataModel::getProfileName($row->kennel_id)}</span></a>
+                <i class="fa fa-home"></i><a href="{DataModel::getProfileLinkUrl($row->kennel_id, TRUE)}?id={$row->kennel_id}" style="color:black;text-decoration: underline;"><span data-toggle="tooltip" data-placement='top' data-html="true" data-title="{_ 'Name of the kennel'}" style="margin-left: 10px;text-transform: uppercase;font-weight:bold;">{DataModel::getProfileName($row->kennel_id)}</span></a>
             </div>
             <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;">
                 <i class="fa fa-calendar"></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Name of the planned litter'}" style="margin-left: 10px;font-weight:bold;">{_ 'Planned litter'}&nbsp;{$row->name}</span>

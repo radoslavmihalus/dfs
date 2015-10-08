@@ -5,11 +5,11 @@
             <div class="list-item">
                 <div class="dog-image-profile-thumb" style="background: url('{$row->dog_image}') no-repeat center center; background-size: cover;min-height: 240px;">
                     <div style="position:absolute;top:15px;left:30px;width:auto;">
-                    {if $row->offer_for_mating==1}
-                        <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
-                        {/if}
-                    <span class="for-sale-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'For sale'}"><i class="fa fa-eur"></i></span>    
-                    {if ($bis>0 || $jbis>0)}
+                        {if $row->offer_for_mating==1}
+                            <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
+                            {/if}
+                        <span class="for-sale-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'For sale'}"><i class="fa fa-eur"></i></span>    
+                            {if (DataModel::isBIS($row->id))}
                             <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
                             {/if}
                     </div>
@@ -28,13 +28,13 @@
         <div class="list-item">
             <div class="dog-image-profile-thumb" style="background: url('{$row->dog_image}') no-repeat center center; background-size: cover;min-height: 240px;">
                 <div style="position:absolute;top:15px;left:30px;width:auto;">
-                {if $row->offer_for_mating==1}
-                    <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
-                    {/if}
-                <span class="for-sale-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'For sale'}"><i class="fa fa-eur"></i></span>
-                {if ($bis>0 || $jbis>0)}
-                            <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
-                            {/if}
+                    {if $row->offer_for_mating==1}
+                        <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
+                        {/if}
+                    <span class="for-sale-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'For sale'}"><i class="fa fa-eur"></i></span>
+                        {if (DataModel::isBIS($row->id))}
+                        <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
+                        {/if}
                 </div>
             </div>
             <h3 class="text-uppercase" style="height:40px;">{$row->dog_name}</h3>
@@ -47,13 +47,13 @@
     </a>
 {/if}
 {if $i==0}
-<!--    <div class="row">
-        <div class="col-md-12">
-            <div class="message-brown" role="alert">
-                <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+    <!--    <div class="row">
+            <div class="col-md-12">
+                <div class="message-brown" role="alert">
+                    <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+                </div>
             </div>
-        </div>
-    </div>-->
+        </div>-->
 {/if}
 {/define}
 <script>
