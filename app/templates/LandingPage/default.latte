@@ -9,6 +9,9 @@
         <meta name="author" content="DOGFORSHOW">
         <script src="www/js/jquery.js"></script>
         <script src="www/js/jquery.form.js"></script>
+        
+        <!-- Google captcha -->
+        <script src='https://www.google.com/recaptcha/api.js'></script>
 
         <script src="www/js/jquery.nette.js"></script>
         <script src="www/js/jquery.ajaxform.js"></script>
@@ -454,12 +457,13 @@
                                         <textarea type="text" class="form-control contact_textarea" id="txtMessage" name="txtMessage" placeholder="{_ 'Message'}"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        1+1&nbsp;=&nbsp;<input type="text" class="form-control" id="txtVerify" name="txtVerify" placeholder="{_ 'Verify'}">
+                                        <div class="g-recaptcha" data-sitekey="6LdBSgITAAAAAPHEfML6Of8AKPJ1CTbIrI7BdEql" data-theme="light"></div>    
+<!--                                        1+1&nbsp;=&nbsp;<input type="text" class="form-control" id="txtVerify" name="txtVerify" placeholder="{_ 'Verify'}">-->
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <button type="submit" class="btn btn-danger btn-block" id="btnSubmit" name="btnSubmit"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;{_ 'Send'}</button>
                                 </div>
                             {/form}
