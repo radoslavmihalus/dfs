@@ -42,28 +42,41 @@
                 </a>
             </div>
             <div class="col-md-8">
-
-                <ul class="dog-information-list">
-                    <li><a n:href="kennel:kennel_planned_litter_list id=>$dog->profile_id" style="color:#a5987f;text-decoration: underline;"><span class="panel-description" data-toggle="tooltip" data-placement='top' title="{_ 'Planned litter'}"><i class="fa fa-calendar" style="margin-right: 10px;"></i>{$plannedLitter->name}</span></a></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i><strong>{$mother->breed_name}</strong></span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}">{if $dog->puppy_gender=="Bitch"}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_ $dog->puppy_gender}</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog->date_of_birth|date:'%d.%m.%Y'}</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i>{_$dog->country}</span></li>
-                            {if DataModel::haveDogProfile($plannedLitter->dog_name)}
-                                {var $father=DataModel::getDogProfileByName($plannedLitter->dog_name)}
-                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i><a n:href="dog:dog_championschip_list id=>$father->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$plannedLitter->dog_name}</a></span></li>
+                <table style="border-spacing:5px;border-collapse: separate;font-family: 'Roboto Condensed', sans-serif;font-size:15px">
+                    <tr>
+                        <td colspan="2"><a n:href="kennel:kennel_planned_litter_list id=>$dog->profile_id" style="color:#a5987f;text-decoration: underline;"><span class="panel-description" data-toggle="tooltip" data-placement='top' title="{_ 'Planned litter'}"><i class="fa fa-calendar" style="margin-right: 10px;"></i>{$plannedLitter->name}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i></span></td><td><span><strong>{$mother->breed_name}</strong></span></td>
+                    </tr>
+                    <tr>
+                        <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}">{if $dog->puppy_gender=="Bitch"}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i></span>{/if}</td><td><span>{_ $dog->puppy_gender}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i></span></td><td><span>{$dog->date_of_birth|date:'%d.%m.%Y'}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"><i class="fa fa-map-marker" style="margin-right: 10px;color:#777;"></i></span></td><td><span>{_$dog->country}</span></td>
+                    </tr>
+                    <tr>
+                        {if DataModel::haveDogProfile($plannedLitter->dog_name)}
+                            {var $father=DataModel::getDogProfileByName($plannedLitter->dog_name)}
+                            <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i></span></td><td><a n:href="dog:dog_championschip_list id=>$father->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$plannedLitter->dog_name}</a></td>
                                 {else}
-                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}" style="text-transform: uppercase"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->dog_name}</span></li>
-                            {/if}
-                            {if DataModel::haveDogProfile($plannedLitter->bitch_name)}
-                                {var $mother=DataModel::getDogProfileByName($plannedLitter->bitch_name)}
-                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i><a n:href="dog:dog_championschip_list id=>$mother->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$plannedLitter->bitch_name}</a></span></li>
+                            <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}" style="text-transform: uppercase"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i></span></td><td><span>{$plannedLitter->dog_name}</span></td>
+                                {/if}
+                    </tr>
+                    <tr>
+                        {if DataModel::haveDogProfile($plannedLitter->bitch_name)}
+                            {var $mother=DataModel::getDogProfileByName($plannedLitter->bitch_name)}
+                            <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i></span></td><td><a n:href="dog:dog_championschip_list id=>$mother->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$plannedLitter->bitch_name}</a></td>
                                 {else}
-                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}" style="text-transform: uppercase"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->bitch_name}</span></li>
-                            {/if}
-<!--                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->dog_name}</span></li>
-                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->bitch_name}</span></li>-->
-                </ul>
+                            <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}" style="text-transform: uppercase"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i></span></td><td><span>{$plannedLitter->bitch_name}</span></td>
+                                {/if}
+    <!--                    <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->dog_name}</span></li>
+                        <li><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i>{$plannedLitter->bitch_name}</span></li>-->
+                    </tr>
+                </table>
                 {if ($dog->puppy_state=="ForSale")}
                     <a style="margin-top: 10px" n:href="user:user_message_compose profile_id=>$dog->profile_id" class="btn btn-default btn-lg"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</a>
                 {/if}
