@@ -49,6 +49,36 @@ class ImportModel {
         $database->table("tbl_dogs_shows")->delete();
         $database->query("ALTER TABLE tbl_dogs_shows AUTO_INCREMENT=800000000");
 
+        $database->table("tbl_handler_shows")->delete();
+        $database->query("ALTER TABLE tbl_handler_shows AUTO_INCREMENT=2400000000");
+
+        $database->table("tbl_handler_show_groups")->delete();
+        $database->query("ALTER TABLE tbl_handler_shows AUTO_INCREMENT=2600000000");
+
+        $database->table("tbl_dogs_championship")->delete();
+        $database->query("ALTER TABLE tbl_dogs_championship AUTO_INCREMENT=1000000000");
+
+        $database->table("tbl_dogs_coowners")->delete();
+        $database->query("ALTER TABLE tbl_dogs_coowners AUTO_INCREMENT=1100000000");
+
+        $database->table("tbl_dogs_health")->delete();
+        $database->query("ALTER TABLE tbl_dogs_health AUTO_INCREMENT=1200000000");
+
+        $database->table("tbl_dogs_matings")->delete();
+        $database->query("ALTER TABLE tbl_dogs_matings AUTO_INCREMENT=1400000000");
+
+        $database->table("tbl_dogs_workexams")->delete();
+        $database->query("ALTER TABLE tbl_dogs_workexams AUTO_INCREMENT=1600000000");
+
+        $database->table("tbl_handler_awards")->delete();
+        $database->query("ALTER TABLE tbl_handler_awards AUTO_INCREMENT=1800000000");
+
+        $database->table("tbl_handler_certificates")->delete();
+        $database->query("ALTER TABLE tbl_handler_awards AUTO_INCREMENT=2200000000");
+
+        $database->table("tbl_photos")->delete();
+        $database->query("ALTER TABLE tbl_photos AUTO_INCREMENT=2800000000");
+
         foreach ($users as $user) {
             $rand = rand(10000, 99999);
             $pass = "gnrtx" . $rand;
@@ -285,6 +315,8 @@ class ImportModel {
         }
 
         ImportModel::importHandlerShows($id, $post_id, $context, $importdb);
+        ImportModel::importHandlerPhotos($id, $post_id, $context, $importdb);
+        ImportModel::importHandlerAwards($id, $post_id, $context, $importdb);
 
         return $id;
     }
@@ -412,6 +444,11 @@ class ImportModel {
                 $dog_id = $database->getInsertId();
 
                 ImportModel::importDogShows($dog_id, $dog->ID, $database, $importdb);
+                ImportModel::importDogChampionship($dog_id, $dog->ID, $database, $importdb);
+                ImportModel::importDogHealth($dog_id, $dog->ID, $database, $importdb);
+                ImportModel::importDogMatings($dog_id, $dog->ID, $database, $importdb);
+                ImportModel::importDogWorkexams($dog_id, $dog->ID, $database, $importdb);
+                ImportModel::importDogPhotos($dog_id, $dog->ID, $database, $importdb);
             }
         }
     }
@@ -780,6 +817,7 @@ class ImportModel {
         foreach ($shows as $show) {
             $description = explode("|", $show->meta_value);
             $data = array();
+            $data_group = array();
 
             $data['handler_id'] = $handler_id;
             $data_group['handler_id'] = $handler_id;
@@ -789,6 +827,7 @@ class ImportModel {
             $date = date('Y-m-d', strtotime($date));
 
             $data['show_date'] = $date;
+            $data_group['show_date'] = $date;
 
             if ($description[2] == "Oblastná")
                 $description[2] = "Regional";
@@ -808,10 +847,11 @@ class ImportModel {
                 $description[2] = "WorldShow";
 
 
-            $data['show_type'] = $description[2];
-            $data['show_name'] = $description[3];
-            $data['show_country'] = ImportModel::getStateEn($description[4], $database);
+            $data_group['show_type'] = $description[2];
+            $data_group['show_name'] = $description[3];
+            $data_group['show_country'] = ImportModel::getStateEn($description[4], $database);
             $data['judge_name'] = $description[5];
+            $data['dog_name'] = "-";
 
             if ($description[6] == "Mladší dorast")
                 $description[6] = "MinorPuppy";
@@ -930,14 +970,179 @@ class ImportModel {
 
 
             try {
-                $database->table("tbl_dogs_shows")->insert($data);
+                $database->table("tbl_handler_show_groups")->insert($data_group);
+                $id = $database->getInsertId();
+                $data['show_id'] = $id;
+                $database->table("tbl_handler_shows")->insert($data);
             } catch (\Exception $ex) {
                 $count++;
             }
         }
 
         if ($count > 0)
-            echo $count . '<br/>';
+            echo "h - " . $count . '<br/>';
     }
 
+    public static function importDogChampionship($dog_id, $old_id, $database, $importdb) {
+        $rows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_titles")->fetchAll();
+
+        foreach ($rows as $row) {
+            $description = explode("|", $row->meta_value);
+
+            $var = $description[4];
+            $date = str_replace('.', '-', $var);
+            $date = date('Y-m-d', strtotime($date));
+
+            $data = array();
+            $data['dog_id'] = $dog_id;
+            $data['date'] = $date;
+            $data['description'] = $description[1];
+            $data['image'] = str_replace("http://www.dogforshow.com/", "", $description[2]);
+
+            try {
+                $database->table("tbl_dogs_championship")->insert($data);
+            } catch (\Exception $ex) {
+                
+            }
+        }
+    }
+
+    public static function importDogHealth($dog_id, $old_id, $database, $importdb) {
+        $rows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_healths")->fetchAll();
+
+        foreach ($rows as $row) {
+            $description = explode("|", $row->meta_value);
+
+            $var = $description[4];
+            $date = str_replace('.', '-', $var);
+            $date = date('Y-m-d', strtotime($date));
+
+            $data = array();
+            $data['dog_id'] = $dog_id;
+            $data['date'] = $date;
+            $data['description'] = $description[1];
+            $data['image'] = str_replace("http://www.dogforshow.com/", "", $description[2]);
+
+            try {
+                $database->table("tbl_dogs_health")->insert($data);
+            } catch (\Exception $ex) {
+                
+            }
+        }
+    }
+
+    public static function importDogMatings($dog_id, $old_id, $database, $importdb) {
+        $rows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_studs")->fetchAll();
+
+        foreach ($rows as $row) {
+            $description = explode("|", $row->meta_value);
+
+            $var = $description[1];
+            $date = str_replace('.', '-', $var);
+            $date = date('Y-m-d', strtotime($date));
+
+            $data = array();
+            $data['dog_id'] = $dog_id;
+            $data['date'] = $date;
+            $data['description'] = $description[2];
+            $data['image'] = str_replace("http://www.dogforshow.com/", "", $description[3]);
+
+            try {
+                $database->table("tbl_dogs_matings")->insert($data);
+            } catch (\Exception $ex) {
+                
+            }
+        }
+    }
+
+    public static function importDogWorkexams($dog_id, $old_id, $database, $importdb) {
+        $rows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_workexams")->fetchAll();
+
+        foreach ($rows as $row) {
+            $description = explode("|", $row->meta_value);
+
+            $var = $description[5];
+            $date = str_replace('.', '-', $var);
+            $date = date('Y-m-d', strtotime($date));
+
+            $data = array();
+            $data['dog_id'] = $dog_id;
+            $data['date'] = $date;
+            $data['description'] = $description[1];
+            $data['image'] = str_replace("http://www.dogforshow.com/", "", $description[3]);
+
+            try {
+                $database->table("tbl_dogs_workexams")->insert($data);
+            } catch (\Exception $ex) {
+                
+            }
+        }
+    }
+
+    public static function importDogPhotos($dog_id, $old_id, $database, $importdb) {
+        $rows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_photos")->fetchAll();
+
+        foreach ($rows as $row) {
+            $description = explode("|", $row->meta_value);
+            
+            $dog = $database->table("tbl_dogs")->where("id=?",$dog_id)->fetch();
+
+            $data = array();
+            $data['user_id'] = $dog->user_id;
+            $data['profile_id'] = $dog_id;
+            $data['description'] = $description[0];
+            $data['image'] = str_replace("http://www.dogforshow.com/", "", $description[1]);
+
+            try {
+                $database->table("tbl_photos")->insert($data);
+            } catch (\Exception $ex) {
+                
+            }
+        }
+        }
+
+        public static function importHandlerPhotos($handler_id, $old_id, $database, $importdb) {
+        $rows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_photos")->fetchAll();
+
+        foreach ($rows as $row) {
+            $description = explode("|", $row->meta_value);
+            
+            $handler = $database->table("tbl_userhandler")->where("id=?",$handler_id)->fetch();
+
+            $data = array();
+            $data['user_id'] = $handler->user_id;
+            $data['profile_id'] = $handler_id;
+            $data['description'] = $description[0];
+            $data['image'] = str_replace("http://www.dogforshow.com/", "", $description[1]);
+
+            try {
+                $database->table("tbl_photos")->insert($data);
+            } catch (\Exception $ex) {
+                
+            }
+        }
+    }
+    public static function importHandlerAwards($handler_id, $old_id, $database, $importdb) {
+        $rows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_titles")->fetchAll();
+
+        foreach ($rows as $row) {
+            $description = explode("|", $row->meta_value);
+
+            $var = $description[4];
+            $date = str_replace('.', '-', $var);
+            $date = date('Y-m-d', strtotime($date));
+
+            $data = array();
+            $data['handler_id'] = $handler_id;
+            $data['date'] = $date;
+            $data['description'] = $description[1];
+            $data['image'] = str_replace("http://www.dogforshow.com/", "", $description[2]);
+
+            try {
+                $database->table("tbl_handler_awards")->insert($data);
+            } catch (\Exception $ex) {
+                
+            }
+        }
+    }
 }
