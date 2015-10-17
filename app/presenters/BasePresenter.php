@@ -375,6 +375,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->terminate();
     }
 
+    public function handleImport() {
+        \ImportModel::importProfiles();
+        $this->terminate();
+    }
+
     public function handleHasLiked($timeline_id = 0, $event_id = 0) {
         if ($timeline_id != 0)
             $count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
@@ -437,7 +442,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $rows = $this->database->table("tbl_notify")->where("notify_user_id=?", $user_id)->order("notify_datetime DESC")->limit($limit)->fetchAll();
         else
             $rows = $this->database->table("tbl_notify")->where("notify_user_id=?", $user_id)->order("notify_datetime DESC")->fetchAll();
-        
+
         $notify = "";
 
         foreach ($rows as $row) {
@@ -667,29 +672,50 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         }
 
         if ($id == 0) {
-            $this->flashMessage($this->translate("Wrong username or password."), "Warning");
+            $cnt = $this->database->table("tbl_user")->where("email=?", $values['txtEmail'])->where("password LIKE ?", "gnrtx%")->count();
+
+            if ($cnt > 0) {
+                $mail = new Message();
+                $mail->setFrom('DOGFORSHOW <info@dogforshow.com>')
+                        ->setSubject($this->translate("Forgot password"))
+                        ->addTo($values['txtEmail'])
+                        ->setHtmlBody($this->getLostPasswordBody($values['txtEmail']));
+
+                $mailer = new SendmailMailer();
+                $mailer->send($mail);
+
+                $this->flashMessage($this->translate("Your password has been successfully sent to your e-mail"), "Success");
+            } else {
+                $this->flashMessage($this->translate("Wrong username or password."), "Warning");
+            }
         } else {
             if ($activated == 0) {
                 $this->flashMessage($this->translate("Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link") . "<br/><br/><p class=\"text-center\"><a href=\"?resend_al=$id\" class=\"btn btn-danger btn-xl\"><i class=\"fa fa-envelope\"></i>&nbsp;&nbsp;" . $this->translate("Resend registration email") . "</a></p>", "Warning");
             } else {
-                if ($profile_id > 0) {
-                    $type = \DataModel::getProfileType($profile_id);
-                    switch ($type) {
-                        case 1:
-                            $this->redirect("kennel:kennel_profile_home");
-                            break;
-                        case 2:
-                            $this->redirect("owner:owner_profile_home");
-                            break;
-                        case 3:
-                            $this->redirect("handler:handler_profile_home");
-                            break;
-                        default :
-                            $this->redirect("user:user_create_profile_switcher");
-                            break;
-                    }
+                $cnt = $this->database->table("tbl_user")->where("email=?", $values['txtEmail'])->where("password LIKE ?", "gnrtx%")->count();
+
+                if ($cnt > 0) {
+                    $this->redirect("user:user_edit_account");
                 } else {
-                    $this->redirect("user:user_create_profile_switcher");
+                    if ($profile_id > 0) {
+                        $type = \DataModel::getProfileType($profile_id);
+                        switch ($type) {
+                            case 1:
+                                $this->redirect("kennel:kennel_profile_home");
+                                break;
+                            case 2:
+                                $this->redirect("owner:owner_profile_home");
+                                break;
+                            case 3:
+                                $this->redirect("handler:handler_profile_home");
+                                break;
+                            default :
+                                $this->redirect("user:user_create_profile_switcher");
+                                break;
+                        }
+                    } else {
+                        $this->redirect("user:user_create_profile_switcher");
+                    }
                 }
             }
         }
@@ -729,6 +755,55 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         return $form;
     }
 
+    public function getLostPasswordBody($email) {
+        $data = $this->database->table("tbl_user")->where("email=?", $email)->fetch();
+
+        $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Welcome to DOGFORSHOW</title>
+    </head>
+    <body bgcolor="#f6f8f1" style="margin: 0; padding: 0; min-width: 100%!important;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#8C8067;" >
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <table style="padding-bottom:20px; margin-top:10px; width: 90%; max-width: 600px;" class="content" bgcolor="white" align="center" cellpadding="10" cellspacing="0" border="0">
+                        <tr>
+                            <td align="center" style="border-bottom:#8C8067 1px solid">
+                                <h1 style="font-size:23px;color:#8C8067;">' . $this->translate('Hello') . ' ' . $data->name . '</h1>
+                            </td>
+                        </tr>
+						<tr>
+                            <td>
+                                <ul style="list-style-type: none">
+                                <li>' . $this->translate('Email') . ': <strong>' . $data->email . '</strong></li>
+                                <li>' . $this->translate('Password') . ': <strong>' . $data->password . '</strong></li>
+                                </ul>
+                            </td>
+                        </tr>
+			<tr>
+                            <td align="center">
+                                <p style="font-size:15px;"><a href="http://new.dogforshow.com" style="padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Login to your account') . '</a></p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="margin-top: 10px; width: 90%; max-width: 600px;color:white;" align="center" cellpadding="10" cellspacing="0" border="0">
+                        <tr>
+                            <td align="center">
+                                <p style="font-size:12px;">' . $this->translate('This email was automatically sent by DOGFORSHOW system. Please dont reply on this email') . '</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>';
+
+        return $body;
+    }
+
     public function ForgotPasswordSucceeded($button) {
         try {
             $values = $button->getForm()->getValues();
@@ -752,48 +827,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $mail->setFrom('DOGFORSHOW <info@dogforshow.com>')
                     ->setSubject($this->translate("Forgot password"))
                     ->addTo($values['txtEmail'])
-                    ->setHtmlBody('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Welcome to DOGFORSHOW</title>
-    </head>
-    <body bgcolor="#f6f8f1" style="margin: 0; padding: 0; min-width: 100%!important;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#8C8067;" >
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td>
-                    <table style="padding-bottom:20px; margin-top:10px; width: 90%; max-width: 600px;" class="content" bgcolor="white" align="center" cellpadding="10" cellspacing="0" border="0">
-                        <tr>
-                            <td align="center" style="border-bottom:#8C8067 1px solid">
-                                <h1 style="font-size:23px;color:#8C8067;">' . $this->translate('Hello') . ' ' . $name . '</h1>
-                            </td>
-                        </tr>
-						<tr>
-                            <td>
-                                <ul style="list-style-type: none">
-                                <li>' . $this->translate('Email') . ': <strong>' . $values['txtEmail'] . '</strong></li>
-                                <li>' . $this->translate('Password') . ': <strong>' . $password . '</strong></li>
-                                </ul>
-                            </td>
-                        </tr>
-			<tr>
-                            <td align="center">
-                                <p style="font-size:15px;"><a href="http://new.dogforshow.com" style="padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Login to your account') . '</a></p>
-                            </td>
-                        </tr>
-                    </table>
-                    <table style="margin-top: 10px; width: 90%; max-width: 600px;color:white;" align="center" cellpadding="10" cellspacing="0" border="0">
-                        <tr>
-                            <td align="center">
-                                <p style="font-size:12px;">' . $this->translate('This email was automatically sent by DOGFORSHOW system. Please dont reply on this email') . '</p>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-    </body>
-</html>');
+                    ->setHtmlBody($this->getLostPasswordBody($values['txtEmail']));
 
 
             $mailer = new SendmailMailer();
@@ -928,7 +962,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->flashMessage($ex->getMessage(), "Error");
         }
     }
-
 }
 
 class DFSTranslator implements Nette\Localization\ITranslator {
@@ -967,11 +1000,20 @@ class DFSTranslator implements Nette\Localization\ITranslator {
                     case "cz":
                         $message = $row->translated_text_cz;
                         break;
+                    case "de":
+                        $message = $row->translated_text_de;
+                        break;
                     case "sk":
                         $message = $row->translated_text_sk;
                         break;
+                    case "ru":
+                        $message = $row->translated_text_ru;
+                        break;
                     case "hu":
                         $message = $row->translated_text_hu;
+                        break;
+                    default :
+                        $message = $row->translated_text_en;
                         break;
                 }
             }
@@ -983,6 +1025,8 @@ class DFSTranslator implements Nette\Localization\ITranslator {
                 $values["translated_text_cz"] = $message;
                 $values["translated_text_sk"] = $message;
                 $values["translated_text_hu"] = $message;
+                $values["translated_text_ru"] = $message;
+                $values["translated_text_de"] = $message;
                 $values["lang"] = "en";
                 $values["url"] = $actual_link;
                 $this->database->table("tbl_translate")->insert($values);
@@ -996,7 +1040,6 @@ class DFSTranslator implements Nette\Localization\ITranslator {
             return $message;
         }
     }
-
 }
 
 ?>

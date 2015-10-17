@@ -75,6 +75,7 @@ class userPresenter extends BasePresenter {
         $langs['de'] = 'de';
         $langs['en'] = 'en';
         $langs['hu'] = 'hu';
+        $langs['ru'] = 'ru';
         $langs['sk'] = 'sk';
 
         foreach ($result as $row) {

@@ -81,15 +81,15 @@ class dogPresenter extends BasePresenter {
 
     public function renderDog_list($id = 0) {
         if ($id > 0)
-            $rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->order("id DESC")->fetchAll();
+            $rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->order("id DESC")->limit(9)->fetchAll();
         else
-            $rows = $this->database->table("tbl_dogs")->order("id DESC")->fetchAll();
+            $rows = $this->database->table("tbl_dogs")->order("id DESC")->limit(9)->fetchAll();
 
         $this->template->rows = $rows;
     }
 
     public function renderDog_bis_list() {
-        $rows_bis = $this->database->table("tbl_dogs_shows")->where("JBIS1=1 OR BIS1=1")->fetchAll();
+        $rows_bis = $this->database->table("tbl_dogs_shows")->where("JBIS1=1 OR BIS1=1")->limit(9)->fetchAll();
 
         $i = 0;
 
@@ -111,9 +111,9 @@ class dogPresenter extends BasePresenter {
 
     public function renderDog_for_mating_list($id = 0) {
         if ($id > 0)
-            $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND offer_for_mating=1", $id)->fetchAll();
+            $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND offer_for_mating=1", $id)->limit(9)->fetchAll();
         else
-            $rows = $this->database->table("tbl_dogs")->where("offer_for_mating=1")->fetchAll();
+            $rows = $this->database->table("tbl_dogs")->where("offer_for_mating=1")->limit(9)->fetchAll();
 
         $this->template->rows = $rows;
     }

@@ -118,7 +118,7 @@ class ownerPresenter extends BasePresenter {
     }
 
     public function renderOwner_list() {
-	$rows = $this->database->table("tbl_userowner")->fetchAll();
+	$rows = $this->database->table("tbl_userowner")->limit(9)->fetchAll();
 	$this->template->owners = $rows;
     }
 

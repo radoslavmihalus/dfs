@@ -91,7 +91,7 @@ class handlerPresenter extends BasePresenter {
     }
 
     public function renderHandler_list() {
-        $rows = $this->database->table("tbl_userhandler")->fetchAll();
+        $rows = $this->database->table("tbl_userhandler")->limit(9)->fetchAll();
 
         $this->template->handler_rows = $rows;
     }

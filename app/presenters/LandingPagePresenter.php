@@ -72,7 +72,6 @@ class LandingPagePresenter extends BasePresenter {
         parent::beforeRender();
     }
 
-
     /*     * ******************* view default ******************** */
 
     public function renderDefault() {
@@ -101,26 +100,30 @@ class LandingPagePresenter extends BasePresenter {
         $values = $button->getForm()->getValues();
 
         try {
+            $recaptcha = $_POST['g-recaptcha-response'];
+
+            $this->flashMessage($recaptcha, "Information");
+
             $mail = new Message();
 
-            if ($values['txtVerify'] != 2) {
-                throw new \Exception("CAPTCHA is not valid.");
-            } else {
-                $mail->setFrom($values['txtName'] . ' ' . $values['txtSurname'] . ' <' . $values['txtEmail'] . '>') //$values['txtEmail']) //DOGFORSHOW <info@dogforshow.com>
-                        ->addTo('info@dogforshow.com')
-                        ->addTo('radoslav.mihalus@gmail.com')
-                        ->setSubject('DOGFORSHOW - Contact Form')
-                        ->setBody('Name: ' . $values['txtName'] . '<br/>Surname: ' . $values['txtSurname'] . '<br/>Email: ' . $values['txtEmail'] . '<br/><br/>Message:<br/>' . $values['txtMessage'])
-                        ->setContentType('text/html')
-                        ->setEncoding('UTF-8');
+            //if ($values['txtVerify'] != 2) {
+            //    throw new \Exception("CAPTCHA is not valid.");
+            //} else {
+            $mail->setFrom($values['txtName'] . ' ' . $values['txtSurname'] . ' <' . $values['txtEmail'] . '>') //$values['txtEmail']) //DOGFORSHOW <info@dogforshow.com>
+                    ->addTo('info@dogforshow.com')
+                    ->addTo('radoslav.mihalus@gmail.com')
+                    ->setSubject('DOGFORSHOW - Contact Form')
+                    ->setBody('Name: ' . $values['txtName'] . '<br/>Surname: ' . $values['txtSurname'] . '<br/>Email: ' . $values['txtEmail'] . '<br/><br/>Message:<br/>' . $values['txtMessage'])
+                    ->setContentType('text/html')
+                    ->setEncoding('UTF-8');
 
 //var_dump($mail);
 
-                $mailer = new SendmailMailer();
-                $mailer->send($mail);
+            $mailer = new SendmailMailer();
+            $mailer->send($mail);
 
-                $this->flashMessage($this->translate("Your message was been successfully sent. We will contact you as soon as possible."), "Info");
-            }
+            $this->flashMessage($this->translate("Your message was been successfully sent. We will contact you as soon as possible."), "Info");
+            //}
         } catch (\Exception $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
         }

@@ -40,7 +40,7 @@ class puppyPresenter extends BasePresenter {
     }
 
     public function renderPuppy_list() {
-        $rows = $this->database->table("tbl_puppies")->where("puppy_state=?", "ForSale")->order("id DESC")->fetchAll();
+        $rows = $this->database->table("tbl_puppies")->where("puppy_state=?", "ForSale")->order("id DESC")->limit(9)->fetchAll();
         
         $this->template->puppies = $rows;
     }

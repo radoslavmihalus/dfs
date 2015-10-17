@@ -83,7 +83,7 @@ function getImportConnection() {
 }
 
 function getImportContext() {
-    $connection = getConnection();
+    $connection = getImportConnection();
     $context = new Nette\Database\Context($connection);
 
     return $context;

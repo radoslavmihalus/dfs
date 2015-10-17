@@ -99,15 +99,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logotyp" id="logo" href="#">
+                    <a class="navbar-brand logotyp" id="logo" n:href="import!">
                         <img alt="Brand" style="width:150px;" src="www/img/logo.png">
                     </a>
                     <div id="ddlLang" class="btn-group dropdown" style="float:left;margin-top: 20px">
 			<select class="selectpicker">
 			    <option value="en" {if $lang=="en"}selected{/if}>EN</option>
-			    <option value="sk" {if $lang=="sk"}selected{/if}>SK</option>
 			    <option value="cz" {if $lang=="cz"}selected{/if}>CZ</option>
+			    <option value="de" {if $lang=="de"}selected{/if}>DE</option>
 			    <option value="hu" {if $lang=="hu"}selected{/if}>HU</option>
+			    <option value="ru" {if $lang=="ru"}selected{/if}>RU</option>
+			    <option value="sk" {if $lang=="sk"}selected{/if}>SK</option>
 			</select>
 			<!--                        <a class="btn btn-default dropdown-toggle" type="button" id="Lang" data-toggle="dropdown">EN &nbsp;<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu" aria-labelledby="Lang" style="min-width:50px;">
@@ -419,7 +421,7 @@
                                     <li data-target="#myCarousel" data-slide-to="1"></li>
                                     <li data-target="#myCarousel" data-slide-to="2"></li>
                                     <li data-target="#myCarousel" data-slide-to="3"></li>
-                                </ol>   
+                                </ol>
                             </div>
                             <!-- Carousel controls -->
                         </div>

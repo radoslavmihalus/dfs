@@ -64,7 +64,7 @@ class kennelPresenter extends BasePresenter {
     /*     * ******** renderers ************* */
 
     public function renderKennel_list() {
-        $rows = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state, FALSE as have_puppies FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id")->fetchAll();
+        $rows = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state, FALSE as have_puppies FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id ORDER BY tbl_userkennel.kennel_create_date DESC limit 9")->fetchAll();
 
         $this->template->result = $rows;
     }
@@ -165,7 +165,7 @@ class kennelPresenter extends BasePresenter {
     }
 
     public function renderPlanned_litter_list($id = 0) {
-        $rows = $this->database->table("tbl_planned_litters")->order("year,month DESC")->fetchAll();
+        $rows = $this->database->table("tbl_planned_litters")->order("year,month DESC")->limit(9)->fetchAll();
         $this->template->planned_litter_rows = $rows;
         //$this->renderKennel_profile_home($id);
     }
