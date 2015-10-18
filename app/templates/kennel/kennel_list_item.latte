@@ -14,7 +14,7 @@
                 </div>
                 <h3 class="text-uppercase" style="height:40px;"><i class="fa fa-home"></i>&nbsp;&nbsp;{$row->kennel_name}</h3>
                 <hr style="margin-bottom: 10px;">
-                <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_$row->state}</span>
+                <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_DataModel::getProfileState($row->id)}</span>
                 <span class="list-item-regdate"><i class="fa fa-clock-o" data-toggle="tooltip" data-placement='top' title="{_ 'Registration date'}"></i>&nbsp;&nbsp;{$row->kennel_create_date|date:'%d.%m.%Y'}</span>
             </div>
         </div>

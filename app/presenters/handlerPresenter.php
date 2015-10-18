@@ -91,7 +91,12 @@ class handlerPresenter extends BasePresenter {
     }
 
     public function renderHandler_list() {
-        $rows = $this->database->table("tbl_userhandler")->limit(9)->fetchAll();
+        $count = $this->database->table("tbl_userhandler")->count();
+
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(9);
+
+        $rows = $this->database->table("tbl_userhandler")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
         $this->template->handler_rows = $rows;
     }

@@ -35,10 +35,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $current_user_id;
     public $receiver_user_id;
     public $receiver_profile_id;
+    public $paginator;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
         $this->data_model = new \DataModel($database);
+
+        $this->paginator = new Nette\Extras\Addons\VisualPaginator();
     }
 
 // return field name for form element
@@ -223,6 +226,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         $this->template->users_messages = $this->getMessagesUsersList();
         $this->template->messages_rows = $this->database->table("tbl_messages")->order("message_datetime DESC")->fetchAll();
+    }
+
+    public function createComponentVp() {
+        return $this->paginator;
     }
 
     public function renderUser_message_compose() {
@@ -692,7 +699,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             if ($activated == 0) {
                 $this->flashMessage($this->translate("Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link") . "<br/><br/><p class=\"text-center\"><a href=\"?resend_al=$id\" class=\"btn btn-danger btn-xl\"><i class=\"fa fa-envelope\"></i>&nbsp;&nbsp;" . $this->translate("Resend registration email") . "</a></p>", "Warning");
             } else {
-                $cnt = $this->database->table("tbl_user")->where("email=?", $values['txtEmail'])->where("password LIKE ?", "gnrtx%")->count();
+                $cnt = 0; //$this->database->table("tbl_user")->where("email=?", $values['txtEmail'])->where("password LIKE ?", "gnrtx%")->count();
 
                 if ($cnt > 0) {
                     $this->redirect("user:user_edit_account");
@@ -962,6 +969,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->flashMessage($ex->getMessage(), "Error");
         }
     }
+
 }
 
 class DFSTranslator implements Nette\Localization\ITranslator {
@@ -1040,6 +1048,7 @@ class DFSTranslator implements Nette\Localization\ITranslator {
             return $message;
         }
     }
+
 }
 
 ?>

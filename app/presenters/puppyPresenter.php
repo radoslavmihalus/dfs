@@ -40,7 +40,12 @@ class puppyPresenter extends BasePresenter {
     }
 
     public function renderPuppy_list() {
-        $rows = $this->database->table("tbl_puppies")->where("puppy_state=?", "ForSale")->order("id DESC")->limit(9)->fetchAll();
+        $count = $this->database->table("tbl_puppies")->where("puppy_state=?", "ForSale")->count();
+
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(9);
+
+        $rows = $this->database->table("tbl_puppies")->where("puppy_state=?", "ForSale")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         
         $this->template->puppies = $rows;
     }

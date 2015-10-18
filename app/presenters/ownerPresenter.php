@@ -16,11 +16,11 @@ class ownerPresenter extends BasePresenter {
 //    private $database;
     private $logged_in_owner_id;
 
-    public function __construct(Nette\Database\Context $database) {
-	$this->database = $database;
-	$this->data_model = new \DataModel($database);
-	$this->translator = new DFSTranslator();
-    }
+//    public function __construct(Nette\Database\Context $database) {
+//	$this->database = $database;
+//	$this->data_model = new \DataModel($database);
+//	$this->translator = new DFSTranslator();
+//    }
 
     protected function startup() {
 	parent::startup();
@@ -50,6 +50,10 @@ class ownerPresenter extends BasePresenter {
 //echo $dditems;
 
 	$this->template->dd_breeds_items = $dditems;
+    }
+
+    public function beforeRender() {
+        parent::beforeRender();
     }
 
     /*     * ******************* view default ******************** */
@@ -118,14 +122,20 @@ class ownerPresenter extends BasePresenter {
     }
 
     public function renderOwner_list() {
-	$rows = $this->database->table("tbl_userowner")->limit(9)->fetchAll();
-	$this->template->owners = $rows;
+        $count = $this->database->table("tbl_userowner")->count();
+
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(9);
+
+        $rows = $this->database->table("tbl_userowner")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+
+        $this->template->owners = $rows;
     }
 
     public function renderOwner_dog_list_home($id = 0) {
 	if ($id == 0)
 	    $id = $this->logged_in_owner_id;
-	$rows = $this->database->table("tbl_dogs")->where("profile_id=? AND user_id=?", $id, $this->logged_in_id)->fetchAll();
+	$rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->fetchAll();
 	$this->template->rows = $rows;
     }
 

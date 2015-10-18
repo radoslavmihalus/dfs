@@ -80,40 +80,67 @@ class dogPresenter extends BasePresenter {
     }
 
     public function renderDog_list($id = 0) {
-        if ($id > 0)
-            $rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->order("id DESC")->limit(9)->fetchAll();
-        else
-            $rows = $this->database->table("tbl_dogs")->order("id DESC")->limit(9)->fetchAll();
+        if ($id > 0) {
+            $count = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->count();
+
+            $this->paginator->getPaginator()->setItemCount($count);
+            $this->paginator->getPaginator()->setItemsPerPage(9);
+
+            $rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        } else {
+            $count = $this->database->table("tbl_dogs")->count();
+
+            $this->paginator->getPaginator()->setItemCount($count);
+            $this->paginator->getPaginator()->setItemsPerPage(9);
+
+            $rows = $this->database->table("tbl_dogs")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        }
 
         $this->template->rows = $rows;
     }
 
     public function renderDog_bis_list() {
-        $rows_bis = $this->database->table("tbl_dogs_shows")->where("JBIS1=1 OR BIS1=1")->limit(9)->fetchAll();
 
-        $i = 0;
+        $rows = $this->database->table("tbl_dogs_shows")->select("dog_id")->where("BIS1=? OR JBIS1=?", 1, 1)->fetchAll();
 
-        $ids = "";
+        $ids = array();
 
-        foreach ($rows_bis as $row) {
-            if ($i == 0)
-                $ids .= $row->dog_id;
-            else
-                $ids .= "," . $row->dog_id;
-
-            $i++;
+        foreach ($rows as $row) {
+            $ids[] = $row->dog_id;
         }
 
-        $rows = $this->database->query("SELECT * FROM tbl_dogs WHERE id IN ($ids) ORDER BY id DESC");
+        $count = $this->database->table("tbl_dogs")->where("id", $ids)->count();
+
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(9);
+
+        $rows = $this->database->table("tbl_dogs")->where("id", $ids)->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        //->where(":tbl_dogs:tbl_dogs_shows.JBIS1=1 OR :tbl_dogs:tbl_dogs_shows.BIS1=1")
+//        $i = 0;
+//
+//        $ids = "";
+//
+//        foreach ($rows_bis as $row) {
+//            if ($i == 0)
+//                $ids .= $row->dog_id;
+//            else
+//                $ids .= "," . $row->dog_id;
+//
+//            $i++;
+//        }
+//
+//        $rows = $this->database->query("SELECT * FROM tbl_dogs WHERE id IN ($ids) ORDER BY id DESC");
 
         $this->template->rows = $rows;
     }
 
     public function renderDog_for_mating_list($id = 0) {
-        if ($id > 0)
-            $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND offer_for_mating=1", $id)->limit(9)->fetchAll();
-        else
-            $rows = $this->database->table("tbl_dogs")->where("offer_for_mating=1")->limit(9)->fetchAll();
+        $count = $this->database->table("tbl_dogs")->where("offer_for_mating=1")->count();
+
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(9);
+
+        $rows = $this->database->table("tbl_dogs")->where("offer_for_mating=1")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
         $this->template->rows = $rows;
     }

@@ -18,11 +18,11 @@ class kennelPresenter extends BasePresenter {
     private $award_id;
     private $planned_litter_id;
 
-    public function __construct(Nette\Database\Context $database) {
-        $this->database = $database;
-        $this->data_model = new \DataModel($database);
-        $this->translator = new DFSTranslator();
-    }
+//    public function __construct(Nette\Database\Context $database) {
+//        $this->database = $database;
+//        $this->data_model = new \DataModel($database);
+//        $this->translator = new DFSTranslator();
+//    }
 
     protected function startup() {
         parent::startup();
@@ -64,7 +64,14 @@ class kennelPresenter extends BasePresenter {
     /*     * ******** renderers ************* */
 
     public function renderKennel_list() {
-        $rows = $this->database->query("SELECT tbl_userkennel.*, tbl_user.state, FALSE as have_puppies FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id ORDER BY tbl_userkennel.kennel_create_date DESC limit 9")->fetchAll();
+        $count = $this->database->table("tbl_userkennel")->count();
+
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(9);
+
+        $rows = $this->database->table("tbl_userkennel")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+
+        //$rows = $this->database->query("SELECT .*, tbl_user.state, FALSE as have_puppies FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id ORDER BY tbl_userkennel.kennel_create_date DESC limit ". $this->paginator->getLength() . "," . $this->paginator->getOffset())->fetchAll();
 
         $this->template->result = $rows;
     }
@@ -159,13 +166,18 @@ class kennelPresenter extends BasePresenter {
     public function renderKennel_planned_litter_list($id = 0) {
         if ($id == 0)
             $id = $this->logged_in_kennel_id;
-        $rows = $this->database->table("tbl_planned_litters")->where("kennel_id=?", $id)->order("year,month DESC")->fetchAll();
+        $rows = $this->database->table("tbl_planned_litters")->where("kennel_id=?", $id)->order("year DESC,month DESC")->fetchAll();
         $this->template->planned_litter_rows = $rows;
         $this->renderKennel_profile_home($id);
     }
 
     public function renderPlanned_litter_list($id = 0) {
-        $rows = $this->database->table("tbl_planned_litters")->order("year,month DESC")->limit(9)->fetchAll();
+        $count = $this->database->table("tbl_planned_litters")->count();
+
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(9);
+
+        $rows = $this->database->table("tbl_planned_litters")->order("year DESC,month DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         $this->template->planned_litter_rows = $rows;
         //$this->renderKennel_profile_home($id);
     }

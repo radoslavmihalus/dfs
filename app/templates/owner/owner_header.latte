@@ -8,7 +8,7 @@
             <a href="javascript:void(0)" onclick="ShowUploadModal('cover')"><i class="fa fa-camera fa-2x change-cover-icon"><span style="vertical-align: middle;display: block;float: right;padding-top: 5px;margin-left: 5px;font-size:13px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;">{_ 'Update cover photo'}</span></i></a>
             <div class="pull-left image-profile-thumb">
                 <a href="javascript:void(0)" onclick="ShowUploadModal('profile')"><i class="fa fa-camera fa-2x change-image-icon"></i></a>
-                <img src="{$profile_image}">
+                <a href="{DataModel::getProfileImage($profile_id)}" data-gallery><img src="{$profile_image}"></a>
             </div>
         </div>
         <div class="row">
