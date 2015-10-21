@@ -3,7 +3,10 @@
 {includeblock '../dog/dog_list_item.latte'}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_ 'Dogs'}<a n:href="dog:dog_create_profile" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        <div class="panel-description"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_ 'Dogs'}
+            {if DataModel::getPermission($profile_id,$logged_in_id,1)}
+                <a n:href="dog:dog_create_profile" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+            {/if}
         </div>
     </div>
     <div class="panel-default col-lg-12 col-md-12 col-xs-12" style="font-size: 13px;min-width: 244px">

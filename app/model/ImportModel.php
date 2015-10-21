@@ -18,6 +18,7 @@ class ImportModel {
         require_once 'www/inc/config_ajax.php';
         $importdb = getImportContext();
         $database = getContext();
+        $data_model = new DataModel($database);
 
         $users = $importdb->table("wp_users")->fetchAll();
         $database->table("tbl_user")->delete();
@@ -45,6 +46,9 @@ class ImportModel {
 
         $database->table("tbl_pedigree")->delete();
         $database->query("ALTER TABLE tbl_pedigree AUTO_INCREMENT=1");
+
+        $database->table("tbl_timeline")->delete();
+        $database->query("ALTER TABLE tbl_timeline AUTO_INCREMENT=1");
 
         $database->table("tbl_dogs_shows")->delete();
         $database->query("ALTER TABLE tbl_dogs_shows AUTO_INCREMENT=800000000");
@@ -152,13 +156,16 @@ class ImportModel {
                     $id = ImportModel::createKennelProfile($last_user_id, $description[1], $description[2], $user->user_url, $description[11], $description[10], $description[3], $database);
                     ImportModel::createDogProfiles($id, $user->ID, $database, $importdb);
                     ImportModel::createPlannedLitters($id, $user->ID, $database, $importdb);
+                    $data_model->addToTimeline($id, $id, 1, $description[1], $description[2]);
                     break;
                 case 2:
                     $id = ImportModel::createOwnerProfile($last_user_id, $description[2], $user->user_url, $description[11], $description[10], $database);
                     ImportModel::createDogProfiles($id, $user->ID, $database, $importdb);
+                    $data_model->addToTimeline($id, $id, 1, $fname . " " . $sname, $description[2]);
                     break;
                 case 3:
                     $id = ImportModel::createHandlerProfile($last_user_id, $description[12], $description[2], $user->user_url, $description[11], $description[10], $description[15], $database, $importdb);
+                    $data_model->addToTimeline($id, $id, 1, $fname . " " . $sname, $description[2]);
                     break;
             }
         }
@@ -329,6 +336,8 @@ class ImportModel {
             $importdb = $old_context;
             $database = $context;
 
+            $data_model = new DataModel($database);
+
             $dogs = $importdb->table("wp_posts")->where("post_author=?", $old_user_id)->where("post_type=?", "ac_rehome")->fetchAll();
 
             foreach ($dogs as $dog) {
@@ -443,6 +452,8 @@ class ImportModel {
 
                 $dog_id = $database->getInsertId();
 
+                $data_model->addToTimeline($kennel_id, $dog_id, 12, $data['dog_name'], $data['dog_image']);
+
                 ImportModel::importDogShows($dog_id, $dog->ID, $database, $importdb);
                 ImportModel::importDogChampionship($dog_id, $dog->ID, $database, $importdb);
                 ImportModel::importDogHealth($dog_id, $dog->ID, $database, $importdb);
@@ -471,6 +482,8 @@ class ImportModel {
     public static function createPlannedLitters($kennel_id, $old_id, $context, $old_context) {
         $importdb = $old_context;
         $database = $context;
+
+        $data_model = new DataModel($database);
 
         $planned_litters = $importdb->table("wp_posts")->where("post_author = ?", $old_id)->where("post_type = ?", "ac_litter")->fetchAll();
 
@@ -521,6 +534,8 @@ class ImportModel {
             $pl_id = $database->getInsertId();
             $old_plid = $description[9];
 
+            $data_model->addToTimeline($kennel_id, $pl_id, 7, $data['name'] . ' - ' . $data['month'] . '/' . $data['year'] . ' - ' . $data['dog_name'] . ' X ' . $data['bitch_name'], $data['dog_image']);
+
             ImportModel::createPuppies($pl_id, $kennel->id, $user->id, $old_plid, $database, $importdb);
         }
     }
@@ -529,6 +544,7 @@ class ImportModel {
         $puppies = $importdb->table("wp_postmeta")->where("post_id=?", $old_plid)->where("meta_key=?", "_puppy")->fetchAll();
         $planned_litter = $database->table("tbl_planned_litters")->where("id=?", $pl_id)->fetch();
 
+        $data_model = new DataModel($database);
 
         foreach ($puppies as $puppy) {
             $description = explode("|", $puppy->meta_value);
@@ -567,6 +583,10 @@ class ImportModel {
             $data['date_of_birth'] = $date;
 
             $database->table("tbl_puppies")->insert($data);
+
+            $puppy_id = $database->getInsertId();
+
+            $data_model->addToTimeline($kennel_id, $puppy_id, 13, $data['puppy_name'], $data['puppy_photo']);
         }
     }
 
@@ -623,6 +643,9 @@ class ImportModel {
         //$database = $importdb = getContext();
 
         $shows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_shows")->fetchAll();
+        $dog = $database->table("tbl_dogs")->where("id=?", $dog_id)->fetch();
+
+        $data_model = new DataModel($database);
 
         $count = 0;
 
@@ -779,6 +802,10 @@ class ImportModel {
 
             try {
                 $database->table("tbl_dogs_shows")->insert($data);
+
+                $id = $database->getInsertId();
+
+                $data_model->addToTimeline($dog->kennel_id, $id, 11, $data['show_date'] . ' - ' . $data['show_name'], $data['show_image']);
             } catch (\Exception $ex) {
                 $count++;
             }
@@ -811,6 +838,7 @@ class ImportModel {
         //$database = $importdb = getContext();
 
         $shows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_shows")->fetchAll();
+        $data_model = new DataModel($database);
 
         $count = 0;
 
@@ -974,6 +1002,10 @@ class ImportModel {
                 $id = $database->getInsertId();
                 $data['show_id'] = $id;
                 $database->table("tbl_handler_shows")->insert($data);
+
+                $id = $database->getInsertId();
+
+                $data_model->addToTimeline($handler_id, $id, 11, $data_group['show_date'] . ' - ' . $data_group['show_name'], $data['show_image']);
             } catch (\Exception $ex) {
                 $count++;
             }
@@ -985,6 +1017,10 @@ class ImportModel {
 
     public static function importDogChampionship($dog_id, $old_id, $database, $importdb) {
         $rows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_titles")->fetchAll();
+
+        $dog = $database->table("tbl_dogs")->where("id=?", $dog_id)->fetch();
+
+        $data_model = new DataModel($database);
 
         foreach ($rows as $row) {
             $description = explode("|", $row->meta_value);
@@ -1001,6 +1037,9 @@ class ImportModel {
 
             try {
                 $database->table("tbl_dogs_championship")->insert($data);
+                $id = $database->getInsertId();
+
+                $data_model->addToTimeline($dog->kennel_id, $id, 5, $data['description'], $data['image']);
             } catch (\Exception $ex) {
                 
             }
@@ -1081,11 +1120,12 @@ class ImportModel {
 
     public static function importDogPhotos($dog_id, $old_id, $database, $importdb) {
         $rows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_photos")->fetchAll();
+        $dog = $database->table("tbl_dogs")->where("id=?", $dog_id)->fetch();
+
+        $data_model = new DataModel($database);
 
         foreach ($rows as $row) {
             $description = explode("|", $row->meta_value);
-            
-            $dog = $database->table("tbl_dogs")->where("id=?",$dog_id)->fetch();
 
             $data = array();
             $data['user_id'] = $dog->user_id;
@@ -1095,19 +1135,23 @@ class ImportModel {
 
             try {
                 $database->table("tbl_photos")->insert($data);
+                $id = $database->getInsertId();
+
+                $data_model->addToTimeline($dog->profile_id, $id, 10, $data['description'], $data['image']);
             } catch (\Exception $ex) {
                 
             }
         }
-        }
+    }
 
-        public static function importHandlerPhotos($handler_id, $old_id, $database, $importdb) {
+    public static function importHandlerPhotos($handler_id, $old_id, $database, $importdb) {
         $rows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_photos")->fetchAll();
+        $data_model = new DataModel($database);
 
         foreach ($rows as $row) {
             $description = explode("|", $row->meta_value);
-            
-            $handler = $database->table("tbl_userhandler")->where("id=?",$handler_id)->fetch();
+
+            $handler = $database->table("tbl_userhandler")->where("id=?", $handler_id)->fetch();
 
             $data = array();
             $data['user_id'] = $handler->user_id;
@@ -1117,13 +1161,18 @@ class ImportModel {
 
             try {
                 $database->table("tbl_photos")->insert($data);
+                $id = $database->getInsertId();
+
+                $data_model->addToTimeline($handler_id, $id, 10, $data['description'], $data['image']);
             } catch (\Exception $ex) {
                 
             }
         }
     }
+
     public static function importHandlerAwards($handler_id, $old_id, $database, $importdb) {
         $rows = $importdb->table("wp_postmeta")->where("post_id=?", $old_id)->where("meta_key=?", "_animal_titles")->fetchAll();
+        $data_model = new DataModel($database);
 
         foreach ($rows as $row) {
             $description = explode("|", $row->meta_value);
@@ -1140,9 +1189,13 @@ class ImportModel {
 
             try {
                 $database->table("tbl_handler_awards")->insert($data);
+                $id = $database->getInsertId();
+
+                $data_model->addToTimeline($handler_id, $id, 5, $data['description'], $data['image']);
             } catch (\Exception $ex) {
                 
             }
         }
     }
+
 }

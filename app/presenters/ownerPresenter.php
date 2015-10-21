@@ -97,7 +97,12 @@ class ownerPresenter extends BasePresenter {
 	$this->template->state = $state;
         $this->template->profile_id = $id;
 
-        $this->template->timeline_rows = $this->data_model->getTimeline($id);
+        $count = $this->data_model->getTimelineCount($id);
+
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(9);
+
+        $this->template->timeline_rows = $this->data_model->getTimeline($id, $this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset());
         $this->template->timeline_name = $name;
         $this->template->timeline_profile_image = $profile_image;
         

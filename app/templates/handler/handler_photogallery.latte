@@ -5,7 +5,10 @@
 {/foreach}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<a n:href="photo:photo_add profile_id=>$profile_id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        <div class="panel-description"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}
+            {if DataModel::getPermission($profile_id,$logged_in_id,3)}
+                <a n:href="photo:photo_add profile_id=>$profile_id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+            {/if}
         </div>
     </div>
     <!-- Message -->
@@ -30,71 +33,73 @@
                     <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">{DataModel::getTimelineCommentsCount(0,$row->id)}</span></i>
                 </div>
                 <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
-                    <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" n:href="photo:photo_edit id=>$row->id" data-original-title="{_ 'Edit'}"><i class="fa fa-pencil"></i></a>
-                    <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="{_ 'Delete'}"><i class="fa fa-trash"></i></a>
+                    {if DataModel::getPermission($profile_id,$logged_in_id,3)}
+                        <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" n:href="photo:photo_edit id=>$row->id" data-original-title="{_ 'Edit'}"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="{_ 'Delete'}"><i class="fa fa-trash"></i></a>
+                        {/if}
                 </div>
             </div>
         {/foreach}
-<!--        <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
-            <a href="www/img/dog2.jpg" title="Dog2" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url('www/img/dog2.jpg');">
-            </a>
-            <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
-                <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">300</span></i> 
-                <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">895</span></i> 
-            </div>
-            <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
-                <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" href="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Delete"><i class="fa fa-trash"></i></a>
-            </div>
-        </div>
-        <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
-            <a href="www/img/dog3.jpg" title="Dog3" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url('www/img/dog3.jpg');">
-            </a>
-            <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
-                <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">300</span></i> 
-                <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">895</span></i> 
-            </div>
-            <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
-                <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" href="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Delete"><i class="fa fa-trash"></i></a>
-            </div>
-        </div>
-        <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
-            <a href="www/img/dog.jpg" title="Dog" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url('www/img/dog.jpg');">
-            </a>
-            <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
-                <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">300</span></i> 
-                <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">895</span></i> 
-            </div>
-            <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
-                <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" href="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Delete"><i class="fa fa-trash"></i></a>
-            </div>
-        </div>
-        <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
-            <a href="www/img/header2.jpg" title="Dog1" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url('www/img/header2.jpg');">
-            </a>
-            <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
-                <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">300</span></i> 
-                <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">895</span></i> 
-            </div>
-            <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
-                <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" href="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Delete"><i class="fa fa-trash"></i></a>
-            </div>
-        </div>
-        <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
-            <a href="www/img/header1.jpg" title="bla bla bla blfkke fkekkwf kewokeow" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url('www/img/header1.jpg');">
-            </a>
-            <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
-                <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">300</span></i> 
-                <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">895</span></i> 
-            </div>
-            <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
-                <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" href="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Delete"><i class="fa fa-trash"></i></a>
-            </div>
-        </div>-->
+        <!--        <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
+                    <a href="www/img/dog2.jpg" title="Dog2" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url('www/img/dog2.jpg');">
+                    </a>
+                    <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
+                        <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">300</span></i> 
+                        <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">895</span></i> 
+                    </div>
+                    <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
+                        <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" href="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+                    </div>
+                </div>
+                <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
+                    <a href="www/img/dog3.jpg" title="Dog3" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url('www/img/dog3.jpg');">
+                    </a>
+                    <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
+                        <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">300</span></i> 
+                        <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">895</span></i> 
+                    </div>
+                    <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
+                        <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" href="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+                    </div>
+                </div>
+                <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
+                    <a href="www/img/dog.jpg" title="Dog" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url('www/img/dog.jpg');">
+                    </a>
+                    <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
+                        <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">300</span></i> 
+                        <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">895</span></i> 
+                    </div>
+                    <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
+                        <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" href="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+                    </div>
+                </div>
+                <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
+                    <a href="www/img/header2.jpg" title="Dog1" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url('www/img/header2.jpg');">
+                    </a>
+                    <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
+                        <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">300</span></i> 
+                        <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">895</span></i> 
+                    </div>
+                    <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
+                        <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" href="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+                    </div>
+                </div>
+                <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
+                    <a href="www/img/header1.jpg" title="bla bla bla blfkke fkekkwf kewokeow" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url('www/img/header1.jpg');">
+                    </a>
+                    <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
+                        <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">300</span></i> 
+                        <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">895</span></i> 
+                    </div>
+                    <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
+                        <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" href="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+                    </div>
+                </div>-->
     </div>
 </div>
 

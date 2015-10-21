@@ -1,24 +1,30 @@
 {block content}
 {includeblock '../components/image_UploadPicture_modal_control.latte'}
-{include image_UploadPicture_modal_control name=>'cover', aspect_x => 16, aspect_y => 5, description => "Update cover photo"}
-{include image_UploadPicture_modal_control name=>'profile', aspect_x => 10, aspect_y => 10, description => "Select profile image"}
+{if DataModel::getPermission($profile_id,$logged_in_id,3)}
+    {include image_UploadPicture_modal_control name=>'cover', aspect_x => 16, aspect_y => 5, description => "Update cover photo"}
+    {include image_UploadPicture_modal_control name=>'profile', aspect_x => 10, aspect_y => 10, description => "Select profile image"}
+{/if}
 <div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body component">
-	<div class="profile-header-image" style="{if $have_background_image} background: url('{$background_image}')no-repeat center center;background-size:cover;background-position:50% 20%; {else} background-color:#D5D0C0; background-image: none{/if}">
-	    <a href="javascript:void(0)" onclick="ShowUploadModal('cover')"><i class="fa fa-camera fa-2x change-cover-icon"><span style="vertical-align: middle;display: block;float: right;padding-top: 5px;margin-left: 5px;font-size:13px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;">{_ 'Update cover photo'}</span></i></a>
-		    {if !$have_background_image}
-		    {/if}
-		    {*if $have_puppies*}
-	<!--                <span class="list-puppy-info-detail"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>-->
-	    {*/if*}
-	    <div class="pull-left image-profile-thumb">
-		<a href="javascript:void(0)" onclick="ShowUploadModal('profile')"><i class="fa fa-camera fa-2x change-image-icon"></i></a>
-		<a href="{DataModel::getProfileImage($profile_id)}" data-gallery><img src="{DataModel::getProfileImage($profile_id)}"></a>
-	    </div>
-	</div>
-<!--        <div class="profile-header-image">
-            <img src="img/referer1.jpg" class="pull-left image-profile-thumb">
-        </div>-->
+        <div class="profile-header-image" style="{if $have_background_image} background: url('{$background_image}')no-repeat center center;background-size:cover;background-position:50% 20%; {else} background-color:#D5D0C0; background-image: none{/if}">
+            {if DataModel::getPermission($profile_id,$logged_in_id,3)}
+                <a href="javascript:void(0)" onclick="ShowUploadModal('cover')"><i class="fa fa-camera fa-2x change-cover-icon"><span style="vertical-align: middle;display: block;float: right;padding-top: 5px;margin-left: 5px;font-size:13px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;">{_ 'Update cover photo'}</span></i></a>
+                    {/if}
+                    {if !$have_background_image}
+                    {/if}
+                    {*if $have_puppies*}
+        <!--                <span class="list-puppy-info-detail"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>-->
+            {*/if*}
+            <div class="pull-left image-profile-thumb">
+                {if DataModel::getPermission($profile_id,$logged_in_id,3)}
+                    <a href="javascript:void(0)" onclick="ShowUploadModal('profile')"><i class="fa fa-camera fa-2x change-image-icon"></i></a>
+                    {/if}
+                <a href="{DataModel::getProfileImage($profile_id)}" data-gallery><img src="{DataModel::getProfileImage($profile_id)}"></a>
+            </div>
+        </div>
+        <!--        <div class="profile-header-image">
+                    <img src="img/referer1.jpg" class="pull-left image-profile-thumb">
+                </div>-->
         <div class="row">
             <div class="col-md-6">
                 <h1 class="profile_type_heading text-uppercase">{DataModel::getProfileName($profile_id)}</h1>
@@ -26,11 +32,13 @@
                 <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{_$state}</span>
             </div>
             <div class="col-md-6" style="padding-top: 15px;">
-                <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">
-<!--                    <a type="button" class="btn btn-default"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'Add friend'}</a>
-                    <a type="button" class="btn btn-default"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_ 'Follow'}</a>-->
-                    <a type="button" class="btn btn-default" n:href="user:user_message_compose profile_id => $profile_id"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Message'}</a>
-                </div>
+                {if !DataModel::getPermission($profile_id,$logged_in_id,3)}
+                    <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">
+    <!--                    <a type="button" class="btn btn-default"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'Add friend'}</a>
+                        <a type="button" class="btn btn-default"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_ 'Follow'}</a>-->
+                        <a type="button" class="btn btn-default" n:href="user:user_message_compose profile_id => $profile_id"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Message'}</a>
+                    </div>
+                {/if}
             </div>
         </div>
         <hr style="margin-bottom: 0px;margin-top: 10px;">

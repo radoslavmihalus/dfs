@@ -5,7 +5,10 @@
         {include '../components/modal_gallery.latte' row=>$row}
     {/foreach}
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<a n:href="photo:photo_add profile_id=>$profile_id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        <div class="panel-description"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}
+            {if DataModel::getPermission($profile_id,$logged_in_id,1)}
+                <a n:href="photo:photo_add profile_id=>$profile_id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+            {/if}
         </div>
     </div>
     <!-- Message -->
@@ -30,8 +33,10 @@
                     <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">{DataModel::getTimelineCommentsCount(0,$row->id)}</span></i>
                 </div>
                 <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
-                    <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" n:href="photo:photo_edit id=>$row->id" data-original-title="{_ 'Edit'}"><i class="fa fa-pencil"></i></a>
-                    <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="{_ 'Delete'}"><i class="fa fa-trash"></i></a>
+                    {if DataModel::getPermission($profile_id,$logged_in_id,1)}
+                        <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" n:href="photo:photo_edit id=>$row->id" data-original-title="{_ 'Edit'}"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="{_ 'Delete'}"><i class="fa fa-trash"></i></a>
+                        {/if}
                 </div>
             </div>
         {/foreach}

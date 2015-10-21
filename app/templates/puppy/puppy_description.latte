@@ -2,7 +2,10 @@
 {block content}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="fa fa-file-text"></i>&nbsp;&nbsp;{_ 'Description'}<a n:href="puppy:puppy_description_add id=>$dog->id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Edit'}</a>
+        <div class="panel-description"><i class="fa fa-file-text"></i>&nbsp;&nbsp;{_ 'Description'}
+            {if DataModel::getPermission($dog->id,$logged_in_id,5)}
+                <a n:href="puppy:puppy_description_add id=>$dog->id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Edit'}</a>
+            {/if}
         </div>
     </div>
     <!-- Message -->

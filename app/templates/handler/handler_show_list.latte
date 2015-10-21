@@ -2,22 +2,25 @@
 {block content}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="fa fa-clipboard"></i>&nbsp;&nbsp;{_ 'Show results'}<a n:href="handler:handler_show_add_name" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add show'}</a>
+        <div class="panel-description"><i class="fa fa-clipboard"></i>&nbsp;&nbsp;{_ 'Show results'}
+            {if DataModel::getPermission($profile_id,$logged_in_id,3)}
+                <a n:href="handler:handler_show_add_name" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add show'}</a>
+            {/if}
         </div>
     </div>
     <!-- Message -->
-<!--        <div class="row">
-            <div class="col-md-12">
-                <div class="message-brown" role="alert">
-                    <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+    <!--        <div class="row">
+                <div class="col-md-12">
+                    <div class="message-brown" role="alert">
+                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+                    </div>
                 </div>
-            </div>
-        </div>-->
+            </div>-->
     <!-- / Message -->
     <!-- Title item -->
-            {includeblock 'handler_show_list_item.latte'}
-	    
-            {include handler_show_list_item handler_shows => $handler_shows}
+    {includeblock 'handler_show_list_item.latte'}
+
+    {include handler_show_list_item handler_shows => $handler_shows}
     <!-- /Title item -->
 </div>
 

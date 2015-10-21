@@ -2,21 +2,24 @@
 {block content}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="fa fa-clipboard"></i>&nbsp;&nbsp;{_ 'Show results'}<a n:href="dog:dog_show_add id=>$dog->id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        <div class="panel-description"><i class="fa fa-clipboard"></i>&nbsp;&nbsp;{_ 'Show results'}
+            {if DataModel::getPermission($dog->id,$logged_in_id,4)}
+                <a n:href="dog:dog_show_add id=>$dog->id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+            {/if}
         </div>
     </div>
     <!-- Message -->
-<!--        <div class="row">
-            <div class="col-md-12">
-                <div class="message-brown" role="alert">
-                    <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+    <!--        <div class="row">
+                <div class="col-md-12">
+                    <div class="message-brown" role="alert">
+                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'There are currently no added records'}
+                    </div>
                 </div>
-            </div>
-        </div>-->
+            </div>-->
     <!-- / Message -->
     <!-- Title item -->
-            {includeblock 'dog_show_list_item.latte'}
-            {include dog_show_list_item dog_shows=>$dog_shows}
+    {includeblock 'dog_show_list_item.latte'}
+    {include dog_show_list_item dog_shows=>$dog_shows}
     <!-- /Title item -->
 </div>
 

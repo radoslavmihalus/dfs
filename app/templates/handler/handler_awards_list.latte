@@ -3,7 +3,10 @@
 {block content}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_ 'Awards'}<a n:href="handler:handler_awards_add" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        <div class="panel-description"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_ 'Awards'}
+            {if DataModel::getPermission($profile_id,$logged_in_id,3)}
+                <a n:href="handler:handler_awards_add" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+            {/if}
         </div>
     </div>
     <!-- Message -->
@@ -30,15 +33,19 @@
                     {/if}
             </div>
             <div class="col-lg-3 col-md-3 column-spacer">
-                <a n:href="handler:handler_awards_edit id=>$championship->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
-                <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
+                {if DataModel::getPermission($championship->handler_id,$logged_in_id,3)}
+                    <a n:href="handler:handler_awards_edit id=>$championship->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
+                    <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
+                    {/if}
             </div>
-            {include modalConfirmation description=>"Are you sure you want to delete this record?", id => $row->id, do => "deleteAward"}
-            <script type="text/javascript">
-            $("#award_delete{$row->id}").on("click", function () {
-                $("#modalFlashConfirmation{$row->id}").modal("show");
-            });
-            </script>
+            {if DataModel::getPermission($championship->handler_id,$logged_in_id,3)}
+                {include modalConfirmation description=>"Are you sure you want to delete this record?", id => $row->id, do => "deleteAward"}
+                <script type="text/javascript">
+                    $("#award_delete{$row->id}").on("click", function () {
+                        $("#modalFlashConfirmation{$row->id}").modal("show");
+                    });
+                </script>
+            {/if}
         </div>
         <!-- /Title item -->
     {/foreach}

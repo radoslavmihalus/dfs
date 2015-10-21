@@ -17,10 +17,16 @@
 
     <div class="panel-body component">
         <div class="row">
-            {include modalConfirmation description=>"Are you sure you want to delete this profile?", id => $dog->id, do => "deleteDog"}
+            {if DataModel::getPermission($dog->id,$logged_in_id,4)}
+                {include modalConfirmation description=>"Are you sure you want to delete this profile?", id => $dog->id, do => "deleteDog"}
+            {/if}
             <div class="col-lg-6 col-md-12 col-xs-12">
-                <h1 class="profile_type_heading text-uppercase" style="margin-top: 0px;"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{$dog->dog_name}<a style="text-transform: capitalize;margin-left: 15px;" n:href="dog:dog_edit_profile id=>$dog->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" id="dog_delete" type="button"><i class="fa fa-trash"></i></button></h1>
-                        {if ($current_profile_type == 1)}
+                <h1 class="profile_type_heading text-uppercase" style="margin-top: 0px;"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{$dog->dog_name}
+                    {if DataModel::getPermission($dog->id,$logged_in_id,4)}
+                        <a style="text-transform: capitalize;margin-left: 15px;" n:href="dog:dog_edit_profile id=>$dog->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a><button style="margin-left: 5px;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" id="dog_delete" type="button"><i class="fa fa-trash"></i></button>
+                        {/if}
+                </h1>
+                {if ($current_profile_type == 1)}
                     <a n:href="kennel:kennel_profile_home id=>$dog->profile_id">
                         <span data-toggle="tooltip" data-placement='top' title="{_'Kennel'}" class="profile-type-description pull-left text-uppercase" style="color:#a5987f;margin-bottom: 10px;text-decoration: underline;"><i class="fa fa-home" style="margin-right: 10px;"></i>{DataModel::getProfileName($dog->profile_id)}</span>
                     </a>
@@ -45,18 +51,20 @@
             </div>
         </div>
         <hr style="margin-bottom: 5px;margin-top: 5px;">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                <label class="checkbox-inline" style="margin-bottom:5px;">
-                    <input id="StudConfirm" data-onstyle="primary" type="checkbox" data-toggle="toggle" data-onstyle="default" data-on="{_ 'Yes'}" data-off="{_ 'No'}" data-size="small" style="margin-bottom:5px;">{_ 'Offer your dog for mating'}
-                </label>  
+        {if DataModel::getPermission($dog->id,$logged_in_id,4)}
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <label class="checkbox-inline" style="margin-bottom:5px;">
+                        <input id="StudConfirm" data-onstyle="primary" type="checkbox" data-toggle="toggle" data-onstyle="default" data-on="{_ 'Yes'}" data-off="{_ 'No'}" data-size="small" style="margin-bottom:5px;">{_ 'Offer your dog for mating'}
+                    </label>  
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <label class="checkbox-inline">
+                        <input id="SaleConfirm" data-onstyle="warning" type="checkbox" data-toggle="toggle" data-onstyle="default" data-on="{_ 'Yes'}" data-off="{_ 'No'}" data-size="small">{_ 'Offer your dog for sale'}
+                    </label>  
+                </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                <label class="checkbox-inline">
-                    <input id="SaleConfirm" data-onstyle="warning" type="checkbox" data-toggle="toggle" data-onstyle="default" data-on="{_ 'Yes'}" data-off="{_ 'No'}" data-size="small">{_ 'Offer your dog for sale'}
-                </label>  
-            </div>
-        </div>
+        {/if}
         <hr style="margin-bottom: 5px;margin-top: 5px;">
         <div class="row">
             <div class="col-md-4">
@@ -221,11 +229,10 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     });
-
+    {if DataModel::getPermission($dog->id,$logged_in_id,4)}
     $("#dog_delete").on("click", function () {
         $("#modalFlashConfirmation" + {$dog->id}).modal("show");
     });
-    }
-
+    {/if}
 </script>
 {/block}

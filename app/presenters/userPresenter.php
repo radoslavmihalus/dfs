@@ -10,10 +10,10 @@ class userPresenter extends BasePresenter {
 
     //private $database;
 
-    public function __construct(Nette\Database\Context $database) {
-        $this->database = $database;
-        $this->translator = new DFSTranslator();
-    }
+//    public function __construct(Nette\Database\Context $database) {
+//        $this->database = $database;
+//        $this->translator = new DFSTranslator();
+//    }
 
     protected function startup() {
         parent::startup();

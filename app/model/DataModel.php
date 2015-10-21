@@ -76,23 +76,38 @@ class DataModel {
      * @param type $id
      * @return recordset of timeline rows
      */
-    function getTimeline($id = 0) {
+    function getTimeline($id = 0, $limit1 = 0, $limit2 = 9) {
         $rows = NULL;
 
-        $table = "tmp_" . rand(0, 10);
-        $this->database->query("DROP TABLE IF EXISTS $table");
+//        $table = "tmp_" . rand(0, 10);
+//        $this->database->query("DROP TABLE IF EXISTS $table");
+//        if ($id == 0)
+//            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline order by `date` DESC LIMIT 5");
+//        else
+//            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline where profile_id = ? order by `date` DESC LIMIT 5", $id);
+//        $this->database->query("ALTER TABLE `$table` ADD PRIMARY KEY (`id`)");
+//        $this->database->query("ALTER TABLE `$table` CHANGE `id` `id` BIGINT( 20 ) NOT NULL AUTO_INCREMENT");
 
         if ($id == 0)
-            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline order by `date` DESC LIMIT 5");
+            $rows = $this->database->table("tbl_timeline")->order("date DESC")->limit($limit1, $limit2)->fetchAll();
         else
-            $this->database->query("CREATE TABLE $table SELECT tbl_timeline.*, (IF(tbl_timeline.profile_id>=300000000,(SELECT owner_profile_picture FROM tbl_userowner WHERE id=tbl_timeline.profile_id), (SELECT kennel_profile_picture FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_profile_image, (IF(tbl_timeline.profile_id>=300000000,(SELECT concat(tbl_user.name,' ',tbl_user.surname) as timeline_name FROM tbl_user WHERE tbl_user.id=(SELECT user_id FROM tbl_userowner WHERE id=tbl_timeline.profile_id)), (SELECT kennel_name FROM tbl_userkennel WHERE tbl_userkennel.id=tbl_timeline.profile_id))) as timeline_name FROM tbl_timeline where profile_id = ? order by `date` DESC LIMIT 5", $id);
-
-        $this->database->query("ALTER TABLE `$table` ADD PRIMARY KEY (`id`)");
-        $this->database->query("ALTER TABLE `$table` CHANGE `id` `id` BIGINT( 20 ) NOT NULL AUTO_INCREMENT");
-
-        $rows = $this->database->table($table)->order("date DESC")->fetchAll();
+            $rows = $this->database->table("tbl_timeline")->where("profile_id=?", $id)->order("date DESC")->limit($limit1, $limit2)->fetchAll();
 
         return $rows;
+    }
+
+    function getTimelineCount($id = 0) {
+        $count = 0;
+
+//        $table = "tmp_" . rand(0, 10);
+//        $this->database->query("DROP TABLE IF EXISTS $table");
+
+        if ($id == 0)
+            $count = $this->database->table("tbl_timeline")->count();
+        else
+            $count = $this->database->table("tbl_timeline")->where("profile_id=?", $id)->count();
+
+        return $count;
     }
 
     function getTimelineComments($id = 0) {
@@ -882,4 +897,56 @@ class DataModel {
             return 0;
         }
     }
+
+    public static function getPermission($id, $user_id, $type) {
+        require_once 'www/inc/config_ajax.php';
+
+        $database = getContext();
+
+        switch ($type) {
+            case 1: // kennel
+                $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
+                if ($row->user_id == $user_id)
+                    return TRUE;
+                else
+                    return FALSE;
+                break;
+            case 2: // owner
+                $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
+                if ($row->user_id == $user_id)
+                    return TRUE;
+                else
+                    return FALSE;
+                break;
+            case 3: // handler
+                $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
+                if ($row->user_id == $user_id)
+                    return TRUE;
+                else
+                    return FALSE;
+                break;
+            case 4: //dog
+                $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
+                if ($row->user_id == $user_id)
+                    return TRUE;
+                else
+                    return FALSE;
+                break;
+            case 5: //puppy
+                $row = $database->table("tbl_puppies")->where("id=?", $id)->fetch();
+                if ($row->user_id == $user_id)
+                    return TRUE;
+                else
+                    return FALSE;
+                break;
+            case 6: //photo
+                $row = $database->table("tbl_photos")->where("id=?", $id)->fetch();
+                if ($row->user_id == $user_id)
+                    return TRUE;
+                else
+                    return FALSE;
+                break;
+        }
+    }
+
 }

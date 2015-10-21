@@ -86,15 +86,19 @@
             <span style="margin-right: 5px; color:#777;">{$row->other_title}</span>
         </div>
         <div class="col-lg-3 col-md-3 column-spacer">
-            <a n:href="dog:dog_show_edit id=>$row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
-            <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' id="show_delete{$row->id}" title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
+            {if DataModel::getPermission($dog->id,$logged_in_id,4)}
+                <a n:href="dog:dog_show_edit id=>$row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
+                <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' id="show_delete{$row->id}" title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
+                {/if}
         </div>
-        {include modalConfirmation description=>"Are you sure you want to delete this record?", id => $row->id, do => "deleteShow"}
-        <script type="text/javascript">
+        {if DataModel::getPermission($dog->id,$logged_in_id,4)}
+            {include modalConfirmation description=>"Are you sure you want to delete this record?", id => $row->id, do => "deleteShow"}
+            <script type="text/javascript">
             $("#show_delete{$row->id}").on("click", function () {
                 $("#modalFlashConfirmation{$row->id}").modal("show");
             });
-        </script>
+            </script>
+        {/if}
     </div>
 {/foreach}
 {/define}

@@ -1292,19 +1292,20 @@ class dogPresenter extends BasePresenter {
             $mother_name = $values['dog_mother'];
             $this->data_model->setParents($values['dog_name'], $father_name, $mother_name);
 
-            $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
+            $this->flashMessage($this->translate("Profile has been successfully updated."), "Success");
 
-            switch ($this->profile_type) {
-                case 1:
-                    $this->redirect("kennel:kennel_profile_home", $this->profile_id);
-                    break;
-                case 2:
-                    $this->redirect("owner:owner_profile_home", $this->profile_id);
-                    break;
-                case 3:
-                    $this->redirect("handler:handler_profile_home", $this->profile_id);
-                    break;
-            }
+//            switch ($this->profile_type) {
+//                case 1:
+//                    $this->redirect("kennel:kennel_profile_home", $this->profile_id);
+//                    break;
+//                case 2:
+//                    $this->redirect("owner:owner_profile_home", $this->profile_id);
+//                    break;
+//                case 3:
+//                    $this->redirect("handler:handler_profile_home", $this->profile_id);
+//                    break;
+//            }
+            $this->redirect("dog:dog_championschip_list", $this->dog_id);
         } catch (\ErrorException $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
         }

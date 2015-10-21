@@ -29,128 +29,128 @@
                         </tr>
                     </thead>
                     <tbody>
-			{var $father_name = DataModel::getFatherName($dog_name)}
-			{var $ped1 = DataModel::getFatherName($father_name)}
-			{var $ped2 = DataModel::getFatherName($ped1)}
-			{var $ped3 = DataModel::getMotherName($ped1)}
-			{var $ped4 = DataModel::getMotherName($father_name)}
-			{var $ped5 = DataModel::getFatherName($ped4)}
-			{var $ped6 = DataModel::getMotherName($ped4)}
+                        {var $father_name = DataModel::getFatherName($dog_name)}
+                        {var $ped1 = DataModel::getFatherName($father_name)}
+                        {var $ped2 = DataModel::getFatherName($ped1)}
+                        {var $ped3 = DataModel::getMotherName($ped1)}
+                        {var $ped4 = DataModel::getMotherName($father_name)}
+                        {var $ped5 = DataModel::getFatherName($ped4)}
+                        {var $ped6 = DataModel::getMotherName($ped4)}
 
-			{var $mother_name = DataModel::getMotherName($dog_name)}
-			{var $ped7 = DataModel::getFatherName($mother_name)}
-			{var $ped8 = DataModel::getFatherName($ped7)}
-			{var $ped9 = DataModel::getMotherName($ped7)}
-			{var $ped10 = DataModel::getMotherName($mother_name)}
-			{var $ped11 = DataModel::getFatherName($ped10)}
-			{var $ped12 = DataModel::getMotherName($ped10)}
+                        {var $mother_name = DataModel::getMotherName($dog_name)}
+                        {var $ped7 = DataModel::getFatherName($mother_name)}
+                        {var $ped8 = DataModel::getFatherName($ped7)}
+                        {var $ped9 = DataModel::getMotherName($ped7)}
+                        {var $ped10 = DataModel::getMotherName($mother_name)}
+                        {var $ped11 = DataModel::getFatherName($ped10)}
+                        {var $ped12 = DataModel::getMotherName($ped10)}
 
                         <tr>
 <!--                            <td class="pedigree" style="vertical-align: middle;" rowspan="4"><a n:href="#" style="text-decoration: none;"><img class="user-block-thumb" src="img/referer1.jpg"><span style="color:black">DAHUD DEL CAVDILO</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>21.10.2012</span></a></td>-->
-			    {if (DataModel::haveDogProfile($father_name))}
-				{var $dog_data = DataModel::getDogProfileByName($father_name)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="4"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="4"><span style="color:black">{$father_name}</span></td>
-				{/if}
-				{if (DataModel::haveDogProfile($ped1))}
-				    {var $dog_data = DataModel::getDogProfileByName($ped1)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped1}</span></td>
-				{/if}
-				{if (DataModel::haveDogProfile($ped2))}
-				    {var $dog_data = DataModel::getDogProfileByName($ped2)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped2}</span></td>
-				{/if}
+                            {if (DataModel::haveDogProfile($father_name))}
+                                {var $dog_data = DataModel::getDogProfileByName($father_name)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="4"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="4"><span style="color:black">{$father_name}</span></td>
+                                {/if}
+                                {if (DataModel::haveDogProfile($ped1))}
+                                    {var $dog_data = DataModel::getDogProfileByName($ped1)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped1}</span></td>
+                                {/if}
+                                {if (DataModel::haveDogProfile($ped2))}
+                                    {var $dog_data = DataModel::getDogProfileByName($ped2)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped2}</span></td>
+                                {/if}
                         </tr>
                         <tr>
 <!--                            <td class="pedigree" style="vertical-align: middle;" rowspan="1"><a n:href="#" style="text-decoration: none;"><img class="user-block-thumb" src="img/referer2.jpg"><span style="color:black">HUAYNA ACKON CAHUAK</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>21.10.2012</span></a></td>-->
-			    {if (DataModel::haveDogProfile($ped3))}
-				{var $dog_data = DataModel::getDogProfileByName($ped3)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped3}</span></td>
-				{/if}
+                            {if (DataModel::haveDogProfile($ped3))}
+                                {var $dog_data = DataModel::getDogProfileByName($ped3)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped3}</span></td>
+                                {/if}
                         </tr>
                         <tr>
-			    {if (DataModel::haveDogProfile($ped4))}
-				{var $dog_data = DataModel::getDogProfileByName($ped4)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped4}</span></td>
-				{/if}
-				{if (DataModel::haveDogProfile($ped5))}
-				    {var $dog_data = DataModel::getDogProfileByName($ped5)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped5}</span></td>
-				{/if}
+                            {if (DataModel::haveDogProfile($ped4))}
+                                {var $dog_data = DataModel::getDogProfileByName($ped4)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped4}</span></td>
+                                {/if}
+                                {if (DataModel::haveDogProfile($ped5))}
+                                    {var $dog_data = DataModel::getDogProfileByName($ped5)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped5}</span></td>
+                                {/if}
                         </tr>
                         <tr>
-			    {if (DataModel::haveDogProfile($ped6))}
-				{var $dog_data = DataModel::getDogProfileByName($ped6)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped6}</span></td>
-				{/if}
+                            {if (DataModel::haveDogProfile($ped6))}
+                                {var $dog_data = DataModel::getDogProfileByName($ped6)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped6}</span></td>
+                                {/if}
                         </tr>
                     </tbody>
                 </table>
                 <table class="table">
                     <tbody>
                         <tr>
-			    {if (DataModel::haveDogProfile($mother_name))}
-				{var $dog_data = DataModel::getDogProfileByName($mother_name)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="4"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="4"><span style="color:black">{$mother_name}</span></td>
-				{/if}
-				{if (DataModel::haveDogProfile($ped7))}
-				    {var $dog_data = DataModel::getDogProfileByName($ped7)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped7}</span></td>
-				{/if}
-				{if (DataModel::haveDogProfile($ped8))}
-				    {var $dog_data = DataModel::getDogProfileByName($ped8)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped8}</span></td>
-				{/if}
+                            {if (DataModel::haveDogProfile($mother_name))}
+                                {var $dog_data = DataModel::getDogProfileByName($mother_name)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="4"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="4"><span style="color:black">{$mother_name}</span></td>
+                                {/if}
+                                {if (DataModel::haveDogProfile($ped7))}
+                                    {var $dog_data = DataModel::getDogProfileByName($ped7)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped7}</span></td>
+                                {/if}
+                                {if (DataModel::haveDogProfile($ped8))}
+                                    {var $dog_data = DataModel::getDogProfileByName($ped8)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped8}</span></td>
+                                {/if}
                         </tr>
                         <tr>
                             <!--<td class="pedigree" style="vertical-align: middle;" rowspan="1"><a n:href="#" style="text-decoration: none;"><img class="user-block-thumb" src="img/referer2.jpg"><span style="color:black">HUAYNA ACKON CAHUAK</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>21.10.2012</span></a></td>-->
-			    {if (DataModel::haveDogProfile($ped9))}
-				{var $dog_data = DataModel::getDogProfileByName($ped9)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped9}</span></td>
-				{/if}
+                            {if (DataModel::haveDogProfile($ped9))}
+                                {var $dog_data = DataModel::getDogProfileByName($ped9)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped9}</span></td>
+                                {/if}
                         </tr>
                         <tr>
-			    {if (DataModel::haveDogProfile($ped10))}
-				{var $dog_data = DataModel::getDogProfileByName($ped10)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped10}</span></td>
-				{/if}
-				{if (DataModel::haveDogProfile($ped11))}
-				    {var $dog_data = DataModel::getDogProfileByName($ped11)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped11}</span></td>
-				{/if}
+                            {if (DataModel::haveDogProfile($ped10))}
+                                {var $dog_data = DataModel::getDogProfileByName($ped10)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped10}</span></td>
+                                {/if}
+                                {if (DataModel::haveDogProfile($ped11))}
+                                    {var $dog_data = DataModel::getDogProfileByName($ped11)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="1"><span style="color:black">{$ped11}</span></td>
+                                {/if}
                         </tr>
                         <tr>
-			    {if (DataModel::haveDogProfile($ped12))}
-				{var $dog_data = DataModel::getDogProfileByName($ped12)}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
-					{else}
-				<td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped12}</span></td>
-				{/if}
+                            {if (DataModel::haveDogProfile($ped12))}
+                                {var $dog_data = DataModel::getDogProfileByName($ped12)}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><a n:href="dog:dog_championschip_list id=>$dog_data->id" style="text-decoration: none;"><img class="user-block-thumb" src="{$dog_data->dog_image}"><span style="color:black">{$dog_data->dog_name}</span><br><span style="font-weight:normal;font-size:12px;color:#777" data-toggle="tooltip" data-placement="top" title="" data-original-title="{_ 'Date of birth'}"><i class="fa fa-star" style="margin-right: 10px;color:#777;"></i>{$dog_data->date_of_birth|date:'%d.%m.%Y'}</span></a></td>
+                                        {else}
+                                <td class="pedigree" style="vertical-align: middle;text-transform: uppercase;" rowspan="2"><span style="color:black">{$ped12}</span></td>
+                                {/if}
                         </tr>
                     </tbody>
                 </table>
@@ -158,18 +158,20 @@
             <!-- /Pedigree -->
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 col-lg-12 col-sm-12">
-	    {var $id=$dog_id}
-            <a n:href="dog:dog_pedigree_edit id=>$id" class="btn btn-danger btn-sm pull-right">{_ 'Edit'}</a>
+    {if DataModel::getPermission($dog->id,$logged_in_id,4)}
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                {var $id=$dog_id}
+                <a n:href="dog:dog_pedigree_edit id=>$id" class="btn btn-danger btn-sm pull-right">{_ 'Edit'}</a>
+            </div>
         </div>
-    </div>
+    {/if}
     <!-- /Pedigree view -->
 </div>
 
 <script>
     $(function () {
-	$('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
 {/block}

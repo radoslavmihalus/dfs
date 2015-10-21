@@ -2,7 +2,10 @@
 {block content}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_ 'Breeds for handling'}<a n:href="handler:handler_handling_breed_add" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        <div class="panel-description"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_ 'Breeds for handling'}
+            {if DataModel::getPermission($profile_id,$logged_in_id,3)}
+                <a n:href="handler:handler_handling_breed_add" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+            {/if}
         </div>
     </div>
     <!-- Message -->
@@ -18,9 +21,9 @@
     <div class="row" style="padding:10px;">
         <div class="col-lg-12 col-md-12 column-spacer">
             <ul>
-		{foreach $handling_breeds as $handling_breed}
-                <li style="display: inline-block;margin-right: 15px;"><i class="fa fa-tag" style="margin-right: 10px;"></i>{$handling_breed->breed_name}</li>
-		{/foreach}
+                {foreach $handling_breeds as $handling_breed}
+                    <li style="display: inline-block;margin-right: 15px;"><i class="fa fa-tag" style="margin-right: 10px;"></i>{$handling_breed->breed_name}</li>
+                    {/foreach}
             </ul>
         </div>
     </div>

@@ -9,17 +9,25 @@ use App\Model,
 class timelinePresenter extends BasePresenter {
 
 //    private $database;
-
-    public function __construct(Nette\Database\Context $database) {
-        $this->database = $database;
-        $this->translator = new DFSTranslator();
-        $this->data_model = new \DataModel($database);
-    }
+//    public function __construct(Nette\Database\Context $database) {
+//        $this->database = $database;
+//        $this->translator = new DFSTranslator();
+//        $this->data_model = new \DataModel($database);
+//    }
 
     protected function startup() {
         parent::startup();
+    }
 
-        $this->template->timeline_rows = $this->data_model->getTimeline();
+    public function beforeRender() {
+        parent::beforeRender();
+
+        $count = $this->data_model->getTimelineCount();
+
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(9);
+
+        $this->template->timeline_rows = $this->data_model->getTimeline(0, $this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset());
     }
 
     /*     * ******************* view default ******************** */
@@ -60,7 +68,6 @@ class timelinePresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
-
     protected function createComponentAlbumForm() {
 //		$form = new Form;
 //		$form->addText('artist', 'Artist:')
