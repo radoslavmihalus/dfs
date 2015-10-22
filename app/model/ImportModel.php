@@ -21,14 +21,19 @@ class ImportModel {
         $data_model = new DataModel($database);
 
         $users = $importdb->table("wp_users")->fetchAll();
+        
         $database->table("tbl_user")->delete();
         $database->query("ALTER TABLE tbl_user AUTO_INCREMENT=100000000");
+        
         $database->table("tbl_userkennel")->delete();
         $database->query("ALTER TABLE tbl_userkennel AUTO_INCREMENT=200000000");
+        
         $database->table("tbl_userowner")->delete();
         $database->query("ALTER TABLE tbl_userowner AUTO_INCREMENT=300000000");
+        
         $database->table("tbl_userhandler")->delete();
         $database->query("ALTER TABLE tbl_userhandler AUTO_INCREMENT=400000000");
+        
         $database->table("tbl_dogs")->delete();
         $database->query("ALTER TABLE tbl_dogs AUTO_INCREMENT=500000000");
 
@@ -82,6 +87,21 @@ class ImportModel {
 
         $database->table("tbl_photos")->delete();
         $database->query("ALTER TABLE tbl_photos AUTO_INCREMENT=2800000000");
+
+        $database->table("tbl_messages")->delete();
+        $database->query("ALTER TABLE tbl_messages AUTO_INCREMENT=1");
+
+        $database->table("tbl_messages_groups")->delete();
+        $database->query("ALTER TABLE tbl_messages_groups AUTO_INCREMENT=1");
+
+        $database->table("tbl_notify")->delete();
+        $database->query("ALTER TABLE tbl_notify AUTO_INCREMENT=1");
+
+        $database->table("tbl_comments")->delete();
+        $database->query("ALTER TABLE tbl_comments AUTO_INCREMENT=1");
+
+        $database->table("tbl_likes")->delete();
+        $database->query("ALTER TABLE tbl_likes AUTO_INCREMENT=1");
 
         foreach ($users as $user) {
             $rand = rand(10000, 99999);

@@ -44,7 +44,7 @@
             function ()
             {
                 $.ajax({
-                    url: '/?do=messageCheck',
+                    url: '/?do=messageCheck&profile_id={$message_profile_id}',
                     dataType: 'html',
                 }).done(function (data) {
                     $("#areaMessages").html(data);
@@ -57,10 +57,8 @@
 
         $(this).ajaxSubmit(function (payload) {
             $.get(document.href);
-            $.nette.success(payload);
-
         });
-        return false;
+        return true;
     });
 
     $("#formSendMessage :submit").on("click", function () {

@@ -903,45 +903,53 @@ class DataModel {
 
         $database = getContext();
 
+        $user = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+        
+        $profile_id = $user->active_profile_id;
+        
         switch ($type) {
             case 1: // kennel
-                $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
-                if ($row->user_id == $user_id)
+                if ($id == $profile_id)
                     return TRUE;
                 else
                     return FALSE;
                 break;
             case 2: // owner
-                $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
-                if ($row->user_id == $user_id)
+                if ($id == $profile_id)
                     return TRUE;
                 else
                     return FALSE;
                 break;
             case 3: // handler
-                $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
-                if ($row->user_id == $user_id)
+                if ($id == $profile_id)
                     return TRUE;
                 else
                     return FALSE;
                 break;
             case 4: //dog
                 $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
-                if ($row->user_id == $user_id)
+                if ($row->profile_id == $profile_id)
                     return TRUE;
                 else
                     return FALSE;
                 break;
             case 5: //puppy
                 $row = $database->table("tbl_puppies")->where("id=?", $id)->fetch();
-                if ($row->user_id == $user_id)
+                if ($row->profile_id == $profile_id)
                     return TRUE;
                 else
                     return FALSE;
                 break;
             case 6: //photo
                 $row = $database->table("tbl_photos")->where("id=?", $id)->fetch();
-                if ($row->user_id == $user_id)
+                if ($row->profile_id == $profile_id)
+                    return TRUE;
+                else
+                    return FALSE;
+                break;
+            case 7: //timeline
+                $row = $database->table("tbl_timeline")->where("id=?", $id)->fetch();
+                if ($row->profile_id == $profile_id)
                     return TRUE;
                 else
                     return FALSE;

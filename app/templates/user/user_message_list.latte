@@ -8,14 +8,23 @@
             </div>
             <div class="col-md-12">
                 {foreach $users_messages as $message}
-                    <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" href="message-compose">
-                        <img class="user-block-thumb" src="{DataModel::getProfileImage($message->profile_id)}"/>
-                        <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->profile_id)}</span>
-                        <span class="notification-item-event-time">{$message->message_datetime|date:'%d.%m.%Y'}&nbsp;&nbsp;{$message->message_datetime|date:'H:i:s'}</span>
-                        <span class="notification-item-event" style="color:black">{$message->message}</span>
-                        <button class="btn btn-danger btn-xs pull-left" title="{_ 'Delete messages'}" type="button"><i class="fa fa-trash"></i>&nbsp;&nbsp;{_ 'Delete messages'}</button>
-                    </a>
-                {/foreach}
+                    {if ( $message->from_profile_id > 0 )}
+                        <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" n:href="user:user_message_compose profile_id => $message->from_profile_id">
+                        {else}
+                            <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" n:href="user:user_message_compose profile_id => $message->from_user_id">
+                            {/if}
+                            {if ( $message->from_profile_id > 0 )}
+                                <img class="user-block-thumb" src="{DataModel::getProfileImage($message->from_profile_id)}"/>
+                                <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_profile_id)}</span>
+                            {else}
+                                <img class="user-block-thumb" src="{DataModel::getProfileImage($message->from_user_id)}"/>
+                                <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_user_id)}</span>
+                            {/if}
+                            <span class="notification-item-event-time">{$message->message_datetime|date:'%d.%m.%Y'}&nbsp;&nbsp;{$message->message_datetime|date:'H:i:s'}</span>
+                            <span class="notification-item-event" style="color:black">{$message->message}</span>
+                            <button class="btn btn-danger btn-xs pull-left" title="{_ 'Delete messages'}" type="button"><i class="fa fa-trash"></i>&nbsp;&nbsp;{_ 'Delete messages'}</button>
+                        </a>
+                    {/foreach}
             </div>
         </div>
 

@@ -224,76 +224,25 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->template->has_handler_profile = false;
         }
 
-        $this->template->users_messages = $this->getMessagesUsersList();
-        $this->template->messages_rows = $this->database->table("tbl_messages")->order("message_datetime DESC")->fetchAll();
+//        $this->template->users_messages = $this->getMessagesUsersList();
+//        $this->template->messages_rows = $this->database->table("tbl_messages_groups")->order("message_datetime DESC")->fetchAll();
     }
 
     public function createComponentVp() {
         return $this->paginator;
     }
 
-    public function renderUser_message_compose() {
-        $this->template->users_messages = $this->getMessagesUsersList();
-        $this->template->messages_rows = $this->database->table("tbl_messages")->order("message_datetime ASC")->fetchAll();
+    public function renderUser_message_compose($profile_id = 0) {
+        //$this->template->users_messages = $this->getMessagesUsersList();
+        //$this->template->messages_rows = $this->database->table("tbl_messages")->order("message_datetime ASC")->fetchAll();
+
+        $this->template->message_profile_id = $profile_id;
     }
 
-    public function getMessagesUsersList() {
-        $profile_id = $this->profile_id;
-        $user_id = $this->current_user_id;
+    public function renderUser_message_list() {
+        $messages_rows = $this->database->table("tbl_messages_groups")->where("to_profile_id=?", $this->logged_in_profile_id)->order("message_datetime DESC")->fetchAll();
 
-        $rnd = "tmp_msg_" . rand(1, 10);
-
-//$this->database->query("DROP TABLE IF EXISTS `$rnd`");
-
-        try {
-            $this->database->query("CREATE TABLE `$rnd` (
- `id` bigint(20) NOT NULL AUTO_INCREMENT,
- `user_id` bigint(20) DEFAULT NULL,
- `profile_id` bigint(20) DEFAULT NULL,
- `message` mediumtext,
- `message_datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
- PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8");
-        } catch (\Exception $ex) {
-            $this->database->query("DELETE FROM `$rnd`");
-        }
-
-        if ($user_id != NULL) {
-            $users = $this->database->table("tbl_messages")->where("from_user_id = ? OR to_user_id = ?", $user_id, $user_id)->order("message_datetime DESC")->limit(5)->fetchAll();
-
-            $myarray = array();
-
-            foreach ($users as $user) {
-                $user_array = array();
-                if ($user->from_user_id != $user_id) {
-                    if (!in_array($user->from_user_id, $myarray)) {
-                        $user_array['user_id'] = $user->from_user_id;
-                        $user_array['message_datetime'] = $user->message_datetime;
-                        $user_array['message'] = $user->message;
-                        $user_array['profile_id'] = $user->from_profile_id;
-
-                        $myarray[] = $user->from_user_id;
-
-                        $this->database->table($rnd)->insert($user_array);
-                    }
-                } else {
-                    if (!in_array($user->to_user_id, $myarray)) {
-                        $user_array['user_id'] = $user->to_user_id;
-                        $user_array['message_datetime'] = $user->message_datetime;
-                        $user_array['message'] = $user->message;
-                        $user_array['profile_id'] = $user->to_profile_id;
-
-                        $myarray[] = $user->to_user_id;
-
-                        $this->database->table($rnd)->insert($user_array);
-                    }
-                }
-            }
-        }
-
-        $user_array = $this->database->table($rnd)->fetchAll();
-
-        return $user_array;
+        $this->template->users_messages = $messages_rows;
     }
 
     public function actionUser_message_compose($profile_id) {
@@ -431,7 +380,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function handleNewMessagesCount() {
-        $messages_count = $this->database->table('tbl_messages')->where("(from_user_id = ? OR to_user_id = ?) AND unreaded = 1", $this->logged_in_id, $this->logged_in_id)->count();
+        if ($this->logged_in_profile_id > 0)
+            $messages_count = $this->database->table('tbl_messages_groups')->where("to_profile_id = ? AND unreaded = 1", $this->logged_in_profile_id)->count();
+        else
+            $messages_count = $this->database->table('tbl_messages_groups')->where("to_user_id = ? AND unreaded = 1", $this->logged_in_id)->count();
         echo $messages_count;
         $this->terminate();
     }
@@ -450,7 +402,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         else
             $rows = $this->database->table("tbl_notify")->where("notify_user_id=?", $user_id)->order("notify_datetime DESC")->fetchAll();
 
-        $notify = "";
+        $notify = '<li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">' . $this->translator->translate("Notifications") . '</li>';
 
         foreach ($rows as $row) {
             $notify .= '<li role="presentation" class="notify_item">
@@ -472,35 +424,84 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->terminate();
     }
 
-    public function handleClearMessages() {
+    public function handleClearMessages($limit = 3) {
         $user_id = $this->logged_in_id;
-        $this->database->query("UPDATE tbl_messages SET unreaded = 0 WHERE to_user_id = $user_id");
-    }
 
-    public function handleMessageCheck() {
-        $messages_rows = $this->database->table('tbl_messages')->fetchAll();
+        $messages_rows = $this->database->table("tbl_messages_groups")->where("to_profile_id=?", $this->logged_in_profile_id)->limit($limit)->fetchAll();
 
-        $data = "";
+        $result = '<li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">' . $this->translator->translate("Messages") . '</li>';
 
-        foreach ($messages_rows as $row) {
-            $data .= '<div style = "display:block;float:left;width:100%;padding: 10px 0px 10px 0px;">';
+        foreach ($messages_rows as $message) {
+            if ($message->from_profile_id > 0)
+                $profile_id = $message->from_profile_id;
+            else
+                $profile_id = $message->from_user_id;
 
-            if ($row->from_profile_id > 0) {
-                $profile_image = \DataModel::getProfileImage($row->from_profile_id);
-                $profile_name = \DataModel::getProfileName($row->from_profile_id);
-            } else {
-                $profile_image = \DataModel::getProfileImage($row->from_user_id);
-                $profile_name = \DataModel::getProfileName($row->from_user_id);
-            }
-            $data .= '<img class = "user-block-thumb" src = "' . $profile_image . '"/>';
-            $data .= '<a href = "#"><span class = "notification-item-header text-uppercase">' . $profile_name . '</span></a>';
-            $data .= '<span class = "notification-item-event-time">' . date('d.m.Y', strtotime($row->message_datetime)) . '&nbsp;&nbsp;' . date('H:i:s', strtotime($row->message_datetime)) . '</span>';
-            $data .= '<span class = "notification-item-event" style = "color:black">' . nl2br($row->message) . '</span></div>';
+            $result .= '<li role="presentation">';
+            $result .= '<a role="menuitem" tabindex="-1" href="message-compose?profile_id=' . $profile_id . '">';
+            $result .= '<img class="user-block-thumb" src="' . \DataModel::getProfileImage($profile_id) . '"/>';
+            $result .= '<span class="notification-item-header text-uppercase">' . \DataModel::getProfileName($profile_id) . '</span>';
+            $result .= '<span class="notification-item-event-time">' . date("d.m.Y", strtotime($message->message_datetime)) . '&nbsp;&nbsp;' . date("H:i:s", strtotime($message->message_datetime)) . '</span>';
+            $result .= '<span class="notification-item-event">' . $message->message . '</span>';
+            $result .= '</a>';
+            $result .= '</li>';
         }
 
-        echo $data;
+        $result .= '<li role = "presentation" class="messages_list_item">
+        <a class = "dropdown-footer" href = "message-list">
+        ' . $this->translator->translate("View all") . '&nbsp;&nbsp;<i class = "fa fa-angle-double-right"></i>
+        </a>
+        </li>';
+
+        $this->database->query("UPDATE tbl_messages_groups SET unreaded = 0 WHERE to_user_id = $user_id");
+
+        echo $result;
         $this->terminate();
+    }
+
+    public function handleMessageCheck($profile_id = 0) {
+        if ($profile_id > 0) {
+
+            if ($profile_id >= 100000000 && $profile_id < 200000000)
+                if ($this->logged_in_profile_id > 0)
+                    $messages_rows = $this->database->table('tbl_messages')->where("(from_user_id = ? AND to_profile_id=?) OR (from_profile_id=? AND to_user_id=?)", $profile_id, $this->logged_in_profile_id, $this->logged_in_profile_id, $profile_id)->fetchAll();
+                else
+                    $messages_rows = $this->database->table('tbl_messages')->where("(from_user_id = ? AND to_user_id=?) OR (from_user_id=? AND to_user_id=?)", $profile_id, $this->logged_in_id, $this->logged_in_id, $profile_id)->fetchAll();
+            else
+                $messages_rows = $this->database->table('tbl_messages')->where("(from_profile_id = ? AND to_profile_id=?) OR (from_profile_id=? AND to_profile_id=?)", $profile_id, $this->logged_in_profile_id, $this->logged_in_profile_id, $profile_id)->fetchAll();
+
+            $data = "";
+
+            foreach ($messages_rows as $row) {
+                $data .= '<div style = "display:block;float:left;width:100%;padding: 10px 0px 10px 0px;">';
+
+                if ($row->from_profile_id > 0) {
+                    $profile_image = \DataModel::getProfileImage($row->from_profile_id);
+                    $profile_name = \DataModel::getProfileName($row->from_profile_id);
+                    $profile_id = $row->from_profile_id;
+                } else {
+                    $profile_image = \DataModel::getProfileImage($row->from_user_id);
+                    $profile_name = \DataModel::getProfileName($row->from_user_id);
+                    $profile_id = 0;
+                }
+                $data .= '<img class = "user-block-thumb" src = "' . $profile_image . '"/>';
+                if ($profile_id > 0)
+                    $data .= '<a href = "' . \DataModel::getProfileLinkUrl($profile_id, TRUE) . '?id=' . $profile_id . '"><span class = "notification-item-header text-uppercase">' . $profile_name . '</span></a>';
+                else
+                    $data .= '<a href = "#"><span class = "notification-item-header text-uppercase">' . $profile_name . '</span></a>';
+                $data .= '<span class = "notification-item-event-time">' . date('d.m.Y', strtotime($row->message_datetime)) . '&nbsp;
+        &nbsp;
+        ' . date('H:i:s', strtotime($row->message_datetime)) . '</span>';
+                $data .= '<span class = "notification-item-event" style = "color:black">' . nl2br($row->message) . '</span></div>';
+            }
+
+            echo $data;
+            $this->terminate();
 //$this->invalidateControl("areaMessages");
+        } else {
+            echo '';
+            $this->terminate();
+        }
     }
 
     public function handleTimelineRemove($id = 0) {
@@ -594,6 +595,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->redirect("LandingPage:default");
     }
 
+    public function handleLogoutChangePassword() {
+        $this->session->destroy();
+        $this->flashMessage($this->translate("Password changed successfully. Please log in with your new password."), "Success");
+        $this->redirect("LandingPage:default");
+    }
+
     public function handleGetDogImage($name) {
         if (\DataModel::haveDogProfile($name)) {
             $dog = $this->database->table("tbl_dogs")->where("dog_name=?", $name)->fetch();
@@ -644,7 +651,59 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public function frmSendMessageSucceeded($button) {
         $values = $button->getForm()->getValues();
 
+        $message = $values['txtMessageCompose'];
+
+        if (strlen($message) > 23) {
+            $message = substr($message, 0, 20) . '...';
+        }
+
+        if ($this->profile_id > 0) {
+            if ($this->profile_id == $this->logged_in_id)
+                $this->profile_id = 0;
+        } else
+            $this->profile_id = 0;
+
+        if ($this->receiver_profile_id > 0) {
+            if ($this->receiver_profile_id == $this->receiver_user_id)
+                $this->receiver_profile_id = 0;
+        } else
+            $this->receiver_profile_id = 0;
+
+        $data_group['from_user_id'] = $this->logged_in_id;
+
+        $data_group['from_profile_id'] = $this->profile_id;
+        $data_group['to_user_id'] = $this->receiver_user_id;
+        $data_group['to_profile_id'] = $this->receiver_profile_id;
+        $data_group['message'] = $message;
+        $data_group['unreaded'] = 1;
+        $data_group['active_from'] = 1;
+        $data_group['active_to'] = 1;
+
+        $cnt = $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->logged_in_id, $this->receiver_user_id, $this->profile_id, $this->receiver_profile_id)->count();
+
+        if ($cnt > 0)
+            $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->logged_in_id, $this->receiver_user_id, $this->profile_id, $this->receiver_profile_id)->update($data_group);
+        else
+            $this->database->table("tbl_messages_groups")->insert($data_group);
+
+        $data_group['to_user_id'] = $this->logged_in_id;
+        $data_group['to_profile_id'] = $this->profile_id;
+        $data_group['from_user_id'] = $this->receiver_user_id;
+        $data_group['from_profile_id'] = $this->receiver_profile_id;
+        $data_group['message'] = $message;
+        $data_group['unreaded'] = 0;
+        $data_group['active_from'] = 1;
+        $data_group['active_to'] = 1;
+
+        $cnt = $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->receiver_user_id, $this->logged_in_id, $this->receiver_profile_id, $this->profile_id)->count();
+
+        if ($cnt > 0)
+            $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->receiver_user_id, $this->logged_in_id, $this->receiver_profile_id, $this->profile_id)->update($data_group);
+        else
+            $this->database->table("tbl_messages_groups")->insert($data_group);
+
         $data['message'] = $values['txtMessageCompose'];
+
         $data['from_user_id'] = $this->logged_in_id;
         $data['from_profile_id'] = $this->profile_id;
         $data['to_user_id'] = $this->receiver_user_id;
@@ -766,47 +825,47 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $data = $this->database->table("tbl_user")->where("email=?", $email)->fetch();
 
         $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <html xmlns = "http://www.w3.org/1999/xhtml">
+        <head>
+        <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8" />
         <title>Welcome to DOGFORSHOW</title>
-    </head>
-    <body bgcolor="#f6f8f1" style="margin: 0; padding: 0; min-width: 100%!important;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#8C8067;" >
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td>
-                    <table style="padding-bottom:20px; margin-top:10px; width: 90%; max-width: 600px;" class="content" bgcolor="white" align="center" cellpadding="10" cellspacing="0" border="0">
-                        <tr>
-                            <td align="center" style="border-bottom:#8C8067 1px solid">
-                                <h1 style="font-size:23px;color:#8C8067;">' . $this->translate('Hello') . ' ' . $data->name . '</h1>
-                            </td>
-                        </tr>
-						<tr>
-                            <td>
-                                <ul style="list-style-type: none">
-                                <li>' . $this->translate('Email') . ': <strong>' . $data->email . '</strong></li>
-                                <li>' . $this->translate('Password') . ': <strong>' . $data->password . '</strong></li>
-                                </ul>
-                            </td>
-                        </tr>
-			<tr>
-                            <td align="center">
-                                <p style="font-size:15px;"><a href="http://new.dogforshow.com" style="padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Login to your account') . '</a></p>
-                            </td>
-                        </tr>
-                    </table>
-                    <table style="margin-top: 10px; width: 90%; max-width: 600px;color:white;" align="center" cellpadding="10" cellspacing="0" border="0">
-                        <tr>
-                            <td align="center">
-                                <p style="font-size:12px;">' . $this->translate('This email was automatically sent by DOGFORSHOW system. Please dont reply on this email') . '</p>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+        </head>
+        <body bgcolor = "#f6f8f1" style = "margin: 0; padding: 0; min-width: 100%!important;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#8C8067;" >
+        <table width = "100%" border = "0" cellpadding = "0" cellspacing = "0">
+        <tr>
+        <td>
+        <table style = "padding-bottom:20px; margin-top:10px; width: 90%; max-width: 600px;" class = "content" bgcolor = "white" align = "center" cellpadding = "10" cellspacing = "0" border = "0">
+        <tr>
+        <td align = "center" style = "border-bottom:#8C8067 1px solid">
+        <h1 style = "font-size:23px;color:#8C8067;">' . $this->translate('Hello') . ' ' . $data->name . '</h1>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <ul style = "list-style-type: none">
+        <li>' . $this->translate('Email') . ': <strong>' . $data->email . '</strong></li>
+        <li>' . $this->translate('Password') . ': <strong>' . $data->password . '</strong></li>
+        </ul>
+        </td>
+        </tr>
+        <tr>
+        <td align = "center">
+        <p style = "font-size:15px;"><a href = "http://new.dogforshow.com" style = "padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Login to your account') . '</a></p>
+        </td>
+        </tr>
         </table>
-    </body>
-</html>';
+        <table style = "margin-top: 10px; width: 90%; max-width: 600px;color:white;" align = "center" cellpadding = "10" cellspacing = "0" border = "0">
+        <tr>
+        <td align = "center">
+        <p style = "font-size:12px;">' . $this->translate('This email was automatically sent by DOGFORSHOW system. Please dont reply on this email') . '</p>
+        </td>
+        </tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+        </body>
+        </html>';
 
         return $body;
     }
@@ -858,44 +917,44 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 ->addTo($to)
                 ->setSubject($this->translate('Welcome to DOGFORSHOW'))
                 ->setHtmlBody('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <html xmlns = "http://www.w3.org/1999/xhtml">
+        <head>
+        <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8" />
         <title>Welcome to DOGFORSHOW</title>
-    </head>
-    <body bgcolor="#f6f8f1" style="margin: 0; padding: 0; min-width: 100%!important;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#8C8067;" >
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td>
-                    <table style="padding-bottom:20px; margin-top:10px; width: 90%; max-width: 600px;" class="content" bgcolor="white" align="center" cellpadding="10" cellspacing="0" border="0">
-                        <tr>
-                            <td align="center" style="border-bottom:#8C8067 1px solid">
-                                <h1 style="font-size:23px;color:#8C8067;">' . $this->translate("Hello") . ' ' . $name . '</h1>
-                            </td>
-                        </tr>
-						<tr>
-                            <td>
-                                <p style="font-size:15px;">' . $this->translate('Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link') . '</p>
-                            </td>
-                        </tr>
-			<tr>
-                            <td align="center">
-                                <p style="font-size:15px;"><a href="http://new.dogforshow.com/www/templates/scripts/activation.php?alink=' . $id . '" style="padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Activate account') . '</a></p>
-                            </td>
-                        </tr>
-                    </table>
-                    <table style="margin-top: 10px; width: 90%; max-width: 600px;color:white;" align="center" cellpadding="10" cellspacing="0" border="0">
-                        <tr>
-                            <td align="center">
-                                <p style="font-size:12px;">' . $this->translate('This email was automatically sent by DOGFORSHOW system. Please dont reply on this email') . '</p>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+        </head>
+        <body bgcolor = "#f6f8f1" style = "margin: 0; padding: 0; min-width: 100%!important;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#8C8067;" >
+        <table width = "100%" border = "0" cellpadding = "0" cellspacing = "0">
+        <tr>
+        <td>
+        <table style = "padding-bottom:20px; margin-top:10px; width: 90%; max-width: 600px;" class = "content" bgcolor = "white" align = "center" cellpadding = "10" cellspacing = "0" border = "0">
+        <tr>
+        <td align = "center" style = "border-bottom:#8C8067 1px solid">
+        <h1 style = "font-size:23px;color:#8C8067;">' . $this->translate("Hello") . ' ' . $name . '</h1>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <p style = "font-size:15px;">' . $this->translate('Thank you for your registration to DOGFORSHOW. Please activate your account by clicking on the following link') . '</p>
+        </td>
+        </tr>
+        <tr>
+        <td align = "center">
+        <p style = "font-size:15px;"><a href = "http://new.dogforshow.com/www/templates/scripts/activation.php?alink=' . $id . '" style = "padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Activate account') . '</a></p>
+        </td>
+        </tr>
         </table>
-    </body>
-</html>');
+        <table style = "margin-top: 10px; width: 90%; max-width: 600px;color:white;" align = "center" cellpadding = "10" cellspacing = "0" border = "0">
+        <tr>
+        <td align = "center">
+        <p style = "font-size:12px;">' . $this->translate('This email was automatically sent by DOGFORSHOW system. Please dont reply on this email') . '</p>
+        </td>
+        </tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+        </body>
+        </html>');
 
         $mailer = new SendmailMailer();
         $mailer->send($mail);

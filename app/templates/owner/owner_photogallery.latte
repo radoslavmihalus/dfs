@@ -5,7 +5,10 @@
 {/foreach}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-        <div class="panel-description"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<a n:href="photo:photo_add profile_id=>$profile_id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+        <div class="panel-description"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}
+            {if DataModel::getPermission($profile_id,$logged_in_id,2)}
+                <a n:href="photo:photo_add profile_id=>$profile_id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
+            {/if}
         </div>
     </div>
     <!-- Message -->

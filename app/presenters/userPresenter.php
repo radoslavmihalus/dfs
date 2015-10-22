@@ -187,8 +187,7 @@ class userPresenter extends BasePresenter {
 
             $userdata = $this->database->table("tbl_user")->where("id = ?", $myid)->update($values);
 
-            $this->flashMessage($this->translate("Password changed successfully. Please log in with your new password."), "Success");
-            $this->redirect('LandingPage:default');
+            $this->handleLogoutChangePassword();
         } catch (\ErrorException $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
             $this->redirect('user:user_edit_account');
