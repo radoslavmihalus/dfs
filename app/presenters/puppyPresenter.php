@@ -76,12 +76,12 @@ class puppyPresenter extends BasePresenter {
         $this->paginator->getPaginator()->setItemsPerPage(9);
 
         $rows = $this->database->table("tbl_puppies")
-                ->where("puppy_state=?", "ForSale")
-                ->where("puppy_name LIKE ?", "%" . $this->filter_dog_name . "%")
-                ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
-                ->where("puppy_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
-                ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
-                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+                        ->where("puppy_state=?", "ForSale")
+                        ->where("puppy_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                        ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                        ->where("puppy_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
+                        ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                        ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
         $this->template->puppies = $rows;
     }
@@ -106,10 +106,19 @@ class puppyPresenter extends BasePresenter {
     /*     * ******************* action methods ******************** */
 
     public function actionPuppy_create_profile($plid = 0) {
+//$this->planned_litter_id = $id;
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $this->redirect("user:user_premium");
+            $this->terminate();
+        }
         $this->planned_litter_id = $plid;
     }
 
     public function actionPuppy_edit_profile($id = 0) {
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $this->redirect("user:user_premium");
+            $this->terminate();
+        }
         $this->dog_id = $id;
     }
 

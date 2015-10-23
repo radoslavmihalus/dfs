@@ -34,6 +34,14 @@ class photoPresenter extends BasePresenter {
     }
 
     public function actionPhoto_add($profile_id) {
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $cnt = $this->database->table("tbl_photos")->where("profile_id=?", $profile_id)->count();
+
+            if ($cnt > 4)
+                $this->redirect("user:user_premium");
+            $this->terminate();
+        }
+
         $this->photo_profile_id = $profile_id;
     }
 

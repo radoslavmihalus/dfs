@@ -201,11 +201,11 @@ class dogPresenter extends BasePresenter {
 
 
         $rows = $this->database->table("tbl_dogs")
-                ->where("offer_for_mating=1")
-                ->where("dog_name LIKE ?", "%" . $this->filter_dog_name . "%")
-                ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
-                ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
-                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+                        ->where("offer_for_mating=1")
+                        ->where("dog_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                        ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                        ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                        ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
         $this->template->rows = $rows;
     }

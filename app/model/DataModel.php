@@ -134,8 +134,9 @@ class DataModel {
     }
 
     static function haveDogProfile($dog_name) {
-        require_once 'www/inc/config_ajax.php';
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         $rows = $database->table("tbl_dogs")->where("dog_name=?", $dog_name)->count();
 
@@ -146,8 +147,9 @@ class DataModel {
     }
 
     static function getDogProfileByName($dog_name) {
-        require_once 'www/inc/config_ajax.php';
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         $row = $database->table("tbl_dogs")->where("dog_name=?", $dog_name)->fetch();
 
@@ -155,8 +157,9 @@ class DataModel {
     }
 
     static function haveHandlerProfile($handler_name) {
-        require_once 'www/inc/config_ajax.php';
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         $full_name = explode(" ", $handler_name);
 
@@ -184,8 +187,9 @@ class DataModel {
     }
 
     static function getHandlerProfileByName($handler_name) {
-        require_once 'www/inc/config_ajax.php';
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         $full_name = explode(" ", $handler_name);
 
@@ -212,8 +216,9 @@ class DataModel {
     }
 
     static function getMotherName($dogName) {
-        require_once 'www/inc/config_ajax.php';
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
         $return = "";
 
         if ($dogName == NULL)
@@ -228,9 +233,25 @@ class DataModel {
         return $return;
     }
 
+    static function hasProfile($user_id) {
+        $database = $GLOBALS['database'];
+
+        $cnt1 = $database->table("tbl_userkennel")->where("user_id=?", $user_id)->count();
+        $cnt2 = $database->table("tbl_userowner")->where("user_id=?", $user_id)->count();
+        $cnt3 = $database->table("tbl_userhandler")->where("user_id=?", $user_id)->count();
+
+        $cnt = $cnt1 + $cnt2 + $cnt3;
+
+        if ($cnt > 0)
+            return TRUE;
+        else
+            return FALSE;
+    }
+
     static function getFatherName($dogName) {
-        require_once 'www/inc/config_ajax.php';
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
         $return = "";
 
         if ($dogName == NULL)
@@ -246,28 +267,29 @@ class DataModel {
     }
 
     static function getProfileImage($id = 0) {
-        require_once 'www/inc/config_ajax.php';
+        //require_once 'www/inc/config_ajax.php';
 
         try {
             $image = "";
 
-            $database = getContext();
+            $database = $GLOBALS['database'];
+            //$database = getContext();
 
             if ($id >= 100000000 && $id < 200000000) {
                 $image = "www/img/avatar.jpg";
             } elseif ($id >= 200000000 && $id < 300000000) {
-                // kennel 200000000
-                // kennel_profile_picture
+// kennel 200000000
+// kennel_profile_picture
                 $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
                 $image = $row->kennel_profile_picture;
             } elseif ($id >= 300000000 && $id < 400000000) {
-                // owner 300000000
-                // owner_profile_picture
+// owner 300000000
+// owner_profile_picture
                 $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
                 $image = $row->owner_profile_picture;
             } elseif ($id >= 400000000 && $id < 500000000) {
-                // handler 400000000
-                // handler_profile_picture
+// handler 400000000
+// handler_profile_picture
                 $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
                 $image = $row->handler_profile_picture;
             } else {
@@ -280,31 +302,32 @@ class DataModel {
     }
 
     static function getProfileName($id = 0) {
-        require_once 'www/inc/config_ajax.php';
+//        require_once 'www/inc/config_ajax.php';
 
         try {
             $name = "";
 
-            $database = getContext();
+//            $database = getContext();
+            $database = $GLOBALS['database'];
 
             if ($id >= 100000000 && $id < 200000000) {
                 $row = $database->table("tbl_user")->where("id=?", $id)->fetch();
                 $name = $row->name . " " . $row->surname;
             } elseif ($id >= 200000000 && $id < 300000000) {
-                // kennel 200000000
-                // kennel_profile_picture
+// kennel 200000000
+// kennel_profile_picture
                 $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
                 $name = $row->kennel_name;
             } elseif ($id >= 300000000 && $id < 400000000) {
-                // owner 300000000
-                // owner_profile_picture
+// owner 300000000
+// owner_profile_picture
                 $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
                 $user_id = $row->user_id;
                 $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
                 $name = $row->name . " " . $row->surname;
             } elseif ($id >= 400000000 && $id < 500000000) {
-                // handler 400000000
-                // handler_profile_picture
+// handler 400000000
+// handler_profile_picture
                 $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
                 $user_id = $row->user_id;
                 $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
@@ -320,9 +343,9 @@ class DataModel {
     }
 
     static function havePuppies($profile_id) {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         $cnt = $database->table("tbl_puppies")->where("profile_id=?", $profile_id)->where("puppy_state=?", "ForSale")->count();
 
@@ -333,35 +356,36 @@ class DataModel {
     }
 
     static function getUserIdByProfileId($id = 0) {
-        require_once 'www/inc/config_ajax.php';
+//        require_once 'www/inc/config_ajax.php';
 
         $ret_id = 0;
 
-        $database = getContext();
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         if ($id >= 100000000 && $id < 200000000) {
             $ret_id = $id;
         } elseif ($id >= 200000000 && $id < 300000000) {
-            // kennel 200000000
-            // kennel_profile_picture
+// kennel 200000000
+// kennel_profile_picture
             $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
             $ret_id = $row->user_id;
         } elseif ($id >= 300000000 && $id < 400000000) {
-            // owner 300000000
-            // owner_profile_picture
+// owner 300000000
+// owner_profile_picture
             $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
             $ret_id = $row->user_id;
         } elseif ($id >= 400000000 && $id < 500000000) {
-            // handler 400000000
-            // handler_profile_picture
+// handler 400000000
+// handler_profile_picture
             $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
             $ret_id = $row->user_id;
         } elseif ($id >= 500000000 && $id < 600000000) {
-            // dog
+// dog
             $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
             $ret_id = $row->user_id;
         } elseif ($id >= 600000000 && $id < 700000000) {
-            // puppy
+// puppy
             $row = $database->table("tbl_puppies")->where("id=?", $id)->fetch();
             $ret_id = $row->user_id;
         } else {
@@ -376,16 +400,16 @@ class DataModel {
         if ($id >= 100000000 && $id < 200000000) {
             $ret_id = 0;
         } elseif ($id >= 200000000 && $id < 300000000) {
-            // kennel 200000000
-            // kennel_profile_picture
+// kennel 200000000
+// kennel_profile_picture
             $ret_id = 1;
         } elseif ($id >= 300000000 && $id < 400000000) {
-            // owner 300000000
-            // owner_profile_picture
+// owner 300000000
+// owner_profile_picture
             $ret_id = 2;
         } else {
-            // handler 400000000
-            // handler_profile_picture
+// handler 400000000
+// handler_profile_picture
             $ret_id = 3;
         }
 
@@ -393,33 +417,34 @@ class DataModel {
     }
 
     static function getProfileState($id = 0) {
-        require_once 'www/inc/config_ajax.php';
+//        require_once 'www/inc/config_ajax.php';
 
         try {
             $state = "";
 
-            $database = getContext();
+//            $database = getContext();
+            $database = $GLOBALS['database'];
 
             if ($id >= 100000000 && $id < 200000000) {
                 $row = $database->table("tbl_user")->where("id=?", $id)->fetch();
                 $state = $row->state;
             } elseif ($id >= 200000000 && $id < 300000000) {
-                // kennel 200000000
-                // kennel_profile_picture
+// kennel 200000000
+// kennel_profile_picture
                 $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
                 $user_id = $row->user_id;
                 $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
                 $state = $row->state;
             } elseif ($id >= 300000000 && $id < 400000000) {
-                // owner 300000000
-                // owner_profile_picture
+// owner 300000000
+// owner_profile_picture
                 $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
                 $user_id = $row->user_id;
                 $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
                 $state = $row->state;
             } else {
-                // handler 400000000
-                // handler_profile_picture
+// handler 400000000
+// handler_profile_picture
                 $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
                 $user_id = $row->user_id;
                 $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
@@ -432,9 +457,9 @@ class DataModel {
     }
 
     static function getPlannedLitterById($id = 0) {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         $row = $database->table("tbl_planned_litters")->where("id=?", $id)->fetch();
 
@@ -451,9 +476,9 @@ class DataModel {
      */
 
     static function getPlannedLitterMother($id = 0) {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         $row = $database->table("tbl_planned_litters")->where("id=?", $id)->fetch();
         $row = $database->table("tbl_dogs")->where("dog_name=?", $row->bitch_name)->fetch();
@@ -461,57 +486,57 @@ class DataModel {
         return $row;
     }
 
-    //counter functions
+//counter functions
 
     static function getKennelsCount() {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         return $database->table("tbl_userkennel")->count();
     }
 
     static function getOwnersCount() {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         return $database->table("tbl_userowner")->count();
     }
 
     static function getHandlersCount() {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         return $database->table("tbl_userhandler")->count();
     }
 
     static function getDogsCount() {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         return $database->table("tbl_dogs")->count();
     }
 
     static function getMattingDogsCount() {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         return $database->table("tbl_dogs")->where("offer_for_mating=1")->count();
     }
 
     static function getPlannedLittersCount() {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         return $database->table("tbl_planned_litters")->count();
     }
 
-    //counter functions
+//counter functions
 
 
     function addTimelineComment($user_id, $profile_id, $timeline_id, $comment) {
@@ -607,17 +632,17 @@ class DataModel {
      * @param type $id - id of timeline item
      */
     static function deleteFromTimelineByItem($id) {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         $database->table("tbl_timeline")->where("id=?", $id)->delete();
     }
 
     static function getTimelineLikesCount($timeline_id = 0, $event_id = 0) {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         if ($timeline_id != 0)
             $count = $database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->count();
@@ -630,9 +655,9 @@ class DataModel {
     }
 
     static function getTimelineCommentsCount($timeline_id = 0, $event_id = 0) {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         if ($timeline_id != 0)
             $count = $database->table("tbl_comments")->where("timeline_id=?", $timeline_id)->count();
@@ -657,9 +682,9 @@ class DataModel {
 
 
     static function getDogTitles($dog_id) {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         $cnt_array = array();
         try {
@@ -689,9 +714,9 @@ class DataModel {
     }
 
     static function getHandlerTitles($handler_id) {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         $cnt_array = array();
         try {
@@ -722,8 +747,9 @@ class DataModel {
 
     static function getPhotoDescription($id) {
         try {
-            require_once 'www/inc/config_ajax.php';
-            $database = getContext();
+//            require_once 'www/inc/config_ajax.php';
+//            $database = getContext();
+            $database = $GLOBALS['database'];
 
             $row = $database->table("tbl_photos")->where("id=?", $id)->fetch();
 
@@ -735,9 +761,9 @@ class DataModel {
 
     static function getPhotoImage($id) {
         try {
-            require_once 'www/inc/config_ajax.php';
-
-            $database = getContext();
+//            require_once 'www/inc/config_ajax.php';
+//            $database = getContext();
+            $database = $GLOBALS['database'];
 
             $row = $database->table("tbl_photos")->where("id=?", $id)->fetch();
 
@@ -840,11 +866,12 @@ class DataModel {
 
     static function getUserProfilesCount($user_id) {
         try {
-            require_once 'www/inc/config_ajax.php';
+//            require_once 'www/inc/config_ajax.php';
 
             $profiles = 0;
 
-            $database = getContext();
+//            $database = getContext();
+            $database = $GLOBALS['database'];
 
             $profiles = $profiles + $database->table("tbl_userkennel")->where("user_id=?", $user_id)->count();
             $profiles = $profiles + $database->table("tbl_userhandler")->where("user_id=?", $user_id)->count();
@@ -858,7 +885,7 @@ class DataModel {
 
     static function isBIS($dog_id) {
         try {
-            require_once 'www/inc/config_ajax.php';
+//            require_once 'www/inc/config_ajax.php';
 
             $titles = \DataModel::getDogTitles($dog_id);
             if ($titles['JBIS'] || $titles['BIS'])
@@ -872,9 +899,9 @@ class DataModel {
 
     static function getBISCount() {
         try {
-            require_once 'www/inc/config_ajax.php';
-
-            $database = getContext();
+//            require_once 'www/inc/config_ajax.php';
+//            $database = getContext();
+            $database = $GLOBALS['database'];
 
             $count = $database->table("tbl_dogs_shows")->where("BIS1=? OR JBIS1=?", 1, 1)->group("dog_id")->count();
 
@@ -886,9 +913,9 @@ class DataModel {
 
     static function getPuppiesForSaleCount() {
         try {
-            require_once 'www/inc/config_ajax.php';
-
-            $database = getContext();
+//            require_once 'www/inc/config_ajax.php';
+//            $database = getContext();
+            $database = $GLOBALS['database'];
 
             $count = $database->table("tbl_puppies")->where("puppy_state=?", "ForSale")->count();
 
@@ -899,9 +926,9 @@ class DataModel {
     }
 
     public static function getPermission($id, $user_id, $type) {
-        require_once 'www/inc/config_ajax.php';
-
-        $database = getContext();
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
 
         try {
 
@@ -961,6 +988,19 @@ class DataModel {
         } catch (\Exception $ex) {
             
         }
+    }
+
+    public static function getPremium($user_id) {
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
+
+        $cnt = $database->table("tbl_user")->where("id=? AND premium_expiry_date >= now()", $user_id)->count();
+
+        if ($cnt > 0)
+            return TRUE;
+        else
+            return FALSE;
     }
 
 }

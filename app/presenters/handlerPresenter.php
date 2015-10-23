@@ -238,6 +238,15 @@ class handlerPresenter extends BasePresenter {
         $this->show_group_id = $show_id;
     }
 
+    public function actionHandler_create_profile($id) {
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            if (\DataModel::hasProfile($this->logged_in_id)) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
+    }
+
     /**
      * End of actions
      */

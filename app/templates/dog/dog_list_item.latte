@@ -8,7 +8,9 @@
                         {if $row->offer_for_mating==1}
                             <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
                             {/if}
-                        <span class="for-sale-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'For sale'}"><i class="fa fa-eur"></i></span>    
+                            {if $row->offer_for_sell==1}
+                            <span class="for-sale-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'For sale'}"><i class="fa fa-eur"></i></span>    
+                            {/if}
                             {if (DataModel::isBIS($row->id))}
                             <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
                             {/if}
@@ -32,7 +34,9 @@
                     {if $row->offer_for_mating==1}
                         <span class="list-mating-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'Available for mating'}"><i class="fa fa-venus-mars"></i></span>
                         {/if}
-                    <span class="for-sale-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'For sale'}"><i class="fa fa-eur"></i></span>
+                        {if $row->offer_for_sell==1}
+                        <span class="for-sale-info" style="font-size:15px;" data-toggle="tooltip" data-placement='top' title="{_ 'For sale'}"><i class="fa fa-eur"></i></span>
+                        {/if}
                         {if (DataModel::isBIS($row->id))}
                         <span class="best-in-show-info" style="font-size:15px;"data-toggle="tooltip" data-placement='top' title="Best in show"><i class="glyphicons glyphicons-certificate"></i></span>
                         {/if}

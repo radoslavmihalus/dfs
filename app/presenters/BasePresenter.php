@@ -42,6 +42,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->data_model = new \DataModel($database);
 
         $this->paginator = new Nette\Extras\Addons\VisualPaginator();
+
+        $GLOBALS['database'] = $database;
     }
 
 // return field name for form element
@@ -71,6 +73,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
     protected function startup() {
         parent::startup();
+        $GLOBALS['database'] = $this->database;
 
         $this->translator = new DFSTranslator();
 
@@ -284,6 +287,39 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $form->addPassword("txtConfirmPassword")->setRequired($this->translate("Required field"));
         $form->addSubmit('btnSignIn', 'Sign in')->onClick[] = array($this, 'frmSignInSucceeded');
         return $form;
+    }
+
+    public function handleOfferForSale($id = 0) {
+        $id = $_GET['id'];
+        $row = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
+        if ($row->user_id == $this->logged_in_id) {
+            //$this->database->table("tbl_dogs")->where("dog_id=?", $id)->delete();
+            if ($row->offer_for_sell == 1)
+                $data['offer_for_sell'] = 0;
+            else
+                $data['offer_for_sell'] = 1;
+
+            if (\DataModel::getPremium($row->user_id))
+                $this->database->table("tbl_dogs")->where("id=?", $id)->update($data);
+        }
+        $this->redirect("dog:dog_championschip_list", array("id" => $row->id));
+    }
+
+    public function handleOfferForStud($id = 0) {
+        $id = $_GET['id'];
+        $row = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
+        if ($row->user_id == $this->logged_in_id) {
+            //$this->database->table("tbl_dogs")->where("dog_id=?", $id)->delete();
+
+            if ($row->offer_for_mating == 1)
+                $data['offer_for_mating'] = 0;
+            else
+                $data['offer_for_mating'] = 1;
+
+            if (\DataModel::getPremium($row->user_id))
+                $this->database->table("tbl_dogs")->where("id=?", $id)->update($data);
+        }
+        $this->redirect("dog:dog_championschip_list", array("id" => $row->id));
     }
 
     public function handleChangeLang($lang) {

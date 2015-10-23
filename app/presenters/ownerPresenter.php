@@ -151,6 +151,15 @@ class ownerPresenter extends BasePresenter {
         $this->template->photos = $rows;
         $this->renderOwner_profile_home($id);
     }
+    
+    public function actionOwner_create_profile($id) {
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            if (\DataModel::hasProfile($this->logged_in_id)) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
+    }
     /*     * ******************* component factories ******************** */
 
     /**

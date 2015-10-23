@@ -71,7 +71,7 @@ class kennelPresenter extends BasePresenter {
 
         $rows = $this->database->table("tbl_userkennel")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
-        //$rows = $this->database->query("SELECT .*, tbl_user.state, FALSE as have_puppies FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id ORDER BY tbl_userkennel.kennel_create_date DESC limit ". $this->paginator->getLength() . "," . $this->paginator->getOffset())->fetchAll();
+//$rows = $this->database->query("SELECT .*, tbl_user.state, FALSE as have_puppies FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id ORDER BY tbl_userkennel.kennel_create_date DESC limit ". $this->paginator->getLength() . "," . $this->paginator->getOffset())->fetchAll();
 
         $this->template->result = $rows;
     }
@@ -131,7 +131,7 @@ class kennelPresenter extends BasePresenter {
 
         $this->template->profile_id = $id;
 
-        // getTimeline        
+// getTimeline        
 //        $rows = NULL;
 //
 //        $table = "tbl_" . rand(100000000, 999999999);
@@ -145,7 +145,7 @@ class kennelPresenter extends BasePresenter {
 //        $this->database->query("ALTER TABLE `$table` CHANGE `id` `id` BIGINT( 20 ) NOT NULL AUTO_INCREMENT");
 //        
 //        $rows = $this->database->table($table)->fetchAll();
-        // getTimeline
+// getTimeline
 
         $count = $this->data_model->getTimelineCount($id);
 
@@ -185,7 +185,7 @@ class kennelPresenter extends BasePresenter {
 
         $rows = $this->database->table("tbl_planned_litters")->order("year DESC,month DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         $this->template->planned_litter_rows = $rows;
-        //$this->renderKennel_profile_home($id);
+//$this->renderKennel_profile_home($id);
     }
 
     public function renderKennel_puppy_list($id = 0) {
@@ -240,7 +240,28 @@ class kennelPresenter extends BasePresenter {
     }
 
     public function actionKennel_planned_litter_edit($id) {
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $this->redirect("user:user_premium");
+            $this->terminate();
+        }
         $this->planned_litter_id = $id;
+    }
+
+    public function actionKennel_planned_litter_add($id) {
+//$this->planned_litter_id = $id;
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $this->redirect("user:user_premium");
+            $this->terminate();
+        }
+    }
+
+    public function actionKennel_create_profile($id) {
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            if (\DataModel::hasProfile($this->logged_in_id)) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
     }
 
     /*     * ******** actions ************* */
@@ -421,11 +442,11 @@ class kennelPresenter extends BasePresenter {
         $form->addText("ddlPlannedLitterDogName")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addSelect("ddlPlannedLitterBitchName")->setPrompt($this->translate("Please select"))->setItems($bitches)->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("txtPlannedLitterDogProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
-        //$form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
+//$form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("ddlBreedList")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addSelect("ddlCountry")->setItems($countries)->setPrompt($this->translate("Please select country..."))->setRequired($this->translate("Required field")); //->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddPlannedLitterSuccess');
-        //$form->addSubmit('btnCancel')->onClick[] = array($this, 'frmAddPlannedLitterCancel');
+//$form->addSubmit('btnCancel')->onClick[] = array($this, 'frmAddPlannedLitterCancel');
 
         return $form;
     }
@@ -484,13 +505,13 @@ class kennelPresenter extends BasePresenter {
         } catch (\Exception $ex) {
             
         }
-        //$form->addText("ddlPlannedLitterBitchName")->setRequired($this->translate("Required field")); //->setRequired();
+//$form->addText("ddlPlannedLitterBitchName")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("txtPlannedLitterDogProfilePhoto")->setRequired($this->translate("Required field"))->setValue($pl->dog_image); //->setRequired();
-        //$form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
+//$form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("ddlBreedList")->setRequired($this->translate("Required field"))->setValue($pl->dog_breed); //->setRequired();
         $form->addSelect("ddlCountry")->setItems($countries)->setPrompt($this->translate("Please select country..."))->setRequired($this->translate("Required field"))->setValue($pl->dog_state); //->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditPlannedLitterSuccess');
-        //$form->addSubmit('btnCancel')->onClick[] = array($this, 'frmAddPlannedLitterCancel');
+//$form->addSubmit('btnCancel')->onClick[] = array($this, 'frmAddPlannedLitterCancel');
 
         return $form;
     }
@@ -637,7 +658,7 @@ class kennelPresenter extends BasePresenter {
             $values['ddlDate'] = date('Y-m-d', $time);
 
             $values = $this->data_model->assignFields($values, 'frmEditAward');
-            //$values['kennel_id'] = $this->logged_in_kennel_id;
+//$values['kennel_id'] = $this->logged_in_kennel_id;
 
             $this->database->table("link_kennel_awards")->where("id = ?", $id)->update($values);
 
@@ -664,7 +685,7 @@ class kennelPresenter extends BasePresenter {
 
             $data['kennel_id'] = $this->logged_in_kennel_id;
 
-            //$values = $this->data_model->assignFields($values, "frmPlannedLitter");
+//$values = $this->data_model->assignFields($values, "frmPlannedLitter");
 
             $data['name'] = $values['txtPlannedLitterName'];
 
@@ -714,8 +735,8 @@ class kennelPresenter extends BasePresenter {
 
             $exc .= "</ul>";
 
-            //$data['kennel_id'] = $this->logged_in_kennel_id;
-            //$values = $this->data_model->assignFields($values, "frmPlannedLitter");
+//$data['kennel_id'] = $this->logged_in_kennel_id;
+//$values = $this->data_model->assignFields($values, "frmPlannedLitter");
 
             $data['name'] = $values['txtPlannedLitterName'];
 
@@ -744,7 +765,7 @@ class kennelPresenter extends BasePresenter {
 
 
             $this->database->table("tbl_planned_litters")->where("id=?", $this->planned_litter_id)->update($data);
-            //$id = $this->database->getInsertId();
+//$id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 7, $data['name'] . " - " . $data['month'] . "/" . $data['year'], $data['dog_image']);
             $this->redirect("kennel_planned_litter_list", array(id => $this->logged_in_kennel_id));
