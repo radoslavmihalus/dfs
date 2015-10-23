@@ -1484,13 +1484,10 @@ class dogPresenter extends BasePresenter {
 
             switch ($this->profile_type) {
                 case 1:
-                    $this->redirect("kennel:kennel_profile_home", $this->profile_id);
+                    $this->redirect("kennel:kennel_dog_list", $this->profile_id);
                     break;
                 case 2:
-                    $this->redirect("owner:owner_profile_home", $this->profile_id);
-                    break;
-                case 3:
-                    $this->redirect("handler:handler_profile_home", $this->profile_id);
+                    $this->redirect("owner:owner_dog_list", $this->profile_id);
                     break;
             }
         } catch (\ErrorException $ex) {
