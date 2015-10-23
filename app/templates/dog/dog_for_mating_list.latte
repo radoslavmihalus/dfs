@@ -1,21 +1,23 @@
 {block content}
 <div class="panel-default col-lg-12 col-md-12 col-xs-12" style="font-size: 13px;min-width: 244px">
-    <h1><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_ 'Dogs for mating'}</h1>
-    {include 'dog_for_mating_list_filter.latte' }
+    <h1><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_ 'Dogs for mating'} <button class="btn btn-default" style="text-transform: uppercase;" role="button" data-toggle="collapse" href="#DogForMatingFilter" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></button></h1>
+    <div class="collapse" id="DogForMatingFilter">
+        {include 'dog_for_mating_list_filter.latte' }
+    </div>
     {control vp, right, large}
-<!--    <nav>
-        <ul class="pagination">
-            <li ><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-            <li ><a href="#">1</a></li>
-            <li ><a href="#">2</a></li>
-            <li ><a href="#">3</a></li>
-            <li ><a href="#">4</a></li>
-            <li ><a href="#">5</a></li>
-            <li ><a href="#">6</a></li>
-            <li ><a href="#">7</a></li>
-            <li ><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-        </ul>
-    </nav>-->
+    <!--    <nav>
+            <ul class="pagination">
+                <li ><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                <li ><a href="#">1</a></li>
+                <li ><a href="#">2</a></li>
+                <li ><a href="#">3</a></li>
+                <li ><a href="#">4</a></li>
+                <li ><a href="#">5</a></li>
+                <li ><a href="#">6</a></li>
+                <li ><a href="#">7</a></li>
+                <li ><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+            </ul>
+        </nav>-->
     <div class="row">
         <!-- List profile component -->
         {foreach $rows as $row}
@@ -26,6 +28,6 @@
         {/foreach}
         <!-- / List profile component -->
     </div>
-        {control vp, right, large}
+    {control vp, right, large}
 </div>
 {/block}

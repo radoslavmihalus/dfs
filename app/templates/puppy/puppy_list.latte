@@ -1,7 +1,9 @@
 {block content}
 <div class="panel-default col-lg-12 col-md-12 col-xs-12" style="font-size: 13px;min-width: 244px">
-    <h1><i class="fa fa-paw"></i>&nbsp;&nbsp;{_ 'Puppies for sale'}</h1>
+    <h1><i class="fa fa-paw"></i>&nbsp;&nbsp;{_ 'Puppies for sale'} <button class="btn btn-default" style="text-transform: uppercase;" role="button" data-toggle="collapse" href="#PuppyForSaleFilter" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></button></h1>
+    <div class="collapse" id="PuppyForSaleFilter">
     {include 'puppy_list_filter.latte'}
+    </div>
     {control vp, right, large}
     <!--{ include 'puppy_list_filter.latte'}-->
     <!--    <nav>
