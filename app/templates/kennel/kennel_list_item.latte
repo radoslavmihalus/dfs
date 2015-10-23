@@ -7,7 +7,9 @@
                     <div class="pull-left image-profile-thumb" style="top:40px;">
                         <img src="{$row->kennel_profile_picture}">
                     </div>
-                    <button n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></button>
+                    {if ( DataModel::getPremium($row->user_id) )}
+                        <button n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></button>
+                        {/if}
                         {if (DataModel::havePuppies($row->id))}
                         <span class="list-puppy-info" style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'We have puppies'}</span>
                     {/if}

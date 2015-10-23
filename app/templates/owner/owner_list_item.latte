@@ -3,9 +3,11 @@
     <div class="list-item">
         <div class="profile-header-image" style="height:200px;{if (strlen($owner->owner_background_image)>2)} background: url('{$owner->owner_background_image}')no-repeat center center;background-size:cover;background-position:50% 20%; {else} background-color:#D5D0C0; background-image: none{/if}">
             <div class="pull-left image-profile-thumb" style="top:40px;">
-            <img src="{$owner->owner_profile_picture}">
+                <img src="{$owner->owner_profile_picture}">
             </div>
-            <button n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></button>
+            {if ( DataModel::getPremium($owner->user_id) )}
+                <button n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></button>
+                {/if}
         </div>    
         <h3 class="text-uppercase" style="height:40px;"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{DataModel::getProfileName($owner->id)}</h3>
         <hr style="margin-bottom: 10px;">

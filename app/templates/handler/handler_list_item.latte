@@ -5,7 +5,9 @@
             <div class="pull-left image-profile-thumb" style="top:40px;">
             <img src="{DataModel::getProfileImage($post->id)}">
             </div>
+            {if ( DataModel::getPremium($post->user_id) )}
             <button n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></button>
+            {/if}
         </div>    
         <h3 class="text-uppercase" style="height:40px;"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{DataModel::getProfileName($post->id)}</h3>
         <hr style="margin-bottom: 10px;">
