@@ -903,57 +903,64 @@ class DataModel {
 
         $database = getContext();
 
-        $user = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
-        
-        $profile_id = $user->active_profile_id;
-        
-        switch ($type) {
-            case 1: // kennel
-                if ($id == $profile_id)
-                    return TRUE;
-                else
-                    return FALSE;
-                break;
-            case 2: // owner
-                if ($id == $profile_id)
-                    return TRUE;
-                else
-                    return FALSE;
-                break;
-            case 3: // handler
-                if ($id == $profile_id)
-                    return TRUE;
-                else
-                    return FALSE;
-                break;
-            case 4: //dog
-                $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
-                if ($row->profile_id == $profile_id)
-                    return TRUE;
-                else
-                    return FALSE;
-                break;
-            case 5: //puppy
-                $row = $database->table("tbl_puppies")->where("id=?", $id)->fetch();
-                if ($row->profile_id == $profile_id)
-                    return TRUE;
-                else
-                    return FALSE;
-                break;
-            case 6: //photo
-                $row = $database->table("tbl_photos")->where("id=?", $id)->fetch();
-                if ($row->profile_id == $profile_id)
-                    return TRUE;
-                else
-                    return FALSE;
-                break;
-            case 7: //timeline
-                $row = $database->table("tbl_timeline")->where("id=?", $id)->fetch();
-                if ($row->profile_id == $profile_id)
-                    return TRUE;
-                else
-                    return FALSE;
-                break;
+        try {
+
+            $user = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+
+            $profile_id = $user->active_profile_id;
+
+            switch ($type) {
+                case 1: // kennel
+                    if ($id == $profile_id)
+                        return TRUE;
+                    else
+                        return FALSE;
+                    break;
+                case 2: // owner
+                    if ($id == $profile_id)
+                        return TRUE;
+                    else
+                        return FALSE;
+                    break;
+                case 3: // handler
+                    if ($id == $profile_id)
+                        return TRUE;
+                    else
+                        return FALSE;
+                    break;
+                case 4: //dog
+                    $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
+                    if ($row->profile_id == $profile_id)
+                        return TRUE;
+                    else
+                        return FALSE;
+                    break;
+                case 5: //puppy
+                    $row = $database->table("tbl_puppies")->where("id=?", $id)->fetch();
+                    if ($row->profile_id == $profile_id)
+                        return TRUE;
+                    else
+                        return FALSE;
+                    break;
+                case 6: //photo
+                    $row = $database->table("tbl_photos")->where("id=?", $id)->fetch();
+                    $user = $database->table("tbl_user")->where("id=?", $row->user_id)->fetch();
+                    if ($user->active_profile_id == $profile_id)
+                        return TRUE;
+                    else
+                        return FALSE;
+                    break;
+                case 7: //timeline
+                    $row = $database->table("tbl_timeline")->where("id=?", $id)->fetch();
+                    if ($row->profile_id == $profile_id)
+                        return TRUE;
+                    else
+                        return FALSE;
+                    break;
+            }
+        } catch (\Exception $ex) {
+            
         }
     }
+
 }

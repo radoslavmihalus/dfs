@@ -1,14 +1,14 @@
 {define #puppy_list_item}
 
 <a n:href="puppy:puppy_description id=>$row->id">
-    {var $mother = DataModel::getPlannedLitterMother($row->planned_litter_id)}
+    {var $litter = DataModel::getPlannedLitterById($row->planned_litter_id)}
     <div class="list-item">
         <div class="dog-image-profile-thumb" style="background: url('{$row->puppy_photo}') no-repeat center center; background-size: cover;min-height: 240px;">
             <span {if ($row->puppy_state=="ForSale")}class="puppy-info-forsale"{elseif (($row->puppy_state=="Reserved"))}class="puppy-info-reserved"{else}class="puppy-info-sold"{/if} style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ $row->puppy_state}</span>
         </div>
         <h3 class="text-uppercase" style="height:40px;">{$row->puppy_name}</h3>
         <hr style="margin-bottom: 10px;">
-        <span class="list-item-breed" style="height:40px;"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{$mother->breed_name}</span>
+        <span class="list-item-breed" style="height:40px;"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{$litter->bitch_breed}</span>
         <hr style="margin-top: 5px;margin-bottom:5px;">
         <span class="list-item-gender">{if $row->puppy_gender=='Dog'}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;"></i>{else}<i class="fa fa-venus gender-bitch" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}"></i>{/if}&nbsp;&nbsp;{_$row->puppy_gender}</span>
         <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_$row->country}</span>

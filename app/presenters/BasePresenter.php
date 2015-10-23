@@ -511,10 +511,21 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->terminate();
     }
 
+    public function handleDeletePhoto($id) {
+        $photo = $this->database->table("tbl_photos")->where("id=?", $id)->fetch();
+
+        $profile_id = $photo->profile_id;
+
+        if ($photo->user_id == $this->logged_in_id) {
+            $this->database->table("tbl_photos")->where("id=?", $id)->delete();
+        }
+
+        $this->redirect(\DataModel::getGalleryProfileLinkUrl($profile_id), array("id" => $profile_id));
+    }
+
     public function handleDeleteProfile($id) {
         $type = \DataModel::getProfileType($id);
         $error = true;
-
 
         switch ($type) {
             case 0:
@@ -642,11 +653,87 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
     protected function createComponentFormSendMessage() {
         $form = new Form();
-        $form->addText("txtMessageCompose")->setRequired($this->translate("Required field"));
+        $form->getElementPrototype()->class('ajax');
+        $form->addText("txtMessageCompose")->setRequired($this->translate("Required field"))->setDefaultValue("");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSendMessageSucceeded');
 
         return $form;
     }
+
+//    public function handleMessageSend($profile_id, $message) {
+//        
+//        $user_id = \DataModel::getUserIdByProfileId($profile_id);
+//
+//        $this->receiver_user_id = $user_id;
+//        $this->receiver_profile_id = $profile_id;
+//        
+//        $message = $txtMessageCompose;
+//
+//        if (strlen($message) > 23) {
+//            $message = substr($message, 0, 20) . '...';
+//        }
+//
+//        if ($this->profile_id > 0) {
+//            if ($this->profile_id == $this->logged_in_id)
+//                $this->profile_id = 0;
+//        } else
+//            $this->profile_id = 0;
+//
+//        if ($this->receiver_profile_id > 0) {
+//            if ($this->receiver_profile_id == $this->receiver_user_id)
+//                $this->receiver_profile_id = 0;
+//        } else
+//            $this->receiver_profile_id = 0;
+//
+//        $data_group['from_user_id'] = $this->logged_in_id;
+//
+//        $data_group['from_profile_id'] = $this->profile_id;
+//        $data_group['to_user_id'] = $this->receiver_user_id;
+//        $data_group['to_profile_id'] = $this->receiver_profile_id;
+//        $data_group['message'] = $message;
+//        $data_group['unreaded'] = 1;
+//        $data_group['active_from'] = 1;
+//        $data_group['active_to'] = 1;
+//
+//        $cnt = $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->logged_in_id, $this->receiver_user_id, $this->profile_id, $this->receiver_profile_id)->count();
+//
+//        if ($cnt > 0)
+//            $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->logged_in_id, $this->receiver_user_id, $this->profile_id, $this->receiver_profile_id)->update($data_group);
+//        else
+//            $this->database->table("tbl_messages_groups")->insert($data_group);
+//
+//        $data_group['to_user_id'] = $this->logged_in_id;
+//        $data_group['to_profile_id'] = $this->profile_id;
+//        $data_group['from_user_id'] = $this->receiver_user_id;
+//        $data_group['from_profile_id'] = $this->receiver_profile_id;
+//        $data_group['message'] = $message;
+//        $data_group['unreaded'] = 0;
+//        $data_group['active_from'] = 1;
+//        $data_group['active_to'] = 1;
+//
+//        $cnt = $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->receiver_user_id, $this->logged_in_id, $this->receiver_profile_id, $this->profile_id)->count();
+//
+//        if ($cnt > 0)
+//            $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->receiver_user_id, $this->logged_in_id, $this->receiver_profile_id, $this->profile_id)->update($data_group);
+//        else
+//            $this->database->table("tbl_messages_groups")->insert($data_group);
+//
+//        $data['message'] = $values['txtMessageCompose'];
+//
+//        $data['from_user_id'] = $this->logged_in_id;
+//        $data['from_profile_id'] = $this->profile_id;
+//        $data['to_user_id'] = $this->receiver_user_id;
+//        $data['to_profile_id'] = $this->receiver_profile_id;
+//        $data['unreaded'] = 1;
+//        $data['active_from'] = 1;
+//        $data['active_to'] = 1;
+//
+//        $this->database->table("tbl_messages")->insert($data);
+//
+//        //$this->payload->message = "Ok";
+//
+//        $this->sendPayload();
+//    }
 
     public function frmSendMessageSucceeded($button) {
         $values = $button->getForm()->getValues();
@@ -714,7 +801,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         $this->database->table("tbl_messages")->insert($data);
 
-        $this->sendPayload();
+        if ($this->isAjax()) {
+            $this->redrawControl();
+        }
     }
 
     public function frmLogInSucceeded($button) {
@@ -789,7 +878,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
     protected function createComponentCommentTimeline() {
         return new Nette\Application\UI\Multiplier(function () {
-            $form = new Nette\Application\UI\Form();
+            $form = new Form();
+            $form->getElementPrototype()->class('ajax');
             $form->addHidden("snippet_id");
             $form->addText("comment")->setRequired();
             $form->addSubmit('btnSubmit')->onClick[] = array($this, 'commentSucceeded');
@@ -798,19 +888,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function commentSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
+        $values = $button->getForm()->getValues();
 
-//$row = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
-//if ($row->active_profile_id > 0)
-            $this->data_model->addTimelineComment($this->logged_in_id, $this->profile_id, $values['snippet_id'], $values['comment']);
+        $this->data_model->addTimelineComment($this->logged_in_id, $this->profile_id, $values['snippet_id'], $values['comment']);
 
-            if ($this->presenter->isAjax()) {
-                $this->redrawControl('areaComments');
-//$this->redirect('this');
-            }
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage());
+        if ($this->isAjax()) {
+            $this->redrawControl();
+        } else {
+            $this->redirect('this');
         }
     }
 

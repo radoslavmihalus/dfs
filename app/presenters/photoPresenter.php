@@ -94,11 +94,11 @@ class photoPresenter extends BasePresenter {
 
             $this->database->table("tbl_photos")->where("id=?", $this->photo_id)->update($data);
 
-            $photo = $this->database->table("tbl_photos")->where("id=?", $this->photo_id)->fetch();
+            //$photo = $this->database->table("tbl_photos")->where("id=?", $this->photo_id)->fetch();
         } catch (\Exception $ex) {
             
         }
-        $this->redirect(\DataModel::getGalleryProfileLinkUrl($photo->profile_id), array(id => $this->profile_id));
+        $this->redirect(\DataModel::getGalleryProfileLinkUrl($this->photo_profile_id), array(id => $this->photo_profile_id));
     }
 
 }

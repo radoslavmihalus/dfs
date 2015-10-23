@@ -21,19 +21,19 @@ class ImportModel {
         $data_model = new DataModel($database);
 
         $users = $importdb->table("wp_users")->fetchAll();
-        
+
         $database->table("tbl_user")->delete();
         $database->query("ALTER TABLE tbl_user AUTO_INCREMENT=100000000");
-        
+
         $database->table("tbl_userkennel")->delete();
         $database->query("ALTER TABLE tbl_userkennel AUTO_INCREMENT=200000000");
-        
+
         $database->table("tbl_userowner")->delete();
         $database->query("ALTER TABLE tbl_userowner AUTO_INCREMENT=300000000");
-        
+
         $database->table("tbl_userhandler")->delete();
         $database->query("ALTER TABLE tbl_userhandler AUTO_INCREMENT=400000000");
-        
+
         $database->table("tbl_dogs")->delete();
         $database->query("ALTER TABLE tbl_dogs AUTO_INCREMENT=500000000");
 
@@ -574,6 +574,7 @@ class ImportModel {
             $data['user_id'] = $user_id;
             $data['profile_id'] = $kennel_id;
             $data['planned_litter_id'] = $pl_id;
+            $data['breed_name'] = $planned_litter->bitch_breed;
 
             if ($description[5] == "Pes")
                 $data['puppy_gender'] = "Dog";

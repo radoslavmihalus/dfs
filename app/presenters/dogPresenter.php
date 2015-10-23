@@ -21,6 +21,10 @@ class dogPresenter extends BasePresenter {
     public $coowner_id;
     public $mating_id;
     public $workexam_id;
+    public $filter_dog_name;
+    public $filter_dog_breed;
+    public $filter_dog_gender;
+    public $filter_dog_country;
 
     protected function startup() {
         parent::startup();
@@ -88,12 +92,42 @@ class dogPresenter extends BasePresenter {
 
             $rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         } else {
-            $count = $this->database->table("tbl_dogs")->count();
+            try {
+                $section = $this->getSession('dog_filter');
+
+                $this->filter_dog_name = $section->filter_dog_name;
+                $this->filter_dog_breed = $section->filter_dog_breed;
+                $this->filter_dog_country = $section->filter_dog_country;
+                $this->filter_dog_gender = $section->filter_dog_gender;
+
+                if ($this->filter_dog_name == NULL)
+                    $this->filter_dog_name = "";
+                if ($this->filter_dog_breed == NULL)
+                    $this->filter_dog_breed = "";
+                if ($this->filter_dog_country == NULL)
+                    $this->filter_dog_country = "";
+                if ($this->filter_dog_gender == NULL || $this->filter_dog_gender == "NA")
+                    $this->filter_dog_gender = "";
+            } catch (\Exception $ex) {
+                
+            }
+
+            $count = $this->database->table("tbl_dogs")
+                    ->where("dog_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                    ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                    ->where("dog_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
+                    ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                    ->count();
 
             $this->paginator->getPaginator()->setItemCount($count);
             $this->paginator->getPaginator()->setItemsPerPage(9);
 
-            $rows = $this->database->table("tbl_dogs")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+            $rows = $this->database->table("tbl_dogs")->order("id DESC")
+                            ->where("dog_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                            ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                            ->where("dog_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
+                            ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                            ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         }
 
         $this->template->rows = $rows;
@@ -135,12 +169,43 @@ class dogPresenter extends BasePresenter {
     }
 
     public function renderDog_for_mating_list($id = 0) {
-        $count = $this->database->table("tbl_dogs")->where("offer_for_mating=1")->count();
+        try {
+            $section = $this->getSession('dog_mating_filter');
+
+            $this->filter_dog_name = $section->filter_dog_name;
+            $this->filter_dog_breed = $section->filter_dog_breed;
+            $this->filter_dog_country = $section->filter_dog_country;
+            $this->filter_dog_gender = $section->filter_dog_gender;
+
+            if ($this->filter_dog_name == NULL)
+                $this->filter_dog_name = "";
+            if ($this->filter_dog_breed == NULL)
+                $this->filter_dog_breed = "";
+            if ($this->filter_dog_country == NULL)
+                $this->filter_dog_country = "";
+            if ($this->filter_dog_gender == NULL || $this->filter_dog_gender == "NA")
+                $this->filter_dog_gender = "";
+        } catch (\Exception $ex) {
+            
+        }
+
+        $count = $this->database->table("tbl_dogs")
+                ->where("offer_for_mating=1")
+                ->where("dog_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                ->count();
 
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(9);
 
-        $rows = $this->database->table("tbl_dogs")->where("offer_for_mating=1")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+
+        $rows = $this->database->table("tbl_dogs")
+                ->where("offer_for_mating=1")
+                ->where("dog_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
         $this->template->rows = $rows;
     }
@@ -324,6 +389,167 @@ class dogPresenter extends BasePresenter {
      * 
      * FormComponents factory
      */
+    protected function createComponentDog_list_filter() {
+        $form = new Form();
+
+        $lang = "en";
+
+        try {
+            $section = $this->getSession('language');
+            if (strlen($section->lang) > 1)
+                $lang = strtolower($section->lang);
+        } catch (Exception $ex) {
+            $lang = "en";
+        }
+
+        $result = $this->database->table("lk_countries")->order("CountryName_$lang");
+        $countries = array();
+
+        //$countries[] = $this->translate("Please select state...");
+
+        foreach ($result as $row) {
+            $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
+        }
+
+        $sex = array(
+            'NA' => 'NA',
+            'Dog' => 'Dog',
+            'Bitch' => 'Bitch'
+        );
+
+        $this->filter_dog_name = NULL;
+        $this->filter_dog_breed = NULL;
+        $this->filter_dog_country = NULL;
+        $this->filter_dog_gender = 'NA';
+
+        try {
+            $section = $this->getSession('dog_filter');
+
+            $this->filter_dog_name = $section->filter_dog_name;
+            $this->filter_dog_breed = $section->filter_dog_breed;
+            $this->filter_dog_country = $section->filter_dog_country;
+            $this->filter_dog_gender = $section->filter_dog_gender;
+        } catch (\Exception $ex) {
+            
+        }
+
+        $form->addText("txtDogName")->setValue($this->filter_dog_name);
+        $form->addRadioList("radGender", NULL, $sex)->setValue($this->filter_dog_gender);
+        $form->addSelect("ddlCountry")->setPrompt($this->translate("Please select"))->setItems($countries)->setValue($this->filter_dog_country);
+        $form->addText("ddlBreedList")->setValue($this->filter_dog_breed);
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitDogFilter');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelDogFilter');
+
+        return $form;
+    }
+
+    public function frmSubmitDogFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('dog_filter');
+
+        $this->filter_dog_name = $values->txtDogName;
+        $this->filter_dog_breed = $values->ddlBreedList;
+        $this->filter_dog_country = $values->ddlCountry;
+        $this->filter_dog_gender = $values->radGender;
+
+        $section->filter_dog_name = $this->filter_dog_name;
+        $section->filter_dog_breed = $this->filter_dog_breed;
+        $section->filter_dog_country = $this->filter_dog_country;
+        $section->filter_dog_gender = $this->filter_dog_gender;
+
+        $this->redirect("this");
+    }
+
+    public function frmCancelDogFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('dog_filter');
+
+        $section->filter_dog_name = NULL;
+        $section->filter_dog_breed = NULL;
+        $section->filter_dog_country = NULL;
+        $section->filter_dog_gender = NULL;
+
+        $this->redirect("this");
+    }
+
+    protected function createComponentDog_mating_list_filter() {
+        $form = new Form();
+
+        $lang = "en";
+
+        try {
+            $section = $this->getSession('language');
+            if (strlen($section->lang) > 1)
+                $lang = strtolower($section->lang);
+        } catch (Exception $ex) {
+            $lang = "en";
+        }
+
+        $result = $this->database->table("lk_countries")->order("CountryName_$lang");
+        $countries = array();
+
+        //$countries[] = $this->translate("Please select state...");
+
+        foreach ($result as $row) {
+            $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
+        }
+
+        $this->filter_dog_name = NULL;
+        $this->filter_dog_breed = NULL;
+        $this->filter_dog_country = NULL;
+        $this->filter_dog_gender = 'NA';
+
+        try {
+            $section = $this->getSession('dog_mating_filter');
+
+            $this->filter_dog_name = $section->filter_dog_name;
+            $this->filter_dog_breed = $section->filter_dog_breed;
+            $this->filter_dog_country = $section->filter_dog_country;
+            $this->filter_dog_gender = $section->filter_dog_gender;
+        } catch (\Exception $ex) {
+            
+        }
+
+        $form->addText("txtDogName")->setValue($this->filter_dog_name);
+        $form->addSelect("ddlCountry")->setPrompt($this->translate("Please select"))->setItems($countries)->setValue($this->filter_dog_country);
+        $form->addText("ddlBreedList")->setValue($this->filter_dog_breed);
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitMatingDogFilter');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelMatingDogFilter');
+
+        return $form;
+    }
+
+    public function frmSubmitMatingDogFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('dog_mating_filter');
+
+        $this->filter_dog_name = $values->txtDogName;
+        $this->filter_dog_breed = $values->ddlBreedList;
+        $this->filter_dog_country = $values->ddlCountry;
+
+        $section->filter_dog_name = $this->filter_dog_name;
+        $section->filter_dog_breed = $this->filter_dog_breed;
+        $section->filter_dog_country = $this->filter_dog_country;
+
+        $this->redirect("this");
+    }
+
+    public function frmCancelMatingDogFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('dog_mating_filter');
+
+        $section->filter_dog_name = NULL;
+        $section->filter_dog_breed = NULL;
+        $section->filter_dog_country = NULL;
+        $section->filter_dog_gender = NULL;
+
+        $this->redirect("this");
+    }
+
     protected function createComponentFormCreateDogProfile() {
         $form = new Form();
 

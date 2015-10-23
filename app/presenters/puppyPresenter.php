@@ -16,6 +16,10 @@ class puppyPresenter extends BasePresenter {
     /** @persistent int */
     public $dog_id;
     public $planned_litter_id;
+    public $filter_dog_name;
+    public $filter_dog_breed;
+    public $filter_dog_gender;
+    public $filter_dog_country;
 
     protected function startup() {
         parent::startup();
@@ -40,13 +44,45 @@ class puppyPresenter extends BasePresenter {
     }
 
     public function renderPuppy_list() {
-        $count = $this->database->table("tbl_puppies")->where("puppy_state=?", "ForSale")->count();
+        try {
+            $section = $this->getSession('puppy_filter');
+
+            $this->filter_dog_name = $section->filter_dog_name;
+            $this->filter_dog_breed = $section->filter_dog_breed;
+            $this->filter_dog_country = $section->filter_dog_country;
+            $this->filter_dog_gender = $section->filter_dog_gender;
+
+            if ($this->filter_dog_name == NULL)
+                $this->filter_dog_name = "";
+            if ($this->filter_dog_breed == NULL)
+                $this->filter_dog_breed = "";
+            if ($this->filter_dog_country == NULL)
+                $this->filter_dog_country = "";
+            if ($this->filter_dog_gender == NULL || $this->filter_dog_gender == "NA")
+                $this->filter_dog_gender = "";
+        } catch (\Exception $ex) {
+            
+        }
+
+        $count = $this->database->table("tbl_puppies")
+                ->where("puppy_state=?", "ForSale")
+                ->where("puppy_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                ->where("puppy_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
+                ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                ->count();
 
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(9);
 
-        $rows = $this->database->table("tbl_puppies")->where("puppy_state=?", "ForSale")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
-        
+        $rows = $this->database->table("tbl_puppies")
+                ->where("puppy_state=?", "ForSale")
+                ->where("puppy_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                ->where("puppy_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
+                ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+
         $this->template->puppies = $rows;
     }
 
@@ -100,6 +136,91 @@ class puppyPresenter extends BasePresenter {
     }
 
     /*     * ******************* component factories ******************** */
+
+    protected function createComponentPuppy_list_filter() {
+        $form = new Form();
+
+        $lang = "en";
+
+        try {
+            $section = $this->getSession('language');
+            if (strlen($section->lang) > 1)
+                $lang = strtolower($section->lang);
+        } catch (Exception $ex) {
+            $lang = "en";
+        }
+
+        $result = $this->database->table("lk_countries")->order("CountryName_$lang");
+        $countries = array();
+
+        //$countries[] = $this->translate("Please select state...");
+
+        foreach ($result as $row) {
+            $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
+        }
+
+        $sex = array(
+            'NA' => 'NA',
+            'Dog' => 'Dog',
+            'Bitch' => 'Bitch'
+        );
+
+        $this->filter_dog_name = NULL;
+        $this->filter_dog_breed = NULL;
+        $this->filter_dog_country = NULL;
+        $this->filter_dog_gender = 'NA';
+
+        try {
+            $section = $this->getSession('puppy_filter');
+
+            $this->filter_dog_name = $section->filter_dog_name;
+            $this->filter_dog_breed = $section->filter_dog_breed;
+            $this->filter_dog_country = $section->filter_dog_country;
+            $this->filter_dog_gender = $section->filter_dog_gender;
+        } catch (\Exception $ex) {
+            
+        }
+
+        $form->addText("txtDogName")->setValue($this->filter_dog_name);
+        $form->addRadioList("radGender", NULL, $sex)->setValue($this->filter_dog_gender);
+        $form->addSelect("ddlCountry")->setPrompt($this->translate("Please select"))->setItems($countries)->setValue($this->filter_dog_country);
+        $form->addText("ddlBreedList")->setValue($this->filter_dog_breed);
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitPuppyFilter');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelPuppyFilter');
+
+        return $form;
+    }
+
+    public function frmSubmitPuppyFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('puppy_filter');
+
+        $this->filter_dog_name = $values->txtDogName;
+        $this->filter_dog_breed = $values->ddlBreedList;
+        $this->filter_dog_country = $values->ddlCountry;
+        $this->filter_dog_gender = $values->radGender;
+
+        $section->filter_dog_name = $this->filter_dog_name;
+        $section->filter_dog_breed = $this->filter_dog_breed;
+        $section->filter_dog_country = $this->filter_dog_country;
+        $section->filter_dog_gender = $this->filter_dog_gender;
+
+        $this->redirect("this");
+    }
+
+    public function frmCancelPuppyFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('puppy_filter');
+
+        $section->filter_dog_name = NULL;
+        $section->filter_dog_breed = NULL;
+        $section->filter_dog_country = NULL;
+        $section->filter_dog_gender = NULL;
+
+        $this->redirect("this");
+    }
 
     protected function createComponentFormPuppyCreateProfile() {
 
@@ -300,6 +421,8 @@ class puppyPresenter extends BasePresenter {
             $planned_litter = \DataModel::getPlannedLitterById($data['planned_litter_id']);
             $father_name = $planned_litter->dog_name;
             $mother_name = $planned_litter->bitch_name;
+            $data['breed_name'] = $planned_litter->bich_breed;
+
             $this->data_model->setParents($data['puppy_name'], $father_name, $mother_name);
 
             $this->database->table("tbl_puppies")->insert($data);
@@ -334,6 +457,7 @@ class puppyPresenter extends BasePresenter {
             $planned_litter = \DataModel::getPlannedLitterById($data['planned_litter_id']);
             $father_name = $planned_litter->dog_name;
             $mother_name = $planned_litter->bitch_name;
+            $data['breed_name'] = $planned_litter->bich_breed;
             $this->data_model->setParents($data['puppy_name'], $father_name, $mother_name);
 
             $this->database->table("tbl_puppies")->where("id=?", $this->dog_id)->update($data);

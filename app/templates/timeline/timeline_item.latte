@@ -48,16 +48,6 @@
                         {if ($row->event_type == 13)}
                             <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-paw"></i></span>&nbsp;&nbsp;{_'Add puppy for sale'}</h3>
                         {/if}
-
-                        <!--                    <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-tag"></i></span>&nbsp;&nbsp;Add breeds for handling</h3>
-                                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-clipboard"></i></span>&nbsp;&nbsp;Add show result</h3>
-                                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-list-alt"></i></span>&nbsp;&nbsp;Add certificate</h3>
-                                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-camera"></i></span>&nbsp;&nbsp;Add photo</h3>
-                                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-video-camera"></i></span>&nbsp;&nbsp;Add video</h3>
-                                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-users"></i></span>&nbsp;&nbsp;Add friend</h3>
-                                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-dog"></i></span>&nbsp;&nbsp;Add dog</h3>
-                                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-paw"></i></span>&nbsp;&nbsp;Add puppy for sale</h3>
-                                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-calendar"></i></span>&nbsp;&nbsp;Add planned litter</h3>-->
                     </div>
                     {if DataModel::getPermission($row->id,$logged_in_id,7)}
                         <div class="dropdown" style="position:absolute;right:10px;">
@@ -66,15 +56,14 @@
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" id="timeline_remove_{$row->id}">{_'Remove from timeline'}</a></li>
                             </ul>
                             <script type="text/javascript">
-                            $("#timeline_remove_{$row->id}").click(function () {
-                                $.ajax({
-                                    url: '/?do=timelineRemove&id={$row->id}',
-                                    dataType: 'html',
-                                }).done(function (data) {
-//                                    alert("Event deleted");
-                                    $.get(document.href);
+                                $("#timeline_remove_{$row->id}").click(function () {
+                                    $.ajax({
+                                        url: '/?do=timelineRemove&id={$row->id}',
+                                        dataType: 'html',
+                                    }).done(function (data) {
+                                        $.get(document.href);
+                                    });
                                 });
-                            });
                             </script>
                         </div>
                     {/if}
@@ -104,8 +93,6 @@
                     <a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount($row->id)}</span></a>
                 </div>
             {/if}
-            {snippet areaComments}
-            {/snippet}
             {foreach $row->related("tbl_comments","timeline_id") as $row_comments}
                 <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
                     <img class="user-block-thumb" src="{DataModel::getProfileImage($row_comments->profile_id)}"/>
@@ -117,56 +104,23 @@
                 </div>
             {/foreach}
 
-            {if ($active_profile_id>0)}
-                <form n:name="commentTimeline-{$row->id}" id="commentTimeline-{$row->id}" class="ajax no-live-validation">
+            {snippet articlesComment}
+            {/snippet}
+
+            {if ( $active_profile_id > 0 )}
+                <!--{ snippet form}-->
+                <form n:name="commentTimeline-{$row->id}" id="commentTimeline-{$row->id}" class="">
                     <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;">
                         <input type="hidden" n:name=snippet_id value="{$row->id}" />
-                        <input type="text" n:name=comment class="form-control font_size_13px no-live-validation" style="z-index: 0;" placeholder="{_ 'Write a comment'}...">
+                        <input type="text" n:name=comment class="form-control font_size_13px" style="z-index: 0;" placeholder="{_ 'Write a comment'}...">
                         <span class="input-group-btn">
-                            <button class="btn btn-default font_size_13px no-live-validation" id="submitTimeline-{$row->id}" n:name=btnSubmit><i class="fa fa-comment fa-1x"></i></button>
+                            <button class="btn btn-default font_size_13px" id="submitTimeline-{$row->id}" n:name=btnSubmit><i class="fa fa-comment fa-1x"></i></button>
                         </span>
                     </div>
                 </form>
+                <!--{ /snippet}-->
             {/if}
             <script type="text/javascript">
-                /* AJAXové odeslání formulářů */
-                $("#commentTimeline-" + {$row->id}).on("submit", function () {
-                    $("#ajax-spinner").show();
-
-                    $(this).ajaxSubmit(function (payload) {
-                        $.nette.success(payload);
-
-                        $.get(document.href);
-                    });
-//                    $.get(document.href);
-                    return true;
-                });
-
-                $("#commentTimeline-" + {$row->id} + " :submit").on("click", function () {
-                    $("#ajax-spinner").show();
-
-                    $(this).ajaxSubmit(function (payload) {
-                        $.nette.success(payload);
-
-                        $.get(document.href);
-                    });
-//                    $.get(document.href);
-                    return true;
-                    //return false;
-                });
-
-                //		$("#submitTimeline-{$row->id}").on("click", function () {
-                //		    $("#ajax-spinner").show();
-                //
-                //		    $(this).ajaxSubmit(function (payload) {
-                //			$.nette.success(payload);
-                //
-                //			$.get(document.href);
-                //		    });
-                //		    return false;
-                //		});
-
-
                 $("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
                 {
                     event.preventDefault();
@@ -316,5 +270,14 @@
                 </div>
             </div>
         </li>-->
+    <!--
+    -{ $row->id }
+    -->
 {/foreach}
+<script>
+    $("body").on("submit", "form.ajax", function () {
+        $(this).ajaxSubmit();
+        return false;
+    });
+</script>
 {/define}

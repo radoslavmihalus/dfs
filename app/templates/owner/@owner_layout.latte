@@ -27,7 +27,7 @@
         <!-- user-menu -->
         {include '../menu/user-menu.latte'}
         <!--/user-menu -->
-	{include '../components/gallery_modal.latte'}
+        {include '../components/gallery_modal.latte'}
 
         <!-- Main content -->
         <div class="container-fluid content-wrapper">
@@ -56,19 +56,6 @@
                 }).hide();
             });
 
-// zajaxovatění odkazů provedu takto
-            $("a.ajax").live("click", function (event) {
-                event.preventDefault();
-
-                $.get(this.href);
-
-                // zobrazení spinneru a nastavení jeho pozice
-                $("#ajax-spinner").show().css({
-                    position: "absolute",
-                    left: event.pageX + 20,
-                    top: event.pageY + 40
-                });
-            });
         </script>
         {foreach $flashes as $flash}
             <script type="text/javascript">

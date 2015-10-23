@@ -440,7 +440,7 @@ class kennelPresenter extends BasePresenter {
 
         $y = date("Y");
         $yf = $y + 3;
-        $yt = $y - 10;
+        $yt = $y - 20;
 
         for ($i = $yf; $i > $yt; $i--) {
             $years[$i] = $i;
@@ -478,7 +478,12 @@ class kennelPresenter extends BasePresenter {
         $form->addSelect("ddlDateMonth")->setRequired($this->translate("Required field"))->setItems($months)->setValue($pl->month); //->setRequired();
         $form->addText("txtPlannedLitterName")->setRequired($this->translate("Required field"))->setValue($pl->name); //->setRequired();
         $form->addText("ddlPlannedLitterDogName")->setRequired($this->translate("Required field"))->setValue($pl->dog_name); //->setRequired();
-        $form->addSelect("ddlPlannedLitterBitchName")->setPrompt($this->translate("Please select"))->setItems($bitches)->setRequired($this->translate("Required field"))->setValue($pl->bitch_name); //->setRequired();
+        $form->addSelect("ddlPlannedLitterBitchName")->setPrompt($this->translate("Please select"))->setItems($bitches)->setRequired($this->translate("Required field")); //->setRequired();
+        try {
+            $form->getComponent("ddlPlannedLitterBitchName")->setValue($pl->bitch_name);
+        } catch (\Exception $ex) {
+            
+        }
         //$form->addText("ddlPlannedLitterBitchName")->setRequired($this->translate("Required field")); //->setRequired();
         $form->addText("txtPlannedLitterDogProfilePhoto")->setRequired($this->translate("Required field"))->setValue($pl->dog_image); //->setRequired();
         //$form->addText("txtPlannedLitterBitchProfilePhoto")->setRequired($this->translate("Required field")); //->setRequired();
