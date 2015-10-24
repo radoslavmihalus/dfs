@@ -1443,12 +1443,19 @@ class dogPresenter extends BasePresenter {
 
             $values['txtChampionshipPicture'] = $this->data_model->processImage($values['txtChampionshipPicture']);
 
+            $description = $values['txtChampionshipName'];
+            $image = $values['txtChampionshipPicture'];
+
             $time = strtotime($values['ddlDate']);
             $values['ddlDate'] = date('Y-m-d', $time);
 
             $values = $this->data_model->assignFields($values, "frmDogAddTitle");
 
             $this->database->table("tbl_dogs_championship")->insert($values);
+
+            $id = $this->database->getInsertId();
+
+            $this->data_model->addToTimeline($this->dog_id, $id, 14, $description, $image);
 
             $this->flashMessage($this->translate("Record has been successfully added."), "Success");
         } catch (\ErrorException $ex) {
@@ -1552,51 +1559,69 @@ class dogPresenter extends BasePresenter {
         $data['show_type'] = $values->ddlShowType;
         $data['show_country'] = $values->ddlCountry;
 
+        $result = "";
+
         foreach ($values->chckAssesmentMinorPuppy as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesMinorPuppy as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesPuppy as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckAssesment as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesJunior as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesJuniorBOG as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesJuniorBIS as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesBOG as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitlesBIS as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         foreach ($values->chckTitles as $item) {
             $data[$item] = 1;
+            $result .= $this->translate($item) . ",";
         }
 
         $data['other_title'] = $values->txtOtherTitle;
+        $result .= $data['other_title'];
 
         $data['show_image'] = $values->txtShowImage;
 
         $this->database->table("tbl_dogs_shows")->insert($data);
+
+        $id = $this->database->getInsertId();
+
+        $this->data_model->addToTimeline($this->dog_id, $id, 11, $result, $values->txtShowImage);
+
 
         $this->redirect("dog:dog_show_list", array(id => $this->dog_id));
     }

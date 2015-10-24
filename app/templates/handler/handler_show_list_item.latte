@@ -19,7 +19,9 @@
         </div>
         <div class="row" style="padding:5px;">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                <a n:href="handler:handler_show_add show_id=>$show->id" class="btn btn-danger btn-sm" style="margin-bottom: 5px;"><i class="fa fa-plus"></i>&nbsp;{_ 'Add result'}</a>
+                {if DataModel::getPermission($show->handler_id,$logged_in_id,3)}
+                    <a n:href="handler:handler_show_add show_id=>$show->id" class="btn btn-danger btn-sm" style="margin-bottom: 5px;"><i class="fa fa-plus"></i>&nbsp;{_ 'Add result'}</a>
+                {/if}
                 <button class="btn btn-default btn-sm" style="margin-bottom: 5px" data-toggle="collapse" data-target="#ShowsResults{$show->id}" aria-expanded="false" aria-controls="#ShowsResults"><i class="fa fa-search"></i>&nbsp;{_ 'View detail'}</button>
             </div>
         </div>

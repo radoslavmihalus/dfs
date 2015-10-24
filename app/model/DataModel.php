@@ -292,6 +292,11 @@ class DataModel {
 // handler_profile_picture
                 $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
                 $image = $row->handler_profile_picture;
+            } elseif ($id >= 500000000 && $id < 600000000) {
+// dog 500000000
+// handler_profile_picture
+                $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
+                $image = DataModel::getProfileImage($row->profile_id);
             } else {
                 $image = "www/img/avatar.jpg";
             }
@@ -332,6 +337,11 @@ class DataModel {
                 $user_id = $row->user_id;
                 $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
                 $name = $row->name . " " . $row->surname;
+            } elseif ($id >= 500000000 && $id < 600000000) {
+// dog 500000000
+// handler_profile_picture
+                $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
+                $name = DataModel::getProfileName($row->profile_id);
             } else {
                 $row = $database->table("tbl_user")->where("id=?", $id)->fetch();
                 $name = $row->name . " " . $row->surname;
@@ -981,8 +991,17 @@ class DataModel {
                     $row = $database->table("tbl_timeline")->where("id=?", $id)->fetch();
                     if ($row->profile_id == $profile_id)
                         return TRUE;
-                    else
-                        return FALSE;
+                    else {
+                        $row_dog_count = $database->table("tbl_dogs")->where("id=?", $row->profile_id)->count();
+                        if ($row_dog_count > 0) {
+                            $row_dog = $database->table("tbl_dogs")->where("id=?", $row->profile_id)->fetch();
+                            if ($profile_id == $row_dog->profile_id)
+                                return TRUE;
+                            else
+                                return FALSE;
+                        } else
+                            return FALSE;
+                    }
                     break;
                 case 8: //timeline comment
                     $row = $database->table("tbl_comments")->where("id=?", $id)->fetch();

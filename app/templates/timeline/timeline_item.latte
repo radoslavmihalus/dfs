@@ -48,6 +48,9 @@
                         {if ($row->event_type == 13)}
                             <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-paw"></i></span>&nbsp;&nbsp;{_'Add puppy for sale'}</h3>
                         {/if}
+                        {if ($row->event_type == 14)}
+                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-trophy"></i></span>&nbsp;&nbsp;{_'Add championchip'}</h3>
+                        {/if}
                     </div>
                     {if DataModel::getPermission($row->id,$logged_in_id,7)}
                         <div class="dropdown" style="position:absolute;right:10px;">

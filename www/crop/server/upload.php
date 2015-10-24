@@ -5,6 +5,7 @@ session_start();
 
 header('Access-Control-Allow-Origin: dogforshow.com');
 header('Access-Control-Allow-Origin: new.dogforshow.com');
+header('Access-Control-Allow-Origin: www.dogforshow.com');
 
 //echo 'kokot';
 
