@@ -9,11 +9,12 @@ use App\Model,
 class userPresenter extends BasePresenter {
 
     //private $database;
-
 //    public function __construct(Nette\Database\Context $database) {
 //        $this->database = $database;
 //        $this->translator = new DFSTranslator();
 //    }
+
+    public $amt;
 
     protected function startup() {
         parent::startup();
@@ -46,8 +47,17 @@ class userPresenter extends BasePresenter {
 
     public function renderUser_notification_list() {
         $rows = $this->database->table("tbl_notify")->where("notify_user_id=?", $this->logged_in_id)->order("notify_datetime DESC")->fetchAll();
-        
+
         $this->template->notifications_list = $rows;
+    }
+
+    public function actionUser_premium_activation($amt = 50) {
+        if (isset($_GET['amt']))
+            $amt = $_GET['amt'];
+
+        $this->amt = $amt;
+
+        //handleTrustPay
     }
 
     /*     * ******************* component factories ******************** */
@@ -144,6 +154,7 @@ class userPresenter extends BasePresenter {
         $this->flashMessage($this->translate("User updated successfully"), "Success");
         $this->redirect('user:user_edit_account');
     }
+
 
     /**
      * Delete form factory.

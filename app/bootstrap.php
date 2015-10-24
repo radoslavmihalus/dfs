@@ -33,6 +33,7 @@ $router = $container->getService('router');
 
 // routy
 $router[] = new Route('index.php', 'LandingPage:default');
+$router[] = new Route('payment_return.php', 'LandingPage:payment');
 //$router[] = new Route('forgot-password', 'LandingPage:forgot_password');
 //$router[] = new Route('reset-password', 'LandingPage:reset_password');
 // Base routes

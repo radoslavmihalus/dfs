@@ -99,7 +99,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logotyp" id="logo" n:href="import!">
+                    <a class="navbar-brand logotyp" id="logo" href="http://www.dogforshow.com">
                         <img alt="Brand" style="width:150px;" src="www/img/logo.png">
                     </a>
                     <div id="ddlLang" class="btn-group dropdown" style="float:left;margin-top: 20px">
@@ -441,22 +441,22 @@
                             {form frmContactForm}
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="txtName" name="txtName" placeholder="{_ 'Name'}">
+                                        <input type="text" class="form-control" id="txtName" n:name=txtName placeholder="{_ 'Name'}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="txtSurname" name="txtSurname" placeholder="{_ 'Surname'}">
+                                        <input type="text" class="form-control" id="txtSurname" n:name=txtSurname placeholder="{_ 'Surname'}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="{_ 'Email'}">
+                                        <input type="email" class="form-control" id="txtEmail" n:name=txtEmail placeholder="{_ 'Email'}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea type="text" class="form-control contact_textarea" id="txtMessage" name="txtMessage" placeholder="{_ 'Message'}"></textarea>
+                                        <textarea type="text" class="form-control contact_textarea" id="txtMessage" n:name=txtMessage placeholder="{_ 'Message'}"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -466,7 +466,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-danger btn-block" id="btnSubmit" name="btnSubmit"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;{_ 'Send'}</button>
+                                    <button type="submit" class="btn btn-danger btn-block" id="btnSubmit" n:name=btnSubmit><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;{_ 'Send'}</button>
                                 </div>
                             {/form}
                         </div>

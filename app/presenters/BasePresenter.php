@@ -236,8 +236,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function renderUser_message_compose($profile_id = 0) {
-        //$this->template->users_messages = $this->getMessagesUsersList();
-        //$this->template->messages_rows = $this->database->table("tbl_messages")->order("message_datetime ASC")->fetchAll();
+//$this->template->users_messages = $this->getMessagesUsersList();
+//$this->template->messages_rows = $this->database->table("tbl_messages")->order("message_datetime ASC")->fetchAll();
 
         $this->template->message_profile_id = $profile_id;
     }
@@ -272,7 +272,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $result = $this->database->table("lk_countries")->order("CountryName_$lang");
         $items = array();
 
-        //$items["0"] = "Please select state ...";
+//$items["0"] = "Please select state ...";
         foreach ($result as $row) {
             $items[$row->CountryName_en] = $this->translate($row->CountryName_en);
         }
@@ -293,7 +293,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $id = $_GET['id'];
         $row = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
         if ($row->user_id == $this->logged_in_id) {
-            //$this->database->table("tbl_dogs")->where("dog_id=?", $id)->delete();
+//$this->database->table("tbl_dogs")->where("dog_id=?", $id)->delete();
             if ($row->offer_for_sell == 1)
                 $data['offer_for_sell'] = 0;
             else
@@ -309,7 +309,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $id = $_GET['id'];
         $row = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
         if ($row->user_id == $this->logged_in_id) {
-            //$this->database->table("tbl_dogs")->where("dog_id=?", $id)->delete();
+//$this->database->table("tbl_dogs")->where("dog_id=?", $id)->delete();
 
             if ($row->offer_for_mating == 1)
                 $data['offer_for_mating'] = 0;
@@ -368,8 +368,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function handleImport() {
-        \ImportModel::importProfiles();
-        $this->terminate();
+        //\ImportModel::importProfiles();
+        //$this->terminate();
     }
 
     public function handleHasLiked($timeline_id = 0, $event_id = 0) {
@@ -544,7 +544,19 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         if (isset($_GET['id']))
             $id = $_GET['id'];
         \DataModel::deleteFromTimelineByItem($id);
-        $this->terminate();
+        $this->redirect("this", array(id => $this->profile_id));
+    }
+
+    public function handleTimelineRemoveComment($id = 0) {
+        if (isset($_GET['id']))
+            $id = $_GET['id'];
+
+        $this->database->table("tbl_comments")->where("id=?", $id)->fetch();
+
+//        if (\DataModel::getPermission($id, $this->logged_in_profile_id, 8))
+        $this->database->table("tbl_comments")->where("id=?", $id)->delete();
+
+        $this->redirect("this", array(id => $this->profile_id));
     }
 
     public function handleDeletePhoto($id) {
@@ -604,6 +616,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     $this->database->table("tbl_dogs")->where("profile_id=?", $id)->delete();
                     $this->database->table("tbl_userkennel")->where("id=?", $id)->delete();
                     $this->database->table("tbl_timeline")->where("profile_id=?", $id)->delete();
+                    $this->database->table("tbl_notify")->where("profile_id=?", $id)->delete();
                 }
                 break;
             case 2:
@@ -617,6 +630,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     $this->database->table("tbl_dogs")->where("profile_id=?", $id)->delete();
                     $this->database->table("tbl_userowner")->where("id=?", $id)->delete();
                     $this->database->table("tbl_timeline")->where("profile_id=?", $id)->delete();
+                    $this->database->table("tbl_notify")->where("profile_id=?", $id)->delete();
                 }
                 break;
             case 3:
@@ -629,6 +643,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     $this->database->table("tbl_user")->where("id=?", $profile->user_id)->update($data);
                     $this->database->table("tbl_userhandler")->where("id=?", $id)->delete();
                     $this->database->table("tbl_timeline")->where("profile_id=?", $id)->delete();
+                    $this->database->table("tbl_notify")->where("profile_id=?", $id)->delete();
                 }
                 break;
         }
@@ -676,6 +691,129 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             echo '';
         }
         $this->terminate();
+    }
+
+    public function TrustPay($amt = 50, $pay = 2) {
+        if (isset($_GET['amt']))
+            $amt = $_GET['amt'];
+
+        if (isset($_GET['pay']))
+            $pay = $_GET['pay'];
+
+        $TrustpayUrl = "https://ib.trustpay.eu/mapi/pay.aspx";
+
+        $TrustpayUrlCard = "https://ib.trustpay.eu/mapi/cardpayments.aspx";
+
+        $TrustpayUrlPaysafe = "https://ib.trustpay.eu/mapi/paysafecard.aspx";
+
+        $TrustpayAID = "2107843189";
+
+        $TrustpaySecret = "tba6CtpBwlYLwT3fotM6jPmsD48pkYZb";
+
+        $current_user = $this->logged_in_id;
+
+        $rand = rand(10000000, 99999999);
+
+        $key = $TrustpaySecret;
+        $aid = $TrustpayAID;
+        $amt = $amt;
+        $cur = "EUR";
+        $ref = $rand . '|' . $current_user . '|' . $amt;
+        $cnt = 1;
+
+        $sig = $aid . $amt . $cur . $ref;
+
+        $TrustpaySign = strtoupper(hash_hmac('sha256', pack('A*', $sig), pack('A*', $key)));
+
+        $sig = $TrustpaySign;
+
+        switch ($pay) {
+            case 1: // wire transfer
+                $this->redirectUrl($TrustpayUrl . '?AID=' . $aid . '&AMT=' . $amt . '&CUR=' . $cur . '&REF=' . $ref . '&SIG=' . $sig . '&CNT=' . $cnt);
+                break;
+            case 2: // karta
+                $this->redirectUrl($TrustpayUrlCard . '?AID=' . $aid . '&AMT=' . $amt . '&CUR=' . $cur . '&REF=' . $ref . '&SIG=' . $sig);
+                break;
+        }
+    }
+
+    public function actionPayment() {
+        if (isset($_GET['RES']) && $_GET['RES'] == 0) {
+            if (isset($_GET['REF']))
+                $REF = $_GET['REF'];
+
+            $REF = explode("|", $REF);
+
+            $transaction_id = $REF[0];
+            $user_id = $REF[1];
+            $amount = $REF[2];
+
+            $user = $this->database->table("tbl_user")->where("id=?", $user_id)->fetch();
+
+            $expiry = $user->premium_expiry_date;
+            $curdate = date("Y-m-d");
+
+            if ($expiry > $curdate) {
+                if ($amount == 35)
+                    $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 6 months"));
+                else
+                    $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 1 years"));
+            }else {
+                if ($amount == 35)
+                    $end = date('Y-m-d', strtotime('+6 months'));
+                else
+                    $end = date('Y-m-d', strtotime('+1 years'));
+            }
+
+            $data['premium_expiry_date'] = $end;
+
+            $this->database->table("tbl_user")->where("id=?", $user_id)->update($data);
+
+
+            // invoice - superfaktura
+
+            $sf = new \invoice();
+
+            if ($amount == 35)
+                $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("6 MONTHS"), "1", $amount);
+            else
+                $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("12 months"), "1", $amount);
+
+            $id = $response->data->Invoice->id;
+            $token = $response->data->Invoice->token;
+
+            try {
+                $lang = $user->lang;
+            } catch (\Exception $ex) {
+                $lang = "en";
+            }
+
+            switch ($lang) {
+                case 'sk':
+                    $invlang = 'slo';
+                    break;
+                case 'cz':
+                    $invlang = 'cze';
+                    break;
+                default :
+                    $invlang = 'eng';
+                    break;
+            }
+
+            $mail = new Message();
+            $mail->setFrom('DOGFORSHOW <info@dogforshow.com>')
+                    ->setSubject("DOGFORSHOW - " . $this->translate("Premium account activation"))
+                    ->addTo($user->email)
+                    ->setHtmlBody($this->translate("You can download your invoice here") . ":<br/><br/>" . "https://moja.superfaktura.sk/$invlang/invoices/pdf/$id/token:$token");
+
+            $mailer = new SendmailMailer();
+            $mailer->send($mail);
+
+            $this->flashMessage($this->translate("Your premium account has been successfully activated."), "Success");
+        } else {
+            $this->flashMessage($this->translate("Your premium account has not been activated."), "Warning");
+        }
+        $this->redirect("default");
     }
 
     protected function createComponentFrmLogIn() {
@@ -1150,6 +1288,156 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         }
     }
 
+    protected function createComponentFrmContactForm() {
+        $form = new Form();
+        $form->addText('txtName')->setRequired($this->translate("Required field"));
+        $form->addText('txtSurname')->setRequired($this->translate("Required field"));
+        $form->addText('txtEmail')->setRequired($this->translate("Required field"));
+        $form->addTextArea('txtMessage')->setRequired($this->translate("Required field"));
+        $form->addSubmit('btnSubmit', 'Send')->onClick[] = array($this, 'frmContactFormSucceeded');
+
+        return $form;
+    }
+
+    public function frmContactFormSucceeded($button) {
+        $values = $button->getForm()->getValues();
+
+        try {
+            $recaptcha = $_POST['g-recaptcha-response'];
+
+
+            if (strlen($recaptcha) > 10) {
+                $mail = new Message();
+
+//if ($values['txtVerify'] != 2) {
+//    throw new \Exception("CAPTCHA is not valid.");
+//} else {
+                $mail->setFrom($values['txtName'] . ' ' . $values['txtSurname'] . ' <' . $values['txtEmail'] . '>') //$values['txtEmail']) //DOGFORSHOW <info@dogforshow.com>
+                        ->addTo('info@dogforshow.com')
+                        ->addTo('radoslav.mihalus@gmail.com')
+                        ->setSubject('DOGFORSHOW - Contact Form')
+                        ->setHtmlBody('Name: ' . $values['txtName'] . '<br/>Surname: ' . $values['txtSurname'] . '<br/>Email: ' . $values['txtEmail'] . '<br/><br/>Message:<br/>' . $values['txtMessage'])
+                        ->setContentType('text/html')
+                        ->setEncoding('UTF-8');
+
+//var_dump($mail);
+
+                $mailer = new SendmailMailer();
+                $mailer->send($mail);
+
+                $this->flashMessage($this->translate("Your message has been successfully sent. We will contact you as soon as possible."), "Info");
+            } else {
+                $this->flashMessage($this->translate("Your message has not been sent. Verification is required."), "Info");
+            }
+//}
+        } catch (\Exception $ex) {
+            $this->flashMessage($ex->getMessage(), "Error");
+        }
+    }
+
+    
+    protected function createComponentUserEditAccountPremium() {
+        $lang = "en";
+
+        try {
+            $section = $this->getSession('language');
+            if (strlen($section->lang) > 1)
+                $lang = strtolower($section->lang);
+        } catch (Exception $ex) {
+            $lang = "en";
+        }
+        $result = $this->database->table("lk_countries")->order("CountryName_$lang");
+        $countries = array();
+
+        $langs = array();
+
+        $langs['cz'] = 'cz';
+        $langs['de'] = 'de';
+        $langs['en'] = 'en';
+        $langs['hu'] = 'hu';
+        $langs['ru'] = 'ru';
+        $langs['sk'] = 'sk';
+
+        foreach ($result as $row) {
+            $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
+        }
+
+        $yt = date('Y');
+        $years = array();
+
+        $years[] = "Year";
+
+        for ($i = $yt; $i > ($yt - 100); $i--) {
+            $years[$i] = $i;
+        }
+
+        $mysection = $this->getSession('userdata');
+        $myid = $mysection->id;
+        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid);
+
+        foreach ($userdata as $user) {
+            $name = $user->name;
+            $surname = $user->surname;
+            $email = $user->email;
+            $address = $user->address;
+            $city = $user->city;
+            $zip = $user->zip;
+            $phone = $user->phone;
+            $year_of_birth = $user->year_of_birth;
+            $country = $user->state;
+            $lang = $user->lang;
+        }
+
+        $form = new Form();
+        $form->addText('txtName')
+                ->setDisabled()->setValue($name);
+        $form->addText('txtSurname')
+                ->setDisabled()->setValue($surname);
+        $form->addText('txtEmail')
+                ->setDisabled()->setValue($email);
+        $form->addSelect('ddlCountries')->setItems($countries)->setPrompt($this->translate("Please select"))->setValue($country)->setRequired('Required field');
+        $form->addSelect('ddlLanguage')->setItems($langs)->setPrompt($this->translate("Please select"))->setValue($lang)->setRequired('Required field');
+        $form->addText('txtAddress')->setValue($address);
+        $form->addText('txtTown')->setValue($city);
+        $form->addText('txtZip')->setValue($zip);
+        $form->addText('txtPhoneNumber')->setValue($phone);
+        $form->addSelect('ddlYear')->setItems($years)->setValue($year_of_birth);
+
+        $form->addSubmit('submitCard', "Card")
+                ->onClick[] = array($this, 'editUserCardSucceeded');
+        $form->addSubmit('submitTransfer', "Transfer")
+                ->onClick[] = array($this, 'editUserTransferSucceeded');
+
+        return $form;
+//
+//		$form->addProtection();
+//		return $form;
+    }
+
+    public function editUserCardSucceeded($button) {
+        $values = $button->getForm()->getValues();
+        $values = $this->assignFields($values, 'frmEditUser');
+
+        $mysection = $this->getSession('userdata');
+        $myid = $mysection->id;
+
+        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid)->update($values);
+
+        $this->TrustPay($this->amt, 2);
+    }
+
+    public function editUserTransferSucceeded($button) {
+        $values = $button->getForm()->getValues();
+        $values = $this->assignFields($values, 'frmEditUser');
+
+        $mysection = $this->getSession('userdata');
+        $myid = $mysection->id;
+
+        $userdata = $this->database->table("tbl_user")->where("id = ?", $myid)->update($values);
+
+        $this->TrustPay($this->amt, 1);
+    }
+    
 }
 
 class DFSTranslator implements Nette\Localization\ITranslator {
@@ -1228,7 +1516,7 @@ class DFSTranslator implements Nette\Localization\ITranslator {
             return $message;
         }
     }
-
+    
 }
 
 ?>

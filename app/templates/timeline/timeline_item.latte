@@ -53,7 +53,7 @@
                         <div class="dropdown" style="position:absolute;right:10px;">
                             <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><span class="caret"></span></a>
                             <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="Share" style="min-width:50px;right:0;font-size: 12px;z-index:1;">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" id="timeline_remove_{$row->id}">{_'Remove from timeline'}</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" n:href="timelineRemove! id=>$row->id">{_'Remove from timeline'}</a></li>
                             </ul>
                             <script type="text/javascript">
                                 $("#timeline_remove_{$row->id}").click(function () {
@@ -98,7 +98,9 @@
                     <img class="user-block-thumb" src="{DataModel::getProfileImage($row_comments->profile_id)}"/>
                     {var $linkurl = DataModel::getProfileLinkUrl($row_comments->profile_id)}
                     <span class="notification-item-header text-uppercase"><a n:href="$linkurl id=>$row_comments->profile_id" style="color:#a5987f;">{DataModel::getProfileName($row_comments->profile_id)}</a></span>
-                    <a style="position:absolute;right:10px;cursor:pointer;color:gray;font-size:13px;" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}"><i class="fa fa-times"></i></a>
+                    {if DataModel::getPermission($row_comments->id,$logged_in_id,8)}
+                    <a style="position:absolute;right:10px;cursor:pointer;color:gray;font-size:13px;" data-toggle="tooltip" n:href="TimelineRemoveComment! id=>$row_comments->id" data-placement='top' title="{_ 'Delete'}"><i class="fa fa-times"></i></a>
+                    {/if}
                     <span class="notification-item-event-time">{$row_comments->comment_date_time|date:'%d.%m.%Y'}|&nbsp;{$row_comments->comment_date_time|date:'H:i'}</span>
                     <span class="notification-item-event" style="color:black">{$row_comments->comment}</span>
                 </div>

@@ -84,49 +84,4 @@ class LandingPagePresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
-    protected function createComponentFrmContactForm() {
-        $form = new Form();
-        $form->addText('txtName')->setRequired($this->translate("Required field"));
-        $form->addText('txtSurname')->setRequired($this->translate("Required field"));
-        $form->addText('txtEmail')->setRequired($this->translate("Required field"));
-        $form->addTextArea('txtMessage')->setRequired($this->translate("Required field"));
-        $form->addText('txtVerify')->setRequired($this->translate("Required field"));
-        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmContactFormSucceeded');
-
-        return $form;
-    }
-
-    public function frmContactFormSucceeded($button) {
-        $values = $button->getForm()->getValues();
-
-        try {
-            $recaptcha = $_POST['g-recaptcha-response'];
-
-            $this->flashMessage($recaptcha, "Information");
-
-            $mail = new Message();
-
-            //if ($values['txtVerify'] != 2) {
-            //    throw new \Exception("CAPTCHA is not valid.");
-            //} else {
-            $mail->setFrom($values['txtName'] . ' ' . $values['txtSurname'] . ' <' . $values['txtEmail'] . '>') //$values['txtEmail']) //DOGFORSHOW <info@dogforshow.com>
-                    ->addTo('info@dogforshow.com')
-                    ->addTo('radoslav.mihalus@gmail.com')
-                    ->setSubject('DOGFORSHOW - Contact Form')
-                    ->setBody('Name: ' . $values['txtName'] . '<br/>Surname: ' . $values['txtSurname'] . '<br/>Email: ' . $values['txtEmail'] . '<br/><br/>Message:<br/>' . $values['txtMessage'])
-                    ->setContentType('text/html')
-                    ->setEncoding('UTF-8');
-
-//var_dump($mail);
-
-            $mailer = new SendmailMailer();
-            $mailer->send($mail);
-
-            $this->flashMessage($this->translate("Your message was been successfully sent. We will contact you as soon as possible."), "Info");
-            //}
-        } catch (\Exception $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
-    }
-
 }

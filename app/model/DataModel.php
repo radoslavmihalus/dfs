@@ -984,6 +984,18 @@ class DataModel {
                     else
                         return FALSE;
                     break;
+                case 8: //timeline comment
+                    $row = $database->table("tbl_comments")->where("id=?", $id)->fetch();
+                    if ($row->profile_id == $profile_id)
+                        return TRUE;
+                    else {
+                        $comm = $database->table("tbl_timeline")->where("id=?", $row->timeline_id)->fetch();
+                        if ($comm->profile_id == $profile_id)
+                            return TRUE;
+                        else
+                            return FALSE;
+                    }
+                    break;
             }
         } catch (\Exception $ex) {
             
