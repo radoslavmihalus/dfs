@@ -17,6 +17,9 @@ class kennelPresenter extends BasePresenter {
     private $logged_in_kennel_id;
     private $award_id;
     private $planned_litter_id;
+    public $filter_kennel_name;
+    public $filter_kennel_breed;
+    public $filter_kennel_country;
 
 //    public function __construct(Nette\Database\Context $database) {
 //        $this->database = $database;
@@ -64,12 +67,93 @@ class kennelPresenter extends BasePresenter {
     /*     * ******** renderers ************* */
 
     public function renderKennel_list() {
-        $count = $this->database->table("tbl_userkennel")->count();
+        try {
+            $section = $this->getSession('kennel_filter');
+
+            $this->filter_kennel_name = $section->filter_kennel_name;
+            $this->filter_kennel_breed = $section->filter_kennel_breed;
+            $this->filter_kennel_country = $section->filter_kennel_country;
+
+            if ($this->filter_kennel_name == NULL)
+                $this->filter_kennel_name = "";
+            if ($this->filter_kennel_breed == NULL)
+                $this->filter_kennel_breed = "";
+            if ($this->filter_kennel_country == NULL)
+                $this->filter_kennel_country = "";
+        } catch (\Exception $ex) {
+            
+        }
+
+        $ids = array();
+
+        if (strlen($this->filter_kennel_breed) > 1) {
+            $id_rows = $this->database->table("link_kennel_breed")->select('kennel_id')->where("breed_name=?", $this->filter_kennel_breed)->group('kennel_id')->fetchAll();
+
+            foreach ($id_rows as $id_row) {
+                $ids[] = $id_row->kennel_id;
+            }
+        }
+
+        $ids_users = array();
+
+        if (strlen($this->filter_kennel_country) > 1) {
+            $id_rows = $this->database->table("tbl_user")->select('id')->where("state=?", $this->filter_kennel_country)->group('id')->fetchAll();
+
+            foreach ($id_rows as $id_row) {
+                $ids_users[] = $id_row->id;
+            }
+        }
+
+        if (strlen($this->filter_kennel_breed) > 1) {
+            if (strlen($this->filter_kennel_country) > 1)
+                $count = $this->database->table("tbl_userkennel")
+                        ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
+                        ->where("user_id IN ?", $ids_users)
+                        ->where("id IN ?", $ids)
+                        ->count();
+            else
+                $count = $this->database->table("tbl_userkennel")
+                        ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
+                        ->where("id IN ?", $ids)
+                        ->count();
+        } else {
+            if (strlen($this->filter_kennel_country) > 1)
+                $count = $this->database->table("tbl_userkennel")
+                        ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
+                        ->where("user_id IN ?", $ids_users)
+                        ->count();
+            else
+                $count = $this->database->table("tbl_userkennel")
+                        ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
+                        ->count();
+        }
 
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(9);
 
-        $rows = $this->database->table("tbl_userkennel")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        if (strlen($this->filter_kennel_breed) > 1) {
+            if (strlen($this->filter_kennel_country) > 1)
+                $rows = $this->database->table("tbl_userkennel")
+                                ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
+                                ->where("user_id IN ?", $ids_users)
+                                ->where("id IN ?", $ids)
+                                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+            else
+                $rows = $this->database->table("tbl_userkennel")
+                                ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
+                                ->where("id IN ?", $ids)
+                                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        } else {
+            if (strlen($this->filter_kennel_country) > 1)
+                $rows = $this->database->table("tbl_userkennel")
+                                ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
+                                ->where("user_id IN ?", $ids_users)
+                                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+            else
+                $rows = $this->database->table("tbl_userkennel")
+                                ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
+                                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        }
 
 //$rows = $this->database->query("SELECT .*, tbl_user.state, FALSE as have_puppies FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id ORDER BY tbl_userkennel.kennel_create_date DESC limit ". $this->paginator->getLength() . "," . $this->paginator->getOffset())->fetchAll();
 
@@ -341,6 +425,79 @@ class kennelPresenter extends BasePresenter {
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditProfileSucceeded');
 
         return $form;
+    }
+
+    protected function createComponentKennel_list_filter() {
+        $form = new Form();
+
+        $lang = "en";
+
+        try {
+            $section = $this->getSession('language');
+            if (strlen($section->lang) > 1)
+                $lang = strtolower($section->lang);
+        } catch (Exception $ex) {
+            $lang = "en";
+        }
+
+        $result = $this->database->table("lk_countries")->order("CountryName_$lang");
+        $countries = array();
+
+        //$countries[] = $this->translate("Please select state...");
+
+        foreach ($result as $row) {
+            $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
+        }
+
+        $this->filter_kennel_name = NULL;
+        $this->filter_kennel_breed = NULL;
+        $this->filter_kennel_country = NULL;
+
+        try {
+            $section = $this->getSession('kennel_filter');
+
+            $this->filter_kennel_name = $section->filter_kennel_name;
+            $this->filter_kennel_breed = $section->filter_kennel_breed;
+            $this->filter_kennel_country = $section->filter_kennel_country;
+        } catch (\Exception $ex) {
+            
+        }
+
+        $form->addText("txtKennelName")->setValue($this->filter_kennel_name);
+        $form->addSelect("ddlCountry")->setPrompt($this->translate("Please select"))->setItems($countries)->setValue($this->filter_kennel_country);
+        $form->addText("ddlBreedList")->setValue($this->filter_kennel_breed);
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitKennelFilter');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelKennelFilter');
+
+        return $form;
+    }
+
+    public function frmSubmitKennelFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('kennel_filter');
+
+        $this->filter_kennel_name = $values->txtKennelName;
+        $this->filter_kennel_breed = $values->ddlBreedList;
+        $this->filter_kennel_country = $values->ddlCountry;
+
+        $section->filter_kennel_name = $this->filter_kennel_name;
+        $section->filter_kennel_breed = $this->filter_kennel_breed;
+        $section->filter_kennel_country = $this->filter_kennel_country;
+
+        $this->redirect("this");
+    }
+
+    public function frmCancelKennelFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('kennel_filter');
+
+        $section->filter_kennel_name = NULL;
+        $section->filter_kennel_breed = NULL;
+        $section->filter_kennel_country = NULL;
+
+        $this->redirect("this");
     }
 
     protected function createComponentKennelEditProfileCoverImage() {

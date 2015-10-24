@@ -1,7 +1,9 @@
 {block content}
 <div class="panel-default col-lg-12 col-md-12 col-xs-12" style="font-size: 13px;min-width: 244px">
-    <h1><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennels'}</h1>
-    <!-- {'kennel_list_filter.latte'} -->
+    <h1><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennels'}&nbsp;<button class="btn btn-default" style="text-transform: uppercase;" role="button" data-toggle="collapse" href="#KennelFilter" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></button></h1>
+    <div class="collapse" id="KennelFilter">
+        {include 'kennel_list_filter.latte'}
+    </div>
     {control vp, right, large}
     <div class="row">
         <!-- List profile component -->
@@ -9,6 +11,6 @@
         {include kennel_list_item}
         <!-- / List profile component -->
     </div>
-        {control vp, right, large}
+    {control vp, right, large}
 </div>  
 {/block}
