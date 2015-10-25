@@ -833,7 +833,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
                 try {
                     $data['status'] = 1;
-                    $this->database->table("tbl_payments")->where("transaction=? and user_id=?", $transaction_id, $user->id)->update($data);
+                    $this->database->table("tbl_payments")->where("transaction=?", $transaction_id)->where("user_id=?", $user->id)->update($data);
                 } catch (\Exception $ex) {
                     
                 }
