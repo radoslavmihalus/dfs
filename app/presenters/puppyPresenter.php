@@ -88,6 +88,13 @@ class puppyPresenter extends BasePresenter {
 
     public function renderDefault($id = 0) {
         $dog = $this->database->table("tbl_puppies")->where("id=?", $id)->fetch();
+        try {
+            $this->page_title = "DOGFORSHOW - " . $dog->puppy_name;
+        } catch (\Exception $ex) {
+            $this->page_title = "DOGFORSHOW";
+        }
+
+        $this->template->page_title = $this->page_title;
         $this->template->dog = $dog;
         $this->dog_id = $id;
     }
@@ -155,7 +162,7 @@ class puppyPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -239,7 +246,7 @@ class puppyPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
         $result = $this->database->table("lk_countries")->order("CountryName_$lang")->fetchAll();
@@ -297,7 +304,7 @@ class puppyPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
         $result = $this->database->table("lk_countries")->order("CountryName_$lang")->fetchAll();

@@ -36,6 +36,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $receiver_user_id;
     public $receiver_profile_id;
     public $paginator;
+    public $page_title;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
@@ -82,6 +83,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->translator->lang = $mysection->lang;
         } catch (\Exception $ex) {
             $this->translator->lang = "en";
+            try {
+                $mysection = $this->getSession('language');
+                $mysection->lang = "en";
+            } catch (\Exception $ex) {
+                
+            }
         }
 
         $this->template->setTranslator($this->translator);
@@ -225,6 +232,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->template->has_kennel_profile = false;
             $this->template->has_user_profile = false;
             $this->template->has_handler_profile = false;
+
+            $this->page_title = "DOGFORSHOW";
+            $this->template->page_title = $this->page_title;
         }
 
 //        $this->template->users_messages = $this->getMessagesUsersList();
@@ -265,7 +275,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -1290,9 +1300,26 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
     protected function createComponentFrmContactForm() {
         $form = new Form();
-        $form->addText('txtName')->setRequired($this->translate("Required field"));
-        $form->addText('txtSurname')->setRequired($this->translate("Required field"));
-        $form->addText('txtEmail')->setRequired($this->translate("Required field"));
+
+        $name = "";
+        $surname = "";
+        $email = "";
+
+
+        if ($this->logged_in_id > 0) {
+            try {
+                $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+                $name = $user->name;
+                $surname = $user->surname;
+                $email = $user->email;
+            } catch (\Exception $ex) {
+                
+            }
+        }
+
+        $form->addText('txtName')->setValue($name)->setRequired($this->translate("Required field"));
+        $form->addText('txtSurname')->setValue($surname)->setRequired($this->translate("Required field"));
+        $form->addText('txtEmail')->setValue($email)->setRequired($this->translate("Required field"));
         $form->addTextArea('txtMessage')->setRequired($this->translate("Required field"));
         $form->addSubmit('btnSubmit', 'Send')->onClick[] = array($this, 'frmContactFormSucceeded');
 
@@ -1303,7 +1330,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $values = $button->getForm()->getValues();
 
         try {
-            $recaptcha = $_POST['g-recaptcha-response'];
+            if ($this->logged_in_id > 0)
+                $recaptcha = "123456789012345";
+            else
+                $recaptcha = $_POST['g-recaptcha-response'];
 
 
             if (strlen($recaptcha) > 10) {
@@ -1335,7 +1365,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         }
     }
 
-    
     protected function createComponentUserEditAccountPremium() {
         $lang = "en";
 
@@ -1343,7 +1372,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
         $result = $this->database->table("lk_countries")->order("CountryName_$lang");
@@ -1437,7 +1466,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         $this->TrustPay($this->amt, 1);
     }
-    
+
 }
 
 class DFSTranslator implements Nette\Localization\ITranslator {
@@ -1516,7 +1545,7 @@ class DFSTranslator implements Nette\Localization\ITranslator {
             return $message;
         }
     }
-    
+
 }
 
 ?>

@@ -1,36 +1,64 @@
 <div class="container-fluid">
     <div class="col-md-12">
         <h2 class="heading text-center text-uppercase" style="color:white"><i class="fa fa-envelope"></i>&nbsp;&nbsp;<strong>{_ 'Contact us'}</strong></h2>
-        {form frmContactForm}
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="txtName" n:name=txtName placeholder="{_ 'Name'}">
+        {if $logged_in_id>0}
+            {form frmContactForm}
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="txtName" n:name=txtName placeholder="{_ 'Name'}">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="txtSurname" n:name=txtSurname placeholder="{_ 'Surname'}">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="txtSurname" n:name=txtSurname placeholder="{_ 'Surname'}">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <input type="email" class="form-control" id="txtEmail" n:name=txtEmail placeholder="{_ 'Email'}">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="txtEmail" n:name=txtEmail placeholder="{_ 'Email'}">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <textarea type="text" class="form-control contact_textarea" id="txtMessage" n:name=txtMessage placeholder="{_ 'Message'}"></textarea>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <textarea type="text" class="form-control contact_textarea" id="txtMessage" n:name=txtMessage placeholder="{_ 'Message'}"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <div class="g-recaptcha" data-sitekey="6LdBSgITAAAAAPHEfML6Of8AKPJ1CTbIrI7BdEql" data-theme="light"></div>    
-    <!--                                        1+1&nbsp;=&nbsp;<input type="text" class="form-control" id="txtVerify" name="txtVerify" placeholder="{_ 'Verify'}">-->
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-danger btn-block" id="btnSubmit" n:name=btnSubmit><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;{_ 'Send'}</button>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-danger btn-block" id="btnSubmit" n:name=btnSubmit><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;{_ 'Send'}</button>
-            </div>
-        {/form}
+            {/form}
+        {else}
+            {form frmContactForm}
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtName" n:name=txtName placeholder="{_ 'Name'}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtSurname" n:name=txtSurname placeholder="{_ 'Surname'}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="txtEmail" n:name=txtEmail placeholder="{_ 'Email'}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <textarea type="text" class="form-control contact_textarea" id="txtMessage" n:name=txtMessage placeholder="{_ 'Message'}"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="6LdBSgITAAAAAPHEfML6Of8AKPJ1CTbIrI7BdEql" data-theme="light"></div>    
+        <!--                                        1+1&nbsp;=&nbsp;<input type="text" class="form-control" id="txtVerify" name="txtVerify" placeholder="{_ 'Verify'}">-->
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-danger btn-block" id="btnSubmit" n:name=btnSubmit><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;{_ 'Send'}</button>
+                </div>
+            {/form}
+        {/if}
     </div>
 </div>

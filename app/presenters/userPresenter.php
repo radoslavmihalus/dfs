@@ -73,7 +73,7 @@ class userPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
         $result = $this->database->table("lk_countries")->order("CountryName_$lang");

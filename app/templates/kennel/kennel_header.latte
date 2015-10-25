@@ -27,11 +27,17 @@
                 <span class="profile-type-description" style="margin-left: 20px"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{_$state}</span>
             </div>
             <div class="col-md-6" style="padding-top: 15px;">
-                {if !DataModel::getPermission($profile_id,$logged_in_id,1)}
+                {if $logged_in_id>0}
+                    {if !DataModel::getPermission($profile_id,$logged_in_id,1)}
+                        <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">
+        <!--                    <a type="button" class="btn btn-default"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'Add friend'}</a>
+                            <a type="button" class="btn btn-default"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_ 'Follow'}</a>-->
+                            <a type="button" class="btn btn-default" n:href="user:user_message_compose profile_id => $profile_id"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Message'}</a>
+                        </div>
+                    {/if}
+                {else}
                     <div class="btn-group btn-group-sm btn-group-justified" role="group" aria-label="...">
-<!--                        <a type="button" class="btn btn-default"><i class="fa fa-users"></i>&nbsp;&nbsp;{_ 'Add friend'}</a>
-                        <a type="button" class="btn btn-default"><i class="fa fa-rss"></i>&nbsp;&nbsp;{_ 'Follow'}</a>-->
-                        <a type="button" class="btn btn-default" n:href="user:user_message_compose profile_id => $profile_id"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Message'}</a>
+                        <a type="button" id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-default"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Message'}</a>
                     </div>
                 {/if}
             </div>

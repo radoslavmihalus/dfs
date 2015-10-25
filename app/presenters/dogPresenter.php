@@ -219,6 +219,13 @@ class dogPresenter extends BasePresenter {
     public function renderDefault($id = 0) {
         $dog = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();
         $this->template->dog = $dog;
+
+        try {
+            $this->page_title = "DOGFORSHOW - " . $dog->dog_name;
+        } catch (\Exception $ex) {
+            $this->page_title = "DOGFORSHOW";
+        }
+
         $this->dog_id = $id;
 
         $this->template->current_profile_type = $this->data_model->getProfileType($dog->profile_id);
@@ -398,7 +405,7 @@ class dogPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -483,7 +490,7 @@ class dogPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -559,7 +566,7 @@ class dogPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -607,7 +614,7 @@ class dogPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -813,7 +820,7 @@ class dogPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -844,7 +851,7 @@ class dogPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -950,7 +957,7 @@ class dogPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -1179,7 +1186,7 @@ class dogPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 

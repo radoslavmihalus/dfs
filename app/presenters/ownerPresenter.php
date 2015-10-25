@@ -99,6 +99,14 @@ class ownerPresenter extends BasePresenter {
 
         $count = $this->data_model->getTimelineCount($id);
 
+        try {
+            $this->page_title = "DOGFORSHOW - " . \DataModel::getProfileName($id);
+        } catch (\Exception $ex) {
+            $this->page_title = "DOGFORSHOW";
+        }
+
+        $this->template->page_title = $this->page_title;
+        
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(9);
 

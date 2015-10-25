@@ -204,6 +204,14 @@ class kennelPresenter extends BasePresenter {
             $have_background_image = FALSE;
         $state = $row->state;
 
+        try {
+            $this->page_title = "DOGFORSHOW - " . \DataModel::getProfileName($id);
+        } catch (\Exception $ex) {
+            $this->page_title = "DOGFORSHOW";
+        }
+
+        $this->template->page_title = $this->page_title;
+
         $this->template->have_puppies = $have_puppies;
         $this->template->profile_image = $profile_image;
         $this->template->logged_in_profile_id = $this->logged_in_profile_id;
@@ -436,7 +444,7 @@ class kennelPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -575,7 +583,7 @@ class kennelPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -634,7 +642,7 @@ class kennelPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 

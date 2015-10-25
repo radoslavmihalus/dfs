@@ -169,6 +169,13 @@ class handlerPresenter extends BasePresenter {
 
         $this->template->profile_id = $id;
 
+        try {
+            $this->page_title = "DOGFORSHOW - " . \DataModel::getProfileName($id);
+        } catch (\Exception $ex) {
+            $this->page_title = "DOGFORSHOW";
+        }
+
+        $this->template->page_title = $this->page_title;
         // getTimeline        
 //        $rows = NULL;
 //
@@ -705,7 +712,7 @@ class handlerPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
 
@@ -747,7 +754,7 @@ class handlerPresenter extends BasePresenter {
             $section = $this->getSession('language');
             if (strlen($section->lang) > 1)
                 $lang = strtolower($section->lang);
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $lang = "en";
         }
         $result = $this->database->table("lk_countries")->order("CountryName_$lang");
