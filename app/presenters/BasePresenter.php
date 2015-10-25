@@ -710,6 +710,19 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         if (isset($_GET['pay']))
             $pay = $_GET['pay'];
 
+        $rand = rand(10000000, 99999999);
+
+        try {
+            $data = array();
+            $data['user_id'] = $this->logged_in_id;
+            $data['transaction'] = $rand;
+            $data['amount'] = $amt;
+            $data['type'] = $pay;
+            $this->database->table("tbl_payments")->insert($data);
+        } catch (\Exception $ex) {
+            
+        }
+
         $TrustpayUrl = "https://ib.trustpay.eu/mapi/pay.aspx";
 
         $TrustpayUrlCard = "https://ib.trustpay.eu/mapi/cardpayments.aspx";
@@ -721,8 +734,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $TrustpaySecret = "tba6CtpBwlYLwT3fotM6jPmsD48pkYZb";
 
         $current_user = $this->logged_in_id;
-
-        $rand = rand(10000000, 99999999);
 
         $key = $TrustpaySecret;
         $aid = $TrustpayAID;
@@ -748,79 +759,90 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function actionPayment() {
-        if (isset($_GET['RES']) && $_GET['RES'] == 0) {
-            if (isset($_GET['REF']))
-                $REF = $_GET['REF'];
+        try {
+            if (isset($_GET['RES']) && $_GET['RES'] == 0) {
+                if (isset($_GET['REF']))
+                    $REF = $_GET['REF'];
 
-            $REF = explode("|", $REF);
+                $REF = explode("|", $REF);
 
-            $transaction_id = $REF[0];
-            $user_id = $REF[1];
-            $amount = $REF[2];
+                $transaction_id = $REF[0];
+                $user_id = $REF[1];
+                $amount = $REF[2];
 
-            $user = $this->database->table("tbl_user")->where("id=?", $user_id)->fetch();
+                $user = $this->database->table("tbl_user")->where("id=?", $user_id)->fetch();
 
-            $expiry = $user->premium_expiry_date;
-            $curdate = date("Y-m-d");
+                $expiry = $user->premium_expiry_date;
+                $curdate = date("Y-m-d");
 
-            if ($expiry > $curdate) {
+                if ($expiry > $curdate) {
+                    if ($amount == 35)
+                        $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 6 months"));
+                    else
+                        $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 1 years"));
+                }else {
+                    if ($amount == 35)
+                        $end = date('Y-m-d', strtotime('+6 months'));
+                    else
+                        $end = date('Y-m-d', strtotime('+1 years'));
+                }
+
+                $data['premium_expiry_date'] = $end;
+
+                $this->database->table("tbl_user")->where("id=?", $user_id)->update($data);
+
+
+                // invoice - superfaktura
+
+                $sf = new \invoice();
+
                 if ($amount == 35)
-                    $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 6 months"));
+                    $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("6 MONTHS"), "1", $amount);
                 else
-                    $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 1 years"));
-            }else {
-                if ($amount == 35)
-                    $end = date('Y-m-d', strtotime('+6 months'));
-                else
-                    $end = date('Y-m-d', strtotime('+1 years'));
+                    $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("12 months"), "1", $amount);
+
+                $id = $response->data->Invoice->id;
+                $token = $response->data->Invoice->token;
+
+                try {
+                    $lang = $user->lang;
+                } catch (\Exception $ex) {
+                    $lang = "en";
+                }
+
+                switch ($lang) {
+                    case 'sk':
+                        $invlang = 'slo';
+                        break;
+                    case 'cz':
+                        $invlang = 'cze';
+                        break;
+                    default :
+                        $invlang = 'eng';
+                        break;
+                }
+
+                $mail = new Message();
+                $mail->setFrom('DOGFORSHOW <info@dogforshow.com>')
+                        ->setSubject("DOGFORSHOW - " . $this->translate("Premium account activation"))
+                        ->addTo($user->email)
+                        ->setHtmlBody($this->translate("You can download your invoice here") . ":<br/><br/>" . "https://moja.superfaktura.sk/$invlang/invoices/pdf/$id/token:$token");
+
+                $mailer = new SendmailMailer();
+                $mailer->send($mail);
+
+                try {
+                    $data['status'] = 1;
+                    $this->database->table("tbl_payments")->where("transaction=? and user_id=?", $transaction_id, $user->id)->update($data);
+                } catch (\Exception $ex) {
+                    
+                }
+
+                $this->flashMessage($this->translate("Your premium account has been successfully activated."), "Success");
+            } else {
+                $this->flashMessage($this->translate("Your premium account has not been activated."), "Warning");
             }
-
-            $data['premium_expiry_date'] = $end;
-
-            $this->database->table("tbl_user")->where("id=?", $user_id)->update($data);
-
-
-            // invoice - superfaktura
-
-            $sf = new \invoice();
-
-            if ($amount == 35)
-                $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("6 MONTHS"), "1", $amount);
-            else
-                $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("12 months"), "1", $amount);
-
-            $id = $response->data->Invoice->id;
-            $token = $response->data->Invoice->token;
-
-            try {
-                $lang = $user->lang;
-            } catch (\Exception $ex) {
-                $lang = "en";
-            }
-
-            switch ($lang) {
-                case 'sk':
-                    $invlang = 'slo';
-                    break;
-                case 'cz':
-                    $invlang = 'cze';
-                    break;
-                default :
-                    $invlang = 'eng';
-                    break;
-            }
-
-            $mail = new Message();
-            $mail->setFrom('DOGFORSHOW <info@dogforshow.com>')
-                    ->setSubject("DOGFORSHOW - " . $this->translate("Premium account activation"))
-                    ->addTo($user->email)
-                    ->setHtmlBody($this->translate("You can download your invoice here") . ":<br/><br/>" . "https://moja.superfaktura.sk/$invlang/invoices/pdf/$id/token:$token");
-
-            $mailer = new SendmailMailer();
-            $mailer->send($mail);
-
-            $this->flashMessage($this->translate("Your premium account has been successfully activated."), "Success");
-        } else {
+        } catch (\Exception $ex) {
             $this->flashMessage($this->translate("Your premium account has not been activated."), "Warning");
         }
         $this->redirect("default");
