@@ -52,6 +52,12 @@ $router = $container->getService('router');
 //    }
 //}
 
+//$router[] = new Route("michal.slepanek", array(
+//    'presenter' => 'owner',
+//    'action' => 'owner_profile_home',
+//    'id' => '300000000',
+//        ));
+
 $router[] = new Route('index.php', 'LandingPage:default');
 $router[] = new Route('payment_return.php', 'LandingPage:payment');
 //$router[] = new Route('forgot-password', 'LandingPage:forgot_password');

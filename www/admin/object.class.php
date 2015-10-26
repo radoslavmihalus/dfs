@@ -479,20 +479,6 @@ class blueticket_objects {
     public function getTranslatedText($par_Text, $par_lang = 'sk') {
         $par_lang = $this->lang;
 
-//        $blueticket_db = blueticket_forms_db::get_instance();
-//
-//        $blueticket_db->query("CREATE TABLE IF NOT EXISTS translate (ID BIGINT NOT NULL AUTO_INCREMENT,TextToTranslate TEXT NULL,TranslatedText TEXT NULL,Lang TEXT NULL,PRIMARY KEY (ID)) ENGINE=MyISAM;");
-//
-//        $blueticket_db = blueticket_forms_db::get_instance();
-//        $blueticket_db->query("SELECT * FROM translate WHERE TextToTranslate='$par_Text' AND Lang='$par_lang'");
-//        $myrow = $blueticket_db->row();
-//
-//        if (strlen($myrow['TranslatedText']) > 0) {
-//            $par_Text = $myrow['TranslatedText'];
-//        } else {
-//            $blueticket_db->query("INSERT INTO translate(TextToTranslate,TranslatedText,Lang) VALUES('$par_Text','$par_Text','$par_lang')");
-//            $par_Text = $par_Text;
-//        }
         return $par_Text;
     }
 
@@ -509,10 +495,31 @@ class blueticket_objects {
     function generateUsers() {
         $form = blueticket_forms::get_instance();
 
+        //$form= new blueticket_forms();
+        
         $form->table("tbl_user");
         $form->default_tab("tbl_user");
+        $form->columns("registration_date, active, name, surname, email, state, password, premium_expiry_date, kennels, owners, handlers, dogs");
         $form->order_by('id', 'DESC');
 
+        
+        $form->subselect('kennels', 'SELECT COUNT(*) FROM tbl_userkennel WHERE user_id = {id}');
+        $form->subselect('owners', 'SELECT COUNT(*) FROM tbl_userowner WHERE user_id = {id}');
+        $form->subselect('handlers', 'SELECT COUNT(*) FROM tbl_userhandler WHERE user_id = {id}');
+        $form->subselect('dogs', 'SELECT COUNT(*) FROM tbl_dogs WHERE user_id = {id}');
+
+        $form->highlight_row('active','=',0, '#FFD6D6');
+        $form->highlight('kennels', '>', 0, '#B4E274');
+        $form->highlight('kennels', '=', 0, '#EDEBE4');
+        $form->highlight('owners', '>', 0, '#B4E274');
+        $form->highlight('owners', '=', 0, '#EDEBE4');
+        $form->highlight('handlers', '>', 0, '#B4E274');
+        $form->highlight('handlers', '=', 0, '#EDEBE4');
+        $form->highlight('dogs', '>', 0, '#B4E274');
+        $form->highlight('dogs', '=', 0, '#EDEBE4');
+
+        $form->sum('active,kennels,owners,handlers,dogs');
+        
         $this->generateKennels($form);
         $this->generateOwners($form);
         $this->generateHandlers($form);
@@ -530,6 +537,8 @@ class blueticket_objects {
             $kennel = blueticket_forms::get_instance();
             $kennel->table("tbl_userkennel");
             $kennel->order_by('id', 'DESC');
+            $this->generateDogs($kennel);
+
             return $kennel->render();
         }
     }
@@ -542,6 +551,8 @@ class blueticket_objects {
             $owner = blueticket_forms::get_instance();
             $owner->table("tbl_userowner");
             $owner->order_by('id', 'DESC');
+            $this->generateDogs($owner);
+
             return $owner->render();
         }
     }
