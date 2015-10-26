@@ -1553,6 +1553,8 @@ class dogPresenter extends BasePresenter {
 
         $data = array();
 
+        $result = $values->ddlDate . " - " . $values->txtShowName . ": ";
+
         $data['dog_id'] = $this->dog_id;
         $data['handler_name'] = $values->txtHandlerName;
         $data['judge_name'] = $values->txtJudgeName;
@@ -1565,8 +1567,6 @@ class dogPresenter extends BasePresenter {
         $data['show_name'] = $values->txtShowName;
         $data['show_type'] = $values->ddlShowType;
         $data['show_country'] = $values->ddlCountry;
-
-        $result = "";
 
         foreach ($values->chckAssesmentMinorPuppy as $item) {
             $data[$item] = 1;

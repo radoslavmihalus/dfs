@@ -19,6 +19,9 @@
                     {/if}
                 <a href="{$profile_image}" data-gallery><img src="{$profile_image}"></a>
             </div>
+            {if ( DataModel::getPremium(DataModel::getUserIdByProfileId($profile_id)) )}
+                <a n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></a>
+                {/if}
         </div>
         <div class="row">
             <div class="col-md-6">

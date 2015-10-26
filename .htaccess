@@ -9,6 +9,10 @@ RewriteEngine On
 
 # front controller 
 # hlavny controller (index.php) a obmedzenie requestov na urcite typy suborov 
+RewriteEngine On
+
+# RewriteCond %{HTTP_HOST} ^[^.]+\.(dogshow\.com)$ [NC]
+# RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L,NE]
 RewriteCond %{REQUEST_URI} !^/www/.*$
 RewriteCond %{REQUEST_URI} !^/wp-content/.*$
 RewriteCond %{REQUEST_FILENAME} !-f 

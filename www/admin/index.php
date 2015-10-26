@@ -19,12 +19,6 @@ $bt = new blueticket_objects();
 
 if (isset($_GET['report'])) {
     switch ($_GET['report']) {
-        case 'print_items_bc':
-            echo $bt->printItems('UPC');
-            break;
-        case 'print_items_qr':
-            echo $bt->printItems('QR');
-            break;
 //        case 'print_purchase':
 //            $inv = new InvoicePDF();
 //            echo $inv->CreateInvoice(TRUE);
@@ -144,6 +138,24 @@ if (isset($_GET['report'])) {
                 switch ($_GET['report']) {
                     case 'forms':
                         echo $bt->generateForms();
+                        break;
+                    case 'users':
+                        echo $bt->generateUsers();
+                        break;
+                    case 'kennels':
+                        echo $bt->generateKennels();
+                        break;
+                    case 'owners':
+                        echo $bt->generateOwners();
+                        break;
+                    case 'handlers':
+                        echo $bt->generateHandlers();
+                        break;
+                    case 'dogs':
+                        echo $bt->generateDogs();
+                        break;
+                    case 'payments':
+                        echo $bt->generatePayments();
                         break;
 //                    case 'stats':
 //                        if (isset($_GET['type'])) {

@@ -510,11 +510,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
             if ($profile_id >= 100000000 && $profile_id < 200000000)
                 if ($this->logged_in_profile_id > 0)
-                    $messages_rows = $this->database->table('tbl_messages')->where("(from_user_id = ? AND to_profile_id=?) OR (from_profile_id=? AND to_user_id=?)", $profile_id, $this->logged_in_profile_id, $this->logged_in_profile_id, $profile_id)->fetchAll();
+                    $messages_rows = $this->database->table('tbl_messages')->where("(from_user_id = ? AND to_profile_id=?) OR (from_profile_id=? AND to_user_id=?)", $profile_id, $this->logged_in_profile_id, $this->logged_in_profile_id, $profile_id)->order("id ASC")->fetchAll();
                 else
-                    $messages_rows = $this->database->table('tbl_messages')->where("(from_user_id = ? AND to_user_id=?) OR (from_user_id=? AND to_user_id=?)", $profile_id, $this->logged_in_id, $this->logged_in_id, $profile_id)->fetchAll();
+                    $messages_rows = $this->database->table('tbl_messages')->where("(from_user_id = ? AND to_user_id=?) OR (from_user_id=? AND to_user_id=?)", $profile_id, $this->logged_in_id, $this->logged_in_id, $profile_id)->order("id DESC")->order("id ASC")->fetchAll();
             else
-                $messages_rows = $this->database->table('tbl_messages')->where("(from_profile_id = ? AND to_profile_id=?) OR (from_profile_id=? AND to_profile_id=?)", $profile_id, $this->logged_in_profile_id, $this->logged_in_profile_id, $profile_id)->fetchAll();
+                $messages_rows = $this->database->table('tbl_messages')->where("(from_profile_id = ? AND to_profile_id=?) OR (from_profile_id=? AND to_profile_id=?)", $profile_id, $this->logged_in_profile_id, $this->logged_in_profile_id, $profile_id)->order("id ASC")->fetchAll();
 
             $data = "";
 

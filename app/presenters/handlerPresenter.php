@@ -60,7 +60,7 @@ class handlerPresenter extends BasePresenter {
         if ($id == 0)
             $id = $this->logged_in_handler_id;
         $this->renderHandler_profile_home($id);
-        $championships = $this->database->table("tbl_handler_awards")->where("handler_id = ?", $id)->fetchAll();
+        $championships = $this->database->table("tbl_handler_awards")->where("handler_id = ?", $id)->order("date DESC")->fetchAll();
         $this->template->championships = $championships;
     }
 
@@ -68,7 +68,7 @@ class handlerPresenter extends BasePresenter {
         if ($id == 0)
             $id = $this->logged_in_handler_id;
         $this->renderHandler_profile_home($id);
-        $certificates = $this->database->table("tbl_handler_certificates")->where("handler_id=?", $id)->fetchAll();
+        $certificates = $this->database->table("tbl_handler_certificates")->where("handler_id=?", $id)->order("date DESC")->fetchAll();
         $this->template->certificates = $certificates;
     }
 
@@ -77,7 +77,7 @@ class handlerPresenter extends BasePresenter {
             $id = $this->logged_in_handler_id;
         $this->renderHandler_profile_home($id);
 
-        $handler_shows = $this->database->table("tbl_handler_show_groups")->where("handler_id=?", $id)->fetchAll();
+        $handler_shows = $this->database->table("tbl_handler_show_groups")->where("handler_id=?", $id)->order("show_date DESC")->fetchAll();
 
         $this->template->handler_shows = $handler_shows;
     }
@@ -1002,8 +1002,14 @@ class handlerPresenter extends BasePresenter {
 
         $data['handler_id'] = $this->logged_in_handler_id;
 
-        $result = "";
-
+        try {
+            $show_group = $this->database->table("tbl_handler_show_groups")->where("id=?", $this->show_group_id)->fetch();
+            $date = date("d.m.Y", strtotime($show_group->show_date));
+            $result = $show_group->show_date . " - " . $show_group->show_name . ": ";
+        } catch (\Exception $ex) {
+            $result = "";
+        }
+        
         foreach ($values->chckAssesmentMinorPuppy as $item) {
             $data[$item] = 1;
             $result .= $this->translate($item) . ",";
