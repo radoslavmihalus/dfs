@@ -6,23 +6,23 @@ body
 	margin: 0px;
 	background-color: white;
 }
-h1
+h1.error-heading
 {
-font-family: 'Roboto Condensed', sans-serif;
-font-size: 35px !important;
-color:#8C8067;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 30px !important;
+    font-weight: 700;
+    color:#a5987f;
 }
-h2
+h2.secondary-error-heading
 {
-font-family: 'Roboto Condensed', sans-serif;
-font-size: 25px !important;
-color:black;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 26px;
+    color: #a5987f;
 }
 .landing_header
 {
-	height: auto;
-    background: url("http://www.dogforshow.com/www/img/header.jpg")no-repeat center center;
+    height: auto;
+    background: url("http://www.dogforshow.com/www/img/header-error.jpg")no-repeat center center;
     background-size: cover;
     min-height: 400px;
-	background-color:black;
 }
