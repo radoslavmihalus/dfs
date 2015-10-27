@@ -1052,21 +1052,28 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public function frmLogInSucceeded($button) {
         $values = $button->getForm()->getValues();
 
-        $result = $this->database->query("SELECT * FROM tbl_user WHERE email=? AND password=?", $values['txtEmail'], $values['txtPassword']);
+        //$result = $this->database->query("SELECT * FROM tbl_user WHERE email=? AND password=?", $values['txtEmail'], $values['txtPassword']);
+
+        $result = $this->database->table("tbl_user")
+                        ->where("email=?", $values['txtEmail'])
+                        ->where("password=?", $values['txtPassword'])->fetchAll();
 
         $id = 0;
         $activated = 0;
 
-        $user_section = $this->getSession('userdata');
-
         foreach ($result as $row) {
-            $id = $row->id;
-            $user_section->name = $row->name;
-            $user_section->surname = $row->surname;
-            $user_section->id = $row->id;
-            $user_section->lang = $row->lang;
-            $activated = $row->active;
-            $profile_id = $row->active_profile_id;
+            if ($row->active == 1) {
+                $user_section = $this->getSession('userdata');
+                $id = $row->id;
+                $user_section->name = $row->name;
+                $user_section->surname = $row->surname;
+                $user_section->id = $row->id;
+                $user_section->lang = $row->lang;
+                $activated = $row->active;
+                $profile_id = $row->active_profile_id;
+            } else {
+                $id = $row->id;
+            }
         }
 
         if ($id == 0) {
@@ -1089,6 +1096,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         } else {
             if ($activated == 0) {
                 $this->flashMessage($this->translate("Your user account has not been activated yet. Please activate it by clicking on the link, which was been sent in your registration email. You can resend it by clicking on folowing link") . "<br/><br/><p class=\"text-center\"><a href=\"?resend_al=$id\" class=\"btn btn-danger btn-xl\"><i class=\"fa fa-envelope\"></i>&nbsp;&nbsp;" . $this->translate("Resend registration email") . "</a></p>", "Warning");
+                $this->redirect("LandingPage:default");
             } else {
                 $cnt = 0; //$this->database->table("tbl_user")->where("email=?", $values['txtEmail'])->where("password LIKE ?", "gnrtx%")->count();
 

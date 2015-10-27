@@ -33,7 +33,7 @@ class ErrorPresenter extends Nette\Object implements Application\IPresenter
 			Debugger::log($e, Debugger::ERROR);
 		}
 		ob_start();
-		require __DIR__ . '/../../../www/error500.html'; //templates/error.phtml';
+		require __DIR__ . '/templates/error.phtml';
 		return new Application\Responses\TextResponse(ob_get_clean());
 	}
 

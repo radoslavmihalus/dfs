@@ -545,10 +545,10 @@ class blueticket_objects {
 
     function generateMessages() {
         $form = blueticket_forms::get_instance();
-        
+
         $form->table("tbl_messages");
         $form->order_by('id', 'DESC');
-        
+
         return $form->render();
     }
 
@@ -582,10 +582,26 @@ class blueticket_objects {
         if ($form != NULL) {
             $dog = $form->nested_table($this->getTranslatedText("Dogs"), "id", "tbl_dogs", "user_id");
             $dog->order_by('id', 'DESC');
+            $dog->columns("registration_date, dog_name, country, breed_name, date_of_birth, offer_for_sell, offer_for_mating, Dog, Bitch");
+            $dog->subselect('Dog',"if({dog_gender}='Dog',1,0)");
+            $dog->subselect('Bitch',"if({dog_gender}='Bitch',1,0)");
+            $dog->sum('offer_for_sell, offer_for_mating, Dog, Bitch');
+            $dog->highlight('offer_for_sell', '>', 0, '#B4E274');
+            $dog->highlight('offer_for_mating', '>', 0, '#B4E274');
+            $dog->highlight('Dog', '>', 0, '#428bca');
+            $dog->highlight('Bitch', '>', 0, '#FFD6D6');
         } else {
             $dog = blueticket_forms::get_instance();
             $dog->table("tbl_dogs");
             $dog->order_by('id', 'DESC');
+            $dog->columns("registration_date, dog_name, country, breed_name, date_of_birth, offer_for_sell, offer_for_mating, Dog, Bitch");
+            $dog->subselect('Dog',"if({dog_gender}='Dog',1,0)");
+            $dog->subselect('Bitch',"if({dog_gender}='Bitch',1,0)");
+            $dog->sum('offer_for_sell, offer_for_mating, Dog, Bitch');
+            $dog->highlight('offer_for_sell', '>', 0, '#B4E274');
+            $dog->highlight('offer_for_mating', '>', 0, '#B4E274');
+            $dog->highlight('Dog', '>', 0, '#428bca');
+            $dog->highlight('Bitch', '>', 0, '#FFD6D6');
             return $dog->render();
         }
     }
@@ -601,13 +617,12 @@ class blueticket_objects {
             return $payment->render();
         }
     }
-    
-    function generateTimeline()
-    {
-            $timeline = blueticket_forms::get_instance();
-            $timeline->table("tbl_timeline");
-            $timeline->order_by('id', 'DESC');
-            return $timeline->render();
+
+    function generateTimeline() {
+        $timeline = blueticket_forms::get_instance();
+        $timeline->table("tbl_timeline");
+        $timeline->order_by('id', 'DESC');
+        return $timeline->render();
     }
 
     function generateMenu() {

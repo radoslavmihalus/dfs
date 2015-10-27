@@ -388,7 +388,7 @@ class Debugger {
 
             if (self::isHtmlMode()) {
                 $logged = empty($e);
-                require __DIR__ . '/../../../www/error500.html'; //templates/error.phtml';
+                require __DIR__ . '/templates/error.phtml';
                 //require __DIR__ . '/templates/error.phtml';
             } elseif (PHP_SAPI === 'cli') {
                 fwrite(STDERR, 'ERROR: application encountered an error and can not continue. '
