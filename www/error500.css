@@ -21,7 +21,7 @@ color:black;
 .landing_header
 {
 	height: auto;
-    background: url("img/header.jpg")no-repeat center center;
+    background: url("http://www.dogforshow.com/www/img/header.jpg")no-repeat center center;
     background-size: cover;
     min-height: 400px;
 	background-color:black;
