@@ -1,4 +1,7 @@
 # nastavenie pre PHP
+ErrorDocument 404 /www/error500.html
+ErrorDocument 500 /www/error500.html
+
 php_flag magic_quotes_gpc off 
 php_flag register_globals off
 

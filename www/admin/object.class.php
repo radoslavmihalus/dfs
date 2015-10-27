@@ -496,19 +496,19 @@ class blueticket_objects {
         $form = blueticket_forms::get_instance();
 
         //$form= new blueticket_forms();
-        
+
         $form->table("tbl_user");
         $form->default_tab("tbl_user");
-        $form->columns("registration_date, active, name, surname, email, state, password, premium_expiry_date, kennels, owners, handlers, dogs");
+        $form->columns("registration_date, active, name, surname, email, state, password, lang, premium_expiry_date, kennels, owners, handlers, dogs");
         $form->order_by('id', 'DESC');
 
-        
+
         $form->subselect('kennels', 'SELECT COUNT(*) FROM tbl_userkennel WHERE user_id = {id}');
         $form->subselect('owners', 'SELECT COUNT(*) FROM tbl_userowner WHERE user_id = {id}');
         $form->subselect('handlers', 'SELECT COUNT(*) FROM tbl_userhandler WHERE user_id = {id}');
         $form->subselect('dogs', 'SELECT COUNT(*) FROM tbl_dogs WHERE user_id = {id}');
 
-        $form->highlight_row('active','=',0, '#FFD6D6');
+        $form->highlight_row('active', '=', 0, '#FFD6D6');
         $form->highlight('kennels', '>', 0, '#B4E274');
         $form->highlight('kennels', '=', 0, '#EDEBE4');
         $form->highlight('owners', '>', 0, '#B4E274');
@@ -519,7 +519,7 @@ class blueticket_objects {
         $form->highlight('dogs', '=', 0, '#EDEBE4');
 
         $form->sum('active,kennels,owners,handlers,dogs');
-        
+
         $this->generateKennels($form);
         $this->generateOwners($form);
         $this->generateHandlers($form);
@@ -541,6 +541,15 @@ class blueticket_objects {
 
             return $kennel->render();
         }
+    }
+
+    function generateMessages() {
+        $form = blueticket_forms::get_instance();
+        
+        $form->table("tbl_messages");
+        $form->order_by('id', 'DESC');
+        
+        return $form->render();
     }
 
     function generateOwners($form = NULL) {
@@ -592,6 +601,14 @@ class blueticket_objects {
             return $payment->render();
         }
     }
+    
+    function generateTimeline()
+    {
+            $timeline = blueticket_forms::get_instance();
+            $timeline->table("tbl_timeline");
+            $timeline->order_by('id', 'DESC');
+            return $timeline->render();
+    }
 
     function generateMenu() {
         $return = '<div style="width:100%; height:50px;padding-left:5px">';
@@ -602,6 +619,8 @@ class blueticket_objects {
         $return .= '<a href="?report=handlers" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Handlers</a>';
         $return .= '<a href="?report=dogs" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Dogs</a>';
         $return .= '<a href="?report=payments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Payments</a>';
+        $return .= '<a href="?report=messages" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Messages</a>';
+        $return .= '<a href="?report=timeline" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Timeline</a>';
         $return .= '<a href="?report=forms" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Forms</a>';
 //        $return .= '<a href="?report=docs" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Doklady</a>';
 //        $return .= '<a href="?report=movements" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Pohyby</a>';

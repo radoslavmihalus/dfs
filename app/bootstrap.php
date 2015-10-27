@@ -51,7 +51,6 @@ $router = $container->getService('router');
 //        ));
 //    }
 //}
-
 //$router[] = new Route("michal.slepanek", array(
 //    'presenter' => 'owner',
 //    'action' => 'owner_profile_home',

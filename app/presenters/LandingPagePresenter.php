@@ -10,12 +10,11 @@ use App\Model,
 
 class LandingPagePresenter extends BasePresenter {
 
-    //private $database;
-
-    public function __construct(Nette\Database\Context $database) {
-        $this->database = $database;
-        $this->translator = new DFSTranslator();
-    }
+//private $database;
+//    public function __construct(Nette\Database\Context $database) {
+//        $this->database = $database;
+//        $this->translator = new DFSTranslator();
+//    }
 
     protected function startup() {
         parent::startup();
@@ -73,6 +72,15 @@ class LandingPagePresenter extends BasePresenter {
     }
 
     /*     * ******************* view default ******************** */
+
+    public function actionDefault($lang = "en") {
+        try {
+            $mysection = $this->getSession('language');
+            $mysection->lang = $_GET['lang'];
+        } catch (\Exception $ex) {
+            
+        }
+    }
 
     public function renderDefault() {
         

@@ -157,6 +157,12 @@ if (isset($_GET['report'])) {
                     case 'payments':
                         echo $bt->generatePayments();
                         break;
+                    case 'messages':
+                        echo $bt->generateMessages();
+                        break;
+                    case 'timeline':
+                        echo $bt->generateTimeline();
+                        break;
 //                    case 'stats':
 //                        if (isset($_GET['type'])) {
 //                            $type = $_GET['type'];
@@ -200,7 +206,7 @@ if (isset($_GET['report'])) {
 //                        break;
                 }
             } else {
-                echo $bt->generateForms();
+                echo $bt->generateUsers();
             }
             ?>
         </div>

@@ -37,6 +37,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $receiver_profile_id;
     public $paginator;
     public $page_title;
+    public $lang_session;
 
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
@@ -45,6 +46,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->paginator = new Nette\Extras\Addons\VisualPaginator();
 
         $GLOBALS['database'] = $database;
+
+        try {
+            $mysection = $this->getSession('language');
+            $mysection->lang = "en";
+        } catch (\Exception $ex) {
+            
+        }
     }
 
 // return field name for form element
@@ -82,10 +90,16 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $mysection = $this->getSession('language');
             $this->translator->lang = $mysection->lang;
         } catch (\Exception $ex) {
-            $this->translator->lang = "en";
+            $mylang = "en";
+
+            if (isset($_GET['lang']))
+                $mylang = $_GET['lang'];
+
+            $this->translator->lang = $mylang;
+
             try {
                 $mysection = $this->getSession('language');
-                $mysection->lang = "en";
+                $mysection->lang = $mylang;
             } catch (\Exception $ex) {
                 
             }
@@ -333,12 +347,17 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function handleChangeLang($lang) {
-        $mysection = $this->getSession('language');
-
-        $lang = strtolower($lang);
-
-        $mysection->lang = $lang;
-        $this->terminate();
+        try {
+            if (isset($_GET['lang']))
+                $lang = $_GET['lang'];
+            $mysection = $this->getSession('language');
+            $lang = strtolower($lang);
+            $mysection->lang = $lang;
+        } catch (\Exception $ex) {
+            if (isset($_GET['lang']))
+                $this->translator->lang = $_GET['lang'];
+        }
+        $this->redirect("LandingPage:default", array("lang" => $lang));
     }
 
     public function handleLike($timeline_id = 0, $event_id = 0) {
@@ -378,30 +397,40 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function handleImport() {
-        //\ImportModel::importProfiles();
-        //$this->terminate();
+//\ImportModel::importProfiles();
+//$this->terminate();
     }
 
     public function handleHasLiked($timeline_id = 0, $event_id = 0) {
-        if ($timeline_id != 0)
-            $count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
-        elseif ($event_id > 0)
-            $count = $this->database->table("tbl_likes")->where("event_id=?", $event_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
-        else {
+        try {
+            if ($timeline_id != 0)
+                $count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
+            elseif ($event_id > 0)
+                $count = $this->database->table("tbl_likes")->where("event_id=?", $event_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
+            else {
+                echo 0;
+                $this->terminate();
+            }
+            echo $count;
+        } catch (\Exception $ex) {
             echo 0;
-            $this->terminate();
         }
-        echo $count;
         $this->terminate();
     }
 
     public function handleLikesList($timeline_id = 0, $event_id = 0) {
-        if ($timeline_id != 0)
-            $rows = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->order("like_datetime DESC")->fetchAll();
-        elseif ($event_id > 0)
-            $rows = $this->database->table("tbl_likes")->where("event_id=?", $event_id)->order("like_datetime DESC")->fetchAll();
-        else {
-            echo "";
+        try {
+
+            if ($timeline_id != 0)
+                $rows = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->order("like_datetime DESC")->fetchAll();
+            elseif ($event_id > 0)
+                $rows = $this->database->table("tbl_likes")->where("event_id=?", $event_id)->order("like_datetime DESC")->fetchAll();
+            else {
+                echo "";
+                $this->terminate();
+            }
+        } catch (\Exception $ex) {
+            echo '';
             $this->terminate();
         }
 
@@ -426,17 +455,25 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function handleNewMessagesCount() {
-        if ($this->logged_in_profile_id > 0)
-            $messages_count = $this->database->table('tbl_messages_groups')->where("to_profile_id = ? AND unreaded = 1", $this->logged_in_profile_id)->count();
-        else
-            $messages_count = $this->database->table('tbl_messages_groups')->where("to_user_id = ? AND unreaded = 1", $this->logged_in_id)->count();
-        echo $messages_count;
+        try {
+            if ($this->logged_in_profile_id > 0)
+                $messages_count = $this->database->table('tbl_messages_groups')->where("to_profile_id = ? AND unreaded = 1", $this->logged_in_profile_id)->count();
+            else
+                $messages_count = $this->database->table('tbl_messages_groups')->where("to_user_id = ? AND unreaded = 1", $this->logged_in_id)->count();
+            echo $messages_count;
+        } catch (\Exception $ex) {
+            echo 0;
+        }
         $this->terminate();
     }
 
     public function handleNewNotifyCount() {
-        $messages_count = $this->database->table('tbl_notify')->where("notify_user_id = ? AND unreaded = 1", $this->logged_in_id)->count();
-        echo $messages_count;
+        try {
+            $messages_count = $this->database->table('tbl_notify')->where("notify_user_id = ? AND unreaded = 1", $this->logged_in_id)->count();
+            echo $messages_count;
+        } catch (\Exception $ex) {
+            echo 0;
+        }
         $this->terminate();
     }
 
@@ -792,7 +829,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $this->database->table("tbl_user")->where("id=?", $user_id)->update($data);
 
 
-                // invoice - superfaktura
+// invoice - superfaktura
 
                 $sf = new \invoice();
 
@@ -1502,9 +1539,9 @@ class DFSTranslator implements Nette\Localization\ITranslator {
     private $database;
     public $lang;
 
-    public function __construct() { //Nette\Database\Context $database) {
-        $this->lang = "en";
-        $this->database = getContext();
+    public function __construct($lang = "en") { //Nette\Database\Context $database) {
+        $this->lang = $lang;
+        $this->database = $GLOBALS['database'];
     }
 
     public function translate($message, $count = NULL) {
