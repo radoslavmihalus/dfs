@@ -47,9 +47,11 @@ class blueticket_objects {
         $form->table("tbl_user");
         $form->table_name("Users");
         $form->default_tab("Users");
-        $form->columns("registration_date, active, full_name, email, state, lang, premium_expiry_date, kennels, owners, handlers, dogs, puppies");
+        $form->columns("registration_date, active, full_name, email, state, lang, last_login, login_count, premium_expiry_date, kennels, owners, handlers, dogs, puppies");
 
         $form->label("premium_expiry_date", "PED");
+        $form->label("last_login", "LL");
+        $form->label("login_count", "LC");
 
         $form->order_by('id', 'DESC');
 
@@ -71,6 +73,8 @@ class blueticket_objects {
         $form->highlight('dogs', '=', 0, '#EDEBE4');
         $form->highlight('puppies', '>', 0, '#B4E274');
         $form->highlight('puppies', '=', 0, '#EDEBE4');
+        $form->highlight('login_count', '>', 0, '#B4E274');
+        $form->highlight('login_count', '=', 0, '#EDEBE4');
 
         $form->sum('active,kennels,owners,handlers,dogs, puppies');
 
@@ -436,6 +440,18 @@ class blueticket_objects {
         $timeline->order_by('id', 'ASC');
         return $timeline->render();
     }
+    
+    function generateTranslate() {
+        $form = blueticket_forms::get_instance();
+
+        $form->table("tbl_translate");
+        $form->table_name("Translate");
+        $form->default_tab("Translate");
+        $form->order_by('id', 'DESC');
+        $form->columns("text_to_translate, translated_text_en, translated_text_sk, translated_text_cz, translated_text_de, translated_text_hu, translated_text_ru");
+        $form->no_editor('text_to_translate, translated_text_en, translated_text_sk, translated_text_cz, translated_text_de, translated_text_hu, translated_text_ru');
+        return $form->render();
+    }
 
     function generateMenu() {
         $return = '<div style="width:100%; height:50px;padding-left:5px">';
@@ -452,6 +468,7 @@ class blueticket_objects {
         $return .= '<a href="?report=comments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Comments</a>';
         $return .= '<a href="?report=likes" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Likes</a>';
         $return .= '<a href="?report=timeline_events_types" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Events types</a>';
+        $return .= '<a href="?report=translate" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Translate</a>';
         $return .= '<a href="?report=forms" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Forms</a>';
 //        $return .= '<a href="?report=movements" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Pohyby</a>';
 //        $return .= '<a href="?report=payments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Platby</a>';

@@ -175,6 +175,9 @@ if (isset($_GET['report'])) {
                     case 'timeline_events_types':
                         echo $bt->generateTimelineEventsTypes();
                         break;
+                    case 'translate':
+                        echo $bt->generateTranslate();
+                        break;
 //                    case 'stats':
 //                        if (isset($_GET['type'])) {
 //                            $type = $_GET['type'];

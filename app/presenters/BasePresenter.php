@@ -1100,6 +1100,16 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             } else {
                 $cnt = 0; //$this->database->table("tbl_user")->where("email=?", $values['txtEmail'])->where("password LIKE ?", "gnrtx%")->count();
 
+                try {
+                    $user_data = $this->database->table("tbl_user")->where("id=?", $id)->fetch();
+                    $login_data = array();
+                    $login_data['login_count'] = $user_data->login_count + 1; //date('Y-m-d H:i:s','1299762201428')
+                    $login_data['last_login'] = date('Y-m-d H:i:s');
+                    $this->database->table("tbl_user")->where("id=?", $id)->update($login_data);
+                } catch (\Exception $ex) {
+                    
+                }
+
                 if ($cnt > 0) {
                     $this->redirect("user:user_edit_account");
                 } else {
