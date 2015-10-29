@@ -67,6 +67,7 @@ $router[] = new Route('edit-photo', 'photo:photo_edit');
 // User routes
 $router[] = new Route('switch-profile', 'user:user_create_profile_switcher');
 $router[] = new Route('premium-account', 'user:user_premium');
+$router[] = new Route('premium-account-new', 'user:user_premium_new');
 $router[] = new Route('premium-account-activation', 'user:user_premium_activation');
 $router[] = new Route('edit-account', 'user:user_edit_account');
 $router[] = new Route('list-of-friends-requests', 'user:user_friend_requests_list');
