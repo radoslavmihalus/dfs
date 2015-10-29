@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid" style="padding:5px 0px 5px 0px">
-                    <a data-dismiss="modal"><img src="{DataModel::getPhotoImage($row->id)}" class="img-responsive" style="margin-left: auto;margin-right: auto;margin-bottom: 10px;"></a>
+<!--                    <a data-dismiss="modal"><img src="{ DataModel::getPhotoImage($row->id)}" class="img-responsive" style="margin-left: auto;margin-right: auto;margin-bottom: 10px;"></a>-->
                     <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
                         <a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;">{DataModel::getTimelineLikesCount(0,$row->id)}</span></a>
                     </div>

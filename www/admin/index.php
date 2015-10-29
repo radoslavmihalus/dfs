@@ -154,6 +154,9 @@ if (isset($_GET['report'])) {
                     case 'dogs':
                         echo $bt->generateDogs();
                         break;
+                    case 'puppies':
+                        echo $bt->generatePuppies();
+                        break;
                     case 'payments':
                         echo $bt->generatePayments();
                         break;
@@ -162,6 +165,12 @@ if (isset($_GET['report'])) {
                         break;
                     case 'timeline':
                         echo $bt->generateTimeline();
+                        break;
+                    case 'comments':
+                        echo $bt->generateComments();
+                        break;
+                    case 'likes':
+                        echo $bt->generateLikes();
                         break;
                     case 'timeline_events_types':
                         echo $bt->generateTimelineEventsTypes();

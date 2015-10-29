@@ -988,16 +988,16 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         }
 
         if ($this->profile_id > 0) {
-            if ($this->profile_id == $this->logged_in_id)
-                $this->profile_id = 0;
+//            if ($this->profile_id == $this->logged_in_id)
+//                $this->profile_id = 0;
         } else
-            $this->profile_id = 0;
+            $this->profile_id = $this->logged_in_id;
 
         if ($this->receiver_profile_id > 0) {
-            if ($this->receiver_profile_id == $this->receiver_user_id)
-                $this->receiver_profile_id = 0;
+            //if ($this->receiver_profile_id == $this->receiver_user_id)
+            //    $this->receiver_profile_id = 0;
         } else
-            $this->receiver_profile_id = 0;
+            $this->receiver_profile_id = $this->receiver_user_id;
 
         $data_group['from_user_id'] = $this->logged_in_id;
 

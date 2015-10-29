@@ -168,12 +168,11 @@ $router[] = new Route('timeline', 'timeline:timeline_wall');
 // Pages
 $router[] = new Route('general-terms', 'pages:general_terms');
 $router[] = new Route('cookie-policy', 'pages:cookie_policy');
+$router[] = new Route('<presenter>/<action>[/<id>]', 'LandingPage:default');
 
 // routy
 
-$router[] = new Route('<presenter>/<action>[/<id>]', 'LandingPage:default');
-
-$cache = Nette\Environment::getCache();
-$cache->clean(array(\Nette\Caching\Cache::ALL => true));
+//$cache = Nette\Environment::getCache();
+//$cache->clean(array(\Nette\Caching\Cache::ALL => true));
 
 return $container;

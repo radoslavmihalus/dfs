@@ -331,6 +331,20 @@ class kennelPresenter extends BasePresenter {
         $this->award_id = $id;
     }
 
+    public function actionKennel_awards_add($id = 0) {
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            try {
+                $cnt = $this->database->table("link_kennel_awards")->where("kennel_id=?", $this->logged_in_kennel_id)->count();
+            } catch (\Exception $ex) {
+                $cnt = 0;
+            }
+            if ($cnt > 4) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
+    }
+
     public function actionKennel_planned_litter_edit($id) {
         if (!\DataModel::getPremium($this->logged_in_id)) {
             $this->redirect("user:user_premium");
@@ -339,7 +353,7 @@ class kennelPresenter extends BasePresenter {
         $this->planned_litter_id = $id;
     }
 
-    public function actionKennel_planned_litter_add($id) {
+    public function actionKennel_planned_litter_add($id = 0) {
 //$this->planned_litter_id = $id;
         if (!\DataModel::getPremium($this->logged_in_id)) {
             $this->redirect("user:user_premium");

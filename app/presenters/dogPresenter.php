@@ -263,6 +263,36 @@ class dogPresenter extends BasePresenter {
         $this->workexam_id = $id;
     }
 
+    public function actionDog_workexam_add($dog_id = 0) {
+        if ($dog_id == 0)
+            $dog_id = $this->dog_id;
+        $this->dog_id = $dog_id;
+
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $cnt = $this->database->table("tbl_dogs_workexams")->where("dog_id=?", $this->dog_id)->count();
+
+            if ($cnt > 4) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
+    }
+
+    public function actionDog_health_add($dog_id = 0) {
+        if ($dog_id == 0)
+            $dog_id = $this->dog_id;
+        $this->dog_id = $dog_id;
+
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $cnt = $this->database->table("tbl_dogs_health")->where("dog_id=?", $this->dog_id)->count();
+
+            if ($cnt > 4) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
+    }
+
     public function actionDog_health_edit($id) {
         $this->health_id = $id;
     }
@@ -271,6 +301,15 @@ class dogPresenter extends BasePresenter {
         if ($id == 0)
             $id = $this->dog_id;
         $this->dog_id = $id;
+
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $cnt = $this->database->table("tbl_dogs_championship")->where("dog_id=?", $this->dog_id)->count();
+
+            if ($cnt > 4) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
     }
 
     public function actionDog_coowner_add($id = 0) {
@@ -291,6 +330,15 @@ class dogPresenter extends BasePresenter {
         if ($id == 0)
             $id = $this->dog_id;
         $this->dog_id = $id;
+
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $cnt = $this->database->table("tbl_dogs_matings")->where("dog_id=?", $this->dog_id)->count();
+
+            if ($cnt > 4) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
     }
 
     public function actionDog_pedigree_edit($id = 0) {
@@ -303,6 +351,15 @@ class dogPresenter extends BasePresenter {
         if ($id == 0)
             $id = $this->dog_id;
         $this->dog_id = $id;
+
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $cnt = $this->database->table("tbl_dogs_shows")->where("dog_id=?", $this->dog_id)->count();
+
+            if ($cnt > 4) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
     }
 
     public function actionDog_show_edit($id = 0) {

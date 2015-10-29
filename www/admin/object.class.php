@@ -47,7 +47,7 @@ class blueticket_objects {
         $form->table("tbl_user");
         $form->table_name("Users");
         $form->default_tab("Users");
-        $form->columns("registration_date, active, full_name, email, state, lang, premium_expiry_date, kennels, owners, handlers, dogs");
+        $form->columns("registration_date, active, full_name, email, state, lang, premium_expiry_date, kennels, owners, handlers, dogs, puppies");
 
         $form->label("premium_expiry_date", "PED");
 
@@ -58,6 +58,7 @@ class blueticket_objects {
         $form->subselect('owners', 'SELECT COUNT(*) FROM tbl_userowner WHERE user_id = {id}');
         $form->subselect('handlers', 'SELECT COUNT(*) FROM tbl_userhandler WHERE user_id = {id}');
         $form->subselect('dogs', 'SELECT COUNT(*) FROM tbl_dogs WHERE user_id = {id}');
+        $form->subselect('puppies', 'SELECT COUNT(*) FROM tbl_puppies WHERE user_id = {id}');
 
         $form->highlight_row('active', '=', 0, '#FFD6D6');
         $form->highlight('kennels', '>', 0, '#B4E274');
@@ -68,8 +69,10 @@ class blueticket_objects {
         $form->highlight('handlers', '=', 0, '#EDEBE4');
         $form->highlight('dogs', '>', 0, '#B4E274');
         $form->highlight('dogs', '=', 0, '#EDEBE4');
+        $form->highlight('puppies', '>', 0, '#B4E274');
+        $form->highlight('puppies', '=', 0, '#EDEBE4');
 
-        $form->sum('active,kennels,owners,handlers,dogs');
+        $form->sum('active,kennels,owners,handlers,dogs, puppies');
 
         $form->label("kennels", "Ken");
         $form->label("handlers", "Han");
@@ -81,6 +84,8 @@ class blueticket_objects {
         $this->generateHandlers($form);
         $this->generateDogs($form);
         $this->generatePayments($form);
+        $this->generatePuppies($form);
+        //$this->generateCommentsByUser($form);
 
         return $form->render();
     }
@@ -89,34 +94,44 @@ class blueticket_objects {
         if ($form != NULL) {
             $kennel = $form->nested_table($this->getTranslatedText("Kennels"), "id", "tbl_userkennel", "user_id");
             $kennel->table_name("Kennels");
+            $kennel->default_tab("Kennels");
             $kennel->order_by('id', 'DESC');
-            $kennel->columns("kennel_create_date, id, user_id, kennel_name, full_name, email, lang, state, dogs");
+            $kennel->columns("kennel_create_date, id, user_id, kennel_name, full_name, email, lang, state, dogs, puppies");
             $kennel->subselect("full_name", "SELECT concat(name,' ',surname) FROM tbl_user WHERE id={user_id}");
             $kennel->subselect("email", "SELECT email FROM tbl_user WHERE id={user_id}");
             $kennel->subselect("lang", "SELECT lang FROM tbl_user WHERE id={user_id}");
             $kennel->subselect("state", "SELECT state FROM tbl_user WHERE id={user_id}");
             $kennel->subselect("dogs", "SELECT COUNT(*) FROM tbl_dogs WHERE profile_id={id}");
+            $kennel->subselect("puppies", "SELECT COUNT(*) FROM tbl_puppies WHERE profile_id={id}");
             $kennel->column_pattern('kennel_name', '<a target="_blank" href="http://www.dogforshow.com/kennel-profile?id={id}">{kennel_name}</a>');
             $kennel->no_editor('kennel_description');
             $kennel->highlight('dogs', '>', 0, '#B4E274');
-            $kennel->sum('dogs');
+            $kennel->highlight('puppies', '>', 0, '#B4E274');
+            $kennel->sum('dogs, puppies');
+            $this->generateDogsByProfile($kennel);
+            $this->generatePuppiesByProfile($kennel);
+            $this->generateCommentsByProfile($kennel);
         } else {
             $kennel = blueticket_forms::get_instance();
             $kennel->table("tbl_userkennel");
             $kennel->table_name("Kennels");
             $kennel->default_tab("Kennels");
             $kennel->order_by('id', 'DESC');
-            $kennel->columns("kennel_create_date, id, user_id, kennel_name, full_name, email, lang, state, dogs");
+            $kennel->columns("kennel_create_date, id, user_id, kennel_name, full_name, email, lang, state, dogs, puppies");
             $kennel->subselect("full_name", "SELECT concat(name,' ',surname) FROM tbl_user WHERE id={user_id}");
             $kennel->subselect("email", "SELECT email FROM tbl_user WHERE id={user_id}");
             $kennel->subselect("lang", "SELECT lang FROM tbl_user WHERE id={user_id}");
             $kennel->subselect("state", "SELECT state FROM tbl_user WHERE id={user_id}");
             $kennel->subselect("dogs", "SELECT COUNT(*) FROM tbl_dogs WHERE profile_id={id}");
+            $kennel->subselect("puppies", "SELECT COUNT(*) FROM tbl_puppies WHERE profile_id={id}");
             $kennel->column_pattern('kennel_name', '<a target="_blank" href="http://www.dogforshow.com/kennel-profile?id={id}">{kennel_name}</a>');
             $kennel->no_editor('kennel_description');
             $kennel->highlight('dogs', '>', 0, '#B4E274');
-            $kennel->sum('dogs');
+            $kennel->highlight('puppies', '>', 0, '#B4E274');
+            $kennel->sum('dogs, puppies');
             $this->generateDogsByProfile($kennel);
+            $this->generatePuppiesByProfile($kennel);
+            $this->generateCommentsByProfile($kennel);
 
             return $kennel->render();
         }
@@ -127,20 +142,73 @@ class blueticket_objects {
 
         $form->table("tbl_messages");
         $form->table_name("Messages");
+        $form->order_by('id', 'DESC');
         $form->columns("message_datetime, from, to, message, from_user_id, to_user_id, from_profile_id, to_profile_id");
         $form->subselect("from", "SELECT concat(name, ' ', surname) FROM tbl_user WHERE id={from_user_id}");
         $form->subselect("to", "SELECT concat(name, ' ', surname) FROM tbl_user WHERE id={to_user_id}");
         $form->no_editor('message');
-
-        $form->order_by('id', 'DESC');
-
         return $form->render();
+    }
+
+    function generateLikes() {
+        $form = blueticket_forms::get_instance();
+
+        $form->table("tbl_likes");
+        $form->table_name("Likes");
+        $form->default_tab("Likes");
+        $form->order_by('id', 'DESC');
+        $form->columns("like_datetime, timeline_id, event_id, user_id, profile_id, full_name");
+        $form->subselect("full_name", "SELECT concat(name, ' ', surname) FROM tbl_user WHERE id={user_id}");
+        $form->no_editor('comment');
+        $this->generateTimelineByLike($form);
+        return $form->render();
+    }
+
+    function generateComments() {
+        $form = blueticket_forms::get_instance();
+
+        $form->table("tbl_comments");
+        $form->table_name("Comments");
+        $form->order_by('id', 'DESC');
+        $form->columns("comment_date_time, timeline_id, event_id, user_id, profile_id, full_name, comment");
+        $form->subselect("full_name", "SELECT concat(name, ' ', surname) FROM tbl_user WHERE id={user_id}");
+        $form->no_editor('comment');
+        return $form->render();
+    }
+
+    function generateCommentsByTimeline($by_form) {
+        $form = $by_form->nested_table($this->getTranslatedText("Comments"), "id", "tbl_comments", "timeline_id");
+        $form->table_name("Comments");
+        $form->order_by('id', 'DESC');
+        $form->columns("comment_date_time, timeline_id, event_id, user_id, profile_id, full_name, comment");
+        $form->subselect("full_name", "SELECT concat(name, ' ', surname) FROM tbl_user WHERE id={user_id}");
+        $form->no_editor('comment');
+    }
+
+    function generateCommentsByUser($by_form) {
+        $form = $by_form->nested_table($this->getTranslatedText("Comments"), "id", "tbl_comments", "user_id");
+        $form->table_name("Comments");
+        $form->order_by('id', 'DESC');
+        $form->columns("comment_date_time, timeline_id, event_id, user_id, profile_id, full_name, comment");
+        $form->subselect("full_name", "SELECT concat(name, ' ', surname) FROM tbl_user WHERE id={user_id}");
+        $form->no_editor('comment');
+    }
+
+    function generateCommentsByProfile($by_form) {
+        $form = $by_form->nested_table($this->getTranslatedText("Comments"), "id", "tbl_comments", "profile_id");
+        $form->table("tbl_comments");
+        $form->table_name("Comments");
+        $form->order_by('id', 'DESC');
+        $form->columns("comment_date_time, timeline_id, event_id, user_id, profile_id, full_name, comment");
+        $form->subselect("full_name", "SELECT concat(name, ' ', surname) FROM tbl_user WHERE id={user_id}");
+        $form->no_editor('comment');
     }
 
     function generateOwners($form = NULL) {
         if ($form != NULL) {
             $owner = $form->nested_table($this->getTranslatedText("Owners"), "id", "tbl_userowner", "user_id");
             $owner->table_name("Owners");
+            $owner->default_tab("Owners");
             $owner->order_by('id', 'DESC');
             $owner->columns("owner_create_date, id, user_id, full_name, email, lang, state, dogs");
             $owner->subselect("full_name", "SELECT concat(name,' ',surname) FROM tbl_user WHERE id={user_id}");
@@ -152,6 +220,8 @@ class blueticket_objects {
             $owner->no_editor('owner_description');
             $owner->highlight('dogs', '>', 0, '#B4E274');
             $owner->sum('dogs');
+            $this->generateDogsByProfile($owner);
+            $this->generateCommentsByProfile($owner);
         } else {
             $owner = blueticket_forms::get_instance();
             $owner->table("tbl_userowner");
@@ -169,6 +239,7 @@ class blueticket_objects {
             $owner->highlight('dogs', '>', 0, '#B4E274');
             $owner->sum('dogs');
             $this->generateDogsByProfile($owner);
+            $this->generateCommentsByProfile($owner);
 
             return $owner->render();
         }
@@ -178,6 +249,7 @@ class blueticket_objects {
         if ($form != NULL) {
             $handler = $form->nested_table($this->getTranslatedText("Handlers"), "id", "tbl_userhandler", "user_id");
             $handler->table_name("Handlers");
+            $handler->default_tab("Handlers");
             $handler->order_by('id', 'DESC');
             $handler->columns("handler_create_date, id, user_id, full_name, email, state, lang");
             $handler->subselect("full_name", "SELECT concat(name,' ',surname) FROM tbl_user WHERE id={user_id}");
@@ -186,6 +258,7 @@ class blueticket_objects {
             $handler->subselect("state", "SELECT state FROM tbl_user WHERE id={user_id}");
             $handler->column_pattern('full_name', '<a target="_blank" href="http://www.dogforshow.com/handler-profile?id={id}">{full_name}</a>');
             $handler->no_editor('handler_description');
+            $this->generateCommentsByProfile($handler);
         } else {
             $handler = blueticket_forms::get_instance();
             $handler->table("tbl_userhandler");
@@ -198,6 +271,7 @@ class blueticket_objects {
             $handler->subselect("state", "SELECT state FROM tbl_user WHERE id={user_id}");
             $handler->column_pattern('full_name', '<a target="_blank" href="http://www.dogforshow.com/handler-profile?id={id}">{full_name}</a>');
             $handler->no_editor('handler_description');
+            $this->generateCommentsByProfile($handler);
             return $handler->render();
         }
     }
@@ -256,6 +330,58 @@ class blueticket_objects {
         $dog->column_pattern('dog_name', '<a target="_blank" href="http://www.dogforshow.com/dog-profile?id={id}">{dog_name}</a>');
     }
 
+    function generatePuppies($form = NULL) {
+        if ($form != NULL) {
+            $dog = $form->nested_table($this->getTranslatedText("Puppies"), "id", "tbl_puppies", "user_id");
+            $dog->table_name("Puppies");
+            $dog->order_by('id', 'DESC');
+            $dog->columns("puppy_date_time, puppy_name, owner_name, country, breed_name, date_of_birth, puppy_state, Dog, Bitch");
+            $dog->label('offer_for_sell', 'Sell');
+            $dog->label('offer_for_mating', 'Mating');
+            $dog->subselect('Dog', "if({puppy_gender}='Dog',1,0)");
+            $dog->subselect('Bitch', "if({puppy_gender}='Bitch',1,0)");
+            $dog->subselect('owner_name', "SELECT concat(name, ' ', surname) from tbl_user WHERE id={user_id}");
+            $dog->no_editor('puppy_description');
+            $dog->sum('Dog, Bitch');
+            $dog->highlight('Dog', '>', 0, '#428bca');
+            $dog->highlight('Bitch', '>', 0, '#FFD6D6');
+            $dog->column_pattern('puppy_name', '<a target="_blank" href="http://www.dogforshow.com/puppy-profile?id={id}">{puppy_name}</a>');
+        } else {
+            $dog = blueticket_forms::get_instance();
+            $dog->table("tbl_puppies");
+            $dog->table_name("Puppies");
+            $dog->order_by('id', 'DESC');
+            $dog->columns("puppy_date_time, puppy_name, owner_name, country, breed_name, date_of_birth, puppy_state, Dog, Bitch");
+            $dog->label('offer_for_sell', 'Sell');
+            $dog->label('offer_for_mating', 'Mating');
+            $dog->subselect('Dog', "if({puppy_gender}='Dog',1,0)");
+            $dog->subselect('Bitch', "if({puppy_gender}='Bitch',1,0)");
+            $dog->subselect('owner_name', "SELECT concat(name, ' ', surname) from tbl_user WHERE id={user_id}");
+            $dog->sum('Dog, Bitch');
+            $dog->highlight('Dog', '>', 0, '#428bca');
+            $dog->highlight('Bitch', '>', 0, '#FFD6D6');
+            $dog->no_editor('puppy_description');
+            $dog->column_pattern('puppy_name', '<a target="_blank" href="http://www.dogforshow.com/puppy-profile?id={id}">{puppy_name}</a>');
+            return $dog->render();
+        }
+    }
+
+    function generatePuppiesByProfile($form = NULL) {
+        $dog = $form->nested_table($this->getTranslatedText("Puppies"), "id", "tbl_puppies", "profile_id");
+        $dog->table_name("Puppies");
+        $dog->order_by('id', 'DESC');
+        $dog->columns("puppy_date_time, puppy_name, country, breed_name, date_of_birth, puppy_state, Dog, Bitch");
+        $dog->label('offer_for_sell', 'Sell');
+        $dog->label('offer_for_mating', 'Mating');
+        $dog->subselect('Dog', "if({puppy_gender}='Dog',1,0)");
+        $dog->subselect('Bitch', "if({puppy_gender}='Bitch',1,0)");
+        $dog->sum('Dog, Bitch');
+        $dog->highlight('Dog', '>', 0, '#428bca');
+        $dog->highlight('Bitch', '>', 0, '#FFD6D6');
+        $dog->no_editor('puppy_description');
+        $dog->column_pattern('puppy_name', '<a target="_blank" href="http://www.dogforshow.com/puppy-profile?id={id}">{puppy_name}</a>');
+    }
+
     function generatePayments($form = NULL) {
         if ($form != NULL) {
             $payment = $form->nested_table($this->getTranslatedText("Payments"), "id", "tbl_payments", "user_id");
@@ -286,8 +412,21 @@ class blueticket_objects {
         $timeline->columns("date, profile_id, event_id, event_description, event_type, type");
         $timeline->subselect("type", "SELECT description FROM tbl_timeline_events_types WHERE id={event_type}");
         $timeline->no_editor('event_description, event_image');
+        $this->generateCommentsByTimeline($timeline);
 
         return $timeline->render();
+    }
+
+    //        $this->generateTimelineByLike($form);
+
+    function generateTimelineByLike($form) {
+        $timeline = $form->nested_table($this->getTranslatedText("Timeline"), "timeline_id", "tbl_timeline", "id");
+        $timeline->table_name("Timeline");
+        $timeline->order_by('id', 'DESC');
+        $timeline->columns("date, profile_id, event_id, event_description, event_type, type");
+        $timeline->subselect("type", "SELECT description FROM tbl_timeline_events_types WHERE id={event_type}");
+        $timeline->no_editor('event_description, event_image');
+        $this->generateCommentsByTimeline($timeline);
     }
 
     function generateTimelineEventsTypes() {
@@ -306,9 +445,12 @@ class blueticket_objects {
         $return .= '<a href="?report=owners" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Owners</a>';
         $return .= '<a href="?report=handlers" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Handlers</a>';
         $return .= '<a href="?report=dogs" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Dogs</a>';
+        $return .= '<a href="?report=puppies" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Puppies</a>';
         $return .= '<a href="?report=payments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Payments</a>';
         $return .= '<a href="?report=messages" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Messages</a>';
         $return .= '<a href="?report=timeline" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Timeline</a>';
+        $return .= '<a href="?report=comments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Comments</a>';
+        $return .= '<a href="?report=likes" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Likes</a>';
         $return .= '<a href="?report=timeline_events_types" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Events types</a>';
         $return .= '<a href="?report=forms" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Forms</a>';
 //        $return .= '<a href="?report=movements" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Pohyby</a>';

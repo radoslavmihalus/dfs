@@ -225,12 +225,30 @@ class handlerPresenter extends BasePresenter {
         if ($id == 0)
             $id = $this->logged_in_handler_id;
         $this->handler_id = $id;
+        
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $cnt = $this->database->table("tbl_handler_awards")->where("handler_id=?", $this->handler_id)->count();
+
+            if ($cnt > 4) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
     }
 
     public function actionHandler_certificates_add($id = 0) {
         if ($id == 0)
             $id = $this->logged_in_handler_id;
         $this->handler_id = $id;
+        
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $cnt = $this->database->table("tbl_handler_certificates")->where("handler_id=?", $this->handler_id)->count();
+
+            if ($cnt > 4) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
     }
 
     public function actionHandler_show_edit($id = 0) {
@@ -241,6 +259,21 @@ class handlerPresenter extends BasePresenter {
         $this->show_id = $show_id;
     }
 
+    public function actionHandler_show_add_name($id = 0) {
+        if ($id == 0)
+            $id = $this->logged_in_handler_id;
+        $this->handler_id = $id;
+        
+        if (!\DataModel::getPremium($this->logged_in_id)) {
+            $cnt = $this->database->table("tbl_handler_show_groups")->where("handler_id=?", $this->handler_id)->count();
+
+            if ($cnt > 4) {
+                $this->redirect("user:user_premium");
+                $this->terminate();
+            }
+        }
+    }
+    
     public function actionHandler_show_add($show_id = 0) {
         $this->show_group_id = $show_id;
     }

@@ -27,11 +27,13 @@
     <div id="gallery">
         {foreach $photos as $row}
             <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
-                <a href="javascript:void(0)" onclick="ShowGaleryModal({$row->id})" title="{$row->description}" style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url('{$row->image}');">
+                <a href="{$row->image}" title="{$row->description}" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url({$row->image});">
                 </a>
                 <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
-                    <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">{DataModel::getTimelineLikesCount(0,$row->id)}</span></i> 
-                    <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">{DataModel::getTimelineCommentsCount(0,$row->id)}</span></i>
+                    <a href="javascript:void(0)" onclick="ShowGaleryModal({$row->id})" title="{$row->description}">
+                        <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">{DataModel::getTimelineLikesCount(0,$row->id)}</span></i>
+                        <i style="margin-left: 7px;color: #777;" class="fa fa-comment"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">{DataModel::getTimelineCommentsCount(0,$row->id)}</span></i>
+                    </a>
                 </div>
                 <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
                     {if DataModel::getPermission($row->id,$logged_in_id,6)}
