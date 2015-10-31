@@ -15,6 +15,9 @@ class handlerPresenter extends BasePresenter {
     public $show_id;
     public $show_group_id;
     private $logged_in_handler_id;
+    public $filter_handler_name;
+    public $filter_handler_country;
+    public $filter_handler_breed;
 
     protected function startup() {
         parent::startup();
@@ -91,12 +94,69 @@ class handlerPresenter extends BasePresenter {
     }
 
     public function renderHandler_list() {
-        $count = $this->database->table("tbl_userhandler")->count();
+        try {
+            $section = $this->getSession('handler_filter');
+
+            $this->filter_handler_name = $section->filter_handler_name;
+            $this->filter_handler_breed = $section->filter_handler_breed;
+            $this->filter_handler_country = $section->filter_handler_country;
+
+            if ($this->filter_handler_name == NULL)
+                $this->filter_handler_name = "";
+            if ($this->filter_handler_breed == NULL)
+                $this->filter_handler_breed = "";
+            if ($this->filter_handler_country == NULL)
+                $this->filter_handler_country = "";
+        } catch (\Exception $ex) {
+            if ($this->filter_handler_name == NULL)
+                $this->filter_handler_name = "";
+            if ($this->filter_handler_breed == NULL)
+                $this->filter_handler_breed = "";
+            if ($this->filter_handler_country == NULL)
+                $this->filter_handler_country = "";
+        }
+
+        $users_id = array();
+
+        if (strlen($this->filter_handler_breed) > 1) {
+            $breeds = $this->database->table("tbl_handler_breed")->select("handler_id")->where("breed_name LIKE ?", "%" . $this->filter_handler_breed . "%")->group("handler_id")->fetchAll();
+
+            $hids = array();
+
+            foreach ($breeds as $breed) {
+                $hids[] = $breed->handler_id;
+            }
+
+            $handlers = $this->database->table("tbl_userhandler")->select("user_id")->where("id IN ?", $hids)->group("user_id")->fetchAll();
+
+            $uids = array();
+
+            foreach ($handlers as $handler) {
+                $uids[] = $handler->user_id;
+            }
+
+            $users = $this->database->table("tbl_user")->select("id")
+                    ->where("concat(name,' ',surname) LIKE ?", "%" . $this->filter_handler_name . "%")
+                    ->where("state LIKE ?", "%" . $this->filter_handler_country . "%")
+                    ->where("id IN ?", $uids)
+                    ->fetchAll();
+        } else {
+            $users = $this->database->table("tbl_user")->select("id")
+                    ->where("concat(name,' ',surname) LIKE ?", "%" . $this->filter_handler_name . "%")
+                    ->where("state LIKE ?", "%" . $this->filter_handler_country . "%")
+                    ->fetchAll();
+        }
+
+        foreach ($users as $user) {
+            $users_id[] = $user->id;
+        }
+
+        $count = $this->database->table("tbl_userhandler")->where("user_id IN ?", $users_id)->count();
 
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(9);
 
-        $rows = $this->database->table("tbl_userhandler")->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        $rows = $this->database->table("tbl_userhandler")->where("user_id IN ?", $users_id)->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
         $this->template->handler_rows = $rows;
     }
@@ -176,7 +236,7 @@ class handlerPresenter extends BasePresenter {
         }
 
         $this->template->page_title = $this->page_title;
-        // getTimeline        
+// getTimeline        
 //        $rows = NULL;
 //
 //        $table = "tbl_" . rand(100000000, 999999999);
@@ -190,7 +250,7 @@ class handlerPresenter extends BasePresenter {
 //        $this->database->query("ALTER TABLE `$table` CHANGE `id` `id` BIGINT( 20 ) NOT NULL AUTO_INCREMENT");
 //        
 //        $rows = $this->database->table($table)->fetchAll();
-        // getTimeline
+// getTimeline
 
         $count = $this->data_model->getTimelineCount($id);
 
@@ -225,7 +285,7 @@ class handlerPresenter extends BasePresenter {
         if ($id == 0)
             $id = $this->logged_in_handler_id;
         $this->handler_id = $id;
-        
+
         if (!\DataModel::getPremium($this->logged_in_id)) {
             $cnt = $this->database->table("tbl_handler_awards")->where("handler_id=?", $this->handler_id)->count();
 
@@ -240,7 +300,7 @@ class handlerPresenter extends BasePresenter {
         if ($id == 0)
             $id = $this->logged_in_handler_id;
         $this->handler_id = $id;
-        
+
         if (!\DataModel::getPremium($this->logged_in_id)) {
             $cnt = $this->database->table("tbl_handler_certificates")->where("handler_id=?", $this->handler_id)->count();
 
@@ -263,7 +323,7 @@ class handlerPresenter extends BasePresenter {
         if ($id == 0)
             $id = $this->logged_in_handler_id;
         $this->handler_id = $id;
-        
+
         if (!\DataModel::getPremium($this->logged_in_id)) {
             $cnt = $this->database->table("tbl_handler_show_groups")->where("handler_id=?", $this->handler_id)->count();
 
@@ -273,7 +333,7 @@ class handlerPresenter extends BasePresenter {
             }
         }
     }
-    
+
     public function actionHandler_show_add($show_id = 0) {
         $this->show_group_id = $show_id;
     }
@@ -815,6 +875,51 @@ class handlerPresenter extends BasePresenter {
         return $form;
     }
 
+    protected function createComponentHandler_list_filter() {
+        $form = new Form();
+
+        $lang = "en";
+
+        try {
+            $section = $this->getSession('language');
+            if (strlen($section->lang) > 1)
+                $lang = strtolower($section->lang);
+        } catch (\Exception $ex) {
+            $lang = "en";
+        }
+
+        $result = $this->database->table("lk_countries")->order("CountryName_$lang");
+        $countries = array();
+
+//$countries[] = $this->translate("Please select state...");
+
+        foreach ($result as $row) {
+            $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
+        }
+
+        $this->filter_handler_name = NULL;
+        $this->filter_handler_breed = NULL;
+        $this->filter_handler_country = NULL;
+
+        try {
+            $section = $this->getSession('handler_filter');
+
+            $this->filter_handler_name = $section->filter_handler_name;
+            $this->filter_handler_breed = $section->filter_handler_breed;
+            $this->filter_handler_country = $section->filter_handler_country;
+        } catch (\Exception $ex) {
+            
+        }
+
+        $form->addText("txtHandlerName")->setValue($this->filter_handler_name);
+        $form->addSelect("ddlCountry")->setPrompt($this->translate("Please select"))->setItems($countries)->setValue($this->filter_handler_country);
+        $form->addText("ddlBreedList")->setValue($this->filter_handler_breed);
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitHandlerFilter');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelHandlerFilter');
+
+        return $form;
+    }
+
     /**
      * 
      * End of FormComponents factory
@@ -826,6 +931,34 @@ class handlerPresenter extends BasePresenter {
      * Forms actions
      * 
      */
+    public function frmSubmitHandlerFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('handler_filter');
+
+        $this->filter_handler_name = $values->txtHandlerName;
+        $this->filter_handler_breed = $values->ddlBreedList;
+        $this->filter_handler_country = $values->ddlCountry;
+
+        $section->filter_handler_name = $this->filter_handler_name;
+        $section->filter_handler_breed = $this->filter_handler_breed;
+        $section->filter_handler_country = $this->filter_handler_country;
+
+        $this->redirect("this");
+    }
+
+    public function frmCancelHandlerFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('handler_filter');
+
+        $section->filter_handler_name = NULL;
+        $section->filter_handler_breed = NULL;
+        $section->filter_handler_country = NULL;
+
+        $this->redirect("this");
+    }
+
     public function frmEditHandlerProfilePictureSucceeded($button) {
         try {
             $values = $button->getForm()->getValues();
@@ -851,8 +984,8 @@ class handlerPresenter extends BasePresenter {
             $data['date'] = $values['ddlDate'];
             $data['image'] = $values['txtAwardPicture'];
 
-            //$values = $this->data_model->assignFields($values, "frmHandlerAddTitle");
-            //unset($values["handler_id"]);
+//$values = $this->data_model->assignFields($values, "frmHandlerAddTitle");
+//unset($values["handler_id"]);
 
             $this->database->table("tbl_handler_awards")->insert($data);
             $id = $this->database->getInsertId();
@@ -879,8 +1012,8 @@ class handlerPresenter extends BasePresenter {
             $data['date'] = $values['ddlDate'];
             $data['image'] = $values['txtCertificatePicture'];
 
-            //$values = $this->data_model->assignFields($values, "frmHandlerAddTitle");
-            //unset($values["handler_id"]);
+//$values = $this->data_model->assignFields($values, "frmHandlerAddTitle");
+//unset($values["handler_id"]);
 
             $this->database->table("tbl_handler_certificates")->insert($data);
             $id = $this->database->getInsertId();
@@ -909,8 +1042,8 @@ class handlerPresenter extends BasePresenter {
             $data['date'] = $values['ddlDate'];
             $data['image'] = $values['txtAwardPicture'];
 
-            //$values = $this->data_model->assignFields($values, "frmHandlerAddTitle");
-            //unset($values["handler_id"]);
+//$values = $this->data_model->assignFields($values, "frmHandlerAddTitle");
+//unset($values["handler_id"]);
 
             $this->database->table("tbl_handler_awards")->where("id=?", $this->award_id)->update($data);
             $this->data_model->addToTimeline($this->handler_id, $this->award_id, 6, $data['description'], $data['image']);
@@ -936,8 +1069,8 @@ class handlerPresenter extends BasePresenter {
             $data['date'] = $values['ddlDate'];
             $data['image'] = $values['txtCertificatePicture'];
 
-            //$values = $this->data_model->assignFields($values, "frmHandlerAddTitle");
-            //unset($values["handler_id"]);
+//$values = $this->data_model->assignFields($values, "frmHandlerAddTitle");
+//unset($values["handler_id"]);
 
             $this->database->table("tbl_handler_certificates")->where("id=?", $this->certificate_id)->update($data);
             $this->data_model->addToTimeline($this->handler_id, $this->certificate_id, 9, $data['description'], $data['image']);
@@ -1042,7 +1175,7 @@ class handlerPresenter extends BasePresenter {
         } catch (\Exception $ex) {
             $result = "";
         }
-        
+
         foreach ($values->chckAssesmentMinorPuppy as $item) {
             $data[$item] = 1;
             $result .= $this->translate($item) . ",";
@@ -1211,7 +1344,7 @@ class handlerPresenter extends BasePresenter {
         $time = strtotime($values['ddlDate']);
         $values['ddlDate'] = date('Y-m-d', $time);
 
-        //ddlDate,ddlShowType,txtShowName,ddlCountry
+//ddlDate,ddlShowType,txtShowName,ddlCountry
         $data['handler_id'] = $this->logged_in_handler_id;
         $data['show_date'] = $values->ddlDate;
         $data['show_name'] = $values->txtShowName;
@@ -1228,8 +1361,8 @@ class handlerPresenter extends BasePresenter {
         $time = strtotime($values['ddlDate']);
         $values['ddlDate'] = date('Y-m-d', $time);
 
-        //ddlDate,ddlShowType,txtShowName,ddlCountry
-        //$data['handler_id'] = $this->logged_in_handler_id;
+//ddlDate,ddlShowType,txtShowName,ddlCountry
+//$data['handler_id'] = $this->logged_in_handler_id;
         $data['show_date'] = $values->ddlDate;
         $data['show_name'] = $values->txtShowName;
         $data['show_type'] = $values->ddlShowType;

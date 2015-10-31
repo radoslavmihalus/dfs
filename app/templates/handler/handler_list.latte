@@ -1,21 +1,10 @@
 {block content}
 <div class="panel-default col-lg-12 col-md-12 col-xs-12" style="font-size: 13px;min-width: 244px">
-    <h1><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_ 'Handlers'}</h1>
+    <h1><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_ 'Handlers'}&nbsp;<button class="btn btn-default" style="text-transform: uppercase;" role="button" data-toggle="collapse" href="#HandlerFilter" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></button></h1>
+    <div class="collapse" id="HandlerFilter">
+        {include 'handler_list_filter.latte'}
+    </div>
     {control vp, right, large}
-    <!--{'handler_list_filter.latte'}-->
-    <!--    <nav>
-	    <ul class="pagination">
-		<li ><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-		<li ><a href="#">1</a></li>
-		<li ><a href="#">2</a></li>
-		<li ><a href="#">3</a></li>
-		<li ><a href="#">4</a></li>
-		<li ><a href="#">5</a></li>
-		<li ><a href="#">6</a></li>
-		<li ><a href="#">7</a></li>
-		<li ><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-	    </ul>
-	</nav>-->
     <div class="row">
         <!-- List profile component -->
 	{foreach $handler_rows as $post}

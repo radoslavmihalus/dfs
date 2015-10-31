@@ -1,7 +1,8 @@
 {define #dropdown_OwnerList_control}
 <div class="form-group">
     <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
-    <span id="tags-input-{$id}" n:name="{$name}" class="selectivity-input form-control" style="padding:0px;" placeholder="{_$placeholder}"></span>
+    <input type="hidden" id="hid-tags-input-{$id}" n:name="{$name}"/>
+    <span id="tags-input-{$id}" name="span-{$name}" class="selectivity-input form-control" style="padding:0px;" placeholder="{_$placeholder}"></span>
 </div>
 <script>
     $(function () {
@@ -9,11 +10,56 @@
     })
 </script>
 <script type="text/javascript">
-    $("#tags-input-" + {$id}).selectivity({
-        items: ['Michal Slepanek', 'Orsyla Nagy', 'Stapho Pipik'],
-        multiple: true,
-        tokenSeparators: [',']
-                //value: ['Dogo Argentino']
+            $("#tags-input-" + {$id}).selectivity({
+    ajax: {
+    url: 'www/templates/scripts/ajax_owners.php',
+            dataType: 'json',
+            minimumInputLength: 2,
+            quietMillis: 250,
+            params: function (term, offset) {
+            // GitHub uses 1-based pages with 30 results, by default
+            return {
+            q: term,
+                    page: offset
+            };
+            },
+            processItem: function (item) {
+            return {
+            id: item.name,
+                    text: item.name,
+                    description: item.name
+            };
+            },
+            results: function (data) {
+            return {
+            results: data.items
+            };
+            }
+    },
+            multiple: true,
+            onlyOne: true,
+    {if $needed_select==1}
+    neededSelect: true,
+    {/if}
+    tokenSeparators: [','],
+            //value: ['Dogo Argentino']
     });
+            $('#tags-input-' + {$id}).on('change', function (item)
+    {
+    $("#hid-tags-input-" + {$id}).val(item.value);
+    });
+            var mystr = $('#hid-tags-input-' + {$id}).val();
+            if (mystr.length > 1)
+    {
+    var a = mystr.split(","),
+            i;
+            $('#hid-tags-input-' + {$id}).val("");
+            for (i = 0; i < a.length; i++) {
+    $('#tags-input-' + {$id}).selectivity('add', {
+    id: a[i],
+            text: a[i]
+    });
+    }
+    }
 </script>
 {/define}

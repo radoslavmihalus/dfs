@@ -42,7 +42,7 @@ class blueticket_objects {
     function generateUsers() {
         $form = blueticket_forms::get_instance();
 
-        //$form= new blueticket_forms();
+//$form= new blueticket_forms();
 
         $form->table("tbl_user");
         $form->table_name("Users");
@@ -89,7 +89,19 @@ class blueticket_objects {
         $this->generateDogs($form);
         $this->generatePayments($form);
         $this->generatePuppies($form);
-        //$this->generateCommentsByUser($form);
+//$this->generateCommentsByUser($form);
+
+        return $form->render();
+    }
+
+    function generatePremiumVisits() {
+        $form = blueticket_forms::get_instance();
+        $form->table("tbl_user_premium_visits");
+        $form->order_by('id', 'DESC');
+        $form->columns("date_time, user_id, full_name");
+        $form->table_name("Premium visits");
+
+        $form->subselect("full_name", "SELECT concat(name,' ',surname) FROM tbl_user WHERE id={user_id}");
 
         return $form->render();
     }
@@ -421,8 +433,6 @@ class blueticket_objects {
         return $timeline->render();
     }
 
-    //        $this->generateTimelineByLike($form);
-
     function generateTimelineByLike($form) {
         $timeline = $form->nested_table($this->getTranslatedText("Timeline"), "timeline_id", "tbl_timeline", "id");
         $timeline->table_name("Timeline");
@@ -440,7 +450,7 @@ class blueticket_objects {
         $timeline->order_by('id', 'ASC');
         return $timeline->render();
     }
-    
+
     function generateTranslate() {
         $form = blueticket_forms::get_instance();
 
@@ -463,13 +473,14 @@ class blueticket_objects {
         $return .= '<a href="?report=dogs" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Dogs</a>';
         $return .= '<a href="?report=puppies" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Puppies</a>';
         $return .= '<a href="?report=payments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Payments</a>';
+        $return .= '<a href="?report=premium" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Premium</a>';
         $return .= '<a href="?report=messages" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Messages</a>';
         $return .= '<a href="?report=timeline" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Timeline</a>';
         $return .= '<a href="?report=comments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Comments</a>';
         $return .= '<a href="?report=likes" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Likes</a>';
         $return .= '<a href="?report=timeline_events_types" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Events types</a>';
         $return .= '<a href="?report=translate" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Translate</a>';
-        $return .= '<a href="?report=forms" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Forms</a>';
+//        $return .= '<a href="?report=forms" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Forms</a>';
 //        $return .= '<a href="?report=movements" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Pohyby</a>';
 //        $return .= '<a href="?report=payments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Platby</a>';
 //        $return .= '<a href="?report=partners" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Partneri</a>';
@@ -489,3 +500,5 @@ class blueticket_objects {
     }
 
 }
+
+?>

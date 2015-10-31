@@ -20,6 +20,9 @@ class kennelPresenter extends BasePresenter {
     public $filter_kennel_name;
     public $filter_kennel_breed;
     public $filter_kennel_country;
+    public $filter_pl_name;
+    public $filter_pl_breed;
+    public $filter_pl_country;
 
 //    public function __construct(Nette\Database\Context $database) {
 //        $this->database = $database;
@@ -270,12 +273,61 @@ class kennelPresenter extends BasePresenter {
     }
 
     public function renderPlanned_litter_list($id = 0) {
-        $count = $this->database->table("tbl_planned_litters")->count();
+        try {
+            $section = $this->getSession('pl_filter');
+
+            $this->filter_pl_name = $section->filter_pl_name;
+            $this->filter_pl_breed = $section->filter_pl_breed;
+            $this->filter_pl_country = $section->filter_pl_country;
+
+            if ($this->filter_pl_name == NULL)
+                $this->filter_pl_name = "";
+            if ($this->filter_pl_breed == NULL)
+                $this->filter_pl_breed = "";
+            if ($this->filter_pl_country == NULL)
+                $this->filter_pl_country = "";
+        } catch (\Exception $ex) {
+            
+        }
+
+        $ids = array();
+
+        if (strlen($this->filter_pl_name) > 1) {
+            $kennels = $this->database->table("tbl_userkennel")->select("id")->where("kennel_name LIKE ?", "%" . $this->filter_pl_name . "%")->fetchAll();
+
+            foreach ($kennels as $kennel) {
+                $ids[] = $kennel->id;
+            }
+        }
+
+        if (strlen($this->filter_pl_name) > 1) {
+            $count = $this->database->table("tbl_planned_litters")
+                    ->where("bitch_breed LIKE ?", "%" . $this->filter_pl_breed . "%")
+                    ->where("bitch_state LIKE ?", "%" . $this->filter_pl_country . "%")
+                    ->where("kennel_id IN ?", $ids)
+                    ->count();
+        } else {
+            $count = $this->database->table("tbl_planned_litters")
+                    ->where("bitch_breed LIKE ?", "%" . $this->filter_pl_breed . "%")
+                    ->where("bitch_state LIKE ?", "%" . $this->filter_pl_country . "%")
+                    ->count();
+        }
 
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(9);
 
-        $rows = $this->database->table("tbl_planned_litters")->order("year DESC,month DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        if (strlen($this->filter_pl_name) > 1) {
+            $rows = $this->database->table("tbl_planned_litters")
+                            ->where("bitch_breed LIKE ?", "%" . $this->filter_pl_breed . "%")
+                            ->where("bitch_state LIKE ?", "%" . $this->filter_pl_country . "%")
+                            ->where("kennel_id IN ?", $ids)
+                            ->order("year DESC,month DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        } else {
+            $rows = $this->database->table("tbl_planned_litters")
+                            ->where("bitch_breed LIKE ?", "%" . $this->filter_pl_breed . "%")
+                            ->where("bitch_state LIKE ?", "%" . $this->filter_pl_country . "%")
+                            ->order("year DESC,month DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        }
         $this->template->planned_litter_rows = $rows;
 //$this->renderKennel_profile_home($id);
     }
@@ -518,6 +570,79 @@ class kennelPresenter extends BasePresenter {
         $section->filter_kennel_name = NULL;
         $section->filter_kennel_breed = NULL;
         $section->filter_kennel_country = NULL;
+
+        $this->redirect("this");
+    }
+
+    protected function createComponentPlanned_litter_list_filter() {
+        $form = new Form();
+
+        $lang = "en";
+
+        try {
+            $section = $this->getSession('language');
+            if (strlen($section->lang) > 1)
+                $lang = strtolower($section->lang);
+        } catch (\Exception $ex) {
+            $lang = "en";
+        }
+
+        $result = $this->database->table("lk_countries")->order("CountryName_$lang");
+        $countries = array();
+
+        //$countries[] = $this->translate("Please select state...");
+
+        foreach ($result as $row) {
+            $countries[$row->CountryName_en] = $this->translate($row->CountryName_en);
+        }
+
+        $this->filter_pl_name = NULL;
+        $this->filter_pl_breed = NULL;
+        $this->filter_pl_country = NULL;
+
+        try {
+            $section = $this->getSession('pl_filter');
+
+            $this->filter_pl_name = $section->filter_pl_name;
+            $this->filter_pl_breed = $section->filter_pl_breed;
+            $this->filter_pl_country = $section->filter_pl_country;
+        } catch (\Exception $ex) {
+            
+        }
+
+        $form->addText("txtKennelName")->setValue($this->filter_pl_name);
+        $form->addSelect("ddlCountry")->setPrompt($this->translate("Please select"))->setItems($countries)->setValue($this->filter_pl_country);
+        $form->addText("ddlBreedList")->setValue($this->filter_pl_breed);
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitPLFilter');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelPLFilter');
+
+        return $form;
+    }
+
+    public function frmSubmitPLFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('pl_filter');
+
+        $this->filter_pl_name = $values->txtKennelName;
+        $this->filter_pl_breed = $values->ddlBreedList;
+        $this->filter_pl_country = $values->ddlCountry;
+
+        $section->filter_pl_name = $this->filter_pl_name;
+        $section->filter_pl_breed = $this->filter_pl_breed;
+        $section->filter_pl_country = $this->filter_pl_country;
+
+        $this->redirect("this");
+    }
+
+    public function frmCancelPLFilter($button) {
+        $values = $button->getForm()->getValues();
+
+        $section = $this->getSession('pl_filter');
+
+        $section->filter_pl_name = NULL;
+        $section->filter_pl_breed = NULL;
+        $section->filter_pl_country = NULL;
 
         $this->redirect("this");
     }

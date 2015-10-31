@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+error_reporting(1);
 session_start();
 
 if(isset($_REQUEST['report']) && $_REQUEST['report']=='logout')
@@ -137,7 +137,7 @@ if (isset($_GET['report'])) {
             if (isset($_GET['report'])) {
                 switch ($_GET['report']) {
                     case 'forms':
-                        echo $bt->generateForms();
+                        // echo $bt->generateForms();
                         break;
                     case 'users':
                         echo $bt->generateUsers();
@@ -177,6 +177,9 @@ if (isset($_GET['report'])) {
                         break;
                     case 'translate':
                         echo $bt->generateTranslate();
+                        break;
+                    case 'premium':
+                        echo $bt->generatePremiumVisits();
                         break;
 //                    case 'stats':
 //                        if (isset($_GET['type'])) {

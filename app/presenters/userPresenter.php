@@ -51,6 +51,17 @@ class userPresenter extends BasePresenter {
         $this->template->notifications_list = $rows;
     }
 
+    public function actionUser_premium() {
+        try {
+            $data = array();
+
+            $data['user_id'] = $this->logged_in_id;
+            $this->database->table("tbl_user_premium_visits")->insert($data);
+        } catch (\Exception $ex) {
+            
+        }
+    }
+
     public function actionUser_premium_activation($amt = 50) {
         if (isset($_GET['amt']))
             $amt = $_GET['amt'];
@@ -154,7 +165,6 @@ class userPresenter extends BasePresenter {
         $this->flashMessage($this->translate("User updated successfully"), "Success");
         $this->redirect('user:user_edit_account');
     }
-
 
     /**
      * Delete form factory.

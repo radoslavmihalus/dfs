@@ -1,7 +1,11 @@
 <?php
 session_start();
 
+error_reporting(1);
+
 require_once 'object.class.php';
+
+error_reporting(1);
 
 $bt = new blueticket_objects();
 

@@ -9,7 +9,22 @@
 require_once '../../inc/config_ajax.php';
 
 $context = getContext();
-$fields = $context->query("SELECT concat(tbl_user.name,' ',tbl_user.surname) as name FROM tbl_user inner join tbl_userhandler ON tbl_userhandler.user_id=tbl_user.id WHERE concat(tbl_user.name,' ',tbl_user.surname) LIKE '%" . $_GET['q'] . "%' ORDER BY concat(tbl_user.name,' ',tbl_user.surname)")->fetchAll();
+
+$rows = $context->query("SELECT user_id FROM tbl_userowner GROUP BY user_id")->fetchAll();
+
+$i = 0;
+$ids = "";
+
+foreach ($rows as $row) {
+    if ($i == 0)
+        $ids = $row->user_id;
+    else
+        $ids .= "," . $row->user_id;
+
+    $i++;
+}
+
+$fields = $context->query("SELECT concat(name, ' ', surname) as owner_name FROM tbl_user WHERE id IN ($ids) AND concat(name, ' ', surname) LIKE '%" . $_GET['q'] . "%' ORDER BY concat(name, ' ', surname)")->fetchAll();
 
 $return = array();
 
@@ -22,7 +37,7 @@ $return = array();
 $str = '{"items":';
 
 foreach ($fields as $field) {
-    $return[]['name'] = $field->name;
+    $return[]['name'] = $field->owner_name;
 }
 
 $str .= json_encode($return);
