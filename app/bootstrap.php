@@ -67,7 +67,6 @@ $router[] = new Route('edit-photo', 'photo:photo_edit');
 // User routes
 $router[] = new Route('switch-profile', 'user:user_create_profile_switcher');
 $router[] = new Route('premium-account', 'user:user_premium');
-$router[] = new Route('premium-account-new', 'user:user_premium_new');
 $router[] = new Route('premium-account-activation', 'user:user_premium_activation');
 $router[] = new Route('edit-account', 'user:user_edit_account');
 $router[] = new Route('list-of-friends-requests', 'user:user_friend_requests_list');
@@ -126,6 +125,7 @@ $router[] = new Route('owner-friends-list', 'owner:owner_friends_list');
 $router[] = new Route('owner-followers-list', 'owner:owner_followers_list');
 $router[] = new Route('owner-photogallery', 'owner:owner_photogallery');
 // Dog routes
+//$router[] = new Route('dog-profile', 'dog:dog_profile_home');
 $router[] = new Route('list-of-dogs', 'dog:dog_list');
 $router[] = new Route('best-in-show', 'dog:dog_list_bestinshow');
 $router[] = new Route('list-of-dogs-for-mating', 'dog:dog_for_mating_list');
