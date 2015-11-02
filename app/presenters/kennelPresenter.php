@@ -431,8 +431,10 @@ class kennelPresenter extends BasePresenter {
         $kennel = $this->database->table("tbl_userkennel")->where("id=?", $award->kennel_id)->fetch();
 
         if ($kennel->user_id == $this->logged_in_id)
+        {
             $this->database->table("link_kennel_awards")->where("id=?", $id)->delete();
-
+        }
+            
         $this->redirect("kennel_awards_list", array("id" => $kennel->id));
     }
 

@@ -613,6 +613,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         if ($photo->user_id == $this->logged_in_id) {
             $this->database->table("tbl_photos")->where("id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
         }
 
         $this->redirect(\DataModel::getGalleryProfileLinkUrl($profile_id), array("id" => $profile_id));

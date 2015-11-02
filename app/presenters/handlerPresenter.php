@@ -358,8 +358,10 @@ class handlerPresenter extends BasePresenter {
         $certificate = $this->database->table("tbl_handler_awards")->where("id=?", $id)->fetch();
         $handler = $this->database->table("tbl_userhandler")->where("id=?", $certificate->handler_id)->fetch();
 
-        if ($this->logged_in_id == $handler->user_id)
+        if ($this->logged_in_id == $handler->user_id) {
             $this->database->table("tbl_handler_awards")->where("id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
+        }
 
         $this->redirect("handler_awards_list", array("id" => $handler->id));
     }
@@ -368,8 +370,10 @@ class handlerPresenter extends BasePresenter {
         $certificate = $this->database->table("tbl_handler_certificates")->where("id=?", $id)->fetch();
         $handler = $this->database->table("tbl_userhandler")->where("id=?", $certificate->handler_id)->fetch();
 
-        if ($this->logged_in_id == $handler->user_id)
+        if ($this->logged_in_id == $handler->user_id) {
             $this->database->table("tbl_handler_awards")->where("id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
+        }
 
         $this->redirect("handler_certificates_list", array("id" => $handler->id));
     }

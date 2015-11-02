@@ -375,6 +375,7 @@ class dogPresenter extends BasePresenter {
         if ($row->user_id == $this->logged_in_id) {
             //$this->database->table("tbl_dogs")->where("dog_id=?", $id)->delete();
             $this->database->table("tbl_dogs")->where("id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
         }
         $this->redirect(\DataModel::getDogsProfileLinkUrl($this->logged_in_profile_id), array("id" => $this->logged_in_profile_id));
     }
@@ -385,6 +386,7 @@ class dogPresenter extends BasePresenter {
         $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
         if ($row->user_id == $this->logged_in_id) {
             $this->database->table("tbl_dogs_championship")->where("id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
         }
         $this->redirect("dog:dog_championschip_list", array("id" => $row->id));
     }
@@ -395,6 +397,7 @@ class dogPresenter extends BasePresenter {
         $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
         if ($row->user_id == $this->logged_in_id) {
             $this->database->table("tbl_dogs_coowners")->where("id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
         }
         $this->redirect("dog:dog_coowner_list", array("id" => $row->id));
     }
@@ -405,6 +408,7 @@ class dogPresenter extends BasePresenter {
         $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
         if ($row->user_id == $this->logged_in_id) {
             $this->database->table("tbl_dogs_health")->where("id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
         }
         $this->redirect("dog:dog_health_list", array("id" => $row->id));
     }
@@ -415,6 +419,7 @@ class dogPresenter extends BasePresenter {
         $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
         if ($row->user_id == $this->logged_in_id) {
             $this->database->table("tbl_dogs_matings")->where("id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
         }
         $this->redirect("dog:dog_mating_list", array("id" => $row->id));
     }
@@ -435,6 +440,7 @@ class dogPresenter extends BasePresenter {
         $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
         if ($row->user_id == $this->logged_in_id) {
             $this->database->table("tbl_dogs_shows")->where("id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
         }
         $this->redirect("dog:dog_show_list", array("id" => $row->id));
     }
@@ -445,6 +451,7 @@ class dogPresenter extends BasePresenter {
         $row = $this->database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
         if ($row->user_id == $this->logged_in_id) {
             $this->database->table("tbl_dogs_workexams")->where("id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
         }
         $this->redirect("dog:dog_workexam_list", array("id" => $row->id));
     }

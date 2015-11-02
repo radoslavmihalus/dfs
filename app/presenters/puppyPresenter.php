@@ -146,6 +146,7 @@ class puppyPresenter extends BasePresenter {
         $row = $this->database->table("tbl_puppies")->where("id=?", $id)->fetch();
         if ($row->user_id == $this->logged_in_id) {
             $this->database->table("tbl_puppies")->where("id=?", $id)->delete();
+            $this->database->table("tbl_timeline")->where("event_id=?", $id)->delete();
             $kennel = $this->database->table("tbl_userkennel")->where("user_id=?", $row->user_id)->fetch();
             $this->redirect("kennel:kennel_puppy_list", array("id" => $kennel->id));
         }
