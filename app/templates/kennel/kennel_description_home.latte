@@ -30,11 +30,13 @@
     {/if}
     <!-- Kennel website-->
     {if strlen($kennel_website)>0}
-        <div class="panel-description">{_ 'Website'} 
-        </div>
-        <div class="text-justify" style="font-size:12px;padding-top: 10px;">
-            {$kennel_website}
-        </div>
+        {if ( DataModel::getPremium(DataModel::getUserIdByProfileId($profile_id)) )}
+            <div class="panel-description">{_ 'Website'} 
+            </div>
+            <div class="text-justify" style="font-size:12px;padding-top: 10px;">
+                {$kennel_website}
+            </div>
+        {/if}
     {/if}
 </div>
 <script>
