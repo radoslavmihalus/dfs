@@ -737,6 +737,7 @@ class dogPresenter extends BasePresenter {
     }
 
     protected function createComponentFormAddPedigree() {
+        
         $dog = $this->database->table("tbl_dogs")->where("id=?", $this->dog_id)->fetch();
 
         $txtF = \DataModel::getFatherName($dog->dog_name);

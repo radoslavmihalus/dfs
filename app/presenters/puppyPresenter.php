@@ -438,7 +438,7 @@ class puppyPresenter extends BasePresenter {
             $planned_litter = \DataModel::getPlannedLitterById($data['planned_litter_id']);
             $father_name = $planned_litter->dog_name;
             $mother_name = $planned_litter->bitch_name;
-            $data['breed_name'] = $planned_litter->bich_breed;
+            $data['breed_name'] = $planned_litter->bitch_breed;
 
             $this->data_model->setParents($data['puppy_name'], $father_name, $mother_name);
 
@@ -474,7 +474,7 @@ class puppyPresenter extends BasePresenter {
             $planned_litter = \DataModel::getPlannedLitterById($data['planned_litter_id']);
             $father_name = $planned_litter->dog_name;
             $mother_name = $planned_litter->bitch_name;
-            $data['breed_name'] = $planned_litter->bich_breed;
+            $data['breed_name'] = $planned_litter->bitch_breed;
             $this->data_model->setParents($data['puppy_name'], $father_name, $mother_name);
 
             $this->database->table("tbl_puppies")->where("id=?", $this->dog_id)->update($data);
