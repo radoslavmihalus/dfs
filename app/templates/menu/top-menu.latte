@@ -91,7 +91,7 @@
             <button type="button" class="navbar-toggle collapsed toogle-margin-zero" style="margin-top: 5px;margin-bottom: 0px;" data-toggle="collapse" data-target="#user-menu">
                 <i class="fa fa-bars"></i>
             </button>
-            <a n:href="timeline:timeline_wall"><i class="refresh-icon fa fa-list-alt fa-1x"></i></a>
+            <a n:href="timeline:timeline_wall"><i class="refresh-icon fa fa-list-alt fa-1x" data-toggle="tooltip" data-placement='right' title="{_ 'Timeline events'}"></i></a>
             <div class="notification-bar">
                 <!--                Top menu friend requests -->
                 <!--                <div class="dropdown" style="float:left;">
@@ -147,7 +147,7 @@
                 <div class="dropdown" style="float:left;">
                     <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="Messages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="badge notify" id="messages_count"></span>
-                        <i class="notification-icon fa fa-envelope fa-1x"></i>
+                        <i class="notification-icon fa fa-envelope fa-1x" data-toggle="tooltip" data-placement='bottom' title="{_ 'Messages'}"></i>
                         <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu messages" role="menu" aria-labelledby="Messages" id="messages_list">
@@ -158,7 +158,7 @@
                 <div class="dropdown" style="float:left;">
                     <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="Notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="badge notify" id="notify_count"></span>
-                        <i class="notification-icon fa fa-bell fa-1x"></i>
+                        <i class="notification-icon fa fa-bell fa-1x" data-toggle="tooltip" data-placement='bottom' title="{_ 'Notifications'}"></i>
                         <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu notifications" role="menu" aria-labelledby="Notifications" id="notify">
@@ -169,7 +169,7 @@
                                 Top menu user account -->
                 <div class="dropdown" style="float:left;">
                     <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="UserAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="notification-icon fa fa-cog fa-1x"></i>
+                        <i class="notification-icon fa fa-cog fa-1x" data-toggle="tooltip" data-placement='bottom' title="{_ 'User account'}"></i>
                         <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu user-account" role="menu" aria-labelledby="UserAccount">
@@ -249,3 +249,8 @@
         </script>
     {/if}
 </nav>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
