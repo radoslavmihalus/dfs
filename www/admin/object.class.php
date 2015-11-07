@@ -39,6 +39,38 @@ class blueticket_objects {
         return $form->render();
     }
 
+    function generateUsersWithoutProfile() {
+        $form = blueticket_forms::get_instance();
+
+//$form= new blueticket_forms();
+
+        $form->table("tbl_user");
+        $form->where("(SELECT COUNT(*) FROM tbl_userkennel WHERE tbl_userkennel.user_id=tbl_user.id) = 0");
+        $form->where("(SELECT COUNT(*) FROM tbl_userhandler WHERE tbl_userhandler.user_id=tbl_user.id) = 0");
+        $form->where("(SELECT COUNT(*) FROM tbl_userowner WHERE tbl_userowner.user_id=tbl_user.id) = 0");
+        $form->where("active=1");
+
+        $form->table_name("Users");
+        $form->default_tab("Users");
+        $form->columns("registration_date, active, full_name, email, state, lang, last_login, login_count, premium_expiry_date");
+
+        $form->label("premium_expiry_date", "PED");
+        $form->label("last_login", "LL");
+        $form->label("login_count", "LC");
+
+        $form->order_by('id', 'DESC');
+
+        $form->subselect('full_name', "concat({name},' ',{surname})");
+
+        $form->highlight_row('active', '=', 0, '#FFD6D6');
+        $form->highlight('login_count', '>', 0, '#B4E274');
+        $form->highlight('login_count', '=', 0, '#EDEBE4');
+
+        $form->sum('active');
+
+        return $form->render();
+    }
+
     function generateUsers() {
         $form = blueticket_forms::get_instance();
 
@@ -467,6 +499,7 @@ class blueticket_objects {
         $return = '<div style="width:100%; height:50px;padding-left:5px">';
 
         $return .= '<a href="?report=users" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Users</a>';
+        $return .= '<a href="?report=users_wo_profile" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Users w/o profile</a>';
         $return .= '<a href="?report=kennels" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Kennels</a>';
         $return .= '<a href="?report=owners" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Owners</a>';
         $return .= '<a href="?report=handlers" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Handlers</a>';

@@ -142,6 +142,9 @@ if (isset($_GET['report'])) {
                     case 'users':
                         echo $bt->generateUsers();
                         break;
+                    case 'users_wo_profile':
+                        echo $bt->generateUsersWithoutProfile();
+                        break;
                     case 'kennels':
                         echo $bt->generateKennels();
                         break;

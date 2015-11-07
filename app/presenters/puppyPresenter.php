@@ -487,10 +487,10 @@ class puppyPresenter extends BasePresenter {
 
     public function frmAddPedigreeSucceeded($button) {
         try {
-            $dog = $this->database->table("tbl_dogs")->where("id=?", $this->dog_id)->fetch();
+            $dog = $this->database->table("tbl_puppies")->where("id=?", $this->dog_id)->fetch();
             $values = $button->getForm()->getValues();
 
-            $this->data_model->setParents($dog->dog_name, $values['txtPedigreeFather'], $values['txtPedigreeMother']);
+            $this->data_model->setParents($dog->puppy_name, $values['txtPedigreeFather'], $values['txtPedigreeMother']);
             $this->data_model->setParents($values['txtPedigreeFather'], $values['txtPedigree1'], $values['txtPedigree4']);
             $this->data_model->setParents($values['txtPedigreeMother'], $values['txtPedigree7'], $values['txtPedigree10']);
             $this->data_model->setParents($values['txtPedigree1'], $values['txtPedigree2'], $values['txtPedigree3']);
@@ -500,7 +500,7 @@ class puppyPresenter extends BasePresenter {
         } catch (\Exception $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
         }
-        $this->redirect("dog:dog_pedigree_list", array("id" => $this->dog_id));
+        $this->redirect("puppy:puppy_pedigree_list", array("id" => $this->dog_id));
     }
 
 }
