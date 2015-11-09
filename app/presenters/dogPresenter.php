@@ -46,8 +46,16 @@ class dogPresenter extends BasePresenter {
         $this->template->dog_name = $dog->dog_name;
         $this->template->pedigree = $pedigree;
     }
+
     public function renderDog_profile_home($id = 0) {
         $this->renderDefault($id);
+
+        $count = $this->data_model->getTimelineCount($id);
+
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(9);
+
+        $this->template->timeline_rows = $this->data_model->getTimeline($id, $this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset());
     }
 
     public function renderDog_championschip_list($id = 0) {
@@ -740,7 +748,7 @@ class dogPresenter extends BasePresenter {
     }
 
     protected function createComponentFormAddPedigree() {
-        
+
         $dog = $this->database->table("tbl_dogs")->where("id=?", $this->dog_id)->fetch();
 
         $txtF = \DataModel::getFatherName($dog->dog_name);

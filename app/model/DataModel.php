@@ -547,6 +547,50 @@ class DataModel {
     }
 
 //counter functions
+//dog counters functions
+
+    static function getChampionshipsCount($dog_id) {
+        $database = $GLOBALS['database'];
+
+        return $database->table("tbl_dogs_championship")->where("dog_id=?", $dog_id)->count();
+    }
+
+    static function getShowsCount($dog_id) {
+        $database = $GLOBALS['database'];
+
+        return $database->table("tbl_dogs_shows")->where("dog_id=?", $dog_id)->count();
+    }
+
+    static function getWorkexamsCount($dog_id) {
+        $database = $GLOBALS['database'];
+
+        return $database->table("tbl_dogs_workexams")->where("dog_id=?", $dog_id)->count();
+    }
+
+    static function getHealthCount($dog_id) {
+        $database = $GLOBALS['database'];
+
+        return $database->table("tbl_dogs_health")->where("dog_id=?", $dog_id)->count();
+    }
+    
+    static function getMatingsCount($dog_id) {
+        $database = $GLOBALS['database'];
+
+        return $database->table("tbl_dogs_matings")->where("dog_id=?", $dog_id)->count();
+    }
+
+    static function getCoownersCount($dog_id) {
+        $database = $GLOBALS['database'];
+
+        return $database->table("tbl_dogs_coowners")->where("dog_id=?", $dog_id)->count();
+    }
+    
+    static function getPhotosCount($profile_id) {
+        $database = $GLOBALS['database'];
+
+        return $database->table("tbl_photos")->where("profile_id=?", $profile_id)->count();
+    }
+//dog counters functions
 
 
     function addTimelineComment($user_id, $profile_id, $timeline_id, $comment) {

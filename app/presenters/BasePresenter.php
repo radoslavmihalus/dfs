@@ -105,6 +105,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             }
         }
 
+        if (isset($_GET['lang']))
+            $mylang = $_GET['lang'];
+
+        $this->translator->lang = $mylang;
+
         $this->template->setTranslator($this->translator);
         $this->template->lang = $this->translator->lang;
 
