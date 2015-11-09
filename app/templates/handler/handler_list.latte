@@ -8,10 +8,8 @@
     <div class="row">
         <!-- List profile component -->
 	{foreach $handler_rows as $post}
-	    <div class="col-lg-4 col-md-6 col-xs-12 padding">
 		{includeblock 'handler_list_item.latte'}
 		{include handler_list_item post=>$post}
-	    </div>
 	{/foreach}
         <!-- / List profile component -->
     </div>

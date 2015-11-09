@@ -1,13 +1,14 @@
 {define #handler_list_item}
+<div class="col-lg-4 col-md-6 col-xs-12 padding">
+    {if ( DataModel::getPremium($post->user_id) )}
+            <a n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="position:absolute;top:10px;right:25px;font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></a>
+            {/if}
 <a n:href="handler:handler_profile_home id=>$post->id">
     <div class="list-item">
         <div class="profile-header-image" style="height:200px;{if (strlen($post->handler_background_image)>2)} background: url('{$post->handler_background_image}') no-repeat center center;background-size:cover;background-position:50% 20%; {else} background-color:#D5D0C0; background-image: none{/if}">
             <div class="pull-left image-profile-thumb" style="top:40px;">
             <img src="{DataModel::getProfileImage($post->id)}">
             </div>
-            {if ( DataModel::getPremium($post->user_id) )}
-            <a n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></a>
-            {/if}
         </div>    
         <h3 class="text-uppercase" style="height:40px;"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{DataModel::getProfileName($post->id)}</h3>
         <hr style="margin-bottom: 10px;">
@@ -15,6 +16,7 @@
         <span class="list-item-regdate"><i class="fa fa-clock-o" data-toggle="tooltip" data-placement='top' title="{_ 'Registration date'}"></i>&nbsp;&nbsp;{$post->handler_create_date|date:'%d.%m.%Y'}</span>
     </div>
 </a>
+</div>
 {/define}
 <script>
     $(function () {
