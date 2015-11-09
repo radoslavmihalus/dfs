@@ -46,6 +46,9 @@ class dogPresenter extends BasePresenter {
         $this->template->dog_name = $dog->dog_name;
         $this->template->pedigree = $pedigree;
     }
+    public function renderDog_profile_home($id = 0) {
+        $this->renderDefault($id);
+    }
 
     public function renderDog_championschip_list($id = 0) {
         $this->renderDefault($id);

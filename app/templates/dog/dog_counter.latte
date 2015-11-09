@@ -1,28 +1,30 @@
 {define #dog_counter}
 <div class="panel-body component col-lg-12">
     <div class="list-group">
-        <a href="#" class="list-group-item">
+        <a n:href="dog_championschip_list id=>$dog->id" class="list-group-item">
             <i class="fa fa-trophy"></i>&nbsp;&nbsp;{_ 'Championchips'}<span class="badge">0</span>
         </a>
-        <a href="#" class="list-group-item">
+        <a n:href="dog_show_list id=>$dog->id" class="list-group-item">
             <i class="fa fa-clipboard"></i>&nbsp;&nbsp;{_ 'Show results'}<span class="badge">0</span>
         </a>
-        <a href="#" class="list-group-item">
+        <a n:href="dog_workexam_list id=>$dog->id" class="list-group-item">
             <i class="fa fa-flag"></i>&nbsp;&nbsp;{_ 'Working exams'}<span class="badge">0</span>
         </a>
-        <a href="#" class="list-group-item">
+        <a n:href="dog_health_list id=>$dog->id" class="list-group-item">
             <i class="fa fa-heartbeat"></i>&nbsp;&nbsp;{_ 'Health'}<span class="badge">0</span>
         </a>
-        <a href="#" class="list-group-item">
+        <a n:href="dog_photogallery id=>$dog->id" class="list-group-item">
             <i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<span class="badge">0</span>
         </a>
         <a href="#" class="list-group-item">
             <i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}<span class="badge">0</span>
         </a>
-        <a href="#" class="list-group-item">
+        {if ($dog->dog_gender == "Dog")}
+        <a n:href="dog_mating_list id=>$dog->id" class="list-group-item">
             <i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_ 'Matings'}<span class="badge">0</span>
         </a>
-        <a href="#" class="list-group-item">
+        {/if}
+        <a n:href="dog_coowner_list id=>$dog->id" class="list-group-item">
             <i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{_ 'Coowners'}<span class="badge">0</span>
         </a>
     </div>

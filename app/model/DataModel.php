@@ -817,7 +817,7 @@ class DataModel {
                     return "handler:handler_profile_home";
                     break;
                 case ($profile_id >= 500000000 && $profile_id < 600000000):
-                    return "dog:dog_championschip_list";
+                    return "dog:dog_profile_home";
                     break;
                 case ($profile_id >= 600000000 && $profile_id < 700000000):
                     return "puppy:puppy_description";
