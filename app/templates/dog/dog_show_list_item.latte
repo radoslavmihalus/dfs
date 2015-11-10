@@ -86,6 +86,15 @@
             <span style="margin-right: 5px; color:#777;">{$row->other_title}</span>
         </div>
         <div class="col-lg-3 col-md-3 column-spacer">
+            <a class="btn btn-default btn-xs dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><i class="fa fa-share-alt"></i>&nbsp;{_ 'Share'}&nbsp;<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="Share" style="min-width:50px;">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-facebook-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Facebook'}</span></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-google-plus-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Google+'}</span></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-twitter-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Twitter'}</span></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-pinterest-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Pinterest'}</span></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-tumblr-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Tumblr'}</span></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-envelope-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Email'}</span></a></li>
+                        </ul>
             {if DataModel::getPermission($dog->id,$logged_in_id,4)}
                 <a n:href="dog:dog_show_edit id=>$row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
                 <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' id="show_delete{$row->id}" title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
