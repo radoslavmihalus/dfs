@@ -69,7 +69,7 @@ class kennelPresenter extends BasePresenter {
 
     /*     * ******** renderers ************* */
 
-    public function renderKennel_list() {
+    public function renderKennel_list($lang) {
         try {
             $section = $this->getSession('kennel_filter');
 

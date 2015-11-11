@@ -76,7 +76,10 @@ $router[] = new Route('message-compose', 'user:user_message_compose');
 // Kennel routes
 $router[] = new Route('kennel-create-profile', 'kennel:kennel_create_profile');
 $router[] = new Route('kennel-edit-profile', 'kennel:kennel_edit_profile');
-$router[] = new Route('list-of-kennels', 'kennel:kennel_list');
+$router[] = new Route('[<lang [A-Z]{2}>/]list-of-kennels', array(
+    'presenter' => 'kennel',
+    'action' => 'kennel_list',
+    'lang' => 'EN'));
 $router[] = new Route('kennel-profile', 'kennel:kennel_profile_home');
 $router[] = new Route('kennel-awards-list', 'kennel:kennel_awards_list');
 $router[] = new Route('kennel-awards-add', 'kennel:kennel_awards_add');
@@ -168,12 +171,16 @@ $router[] = new Route('puppy-photogallery', 'puppy:puppy_photogallery');
 // Timeline routes
 $router[] = new Route('timeline', 'timeline:timeline_wall');
 // Pages
-$router[] = new Route('general-terms', 'pages:general_terms');
+$router[] = new Route('[<lang [A-Z]{2}>/]general-terms', array(
+    'presenter' => 'pages',
+    'action' => 'general_terms',
+    'lang' => 'EN'));
+
+//$router[] = new Route('general-terms', 'pages:general_terms');
 $router[] = new Route('cookie-policy', 'pages:cookie_policy');
 $router[] = new Route('<presenter>/<action>[/<id>]', 'LandingPage:default');
 
 // routy
-
 //$cache = Nette\Environment::getCache();
 //$cache->clean(array(\Nette\Caching\Cache::ALL => true));
 
