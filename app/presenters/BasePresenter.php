@@ -40,6 +40,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $lang_session;
 
     public function __construct(Nette\Database\Context $database) {
+        //parent::__construct();
         $this->database = $database;
         $this->data_model = new \DataModel($database);
 
@@ -47,12 +48,15 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         $GLOBALS['database'] = $database;
 
-        try {
-            $mysection = $this->getSession('language');
-            $mysection->lang = "en";
-        } catch (\Exception $ex) {
-            
-        }
+//        try {
+//            $mysection = $this->getSession('language');
+//            if (strlen($mysection->lang) > 1) {
+//                
+//            } else
+//                $mysection->lang = "en";
+//        } catch (\Exception $ex) {
+//            
+//        }
     }
 
 // return field name for form element
@@ -80,22 +84,55 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         return $return;
     }
 
+    private $cacheKey;
+
+    /**
+     * @return void
+     */
+
+    /**
+     * @return void
+     */
+//    protected function shutdown() {
+//        if ($this->cacheKey) {
+//            $content = ob_get_flush();
+//            if ($content) {
+//                // byl vůbec nějaký výstup? To je nutné zkontrolovat, co když byl
+//                // presenter ukončen třeba metodou lastModified()
+//                $cache = Environment::getCache('application/output');
+//                $cache->save($this->cacheKey, $content, array(
+//                    'expire' => 300, // 300 s = 5 minut
+//                ));
+//            }
+//        }
+//    }
+
     protected function startup() {
-        parent::startup();
-        $GLOBALS['database'] = $this->database;
-
-        $this->translator = new DFSTranslator();
-
+        // vytvoříme cache ve jmenném prostoru 'application/output'
+        // (jméno prostoru je libovolný řetezec)
+//        $cache = Nette\Environment::getCache('application/output');
+//
+//        // klíčem bude třeba jméno presenteru a view + obsah parametru id
+//        $key = $this->getName() . ':' . $this->getView() . '#' . $this->params['id'];
+//        // ověření, zda je položka v keši
+//        if (isset($cache[$key])) {
+//            echo $cache[$key]; // vypsat a finíto
+//            $this->terminate();
+//        } else {
+//            ob_start();
+//            $this->cacheKey = $key;
+//        }
+        
+        
         try {
             $mysection = $this->getSession('language');
-            $this->translator->lang = $mysection->lang;
+            //$this->translator->lang = $mysection->lang;
+            $mylang = $mysection->lang;
         } catch (\Exception $ex) {
             $mylang = "en";
 
             if (isset($_GET['lang']))
                 $mylang = $_GET['lang'];
-
-            $this->translator->lang = $mylang;
 
             try {
                 $mysection = $this->getSession('language');
@@ -107,6 +144,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         if (isset($_GET['lang']))
             $mylang = $_GET['lang'];
+
+        parent::startup();
+        $GLOBALS['database'] = $this->database;
+
+        $this->translator = new DFSTranslator();
 
         $this->translator->lang = $mylang;
 
@@ -358,11 +400,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $mysection = $this->getSession('language');
             $lang = strtolower($lang);
             $mysection->lang = $lang;
+            $this->translator->lang = $lang;
         } catch (\Exception $ex) {
             if (isset($_GET['lang']))
                 $this->translator->lang = $_GET['lang'];
         }
-        $this->redirect("LandingPage:default", array("lang" => $lang));
+        $this->redirect("LandingPage:default"); //, array("lang" => $lang));
     }
 
     public function handleLike($timeline_id = 0, $event_id = 0) {

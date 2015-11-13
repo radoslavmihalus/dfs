@@ -32,6 +32,33 @@ class kennelPresenter extends BasePresenter {
 
     protected function startup() {
         parent::startup();
+
+        try {
+            $mysection = $this->getSession('language');
+            $this->translator->lang = $mysection->lang;
+            $mylang = $mysection->lang;
+        } catch (\Exception $ex) {
+            $mylang = "en";
+
+            if (isset($_GET['lang']))
+                $mylang = $_GET['lang'];
+
+            $this->translator->lang = $mylang;
+
+            try {
+                $mysection = $this->getSession('language');
+                $mysection->lang = $mylang;
+            } catch (\Exception $ex) {
+                
+            }
+        }
+
+        if (isset($_GET['lang']))
+            $mylang = $_GET['lang'];
+
+        $this->translator->lang = $mylang;
+
+
         try {
             $kennel_data = $this->database->table("tbl_userkennel")->where("user_id=?", $this->logged_in_id)->fetch();
             $this->logged_in_kennel_id = $kennel_data->id;
@@ -69,7 +96,7 @@ class kennelPresenter extends BasePresenter {
 
     /*     * ******** renderers ************* */
 
-    public function renderKennel_list($lang) {
+    public function renderKennel_list() {
         try {
             $section = $this->getSession('kennel_filter');
 
@@ -430,11 +457,10 @@ class kennelPresenter extends BasePresenter {
         $award = $this->database->table("link_kennel_awards")->where("id=?", $id)->fetch();
         $kennel = $this->database->table("tbl_userkennel")->where("id=?", $award->kennel_id)->fetch();
 
-        if ($kennel->user_id == $this->logged_in_id)
-        {
+        if ($kennel->user_id == $this->logged_in_id) {
             $this->database->table("link_kennel_awards")->where("id=?", $id)->delete();
         }
-            
+
         $this->redirect("kennel_awards_list", array("id" => $kennel->id));
     }
 

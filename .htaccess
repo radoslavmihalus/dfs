@@ -7,17 +7,36 @@ php_flag register_globals off
 
 # mod_rewrite
 RewriteEngine On
-# v prípade, ze je nutne nastavovat (routujete z ineho adresara ako je webroot)
-# RewriteBase /
 
-# front controller 
-# hlavny controller (index.php) a obmedzenie requestov na urcite typy suborov 
-RewriteEngine On
-
-# RewriteCond %{HTTP_HOST} ^[^.]+\.(dogshow\.com)$ [NC]
-# RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L,NE]
 RewriteCond %{REQUEST_URI} !^/www/.*$
 RewriteCond %{REQUEST_URI} !^/wp-content/.*$
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{REQUEST_FILENAME} !-d 
+
 RewriteRule !\.(pdf|js|ico|gif|jpg|jpeg|png|css|rar|zip|tar\.gz)$ index.php [L]
+
+RewriteRule ^uploads/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=uploads/$1.$2
+RewriteRule ^wp-content/uploads/2013/11/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2013/11/$1.$2
+RewriteRule ^wp-content/uploads/2013/12/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2013/12/$1.$2
+RewriteRule ^wp-content/uploads/2014/01/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/01/$1.$2
+RewriteRule ^wp-content/uploads/2014/02/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/02/$1.$2
+RewriteRule ^wp-content/uploads/2014/03/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/03/$1.$2
+RewriteRule ^wp-content/uploads/2014/04/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/04/$1.$2
+RewriteRule ^wp-content/uploads/2014/05/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/05/$1.$2
+RewriteRule ^wp-content/uploads/2014/06/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/06/$1.$2
+RewriteRule ^wp-content/uploads/2014/07/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/07/$1.$2
+RewriteRule ^wp-content/uploads/2014/08/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/08/$1.$2
+RewriteRule ^wp-content/uploads/2014/09/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/09/$1.$2
+RewriteRule ^wp-content/uploads/2014/10/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/10/$1.$2
+RewriteRule ^wp-content/uploads/2014/11/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/11/$1.$2
+RewriteRule ^wp-content/uploads/2014/12/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2014/12/$1.$2
+RewriteRule ^wp-content/uploads/2015/01/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2015/01/$1.$2
+RewriteRule ^wp-content/uploads/2015/02/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2015/02/$1.$2
+RewriteRule ^wp-content/uploads/2015/03/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2015/03/$1.$2
+RewriteRule ^wp-content/uploads/2015/04/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2015/04/$1.$2
+RewriteRule ^wp-content/uploads/2015/05/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2015/05/$1.$2
+RewriteRule ^wp-content/uploads/2015/06/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2015/06/$1.$2
+RewriteRule ^wp-content/uploads/2015/07/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2015/07/$1.$2
+RewriteRule ^wp-content/uploads/2015/08/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2015/08/$1.$2
+RewriteRule ^wp-content/uploads/2015/09/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2015/09/$1.$2
+RewriteRule ^wp-content/uploads/2015/10/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=wp-content/uploads/2015/10/$1.$2
