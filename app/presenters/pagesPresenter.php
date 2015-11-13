@@ -19,6 +19,16 @@ class pagesPresenter extends BasePresenter {
         parent::startup();
     }
 
+    protected function beforeRender() {
+        parent::beforeRender();
+    }
+    
+    protected function renderGeneral_terms($lang)
+    {
+        
+    }
+
+
     /*     * ******************* view default ******************** */
 
     public function renderDefault() {
