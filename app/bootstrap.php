@@ -21,8 +21,22 @@ $configurator->createRobotLoader()
         ->addDirectory(__DIR__)
         ->register();
 
+$requestFatory = new Nette\Http\RequestFactory;
+$request = $requestFatory->createHttpRequest();
+$response = new Nette\Http\Response;
+
+$session = new Nette\Http\Session($request, $response);
+
 // Create Dependency Injection container from config.neon file
 $configurator->addConfig(__DIR__ . '/config.neon');
+
+//$configurator->addServices(
+//        array(
+//            'http.request' => $request,
+//            'http.response' => $response,
+//            'session.session' => $session,
+//));
+
 $container = $configurator->createContainer();
 
 
