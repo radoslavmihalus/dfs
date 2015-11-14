@@ -38,6 +38,38 @@ class dogPresenter extends BasePresenter {
     public function beforeRender() {
         parent::beforeRender();
     }
+    
+     /*     * ******** renderers ************* */
+    
+    public function actionDog_list($lang) {
+        $mysection = $this->getSession('language');
+
+        $mysection->lang = $lang;
+
+        $this->translator->lang = $mysection->lang;
+        
+        $this->template->lang = $this->translator->lang;
+    }
+    
+    public function actionDog_for_mating_list($lang) {
+        $mysection = $this->getSession('language');
+
+        $mysection->lang = $lang;
+
+        $this->translator->lang = $mysection->lang;
+        
+        $this->template->lang = $this->translator->lang;
+    }
+    
+    public function actionDog_bis_list($lang) {
+        $mysection = $this->getSession('language');
+
+        $mysection->lang = $lang;
+
+        $this->translator->lang = $mysection->lang;
+        
+        $this->template->lang = $this->translator->lang;
+    }
 
     public function renderDog_pedigree_list($id = 0) {
         $this->renderDefault($id);

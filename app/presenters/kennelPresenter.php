@@ -102,6 +102,18 @@ class kennelPresenter extends BasePresenter {
         $mysection->lang = $lang;
 
         $this->translator->lang = $mysection->lang;
+        
+        $this->template->lang = $this->translator->lang;
+    }
+    
+    public function actionPlanned_litter_list($lang) {
+        $mysection = $this->getSession('language');
+
+        $mysection->lang = $lang;
+
+        $this->translator->lang = $mysection->lang;
+        
+        $this->template->lang = $this->translator->lang;
     }
 
     public function renderKennel_list() {

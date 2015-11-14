@@ -58,6 +58,18 @@ class ownerPresenter extends BasePresenter {
     public function beforeRender() {
         parent::beforeRender();
     }
+    
+    /*     * ******** renderers ************* */
+    
+    public function actionOwner_list($lang) {
+        $mysection = $this->getSession('language');
+
+        $mysection->lang = $lang;
+
+        $this->translator->lang = $mysection->lang;
+        
+        $this->template->lang = $this->translator->lang;
+    }
 
     /*     * ******************* view default ******************** */
 

@@ -58,6 +58,18 @@ class handlerPresenter extends BasePresenter {
         if ($this->isAjax())
             $this->invalidateControl('articles');
     }
+    
+    /*     * ******** renderers ************* */
+    
+    public function actionHandler_list($lang) {
+        $mysection = $this->getSession('language');
+
+        $mysection->lang = $lang;
+
+        $this->translator->lang = $mysection->lang;
+        
+        $this->template->lang = $this->translator->lang;
+    }
 
     public function renderHandler_awards_list($id = 0) {
         if ($id == 0)
