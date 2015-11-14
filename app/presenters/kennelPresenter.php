@@ -96,6 +96,14 @@ class kennelPresenter extends BasePresenter {
 
     /*     * ******** renderers ************* */
 
+    public function actionKennel_list($lang) {
+        $mysection = $this->getSession('language');
+
+        $mysection->lang = $lang;
+
+        $this->translator->lang = $mysection->lang;
+    }
+
     public function renderKennel_list() {
         try {
             $section = $this->getSession('kennel_filter');
