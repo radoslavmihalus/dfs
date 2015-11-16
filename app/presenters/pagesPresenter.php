@@ -27,6 +27,27 @@ class pagesPresenter extends BasePresenter {
     {
         
     }
+    
+    /*     * ******** renderers ************* */
+    
+    public function actionGeneral_terms($lang) {
+        $mysection = $this->getSession('language');
+
+        $mysection->lang = $lang;
+
+        $this->translator->lang = $mysection->lang;
+        
+        $this->template->lang = $this->translator->lang;
+    }
+    public function actionCookie_policy($lang) {
+        $mysection = $this->getSession('language');
+
+        $mysection->lang = $lang;
+
+        $this->translator->lang = $mysection->lang;
+        
+        $this->template->lang = $this->translator->lang;
+    }
 
 
     /*     * ******************* view default ******************** */

@@ -374,14 +374,58 @@ $router[] = new Route('puppy-description-edit', 'puppy:puppy_description_edit');
 $router[] = new Route('puppy-photogallery', 'puppy:puppy_photogallery');
 // Timeline routes
 $router[] = new Route('timeline', 'timeline:timeline_wall');
-// Pages
-$router[] = new Route('[<lang [A-Z]{2}>/]general-terms', array(
+// Pages routes
+//---------------------------   Pages / general terms -----------------------------------
+$router[] = new Route('en/general-terms', array(
     'presenter' => 'pages',
     'action' => 'general_terms',
-    'lang' => 'EN'));
+    'lang' => 'en'));
+$router[] = new Route('cz/vseobecne-podminky', array(
+    'presenter' => 'pages',
+    'action' => 'general_terms',
+    'lang' => 'cz'));
+$router[] = new Route('de/allgemeine-bedingungen', array(
+    'presenter' => 'pages',
+    'action' => 'general_terms',
+    'lang' => 'de'));
+$router[] = new Route('hu/altalanos-feltetelek', array(
+    'presenter' => 'pages',
+    'action' => 'general_terms',
+    'lang' => 'hu'));
+$router[] = new Route('ru/наши-Общие-условия', array(
+    'presenter' => 'pages',
+    'action' => 'general_terms',
+    'lang' => 'ru'));
+$router[] = new Route('sk/vseobecne-podmienky', array(
+    'presenter' => 'pages',
+    'action' => 'general_terms',
+    'lang' => 'sk'));
+//---------------------------   Pages / cookie policy -----------------------------------
+$router[] = new Route('en/cookie-policy', array(
+    'presenter' => 'pages',
+    'action' => 'cookie_policy',
+    'lang' => 'en'));
+$router[] = new Route('cz/politika-cookies', array(
+    'presenter' => 'pages',
+    'action' => 'cookie_policy',
+    'lang' => 'cz'));
+$router[] = new Route('de/die-cookies-politik', array(
+    'presenter' => 'pages',
+    'action' => 'cookie_policy',
+    'lang' => 'de'));
+$router[] = new Route('hu/cookie-iranyelv', array(
+    'presenter' => 'pages',
+    'action' => 'cookie_policy',
+    'lang' => 'hu'));
+$router[] = new Route('ru/Политика-куки', array(
+    'presenter' => 'pages',
+    'action' => 'cookie_policy',
+    'lang' => 'ru'));
+$router[] = new Route('sk/politika-cookies', array(
+    'presenter' => 'pages',
+    'action' => 'cookie_policy',
+    'lang' => 'sk'));
 
-//$router[] = new Route('general-terms', 'pages:general_terms');
-$router[] = new Route('cookie-policy', 'pages:cookie_policy');
 $router[] = new Route('<presenter>/<action>[/<id>]', 'LandingPage:default');
 $router[] = new Route('en/<presenter>/<action>[/<id>]', array(
     'presenter' => 'LandingPage',
