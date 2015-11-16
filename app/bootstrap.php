@@ -372,9 +372,32 @@ $router[] = new Route('puppy-edit-profile', 'puppy:puppy_edit_profile');
 $router[] = new Route('puppy-description-add', 'puppy:puppy_description_add');
 $router[] = new Route('puppy-description-edit', 'puppy:puppy_description_edit');
 $router[] = new Route('puppy-photogallery', 'puppy:puppy_photogallery');
-// Timeline routes
-$router[] = new Route('timeline', 'timeline:timeline_wall');
 // Pages routes
+//---------------------------   Pages / timeline -----------------------------------
+$router[] = new Route('en/timeline-events', array(
+    'presenter' => 'timeline',
+    'action' => 'timeline_wall',
+    'lang' => 'en'));
+$router[] = new Route('cz/casova-osa', array(
+    'presenter' => 'timeline',
+    'action' => 'timeline_wall',
+    'lang' => 'cz'));
+$router[] = new Route('de/zeitachse', array(
+    'presenter' => 'timeline',
+    'action' => 'timeline_wall',
+    'lang' => 'de'));
+$router[] = new Route('hu/idovonal-esemenyek', array(
+    'presenter' => 'timeline',
+    'action' => 'timeline_wall',
+    'lang' => 'hu'));
+$router[] = new Route('ru/Ось-времени', array(
+    'presenter' => 'timeline',
+    'action' => 'timeline_wall',
+    'lang' => 'ru'));
+$router[] = new Route('sk/casova-os', array(
+    'presenter' => 'timeline',
+    'action' => 'timeline_wall',
+    'lang' => 'sk'));
 //---------------------------   Pages / general terms -----------------------------------
 $router[] = new Route('en/general-terms', array(
     'presenter' => 'pages',

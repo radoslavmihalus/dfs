@@ -48,6 +48,15 @@ class pagesPresenter extends BasePresenter {
         
         $this->template->lang = $this->translator->lang;
     }
+    public function actionTimeline_wall($lang) {
+        $mysection = $this->getSession('language');
+
+        $mysection->lang = $lang;
+
+        $this->translator->lang = $mysection->lang;
+        
+        $this->template->lang = $this->translator->lang;
+    }
 
 
     /*     * ******************* view default ******************** */
