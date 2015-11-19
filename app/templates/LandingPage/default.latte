@@ -31,6 +31,8 @@
 
         <link rel="icon" href="../../favicon.ico">
         <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300&subset=latin,greek,greek-ext,latin-ext' rel='stylesheet' type='text/css'>
+        <!-- Flags svg icon definition -->
+        <link href="../www/css/flags-style/flag-icon.css" rel="stylesheet">
         <!--jQuery Animations -->
         <link rel="stylesheet" href="www/css/animations.css">
         <!-- Bootstrap core CSS -->
@@ -127,15 +129,31 @@
                     <a class="navbar-brand logotyp" id="logo" href="http://www.dogforshow.com">
                         <img alt="Brand" style="width:150px;" src="www/img/logo.png">
                     </a>
-                    <div id="ddlLang" class="btn-group dropdown" style="float:left;margin-top: 20px">
-                        <select class="selectpicker">
-                            <option value="en" {if $lang=="en"}selected{/if}>EN</option>
-                            <option value="cz" {if $lang=="cz"}selected{/if}>CZ</option>
-                            <option value="de" {if $lang=="de"}selected{/if}>DE</option>
-                            <option value="hu" {if $lang=="hu"}selected{/if}>HU</option>
-                            <option value="ru" {if $lang=="ru"}selected{/if}>RU</option>
-                            <option value="sk" {if $lang=="sk"}selected{/if}>SK</option>
-                        </select>
+                    <div id="ddlLang" class="btn-group" style="float:left;margin-top: 20px">
+                        <a class="btn dropdown-toggle text-uppercase" data-toggle="dropdown" href="#">
+                            {$lang}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a n:href="changeLang! lang=>en"><span class="flag-icon flag-icon-us"></span>&nbsp;&nbsp;English</a>
+                            </li>
+                            <li>
+                                <a n:href="changeLang! lang=>cz"><span class="flag-icon flag-icon-cz"></span>&nbsp;&nbsp;Čeština</a>
+                            </li>
+                            <li>
+                                <a n:href="changeLang! lang=>de"><span class="flag-icon flag-icon-de"></span>&nbsp;&nbsp;Deutsch</a>
+                            </li>
+                            <li>
+                                <a n:href="changeLang! lang=>hu"><span class="flag-icon flag-icon-hu"></span>&nbsp;&nbsp;Magyar</a>
+                            </li>
+                            <li>
+                                <a n:href="changeLang! lang=>ru"><span class="flag-icon flag-icon-ru"></span>&nbsp;&nbsp;Pусский</a>
+                            </li>
+                            <li>
+                                <a n:href="changeLang! lang=>sk"><span class="flag-icon flag-icon-sk"></span>&nbsp;&nbsp;Slovenčina</a>
+                            </li>
+                        </ul>
                         <!--                        <a class="btn btn-default dropdown-toggle" type="button" id="Lang" data-toggle="dropdown">EN &nbsp;<span class="caret"></span></a>
                                                 <ul class="dropdown-menu" role="menu" aria-labelledby="Lang" style="min-width:50px;">
                                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">EN</a></li>

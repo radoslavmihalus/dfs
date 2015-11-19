@@ -71,7 +71,8 @@ $router = $container->getService('router');
 //    'id' => '300000000',
 //        ));
 
-$router[] = new Route('index.php', 'LandingPage:default');
+//$router[] = new Route('', 'LandingPage:default');
+$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>]', 'LandingPage:default');
 $router[] = new Route('payment_return.php', 'LandingPage:payment');
 //$router[] = new Route('forgot-password', 'LandingPage:forgot_password');
 //$router[] = new Route('reset-password', 'LandingPage:reset_password');
@@ -227,8 +228,8 @@ $router[] = new Route('sk/majitelia-psov-s-preukazom-povodu', array(
     'presenter' => 'owner',
     'action' => 'owner_list',
     'lang' => 'sk'));
-$router[] = new Route('owner-profile', 'owner:owner_profile_home');
-$router[] = new Route('owner-dog-list', 'owner:owner_dog_list');
+$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]owner-profile', 'owner:owner_profile_home');
+$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]owner-dog-list', 'owner:owner_dog_list');
 $router[] = new Route('owner-photogallery', 'owner:owner_photogallery');
 $router[] = new Route('owner-videogallery', 'owner:owner_videogallery');
 $router[] = new Route('owner-friends-list', 'owner:owner_friends_list');
@@ -236,7 +237,6 @@ $router[] = new Route('owner-followers-list', 'owner:owner_followers_list');
 $router[] = new Route('owner-photogallery', 'owner:owner_photogallery');
 // Dog routes
 //$router[] = new Route('dog-profile', 'dog:dog_profile_home');
-
 //---------------------------   Dogs / list of dogs -----------------------------------
 $router[] = new Route('en/dogs-with-pedigree', array(
     'presenter' => 'dog',
@@ -315,7 +315,11 @@ $router[] = new Route('sk/best-in-show', array(
     'lang' => 'sk'));
 $router[] = new Route('add-dog', 'dog:dog_create_profile');
 $router[] = new Route('dog-profile-edit', 'dog:dog_edit_profile');
-$router[] = new Route('dog-profile', 'dog:dog_profile_home');
+
+
+$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]dog', 'dog:dog_profile_home');
+
+
 $router[] = new Route('dog-championschip-list', 'dog:dog_championschip_list');
 $router[] = new Route('dog-championschip-add', 'dog:dog_championschip_add');
 $router[] = new Route('dog-championschip-edit', 'dog:dog_championschip_edit');
@@ -449,31 +453,32 @@ $router[] = new Route('sk/politika-cookies', array(
     'action' => 'cookie_policy',
     'lang' => 'sk'));
 
-$router[] = new Route('<presenter>/<action>[/<id>]', 'LandingPage:default');
-$router[] = new Route('en/<presenter>/<action>[/<id>]', array(
-    'presenter' => 'LandingPage',
-    'action' => 'default',
-    'lang' => 'en'));
-$router[] = new Route('cz/<presenter>/<action>[/<id>]', array(
-    'presenter' => 'LandingPage',
-    'action' => 'default',
-    'lang' => 'cz'));
-$router[] = new Route('de/<presenter>/<action>[/<id>]', array(
-    'presenter' => 'LandingPage',
-    'action' => 'default',
-    'lang' => 'de'));
-$router[] = new Route('hu/<presenter>/<action>[/<id>]', array(
-    'presenter' => 'LandingPage',
-    'action' => 'default',
-    'lang' => 'hu'));
-$router[] = new Route('ru/<presenter>/<action>[/<id>]', array(
-    'presenter' => 'LandingPage',
-    'action' => 'default',
-    'lang' => 'ru'));
-$router[] = new Route('sk/<presenter>/<action>[/<id>]', array(
-    'presenter' => 'LandingPage',
-    'action' => 'default',
-    'lang' => 'sk'));
+$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]<presenter>/<action>', "LandingPage:default");
+////$router[] = new Route('<presenter>/<action>[/<id>]', 'LandingPage:default');
+//$router[] = new Route('en/<presenter>/<action>[/<id>]', array(
+//    'presenter' => 'LandingPage',
+//    'action' => 'default',
+//    'lang' => 'en'));
+//$router[] = new Route('cz/<presenter>/<action>[/<id>]', array(
+//    'presenter' => 'LandingPage',
+//    'action' => 'default',
+//    'lang' => 'cz'));
+//$router[] = new Route('de/<presenter>/<action>[/<id>]', array(
+//    'presenter' => 'LandingPage',
+//    'action' => 'default',
+//    'lang' => 'de'));
+//$router[] = new Route('hu/<presenter>/<action>[/<id>]', array(
+//    'presenter' => 'LandingPage',
+//    'action' => 'default',
+//    'lang' => 'hu'));
+//$router[] = new Route('ru/<presenter>/<action>[/<id>]', array(
+//    'presenter' => 'LandingPage',
+//    'action' => 'default',
+//    'lang' => 'ru'));
+//$router[] = new Route('sk/<presenter>/<action>[/<id>]', array(
+//    'presenter' => 'LandingPage',
+//    'action' => 'default',
+//    'lang' => 'sk'));
 // routy
 //$cache = Nette\Environment::getCache();
 //$cache->clean(array(\Nette\Caching\Cache::ALL => true));

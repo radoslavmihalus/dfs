@@ -39,6 +39,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $page_title;
     public $lang_session;
 
+    /** @persistent */
+    public $lang;
+
+    // /** @var \Kdyby\Translation\Translator @inject */
+    //public $translator;
+
     public function __construct(Nette\Database\Context $database) {
         //parent::__construct();
         $this->database = $database;
@@ -108,8 +114,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //    }
 
     protected function startup() {
-        // vytvoříme cache ve jmenném prostoru 'application/output'
-        // (jméno prostoru je libovolný řetezec)
+// vytvoříme cache ve jmenném prostoru 'application/output'
+// (jméno prostoru je libovolný řetezec)
 //        $cache = Nette\Environment::getCache('application/output');
 //
 //        // klíčem bude třeba jméno presenteru a view + obsah parametru id
@@ -122,28 +128,28 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //            ob_start();
 //            $this->cacheKey = $key;
 //        }
-        
-        
+
+
         try {
-            $mysection = $this->getSession('language');
-            //$this->translator->lang = $mysection->lang;
-            $mylang = $mysection->lang;
+//            $mysection = $this->getSession('language');
+//$this->translator->lang = $mysection->lang;
+            $mylang = $this->lang;
         } catch (\Exception $ex) {
             $mylang = "en";
-
-            if (isset($_GET['lang']))
-                $mylang = $_GET['lang'];
-
-            try {
-                $mysection = $this->getSession('language');
-                $mysection->lang = $mylang;
-            } catch (\Exception $ex) {
-                
-            }
         }
-
-        if (isset($_GET['lang']))
-            $mylang = $_GET['lang'];
+//            if (isset($_GET['lang']))
+//                $mylang = $_GET['lang'];
+//
+//            try {
+//                $mysection = $this->getSession('language');
+//                $mysection->lang = $mylang;
+//            } catch (\Exception $ex) {
+//                
+//            }
+//        }
+//
+//        if (isset($_GET['lang']))
+//            $mylang = $_GET['lang'];
 
         parent::startup();
         $GLOBALS['database'] = $this->database;
@@ -395,17 +401,18 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
     public function handleChangeLang($lang) {
         try {
-            if (isset($_GET['lang']))
-                $lang = $_GET['lang'];
-            $mysection = $this->getSession('language');
-            $lang = strtolower($lang);
-            $mysection->lang = $lang;
-            $this->translator->lang = $lang;
+//            if (isset($_GET['lang']))
+//                $lang = $_GET['lang'];
+            //$mysection = $this->getSession('language');
+//            $this->lang = strtolower($lang);
+            //$mysection->lang = $this->lang;
+//            $this->translator->lang = $this->lang;
         } catch (\Exception $ex) {
-            if (isset($_GET['lang']))
-                $this->translator->lang = $_GET['lang'];
+//            if (isset($_GET['lang']))
+//                $this->translator->lang = $_GET['lang'];
         }
-        $this->redirect("LandingPage:default"); //, array("lang" => $lang));
+        $this->redirect("this", array("lang" => $lang));
+//        $this->redirect("LandingPage:default"); //, array("lang" => $lang));
     }
 
     public function handleLike($timeline_id = 0, $event_id = 0) {
@@ -1043,8 +1050,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->profile_id = $this->logged_in_id;
 
         if ($this->receiver_profile_id > 0) {
-            //if ($this->receiver_profile_id == $this->receiver_user_id)
-            //    $this->receiver_profile_id = 0;
+//if ($this->receiver_profile_id == $this->receiver_user_id)
+//    $this->receiver_profile_id = 0;
         } else
             $this->receiver_profile_id = $this->receiver_user_id;
 
@@ -1101,7 +1108,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public function frmLogInSucceeded($button) {
         $values = $button->getForm()->getValues();
 
-        //$result = $this->database->query("SELECT * FROM tbl_user WHERE email=? AND password=?", $values['txtEmail'], $values['txtPassword']);
+//$result = $this->database->query("SELECT * FROM tbl_user WHERE email=? AND password=?", $values['txtEmail'], $values['txtPassword']);
 
         $result = $this->database->table("tbl_user")
                         ->where("email=?", $values['txtEmail'])
