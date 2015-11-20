@@ -130,10 +130,10 @@
                         <img alt="Brand" style="width:150px;" src="www/img/logo.png">
                     </a>
                     <div id="ddlLang" class="btn-group" style="float:left;margin-top: 20px">
-                        <a class="btn dropdown-toggle text-uppercase" data-toggle="dropdown" href="#">
+                        <button class="btn dropdown-toggle btn-default text-uppercase" data-toggle="dropdown" href="#">
                             {$lang}
                             <span class="caret"></span>
-                        </a>
+                        </button>
                         <ul class="dropdown-menu">
                             <li>
                                 <a n:href="changeLang! lang=>en"><span class="flag-icon flag-icon-us"></span>&nbsp;&nbsp;English</a>
@@ -154,13 +154,7 @@
                                 <a n:href="changeLang! lang=>sk"><span class="flag-icon flag-icon-sk"></span>&nbsp;&nbsp;Slovenčina</a>
                             </li>
                         </ul>
-                        <!--                        <a class="btn btn-default dropdown-toggle" type="button" id="Lang" data-toggle="dropdown">EN &nbsp;<span class="caret"></span></a>
-                                                <ul class="dropdown-menu" role="menu" aria-labelledby="Lang" style="min-width:50px;">
-                                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">EN</a></li>
-                                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">SK</a></li>
-                                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CZ</a></li>
-                                                </ul>-->
-
+                        
                         <script type="text/javascript">
                             $("#ddlLang").on("change", function () {
                                 var val = $("#ddlLang option:selected").text();
