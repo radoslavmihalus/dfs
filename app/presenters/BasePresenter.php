@@ -366,6 +366,143 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         return $form;
     }
 
+    //dropdowns handle ajax lists
+    public function handleBreedList($q = "") {
+        $fields = $this->database->table("tbl_breeds")->where("BreedName LIKE ?", "%$q%")->fetchAll(); //->query("SELECT BreedName FROM tbl_breeds WHERE BreedName LIKE '%" . $_GET['q'] . "%'  ORDER BY BreedName")->fetchAll();
+
+        $return = array();
+
+        $str = '{"items":';
+
+        foreach ($fields as $field) {
+            $return[]['name'] = $field->BreedName;
+        }
+
+        $str .= json_encode($return);
+
+        $str .= "}";
+
+        echo $str;
+        $this->terminate();
+    }
+
+    public function handleHandlerList($q = "") {
+        $fields = $this->database->query("SELECT concat(tbl_user.name,' ',tbl_user.surname) as name FROM tbl_user inner join tbl_userhandler ON tbl_userhandler.user_id=tbl_user.id WHERE concat(tbl_user.name,' ',tbl_user.surname) LIKE '%$q%' ORDER BY concat(tbl_user.name,' ',tbl_user.surname)")->fetchAll();
+
+        $return = array();
+
+        $str = '{"items":';
+
+        foreach ($fields as $field) {
+            $return[]['name'] = $field->name;
+        }
+
+        $str .= json_encode($return);
+
+        $str .= "}";
+
+        echo $str;
+        $this->terminate();
+    }
+
+    public function handleKennelList($q = "") {
+        $fields = $this->database->table("tbl_userkennel")->where("kennel_name LIKE ?", "%$q%")->fetchAll(); //->query("SELECT BreedName FROM tbl_breeds WHERE BreedName LIKE '%" . $_GET['q'] . "%'  ORDER BY BreedName")->fetchAll();
+
+        $return = array();
+
+        $str = '{"items":';
+
+        foreach ($fields as $field) {
+            $return[]['name'] = $field->kennel_name;
+        }
+
+        $str .= json_encode($return);
+
+        $str .= "}";
+
+        echo $str;
+        $this->terminate();
+    }
+
+    public function handleOwnerList($q = "") {
+        $fields = $this->database->query("SELECT concat(name, ' ', surname) as owner_name FROM tbl_user INNER JOIN tbl_userowner ON tbl_userowner.user_id=tbl_user.id WHERE concat(name, ' ', surname) LIKE '%$q%' ORDER BY concat(name, ' ', surname)")->fetchAll();
+
+        $return = array();
+
+        $str = '{"items":';
+
+        foreach ($fields as $field) {
+            $return[]['name'] = $field->owner_name;
+        }
+
+        $str .= json_encode($return);
+
+        $str .= "}";
+
+        echo $str;
+        $this->terminate();
+    }
+    
+    public function handlePuppyList($q="")
+    {
+        $fields = $this->database->table("tbl_puppies")->where("puppy_state = ?", "ForSale")->where("puppy_name LIKE ?", "%$q%")->fetchAll(); //->query("SELECT BreedName FROM tbl_breeds WHERE BreedName LIKE '%" . $_GET['q'] . "%'  ORDER BY BreedName")->fetchAll();
+
+        $return = array();
+
+        $str = '{"items":';
+
+        foreach ($fields as $field) {
+            $return[]['name'] = $field->puppy_name;
+        }
+
+        $str .= json_encode($return);
+
+        $str .= "}";
+
+        echo $str;
+        $this->terminate();
+    }
+
+    public function handleDogList($q = "") {
+        $fields = $this->database->table("tbl_dogs")->where("dog_name LIKE ?", "%$q%")->fetchAll(); //->query("SELECT BreedName FROM tbl_breeds WHERE BreedName LIKE '%" . $_GET['q'] . "%'  ORDER BY BreedName")->fetchAll();
+
+        $return = array();
+
+        $str = '{"items":';
+
+        foreach ($fields as $field) {
+            $return[]['name'] = $field->dog_name;
+        }
+
+        $str .= json_encode($return);
+
+        $str .= "}";
+
+        echo $str;
+        $this->terminate();
+    }
+
+    public function handleDogListMale($q = "") {
+        $fields = $this->database->table("tbl_dogs")->where("dog_gender=?", "Dog")->where("dog_name LIKE ?", "%$q%")->fetchAll(); //->query("SELECT BreedName FROM tbl_breeds WHERE BreedName LIKE '%" . $_GET['q'] . "%'  ORDER BY BreedName")->fetchAll();
+
+        $return = array();
+
+        $str = '{"items":';
+
+        foreach ($fields as $field) {
+            $return[]['name'] = $field->dog_name;
+        }
+
+        $str .= json_encode($return);
+
+        $str .= "}";
+
+        echo $str;
+        $this->terminate();
+    }
+
+    //dropdowns handle ajax lists
+
     public function handleOfferForSale($id = 0) {
         $id = $_GET['id'];
         $row = $this->database->table("tbl_dogs")->where("id=?", $id)->fetch();

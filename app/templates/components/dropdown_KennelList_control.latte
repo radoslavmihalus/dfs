@@ -6,13 +6,13 @@
 </div>
 <script>
     $(function () {
-        $('[data-toggle="popover"]').popover()
+    $('[data-toggle="popover"]').popover()
     })
 </script>
 <script type="text/javascript">
             $("#tags-input-" + {$id}).selectivity({
     ajax: {
-    url: 'www/templates/scripts/ajax_kennels.php',
+    url: '?do=kennelList', //www/templates/scripts/ajax_kennels.php',
             dataType: 'json',
             minimumInputLength: 2,
             quietMillis: 250,

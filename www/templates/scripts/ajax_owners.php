@@ -28,12 +28,6 @@ $fields = $context->query("SELECT concat(name, ' ', surname) as owner_name FROM 
 
 $return = array();
 
-//$fp = fopen("request.txt", "a+");
-//foreach ($_REQUEST as $req => $value) {
-//    fwrite($fp, $req . ' => ' . $value . '|');
-//}
-//fclose($fp);
-
 $str = '{"items":';
 
 foreach ($fields as $field) {
@@ -43,11 +37,5 @@ foreach ($fields as $field) {
 $str .= json_encode($return);
 
 $str .= "}";
-
-//$fp = fopen("request.txt", "a+");
-//foreach ($_REQUEST as $req => $value) {
-//    fwrite($fp, $str . "\r\n");
-//}
-//fclose($fp);
 
 echo $str;

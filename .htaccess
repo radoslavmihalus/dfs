@@ -13,6 +13,13 @@ RewriteCond %{REQUEST_URI} !^/wp-content/.*$
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{REQUEST_FILENAME} !-d 
 
+#RewriteRule ^en/www/templates/scripts/([A-Za-z0-9/_-]+).(php)$ www/templates/scripts/$1.$2
+#RewriteRule ^cz/www/templates/scripts/([A-Za-z0-9/_-]+).(php)$ www/templates/scripts/$1.$2
+#RewriteRule ^de/www/templates/scripts/([A-Za-z0-9/_-]+).(php)$ www/templates/scripts/$1.$2
+#RewriteRule ^hu/www/templates/scripts/([A-Za-z0-9/_-]+).(php)$ www/templates/scripts/$1.$2
+#RewriteRule ^ru/www/templates/scripts/([A-Za-z0-9/_-]+).(php)$ www/templates/scripts/$1.$2
+#RewriteRule ^sk/www/templates/scripts/([A-Za-z0-9/_-]+).(php)$ www/templates/scripts/$1.$2
+
 RewriteRule !\.(pdf|js|ico|gif|jpg|jpeg|png|css|rar|zip|tar\.gz)$ index.php [L]
 
 #default rules

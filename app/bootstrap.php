@@ -71,7 +71,7 @@ $router = $container->getService('router');
 //    'id' => '300000000',
 //        ));
 
-//$router[] = new Route('', 'LandingPage:default');
+//$router[] = new Route('index.php', 'LandingPage:default');
 $router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>]', 'LandingPage:default');
 $router[] = new Route('payment_return.php', 'LandingPage:payment');
 //$router[] = new Route('forgot-password', 'LandingPage:forgot_password');
@@ -81,9 +81,9 @@ $router[] = new Route('add-photo', 'photo:photo_add');
 $router[] = new Route('edit-photo', 'photo:photo_edit');
 // User routes
 //---------------------------   User / switch profile -----------------------------------
-$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]switch-profile', 'user:user_create_profile_switcher');
+$router[] = new Route('switch-profile', 'user:user_create_profile_switcher');
 //---------------------------   User / premium account -----------------------------------
-$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]premium-account', 'user:user_premium');
+$router[] = new Route('premium-account', 'user:user_premium');
 $router[] = new Route('premium-account-activation', 'user:user_premium_activation');
 $router[] = new Route('edit-account', 'user:user_edit_account');
 $router[] = new Route('list-of-friends-requests', 'user:user_friend_requests_list');
@@ -93,9 +93,9 @@ $router[] = new Route('message-compose', 'user:user_message_compose');
 $router[] = new Route('premium-new', 'user:user_premium_test');
 // Kennel routes
 //---------------------------   Kennels / create profile -----------------------------------
-$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]kennel-create-profile', 'kennel:kennel_create_profile');
+$router[] = new Route('kennel-create-profile', 'kennel:kennel_create_profile');
 //---------------------------   Kennels / profile home -----------------------------------
-$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]kennel-profile', 'kennel:kennel_profile_home');
+$router[] = new Route('kennel-profile', 'kennel:kennel_profile_home');
 //---------------------------   Kennels / list of kennels -----------------------------------
 $router[] = new Route('en/kennels', array(
     'presenter' => 'kennel',
@@ -161,9 +161,9 @@ $router[] = new Route('sk/planovane-vrhy', array(
     'lang' => 'sk'));
 // Handler routes
 //---------------------------   Handler / create profile -----------------------------------
-$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]handler-create-profile', 'handler:handler_create_profile');
+$router[] = new Route('handler-create-profile', 'handler:handler_create_profile');
 //---------------------------   Handler / profile home -----------------------------------
-$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]handler-profile', 'handler:handler_profile_home');
+$router[] = new Route('handler-profile', 'handler:handler_profile_home');
 //---------------------------   Handler / list of handlers -----------------------------------
 $router[] = new Route('en/handlers', array(
     'presenter' => 'handler',
@@ -210,9 +210,9 @@ $router[] = new Route('handler-followers-list', 'handler:handler_followers_list'
 $router[] = new Route('handler-photogallery', 'handler:handler_photogallery');
 // Owner routes
 //---------------------------   Owner / create profile -----------------------------------
-$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]owner-create-profile', 'owner:owner_create_profile');
+$router[] = new Route('owner-create-profile', 'owner:owner_create_profile');
 //---------------------------   Owner / profile home -----------------------------------
-$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]owner-profile', 'owner:owner_profile_home');
+$router[] = new Route('owner-profile', 'owner:owner_profile_home');
 //---------------------------   Owners / list of owners -----------------------------------
 $router[] = new Route('en/owners-of-purebred-dogs', array(
     'presenter' => 'owner',
@@ -240,7 +240,7 @@ $router[] = new Route('sk/majitelia-psov-s-preukazom-povodu', array(
     'lang' => 'sk'));
 
 $router[] = new Route('owner-edit-profile', 'owner:owner_edit_profile');
-$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]owner-dog-list', 'owner:owner_dog_list');
+$router[] = new Route('owner-dog-list', 'owner:owner_dog_list');
 $router[] = new Route('owner-photogallery', 'owner:owner_photogallery');
 $router[] = new Route('owner-videogallery', 'owner:owner_videogallery');
 $router[] = new Route('owner-friends-list', 'owner:owner_friends_list');
@@ -248,9 +248,9 @@ $router[] = new Route('owner-followers-list', 'owner:owner_followers_list');
 $router[] = new Route('owner-photogallery', 'owner:owner_photogallery');
 // Dog routes
 //---------------------------   Dogs / create profile -----------------------------------
-$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]add-dog', 'dog:dog_create_profile');
+$router[] = new Route('add-dog', 'dog:dog_create_profile');
 //---------------------------   Dogs / profile home -----------------------------------
-$router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]dog', 'dog:dog_profile_home');
+$router[] = new Route('dog', 'dog:dog_profile_home');
 //---------------------------   Dogs / list of dogs -----------------------------------
 $router[] = new Route('en/dogs-with-pedigree', array(
     'presenter' => 'dog',
