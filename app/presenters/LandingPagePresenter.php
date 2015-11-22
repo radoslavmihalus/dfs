@@ -20,8 +20,6 @@ class LandingPagePresenter extends BasePresenter {
         parent::startup();
 
         if (isset($_GET['activated'])) {
-            $this->flashMessage($this->translate("Account has been successfully activated."), "Success");
-            $this->redirect("default");
         }
 
         if (isset($_GET['resend_al'])) {

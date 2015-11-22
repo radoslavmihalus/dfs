@@ -442,9 +442,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         echo $str;
         $this->terminate();
     }
-    
-    public function handlePuppyList($q="")
-    {
+
+    public function handlePuppyList($q = "") {
         $fields = $this->database->table("tbl_puppies")->where("puppy_state = ?", "ForSale")->where("puppy_name LIKE ?", "%$q%")->fetchAll(); //->query("SELECT BreedName FROM tbl_breeds WHERE BreedName LIKE '%" . $_GET['q'] . "%'  ORDER BY BreedName")->fetchAll();
 
         $return = array();
@@ -1322,9 +1321,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                                $this->redirect("user:user_create_profile_switcher");
 //                                break;
 //                        }
-                        $this->redirect("timeline:timeline_wall");
+                        $this->redirect("timeline:timeline_wall", array("lang" => $this->lang));
                     } else {
-                        $this->redirect("user:user_create_profile_switcher");
+                        $this->redirect("user:user_create_profile_switcher", array("lang" => $this->lang));
                     }
                 }
             }
@@ -1446,6 +1445,24 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         }
     }
 
+    public function handleActivation($alink = "") {
+        if (strlen($alink) > 0) {
+            $id = base64_decode($alink);
+            $id = base64_decode($id);
+
+            if ($id > 0) {
+                $data['active'] = 1;
+
+                $result = $this->database->table("tbl_user")->where("id = ?", $id)->update($data); //query("UPDATE tbl_user SET `active`=1 WHERE ID=$id");
+
+                if ($result > 0) {
+                    $this->flashMessage($this->translate("Account has been successfully activated."), "Success");
+                    $this->redirect("LandingPage:default", array("lang" => $this->lang));
+                }
+            }
+        }
+    }
+
     public function sendActivationEmail($to, $name, $userid) {
         $id = base64_encode($userid);
         $id = base64_encode($id);
@@ -1479,7 +1496,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         </tr>
         <tr>
         <td align = "center">
-        <p style = "font-size:15px;"><a href = "http://www.dogforshow.com/www/templates/scripts/activation.php?alink=' . $id . '" style = "padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Activate account') . '</a></p>
+        <p style = "font-size:15px;"><a href = "http://www.dogforshow.com/' . $this->lang . '/?do=activation&alink=' . $id . '" style = "padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Activate account') . '</a></p>
         </td>
         </tr>
         </table>

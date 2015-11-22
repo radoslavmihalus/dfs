@@ -193,33 +193,36 @@
                                 </span>
                             </div>
                         </li>-->
-            <li class="panel"> 
-                <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowLang"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-flag"></i>&nbsp;&nbsp;{_ 'Language'}</a>
-                <ul id="DogforshowLang" class="collapse panel-collapse">
-                    <li>
-                        <a n:href="changeLang! lang=>en"><span class="flag-icon flag-icon-us"></span>&nbsp;&nbsp;English</a>
-                    </li>
-                    <li>
-                        <a n:href="changeLang! lang=>cz"><span class="flag-icon flag-icon-cz"></span>&nbsp;&nbsp;Čeština</a>
-                    </li>
-                    <li>
-                        <a n:href="changeLang! lang=>de"><span class="flag-icon flag-icon-de"></span>&nbsp;&nbsp;Deutsch</a>
-                    </li>
-                    <li>
-                        <a n:href="changeLang! lang=>hu"><span class="flag-icon flag-icon-hu"></span>&nbsp;&nbsp;Magyar</a>
-                    </li>
-                    <li>
-                        <a n:href="changeLang! lang=>ru"><span class="flag-icon flag-icon-ru"></span>&nbsp;&nbsp;Pусский</a>
-                    </li>
-                    <li>
-                        <a n:href="changeLang! lang=>sk"><span class="flag-icon flag-icon-sk"></span>&nbsp;&nbsp;Slovenčina</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="panel"> 
+            {if $logged_in_id>0}
+            {else}
+                <li class="panel">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowLang"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-flag"></i>&nbsp;&nbsp;{_ 'Language'}</a>
+                    <ul id="DogforshowLang" class="collapse panel-collapse">
+                        <li>
+                            <a n:href="changeLang! lang=>en"><span class="flag-icon flag-icon-us"></span>&nbsp;&nbsp;English</a>
+                        </li>
+                        <li>
+                            <a n:href="changeLang! lang=>cz"><span class="flag-icon flag-icon-cz"></span>&nbsp;&nbsp;Čeština</a>
+                        </li>
+                        <li>
+                            <a n:href="changeLang! lang=>de"><span class="flag-icon flag-icon-de"></span>&nbsp;&nbsp;Deutsch</a>
+                        </li>
+                        <li>
+                            <a n:href="changeLang! lang=>hu"><span class="flag-icon flag-icon-hu"></span>&nbsp;&nbsp;Magyar</a>
+                        </li>
+                        <li>
+                            <a n:href="changeLang! lang=>ru"><span class="flag-icon flag-icon-ru"></span>&nbsp;&nbsp;Pусский</a>
+                        </li>
+                        <li>
+                            <a n:href="changeLang! lang=>sk"><span class="flag-icon flag-icon-sk"></span>&nbsp;&nbsp;Slovenčina</a>
+                        </li>
+                    </ul>
+                </li>
+            {/if}
+            <li class="panel">
                 <a n:href="timeline:timeline_wall lang=>$lang" data-parent="#accordion1"><i style="color:#83765E" class="fa fa-list-alt"></i>&nbsp;&nbsp;{_ 'Timeline events'}</a>
             </li>
-            <li class="panel"> 
+            <li class="panel">
                 <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowLists"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-list"></i>&nbsp;&nbsp;{_ 'Lists'}</a>
                 <ul id="DogforshowLists" class="collapse panel-collapse">
                     <li>
@@ -248,7 +251,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="panel"> 
+            <li class="panel">
                 <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowAbout"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-info-circle"></i>&nbsp;&nbsp;{_ 'About us'}</a>
                 <ul id="DogforshowAbout" class="collapse panel-collapse">
                     <li>
@@ -259,7 +262,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="panel"> 
+            <li class="panel">
                 <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowFollow"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-external-link-square"></i>&nbsp;&nbsp;{_ 'Follow us'}</a>
                 <ul id="DogforshowFollow" class="collapse panel-collapse">
                     <li>
@@ -279,7 +282,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="panel"> 
+            <li class="panel">
                 <a data-toggle="modal" data-target="#ContactModal" data-parent="#accordion1" href="#"><i style="color:#83765E" class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Contact'}</a>
             </li>
         </ul>
