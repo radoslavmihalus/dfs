@@ -123,7 +123,7 @@ class ownerPresenter extends BasePresenter {
         $this->template->page_title = $this->page_title;
 
         $this->paginator->getPaginator()->setItemCount($count);
-        $this->paginator->getPaginator()->setItemsPerPage(9);
+        $this->paginator->getPaginator()->setItemsPerPage(20);
 
         $this->template->timeline_rows = $this->data_model->getTimeline($id, $this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset());
         $this->template->timeline_name = $name;
@@ -196,7 +196,7 @@ class ownerPresenter extends BasePresenter {
 
         $count = $this->database->table("tbl_userowner")->where("user_id IN ?", $ids)->count();
         $this->paginator->getPaginator()->setItemCount($count);
-        $this->paginator->getPaginator()->setItemsPerPage(9);
+        $this->paginator->getPaginator()->setItemsPerPage(20);
 
         $rows = $this->database->table("tbl_userowner")->where("user_id IN ?", $ids)->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 

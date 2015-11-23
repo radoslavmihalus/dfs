@@ -1,21 +1,22 @@
 {define #owner_list_item}
-<div class="col-lg-4 col-md-6 col-xs-12 padding">
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
     {if ( DataModel::getPremium($owner->user_id) )}
-                <a n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="position:absolute;top:10px;right:25px;font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></a>
-                {/if}
-<a n:href="owner:owner_profile_home id => $owner->id">
-    <div class="list-item">
-        <div class="profile-header-image" style="height:200px;{if (strlen($owner->owner_background_image)>2)} background: url('{$owner->owner_background_image}')no-repeat center center;background-size:cover;background-position:50% 20%; {else} background-color:#D5D0C0; background-image: none{/if}">
-            <div class="pull-left image-profile-thumb" style="top:40px;">
-                <img src="{$owner->owner_profile_picture}">
-            </div>
-        </div>    
-        <h3 class="text-uppercase" style="height:40px;"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{DataModel::getProfileName($owner->id)}</h3>
-        <hr style="margin-bottom: 10px;">
-        <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_DataModel::getProfileState($owner->id)}</span>
-        <span class="list-item-regdate"><i class="fa fa-clock-o" data-toggle="tooltip" data-placement='top' title="{_ 'Registration date'}"></i>&nbsp;&nbsp;{$owner->owner_create_date|date:'%d.%m.%Y'}</span>
-    </div>
-</a>
+        <a n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="position:absolute;top:10px;right:25px;font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></a>
+        {/if}
+    <a n:href="owner:owner_profile_home id => $owner->id">
+        <div class="list-item">
+            <span class="fa-stack fa-lg" style="position:absolute;top:230px;left:42%;font-size:30px;line-height: 1.7em;" data-toggle="tooltip" data-placement='top' title="{_ 'Owner of purebred dog'}">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#83765E;"></i>
+                    <i class="fa fa-user fa-stack-1x fa-inverse" style="border:white 5px solid;-webkit-border-radius: 300px;-moz-border-radius: 300px;border-radius: 300px;"></i>
+                </span>
+                <div style="height:250px;background: url('{$owner->owner_profile_picture}')no-repeat center center;background-size:cover;background-position:50% 20%;" >
+                </div>
+            <h3 class="text-uppercase text-center" style="height:40px;margin-top:40px;margin-bottom: 0px;">{DataModel::getProfileName($owner->id)}</h3>
+            <hr style="margin-bottom: 10px;">
+            <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_DataModel::getProfileState($owner->id)}</span>
+            <span class="list-item-regdate"><i class="fa fa-clock-o" data-toggle="tooltip" data-placement='top' title="{_ 'Registration date'}"></i>&nbsp;&nbsp;{$owner->owner_create_date|date:'%d.%m.%Y'}</span>
+        </div>
+    </a>
 </div>
 {/define}
 <script>

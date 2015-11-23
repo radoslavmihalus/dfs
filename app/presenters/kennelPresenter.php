@@ -179,7 +179,7 @@ class kennelPresenter extends BasePresenter {
         }
 
         $this->paginator->getPaginator()->setItemCount($count);
-        $this->paginator->getPaginator()->setItemsPerPage(9);
+        $this->paginator->getPaginator()->setItemsPerPage(20);
 
         if (strlen($this->filter_kennel_breed) > 1) {
             if (strlen($this->filter_kennel_country) > 1)
@@ -292,7 +292,7 @@ class kennelPresenter extends BasePresenter {
         $count = $this->data_model->getTimelineCount($id);
 
         $this->paginator->getPaginator()->setItemCount($count);
-        $this->paginator->getPaginator()->setItemsPerPage(9);
+        $this->paginator->getPaginator()->setItemsPerPage(20);
 
         $this->template->timeline_rows = $this->data_model->getTimeline($id, $this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset());
 
@@ -361,7 +361,7 @@ class kennelPresenter extends BasePresenter {
         }
 
         $this->paginator->getPaginator()->setItemCount($count);
-        $this->paginator->getPaginator()->setItemsPerPage(9);
+        $this->paginator->getPaginator()->setItemsPerPage(20);
 
         if (strlen($this->filter_pl_name) > 1) {
             $rows = $this->database->table("tbl_planned_litters")

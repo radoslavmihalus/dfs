@@ -166,7 +166,7 @@ class handlerPresenter extends BasePresenter {
         $count = $this->database->table("tbl_userhandler")->where("user_id IN ?", $users_id)->count();
 
         $this->paginator->getPaginator()->setItemCount($count);
-        $this->paginator->getPaginator()->setItemsPerPage(9);
+        $this->paginator->getPaginator()->setItemsPerPage(20);
 
         $rows = $this->database->table("tbl_userhandler")->where("user_id IN ?", $users_id)->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
@@ -267,7 +267,7 @@ class handlerPresenter extends BasePresenter {
         $count = $this->data_model->getTimelineCount($id);
 
         $this->paginator->getPaginator()->setItemCount($count);
-        $this->paginator->getPaginator()->setItemsPerPage(9);
+        $this->paginator->getPaginator()->setItemsPerPage(20);
 
         $this->template->timeline_rows = $this->data_model->getTimeline($id, $this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset());
         $this->template->timeline_name = $name;
