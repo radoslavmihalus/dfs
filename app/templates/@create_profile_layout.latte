@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    {include 'components/head.latte'}
+    <body>
+
+        <!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MTKG8H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(), event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            }
+            )(window, document, 'script', 'dataLayer', 'GTM-MTKG8H');
+        </script>
+        <!-- End Google Tag Manager -->
+
+        <!-- Modal Flash control  -->
+        {include 'components/modal_control.latte'}
+        <!-- Gallery Modal control  -->
+        {include 'components/gallery_modal.latte'}
+
+        <!-- Main content -->
+        <div class="container-fluid content-wrapper" style="margin:0px;">
+            <div class="row" style="margin-left: 0px;margin-right: 0px;">
+                <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
+                    {include content}
+                </div>
+            </div>
+        </div>
+        <!-- /Main content -->
+        <!-- Scripts -->
+        {foreach $flashes as $flash}
+            <script type="text/javascript">
+                if ({$flash->type} == 'Error')
+                    ShowMessageModal(enumNotificationType.error, {$flash->message});
+                if ({$flash->type} == 'Warning')
+                    ShowMessageModal(enumNotificationType.warning, {$flash->message});
+                if ({$flash->type} == 'Info')
+                    ShowMessageModal(enumNotificationType.information, {$flash->message});
+                if ({$flash->type} == 'Success')
+                    ShowMessageModal(enumNotificationType.success, {$flash->message});
+                if ({$flash->type} == 'Confirmation')
+                    ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
+            </script>
+        {/foreach}
+        <div id="ajax-spinner"></div>
+        <script type="text/javascript">
+            $.nette.init();
+            $("#ajax-spinner").hide();
+//	    /* Volání AJAXu u všech odkazů s třídou ajax */
+//	    $("a.ajax").live("click", function (event) {
+//		event.preventDefault();
+//		$.get(this.href);
+//	    });
+        </script>
+    </body>
+</html>
