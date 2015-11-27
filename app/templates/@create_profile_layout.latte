@@ -27,9 +27,24 @@
 
         <!-- Main content -->
         <div class="container-fluid content-wrapper" style="margin:0px;">
-            <div class="row" style="margin-left: 0px;margin-right: 0px;">
+            <div id="step_switcher" class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
                     {include content}
+                </div>
+            </div>
+            <div id="step_kennel" class="row" style="margin-left: 0px; margin-right: 0px; display: none">
+                <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
+                    {include "kennel/kennel_create_profile_wizard.latte"}
+                </div>
+            </div>
+            <div id="step_owner" class="row" style="margin-left: 0px; margin-right: 0px; display: none">
+                <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
+                    {include "owner/owner_create_profile_wizard.latte"}
+                </div>
+            </div>
+            <div id="step_handler" class="row" style="margin-left: 0px; margin-right: 0px; display: none">
+                <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
+                    {include "handler/handler_create_profile_wizard.latte"}
                 </div>
             </div>
         </div>

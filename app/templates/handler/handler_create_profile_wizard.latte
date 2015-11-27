@@ -1,0 +1,36 @@
+{includeblock '../components/image_UploadPicture_control.latte'}
+{includeblock '../components/dropdown_BreedList_control.latte'}
+{includeblock '../components/textarea_control.latte'}
+<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
+    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
+        {form formCreateHandlerProfile}
+            <h2 class="section_heading text-center text-uppercase"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_ 'Handler profile'}</h2>
+            <span class="form-secondary-description" style="display:block;margin-top:30px;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about you'}</span>
+            <hr>
+            {include image_UploadPicture_control, aspect_x => 10, aspect_y => 10, needed_crop=>1, description => "Your profile picture", placeholder => "Select picture", id => "txtHandlerProfilePhoto", name => "txtHandlerProfilePhoto", tooltip => "Your profile picture in jpeg or jpg format", _form => $_form}
+            {include textarea_control, _form => $form, description => "Short description about you", placeholder => "Short description", id => "txtHandlerDescription", name => "txtHandlerDescription",  tooltip => "Enter some informations about yourself"}
+            {include dropdown_BreedList_control, _form => $form, description => "Select the breed that you can handle", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList",  tooltip => "Select the breeds that you can handle"}
+            <button n:name=btnSubmit id="btnSubmit" class="btn btn-danger btn-xl pull-right">{_ 'Create profile'}</button>
+            <a id="btnBackHandler" class="btn btn-danger btn-xl pull-right">{_ 'Back'}</a>
+        {/form}
+    </div>
+    <script type="text/javascript">
+        $("#btnBackHandler").on("click", function ()
+        {
+            var options_r = {
+                direction: 'right'
+            };
+            var options_l = {
+                direction: 'left'
+            };
+
+            // Set the duration (default: 400 milliseconds)
+            var duration = 500;
+
+            $("#step_handler").toggle("slide", options_r, 500, function ()
+            {
+                $("#step_switcher").toggle("slide", options_l, 500);
+            });
+        })
+    </script>
+</div>

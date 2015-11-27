@@ -1,27 +1,73 @@
 {layout '../@create_profile_layout.latte'}
 {block content}
 <div class="container">
-<p class="text-center">
-    <img style="margin-top:20px;" width="200" src="../www/img/dfs_logo.png" alt="DOGFORSHOW trademark" />
-</p>
+    <p class="text-center">
+        <img style="margin-top:20px;" width="200" src="../www/img/dfs_logo.png" alt="DOGFORSHOW trademark" />
+    </p>
     <h2 class="text-center" style="margin-top:20px;margin-bottom: 50px;font-weight:700;font-size:25px;">Create your stunning and eye catching profile in two easy steps</h2>
     <div class="col-md-4">
         <p class="text-center">
-        <img style="margin: 0 auto;max-height:300px;" class="img-responsive" style="background-color: white;" src="../www/img/breeder.png"/>
-        <button class="btn btn-default">I am a breeder</button>
+            <img style="margin: 0 auto;max-height:300px;" class="img-responsive" style="background-color: white;" src="../www/img/breeder.png"/>
+            <button class="btn btn-default" id="kennel_button">I am a breeder</button>
         </p>
     </div>
     <div class="col-md-4">
         <p class="text-center">
-        <img style="margin: 0 auto;max-height:300px;" class="img-responsive" style="background-color: white;" src="../www/img/owner.png"/>
-        <button class="btn btn-default">I am an owner of purebred dog</button>
+            <img style="margin: 0 auto;max-height:300px;" class="img-responsive" style="background-color: white;" src="../www/img/owner.png"/>
+            <button class="btn btn-default" id="owner_button">I am an owner of purebred dog</button>
         </p>
     </div>
     <div class="col-md-4">
         <p class="text-center">
-        <img style="margin: 0 auto;max-height:300px;" class="img-responsive" style="background-color: white;" src="../www/img/handler.png"/>
-        <button class="btn btn-default">I am a handler</button>
+            <img style="margin: 0 auto;max-height:300px;" class="img-responsive" style="background-color: white;" src="../www/img/handler.png"/>
+            <button class="btn btn-default" id="handler_button">I am a handler</button>
         </p>
     </div>
 </div>
+
+<script type="text/javascript">
+    $("#kennel_button").on("click", function ()
+    {
+        var options_r = {
+            direction: 'right'
+        };
+        var options_l = {
+            direction: 'left'
+        };
+
+        $("#step_switcher").toggle("slide", options_l, 500, function ()
+        {
+            $("#step_kennel").toggle("slide", options_r, 500);
+        });
+    });
+    $("#owner_button").on("click", function ()
+    {
+        var options_r = {
+            direction: 'right'
+        };
+        var options_l = {
+            direction: 'left'
+        };
+
+        $("#step_switcher").toggle("slide", options_l, 500, function ()
+        {
+            $("#step_owner").toggle("slide", options_r, 500);
+        });
+    });
+    $("#handler_button").on("click", function ()
+    {
+        var options_r = {
+            direction: 'right'
+        };
+        var options_l = {
+            direction: 'left'
+        };
+
+        $("#step_switcher").toggle("slide", options_l, 500, function ()
+        {
+            $("#step_handler").toggle("slide", options_r, 500);
+        });
+    });
+</script>
+
 {/block}

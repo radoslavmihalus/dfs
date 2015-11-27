@@ -1755,6 +1755,117 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->TrustPay($this->amt, 1);
     }
 
+    protected function createComponentOwnerCreateProfile() {
+        $form = new Form();
+        $form->addText('txtOwnerProfilePhoto')->setRequired($this->translate("Required field"));
+        $form->addTextArea('txtOwnerDescritpion')->setRequired($this->translate("Required field"));
+        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateOwnerProfileSucceeded');
+
+        return $form;
+    }
+
+    protected function createComponentKennelCreateProfile() {
+
+        $form = new Form();
+        $form->addText('txtKennelName')->setRequired($this->translate("Required field"));
+        $form->addText('txtKennelFciNumber');
+        $form->addText('txtKennelProfilePicture')->setRequired($this->translate("Required field"));
+        $form->addText('txtKennelWebsite');
+        $form->addTextArea('txtKennelDescription');
+        $form->addText('ddlBreedList')->setRequired($this->translate("Required field"));
+        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateKennelProfileSucceeded');
+
+        return $form;
+    }
+
+    protected function createComponentFormCreateHandlerProfile() {
+        $form = new Form();
+
+        $form->addText("ddlBreedList", "label")->setRequired($this->translate("Required field"));
+        $form->addText("txtHandlerProfilePhoto")->setRequired($this->translate("Required field"));
+        $form->addTextArea("txtHandlerDescription", "label")->setRequired($this->translate("Required field"));
+        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateHandlerProfileSucceeded');
+
+        return $form;
+    }
+
+    public function frmCreateOwnerProfileSucceeded($button) {
+        try {
+            $values = $button->getForm()->getValues();
+
+            $data = $this->data_model->assignFields($values, 'frmOwnerCreateProfile');
+            $data['user_id'] = $this->logged_in_id;
+
+            $this->database->table("tbl_userowner")->insert($data);
+            $id = $this->database->getInsertId();
+
+            $this->data_model->addToTimeline($id, $id, 1, \DataModel::getProfileName($id), $data['owner_profile_picture']);
+
+            $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
+            $this->redirect("owner:owner_profile_home");
+        } catch (\ErrorException $exc) {
+            $this->flashMessage($exc->getMessage(), "Warning");
+        }
+    }
+
+    public function frmCreateKennelProfileSucceeded($button) {
+        try {
+            $values = $button->getForm()->getValues();
+
+            $breeds = $values['ddlBreedList'];
+
+            $form = $button->getForm();
+
+            $values = $this->data_model->assignFields($values, 'frmKennelCreateProfile');
+            $values['user_id'] = $this->logged_in_id;
+
+            $this->database->table("tbl_userkennel")->insert($values);
+            $id = $this->database->getInsertId();
+
+            $breeds = explode(",", $breeds);
+
+            foreach ($breeds as $breed) {
+                $this->database->query("INSERT INTO link_kennel_breed(kennel_id, breed_name) VALUES(?,?)", $id, $breed);
+            }
+
+            $this->data_model->addToTimeline($id, $id, 1, $values['kennel_name'], $values['kennel_profile_picture']);
+
+            $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
+            $this->redirect("kennel:kennel_profile_home");
+        } catch (\ErrorException $exc) {
+            $this->flashMessage($exc->getMessage(), "Error");
+        }
+
+
+//var_dump($values);
+    }
+
+    public function frmCreateHandlerProfileSucceeded($button) {
+        try {
+            $values = $button->getForm()->getValues();
+            $breeds = $values['ddlBreedList'];
+
+            $values = $this->data_model->assignFields($values, "frmCreateHandlerProfile");
+            $values['user_id'] = $this->logged_in_id;
+
+            $this->database->table("tbl_userhandler")->insert($values);
+            $id = $this->database->getInsertId();
+
+            $breeds = explode(",", $breeds);
+
+            foreach ($breeds as $breed) {
+                $this->database->query("INSERT INTO tbl_handler_breed(handler_id, breed_name) VALUES(?,?)", $id, $breed);
+            }
+
+            $this->data_model->addToTimeline($id, $id, 1, \DataModel::getProfileName($id), $values['handler_profile_picture']);
+
+            $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
+            $this->redirect("handler:handler_profile_home");
+        } catch (\ErrorException $ex) {
+            $this->flashMessage($ex->getMessage(), "Error");
+        }
+    }
+
 }
 
 class DFSTranslator implements Nette\Localization\ITranslator {

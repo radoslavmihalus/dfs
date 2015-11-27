@@ -502,22 +502,6 @@ class kennelPresenter extends BasePresenter {
 
     /*     * ****************** component factories ******************** */
 
-//Create profile
-
-    protected function createComponentKennelCreateProfile() {
-
-        $form = new Form();
-        $form->addText('txtKennelName')->setRequired($this->translate("Required field"));
-        $form->addText('txtKennelFciNumber');
-        $form->addText('txtKennelProfilePicture')->setRequired($this->translate("Required field"));
-        $form->addText('txtKennelWebsite');
-        $form->addTextArea('txtKennelDescription');
-        $form->addText('ddlBreedList')->setRequired($this->translate("Required field"));
-        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateProfileSucceeded');
-
-        return $form;
-    }
-
 //Update profile
 
     protected function createComponentKennelEditProfile() {
@@ -869,38 +853,6 @@ class kennelPresenter extends BasePresenter {
     }
 
     /*     * ****************** component factories ******************** */
-
-    public function frmCreateProfileSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
-
-            $breeds = $values['ddlBreedList'];
-
-            $form = $button->getForm();
-
-            $values = $this->data_model->assignFields($values, 'frmKennelCreateProfile');
-            $values['user_id'] = $this->logged_in_id;
-
-            $this->database->table("tbl_userkennel")->insert($values);
-            $id = $this->database->getInsertId();
-
-            $breeds = explode(",", $breeds);
-
-            foreach ($breeds as $breed) {
-                $this->database->query("INSERT INTO link_kennel_breed(kennel_id, breed_name) VALUES(?,?)", $id, $breed);
-            }
-
-            $this->data_model->addToTimeline($id, $id, 1, $values['kennel_name'], $values['kennel_profile_picture']);
-
-            $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
-            $this->redirect("kennel:kennel_profile_home");
-        } catch (\ErrorException $exc) {
-            $this->flashMessage($exc->getMessage(), "Error");
-        }
-
-
-//var_dump($values);
-    }
 
     public function frmEditProfileSucceeded($button) {
         try {

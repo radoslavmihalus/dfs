@@ -233,33 +233,6 @@ class ownerPresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
-    protected function createComponentOwnerCreateProfile() {
-        $form = new Form();
-        $form->addText('txtOwnerProfilePhoto')->setRequired($this->translate("Required field"));
-        $form->addTextArea('txtOwnerDescritpion')->setRequired($this->translate("Required field"));
-        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateOwnerProfileSucceeded');
-
-        return $form;
-    }
-
-    public function frmCreateOwnerProfileSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
-
-            $data = $this->data_model->assignFields($values, 'frmOwnerCreateProfile');
-            $data['user_id'] = $this->logged_in_id;
-
-            $this->database->table("tbl_userowner")->insert($data);
-            $id = $this->database->getInsertId();
-
-            $this->data_model->addToTimeline($id, $id, 1, \DataModel::getProfileName($id), $data['owner_profile_picture']);
-
-            $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
-            $this->redirect("owner:owner_profile_home");
-        } catch (\ErrorException $exc) {
-            $this->flashMessage($exc->getMessage(), "Warning");
-        }
-    }
 
     public function createComponentOwnerEditProfile($button) {
         $form = new Form();

@@ -398,16 +398,6 @@ class handlerPresenter extends BasePresenter {
      * 
      * FormComponents factory
      */
-    protected function createComponentFormCreateHandlerProfile() {
-        $form = new Form();
-
-        $form->addText("ddlBreedList", "label")->setRequired($this->translate("Required field"));
-        $form->addText("txtHandlerProfilePhoto")->setRequired($this->translate("Required field"));
-        $form->addTextArea("txtHandlerDescription", "label")->setRequired($this->translate("Required field"));
-        $form->addSubmit('btnSubmit', 'Create profile')->onClick[] = array($this, 'frmCreateHandlerProfileSucceeded');
-
-        return $form;
-    }
 
     protected function createComponentFormEditHandlerProfile() {
         $data = $this->database->table("tbl_userhandler")->where("user_id=?", $this->logged_in_id)->fetch();
@@ -1097,32 +1087,6 @@ class handlerPresenter extends BasePresenter {
         }
 
         $this->redirect("handler_certificates_list", $this->handler_id);
-    }
-
-    public function frmCreateHandlerProfileSucceeded($button) {
-        try {
-            $values = $button->getForm()->getValues();
-            $breeds = $values['ddlBreedList'];
-
-            $values = $this->data_model->assignFields($values, "frmCreateHandlerProfile");
-            $values['user_id'] = $this->logged_in_id;
-
-            $this->database->table("tbl_userhandler")->insert($values);
-            $id = $this->database->getInsertId();
-
-            $breeds = explode(",", $breeds);
-
-            foreach ($breeds as $breed) {
-                $this->database->query("INSERT INTO tbl_handler_breed(handler_id, breed_name) VALUES(?,?)", $id, $breed);
-            }
-
-            $this->data_model->addToTimeline($id, $id, 1, \DataModel::getProfileName($id), $values['handler_profile_picture']);
-
-            $this->flashMessage($this->translate("Profile has been successfully created."), "Success");
-            $this->redirect("handler:handler_profile_home");
-        } catch (\ErrorException $ex) {
-            $this->flashMessage($ex->getMessage(), "Error");
-        }
     }
 
     public function frmEditHandlerProfileSucceeded($button) {
