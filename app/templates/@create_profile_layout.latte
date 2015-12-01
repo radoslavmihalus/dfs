@@ -8,7 +8,7 @@
             display:block;
             width:100%;
             height:auto;
-            background-color:#F7F5EE;
+/*            background-color:#F7F5EE;*/
             padding:10px;
             border-top-left-radius:10px;
             border-top-right-radius:10px;            
@@ -55,6 +55,7 @@
             width:40px;
             height:40px;
             border:#DCD5C6 2px solid;
+            background-color: #EDEBE4;
             text-align: center;
             border-radius: 50px;
             line-height: 35px;
@@ -108,7 +109,7 @@
                 $("#step3text").addClass("inactive_step_span_text");
                 $("#step3text").removeClass("active_step_span_text");
 
-                $("#step2circle").html("2");
+                $("#step2circle").html("1");
             }
 
             function toggleStep3()
@@ -137,28 +138,23 @@
 
         <!-- Main content -->
         <div class="container" style="padding-bottom: 40px;">
-            <h2 class="text-center">Create your stunning and eye catching profile in two easy steps</h2>
+            <h2 class="text-center">Create your stunning profile in two easy steps</h2>
             <div class="row">
-                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-                    <div style="display:block;width:100%;height:auto;padding:10px;">
-                        <span style="margin:0 auto;display:block;width:40px;height:40px;border:#DCD5C6 2px solid;text-align: center;border-radius: 50px;line-height: 35px;color:#DCD5C6;font-weight:bold;font-size: 20px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-check"></i></span>
-                        <span class="text-center" style="display:block;color:#DCD5C6;margin:0 auto;">Registration</span>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                <div style="display:block;position:relative;width:50%;top:30px;border-bottom: #DCD5C6 3px dotted;margin:0 auto;"></div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
                     <div id="step2" class="active_step">
-                        <span id="step2circle" class="active_step_span_circle">2</span>
-                        <span id="step2text" class="text-center active_step_span_text">Choose your profile</span>
+                        <span id="step2circle" class="active_step_span_circle">1</span>
+                        <span id="step2text" class="text-center active_step_span_text">Choose profile</span>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
                     <div id="step3" class="inactive_step">
-                        <span id="step3circle" class="inactive_step_span_circle">3</span>
-                        <span id="step3text" class="text-center inactive_step_span_text">Fill the basic informations</span>
+                        <span id="step3circle" class="inactive_step_span_circle">2</span>
+                        <span id="step3text" class="text-center inactive_step_span_text">Fill the profile</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12" style="background-color: #F7F5EE;">
+            <div class="col-md-12" style="">
                 <div id="step_switcher" class="row" style="margin-left: 0px;margin-right: 0px;">
                     <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
                         {include content}
