@@ -33,6 +33,7 @@
         $("#step_switcher").toggle("slide", options_l, 500, function ()
         {
             $("#step_kennel").toggle("slide", options_r, 500);
+            toggleStep3();
         });
     });
     $("#owner_button").on("click", function ()
@@ -47,6 +48,7 @@
         $("#step_switcher").toggle("slide", options_l, 500, function ()
         {
             $("#step_owner").toggle("slide", options_r, 500);
+            toggleStep3();
         });
     });
     $("#handler_button").on("click", function ()
@@ -61,6 +63,7 @@
         $("#step_switcher").toggle("slide", options_l, 500, function ()
         {
             $("#step_handler").toggle("slide", options_r, 500);
+            toggleStep3();
         });
     });
 </script>

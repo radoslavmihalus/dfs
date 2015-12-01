@@ -1,6 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
     {include 'components/head.latte'}
+
+    <style>
+        .active_step
+        {
+            display:block;
+            width:100%;
+            height:auto;
+            background-color:#F7F5EE;
+            padding:10px;
+            border-top-left-radius:10px;
+            border-top-right-radius:10px;            
+        }
+
+        .active_step_span_circle
+        {
+            margin:0 auto;
+            display:block;
+            width:40px;
+            height:40px;
+            background-color:white;
+            border:#a5987f 2px solid;
+            text-align: center;
+            border-radius: 50px;
+            line-height: 35px;
+            color:#a5987f;
+            font-weight:bold;
+            font-size: 20px;
+            font-family: 'Roboto Condensed', sans-serif;            
+        }
+
+        .active_step_span_text
+        {
+            display:block;
+            color:#a5987f;
+            font-weight:bold;
+            margin:0 auto;
+        }
+
+        .inactive_step
+        {
+            display:block;
+            width:100%;
+            height:auto;
+            padding:10px;            
+        }
+
+
+        .inactive_step_span_circle
+        {
+            margin:0 auto;
+            display:block;
+            width:40px;
+            height:40px;
+            border:#DCD5C6 2px solid;
+            text-align: center;
+            border-radius: 50px;
+            line-height: 35px;
+            color:#DCD5C6;
+            font-weight:bold;
+            font-size: 20px;
+            font-family: 'Roboto Condensed', sans-serif;            
+        }
+
+        .inactive_step_span_text
+        {
+            display:block;
+            color:#DCD5C6;
+            font-weight:bold;
+            margin:0 auto;
+        }
+    </style>
+
     <body>
 
         <!-- Google Tag Manager -->
@@ -20,6 +92,44 @@
         </script>
         <!-- End Google Tag Manager -->
 
+        <script type = "text/javascript">
+            function toggleStep2()
+            {
+                $("#step2").removeClass("inactive_step");
+                $("#step2").addClass("active_step");
+                $("#step2circle").removeClass("inactive_step_span_circle");
+                $("#step2circle").addClass("active_step_span_circle");
+                $("#step2text").removeClass("inactive_step_span_text");
+                $("#step2text").addClass("active_step_span_text");
+                $("#step3").removeClass("active_step");
+                $("#step3").addClass("inactive_step");
+                $("#step3circle").addClass("inactive_step_span_circle");
+                $("#step3circle").removeClass("active_step_span_circle");
+                $("#step3text").addClass("inactive_step_span_text");
+                $("#step3text").removeClass("active_step_span_text");
+
+                $("#step2circle").html("2");
+            }
+
+            function toggleStep3()
+            {
+                $("#step3").removeClass("inactive_step");
+                $("#step3").addClass("active_step");
+                $("#step3circle").removeClass("inactive_step_span_circle");
+                $("#step3circle").addClass("active_step_span_circle");
+                $("#step3text").removeClass("inactive_step_span_text");
+                $("#step3text").addClass("active_step_span_text");
+                $("#step2").removeClass("active_step");
+                $("#step2").addClass("inactive_step");
+                $("#step2circle").addClass("inactive_step_span_circle");
+                $("#step2circle").removeClass("active_step_span_circle");
+                $("#step2text").addClass("inactive_step_span_text");
+                $("#step2text").removeClass("active_step_span_text");
+
+                $("#step2circle").html('<i class="fa fa-check"></i>');
+            }
+        </script>
+
         <!-- Modal Flash control  -->
         {include 'components/modal_control.latte'}
         <!-- Gallery Modal control  -->
@@ -36,39 +146,39 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-                    <div style="display:block;width:100%;height:auto;background-color:#F7F5EE;padding:10px;border-top-left-radius:10px;border-top-right-radius:10px;">
-                        <span style="margin:0 auto;display:block;width:40px;height:40px;background-color:white;border:#a5987f 2px solid;text-align: center;border-radius: 50px;line-height: 35px;color:#a5987f;font-weight:bold;font-size: 20px;font-family: 'Roboto Condensed', sans-serif;">1</span>
-                        <span class="text-center" style="display:block;color:#a5987f;font-weight:bold;margin:0 auto;">Choose your profile</span>
+                    <div id="step2" class="active_step">
+                        <span id="step2circle" class="active_step_span_circle">2</span>
+                        <span id="step2text" class="text-center active_step_span_text">Choose your profile</span>
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-                    <div style="display:block;width:100%;height:auto;padding:10px;">
-                        <span style="margin:0 auto;display:block;width:40px;height:40px;border:#DCD5C6 2px solid;text-align: center;border-radius: 50px;line-height: 35px;color:#DCD5C6;font-weight:bold;font-size: 20px;font-family: 'Roboto Condensed', sans-serif;">2</span>
-                        <span class="text-center" style="display:block;color:#DCD5C6;margin:0 auto;">Fill the basic informations</span>
+                    <div id="step3" class="inactive_step">
+                        <span id="step3circle" class="inactive_step_span_circle">3</span>
+                        <span id="step3text" class="text-center inactive_step_span_text">Fill the basic informations</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-12" style="background-color: #F7F5EE;">
-            <div id="step_switcher" class="row" style="margin-left: 0px;margin-right: 0px;">
-                <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
-                    {include content}
+                <div id="step_switcher" class="row" style="margin-left: 0px;margin-right: 0px;">
+                    <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
+                        {include content}
+                    </div>
                 </div>
-            </div>
-            <div id="step_kennel" class="row" style="margin-left: 0px; margin-right: 0px; display: none">
-                <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
-                    {include "kennel/kennel_create_profile_wizard.latte"}
+                <div id="step_kennel" class="row" style="margin-left: 0px; margin-right: 0px; display: none">
+                    <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
+                        {include "kennel/kennel_create_profile_wizard.latte"}
+                    </div>
                 </div>
-            </div>
-            <div id="step_owner" class="row" style="margin-left: 0px; margin-right: 0px; display: none">
-                <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
-                    {include "owner/owner_create_profile_wizard.latte"}
+                <div id="step_owner" class="row" style="margin-left: 0px; margin-right: 0px; display: none">
+                    <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
+                        {include "owner/owner_create_profile_wizard.latte"}
+                    </div>
                 </div>
-            </div>
-            <div id="step_handler" class="row" style="margin-left: 0px; margin-right: 0px; display: none">
-                <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
-                    {include "handler/handler_create_profile_wizard.latte"}
+                <div id="step_handler" class="row" style="margin-left: 0px; margin-right: 0px; display: none">
+                    <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
+                        {include "handler/handler_create_profile_wizard.latte"}
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
         <!-- /Main content -->
