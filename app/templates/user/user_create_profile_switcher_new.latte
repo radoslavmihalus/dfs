@@ -1,30 +1,25 @@
 {layout '../@create_profile_layout.latte'}
 {block content}
-<div class="container">
-    <p class="text-center">
-        <img style="margin-top:20px;" width="200" src="../www/img/dfs_logo.png" alt="DOGFORSHOW trademark" />
-    </p>
-    <h2 class="text-center" style="margin-top:20px;margin-bottom: 50px;font-weight:700;font-size:25px;">Create your stunning and eye catching profile in two easy steps</h2>
-    <div class="col-md-4">
+<div class="row" style="background-color: #F7F5EE;padding:10px;border-radius:10px;">
+    <div class="col-md-4 col-sm-4">
         <p class="text-center">
-            <img style="margin: 0 auto;max-height:300px;" class="img-responsive" style="background-color: white;" src="../www/img/breeder.png"/>
-            <button class="btn btn-default" id="kennel_button">I am a breeder</button>
+            <img style="margin: 0 auto;max-height:250px;" class="img-responsive" style="background-color: white;" src="../www/img/breeder.png"/>
+            <button class="btn btn-default" id="kennel_button">I am a kennel</button>
         </p>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-4" style="background-color: #F7F5EE;">
         <p class="text-center">
-            <img style="margin: 0 auto;max-height:300px;" class="img-responsive" style="background-color: white;" src="../www/img/owner.png"/>
+            <img style="margin: 0 auto;max-height:250px;" class="img-responsive" style="background-color: white;" src="../www/img/owner.png"/>
             <button class="btn btn-default" id="owner_button">I am an owner of purebred dog</button>
         </p>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-4" style="background-color: #F7F5EE;">
         <p class="text-center">
-            <img style="margin: 0 auto;max-height:300px;" class="img-responsive" style="background-color: white;" src="../www/img/handler.png"/>
+            <img style="margin: 0 auto;max-height:250px;" class="img-responsive" style="background-color: white;" src="../www/img/handler.png"/>
             <button class="btn btn-default" id="handler_button">I am a handler</button>
         </p>
     </div>
 </div>
-
 <script type="text/javascript">
     $("#kennel_button").on("click", function ()
     {

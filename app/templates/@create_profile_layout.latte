@@ -26,7 +26,29 @@
         {include 'components/gallery_modal.latte'}
 
         <!-- Main content -->
-        <div class="container-fluid content-wrapper" style="margin:0px;">
+        <div class="container" style="padding-bottom: 40px;">
+            <h2 class="text-center">Create your stunning and eye catching profile in two easy steps</h2>
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div style="display:block;width:100%;height:auto;padding:10px;">
+                        <span style="margin:0 auto;display:block;width:40px;height:40px;border:#DCD5C6 2px solid;text-align: center;border-radius: 50px;line-height: 35px;color:#DCD5C6;font-weight:bold;font-size: 20px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-check"></i></span>
+                        <span class="text-center" style="display:block;color:#DCD5C6;margin:0 auto;">Registration</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div style="display:block;width:100%;height:auto;background-color:#F7F5EE;padding:10px;border-top-left-radius:10px;border-top-right-radius:10px;">
+                        <span style="margin:0 auto;display:block;width:40px;height:40px;background-color:white;border:#a5987f 2px solid;text-align: center;border-radius: 50px;line-height: 35px;color:#a5987f;font-weight:bold;font-size: 20px;font-family: 'Roboto Condensed', sans-serif;">1</span>
+                        <span class="text-center" style="display:block;color:#a5987f;font-weight:bold;margin:0 auto;">Choose your profile</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div style="display:block;width:100%;height:auto;padding:10px;">
+                        <span style="margin:0 auto;display:block;width:40px;height:40px;border:#DCD5C6 2px solid;text-align: center;border-radius: 50px;line-height: 35px;color:#DCD5C6;font-weight:bold;font-size: 20px;font-family: 'Roboto Condensed', sans-serif;">2</span>
+                        <span class="text-center" style="display:block;color:#DCD5C6;margin:0 auto;">Fill the basic informations</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="background-color: #F7F5EE;">
             <div id="step_switcher" class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
                     {include content}
@@ -46,6 +68,7 @@
                 <div class="col-md-12 col-lg-12" style="padding-left: 5px;padding-right: 5px;">
                     {include "handler/handler_create_profile_wizard.latte"}
                 </div>
+            </div>
             </div>
         </div>
         <!-- /Main content -->
