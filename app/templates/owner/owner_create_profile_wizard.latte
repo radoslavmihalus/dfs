@@ -8,7 +8,7 @@
             {include image_UploadPicture_control, aspect_x => 10, aspect_y => 10, needed_crop=>1, description => "Your profile picture", placeholder => "Select picture", id => "txtOwnerProfilePhoto", name => "txtOwnerProfilePhoto", tooltip => "Your profile picture in jpeg or jpg format", _form => $_form}
             {include textarea_control, description => "Short description about you", placeholder => "Short description", id => "txtOwnerDescritpion", name => "txtOwnerDescritpion",  tooltip => "Enter some informations about yourself", _form => $_form}
             <button n:name=btnSubmit id="btnSubmit" class="btn btn-success btn-xl pull-right">{_ 'Create profile'}</button>
-            <a id="btnBackOwner" style="margin-right: 10px" class="btn btn-default btn-xl pull-right"><i class="fa fa-long-arrow-left"></i>&nbsp;&nbsp;{_ 'Back'}</a>
+            <a id="btnBackOwner" style="margin-right: 10px" class="btn btn-default btn-xl pull-right"><i class="fa fa-long-arrow-left"></i>&nbsp;&nbsp;{_ 'Back on step 1'}</a>
         {/form}
     <script type="text/javascript">
         $("#btnBackOwner").on("click", function ()
