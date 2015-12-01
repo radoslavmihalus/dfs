@@ -840,7 +840,7 @@ class DataModel {
                     return "handler-profile";
                     break;
                 case ($profile_id >= 500000000 && $profile_id < 600000000):
-                    return "dog-profile";
+                    return "dog?id=$profile_id";
                     break;
                 case ($profile_id >= 600000000 && $profile_id < 700000000):
                     return "puppy-profile";
