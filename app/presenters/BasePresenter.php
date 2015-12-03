@@ -197,6 +197,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
                         $myrow = $this->database->table("tbl_userkennel")->where("id=?", $this->profile_id)->fetch();
                         $this->template->fullname = $myrow->kennel_name;
+                        $this->template->first_name = $userdata->name;
                         $this->template->profile_home_image = $myrow->kennel_profile_picture;
                         break;
                     case 2:
@@ -204,6 +205,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                         $profile_type_description = "Owner";
                         $profile_type_icon = "fa fa-user";
                         $this->template->fullname = $userdata->name . ' ' . $userdata->surname;
+                        $this->template->first_name = $userdata->name;
                         $myrow = $this->database->table("tbl_userowner")->where("id=?", $this->profile_id)->fetch();
                         $this->template->profile_home_image = $myrow->owner_profile_picture;
                         break;
@@ -212,6 +214,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                         $profile_type_description = "Handler";
                         $profile_type_icon = "glyphicons glyphicons-shirt";
                         $this->template->fullname = $userdata->name . ' ' . $userdata->surname;
+                        $this->template->first_name = $userdata->name;
                         $myrow = $this->database->table("tbl_userhandler")->where("id=?", $this->profile_id)->fetch();
                         $this->template->profile_home_image = $myrow->handler_profile_picture;
                         break;
@@ -1302,29 +1305,35 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     
                 }
 
-                if ($cnt > 0) {
-                    $this->redirect("user:user_edit_account");
-                } else {
-                    if ($profile_id > 0) {
-//                        $type = \DataModel::getProfileType($profile_id);
-//                        switch ($type) {
-//                            case 1:
-//                                $this->redirect("kennel:kennel_profile_home");
-//                                break;
-//                            case 2:
-//                                $this->redirect("owner:owner_profile_home");
-//                                break;
-//                            case 3:
-//                                $this->redirect("handler:handler_profile_home");
-//                                break;
-//                            default :
-//                                $this->redirect("user:user_create_profile_switcher");
-//                                break;
-//                        }
-                        $this->redirect("timeline:timeline_wall", array("lang" => $this->lang));
+                $profiles_count = \DataModel::getUserProfilesCount($id);
+
+                if ($profiles_count > 0) {
+                    if ($cnt > 0) {
+                        $this->redirect("user:user_edit_account");
                     } else {
-                        $this->redirect("user:user_create_profile_switcher", array("lang" => $this->lang));
+                        if ($profile_id > 0) {
+                            $type = \DataModel::getProfileType($profile_id);
+                            switch ($type) {
+                                case 1:
+                                    $this->redirect("kennel:kennel_profile_home");
+                                    break;
+                                case 2:
+                                    $this->redirect("owner:owner_profile_home");
+                                    break;
+                                case 3:
+                                    $this->redirect("handler:handler_profile_home");
+                                    break;
+                                default :
+                                    $this->redirect("user:user_create_profile_switcher");
+                                    break;
+                            }
+//                        $this->redirect("timeline:timeline_wall", array("lang" => $this->lang));
+                        } else {
+                            $this->redirect("user:user_create_profile_switcher", array("lang" => $this->lang));
+                        }
                     }
+                } else {
+                    $this->redirect("user:user_create_profile_switcher_new", array("lang" => $this->lang));
                 }
             }
         }

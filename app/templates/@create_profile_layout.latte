@@ -75,6 +75,7 @@
     </style>
 
     <body>
+	<script type="text/javascript" src="www/js/live-form-validation.js"></script>
 
         <!-- Google Tag Manager -->
         <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MTKG8H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -139,7 +140,7 @@
         <!-- Main content -->
         <nav class="navbar navbar-default navbar-fixed-top" style="height:69px;">
             <div class="container">
-                <a n:href="" style="margin-top:30px;color: #A5997F;" class="pull-right">{_ 'Logout'}&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a>
+                <a n:href="logout! " style="margin-top:30px;color: #A5997F;" class="pull-right">{_ 'Logout'}&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a>
                 <div class="navbar-header">
                     <span class="navbar-brand logotyp" id="logo">
                         <img alt="Brand" style="width:150px;" src="www/img/logo.png">
@@ -148,7 +149,7 @@
             </div>
         </nav>
         <div class="container" style="padding-bottom: 40px;padding-top: 69px;">
-            <h1 class="text-center" style="font-weight:700;">{_ 'Welcome'} Michal!</h1>
+            <h1 class="text-center" style="font-weight:700;">{_ 'Welcome'} {$first_name}!</h1>
             <h2 class="text-center">{_ 'Create your free stunning profile in two easy steps'}</h2>
             <div class="row">
                 <div style="display:block;position:relative;width:50%;top:30px;border-bottom: #DCD5C6 3px dotted;margin:0 auto;"></div>
