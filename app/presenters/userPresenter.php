@@ -20,6 +20,14 @@ class userPresenter extends BasePresenter {
         parent::startup();
     }
 
+    public function actionUser_create_profile_switcher_new() {
+        if ($this->logged_in_id > 0) {
+            
+        } else {
+            $this->redirect("LandingPage:default", array("lang" => $this->lang));
+        }
+    }
+
     public function renderUser_create_profile_switcher() {
         switch ($this->profile_type) {
             case 1:
@@ -214,9 +222,5 @@ class userPresenter extends BasePresenter {
             $this->redirect('user:user_edit_account');
         }
     }
-    
-    
-    
-    
 
 }

@@ -169,6 +169,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $userdata = $this->database->table("tbl_user")->where("id = ?", $myid)->fetch();
             $mysection->lang = $userdata->lang;
 
+            $this->template->first_name = $userdata->name;
+
             $section = $this->getSession('language');
             $section->lang = $userdata->lang;
 
@@ -815,6 +817,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
     public function handleDeleteProfile($id) {
         $type = \DataModel::getProfileType($id);
+
         $error = true;
 
         switch ($type) {
@@ -890,7 +893,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 break;
         }
 
-        $this->redirect("user:user_create_profile_switcher");
+        if (\DataModel::getUserProfilesCount($this->logged_in_id) > 0)
+            $this->redirect("user:user_create_profile_switcher");
+        else
+            $this->redirect("user:user_create_profile_switcher_new");
     }
 
     public function handleLogout() {
@@ -935,7 +941,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->terminate();
     }
 
-    public function TrustPay($amt = 50, $pay = 2) {
+    public function TrustPay($amt = 54, $pay = 2) {
         if (isset($_GET['amt']))
             $amt = $_GET['amt'];
 
@@ -972,20 +978,32 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $amt = $amt;
         $cur = "EUR";
         $ref = $rand . '|' . $current_user . '|' . $amt;
-        $cnt = 1;
 
+        if ($this->lang == "cz" || $this->lang == "sk" || $this->lang == "hu")
+            $cnt = strtoupper($this->lang);
+        else
+            $cnt = 1;
+
+        if ($this->lang == "cz")
+            $lng = 'cs';
+        else
+            $lng = $this->lang;
+
+        $sig_wt = $aid . $amt . $cur . $ref;
         $sig = $aid . $amt . $cur . $ref;
 
         $TrustpaySign = strtoupper(hash_hmac('sha256', pack('A*', $sig), pack('A*', $key)));
+        $TrustpaySign_wt = strtoupper(hash_hmac('sha256', pack('A*', $sig_wt), pack('A*', $key)));
 
         $sig = $TrustpaySign;
+        $sig_wt = $TrustpaySign_wt;
 
         switch ($pay) {
             case 1: // wire transfer
-                $this->redirectUrl($TrustpayUrl . '?AID=' . $aid . '&AMT=' . $amt . '&CUR=' . $cur . '&REF=' . $ref . '&SIG=' . $sig . '&CNT=' . $cnt);
+                $this->redirectUrl($TrustpayUrl . '?LNG=' . $lng . '&AID=' . $aid . '&AMT=' . $amt . '&CUR=' . $cur . '&REF=' . $ref . '&SIG=' . $sig_wt . '&CNT=' . $cnt);
                 break;
             case 2: // karta
-                $this->redirectUrl($TrustpayUrlCard . '?AID=' . $aid . '&AMT=' . $amt . '&CUR=' . $cur . '&REF=' . $ref . '&SIG=' . $sig);
+                $this->redirectUrl($TrustpayUrlCard . '?LNG=' . $lng . '&AID=' . $aid . '&AMT=' . $amt . '&CUR=' . $cur . '&REF=' . $ref . '&SIG=' . $sig);
                 break;
         }
     }
@@ -1008,15 +1026,21 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $curdate = date("Y-m-d");
 
                 if ($expiry > $curdate) {
-                    if ($amount == 35)
+                    if ($amount == 30)
                         $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 6 months"));
                     else
+                    if ($amount == 54)
                         $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 1 years"));
+                    else
+                        $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 2 years"));
                 }else {
-                    if ($amount == 35)
+                    if ($amount == 30)
                         $end = date('Y-m-d', strtotime('+6 months'));
                     else
+                    if ($amount == 54)
                         $end = date('Y-m-d', strtotime('+1 years'));
+                    else
+                        $end = date('Y-m-d', strtotime('+2 years'));
                 }
 
                 $data['premium_expiry_date'] = $end;
@@ -1028,10 +1052,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
                 $sf = new \invoice();
 
-                if ($amount == 35)
-                    $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("6 MONTHS"), "1", $amount);
+                if ($amount == 30)
+                    $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 6 months"), "1", $amount);
                 else
-                    $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("12 months"), "1", $amount);
+                if ($amount == 54)
+                    $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 12 months"), "1", $amount);
+                else
+                    $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 24 months"), "1", $amount);
 
                 $id = $response->data->Invoice->id;
                 $token = $response->data->Invoice->token;
