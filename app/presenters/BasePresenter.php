@@ -1010,7 +1010,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
     public function actionPayment() {
         try {
-            if (isset($_GET['RES']) && $_GET['RES'] == 0) {
+            if (isset($_GET['RES']) && ($_GET['RES'] == 0 || $_GET['RES'] == 3)) {
                 if (isset($_GET['REF']))
                     $REF = $_GET['REF'];
 
@@ -1102,9 +1102,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $this->flashMessage($this->translate("Your premium account has not been activated."), "Warning");
             }
         } catch (\Exception $ex) {
-            $this->flashMessage($this->translate("Your premium account has not been activated."), "Warning");
+            if ($this->logged_in_id > 0)
+                $this->flashMessage($this->translate("Your premium account has not been activated."), "Warning");
         }
-        $this->redirect("default");
+        if ($this->logged_in_id > 0)
+            $this->redirect("default");
+        else {
+            $this->terminate();
+        }
     }
 
     protected function createComponentFrmLogIn() {
