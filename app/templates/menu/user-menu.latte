@@ -65,7 +65,7 @@
                     </li>
                 {else}
                     <li class="panel">
-                        <a data-toggle="collapse" data-parent="#accordion1" href="#ProfileMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'Profile settings'}</a>
+                        <a data-toggle="collapse" data-parent="#accordion1" href="#ProfileMenu"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-wrench"></i>&nbsp;&nbsp;{_ 'Profile settings'}</a>
                         <ul id="ProfileMenu" class="collapse panel-collapse">
                             <li>
                                 <a n:href="user:user_create_profile_switcher"><i class="fa fa-exchange"></i>&nbsp;&nbsp;{_'Switch profile'}</a>
@@ -87,7 +87,7 @@
                 <!-- Kennel menu -->
                 {if ($active_profile_type == 1)}
                     <li class="panel">
-                        <a data-toggle="collapse" data-parent="#accordion1" href="#KennelMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
+                        <a data-toggle="collapse" data-parent="#accordion1" href="#KennelMenu"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-desktop"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
                         <ul id="KennelMenu" class="collapse panel-collapse">
                             <li>
                                 <a n:href="kennel:kennel_profile_home"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{_'Home'}</a>
@@ -121,7 +121,7 @@
                 {elseif ($active_profile_type == 2)}
                     <!-- Owner menu -->
                     <li class="panel"> 
-                        <a data-toggle="collapse" data-parent="#accordion1" href="#OwnerMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
+                        <a data-toggle="collapse" data-parent="#accordion1" href="#OwnerMenu"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-desktop"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
                         <ul id="OwnerMenu" class="collapse panel-collapse">
                             <li>
                                 <a n:href="owner:owner_profile_home"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{_'Home'}</a>
@@ -146,7 +146,7 @@
                 {elseif  ($active_profile_type == 3)}
                     <!-- Handler menu -->
                     <li class="panel"> 
-                        <a data-toggle="collapse" data-parent="#accordion1" href="#HandlerMenu"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
+                        <a data-toggle="collapse" data-parent="#accordion1" href="#HandlerMenu"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-desktop"></i>&nbsp;&nbsp;{_ 'My Profile'}</a>
                         <ul id="HandlerMenu" class="collapse panel-collapse">
                             <li>
                                 <a n:href="handler:handler_profile_home"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{_'Home'}</a>
@@ -219,6 +219,9 @@
                     </ul>
                 </li>
             {/if}
+            <li class="panel">
+                <a style="background-color:#e38d13;color:white;" n:href="user:user_premium lang=>$lang" data-parent="#accordion1" id=""><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Become a premium'}</a>
+            </li>
             <li class="panel">
                 <a n:href="timeline:timeline_wall lang=>$lang" data-parent="#accordion1"><i style="color:#83765E" class="fa fa-list-alt"></i>&nbsp;&nbsp;{_ 'Timeline events'}</a>
             </li>
