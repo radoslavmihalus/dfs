@@ -1091,6 +1091,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $mailer->send($mail);
 
                 try {
+                    $data = array();
                     $data['status'] = 1;
                     $this->database->table("tbl_payments")->where("transaction=?", $transaction_id)->where("user_id=?", $user->id)->update($data);
                 } catch (\Exception $ex) {
