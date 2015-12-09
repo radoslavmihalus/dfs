@@ -20,6 +20,7 @@ class LandingPagePresenter extends BasePresenter {
         parent::startup();
 
         if (isset($_GET['activated'])) {
+            
         }
 
         if (isset($_GET['resend_al'])) {
@@ -34,6 +35,32 @@ class LandingPagePresenter extends BasePresenter {
             $this->flashMessage($this->translate("Your activation link has been successfully sent."), "Success");
 
             $this->redirect("default");
+        }
+
+        if ($this->logged_in_id > 0) {
+            if (\DataModel::getUserProfilesCount($this->logged_in_id) > 0) {
+                if ($this->logged_in_profile_id > 0) {
+                    $type = \DataModel::getProfileType($this->logged_in_profile_id);
+                    switch ($type) {
+                        case 1:
+                            $this->redirect("kennel:kennel_profile_home");
+                            break;
+                        case 2:
+                            $this->redirect("owner:owner_profile_home");
+                            break;
+                        case 3:
+                            $this->redirect("handler:handler_profile_home");
+                            break;
+                        default :
+                            $this->redirect("user:user_create_profile_switcher");
+                            break;
+                    }
+//                        $this->redirect("timeline:timeline_wall", array("lang" => $this->lang));
+                } else {
+                    $this->redirect("user:user_create_profile_switcher", array("lang" => $this->lang));
+                }
+            }
+            $this->redirect("user:user_create_profile_switcher_new", array("lang" => $this->lang));
         }
     }
 
