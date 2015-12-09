@@ -196,6 +196,9 @@
             {if $logged_in_id>0}
             {else}
                 <li class="panel">
+                <a style="background-color:#A90606;color:white;" n:href="user:user_premium lang=>$lang" data-parent="#accordion1" id=""><i class="glyphicons glyphicons-gift"></i>&nbsp;&nbsp;{_ 'Christmas with DOGFORSHOW'}</a>
+            </li>
+                <li class="panel">
                     <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowLang"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-flag"></i>&nbsp;&nbsp;{_ 'Language'}</a>
                     <ul id="DogforshowLang" class="collapse panel-collapse">
                         <li>
@@ -219,9 +222,6 @@
                     </ul>
                 </li>
             {/if}
-            <li class="panel">
-                <a style="background-color:#e38d13;color:white;" n:href="user:user_premium lang=>$lang" data-parent="#accordion1" id=""><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Become a premium'}</a>
-            </li>
             <li class="panel">
                 <a n:href="timeline:timeline_wall lang=>$lang" data-parent="#accordion1"><i style="color:#83765E" class="fa fa-list-alt"></i>&nbsp;&nbsp;{_ 'Timeline events'}</a>
             </li>
