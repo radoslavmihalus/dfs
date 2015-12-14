@@ -572,7 +572,7 @@ class DataModel {
 
         return $database->table("tbl_dogs_health")->where("dog_id=?", $dog_id)->count();
     }
-    
+
     static function getMatingsCount($dog_id) {
         $database = $GLOBALS['database'];
 
@@ -584,12 +584,13 @@ class DataModel {
 
         return $database->table("tbl_dogs_coowners")->where("dog_id=?", $dog_id)->count();
     }
-    
+
     static function getPhotosCount($profile_id) {
         $database = $GLOBALS['database'];
 
         return $database->table("tbl_photos")->where("profile_id=?", $profile_id)->count();
     }
+
 //dog counters functions
 
 
@@ -1078,4 +1079,20 @@ class DataModel {
             return FALSE;
     }
 
+    public static function premiumNotified($user_id) {
+        $database = $GLOBALS['database'];
+
+        $database->query("CREATE TABLE IF NOT EXISTS tbl_user_promoted(user_id BIGINT NOT NULL)");
+
+        $count = $database->table("tbl_user_promoted")->where("user_id = ?", $user_id)->count();
+
+        if ($count > 0)
+            return TRUE;
+        else {
+            $data = array();
+            $data['user_id'] = $user_id;
+            $database->table("tbl_user_promoted")->insert($data);
+            return FALSE;
+        }
+    }
 }

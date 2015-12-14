@@ -9,9 +9,9 @@
                 <h2 class="text-center text-uppercase" style="font-size:30px;color:white;font-weight:700;margin-top: 30px;">{_ 'Activate the premium account for DOGFORSHOW'}</h2>
                 <p style="text-align: center;font-size:15px;margin-bottom: 25px;color:white">{_ 'Take advantage of the opportunity of international presentation and together with us support the purebred dogs with pedigree.'}</p>
                 <div class="col-md-12 text-center">
-                        <div style="color:#A90606;font-family: 'Roboto Condensed', sans-serif;font-size:18px;padding:10px;display:block;margin-bottom: 10px;background-color: white;font-weight:bold;border-radius:10px;">
-                            <p><i class="fa fa-gift fa-1x"></i>&nbsp;&nbsp;{_ 'Christmas with DOGFORSHOW is really generous. Get a premium account now,for twice the time. Special offer ends on 8 January.'}</p>
-                        </div>
+                    <div style="color:#A90606;font-family: 'Roboto Condensed', sans-serif;font-size:18px;padding:10px;display:block;margin-bottom: 10px;background-color: white;font-weight:bold;border-radius:10px;">
+                        <p><i class="fa fa-gift fa-1x"></i>&nbsp;&nbsp;{_ 'Christmas with DOGFORSHOW is really generous. Get a premium account now,for twice the time. Special offer ends on 8 January.'}</p>
+                    </div>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12" style="padding-bottom: 30px;">
                     <p style="text-align: center; font-family: 'Roboto Condensed', sans-serif;font-size: 20px;color: #D0CCBF;text-decoration: line-through;"><strong>{_ 'for 6 months'}</strong></p>
@@ -26,7 +26,11 @@
                             <p style="text-align: center;"><span style="color:#A90606;font-weight:700;font-family: 'Roboto Condensed', sans-serif;font-size: 20px;">{_ 'for 12 months'}</span></p>
         <!--                    <p style="text-align: center;font-size:50px;color:white;">5.00 <span style="font-size:14px">&euro; / {_ 'month'}</span></p>-->
                             <p style="text-align: center;font-size:50px;color:black;">2.50 <span style="font-size:14px">&euro; / {_ 'month'}</span></p>
-                            <p class="text-center"><a n:href="user:user_premium_activation amt=>30, lang=>$lang" class="btn btn-warning btn-sm" style="font-size:13px;"><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Become a premium'}</a></p>
+                            {if $logged_in_id>0}
+                                <p class="text-center"><a n:href="user:user_premium_activation amt=>30, lang=>$lang" class="btn btn-warning btn-sm" style="font-size:13px;"><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Become a premium'}</a></p>
+                            {else}
+                                <p class="text-center"><a id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-warning btn-sm" style="font-size:13px;"><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Become a premium'}</a></p>
+                            {/if}
                         </div>
                     </div>
                 </div>
@@ -43,7 +47,11 @@
                             <p style="text-align: center;"><span style="color:#A90606;font-weight:700;font-family: 'Roboto Condensed', sans-serif;font-size: 20px;">{_ 'for 24 months'}</span></p>
         <!--                    <p style="text-align: center;font-size:50px;color:white;">4.50 <span style="font-size:14px">&euro; / {_ 'month'}</span></p>-->
                             <p style="text-align: center;font-size:50px;color:black;">2.25 <span style="font-size:14px">&euro; / {_ 'month'}</span></p>
-                            <p class="text-center"><a n:href="user:user_premium_activation amt=>54, lang=>$lang" class="btn btn-warning btn-sm" style="font-size:13px;"><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Become a premium'}</a></p>
+                            {if $logged_in_id>0}
+                                <p class="text-center"><a n:href="user:user_premium_activation amt=>54, lang=>$lang" class="btn btn-warning btn-sm" style="font-size:13px;"><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Become a premium'}</a></p>
+                            {else}
+                                <p class="text-center"><a id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-warning btn-sm" style="font-size:13px;"><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Become a premium'}</a></p>
+                            {/if}
                         </div>
                     </div>
                 </div>
@@ -60,7 +68,11 @@
                             <p style="text-align: center;"><span style="color:#A90606;font-weight:700;font-family: 'Roboto Condensed', sans-serif;font-size: 20px;">{_ 'for 48 months'}</span></p>
         <!--                    <p style="text-align: center;font-size:50px;color:white;">3.50 <span style="font-size:14px">&euro; / {_ 'month'}</span></p>-->
                             <p style="text-align: center;font-size:50px;color:black;">1.75 <span style="font-size:14px">&euro; / {_ 'month'}</span></p>
-                            <p class="text-center"><a n:href="user:user_premium_activation amt=>84, lang=>$lang" class="btn btn-warning btn-sm" style="font-size:13px;"><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Become a premium'}</a></p>
+                            {if $logged_in_id>0}
+                                <p class="text-center"><a n:href="user:user_premium_activation amt=>84, lang=>$lang" class="btn btn-warning btn-sm" style="font-size:13px;"><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Become a premium'}</a></p>
+                            {else}
+                                <p class="text-center"><a id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-warning btn-sm" style="font-size:13px;"><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Become a premium'}</a></p>
+                            {/if}
                         </div>
                     </div>
                 </div>

@@ -46,6 +46,10 @@
         <!--/user-menu -->
 
         {include '../components/gallery_modal.latte'}
+        
+        {if (!DataModel::premiumNotified($logged_in_id))}
+        {include '../components/promotion_modal.latte'}
+        {/if}
 
         <!-- Main content -->
         <div class="container-fluid content-wrapper">

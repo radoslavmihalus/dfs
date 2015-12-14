@@ -76,6 +76,8 @@ class blueticket_objects {
 
 //$form= new blueticket_forms();
 
+        echo '<a href="?report=active_users" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Only active users</a>';
+
         $form->table("tbl_user");
         $form->table_name("Users");
         $form->default_tab("Users");
@@ -125,6 +127,63 @@ class blueticket_objects {
 
         return $form->render();
     }
+    
+    public function generateActiveUsers() {
+        $form = blueticket_forms::get_instance();
+
+//$form= new blueticket_forms();
+
+        $form->table("tbl_user");
+        $form->where("login_count > 0");
+        $form->table_name("Active users");
+        $form->default_tab("Active users");
+        $form->columns("registration_date, active, full_name, email, state, lang, last_login, login_count, premium_expiry_date, kennels, owners, handlers, dogs, puppies");
+        
+        $form->label("premium_expiry_date", "PED");
+        $form->label("last_login", "LL");
+        $form->label("login_count", "LC");
+
+        $form->order_by('id', 'DESC');
+
+        $form->subselect('full_name', "concat({name},' ',{surname})");
+        $form->subselect('kennels', 'SELECT COUNT(*) FROM tbl_userkennel WHERE user_id = {id}');
+        $form->subselect('owners', 'SELECT COUNT(*) FROM tbl_userowner WHERE user_id = {id}');
+        $form->subselect('handlers', 'SELECT COUNT(*) FROM tbl_userhandler WHERE user_id = {id}');
+        $form->subselect('dogs', 'SELECT COUNT(*) FROM tbl_dogs WHERE user_id = {id}');
+        $form->subselect('puppies', 'SELECT COUNT(*) FROM tbl_puppies WHERE user_id = {id}');
+
+        $form->highlight_row('active', '=', 0, '#FFD6D6');
+        $form->highlight('kennels', '>', 0, '#B4E274');
+        $form->highlight('kennels', '=', 0, '#EDEBE4');
+        $form->highlight('owners', '>', 0, '#B4E274');
+        $form->highlight('owners', '=', 0, '#EDEBE4');
+        $form->highlight('handlers', '>', 0, '#B4E274');
+        $form->highlight('handlers', '=', 0, '#EDEBE4');
+        $form->highlight('dogs', '>', 0, '#B4E274');
+        $form->highlight('dogs', '=', 0, '#EDEBE4');
+        $form->highlight('puppies', '>', 0, '#B4E274');
+        $form->highlight('puppies', '=', 0, '#EDEBE4');
+        $form->highlight('login_count', '>', 0, '#B4E274');
+        $form->highlight('login_count', '=', 0, '#EDEBE4');
+
+        $form->sum('active,kennels,owners,handlers,dogs, puppies');
+
+        $form->label("kennels", "Ken");
+        $form->label("handlers", "Han");
+        $form->label("owners", "Own");
+        $form->label("dogs", "Dog");
+
+        $this->generateKennels($form);
+        $this->generateOwners($form);
+        $this->generateHandlers($form);
+        $this->generateDogs($form);
+        $this->generatePayments($form);
+        $this->generatePuppies($form);
+//$this->generateCommentsByUser($form);
+
+        return $form->render();
+    }
+    
 
     function generatePremiumVisits() {
         $form = blueticket_forms::get_instance();

@@ -1027,20 +1027,22 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
                 if ($expiry > $curdate) {
                     if ($amount == 30)
-                        $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 6 months"));
+                        $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 12 months"));
                     else
                     if ($amount == 54)
-                        $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 1 years"));
-                    else
                         $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 2 years"));
+                    else
+                    if ($amount == 84)
+                        $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 4 years"));
                 }else {
                     if ($amount == 30)
-                        $end = date('Y-m-d', strtotime('+6 months'));
+                        $end = date('Y-m-d', strtotime('+12 months'));
                     else
                     if ($amount == 54)
-                        $end = date('Y-m-d', strtotime('+1 years'));
-                    else
                         $end = date('Y-m-d', strtotime('+2 years'));
+                    else
+                    if ($amount == 84)
+                        $end = date('Y-m-d', strtotime('+4 years'));
                 }
 
                 $data['premium_expiry_date'] = $end;
@@ -1053,12 +1055,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $sf = new \invoice();
 
                 if ($amount == 30)
-                    $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 6 months"), "1", $amount);
-                else
-                if ($amount == 54)
                     $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 12 months"), "1", $amount);
                 else
+                if ($amount == 54)
                     $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 24 months"), "1", $amount);
+                else
+                if ($amount == 84)
+                    $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 48 months"), "1", $amount);
 
                 $id = $response->data->Invoice->id;
                 $token = $response->data->Invoice->token;

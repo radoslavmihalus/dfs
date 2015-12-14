@@ -139,6 +139,9 @@ if (isset($_GET['report'])) {
                     case 'forms':
                         // echo $bt->generateForms();
                         break;
+                    case 'active_users':
+                        echo $bt->generateActiveUsers();
+                        break;
                     case 'users':
                         echo $bt->generateUsers();
                         break;
