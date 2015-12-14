@@ -218,6 +218,14 @@ class ownerPresenter extends BasePresenter {
         $this->renderOwner_profile_home($id);
     }
 
+    public function renderOwner_videogallery($id = 0) {
+        if ($id == 0)
+            $id = $this->logged_in_owner_id;
+        $rows = $this->database->table("tbl_photos")->where("profile_id=?", $id)->fetchAll();
+        $this->template->photos = $rows;
+        $this->renderOwner_profile_home($id);
+    }
+
     public function actionOwner_create_profile($id) {
         if (!\DataModel::getPremium($this->logged_in_id)) {
             if (\DataModel::hasProfile($this->logged_in_id)) {
