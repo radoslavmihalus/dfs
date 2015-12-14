@@ -7,7 +7,7 @@
             <h2 class="text-center text-uppercase"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_ 'Add video'}</h2>
             <hr>
             {include textbox_control, _form => $_form, description => "Description of the video", placeholder => "Description of the video", id => "txtPhotoName", name => "txtPhotoName", tooltip=>"Description of the video"}
-            {include textbox_control, _form => $form, description => "Url link of your video", placeholder => "For example https://youtu.be/pxZD04759", id => "txtPhoto", name => "txtPhoto", tooltip=>"Paste url link of your video"}
+            {include textbox_control, _form => $_form, description => "Url link of your video", placeholder => "For example https://youtu.be/pxZD04759", id => "txtPhoto", name => "txtPhoto", tooltip=>"Paste url link of your video"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
             <!--<button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>-->
         {/form}
