@@ -41,6 +41,9 @@
                         {if ($row->event_type == 8)}
                             <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-list-alt"></i></span>&nbsp;&nbsp;{_'Add certificate'}</h3>
                         {/if}
+                        {if ($row->event_type == 9)}
+                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-flag"></i></span>&nbsp;&nbsp;{_ 'Add working exam'}</h3>
+                        {/if}
                         {if ($row->event_type == 10)}
                             <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-camera"></i></span>&nbsp;&nbsp;{_'Add photo'}</h3>
                         {/if}
@@ -56,13 +59,15 @@
                         {if ($row->event_type == 14)}
                             <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-trophy"></i></span>&nbsp;&nbsp;{_'Add championchip'}</h3>
                         {/if}
+                        {if ($row->event_type == 15)}
+                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-video-camera"></i></span>&nbsp;&nbsp;{_'Add video'}</h3>
+                        {/if}
+                        {if ($row->event_type == 16)}
+                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-heartbeat"></i></span>&nbsp;&nbsp;{_ 'Add health record'}</h3>
+                        {/if}
                         <!-- Chybajuce eventy
-                        
-                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-flag"></i></span>&nbsp;&nbsp;{_ 'Add working exam'}</h3>
-                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-heartbeat"></i></span>&nbsp;&nbsp;{_ 'Add health record'}</h3>
                         <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-venus-mars"></i></span>&nbsp;&nbsp;{_ 'Add mating'}</h3>
                         <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-user"></i></span>&nbsp;&nbsp;{_ 'Add coowner'}</h3>
-                        
                         -->
                     </div>
                     {if DataModel::getPermission($row->id,$logged_in_id,7)}
@@ -93,6 +98,7 @@
             {if (strlen($row->event_image)>1)}
                 <div class="col-lg-12 col-md-12 col-xs-12" style="padding-left: 0px;padding-right: 0px;">
                     <a href="{$row->event_image}" title="{$row->event_description}" data-gallery style="float:left;margin-bottom: 10px;display:block;width:100%;height:230px;background-position: 50% 10%;background-size: cover;background-image: url({$row->event_image});">
+                        <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:40%;left:43%;color:white;"></i>
                     </a>
                 </div>
             {/if}

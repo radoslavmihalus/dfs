@@ -28,6 +28,7 @@
         {foreach $photos as $row}
             <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
                 <a href="{$row->image}" title="{$row->description}" data-gallery style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url({$row->image});">
+                    <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:70px;left:85px;color:white;"></i>
                 </a>
                 <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
                     <a href="javascript:void(0)" onclick="ShowGaleryModal({$row->id})" title="{$row->description}">
@@ -37,7 +38,7 @@
                 </div>
                 <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;text-align: right">
                     {if DataModel::getPermission($row->id,$logged_in_id,6)}
-                        <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" n:href="photo:photo_edit id=>$row->id" data-original-title="{_ 'Edit'}"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" type="button" n:href="video:video_edit id=>$row->id" data-original-title="{_ 'Edit'}"><i class="fa fa-pencil"></i></a>
                         <a class="btn btn-danger btn-xs" id="photo_delete{$row->id}" data-toggle="tooltip" data-placement="top" title="" type="button" data-original-title="{_ 'Delete'}"><i class="fa fa-trash"></i></a>
                             {include modalConfirmation description=>"Are you sure you want to delete this record?", id => $row->id, do => "deletePhoto"}
                         <script type="text/javascript">
