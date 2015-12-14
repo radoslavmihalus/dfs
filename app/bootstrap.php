@@ -79,6 +79,8 @@ $router[] = new Route('payment_return.php', 'LandingPage:payment');
 // Base routes
 $router[] = new Route('add-photo', 'photo:photo_add');
 $router[] = new Route('edit-photo', 'photo:photo_edit');
+$router[] = new Route('add-video', 'video:video_add');
+$router[] = new Route('edit-video', 'video:video_edit');
 // User routes
 //---------------------------   User / switch profile -----------------------------------
 $router[] = new Route('switch-profile', 'user:user_create_profile_switcher');
@@ -130,6 +132,7 @@ $router[] = new Route('kennel-awards-edit', 'kennel:kennel_awards_edit');
 $router[] = new Route('kennel-dog-list', 'kennel:kennel_dog_list');
 $router[] = new Route('kennel-puppy-list', 'kennel:kennel_puppy_list');
 $router[] = new Route('kennel-photogallery', 'kennel:kennel_photogallery');
+$router[] = new Route('kennel-videogallery', 'kennel:kennel_videogallery');
 $router[] = new Route('kennel-planned-litter-list', 'kennel:kennel_planned_litter_list');
 $router[] = new Route('kennel-friends-list', 'kennel:kennel_friends_list');
 $router[] = new Route('kennel-followers-list', 'kennel:kennel_followers_list');
@@ -247,6 +250,7 @@ $router[] = new Route('owner-videogallery', 'owner:owner_videogallery');
 $router[] = new Route('owner-friends-list', 'owner:owner_friends_list');
 $router[] = new Route('owner-followers-list', 'owner:owner_followers_list');
 $router[] = new Route('owner-photogallery', 'owner:owner_photogallery');
+$router[] = new Route('owner-videogallery', 'owner:video_photogallery');
 // Dog routes
 //---------------------------   Dogs / create profile -----------------------------------
 $router[] = new Route('add-dog', 'dog:dog_create_profile');
