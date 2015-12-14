@@ -20,7 +20,7 @@ RewriteCond %{REQUEST_FILENAME} !-d 
 #RewriteRule ^ru/www/templates/scripts/([A-Za-z0-9/_-]+).(php)$ www/templates/scripts/$1.$2
 #RewriteRule ^sk/www/templates/scripts/([A-Za-z0-9/_-]+).(php)$ www/templates/scripts/$1.$2
 
-RewriteRule !\.(pdf|js|ico|gif|jpg|jpeg|png|css|rar|zip|tar\.gz)$ index.php [L]
+RewriteRule !\.(pdf|js|ico|gif|jpg|jpeg|png|css|rar|zip|xml|tar\.gz)$ index.php [L]
 
 #default rules
 RewriteRule ^uploads/([A-Za-z0-9/_-]+).(jpg|jpeg|png)$ www/images.php?max_width=640&imgfile=uploads/$1.$2
