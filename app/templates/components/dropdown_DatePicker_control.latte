@@ -1,11 +1,11 @@
 {define #dropdown_DatePicker_control}
 <div>
-    <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
+    <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;"><span id="req-span-{$id}" style="color:red"></span>{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
 </div>
 <div class="row">
     <div class="col-md-12 form-group">
         <div class="input-group date">
-            <input type="text" class="form-control" n:name="{$name}"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+            <input type="text" class="form-control" id="{$id}" n:name="{$name}"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
         </div>
     </div>
 </div>
@@ -16,9 +16,12 @@
     $('.input-group.date').datepicker({
         format: "dd.mm.yyyy",
         todayBtn: "linked",
-	endDate: '0d',
+        endDate: '0d',
         //language: "sk",
         autoclose: true
     });
+    if ($("#" + {$id}).attr('required')) {
+        $("#req-span-" + {$id}).html("*");
+    }
 </script>
 {/define}

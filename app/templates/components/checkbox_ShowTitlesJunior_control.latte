@@ -1,7 +1,7 @@
 {define #checkbox_ShowTitlesJunior_control}
 <div class="form-group" id="div-{$name}">
     <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
-        <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description}</span>
+        <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;"><span id="req-span-{$id}" style="color:red"></span>{_$description}</span>
         <div class="checkbox">
             <label style="font-size: 13px;">
                 <input type="checkbox" id="{$id}" n:name="{$name}:CAJC" value="CAJC">CAJC
@@ -24,4 +24,9 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    if ($("#" + {$id}).attr('required')) {
+        $("#req-span-" + {$id}).html("*");
+    }
+</script>
 {/define}

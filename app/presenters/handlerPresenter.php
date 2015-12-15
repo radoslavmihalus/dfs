@@ -198,6 +198,14 @@ class handlerPresenter extends BasePresenter {
         $this->renderHandler_profile_home($id);
     }
 
+    public function renderHandler_videogallery($id = 0) {
+        if ($id == 0)
+            $id = $this->logged_in_handler_id;
+        $rows = $this->database->table("tbl_videos")->where("profile_id=?", $id)->fetchAll();
+        $this->template->photos = $rows;
+        $this->renderHandler_profile_home($id);
+    }
+    
     public function renderHandler_profile_home($id = 0) {
         if ($id == 0) {
             $id = $this->logged_in_handler_id;

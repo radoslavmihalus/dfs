@@ -2,16 +2,14 @@
 error_reporting(1);
 session_start();
 
-if(isset($_REQUEST['report']) && $_REQUEST['report']=='logout')
-{
+if (isset($_REQUEST['report']) && $_REQUEST['report'] == 'logout') {
     $_SESSION['loggedin'] = '';
 }
 
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 'admin')
-{
-}
-else
-        header('location: login.php');
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 'admin') {
+    
+} else
+    header('location: login.php');
 
 require_once ('object.class.php');
 
@@ -129,64 +127,67 @@ if (isset($_GET['report'])) {
         </style>
     </head>
     <body>
-        <?php
-        echo $bt->generateMenu();
-        ?>
+<?php
+echo $bt->generateMenu();
+?>
         <div style="height: auto; padding:10px 10px 10px 10px; border: 1px solid graytext">
-            <?php
-            if (isset($_GET['report'])) {
-                switch ($_GET['report']) {
-                    case 'forms':
-                        // echo $bt->generateForms();
-                        break;
-                    case 'active_users':
-                        echo $bt->generateActiveUsers();
-                        break;
-                    case 'users':
-                        echo $bt->generateUsers();
-                        break;
-                    case 'users_wo_profile':
-                        echo $bt->generateUsersWithoutProfile();
-                        break;
-                    case 'kennels':
-                        echo $bt->generateKennels();
-                        break;
-                    case 'owners':
-                        echo $bt->generateOwners();
-                        break;
-                    case 'handlers':
-                        echo $bt->generateHandlers();
-                        break;
-                    case 'dogs':
-                        echo $bt->generateDogs();
-                        break;
-                    case 'puppies':
-                        echo $bt->generatePuppies();
-                        break;
-                    case 'payments':
-                        echo $bt->generatePayments();
-                        break;
-                    case 'messages':
-                        echo $bt->generateMessages();
-                        break;
-                    case 'timeline':
-                        echo $bt->generateTimeline();
-                        break;
-                    case 'comments':
-                        echo $bt->generateComments();
-                        break;
-                    case 'likes':
-                        echo $bt->generateLikes();
-                        break;
-                    case 'timeline_events_types':
-                        echo $bt->generateTimelineEventsTypes();
-                        break;
-                    case 'translate':
-                        echo $bt->generateTranslate();
-                        break;
-                    case 'premium':
-                        echo $bt->generatePremiumVisits();
-                        break;
+        <?php
+        if (isset($_GET['report'])) {
+            switch ($_GET['report']) {
+                case 'forms':
+                    // echo $bt->generateForms();
+                    break;
+                case 'active_users':
+                    echo $bt->generateActiveUsers();
+                    break;
+                case 'users':
+                    echo $bt->generateUsers();
+                    break;
+                case 'users_wo_profile':
+                    echo $bt->generateUsersWithoutProfile();
+                    break;
+                case 'kennels':
+                    echo $bt->generateKennels();
+                    break;
+                case 'owners':
+                    echo $bt->generateOwners();
+                    break;
+                case 'handlers':
+                    echo $bt->generateHandlers();
+                    break;
+                case 'dogs':
+                    echo $bt->generateDogs();
+                    break;
+                case 'puppies':
+                    echo $bt->generatePuppies();
+                    break;
+                case 'payments':
+                    echo $bt->generatePayments();
+                    break;
+                case 'active_payments':
+                    echo $bt->generatePayments(NULL, 1);
+                    break;
+                case 'messages':
+                    echo $bt->generateMessages();
+                    break;
+                case 'timeline':
+                    echo $bt->generateTimeline();
+                    break;
+                case 'comments':
+                    echo $bt->generateComments();
+                    break;
+                case 'likes':
+                    echo $bt->generateLikes();
+                    break;
+                case 'timeline_events_types':
+                    echo $bt->generateTimelineEventsTypes();
+                    break;
+                case 'translate':
+                    echo $bt->generateTranslate();
+                    break;
+                case 'premium':
+                    echo $bt->generatePremiumVisits();
+                    break;
 //                    case 'stats':
 //                        if (isset($_GET['type'])) {
 //                            $type = $_GET['type'];
@@ -228,11 +229,11 @@ if (isset($_GET['report'])) {
 //                    case 'unset_all':
 //                        echo $bt->unset_all();
 //                        break;
-                }
-            } else {
-                echo $bt->generateUsers();
             }
-            ?>
+        } else {
+            echo $bt->generateUsers();
+        }
+        ?>
         </div>
         <script type="text/javascript">
             jQuery(document).on("ready blueticket_formsafterrequest", function () {

@@ -638,7 +638,7 @@ class DataModel {
      * @param type $event_image
      * @return bigint id of inserted timeline item
      */
-    function addToTimeline($profile_id, $event_id, $event_type, $description = NULL, $event_image = NULL) {
+    function addToTimeline($profile_id, $event_id, $event_type, $description = NULL, $event_image = NULL, $event_video = NULL) {
         /**
          * event_types :
          * 
@@ -655,6 +655,8 @@ class DataModel {
          * 11 - add show
          * 12 - add dog
          * 13 - add puppy
+         * 14 - championship
+         * 15 - video
          */
         $data = array();
 
@@ -663,6 +665,7 @@ class DataModel {
         $data['event_type'] = $event_type;
         $data['event_description'] = $description;
         $data['event_image'] = $event_image;
+        $data['event_video'] = $event_video;
 
         $this->database->table("tbl_timeline")->insert($data);
 
@@ -814,6 +817,30 @@ class DataModel {
         }
     }
 
+    static function getVideoRow($id) {
+        try {
+            $database = $GLOBALS['database'];
+            $row = $database->table("tbl_videos")->where("id=?", $id)->fetch();
+            return $row;
+        } catch (\Exception $ex) {
+            return array();
+        }
+    }
+    
+    static function getVideoDescription($id) {
+        try {
+//            require_once 'www/inc/config_ajax.php';
+//            $database = getContext();
+            $database = $GLOBALS['database'];
+
+            $row = $database->table("tbl_videos")->where("id=?", $id)->fetch();
+
+            return $row->description;
+        } catch (\Exception $ex) {
+            return '';
+        }
+    }
+
     static function getPhotoImage($id) {
         try {
 //            require_once 'www/inc/config_ajax.php';
@@ -893,6 +920,33 @@ class DataModel {
                     break;
                 case ($profile_id >= 600000000 && $profile_id < 700000000):
                     return "puppy:puppy_photogallery";
+                    break;
+                default :
+                    return "";
+                    break;
+            }
+        }
+    }
+
+    static function getVideoGalleryProfileLinkUrl($profile_id, $generated = FALSE) {
+        if ($generated) {
+            
+        } else {
+            switch ($profile_id) {
+                case ($profile_id >= 200000000 && $profile_id < 300000000):
+                    return "kennel:kennel_videogallery";
+                    break;
+                case ($profile_id >= 300000000 && $profile_id < 400000000):
+                    return "owner:owner_videogallery";
+                    break;
+                case ($profile_id >= 400000000 && $profile_id < 500000000):
+                    return "handler:handler_videogallery";
+                    break;
+                case ($profile_id >= 500000000 && $profile_id < 600000000):
+                    return "dog:dog_videogallery";
+                    break;
+                case ($profile_id >= 600000000 && $profile_id < 700000000):
+                    return "puppy:puppy_videogallery";
                     break;
                 default :
                     return "";
@@ -1059,6 +1113,14 @@ class DataModel {
                         else
                             return FALSE;
                     }
+                    break;
+                case 9: //video
+                    $row = $database->table("tbl_videos")->where("id=?", $id)->fetch();
+                    $user = $database->table("tbl_user")->where("id=?", $row->user_id)->fetch();
+                    if ($user->active_profile_id == $profile_id)
+                        return TRUE;
+                    else
+                        return FALSE;
                     break;
             }
         } catch (\Exception $ex) {

@@ -6,8 +6,8 @@
         {form formEditVideo}
             <h2 class="text-center text-uppercase"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Edit video'}</h2>
             <hr>
-            {include textbox_control, _form => $_form, description => "Description of the video", placeholder => "Description of the video", id => "txtPhotoName", name => "txtPhotoName", tooltip=>"Description of the video"}
-            {include textbox_control, _form => $_form, description => "Url link of your video", placeholder => "https://youtu.be/pxZD04759", id => "txtPhoto", name => "txtPhoto", tooltip=>"Paste url link of your video"}
+            {include textbox_control, _form => $_form, description => "Description of the video", placeholder => "Description of the video", id => "txtVideoName", name => "txtVideoName", tooltip=>"Description of the video"}
+            {include textbox_control, _form => $_form, description => "Url link of your video", placeholder => "https://youtu.be/pxZD04759", id => "txtVideo", name => "txtVideo", tooltip=>"Paste url link of your video"}
             <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Edit'}</button>
             <!--<button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-right" style="margin-right: 10px;">{_ 'Cancel'}</button>-->
         {/form}

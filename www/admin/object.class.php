@@ -127,7 +127,7 @@ class blueticket_objects {
 
         return $form->render();
     }
-    
+
     public function generateActiveUsers() {
         $form = blueticket_forms::get_instance();
 
@@ -138,7 +138,7 @@ class blueticket_objects {
         $form->table_name("Active users");
         $form->default_tab("Active users");
         $form->columns("registration_date, active, full_name, email, state, lang, last_login, login_count, premium_expiry_date, kennels, owners, handlers, dogs, puppies");
-        
+
         $form->label("premium_expiry_date", "PED");
         $form->label("last_login", "LL");
         $form->label("login_count", "LC");
@@ -183,7 +183,6 @@ class blueticket_objects {
 
         return $form->render();
     }
-    
 
     function generatePremiumVisits() {
         $form = blueticket_forms::get_instance();
@@ -489,24 +488,31 @@ class blueticket_objects {
         $dog->column_pattern('puppy_name', '<a target="_blank" href="http://www.dogforshow.com/puppy-profile?id={id}">{puppy_name}</a>');
     }
 
-    function generatePayments($form = NULL) {
+    function generatePayments($form = NULL, $only_active = 0) {
         if ($form != NULL) {
             $payment = $form->nested_table($this->getTranslatedText("Payments"), "id", "tbl_payments", "user_id");
             $payment->table_name("Payments");
             $payment->order_by('id', 'DESC');
-            $payment->columns("payment_datetime, user_id, full_name, amount, type, status");
+            $payment->columns("payment_datetime, user_id, full_name, amount, authorized, type, status");
             $payment->subselect("full_name", "SELECT concat(name, ' ', surname) FROM tbl_user WHERE id={user_id}");
+            $payment->subselect("authorized", "IF({status}>0,{amount},0)");
             $payment->highlight_row('status', '>', 0, '#B4E274');
             $payment->highlight_row('status', '=', 0, '#FFD6D6');
+            $payment->sum('amount,authorized');
         } else {
+            echo '<a href="?report=active_payments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Only active</a>';
             $payment = blueticket_forms::get_instance();
             $payment->table("tbl_payments");
+            if ($only_active > 0)
+                $payment->where("status > 0");
             $payment->table_name("Payments");
             $payment->order_by('id', 'DESC');
-            $payment->columns("payment_datetime, user_id, full_name, amount, type, status");
+            $payment->columns("payment_datetime, user_id, full_name, amount, authorized, type, status");
             $payment->subselect("full_name", "SELECT concat(name, ' ', surname) FROM tbl_user WHERE id={user_id}");
+            $payment->subselect("authorized", "IF({status}>0,{amount},0)");
             $payment->highlight_row('status', '>', 0, '#B4E274');
             $payment->highlight_row('status', '=', 0, '#FFD6D6');
+            $payment->sum('amount,authorized');
             return $payment->render();
         }
     }

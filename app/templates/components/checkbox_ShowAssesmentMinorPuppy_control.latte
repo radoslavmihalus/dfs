@@ -1,7 +1,7 @@
 {define #checkbox_ShowAssesmentMinorPuppy_control}
 <div class="form-group" id="div-{$name}">
     <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
-        <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight: bold;">{_$description}</span>
+        <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight: bold;"><span id="req-span-{$id}" style="color:red"></span>{_$description}</span>
         <label class="checkbox-inline" style="font-size: 13px;">
             <input type="checkbox" class="{$id}" id="{$id}" n:name="{$name}:VP1"  value="VP1">VP 1
         </label>
@@ -16,12 +16,17 @@
         </label>
     </div>
     <script type="text/javascript">
-	$(function () {
-	    $("input:checkbox." + {$id}).click(function () {
-		$("input:checkbox." + {$id}).not($(this)).removeAttr("checked");
-		$(this).attr("checked", $(this).attr("checked"));
-	    });
-	});
+        $(function () {
+            $("input:checkbox." + {$id}).click(function () {
+                $("input:checkbox." + {$id}).not($(this)).removeAttr("checked");
+                $(this).attr("checked", $(this).attr("checked"));
+            });
+        });
+    </script>
+    <script type="text/javascript">
+    if ($("#" + {$id}).attr('required')) {
+        $("#req-span-" + {$id}).html("*");
+    }
     </script>
 </div>
 {/define}

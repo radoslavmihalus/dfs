@@ -1,6 +1,6 @@
 {define #image_UploadPicture_control}
 <div class="form-group">
-    <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
+    <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;"><span id="req-span-{$id}" style="color:red"></span>{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
     <div id="old_image{$name}" style="width:240px; height: 180px;margin-bottom: 10px; background-repeat:no-repeat;background-size:cover;"><button type="button" id="delete{$name}" class="btn btn-danger btn-sm" style="position: relative; left: 203px;top: 5px;"><i class="fa fa-trash"></i></button></div>
     <!-- imgSelect Container -->
     <div id="imgselect_container{$name}">
@@ -104,5 +104,8 @@
     url = "url(" + str + ")";
             $('#old_image' + {$name}).css("background-image", url);
     });
+    if ($("#" + {$id}).attr('required')) {
+        $("#req-span-" + {$id}).html("*");
+    }
 </script>
 {/define}

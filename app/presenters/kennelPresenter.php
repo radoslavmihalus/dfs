@@ -394,6 +394,14 @@ class kennelPresenter extends BasePresenter {
         $this->template->photos = $rows;
         $this->renderKennel_profile_home($id);
     }
+    
+    public function renderKennel_videogallery($id = 0) {
+        if ($id == 0)
+            $id = $this->logged_in_kennel_id;
+        $rows = $this->database->table("tbl_videos")->where("profile_id=?", $id)->fetchAll();
+        $this->template->photos = $rows;
+        $this->renderKennel_profile_home($id);
+    }
 
     public function renderKennel_dog_list_home($id = 0) {
         if ($id == 0)

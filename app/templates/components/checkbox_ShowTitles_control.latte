@@ -1,13 +1,13 @@
 {define #checkbox_ShowTitles_control}
 <div class="form-group" id="div-{$name}">
     <div class="col-md-12" style="margin-top: 10px;margin-bottom: 10px;">
-        <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description}</span>
+        <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;"><span id="req-span-{$id}" style="color:red"></span>{_$description}</span>
         <div class="checkbox">
             <label style="font-size: 13px;">
                 <input type="checkbox" id="{$id}" n:name="{$name}:CAC" value="CAC">CAC
             </label>
         </div>
-            <div class="checkbox">
+        <div class="checkbox">
             <label style="font-size: 13px;">
                 <input type="checkbox" id="{$id}" n:name="{$name}:RESCAC" value="RESCAC">RESERVE CAC
             </label>
@@ -27,11 +27,16 @@
                 <input type="checkbox" id="{$id}" n:name="{$name}:BOS" value="BOS">BOS
             </label>
         </div>
-            <div class="checkbox">
+        <div class="checkbox">
             <label style="font-size: 13px;">
                 <input type="checkbox" id="{$id}" n:name="{$name}:BOB" value="BOB">BOB
             </label>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    if ($("#" + {$id}).attr('required')) {
+        $("#req-span-" + {$id}).html("*");
+    }
+</script>
 {/define}

@@ -221,7 +221,7 @@ class ownerPresenter extends BasePresenter {
     public function renderOwner_videogallery($id = 0) {
         if ($id == 0)
             $id = $this->logged_in_owner_id;
-        $rows = $this->database->table("tbl_photos")->where("profile_id=?", $id)->fetchAll();
+        $rows = $this->database->table("tbl_videos")->where("profile_id=?", $id)->fetchAll();
         $this->template->photos = $rows;
         $this->renderOwner_profile_home($id);
     }

@@ -122,6 +122,12 @@ class puppyPresenter extends BasePresenter {
 //        $this->renderKennel_profile_home($id);
     }
 
+    public function renderPuppy_videogallery($id) {
+        $rows = $this->database->table("tbl_videos")->where("profile_id=?", $id)->fetchAll();
+        $this->template->photos = $rows;
+        $this->renderDefault($id);
+//        $this->renderKennel_profile_home($id);
+    }
     /*     * ******************* action methods ******************** */
 
     public function actionPuppy_create_profile($plid = 0) {
