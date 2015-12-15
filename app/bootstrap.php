@@ -212,6 +212,7 @@ $router[] = new Route('handler-show-edit', 'handler:handler_show_edit');
 $router[] = new Route('handler-friends-list', 'handler:handler_friends_list');
 $router[] = new Route('handler-followers-list', 'handler:handler_followers_list');
 $router[] = new Route('handler-photogallery', 'handler:handler_photogallery');
+$router[] = new Route('handler-videogallery', 'handler:handler_videogallery');
 // Owner routes
 //---------------------------   Owner / create profile -----------------------------------
 $router[] = new Route('owner-create-profile', 'owner:owner_create_profile');
@@ -356,6 +357,7 @@ $router[] = new Route('dog-coowner-add', 'dog:dog_coowner_add');
 $router[] = new Route('dog-coowner-edit', 'dog:dog_coowner_edit');
 $router[] = new Route('dog-planned-litter-list', 'dog:dog_planned_litter_list');
 $router[] = new Route('dog-photogallery', 'dog:dog_photogallery');
+$router[] = new Route('dog-videogallery', 'dog:dog_videogallery');
 // Puppy routes
 //---------------------------   Puppies / Puppy list -----------------------------------
 $router[] = new Route('puppies-for-sale', array(
