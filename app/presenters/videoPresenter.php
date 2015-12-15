@@ -37,7 +37,7 @@ class videoPresenter extends BasePresenter {
         if (!\DataModel::getPremium($this->logged_in_id)) {
             $cnt = $this->database->table("tbl_videos")->where("profile_id=?", $profile_id)->count();
 
-            if ($cnt > 4) {
+            if ($cnt > -1) {
                 $this->redirect("user:user_premium");
                 $this->terminate();
             }
@@ -81,8 +81,14 @@ class videoPresenter extends BasePresenter {
             $user_id = \DataModel::getUserIdByProfileId($this->photo_profile_id);
 
             $url = $values->txtVideo;
-            parse_str(parse_url($url, PHP_URL_QUERY), $my_array_of_vars);
-            $url = $my_array_of_vars['v'];
+            
+            if (strpos($url, 'youtu.be') !== false) {
+                $my_array_of_vars = explode("/", $url);
+                $url = $my_array_of_vars[count($my_array_of_vars) - 1];
+            } else {
+                parse_str(parse_url($url, PHP_URL_QUERY), $my_array_of_vars);
+                $url = $my_array_of_vars['v'];
+            }
 
             $data['profile_id'] = $this->photo_profile_id;
             $data['user_id'] = $user_id;
@@ -105,8 +111,15 @@ class videoPresenter extends BasePresenter {
             $values = $button->getForm()->getValues();
 
             $url = $values->txtVideo;
-            parse_str(parse_url($url, PHP_URL_QUERY), $my_array_of_vars);
-            $url = $my_array_of_vars['v'];
+            
+            if (strpos($url, 'youtu.be') !== false) {
+                $my_array_of_vars = explode("/", $url);
+                $url = $my_array_of_vars[count($my_array_of_vars) - 1];
+            } else {
+                parse_str(parse_url($url, PHP_URL_QUERY), $my_array_of_vars);
+                $url = $my_array_of_vars['v'];
+            }
+
 
             $data['image'] = "http://img.youtube.com/vi/$url/0.jpg";
             $data['video'] = $values->txtVideo;

@@ -591,6 +591,11 @@ class DataModel {
         return $database->table("tbl_photos")->where("profile_id=?", $profile_id)->count();
     }
 
+    static function getVideosCount($profile_id) {
+        $database = $GLOBALS['database'];
+
+        return $database->table("tbl_videos")->where("profile_id=?", $profile_id)->count();
+    }
 //dog counters functions
 
 

@@ -8,72 +8,25 @@
             <div class="modal-body">
                 <div class="container-fluid" style="padding:5px 0px 5px 0px">
                     <!--                    <a data-dismiss="modal"><img src="{ DataModel::getPhotoImage($row->id)}" class="img-responsive" style="margin-left: auto;margin-right: auto;margin-bottom: 10px;"></a>-->
-                    <div id="player{$row->id}"></div>
-                    <script>
-                        // 2. This code loads the IFrame Player API code asynchronously.
-
-                        // 3. This function creates an <iframe> (and YouTube player)
-                        //    after the API code downloads.
-                        var player{$row->id};
-
-                        //function onYouTubeIframeAPIReady() {
-                        player{$row->id} = new YT.Player('player' + {$row->id}, {
-                            //height: '390',
-                            width: '100%',
-                            videoId: {$row->youtube}
-                        });
-                        //}
-
-                        $("#modalFlashVideoGallery" + {$row->id}).on('hidden.bs.modal', function () {
-                            player{$row->id}.stopVideo();
-                            // do something…
-                        });
-
-                        $("#modalFlashVideoGallery" + {$row->id}).on('shown.bs.modal', function () {
-                            player{$row->id}.playVideo();
-                        })
-                    </script>
-                    <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
-                        <a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;">{DataModel::getTimelineLikesCount(0,$row->id)}</span></a>
-                    </div>
-                    <!--                    { foreach $row->related("tbl_comments","event_id") as $row_comments}
-                                            <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-                                                <img class="user-block-thumb" src={DataModel::getProfileImage($row_comments->profile_id)}/>
-                                                <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">{DataModel::getProfileName($row_comments->profile_id)}</a></span>
-                                                <span class="notification-item-event-time">{$row_comments->comment_date_time|date:'%d.%m.%Y'}|&nbsp;{$row_comments->comment_date_time|date:'H:i'}</span>
-                                                <span class="notification-item-event" style="color:black">{$row_comments->comment}</span>
-                                            </div>
-                                        { /foreach}-->
+                    <div id="ctl100_phContent_div{$row->id}player"></div>
                 </div>
-                <script type="text/javascript">
-                    $("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
-                    {
-                        event.preventDefault();
-
-                        $("#ajax-spinner").show();
-
-                        $.ajax({
-                            url: "/?do=LikesList&timeline_id=0&event_id={$row->id}",
-                            dataType: 'html',
-                        }).done(function (data) {
-                            $("#modalTextInformation").html(data);
-                            $("#modalTitleInformation").html({_'Peoples who liked this'});
-                            $("#modalFlashInformation").modal("show");
-                            $("#ajax-spinner").hide();
-                        });
-                    });
-                </script>
-                <!--                <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;margin-bottom: 10px;">
-                                    <input type="hidden" value="{$row->id}" name="snippet_id" id="frm-commentTimeline-{$row->id}-snippet_id">
-                                    <input type="text" class="form-control font_size_13px no-live-validation" style="z-index: 0;" placeholder="Write a comment..." name="comment" id="frm-commentTimeline-{$row->id}-comment" required="" data-nette-rules="">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default font_size_13px no-live-validation" id="submitTimeline-{$row->id}" type="submit" name="btnSubmit"><i class="fa fa-comment fa-1x"></i></button>
-                                    </span>
-                                </div>-->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{_ 'Close'}</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{_ 'Close'}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/javascript">
+    //playVideo
+    $("#modalFlashVideoGallery{$row->id}").on("shown.bs.modal", function ()
+    {
+        //alert("shown");
+        window.ctl100_phContent_{$row->id}player.playVideo();
+    });
+    //stopVideo
+    $("#modalFlashVideoGallery{$row->id}").on("hidden.bs.modal", function ()
+    {
+        window.ctl100_phContent_{$row->id}player.stopVideo();
+    });
+</script>

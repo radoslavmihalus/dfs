@@ -28,7 +28,7 @@ services:
     - App\Model\AlbumRepository
     nette.latteFactory:
         setup:
-#            - setTempDirectory("%tempDir%/pages")
-            - setTempDirectory(null)
+            - setTempDirectory("%tempDir%/pages")
+#            - setTempDirectory(null)
 #    - App\Model\DFSTranslator
 #    router: App\RouterFactory::createRouter

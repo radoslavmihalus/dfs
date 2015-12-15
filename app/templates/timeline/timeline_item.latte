@@ -311,4 +311,55 @@
         return false;
     });
 </script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    var borderless = false;
+//    $('#blueimp-gallery').data('useBootstrapModal', !borderless);
+//    $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', !borderless);
+</script>
+
+<script>
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.ytPlayerList = [];
+    window.players = [];
+</script>
+
+<script type="text/javascript">
+    {foreach $timeline_rows as $row}
+        {if ($row->event_type == 15)}
+            {var $row_video = DataModel::getVideoRow($row->event_id)}
+    window.ytPlayerList.push(
+            {
+                Id: 'ctl100_phContent_{$row_video->id}player',
+                DivId: 'ctl100_phContent_div{$row_video->id}player',
+                VideoId: {$row_video->youtube}
+            }
+    );
+        {/if}
+    {/foreach}
+
+    function onYouTubeIframeAPIReady() {
+        initVideos();
+    }
+
+    function initVideos() {
+        for (var i = 0; i < ytPlayerList.length; i++) {
+            var player = ytPlayerList[i];
+            var pl = new YT.Player(player.DivId, {
+                width: '100%',
+                videoId: player.VideoId,
+            });
+            window[player.Id] = pl;
+        }
+    }
+</script>
+
 {/define}

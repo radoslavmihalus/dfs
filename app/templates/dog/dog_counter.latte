@@ -16,8 +16,8 @@
         <a n:href="dog_photogallery id=>$dog->id" class="list-group-item">
             <i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<span class="badge">{DataModel::getPhotosCount($dog->id)}</span>
         </a>
-        <a href="#" class="list-group-item">
-            <i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}<span class="badge">0</span>
+        <a n:href="dog_videogallery id=>$dog->id" class="list-group-item">
+            <i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}<span class="badge">{DataModel::getVideosCount($dog->id)}</span>
         </a>
         {if ($dog->dog_gender == "Dog")}
         <a n:href="dog_mating_list id=>$dog->id" class="list-group-item">
