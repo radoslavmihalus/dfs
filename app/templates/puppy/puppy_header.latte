@@ -26,13 +26,13 @@
                 <div class="dropdown" style="float:left;">
                     <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><i class="fa fa-share-alt"></i>&nbsp;{_ 'Share'}&nbsp;<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="Share" style="min-width:50px;">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-facebook-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Facebook'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-google-plus-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Google+'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-twitter-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Twitter'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-pinterest-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Pinterest'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-tumblr-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Tumblr'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-envelope-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Email'}</span></a></li>
-                        </ul>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.facebook.com/sharer/sharer.php?u={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-facebook-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Facebook'}</span></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/share?url={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-google-plus-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Google+'}</span></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/home?status={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-twitter-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Twitter'}</span></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="https://pinterest.com/pin/create/button/?url={!DataModel::getShareUrl($lang,$dog->id)}&media={$share_tags['image']}&image_url={$share_tags['image']}&description={$share_tags['description']}"><i class="fa fa-pinterest-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Pinterest'}</span></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="http://tumblr.com/widgets/share/tool?canonicalUrl={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-tumblr-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Tumblr'}</span></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-envelope-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Email'}</span></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
                             <a style="margin-top: 10px" n:href="user:user_message_compose profile_id=>$dog->profile_id" class="btn btn-default btn-lg"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</a>
                         {/if}
                     {else}
-                            <a style="margin-top: 10px"  id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-default btn-lg"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</a>
+                        <a style="margin-top: 10px"  id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-default btn-lg"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</a>
                     {/if}
                 {/if}
             </div>

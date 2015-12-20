@@ -596,6 +596,7 @@ class DataModel {
 
         return $database->table("tbl_videos")->where("profile_id=?", $profile_id)->count();
     }
+
 //dog counters functions
 
 
@@ -831,7 +832,7 @@ class DataModel {
             return array();
         }
     }
-    
+
     static function getVideoDescription($id) {
         try {
 //            require_once 'www/inc/config_ajax.php';
@@ -1162,4 +1163,348 @@ class DataModel {
             return FALSE;
         }
     }
+
+// share tags
+
+    static function getURL() {
+        $url = "http://" . $_SERVER['HTTP_HOST'];
+        return $url;
+    }
+
+    static function getShareTags($lang, $id, $alt_id = 0) {
+//        $lang = $GLOBALS['lang'];
+        $translator = new App\Presenters\DFSTranslator($lang);
+        $database = $GLOBALS['database'];
+
+        $title = "DOGFORSHOW";
+        $description = "";
+        $image = "";
+        $url = DataModel::getShareUrl($lang, $id, $alt_id);
+
+        switch ($id) {
+            case ($id >= 200000000 && $id < 300000000):
+                // kennel 200000000
+                $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
+                $title = mb_strtoupper($row->kennel_name) . " - " . $translator->translate("Kennel");
+                $description = $row->kennel_description;
+                $image = DataModel::getURL() . "/" . $row->kennel_profile_picture;
+                break;
+            case ($id >= 300000000 && $id < 400000000):
+                // owner 300000000
+                $row = $database->table("tbl_userowner")->where("id=?", $id)->fetch();
+                $description = $row->owner_description;
+                $image = DataModel::getURL() . "/" . $row->owner_profile_picture;
+                $user_id = $row->user_id;
+                $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+                $title = mb_strtoupper($row->name . " " . $row->surname) . " - " . $translator->translate("Owner of purebred dog");
+                break;
+            case ($id >= 400000000 && $id < 500000000):
+                // handler 400000000
+                $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
+                $description = $row->handler_description;
+                $image = DataModel::getURL() . "/" . $row->handler_profile_picture;
+                $user_id = $row->user_id;
+                $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+                $title = mb_strtoupper($row->name . " " . $row->surname) . " - " . $translator->translate("Handler");
+                break;
+            case ($id >= 500000000 && $id < 600000000):
+                // dog 500000000
+                $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
+                $title = mb_strtoupper($row->dog_name);
+                $description = mb_strtoupper($row->breed_name) . " | " . mb_strtoupper($translator->translate($row->dog_gender)) . " | " . mb_strtoupper($translator->translate($row->country));
+                $image = DataModel::getURL() . "/" . $row->dog_image;
+                break;
+            case ($id >= 600000000 && $id < 700000000):
+                // puppy 600000000
+                $row = $database->table("tbl_puppies")->where("id=?", $id)->fetch();
+                $title = mb_strtoupper($translator->translate($row->puppy_state)) . " - " . mb_strtoupper($row->puppy_name);
+                $description = mb_strtoupper($row->breed_name) . " | " . mb_strtoupper($translator->translate($row->puppy_gender)) . " | " . mb_strtoupper($translator->translate($row->country)) . " | " . $row->puppy_description;
+                $image = DataModel::getURL() . "/" . $row->puppy_photo;
+                break;
+            case ($id >= 800000000 && $id < 900000000):
+                // dog show 800000000
+                $row = $database->table("tbl_dogs_shows")->where("id=?", $id)->fetch();
+                $dog = $database->table("tbl_dogs")->where("id=?", $row->dog_id)->fetch();
+
+                $title = mb_strtoupper(date("d.m.Y", strtotime($row->show_date)) . " - " . $row->show_name . " - " . $translator->translate($row->show_country));
+
+                $results = "";
+
+                if ($row->VP1 == 1)
+                    $results .= "VP1,";
+                if ($row->VP2 == 1)
+                    $results .= "VP2,";
+                if ($row->VP3 == 1)
+                    $results .= "VP3,";
+                if ($row->VP == 1)
+                    $results .= "VP,";
+                if ($row->BestMinorPuppy1 == 1)
+                    $results .= "Best minor puppy 1,";
+                if ($row->BestMinorPuppy2 == 1)
+                    $results .= "Best minor puppy 2,";
+                if ($row->BestMinorPuppy3 == 1)
+                    $results .= "Best minor puppy 3,";
+                if ($row->BestPuppy1 == 1)
+                    $results .= "Best puppy male & female 1,";
+                if ($row->BestPuppy2 == 1)
+                    $results .= "Best puppy male & female 2,";
+                if ($row->BestPuppy3 == 1)
+                    $results .= "Best puppy male & female 3,";
+                if ($row->EXC1 == 1)
+                    $results .= "EXC1,";
+                if ($row->EXC2 == 1)
+                    $results .= "EXC2,";
+                if ($row->EXC3 == 1)
+                    $results .= "EXC3,";
+                if ($row->EXC4 == 1)
+                    $results .= "EXC4,";
+                if ($row->VG1 == 1)
+                    $results .= "VG1,";
+                if ($row->VG2 == 1)
+                    $results .= "VG2,";
+                if ($row->VG3 == 1)
+                    $results .= "VG3,";
+                if ($row->VG4 == 1)
+                    $results .= "VG4,";
+                if ($row->CAJC == 1)
+                    $results .= "CAJC,";
+                if ($row->JBOB == 1)
+                    $results .= "JBOB,";
+                if ($row->CAC == 1)
+                    $results .= "CAC,";
+                if ($row->RESCAC == 1)
+                    $results .= "RESCAC,";
+                if ($row->CACIB == 1)
+                    $results .= "CACIB,";
+                if ($row->RESCACIB == 1)
+                    $results .= "RESCACIB,";
+                if ($row->BOB == 1)
+                    $results .= "BOB,";
+                if ($row->BOS == 1)
+                    $results .= "BOS,";
+                if ($row->JBOG1 == 1)
+                    $results .= "JBOG1,";
+                if ($row->JBOG2 == 1)
+                    $results .= "JBOG2,";
+                if ($row->JBOG3 == 1)
+                    $results .= "JBOG3,";
+                if ($row->JBIS1 == 1)
+                    $results .= "JBIS1,";
+                if ($row->JBIS2 == 1)
+                    $results .= "JBIS2,";
+                if ($row->JBIS3 == 1)
+                    $results .= "JBIS3,";
+                if ($row->BOG1 == 1)
+                    $results .= "BOG1,";
+                if ($row->BOG2 == 1)
+                    $results .= "BOG2,";
+                if ($row->BOG3 == 1)
+                    $results .= "BOG3,";
+                if ($row->BIS1 == 1)
+                    $results .= "BIS1,";
+                if ($row->BIS2 == 1)
+                    $results .= "BIS2,";
+                if ($row->BIS3 == 1)
+                    $results .= "BIS3,";
+
+                $results .= $row->other_title;
+
+                $description = mb_strtoupper($dog->dog_name) . " - " . $translator->translate("Class") . ": " . $translator->translate($row->show_class) . " - " . $results . " - " . $translator->translate("Judge") . ": " . $row->judge_name;
+                $image = DataModel::getURL() . "/" . $row->show_image;
+                break;
+            case ($id >= 2600000000 && $id < 2700000000):
+                // handler show 2600000000
+                $row = $database->table("tbl_handler_shows")->where("id=?", $id)->fetch();
+                $row_group = $database->table("tbl_handler_show_groups")->where("id=?", $row->show_id)->fetch();
+
+                $title = mb_strtoupper(date("d.m.Y", strtotime($row_group->show_date)) . " - " . $row_group->show_name . " - " . $translator->translate($row_group->show_country));
+
+                $results = "";
+
+                if ($row->VP1 == 1)
+                    $results .= "VP1,";
+                if ($row->VP2 == 1)
+                    $results .= "VP2,";
+                if ($row->VP3 == 1)
+                    $results .= "VP3,";
+                if ($row->VP == 1)
+                    $results .= "VP,";
+                if ($row->BestMinorPuppy1 == 1)
+                    $results .= "Best minor puppy 1,";
+                if ($row->BestMinorPuppy2 == 1)
+                    $results .= "Best minor puppy 2,";
+                if ($row->BestMinorPuppy3 == 1)
+                    $results .= "Best minor puppy 3,";
+                if ($row->BestPuppy1 == 1)
+                    $results .= "Best puppy male & female 1,";
+                if ($row->BestPuppy2 == 1)
+                    $results .= "Best puppy male & female 2,";
+                if ($row->BestPuppy3 == 1)
+                    $results .= "Best puppy male & female 3,";
+                if ($row->EXC1 == 1)
+                    $results .= "EXC1,";
+                if ($row->EXC2 == 1)
+                    $results .= "EXC2,";
+                if ($row->EXC3 == 1)
+                    $results .= "EXC3,";
+                if ($row->EXC4 == 1)
+                    $results .= "EXC4,";
+                if ($row->VG1 == 1)
+                    $results .= "VG1,";
+                if ($row->VG2 == 1)
+                    $results .= "VG2,";
+                if ($row->VG3 == 1)
+                    $results .= "VG3,";
+                if ($row->VG4 == 1)
+                    $results .= "VG4,";
+                if ($row->CAJC == 1)
+                    $results .= "CAJC,";
+                if ($row->JBOB == 1)
+                    $results .= "JBOB,";
+                if ($row->CAC == 1)
+                    $results .= "CAC,";
+                if ($row->RESCAC == 1)
+                    $results .= "RESCAC,";
+                if ($row->CACIB == 1)
+                    $results .= "CACIB,";
+                if ($row->RESCACIB == 1)
+                    $results .= "RESCACIB,";
+                if ($row->BOB == 1)
+                    $results .= "BOB,";
+                if ($row->BOS == 1)
+                    $results .= "BOS,";
+                if ($row->JBOG1 == 1)
+                    $results .= "JBOG1,";
+                if ($row->JBOG2 == 1)
+                    $results .= "JBOG2,";
+                if ($row->JBOG3 == 1)
+                    $results .= "JBOG3,";
+                if ($row->JBIS1 == 1)
+                    $results .= "JBIS1,";
+                if ($row->JBIS2 == 1)
+                    $results .= "JBIS2,";
+                if ($row->JBIS3 == 1)
+                    $results .= "JBIS3,";
+                if ($row->BOG1 == 1)
+                    $results .= "BOG1,";
+                if ($row->BOG2 == 1)
+                    $results .= "BOG2,";
+                if ($row->BOG3 == 1)
+                    $results .= "BOG3,";
+                if ($row->BIS1 == 1)
+                    $results .= "BIS1,";
+                if ($row->BIS2 == 1)
+                    $results .= "BIS2,";
+                if ($row->BIS3 == 1)
+                    $results .= "BIS3,";
+
+                $results .= $row->other_title;
+
+                $description = mb_strtoupper($row->dog_name) . " - " . $translator->translate("Class") . ": " . $translator->translate($row->show_class) . " - " . $results . " - " . $translator->translate("Judge") . ": " . $row->judge_name;
+                $image = DataModel::getURL() . "/" . $row->show_image;
+                break;
+            case ($id >= 700000000 && $id < 800000000):
+                // planned litter 700000000
+                $row = $database->table("tbl_planned_litters")->where("id=?", $id)->fetch();
+                $title = $translator->translate("Planned litter") . " - " . $row->month . "/" . $row->year;
+                $description = mb_strtoupper($row->dog_name) . " X " . mb_strtoupper($row->bitch_name) . " - " . mb_strtoupper($row->bitch_breed);
+                $image = DataModel::getURL() . "/" . $row->bitch_image;
+                break;
+            default :
+                return "";
+                break;
+        }
+
+        $return = array();
+
+        $return['title'] = $title;
+        $return['description'] = $description;
+        $return['image'] = $image;
+        $return['url'] = $url;
+
+        return $return;
+    }
+
+    static function getShareUrl($lang, $id, $alt_id = 0, $encode = FALSE) {
+        //$lang = $GLOBALS['lang'];
+        $url = DataModel::getURL();
+        $return = "";
+        switch ($id) {
+            case ($id >= 200000000 && $id < 300000000):
+                // kennel 200000000
+                $return = "$url/kennel-profile?id=$id&lang=$lang";
+                break;
+            case ($id >= 300000000 && $id < 400000000):
+                // owner 300000000
+                $return = "$url/owner-profile?id=$id&lang=$lang";
+                break;
+            case ($id >= 400000000 && $id < 500000000):
+                // handler 400000000
+                $return = "$url/handler-profile?id=$id&lang=$lang";
+                break;
+            case ($id >= 500000000 && $id < 600000000):
+                // dog 500000000
+                $return = "$url/dog?id=$id&lang=$lang";
+                break;
+            case ($id >= 600000000 && $id < 700000000):
+                // puppy 600000000
+                $return = "$url/puppy-profile?id=$id&lang=$lang";
+                break;
+            case ($id >= 800000000 && $id < 900000000):
+                // dog show 800000000
+                $return = "$url/dog-show-list?id=$alt_id&dog_id=$alt_id&show=$id&lang=$lang#showid_$id";
+                break;
+            case ($id >= 2600000000 && $id < 2700000000):
+                // handler show 2600000000
+                $return = "$url/handler-show-list?id=$alt_id&show=$id&lang=$lang#showid_$id";
+                break;
+            case ($id >= 700000000 && $id < 800000000):
+                // planned litter 700000000
+                $return = "$url/kennel-planned-litter-list?id=$alt_id&litter=$id&lang=$lang#litterid_$id";
+                break;
+            default :
+                $return = "";
+                break;
+        }
+
+        if ($encode)
+            return urlencode($return);
+        else
+            return $return;
+    }
+
+    static function getShareType($id = 0) {
+        $ret_id = 0;
+        if ($id >= 100000000 && $id < 200000000) {
+            // user 100000000
+            $ret_id = 0;
+        } elseif ($id >= 200000000 && $id < 300000000) {
+            // kennel 200000000
+            $ret_id = 1;
+        } elseif ($id >= 300000000 && $id < 400000000) {
+            // owner 300000000
+            $ret_id = 2;
+        } elseif ($id >= 400000000 && $id < 500000000) {
+            // handler 400000000
+            $ret_id = 3;
+        } elseif ($id >= 500000000 && $id < 600000000) {
+            // dog 500000000
+            $ret_id = 4;
+        } elseif ($id >= 600000000 && $id < 700000000) {
+            // puppy 600000000
+            $ret_id = 5;
+        } elseif ($id >= 800000000 && $id < 900000000) {
+            // dog show 800000000
+            $ret_id = 6;
+        } elseif ($id >= 2600000000 && $id < 2700000000) {
+            // handler show 2600000000
+            $ret_id = 7;
+        } elseif ($id >= 700000000 && $id < 800000000) {
+            // planned litter 700000000
+            $ret_id = 8;
+        }
+
+        return $ret_id;
+    }
+
 }

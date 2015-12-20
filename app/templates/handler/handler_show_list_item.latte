@@ -1,5 +1,8 @@
 {define #handler_show_list_item}
 {foreach $handler_shows as $show}
+    {foreach $show->related("tbl_handler_shows","show_id") as $row}
+        <a name="showid_{$row->id}"></a>
+    {/foreach}
     <div class="row" style="padding:10px 10px 0px 10px;background-color: #f8f8f8;border:#E0E0E0 1px solid;box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0px 2px 7px rgba(0,0,0,0.1);">
         <div class="col-lg-1 col-md-2 column-spacer">
             <span class="text-left" style="color:#777;">{$show->show_date|date:'%d.%m.%Y'}</span>
@@ -100,14 +103,14 @@
                 </div>
                 <div class="col-lg-3 col-md-3 column-spacer">
                     <a class="btn btn-default btn-xs dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><i class="fa fa-share-alt"></i>&nbsp;{_ 'Share'}&nbsp;<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="Share" style="min-width:50px;">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-facebook-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Facebook'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-google-plus-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Google+'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-twitter-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Twitter'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-pinterest-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Pinterest'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-tumblr-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Tumblr'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-envelope-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Email'}</span></a></li>
-                        </ul>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="Share" style="min-width:50px;">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.facebook.com/sharer/sharer.php?u={DataModel::getShareUrl($lang,$row->id, $row->handler_id, TRUE)}"><i class="fa fa-facebook-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Facebook'}</span></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/share?url={DataModel::getShareUrl($lang,$row->id, $row->handler_id, TRUE)}"><i class="fa fa-google-plus-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Google+'}</span></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/home?status={DataModel::getShareUrl($lang,$row->id, $row->handler_id, TRUE)}"><i class="fa fa-twitter-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Twitter'}</span></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="https://pinterest.com/pin/create/button/?url={DataModel::getShareUrl($lang,$row->id, $row->handler_id, TRUE)}&media={$share_tags['image']}&image_url={$share_tags['image']}&description={$share_tags['description']}"><i class="fa fa-pinterest-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Pinterest'}</span></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="http://tumblr.com/widgets/share/tool?canonicalUrl={DataModel::getShareUrl($lang,$row->id, $row->handler_id, TRUE)}"><i class="fa fa-tumblr-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Tumblr'}</span></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-envelope-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Email'}</span></a></li>
+                    </ul>
                     {if DataModel::getPermission($row->handler_id,$logged_in_id,3)}
                         <a n:href="handler:handler_show_edit id=>$row->id" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Edit'}" type="button"><i class="fa fa-pencil"></i></a>
                         <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_ 'Delete'}" type="button"><i class="fa fa-trash"></i></button>
