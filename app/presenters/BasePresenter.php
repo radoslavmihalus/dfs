@@ -346,7 +346,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 if ($action == "dog_show_list" || $action == "handler_show_list") // zdielanie vystavy
                     $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['show'], $id);
                 else
-                if ($action == "kennel_planned_litter_list" || $action == "planned_litter_list")
+                if ($action == "kennel_planned_litter_list")
                     $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['litter'], $id);
                 else
                     $sharer_tags = \DataModel::getShareTags($this->translator->lang, $id);
@@ -366,7 +366,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 if ($action == "handler_show_list")
                     $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['show'], $this->logged_in_profile_id);
                 else
-                if ($action == "kennel_planned_litter_list" || $action == "planned_litter_list")
+                if ($action == "kennel_planned_litter_list")
                     $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['litter'], $this->logged_in_profile_id);
             }
         }
