@@ -297,6 +297,11 @@ class DataModel {
 // handler_profile_picture
                 $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
                 $image = DataModel::getProfileImage($row->profile_id);
+            } elseif ($id >= 600000000 && $id < 700000000) {
+// puppy 600000000
+// handler_profile_picture
+                $row = $database->table("tbl_puppies")->where("id=?", $id)->fetch();
+                $image = DataModel::getProfileImage($row->profile_id);
             } else {
                 $image = "www/img/avatar.jpg";
             }
@@ -341,6 +346,11 @@ class DataModel {
 // dog 500000000
 // handler_profile_picture
                 $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
+                $name = DataModel::getProfileName($row->profile_id);
+            } elseif ($id >= 600000000 && $id < 700000000) {
+// puppy 600000000
+// handler_profile_picture
+                $row = $database->table("tbl_puppies")->where("id=?", $id)->fetch();
                 $name = DataModel::getProfileName($row->profile_id);
             } else {
                 $row = $database->table("tbl_user")->where("id=?", $id)->fetch();
