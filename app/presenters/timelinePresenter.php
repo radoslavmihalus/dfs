@@ -25,7 +25,7 @@ class timelinePresenter extends BasePresenter {
         $count = $this->data_model->getTimelineCount();
 
         $this->paginator->getPaginator()->setItemCount($count);
-        $this->paginator->getPaginator()->setItemsPerPage(9);
+        $this->paginator->getPaginator()->setItemsPerPage(18);
 
         $this->template->timeline_rows = $this->data_model->getTimeline(0, $this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset());
     }
