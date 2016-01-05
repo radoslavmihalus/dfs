@@ -878,10 +878,10 @@ class DataModel {
                     return "kennel-profile" . ($with_id ? "?id=$profile_id" : "");
                     break;
                 case ($profile_id >= 300000000 && $profile_id < 400000000):
-                    return "owner-profile?id=$profile_id" . ($with_id ? "?id=$profile_id" : "");
+                    return "owner-profile" . ($with_id ? "?id=$profile_id" : "");
                     break;
                 case ($profile_id >= 400000000 && $profile_id < 500000000):
-                    return "handler-profile?id=$profile_id" . ($with_id ? "?id=$profile_id" : "");
+                    return "handler-profile" . ($with_id ? "?id=$profile_id" : "");
                     break;
                 case ($profile_id >= 500000000 && $profile_id < 600000000):
                     return "dog?id=$profile_id";
