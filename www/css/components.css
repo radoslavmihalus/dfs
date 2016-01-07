@@ -366,3 +366,12 @@ ul.pagination li > a:focus
     margin-left: 10px;
     text-transform: capitalize
 }
+.tips
+{
+    padding: 10px 10px 10px 10px;
+    background-color: white;
+    margin-bottom: 15px;
+    color:black;
+    webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}

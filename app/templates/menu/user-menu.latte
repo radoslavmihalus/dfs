@@ -247,6 +247,9 @@
                         <a n:href="dog:dog_for_mating_list lang=>$lang"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_'Dogs for mating'}<span class="badge" style="float:right">{DataModel::getMattingDogsCount()}</span></a>
                     </li>
                     <li>
+                        <a n:href="dog:dog_for_sale_list lang=>$lang"><i class="fa fa-eur"></i>&nbsp;&nbsp;{_'Dogs with pedigree for sale'}<span class="badge" style="float:right">{DataModel::getPuppiesForSaleCount()}</span></a>
+                    </li>
+                    <li>
                         <a n:href="kennel:planned_litter_list lang=>$lang"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}<span class="badge" style="float:right">{DataModel::getPlannedLittersCount()}</span></a>
                     </li>
                     <li>
@@ -254,6 +257,12 @@
                     </li>
                     <li>
                         <a n:href="dog:dog_bis_list lang=>$lang"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_'Best in show'}<span class="badge" style="float:right">{DataModel::getBISCount()}</span></a>
+                    </li>
+                    <li>
+                        <a n:href="photo:photo_list lang=>$lang"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<span class="badge" style="float:right">{DataModel::getBISCount()}</span></a>
+                    </li>
+                    <li>
+                        <a n:href="video:video_list lang=>$lang"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}<span class="badge" style="float:right">{DataModel::getBISCount()}</span></a>
                     </li>
                 </ul>
             </li>

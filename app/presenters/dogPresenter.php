@@ -176,6 +176,56 @@ class dogPresenter extends BasePresenter {
         $this->template->rows = $rows;
     }
 
+    public function renderDog_for_sale_list($id = 0) {
+        if ($id > 0) {
+            $count = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->count();
+
+            $this->paginator->getPaginator()->setItemCount($count);
+            $this->paginator->getPaginator()->setItemsPerPage(9);
+
+            $rows = $this->database->table("tbl_dogs")->where("profile_id=?", $id)->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        } else {
+            try {
+                $section = $this->getSession('dog_filter');
+
+                $this->filter_dog_name = $section->filter_dog_name;
+                $this->filter_dog_breed = $section->filter_dog_breed;
+                $this->filter_dog_country = $section->filter_dog_country;
+                $this->filter_dog_gender = $section->filter_dog_gender;
+
+                if ($this->filter_dog_name == NULL)
+                    $this->filter_dog_name = "";
+                if ($this->filter_dog_breed == NULL)
+                    $this->filter_dog_breed = "";
+                if ($this->filter_dog_country == NULL)
+                    $this->filter_dog_country = "";
+                if ($this->filter_dog_gender == NULL || $this->filter_dog_gender == "NA")
+                    $this->filter_dog_gender = "";
+            } catch (\Exception $ex) {
+                
+            }
+
+            $count = $this->database->table("tbl_dogs")
+                    ->where("dog_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                    ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                    ->where("dog_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
+                    ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                    ->count();
+
+            $this->paginator->getPaginator()->setItemCount($count);
+            $this->paginator->getPaginator()->setItemsPerPage(9);
+
+            $rows = $this->database->table("tbl_dogs")->order("id DESC")
+                            ->where("dog_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                            ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                            ->where("dog_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
+                            ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                            ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        }
+
+        $this->template->rows = $rows;
+    }
+    
     public function renderDog_bis_list() {
 
         $rows = $this->database->table("tbl_dogs_shows")->select("dog_id")->where("BIS1=? OR JBIS1=?", 1, 1)->fetchAll();
