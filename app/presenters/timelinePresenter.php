@@ -30,6 +30,7 @@ class timelinePresenter extends BasePresenter {
         $this->template->timeline_rows = $this->data_model->getTimeline(0, $this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset());
     }
 
+
     /*     * ******************* view default ******************** */
 
     public function renderDefault() {

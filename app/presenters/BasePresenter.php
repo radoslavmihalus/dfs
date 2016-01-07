@@ -382,6 +382,17 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         return $this->paginator;
     }
 
+    protected function createComponentComments() {
+
+        $control = new \Nette\Application\UI\Multiplier(function ($id) {
+            $row = $this->database->table("tbl_timeline")->where("id=?", $id)->fetch();
+            $control = new \CommentsControl($row, $this->logged_in_profile_id, $this->logged_in_id, $this->profile_id, $this->data_model, $this->database);
+            return $control;
+        });
+
+        return $control;
+    }
+
     public function renderUser_message_compose($profile_id = 0) {
 //$this->template->users_messages = $this->getMessagesUsersList();
 //$this->template->messages_rows = $this->database->table("tbl_messages")->order("message_datetime ASC")->fetchAll();
@@ -852,18 +863,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         if (isset($_GET['id']))
             $id = $_GET['id'];
         \DataModel::deleteFromTimelineByItem($id);
-        $this->redirect("this", array(id => $this->profile_id));
-    }
-
-    public function handleTimelineRemoveComment($id = 0) {
-        if (isset($_GET['id']))
-            $id = $_GET['id'];
-
-        $this->database->table("tbl_comments")->where("id=?", $id)->fetch();
-
-//        if (\DataModel::getPermission($id, $this->logged_in_profile_id, 8))
-        $this->database->table("tbl_comments")->where("id=?", $id)->delete();
-
         $this->redirect("this", array(id => $this->profile_id));
     }
 
@@ -1450,29 +1449,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     $this->redirect("user:user_create_profile_switcher_new", array("lang" => $this->lang));
                 }
             }
-        }
-    }
-
-    protected function createComponentCommentTimeline() {
-        return new Nette\Application\UI\Multiplier(function () {
-            $form = new Form();
-            $form->getElementPrototype()->class('ajax');
-            $form->addHidden("snippet_id");
-            $form->addText("comment")->setRequired();
-            $form->addSubmit('btnSubmit')->onClick[] = array($this, 'commentSucceeded');
-            return $form;
-        });
-    }
-
-    public function commentSucceeded($button) {
-        $values = $button->getForm()->getValues();
-
-        $this->data_model->addTimelineComment($this->logged_in_id, $this->profile_id, $values['snippet_id'], $values['comment']);
-
-        if ($this->isAjax()) {
-            $this->redrawControl();
-        } else {
-            $this->redirect('this');
         }
     }
 

@@ -77,14 +77,14 @@
                                 <li role="presentation"><a role="menuitem" tabindex="-1" n:href="timelineRemove! id=>$row->id">{_'Remove from timeline'}</a></li>
                             </ul>
                             <script type="text/javascript">
-                                $("#timeline_remove_{$row->id}").click(function () {
-                                    $.ajax({
-                                        url: '/?do=timelineRemove&id={$row->id}',
-                                        dataType: 'html',
-                                    }).done(function (data) {
-                                        $.get(document.href);
+                                    $("#timeline_remove_{$row->id}").click(function () {
+                                        $.ajax({
+                                            url: '/?do=timelineRemove&id={$row->id}',
+                                            dataType: 'html',
+                                        }).done(function (data) {
+                                            $.get(document.href);
+                                        });
                                     });
-                                });
                             </script>
                         </div>
                     {/if}
@@ -122,103 +122,77 @@
                     <a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount($row->id)}</span></a>
                 </div>
             {/if}
-            {foreach $row->related("tbl_comments","timeline_id") as $row_comments}
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-                    <img class="user-block-thumb" src="{DataModel::getProfileImage($row_comments->profile_id)}"/>
-                    {var $linkurl = DataModel::getProfileLinkUrl($row_comments->profile_id)}
-                    <span class="notification-item-header text-uppercase"><a n:href="$linkurl id=>$row_comments->profile_id" style="color:#a5987f;">{DataModel::getProfileName($row_comments->profile_id)}</a></span>
-                        {if DataModel::getPermission($row_comments->id,$logged_in_id,8)}
-                        <a style="position:absolute;right:10px;cursor:pointer;color:gray;font-size:13px;" data-toggle="tooltip" n:href="TimelineRemoveComment! id=>$row_comments->id" data-placement='top' title="{_ 'Delete'}"><i class="fa fa-times"></i></a>
-                        {/if}
-                    <span class="notification-item-event-time">{$row_comments->comment_date_time|date:'%d.%m.%Y'}|&nbsp;{$row_comments->comment_date_time|date:'H:i'}</span>
-                    <span class="notification-item-event" style="color:black">{$row_comments->comment}</span>
-                </div>
-            {/foreach}
-
-            {snippet articlesComment}
-            {/snippet}
-
-            {if ( $active_profile_id > 0 )}
-                <!--{ snippet form}-->
-                <form n:name="commentTimeline-{$row->id}" id="commentTimeline-{$row->id}" class="">
-                    <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;">
-                        <input type="hidden" n:name=snippet_id value="{$row->id}" />
-                        <input type="text" n:name=comment class="form-control font_size_13px" style="z-index: 0;" placeholder="{_ 'Write a comment'}...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default font_size_13px" id="submitTimeline-{$row->id}" n:name=btnSubmit><i class="fa fa-comment fa-1x"></i></button>
-                        </span>
-                    </div>
-                </form>
-                <!--{ /snippet}-->
-            {/if}
+            
+            {control comments-$row->id}
+            
             <script type="text/javascript">
-                $("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
-                {
-                    event.preventDefault();
+                    $("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
+                    {
+                        event.preventDefault();
 
-                    $("#ajax-spinner").show();
+                        $("#ajax-spinner").show();
 
-                    $.ajax({
-                        url: "/?do=LikesList&timeline_id={$row->id}",
-                        dataType: 'html',
-                    }).done(function (data) {
-                        $("#modalTextInformation").html(data);
-                        $("#modalTitleInformation").html({_'Peoples who liked this'});
-                        $("#modalFlashInformation").modal("show");
-                        $("#ajax-spinner").hide();
-                    });
-                });
-
-                $("#like-{$row->id},#unlike-{$row->id}").on("click", function (event)
-                {
-                    event.preventDefault();
-                    $.ajax({
-                        url: "/?do=Like&timeline_id={$row->id}",
-                        dataType: 'html',
-                    }).done(function (data) {
-                        $("#likes-count-{$row->id}").html(data);
-                        $("#ylikes-count-{$row->id}").html(data);
                         $.ajax({
-                            url: "/?do=HasLiked&timeline_id={$row->id}",
+                            url: "/?do=LikesList&timeline_id={$row->id}",
                             dataType: 'html',
                         }).done(function (data) {
-                            if (data > 0)
-                            {
-                                $("#like-{$row->id}").hide();
-                                $("#likes-count-{$row->id}").hide();
-                                $("#unlike-{$row->id}").show();
-                                $("#ylikes-count-{$row->id}").show();
-                            }
-                            else
-                            {
-                                $("#like-{$row->id}").show();
-                                $("#likes-count-{$row->id}").show();
-                                $("#unlike-{$row->id}").hide();
-                                $("#ylikes-count-{$row->id}").hide();
-                            }
+                            $("#modalTextInformation").html(data);
+                            $("#modalTitleInformation").html({_'Peoples who liked this'});
+                            $("#modalFlashInformation").modal("show");
+                            $("#ajax-spinner").hide();
                         });
                     });
-                });
 
-                $.ajax({
-                    url: "/?do=HasLiked&timeline_id={$row->id}",
-                    dataType: 'html',
-                }).done(function (data) {
-                    if (data > 0)
+                    $("#like-{$row->id},#unlike-{$row->id}").on("click", function (event)
                     {
-                        $("#like-{$row->id}").hide();
-                        $("#likes-count-{$row->id}").hide();
-                        $("#unlike-{$row->id}").show();
-                        $("#ylikes-count-{$row->id}").show();
-                    }
-                    else
-                    {
-                        $("#like-{$row->id}").show();
-                        $("#likes-count-{$row->id}").show();
-                        $("#unlike-{$row->id}").hide();
-                        $("#ylikes-count-{$row->id}").hide();
-                    }
-                });
+                        event.preventDefault();
+                        $.ajax({
+                            url: "/?do=Like&timeline_id={$row->id}",
+                            dataType: 'html',
+                        }).done(function (data) {
+                            $("#likes-count-{$row->id}").html(data);
+                            $("#ylikes-count-{$row->id}").html(data);
+                            $.ajax({
+                                url: "/?do=HasLiked&timeline_id={$row->id}",
+                                dataType: 'html',
+                            }).done(function (data) {
+                                if (data > 0)
+                                {
+                                    $("#like-{$row->id}").hide();
+                                    $("#likes-count-{$row->id}").hide();
+                                    $("#unlike-{$row->id}").show();
+                                    $("#ylikes-count-{$row->id}").show();
+                                }
+                                else
+                                {
+                                    $("#like-{$row->id}").show();
+                                    $("#likes-count-{$row->id}").show();
+                                    $("#unlike-{$row->id}").hide();
+                                    $("#ylikes-count-{$row->id}").hide();
+                                }
+                            });
+                        });
+                    });
+
+                    $.ajax({
+                        url: "/?do=HasLiked&timeline_id={$row->id}",
+                        dataType: 'html',
+                    }).done(function (data) {
+                        if (data > 0)
+                        {
+                            $("#like-{$row->id}").hide();
+                            $("#likes-count-{$row->id}").hide();
+                            $("#unlike-{$row->id}").show();
+                            $("#ylikes-count-{$row->id}").show();
+                        }
+                        else
+                        {
+                            $("#like-{$row->id}").show();
+                            $("#likes-count-{$row->id}").show();
+                            $("#unlike-{$row->id}").hide();
+                            $("#ylikes-count-{$row->id}").hide();
+                        }
+                    });
             </script>
             <script>
                 $(function () {
@@ -317,8 +291,8 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
     var borderless = false;
-//    $('#blueimp-gallery').data('useBootstrapModal', !borderless);
-//    $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', !borderless);
+    //    $('#blueimp-gallery').data('useBootstrapModal', !borderless);
+    //    $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', !borderless);
 </script>
 
 <script>
@@ -336,30 +310,30 @@
     {foreach $timeline_rows as $row}
         {if ($row->event_type == 15)}
             {var $row_video = DataModel::getVideoRow($row->event_id)}
-    window.ytPlayerList.push(
-            {
-                Id: 'ctl100_phContent_{$row_video->id}player',
-                DivId: 'ctl100_phContent_div{$row_video->id}player',
-                VideoId: {$row_video->youtube}
-            }
-    );
+            window.ytPlayerList.push(
+                    {
+                        Id: 'ctl100_phContent_{$row_video->id}player',
+                        DivId: 'ctl100_phContent_div{$row_video->id}player',
+                        VideoId: {$row_video->youtube}
+                    }
+            );
         {/if}
     {/foreach}
 
-    function onYouTubeIframeAPIReady() {
-        initVideos();
-    }
+            function onYouTubeIframeAPIReady() {
+                initVideos();
+            }
 
-    function initVideos() {
-        for (var i = 0; i < ytPlayerList.length; i++) {
-            var player = ytPlayerList[i];
-            var pl = new YT.Player(player.DivId, {
-                width: '100%',
-                videoId: player.VideoId,
-            });
-            window[player.Id] = pl;
-        }
-    }
+            function initVideos() {
+                for (var i = 0; i < ytPlayerList.length; i++) {
+                    var player = ytPlayerList[i];
+                    var pl = new YT.Player(player.DivId, {
+                        width: '100%',
+                        videoId: player.VideoId,
+                    });
+                    window[player.Id] = pl;
+                }
+            }
 </script>
 
 {/define}

@@ -871,23 +871,23 @@ class DataModel {
         }
     }
 
-    static function getProfileLinkUrl($profile_id, $generated = FALSE) {
+    static function getProfileLinkUrl($profile_id, $generated = FALSE, $with_id = FALSE) {
         if ($generated) {
             switch ($profile_id) {
                 case ($profile_id >= 200000000 && $profile_id < 300000000):
-                    return "kennel-profile";
+                    return "kennel-profile" . ($with_id ? "?id=$profile_id" : "");
                     break;
                 case ($profile_id >= 300000000 && $profile_id < 400000000):
-                    return "owner-profile";
+                    return "owner-profile" . ($with_id ? "?id=$profile_id" : "");
                     break;
                 case ($profile_id >= 400000000 && $profile_id < 500000000):
-                    return "handler-profile";
+                    return "handler-profile" . ($with_id ? "?id=$profile_id" : "");
                     break;
                 case ($profile_id >= 500000000 && $profile_id < 600000000):
                     return "dog?id=$profile_id";
                     break;
                 case ($profile_id >= 600000000 && $profile_id < 700000000):
-                    return "puppy-profile";
+                    return "puppy-profile?id=$profile_id";
                     break;
                 default :
                     return "";
