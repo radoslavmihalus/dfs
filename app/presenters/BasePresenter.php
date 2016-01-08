@@ -65,6 +65,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //            
 //        }
     }
+    
+    protected function beforeRender() {
+        parent::beforeRender();
+        if($this->isAjax())
+            $this->redrawControl('contentBody');
+    }
 
 // return field name for form element
     public function getField($form_name, $element_name) {
