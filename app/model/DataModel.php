@@ -589,22 +589,52 @@ class DataModel {
         return $database->table("tbl_dogs_matings")->where("dog_id=?", $dog_id)->count();
     }
 
+    static function getDogsForSaleCount() {
+        $database = $GLOBALS['database'];
+
+        return $database->table("tbl_dogs")->where("offer_for_sell=1")->count();
+    }
+
     static function getCoownersCount($dog_id) {
         $database = $GLOBALS['database'];
 
         return $database->table("tbl_dogs_coowners")->where("dog_id=?", $dog_id)->count();
     }
 
-    static function getPhotosCount($profile_id) {
+    static function getPhotosCount($profile_id = 0) {
         $database = $GLOBALS['database'];
 
-        return $database->table("tbl_photos")->where("profile_id=?", $profile_id)->count();
+        if ($profile_id > 0)
+            return $database->table("tbl_photos")->where("profile_id=?", $profile_id)->count();
+        else {
+            $filter_ids = array();
+            $ids = $database->table("tbl_user")->select("id")->where("premium_expiry_date >= DATE(now())")->fetchAll();
+            foreach ($ids as $id) {
+                $filter_ids[] = $id->id;
+            }
+
+            $count = $database->table("tbl_photos")->where("user_id IN ?", $filter_ids)->count();
+
+            return $count;
+        }
     }
 
-    static function getVideosCount($profile_id) {
+    static function getVideosCount($profile_id = 0) {
         $database = $GLOBALS['database'];
 
-        return $database->table("tbl_videos")->where("profile_id=?", $profile_id)->count();
+        if ($profile_id > 0)
+            return $database->table("tbl_videos")->where("profile_id=?", $profile_id)->count();
+        else {
+            $filter_ids = array();
+            $ids = $database->table("tbl_user")->select("id")->where("premium_expiry_date >= DATE(now())")->fetchAll();
+            foreach ($ids as $id) {
+                $filter_ids[] = $id->id;
+            }
+
+            $count = $database->table("tbl_videos")->where("user_id IN ?", $filter_ids)->count();
+
+            return $count;
+        }
     }
 
 //dog counters functions
@@ -917,6 +947,52 @@ class DataModel {
         }
     }
 
+    static function getProfileLinkUrlPhotoGallery($profile_id) {
+        switch ($profile_id) {
+            case ($profile_id >= 200000000 && $profile_id < 300000000):
+                return "kennel:kennel_photogallery";
+                break;
+            case ($profile_id >= 300000000 && $profile_id < 400000000):
+                return "owner:owner_photogallery";
+                break;
+            case ($profile_id >= 400000000 && $profile_id < 500000000):
+                return "handler:handler_photogallery";
+                break;
+            case ($profile_id >= 500000000 && $profile_id < 600000000):
+                return "dog:dog_photogallery";
+                break;
+            case ($profile_id >= 600000000 && $profile_id < 700000000):
+                return "puppy:puppy_photogallery";
+                break;
+            default :
+                return "";
+                break;
+        }
+    }
+
+    static function getProfileLinkUrlVideoGallery($profile_id) {
+        switch ($profile_id) {
+            case ($profile_id >= 200000000 && $profile_id < 300000000):
+                return "kennel:kennel_videogallery";
+                break;
+            case ($profile_id >= 300000000 && $profile_id < 400000000):
+                return "owner:owner_videogallery";
+                break;
+            case ($profile_id >= 400000000 && $profile_id < 500000000):
+                return "handler:handler_videogallery";
+                break;
+            case ($profile_id >= 500000000 && $profile_id < 600000000):
+                return "dog:dog_videogallery";
+                break;
+            case ($profile_id >= 600000000 && $profile_id < 700000000):
+                return "puppy:puppy_videogallery";
+                break;
+            default :
+                return "";
+                break;
+        }
+    }
+
     static function getGalleryProfileLinkUrl($profile_id, $generated = FALSE) {
         if ($generated) {
             
@@ -1158,20 +1234,24 @@ class DataModel {
     }
 
     public static function premiumNotified($user_id) {
-        $database = $GLOBALS['database'];
+        // no action
+        return TRUE;
 
-        $database->query("CREATE TABLE IF NOT EXISTS tbl_user_promoted(user_id BIGINT NOT NULL)");
-
-        $count = $database->table("tbl_user_promoted")->where("user_id = ?", $user_id)->count();
-
-        if ($count > 0)
-            return TRUE;
-        else {
-            $data = array();
-            $data['user_id'] = $user_id;
-            $database->table("tbl_user_promoted")->insert($data);
-            return FALSE;
-        }
+        // for notifications please remove commented commands bellow
+//        $database = $GLOBALS['database'];
+//
+//        $database->query("CREATE TABLE IF NOT EXISTS tbl_user_promoted(user_id BIGINT NOT NULL)");
+//
+//        $count = $database->table("tbl_user_promoted")->where("user_id = ?", $user_id)->count();
+//
+//        if ($count > 0)
+//            return TRUE;
+//        else {
+//            $data = array();
+//            $data['user_id'] = $user_id;
+//            $database->table("tbl_user_promoted")->insert($data);
+//            return FALSE;
+//        }
     }
 
 // share tags

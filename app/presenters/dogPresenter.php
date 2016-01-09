@@ -38,36 +38,36 @@ class dogPresenter extends BasePresenter {
     public function beforeRender() {
         parent::beforeRender();
     }
-    
-     /*     * ******** renderers ************* */
-    
+
+    /*     * ******** renderers ************* */
+
     public function actionDog_list($lang) {
         $mysection = $this->getSession('language');
 
         $mysection->lang = $lang;
 
         $this->translator->lang = $mysection->lang;
-        
+
         $this->template->lang = $this->translator->lang;
     }
-    
+
     public function actionDog_for_mating_list($lang) {
         $mysection = $this->getSession('language');
 
         $mysection->lang = $lang;
 
         $this->translator->lang = $mysection->lang;
-        
+
         $this->template->lang = $this->translator->lang;
     }
-    
+
     public function actionDog_bis_list($lang) {
         $mysection = $this->getSession('language');
 
         $mysection->lang = $lang;
 
         $this->translator->lang = $mysection->lang;
-        
+
         $this->template->lang = $this->translator->lang;
     }
 
@@ -210,6 +210,7 @@ class dogPresenter extends BasePresenter {
                     ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
                     ->where("dog_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
                     ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                    ->where("offer_for_sell = 1")
                     ->count();
 
             $this->paginator->getPaginator()->setItemCount($count);
@@ -220,12 +221,13 @@ class dogPresenter extends BasePresenter {
                             ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
                             ->where("dog_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
                             ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                            ->where("offer_for_sell = 1")
                             ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         }
 
         $this->template->rows = $rows;
     }
-    
+
     public function renderDog_bis_list() {
 
         $rows = $this->database->table("tbl_dogs_shows")->select("dog_id")->where("BIS1=? OR JBIS1=?", 1, 1)->fetchAll();

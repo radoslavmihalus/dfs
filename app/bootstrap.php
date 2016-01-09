@@ -137,14 +137,14 @@ $router[] = new Route('sk-videa', array(
 $router[] = new Route('switch-profile', 'user:user_create_profile_switcher');
 $router[] = new Route('create-profile', 'user:user_create_profile_switcher_new');
 //---------------------------   User / premium account -----------------------------------
-$router[] = new Route('premium-account', 'user:user_premium');
+//$router[] = new Route('premium-account', 'user:user_premium');
 $router[] = new Route('premium-account-activation', 'user:user_premium_activation');
 $router[] = new Route('edit-account', 'user:user_edit_account');
 $router[] = new Route('list-of-friends-requests', 'user:user_friend_requests_list');
 $router[] = new Route('notification-list', 'user:user_notification_list');
 $router[] = new Route('message-list', 'user:user_message_list');
 $router[] = new Route('message-compose', 'user:user_message_compose');
-$router[] = new Route('premium-new', 'user:user_premium_test');
+$router[] = new Route('premium-account', 'user:user_premium');
 // Kennel routes
 //---------------------------   Kennels / create profile -----------------------------------
 $router[] = new Route('kennel-create-profile', 'kennel:kennel_create_profile');

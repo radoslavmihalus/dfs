@@ -17,12 +17,6 @@ class videoPresenter extends BasePresenter {
     private $photo_profile_id;
     private $photo_id;
 
-    public function __construct(Nette\Database\Context $database) {
-        $this->database = $database;
-        $this->data_model = new \DataModel($database);
-        $this->translator = new DFSTranslator();
-    }
-
     protected function startup() {
         parent::startup();
     }
@@ -33,6 +27,24 @@ class videoPresenter extends BasePresenter {
         parent::beforeRender();
     }
 
+    public function renderVideo_list() {
+        
+        $filter_ids = array();
+        
+        $ids = $this->database->table("tbl_user")->select("id")->where("premium_expiry_date >= DATE(now())")->fetchAll();
+        foreach ($ids as $id) {
+            $filter_ids[] = $id->id;
+        }
+
+        $count = $this->database->table("tbl_videos")->where("user_id IN ?", $filter_ids)->count();
+        
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(24);
+
+        $rows = $this->database->table("tbl_videos")->where("user_id IN ?", $filter_ids)->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->order("id DESC")->fetchAll();
+        $this->template->photos = $rows;
+    }
+    
     public function actionVideo_add($profile_id) {
         if (!\DataModel::getPremium($this->logged_in_id)) {
             $cnt = $this->database->table("tbl_videos")->where("profile_id=?", $profile_id)->count();

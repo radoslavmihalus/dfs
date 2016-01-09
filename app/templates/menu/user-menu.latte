@@ -199,9 +199,6 @@
                 </li>
             {else}
                 <li class="panel">
-                    <a style="background-color:#EB9419;color:white;font-weight:bold;" n:href="user:user_premium lang=>$lang" data-parent="#accordion1" id=""><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'I want to get all the benefits'}</a>
-                </li>
-                <li class="panel">
                     <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowLang"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-flag"></i>&nbsp;&nbsp;{_ 'Language'}</a>
                     <ul id="DogforshowLang" class="collapse panel-collapse">
                         <li>
@@ -247,7 +244,7 @@
                         <a n:href="dog:dog_for_mating_list lang=>$lang"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_'Dogs for mating'}<span class="badge" style="float:right">{DataModel::getMattingDogsCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="dog:dog_for_sale_list lang=>$lang"><i class="fa fa-eur"></i>&nbsp;&nbsp;{_'Dogs with pedigree for sale'}<span class="badge" style="float:right">{DataModel::getPuppiesForSaleCount()}</span></a>
+                        <a n:href="dog:dog_for_sale_list lang=>$lang"><i class="fa fa-eur"></i>&nbsp;&nbsp;{_'Dogs with pedigree for sale'}<span class="badge" style="float:right">{DataModel::getDogsForSaleCount()}</span></a>
                     </li>
                     <li>
                         <a n:href="kennel:planned_litter_list lang=>$lang"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}<span class="badge" style="float:right">{DataModel::getPlannedLittersCount()}</span></a>
@@ -259,10 +256,10 @@
                         <a n:href="dog:dog_bis_list lang=>$lang"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_'Best in show'}<span class="badge" style="float:right">{DataModel::getBISCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="photo:photo_list lang=>$lang"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<span class="badge" style="float:right">{DataModel::getBISCount()}</span></a>
+                        <a n:href="photo:photo_list lang=>$lang"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<span class="badge" style="float:right">{DataModel::getPhotosCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="video:video_list lang=>$lang"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}<span class="badge" style="float:right">{DataModel::getBISCount()}</span></a>
+                        <a n:href="video:video_list lang=>$lang"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}<span class="badge" style="float:right">{DataModel::getVideosCount()}</span></a>
                     </li>
                 </ul>
             </li>
