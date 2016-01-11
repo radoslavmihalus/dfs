@@ -1,15 +1,13 @@
 {block content}
 <div class="panel-default col-lg-12 col-md-12 col-xs-12" style="font-size: 13px;min-width: 244px">
-    <h1><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{_ 'Owners of purebred dogs'}&nbsp;<button class="btn btn-default" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif;font-size:13px;" role="button" data-toggle="collapse" href="#OwnerFilter" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i>&nbsp;&nbsp;{_ 'Search'}</button></h1>
-    <div class="collapse" id="OwnerFilter">
-        {include 'owner_list_filter.latte'}
-    </div>
+    <h1><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{_ 'Owners of purebred dogs'}</h1>
+    {include 'owner_list_filter.latte'}
     {control vp, right, large}
     <div class="row">
         <!-- List profile component -->
         {includeblock 'owner_list_item.latte'}
         {foreach $owners as $owner}
-                {include owner_list_item owner=>$owner}
+            {include owner_list_item owner=>$owner}
         {/foreach}
         <!-- / List profile component -->
     </div>
