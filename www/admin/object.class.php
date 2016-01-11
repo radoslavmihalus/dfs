@@ -493,8 +493,9 @@ class blueticket_objects {
             $payment = $form->nested_table($this->getTranslatedText("Payments"), "id", "tbl_payments", "user_id");
             $payment->table_name("Payments");
             $payment->order_by('id', 'DESC');
-            $payment->columns("payment_datetime, user_id, full_name, amount, authorized, type, status");
+            $payment->columns("payment_datetime, user_id, full_name, state, amount, authorized, type, status");
             $payment->subselect("full_name", "SELECT concat(name, ' ', surname) FROM tbl_user WHERE id={user_id}");
+            $payment->subselect("state", "SELECT state FROM tbl_user WHERE id={user_id}");
             $payment->subselect("authorized", "IF({status}>0,{amount},0)");
             $payment->highlight_row('status', '>', 0, '#B4E274');
             $payment->highlight_row('status', '=', 0, '#FFD6D6');
@@ -507,8 +508,9 @@ class blueticket_objects {
                 $payment->where("status > 0");
             $payment->table_name("Payments");
             $payment->order_by('id', 'DESC');
-            $payment->columns("payment_datetime, user_id, full_name, amount, authorized, type, status");
+            $payment->columns("payment_datetime, user_id, full_name, state, amount, authorized, type, status");
             $payment->subselect("full_name", "SELECT concat(name, ' ', surname) FROM tbl_user WHERE id={user_id}");
+            $payment->subselect("state", "SELECT state FROM tbl_user WHERE id={user_id}");
             $payment->subselect("authorized", "IF({status}>0,{amount},0)");
             $payment->highlight_row('status', '>', 0, '#B4E274');
             $payment->highlight_row('status', '=', 0, '#FFD6D6');
@@ -560,6 +562,18 @@ class blueticket_objects {
         return $form->render();
     }
 
+    function generateRouter() {
+        $form = blueticket_forms::get_instance();
+
+        $form->table("tbl_global_router");
+        $form->table_name("Global routing");
+        $form->default_tab("Global routing");
+        $form->order_by('presenter, action, lang', 'ASC');
+        $form->columns("presenter, action, title, description, image_url, url, lang");
+        $form->no_editor('presenter, action, title, description, image_url, url, lang');
+        return $form->render();
+    }
+
     function generateMenu() {
         $return = '<div style="width:100%; height:50px;padding-left:5px">';
 
@@ -578,6 +592,7 @@ class blueticket_objects {
         $return .= '<a href="?report=likes" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Likes</a>';
         $return .= '<a href="?report=timeline_events_types" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Events types</a>';
         $return .= '<a href="?report=translate" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Translate</a>';
+        $return .= '<a href="?report=router" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Router</a>';
 //        $return .= '<a href="?report=forms" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Forms</a>';
 //        $return .= '<a href="?report=movements" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Pohyby</a>';
 //        $return .= '<a href="?report=payments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Platby</a>';

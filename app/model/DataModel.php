@@ -1515,6 +1515,53 @@ class DataModel {
         return $return;
     }
 
+    static function getShareTagsGlobal($lang, $presenter, $action, $url) {
+        try {
+            $translator = new App\Presenters\DFSTranslator($lang);
+            //$database = new Nette\Database\Context($conn);
+            $database = $GLOBALS['database'];
+
+            $database->query("CREATE TABLE IF NOT EXISTS tbl_global_router(`id` BIGINT NOT NULL AUTO_INCREMENT, `presenter` VARCHAR(250) DEFAULT NULL, `action` VARCHAR(250) DEFAULT NULL, `title` VARCHAR(250) DEFAULT NULL, `description` MEDIUMTEXT DEFAULT NULL, `image_url` VARCHAR(255) DEFAULT NULL, `url` VARCHAR(255) DEFAULT NULL, `lang` VARCHAR(25) DEFAULT NULL, PRIMARY KEY(`id`)) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci");
+
+            $count = $database->table("tbl_global_router")->where("presenter=?", $presenter)->where("action=?", $action)->where("lang=?", $lang)->count();
+
+            $return = array();
+
+            if ($count > 0) {
+                $row = $database->table("tbl_global_router")->where("presenter=?", $presenter)->where("action=?", $action)->where("lang=?", $lang)->fetch();
+                $return['title'] = $row->title;
+                $return['description'] = $row->description;
+                $return['image'] = $row->image_url;
+                $return['url'] = $row->url;
+            } else {
+                $data = array();
+                $data['presenter'] = $presenter;
+                $data['action'] = $action;
+                $data['url'] = $url;
+                $data['title'] = $presenter . '-' . $action;
+                $data['description'] = $presenter . '-' . $action;
+                $data['lang'] = $lang;
+                $database->table("tbl_global_router")->insert($data);
+
+                $row = $database->table("tbl_global_router")->where("presenter=?", $presenter)->where("action=?", $action)->where("lang=?", $lang)->fetch();
+
+                $return['title'] = $row->title;
+                $return['description'] = $row->description;
+                $return['image'] = $row->image_url;
+                $return['url'] = $row->url;
+            }
+
+            return $return;
+        } catch (\Exception $ex) {
+            $return = array();
+            $return['title'] = 'DOGFORSHOW';
+            $return['description'] = 'DOGFORSHOW';
+            $return['image'] = '';
+            $return['url'] = '';
+            return $return;
+        }
+    }
+
     static function getShareUrl($lang, $id, $alt_id = 0, $encode = FALSE) {
         //$lang = $GLOBALS['lang'];
         $url = DataModel::getURL();

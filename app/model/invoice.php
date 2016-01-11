@@ -192,7 +192,7 @@ class invoice {
         return $result[count($result) - 1];
     }
 
-    public function _createInvoice($name, $address, $city, $zip, $carrier, $tel, $item_name, $item_description, $item_unit, $item_price) { //$order, $cart) {
+    public function _createInvoice($name, $address, $city, $zip, $carrier, $tel, $item_name, $item_description, $item_unit, $item_price, $state = "Slovakia") { //$order, $cart) {
         $data = array(
             'InvoiceItem' => array()
         );
@@ -205,6 +205,7 @@ class invoice {
             'city' => $city,
             'zip' => $zip,
             'phone' => $tel,
+            'country' => $state
         );
 
         $data['Invoice'] = array(
@@ -240,14 +241,14 @@ class invoice {
         return $response;
     }
 
-    public function hookNewOrder($transaction_id, $name, $address, $city, $zip, $carrier, $tel, $item_name, $item_description, $item_unit, $item_price) {
+    public function hookNewOrder($transaction_id, $name, $address, $city, $zip, $carrier, $tel, $item_name, $item_description, $item_unit, $item_price, $state = "Slovakia") {
 
         $this->id = $transaction_id;
 
         if (0 != $this->id_order_state_invoice)
             return; // faktura sa vytvara pri inom stave
 
-        return $this->_createInvoice($name, $address, $city, $zip, $carrier, $tel, $item_name, $item_description, $item_unit, $item_price); //$params['order'], $params['cart']);
+        return $this->_createInvoice($name, $address, $city, $zip, $carrier, $tel, $item_name, $item_description, $item_unit, $item_price, $state); //$params['order'], $params['cart']);
     }
 
     public function hookActionPaymentConfirmation($params) {

@@ -188,6 +188,9 @@ echo $bt->generateMenu();
                 case 'premium':
                     echo $bt->generatePremiumVisits();
                     break;
+                case 'router':
+                    echo $bt->generateRouter();
+                    break;
 //                    case 'stats':
 //                        if (isset($_GET['type'])) {
 //                            $type = $_GET['type'];

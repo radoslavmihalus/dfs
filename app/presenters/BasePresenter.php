@@ -338,8 +338,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         $this->template->lang = $this->translator->lang;
 
+        $presenter = $this->getName();
         $action = $this->getAction();
-
+        
         $sharer_tags = "";
 
         if (isset($_GET['id']) || isset($_GET['dog_id'])) {
@@ -374,6 +375,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 else
                 if ($action == "kennel_planned_litter_list")
                     $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['litter'], $this->logged_in_profile_id);
+                else {
+                    $url = $this->getHttpRequest()->getUrl();
+                    $sharer_tags = \DataModel::getShareTagsGlobal($this->translator->lang, $presenter, $action, $url);
+                }
             }
         }
 
@@ -1140,13 +1145,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     $sf = new \invoice();
 
                     if ($amount == 30)
-                        $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 6 months"), "1", $amount);
+                        $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 6 months"), "1", $amount, $user->state);
                     else
                     if ($amount == 54)
-                        $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 12 months"), "1", $amount);
+                        $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 12 months"), "1", $amount, $user->state);
                     else
                     if ($amount == 84)
-                        $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 24 months"), "1", $amount);
+                        $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 24 months"), "1", $amount, $user->state);
 
                     $id = $response->data->Invoice->id;
                     $token = $response->data->Invoice->token;
@@ -1821,9 +1826,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 ->setDisabled()->setValue($email);
         $form->addSelect('ddlCountries')->setItems($countries)->setPrompt($this->translate("Please select"))->setValue($country)->setRequired('Required field');
         $form->addSelect('ddlLanguage')->setItems($langs)->setPrompt($this->translate("Please select"))->setValue($lang)->setRequired('Required field');
-        $form->addText('txtAddress')->setValue($address);
-        $form->addText('txtTown')->setValue($city);
-        $form->addText('txtZip')->setValue($zip);
+        $form->addText('txtAddress')->setValue($address)->setRequired();
+        $form->addText('txtTown')->setValue($city)->setRequired('Required field');
+        $form->addText('txtZip')->setValue($zip)->setRequired('Required field');
         $form->addText('txtPhoneNumber')->setValue($phone);
         $form->addSelect('ddlYear')->setItems($years)->setValue($year_of_birth);
 
