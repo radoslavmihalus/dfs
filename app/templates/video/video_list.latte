@@ -6,7 +6,7 @@
     {/foreach}
     <h1><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}</h1>
     {control vp, right, large}
-    {if (!DataModel::getPremium($logged_in_id))}
+    {if (($logged_in_id > 0) && !DataModel::getPremium($logged_in_id))}
         <!----------- DFS tips ------------->
         <div class="tips col-md-12 animated slideInUp">
             <table>
