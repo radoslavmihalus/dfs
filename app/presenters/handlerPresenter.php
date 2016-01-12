@@ -1159,7 +1159,7 @@ class handlerPresenter extends BasePresenter {
         try {
             $show_group = $this->database->table("tbl_handler_show_groups")->where("id=?", $this->show_group_id)->fetch();
             $date = date("d.m.Y", strtotime($show_group->show_date));
-            $result = $show_group->show_date . " - " . $show_group->show_name . ": ";
+            $result = $date . " - " . $show_group->show_name . ": ";
         } catch (\Exception $ex) {
             $result = "";
         }
