@@ -8,7 +8,7 @@
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
         <div class="panel-description"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}
-            {if DataModel::getPermission($profile_id,$logged_in_id,3)}
+            {if DataModel::getPermission($dog->id,$logged_in_id,4)}
                 <a n:href="video:video_add profile_id=>$dog->id" class="btn btn-danger btn-sm add-list-item" type="button"><i class="fa fa-plus"></i>&nbsp;{_ 'Add'}</a>
             {/if}
         </div>
