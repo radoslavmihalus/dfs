@@ -3,11 +3,14 @@
 {includeblock '../components/dropdown_BreedList_control.latte'}
 {includeblock '../components/dropdown_CountryList_control.latte'}
 <div class="panel-body component col-lg-12 col-md-12 col-xs-12" style="margin-bottom: 10px;margin-top: 0px;">
-    <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 10px;">
+    <div class="row" style="padding-left:15px;padding-right:15px;">
         <div class="panel-description"><i class="fa fa-search"></i>&nbsp;&nbsp;{_ 'Search'}
+            <button type="button" class="navbar-toggle collapsed btn btn-default" style="padding:5px 15px 5px 15px; margin-top: 0px;" data-toggle="collapse" data-target="#filter-collapse">
+            <i class="fa fa-ellipsis-v"></i>
+        </button>
         </div>
     </div>
-    <div class="row">
+    <div class="row collapse navbar-collapse" style="padding-top: 10px;" id="filter-collapse">
         {form owner_list_filter}
             <div class="col-lg-4 col-md-4 col-xs-12">
                 {include dropdown_OwnerList_control, _form=>$_form, description => "Name", placeholder => "Please select", id => "txtOwnerName", name => "txtOwnerName"}
