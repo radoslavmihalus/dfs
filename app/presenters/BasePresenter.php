@@ -340,7 +340,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         $presenter = $this->getName();
         $action = $this->getAction();
-        
+
         $sharer_tags = "";
 
         if (isset($_GET['id']) || isset($_GET['dog_id'])) {
@@ -398,6 +398,17 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $control = new \Nette\Application\UI\Multiplier(function ($id) {
             $row = $this->database->table("tbl_timeline")->where("id=?", $id)->fetch();
             $control = new \CommentsControl($row, $this->logged_in_profile_id, $this->logged_in_id, $this->profile_id, $this->data_model, $this->database);
+            return $control;
+        });
+
+        return $control;
+    }
+
+    protected function createComponentEventComments() {
+
+        $control = new \Nette\Application\UI\Multiplier(function ($id) {
+            $row = \DataModel::getRowForComments($id);
+            $control = new \EventCommentsControl($row, $this->logged_in_profile_id, $this->logged_in_id, $this->profile_id, $this->data_model, $this->database);
             return $control;
         });
 

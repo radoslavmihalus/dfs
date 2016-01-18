@@ -123,6 +123,8 @@ class blueticket_objects {
         $this->generateDogs($form);
         $this->generatePayments($form);
         $this->generatePuppies($form);
+        $this->generatePhotos($form);
+        $this->generateVideos($form);
 //$this->generateCommentsByUser($form);
 
         return $form->render();
@@ -240,6 +242,58 @@ class blueticket_objects {
             $this->generateCommentsByProfile($kennel);
 
             return $kennel->render();
+        }
+    }
+
+    function generatePhotos($form = NULL) {
+        if ($form != NULL) {
+            $photos = $form->nested_table($this->getTranslatedText("Photos"), "id", "tbl_photos", "user_id");
+            $photos->table_name("Photos");
+            $photos->default_tab("Photos");
+            $photos->order_by('id', 'DESC');
+            $photos->columns("image, user_id, profile_id, full_name, description, added");
+            $photos->subselect("full_name", "SELECT concat(name,' ',surname) FROM tbl_user WHERE id={user_id}");
+            $photos->column_pattern('image', '<a target="_blank" href="http://www.dogforshow.com/{image}"><img src="http://www.dogforshow.com/{image}" style="width:50px; height:50px"/></a>');
+            $photos->no_editor('image,description');
+        } else {
+            $photos = blueticket_forms::get_instance();
+            $photos->table("tbl_photos");
+            $photos->table_name("Photos");
+            $photos->default_tab("Photos");
+            $photos->order_by('id', 'DESC');
+            $photos->columns("image, user_id, profile_id, full_name, description, added");
+            $photos->subselect("full_name", "SELECT concat(name,' ',surname) FROM tbl_user WHERE id={user_id}");
+            $photos->column_pattern('image', '<a target="_blank" href="http://www.dogforshow.com/{image}"><img src="http://www.dogforshow.com/{image}" style="width:50px; height:50px"/></a>');
+            $photos->no_editor('image,description');
+
+            return $photos->render();
+        }
+    }
+
+    function generateVideos($form = NULL) {
+        if ($form != NULL) {
+            $photos = $form->nested_table($this->getTranslatedText("Videos"), "id", "tbl_videos", "user_id");
+            $photos->table_name("Videos");
+            $photos->default_tab("Videos");
+            $photos->order_by('id', 'DESC');
+            $photos->columns("image, user_id, profile_id, full_name, video, description, added, youtube");
+            $photos->subselect("full_name", "SELECT concat(name,' ',surname) FROM tbl_user WHERE id={user_id}");
+            $photos->column_pattern('image', '<a target="_blank" href="{image}"><img src="{image}" style="width:50px; height:50px"/></a>');
+            $photos->column_pattern('video', '<a target="_blank" href="{video}">{video}</a>');
+            $photos->no_editor('image,description,video,youtube');
+        } else {
+            $photos = blueticket_forms::get_instance();
+            $photos->table("tbl_videos");
+            $photos->table_name("Videos");
+            $photos->default_tab("Videos");
+            $photos->order_by('id', 'DESC');
+            $photos->columns("image, user_id, profile_id, full_name, video, description, added, youtube");
+            $photos->subselect("full_name", "SELECT concat(name,' ',surname) FROM tbl_user WHERE id={user_id}");
+            $photos->column_pattern('image', '<a target="_blank" href="{image}"><img src="{image}" style="width:50px; height:50px"/></a>');
+            $photos->column_pattern('video', '<a target="_blank" href="{video}">{video}</a>');
+            $photos->no_editor('image,description,video,youtube');
+
+            return $photos->render();
         }
     }
 
@@ -569,8 +623,8 @@ class blueticket_objects {
         $form->table_name("Global routing");
         $form->default_tab("Global routing");
         $form->order_by('presenter, action, lang', 'ASC');
-        $form->columns("presenter, action, title, description, image_url, url, lang");
-        $form->no_editor('presenter, action, title, description, image_url, url, lang');
+        $form->columns("presenter, action, title, description, image_url, lang");
+        $form->no_editor('presenter, action, title, description, image_url, lang');
         return $form->render();
     }
 
@@ -592,6 +646,8 @@ class blueticket_objects {
         $return .= '<a href="?report=likes" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Likes</a>';
         $return .= '<a href="?report=timeline_events_types" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Events types</a>';
         $return .= '<a href="?report=translate" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Translate</a>';
+        $return .= '<a href="?report=photos" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Photos</a>';
+        $return .= '<a href="?report=videos" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Videos</a>';
         $return .= '<a href="?report=router" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Router</a>';
 //        $return .= '<a href="?report=forms" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Forms</a>';
 //        $return .= '<a href="?report=movements" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Pohyby</a>';

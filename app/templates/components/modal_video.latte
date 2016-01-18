@@ -1,5 +1,5 @@
 <div id="modalFlashVideoGallery{$row->id}" class="modal fade">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="color: #c12e2a">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -9,10 +9,32 @@
                 <div class="container-fluid" style="padding:5px 0px 5px 0px">
                     <!--                    <a data-dismiss="modal"><img src="{ DataModel::getPhotoImage($row->id)}" class="img-responsive" style="margin-left: auto;margin-right: auto;margin-bottom: 10px;"></a>-->
                     <div id="ctl100_phContent_div{$row->id}player"></div>
+                    <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
+                        <a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;">{DataModel::getTimelineLikesCount(0,$row->id)}</span></a>
+                    </div>
+                    {control eventComments-$row->id}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{_ 'Close'}</button>
                 </div>
+                <script type="text/javascript">
+                    $("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
+                    {
+                        event.preventDefault();
+
+                        $("#ajax-spinner").show();
+
+                        $.ajax({
+                            url: "/?do=LikesList&timeline_id=0&event_id={$row->id}",
+                            dataType: 'html',
+                        }).done(function (data) {
+                            $("#modalTextInformation").html(data);
+                            $("#modalTitleInformation").html({_'Peoples who liked this'});
+                            $("#modalFlashInformation").modal("show");
+                            $("#ajax-spinner").hide();
+                        });
+                    });
+                </script>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->

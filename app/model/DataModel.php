@@ -675,6 +675,48 @@ class DataModel {
         $this->database->table("tbl_comments")->insert($data);
     }
 
+    function addEventComment($user_id, $profile_id, $event_id, $comment) {
+        $data['user_id'] = $user_id;
+        $data['profile_id'] = $profile_id;
+        $data['event_id'] = $event_id;
+        $data['comment'] = $comment;
+
+        $count = $this->database->table("tbl_timeline")->where("event_id=?", $event_id)->count();
+
+        if ($count > 0) {
+            $row = $this->database->table("tbl_timeline")->where("event_id=?", $event_id)->fetch();
+            $data['timeline_id'] = $row->id;
+
+            $notify_profile_id = $row->profile_id;
+
+            if ($notify_profile_id >= 200000000 && $notify_profile_id < 300000000) {
+                $row = $this->database->table("tbl_userkennel")->where("id=?", $notify_profile_id)->fetch();
+                $notify_user_id = $row->user_id;
+            } elseif ($notify_profile_id >= 300000000 && $notify_profile_id < 400000000) {
+                $row = $this->database->table("tbl_userowner")->where("id=?", $notify_profile_id)->fetch();
+                $notify_user_id = $row->user_id;
+            } else {
+                $row = $this->database->table("tbl_userhandler")->where("id=?", $notify_profile_id)->fetch();
+                $notify_user_id = $row->user_id;
+            }
+
+
+            $notify['notify_user_id'] = $notify_user_id;
+            $notify['notify_profile_id'] = $notify_profile_id;
+            $notify['user_id'] = $user_id;
+            $notify['profile_id'] = $profile_id;
+            $notify['timeline_id'] = $timeline_id;
+            $notify['comment'] = $comment;
+            $notify['type'] = "comment";
+
+            $this->database->table("tbl_notify")->insert($notify);
+        } else {
+            $data['timeline_id'] = 0;
+        }
+
+        $this->database->table("tbl_comments")->insert($data);
+    }
+
     /**
      * 
      * @param type $profile_id
@@ -1252,6 +1294,24 @@ class DataModel {
 //            $database->table("tbl_user_promoted")->insert($data);
 //            return FALSE;
 //        }
+    }
+
+    static function getRowForComments($id) {
+        $row = array();
+        try {
+            $database = $GLOBALS['database'];
+            switch ($id) {
+                case ($id >= 2800000000 && $id < 3000000000):
+                    $row = $database->table("tbl_photos")->where("id=?", $id)->fetch();
+                    break;
+                case ($id >= 3000000000 && $id < 3100000000):
+                    $row = $database->table("tbl_videos")->where("id=?", $id)->fetch();
+                    break;
+            }
+        } catch (\Exception $ex) {
+            
+        }
+        return $row;
     }
 
 // share tags

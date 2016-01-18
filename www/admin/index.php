@@ -188,6 +188,12 @@ echo $bt->generateMenu();
                 case 'premium':
                     echo $bt->generatePremiumVisits();
                     break;
+                case 'photos':
+                    echo $bt->generatePhotos();
+                    break;
+                case 'videos':
+                    echo $bt->generateVideos();
+                    break;
                 case 'router':
                     echo $bt->generateRouter();
                     break;

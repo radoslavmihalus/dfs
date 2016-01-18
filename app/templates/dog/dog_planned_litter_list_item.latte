@@ -59,7 +59,7 @@
             <div class="row" style="padding-top:10px;margin-left: 0px;margin-right: 0px;">
                 {if (DataModel::haveDogProfile($row->dog_name))}
                     {var $father = DataModel::getDogProfileByName($row->dog_name)}
-                    <a n:href="dog:dog_championschip_list id=>$father->id">
+                    <a n:href="dog:dog_profile_home id=>$father->id">
                         <div class="col-lg-6 col-md-6 col-xs-12 padding" style="margin-bottom: 10px;">
                             <div class="list-item">
                                 <div class="dog-image-profile-thumb" style="background: url('{$row->dog_image}') no-repeat center center; background-size: cover;min-height: 240px;">
@@ -87,7 +87,7 @@
                 {/if}
                 {if (DataModel::haveDogProfile($row->bitch_name))}
                     {var $mother = DataModel::getDogProfileByName($row->bitch_name)}
-                    <a n:href="dog:dog_championschip_list id=>$mother->id">
+                    <a n:href="dog:dog_profile_home id=>$mother->id">
                         <div class="col-lg-6 col-md-6 col-xs-12 padding">
                             <div class="list-item">
                                 <div class="dog-image-profile-thumb" style="background: url('{$row->bitch_image}') no-repeat center center; background-size: cover;min-height: 240px;">
