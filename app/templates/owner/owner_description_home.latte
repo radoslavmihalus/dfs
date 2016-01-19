@@ -1,11 +1,13 @@
 {define #owner_description_home}
 <div class="panel-body component col-lg-12">
     <!-- Owner description panel-->
-    <div class="panel-description">{_ 'About me'} 
-    </div>
-    <div class="text-justify" style="font-size:12px;padding-top: 10px;">
+    {if ( DataModel::getPremium(DataModel::getUserIdByProfileId($profile_id)) )}
+        <div class="panel-description">{_ 'About me'} 
+        </div>
+        <div class="text-justify" style="font-size:12px;padding-top: 10px;">
             {!$owner_description|escape|nl2br}
-    </div>
+        </div>
+    {/if}
 </div>
 <script>
     $(function () {

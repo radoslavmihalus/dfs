@@ -21,12 +21,14 @@
     <hr>
     <!-- Kennel description panel-->
     {if strlen($kennel_description)>0}
-        <div class="panel-description">{_ 'About us'} 
-        </div>
-        <div class="text-justify" style="font-size:12px;padding-top: 10px;">
-            {!$kennel_description|escape|nl2br}
-        </div>
-        <hr>
+        {if ( DataModel::getPremium(DataModel::getUserIdByProfileId($profile_id)) )}
+            <div class="panel-description">{_ 'About us'} 
+            </div>
+            <div class="text-justify" style="font-size:12px;padding-top: 10px;">
+                {!$kennel_description|escape|nl2br}
+            </div>
+            <hr>
+        {/if}
     {/if}
     <!-- Kennel website-->
     {if strlen($kennel_website)>0}
