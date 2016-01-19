@@ -58,16 +58,16 @@ class handlerPresenter extends BasePresenter {
         if ($this->isAjax())
             $this->invalidateControl('articles');
     }
-    
+
     /*     * ******** renderers ************* */
-    
+
     public function actionHandler_list($lang) {
         $mysection = $this->getSession('language');
 
         $mysection->lang = $lang;
 
         $this->translator->lang = $mysection->lang;
-        
+
         $this->template->lang = $this->translator->lang;
     }
 
@@ -168,7 +168,10 @@ class handlerPresenter extends BasePresenter {
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(20);
 
-        $rows = $this->database->table("tbl_userhandler")->where("user_id IN ?", $users_id)->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        $rows = $this->database->table("tbl_userhandler")
+                        ->where("user_id IN ?", $users_id)
+                        ->order('premium_expiry_date DESC, id DESC')
+                        ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
         $this->template->handler_rows = $rows;
     }
@@ -205,7 +208,7 @@ class handlerPresenter extends BasePresenter {
         $this->template->photos = $rows;
         $this->renderHandler_profile_home($id);
     }
-    
+
     public function renderHandler_profile_home($id = 0) {
         if ($id == 0) {
             $id = $this->logged_in_handler_id;
@@ -406,7 +409,6 @@ class handlerPresenter extends BasePresenter {
      * 
      * FormComponents factory
      */
-
     protected function createComponentFormEditHandlerProfile() {
         $data = $this->database->table("tbl_userhandler")->where("user_id=?", $this->logged_in_id)->fetch();
         $breed_rows = $this->database->query("SELECT tbl_handler_breed.breed_name FROM tbl_handler_breed WHERE handler_id=?", $data->id)->fetchAll();

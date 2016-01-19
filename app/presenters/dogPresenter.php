@@ -165,11 +165,12 @@ class dogPresenter extends BasePresenter {
             $this->paginator->getPaginator()->setItemCount($count);
             $this->paginator->getPaginator()->setItemsPerPage(9);
 
-            $rows = $this->database->table("tbl_dogs")->order("id DESC")
+            $rows = $this->database->table("tbl_dogs")
                             ->where("dog_name LIKE ?", "%" . $this->filter_dog_name . "%")
                             ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
                             ->where("dog_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
                             ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                            ->order('premium_expiry_date DESC, id DESC')
                             ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         }
 
@@ -216,7 +217,8 @@ class dogPresenter extends BasePresenter {
             $this->paginator->getPaginator()->setItemCount($count);
             $this->paginator->getPaginator()->setItemsPerPage(9);
 
-            $rows = $this->database->table("tbl_dogs")->order("id DESC")
+            $rows = $this->database->table("tbl_dogs")
+                            ->order("id DESC")
                             ->where("dog_name LIKE ?", "%" . $this->filter_dog_name . "%")
                             ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
                             ->where("dog_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
@@ -243,7 +245,10 @@ class dogPresenter extends BasePresenter {
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(9);
 
-        $rows = $this->database->table("tbl_dogs")->where("id", $ids)->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        $rows = $this->database->table("tbl_dogs")
+                        ->where("id", $ids)
+                        ->order('premium_expiry_date DESC, id DESC')
+                        ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         //->where(":tbl_dogs:tbl_dogs_shows.JBIS1=1 OR :tbl_dogs:tbl_dogs_shows.BIS1=1")
 //        $i = 0;
 //
@@ -1650,6 +1655,9 @@ class dogPresenter extends BasePresenter {
             $values = $this->data_model->assignFields($values, "frmCreateDogProfile");
             $values['user_id'] = $this->logged_in_id;
             $values['profile_id'] = $this->profile_id;
+
+            $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+            $values['premium_expiry_date'] = $user->premium_expiry_date;
 
             $this->database->table("tbl_dogs")->insert($values);
             $id = $this->database->getInsertId();

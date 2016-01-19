@@ -655,7 +655,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function handleLike($timeline_id = 0, $event_id = 0) {
-        $timeline = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
+        if ($timeline_id != 0)
+            $timeline = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
+        elseif ($event_id != 0)
+            $timeline = $this->database->table("tbl_timeline")->where("event_id=?", $event_id)->fetch();
+        else
+            $this->terminate();
+
         if ($timeline_id != 0)
             $count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
         elseif ($event_id != 0)
@@ -664,6 +670,17 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->terminate();
         }
 
+        if ($timeline->id > 0) {
+            
+        } else {
+            if ($event_id > 0) {
+                $timeline = new \stdClass();
+                $timeline->id = 0;
+                $timeline->event_id = $event_id;
+            } else
+                $this->terminate();
+        }
+        
         if ($count > 0)
             $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->delete();
         else {
@@ -689,6 +706,42 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         echo \DataModel::getTimelineLikesCount($timeline_id, $event_id);
         $this->terminate();
     }
+
+//    public function handleLikeGalleryEvent($event_id = 0, $timeline_id = 0) {
+//        $timeline = $this->database->table("tbl_timeline")->where("id=?", $event_id)->fetch();
+//        if ($timeline_id != 0)
+//            $count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
+//        elseif ($event_id != 0)
+//            $count = $this->database->table("tbl_likes")->where("event_id=?", $event_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
+//        else {
+//            $this->terminate();
+//        }
+//
+//        if ($count > 0)
+//            $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->delete();
+//        else {
+//            $data['timeline_id'] = $timeline_id;
+//            $data['event_id'] = $timeline->event_id;
+//            $data['user_id'] = $this->logged_in_id;
+//            $data['profile_id'] = $this->profile_id;
+//            $this->database->table("tbl_likes")->insert($data);
+//
+//            $timeline = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
+//
+//            $notify['notify_user_id'] = \DataModel::getUserIdByProfileId($timeline->profile_id);
+//            $notify['notify_profile_id'] = $timeline->profile_id;
+//            $notify['user_id'] = $this->logged_in_id;
+//            $notify['profile_id'] = $this->profile_id;
+//            $notify['timeline_id'] = $timeline_id;
+//            $notify['comment'] = "";
+//            $notify['type'] = "like";
+//
+//            $this->database->table("tbl_notify")->insert($notify);
+//        }
+//
+//        echo \DataModel::getTimelineLikesCount($timeline_id, $event_id);
+//        $this->terminate();
+//    }
 
     public function handleImport() {
 //\ImportModel::importProfiles();
@@ -1147,9 +1200,27 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
                     // vykonaj upravy v db a superfakture, len pokial je transakcia autorizovana
                     //if ($_GET['RES'] == 3) {
+                    $data = array();
                     $data['premium_expiry_date'] = $end;
-
+                    $data['premium_payment_date'] = $curdate;
                     $this->database->table("tbl_user")->where("id=?", $user_id)->update($data);
+
+                    $data = array();
+                    $data['premium_expiry_date'] = $curdate;
+                    $this->database->table("tbl_user_kennel")->where("user_id=?", $user_id)->update($data);
+
+                    $data = array();
+                    $data['premium_expiry_date'] = $curdate;
+                    $this->database->table("tbl_user_owner")->where("user_id=?", $user_id)->update($data);
+
+                    $data = array();
+                    $data['premium_expiry_date'] = $curdate;
+                    $this->database->table("tbl_user_handler")->where("user_id=?", $user_id)->update($data);
+
+                    $data = array();
+                    $data['premium_expiry_date'] = $curdate;
+                    $this->database->table("tbl_dogs")->where("user_id=?", $user_id)->update($data);
+
                     //}
 // invoice - superfaktura
 
@@ -1919,6 +1990,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $data = $this->data_model->assignFields($values, 'frmOwnerCreateProfile');
             $data['user_id'] = $this->logged_in_id;
 
+            $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+            $values['premium_expiry_date'] = $user->premium_payment_date;
+
             $this->database->table("tbl_userowner")->insert($data);
             $id = $this->database->getInsertId();
 
@@ -1941,6 +2015,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
             $values = $this->data_model->assignFields($values, 'frmKennelCreateProfile');
             $values['user_id'] = $this->logged_in_id;
+
+            $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+            $values['premium_expiry_date'] = $user->premium_payment_date;
 
             $this->database->table("tbl_userkennel")->insert($values);
             $id = $this->database->getInsertId();
@@ -1970,6 +2047,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
             $values = $this->data_model->assignFields($values, "frmCreateHandlerProfile");
             $values['user_id'] = $this->logged_in_id;
+
+            $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+            $values['premium_expiry_date'] = $user->premium_payment_date;
 
             $this->database->table("tbl_userhandler")->insert($values);
             $id = $this->database->getInsertId();

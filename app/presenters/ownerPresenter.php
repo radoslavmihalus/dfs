@@ -58,16 +58,16 @@ class ownerPresenter extends BasePresenter {
     public function beforeRender() {
         parent::beforeRender();
     }
-    
+
     /*     * ******** renderers ************* */
-    
+
     public function actionOwner_list($lang) {
         $mysection = $this->getSession('language');
 
         $mysection->lang = $lang;
 
         $this->translator->lang = $mysection->lang;
-        
+
         $this->template->lang = $this->translator->lang;
     }
 
@@ -198,7 +198,10 @@ class ownerPresenter extends BasePresenter {
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(20);
 
-        $rows = $this->database->table("tbl_userowner")->where("user_id IN ?", $ids)->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        $rows = $this->database->table("tbl_userowner")
+                        ->where("user_id IN ?", $ids)
+                        ->order('premium_expiry_date DESC, id DESC')
+                        ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
         $this->template->owners = $rows;
     }
@@ -241,7 +244,6 @@ class ownerPresenter extends BasePresenter {
      * Edit form factory.
      * @return Form
      */
-
     public function createComponentOwnerEditProfile($button) {
         $form = new Form();
 

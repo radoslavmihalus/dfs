@@ -9,7 +9,9 @@
                 <div class="container-fluid" style="padding:5px 0px 5px 0px">
                     <!--                    <a data-dismiss="modal"><img src="{ DataModel::getPhotoImage($row->id)}" class="img-responsive" style="margin-left: auto;margin-right: auto;margin-bottom: 10px;"></a>-->
                     <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
-                        <a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;">{DataModel::getTimelineLikesCount(0,$row->id)}</span></a>
+                        <a id="like-{$row->id}" href="javascript:void(0)" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount(0, $row->id)}</span></a>
+                        <a id="unlike-{$row->id}" href="javascript:void(0)" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;" href="javascript:void(0)" id="ylikes-list-{$row->id}"><span class="badge" id="ylikes-count-{$row->id}" style="margin-left: 10px;background-color: #FDB42F;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount(0,$row->id)}</span></a>
+                        <!--<a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{ $row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{ _'Like'}</span><span class="badge" id="likes-count-{ $row->id}" style="margin-left: 10px;">{ DataModel::getTimelineLikesCount(0,$row->id)}</span></a>-->
                     </div>
                     <!--                    { foreach $row->related("tbl_comments","event_id") as $row_comments}
                                             <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
@@ -38,6 +40,38 @@
                             $("#ajax-spinner").hide();
                         });
                     });
+
+                    $("#like-{$row->id},#unlike-{$row->id}").on("click", function (event)
+                    {
+                        event.preventDefault();
+                        $.ajax({
+                            url: "/?do=Like&timeline_id=0&event_id={$row->id}",
+                            dataType: 'html',
+                        }).done(function (data) {
+                            $("#likes-count-{$row->id}").html(data);
+                            $("#ylikes-count-{$row->id}").html(data);
+                            $.ajax({
+                                url: "/?do=HasLiked&timeline_id=0&event_id={$row->id}",
+                                dataType: 'html',
+                            }).done(function (data) {
+                                if (data > 0)
+                                {
+                                    $("#like-{$row->id}").hide();
+                                    $("#likes-count-{$row->id}").hide();
+                                    $("#unlike-{$row->id}").show();
+                                    $("#ylikes-count-{$row->id}").show();
+                                }
+                                else
+                                {
+                                    $("#like-{$row->id}").show();
+                                    $("#likes-count-{$row->id}").show();
+                                    $("#unlike-{$row->id}").hide();
+                                    $("#ylikes-count-{$row->id}").hide();
+                                }
+                            });
+                        });
+                    });
+
                 </script>
                 <!--                <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;margin-bottom: 10px;">
                                     <input type="hidden" value="{$row->id}" name="snippet_id" id="frm-commentTimeline-{$row->id}-snippet_id">

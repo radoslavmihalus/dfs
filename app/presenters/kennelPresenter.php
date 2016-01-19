@@ -102,17 +102,17 @@ class kennelPresenter extends BasePresenter {
         $mysection->lang = $lang;
 
         $this->translator->lang = $mysection->lang;
-        
+
         $this->template->lang = $this->translator->lang;
     }
-    
+
     public function actionPlanned_litter_list($lang) {
         $mysection = $this->getSession('language');
 
         $mysection->lang = $lang;
 
         $this->translator->lang = $mysection->lang;
-        
+
         $this->template->lang = $this->translator->lang;
     }
 
@@ -187,22 +187,27 @@ class kennelPresenter extends BasePresenter {
                                 ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
                                 ->where("user_id IN ?", $ids_users)
                                 ->where("id IN ?", $ids)
-                                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+                                ->order('premium_expiry_date DESC, id DESC')
+                                ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
             else
                 $rows = $this->database->table("tbl_userkennel")
                                 ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
                                 ->where("id IN ?", $ids)
-                                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+                                ->order('premium_expiry_date DESC, id DESC')
+                                ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         } else {
             if (strlen($this->filter_kennel_country) > 1)
                 $rows = $this->database->table("tbl_userkennel")
                                 ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
                                 ->where("user_id IN ?", $ids_users)
-                                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
-            else
+                                ->order('premium_expiry_date DESC, id DESC')
+                                ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+            else {
                 $rows = $this->database->table("tbl_userkennel")
                                 ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
-                                ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+                                ->order('premium_expiry_date DESC, id DESC')
+                                ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+            }
         }
 
 //$rows = $this->database->query("SELECT .*, tbl_user.state, FALSE as have_puppies FROM tbl_userkennel INNER JOIN tbl_user ON tbl_user.id = tbl_userkennel.user_id ORDER BY tbl_userkennel.kennel_create_date DESC limit ". $this->paginator->getLength() . "," . $this->paginator->getOffset())->fetchAll();
@@ -394,7 +399,7 @@ class kennelPresenter extends BasePresenter {
         $this->template->photos = $rows;
         $this->renderKennel_profile_home($id);
     }
-    
+
     public function renderKennel_videogallery($id = 0) {
         if ($id == 0)
             $id = $this->logged_in_kennel_id;

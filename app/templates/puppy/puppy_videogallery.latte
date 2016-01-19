@@ -1,9 +1,6 @@
 {layout '@puppy_layout.latte'}
 {block content}
 {includeblock '../components/modal_confirmation.latte'}
-{foreach $photos as $row}
-    {include '../components/modal_gallery_video.latte' row=>$row}
-{/foreach}
 <div class="panel-body component col-md-12">
     <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
         <div class="panel-description"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}
