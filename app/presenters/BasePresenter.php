@@ -999,6 +999,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     $this->database->table("tbl_userowner")->where("user_id=?", $id)->delete();
                     $this->database->table("tbl_userhandler")->where("user_id=?", $id)->delete();
 
+                    $this->database->table("tbl_puppies")->where("user_id=?", $id)->delete();
+                    
                     $this->handleLogout();
                 }
                 break;
@@ -1014,6 +1016,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     $this->database->table("tbl_userkennel")->where("id=?", $id)->delete();
                     $this->database->table("tbl_timeline")->where("profile_id=?", $id)->delete();
                     $this->database->table("tbl_notify")->where("profile_id=?", $id)->delete();
+                    $this->database->table("tbl_planned_litters")->where("kennel_id=?", $id)->delete();
+                    $this->database->table("tbl_puppies")->where("profile_id=?", $id)->delete();
                 }
                 break;
             case 2:
