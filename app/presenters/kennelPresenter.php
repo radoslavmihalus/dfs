@@ -187,25 +187,29 @@ class kennelPresenter extends BasePresenter {
                                 ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
                                 ->where("user_id IN ?", $ids_users)
                                 ->where("id IN ?", $ids)
-                                ->order('premium_expiry_date DESC, id DESC')
+//                                ->order('premium_expiry_date DESC, id DESC')
+                                ->order('id DESC')
                                 ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
             else
                 $rows = $this->database->table("tbl_userkennel")
                                 ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
                                 ->where("id IN ?", $ids)
-                                ->order('premium_expiry_date DESC, id DESC')
+//                                ->order('premium_expiry_date DESC, id DESC')
+                                ->order('id DESC')
                                 ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         } else {
             if (strlen($this->filter_kennel_country) > 1)
                 $rows = $this->database->table("tbl_userkennel")
                                 ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
                                 ->where("user_id IN ?", $ids_users)
-                                ->order('premium_expiry_date DESC, id DESC')
+//                                ->order('premium_expiry_date DESC, id DESC')
+                                ->order('id DESC')
                                 ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
             else {
                 $rows = $this->database->table("tbl_userkennel")
                                 ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
-                                ->order('premium_expiry_date DESC, id DESC')
+//                                ->order('premium_expiry_date DESC, id DESC')
+                                ->order('id DESC')
                                 ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
             }
         }

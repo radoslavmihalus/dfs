@@ -170,7 +170,8 @@ class dogPresenter extends BasePresenter {
                             ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
                             ->where("dog_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
                             ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
-                            ->order('premium_expiry_date DESC, id DESC')
+//                            ->order('premium_expiry_date DESC, id DESC')
+                            ->order('id DESC')
                             ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         }
 
@@ -247,7 +248,8 @@ class dogPresenter extends BasePresenter {
 
         $rows = $this->database->table("tbl_dogs")
                         ->where("id", $ids)
-                        ->order('premium_expiry_date DESC, id DESC')
+//                        ->order('premium_expiry_date DESC, id DESC')
+                        ->order('id DESC')
                         ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
         //->where(":tbl_dogs:tbl_dogs_shows.JBIS1=1 OR :tbl_dogs:tbl_dogs_shows.BIS1=1")
 //        $i = 0;

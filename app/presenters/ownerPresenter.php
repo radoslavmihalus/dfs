@@ -200,7 +200,8 @@ class ownerPresenter extends BasePresenter {
 
         $rows = $this->database->table("tbl_userowner")
                         ->where("user_id IN ?", $ids)
-                        ->order('premium_expiry_date DESC, id DESC')
+//                        ->order('premium_expiry_date DESC, id DESC')
+                        ->order('id DESC')
                         ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
         $this->template->owners = $rows;
