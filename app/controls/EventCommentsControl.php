@@ -32,9 +32,7 @@ class EventCommentsControl extends UI\Control {
     public function handleEventRemoveComment($id = 0) {
 //        if (isset($_GET['id']))
 //            $id = $_GET['id'];
-
 //        $this->database->table("tbl_comments")->where("id=?", $id)->fetch();
-
 //        if (\DataModel::getPermission($id, $this->logged_in_profile_id, 8))
         $this->database->table("tbl_comments")->where("id=?", $id)->delete();
 
@@ -59,16 +57,20 @@ class EventCommentsControl extends UI\Control {
     }
 
     public function commentSucceeded(UI\Form $form) {
-        $values = $form->values;
+        if (DataModel::getPremium($this->logged_in_id)) {
+            $values = $form->values;
 
-        $this->data_model->addEventComment($this->logged_in_id, $this->profile_id, $values['snippet_id'], $values['comment']);
+            $this->data_model->addEventComment($this->logged_in_id, $this->profile_id, $values['snippet_id'], $values['comment']);
 
-        if ($this->presenter->isAjax()) {
-            $this->presenter->payload->message = "Success";
-            $form->setValues([], TRUE);
-            $this->redrawControl();
+            if ($this->presenter->isAjax()) {
+                $this->presenter->payload->message = "Success";
+                $form->setValues([], TRUE);
+                $this->redrawControl();
+            } else {
+                $this->presenter->redirect('this');
+            }
         } else {
-            $this->presenter->redirect('this');
+            $this->presenter->redirect("user:user_premium");
         }
     }
 

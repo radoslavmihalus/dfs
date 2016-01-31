@@ -680,7 +680,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             } else
                 $this->terminate();
         }
-        
+
         if ($count > 0)
             $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->delete();
         else {
@@ -1000,7 +1000,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     $this->database->table("tbl_userhandler")->where("user_id=?", $id)->delete();
 
                     $this->database->table("tbl_puppies")->where("user_id=?", $id)->delete();
-                    
+
                     $this->handleLogout();
                 }
                 break;
@@ -1406,50 +1406,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         } else
             $this->receiver_profile_id = $this->receiver_user_id;
 
-        $data_group['from_user_id'] = $this->logged_in_id;
-
-        $data_group['from_profile_id'] = $this->profile_id;
-        $data_group['to_user_id'] = $this->receiver_user_id;
-        $data_group['to_profile_id'] = $this->receiver_profile_id;
-        $data_group['message'] = $message;
-        $data_group['unreaded'] = 1;
-        $data_group['active_from'] = 1;
-        $data_group['active_to'] = 1;
-
-        $cnt = $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->logged_in_id, $this->receiver_user_id, $this->profile_id, $this->receiver_profile_id)->count();
-
-        if ($cnt > 0)
-            $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->logged_in_id, $this->receiver_user_id, $this->profile_id, $this->receiver_profile_id)->update($data_group);
-        else
-            $this->database->table("tbl_messages_groups")->insert($data_group);
-
-        $data_group['to_user_id'] = $this->logged_in_id;
-        $data_group['to_profile_id'] = $this->profile_id;
-        $data_group['from_user_id'] = $this->receiver_user_id;
-        $data_group['from_profile_id'] = $this->receiver_profile_id;
-        $data_group['message'] = $message;
-        $data_group['unreaded'] = 0;
-        $data_group['active_from'] = 1;
-        $data_group['active_to'] = 1;
-
-        $cnt = $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->receiver_user_id, $this->logged_in_id, $this->receiver_profile_id, $this->profile_id)->count();
-
-        if ($cnt > 0)
-            $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->receiver_user_id, $this->logged_in_id, $this->receiver_profile_id, $this->profile_id)->update($data_group);
-        else
-            $this->database->table("tbl_messages_groups")->insert($data_group);
-
-        $data['message'] = $values['txtMessageCompose'];
-
-        $data['from_user_id'] = $this->logged_in_id;
-        $data['from_profile_id'] = $this->profile_id;
-        $data['to_user_id'] = $this->receiver_user_id;
-        $data['to_profile_id'] = $this->receiver_profile_id;
-        $data['unreaded'] = 1;
-        $data['active_from'] = 1;
-        $data['active_to'] = 1;
-
-        $this->database->table("tbl_messages")->insert($data);
+        $this->data_model->sendPrivateMessage($this->logged_in_id, $this->profile_id, $this->receiver_user_id, $this->receiver_profile_id, $message);
 
         if ($this->isAjax()) {
             $this->redrawControl();

@@ -253,6 +253,9 @@
                         <a n:href="puppy:puppy_list lang=>$lang"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Puppies for sale'}<span class="badge" style="float:right">{DataModel::getPuppiesForSaleCount()}</span></a>
                     </li>
                     <li>
+                        <a n:href="puppy:puppy_sold_list lang=>$lang"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Sold puppies'}<span class="badge" style="float:right">{DataModel::getPuppiesSoldCount()}</span></a>
+                    </li>
+                    <li>
                         <a n:href="dog:dog_bis_list lang=>$lang"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_'Best in show'}<span class="badge" style="float:right">{DataModel::getBISCount()}</span></a>
                     </li>
                     <li>

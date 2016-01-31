@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Presenters;
 
 use App\Model,
@@ -89,6 +90,49 @@ class puppyPresenter extends BasePresenter {
 
         $rows = $this->database->table("tbl_puppies")
                         ->where("puppy_state=?", "ForSale")
+                        ->where("puppy_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                        ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                        ->where("puppy_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
+                        ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                        ->order("id DESC")->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+
+        $this->template->puppies = $rows;
+    }
+
+    public function renderPuppy_sold_list() {
+        try {
+            $section = $this->getSession('puppy_filter');
+
+            $this->filter_dog_name = $section->filter_dog_name;
+            $this->filter_dog_breed = $section->filter_dog_breed;
+            $this->filter_dog_country = $section->filter_dog_country;
+            $this->filter_dog_gender = $section->filter_dog_gender;
+
+            if ($this->filter_dog_name == NULL)
+                $this->filter_dog_name = "";
+            if ($this->filter_dog_breed == NULL)
+                $this->filter_dog_breed = "";
+            if ($this->filter_dog_country == NULL)
+                $this->filter_dog_country = "";
+            if ($this->filter_dog_gender == NULL || $this->filter_dog_gender == "NA")
+                $this->filter_dog_gender = "";
+        } catch (\Exception $ex) {
+            
+        }
+
+        $count = $this->database->table("tbl_puppies")
+                ->where("puppy_state=?", "Sold")
+                ->where("puppy_name LIKE ?", "%" . $this->filter_dog_name . "%")
+                ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
+                ->where("puppy_gender LIKE ?", "%" . $this->filter_dog_gender . "%")
+                ->where("country LIKE ?", "%" . $this->filter_dog_country . "%")
+                ->count();
+
+        $this->paginator->getPaginator()->setItemCount($count);
+        $this->paginator->getPaginator()->setItemsPerPage(9);
+
+        $rows = $this->database->table("tbl_puppies")
+                        ->where("puppy_state=?", "Sold")
                         ->where("puppy_name LIKE ?", "%" . $this->filter_dog_name . "%")
                         ->where("breed_name LIKE ?", "%" . $this->filter_dog_breed . "%")
                         ->where("puppy_gender LIKE ?", "%" . $this->filter_dog_gender . "%")

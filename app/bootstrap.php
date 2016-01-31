@@ -1,5 +1,6 @@
 <?php
 
+
 // Load Nette Framework
 if (@!include __DIR__ . '/../libs/Nette/loader.php') {
     die('Install Nette using `composer update`');
@@ -460,6 +461,32 @@ $router[] = new Route('steniatka-na-predaj', array(
     'presenter' => 'puppy',
     'action' => 'puppy_list',
     'lang' => 'sk'));
+
+$router[] = new Route('sold-puppies', array(
+    'presenter' => 'puppy',
+    'action' => 'puppy_sold_list',
+    'lang' => 'en'));
+$router[] = new Route('prodana-stenata', array(
+    'presenter' => 'puppy',
+    'action' => 'puppy_sold_list',
+    'lang' => 'cz'));
+$router[] = new Route('verkauft-welpen', array(
+    'presenter' => 'puppy',
+    'action' => 'puppy_sold_list',
+    'lang' => 'de'));
+$router[] = new Route('eladott-kolykok', array(
+    'presenter' => 'puppy',
+    'action' => 'puppy_sold_list',
+    'lang' => 'hu'));
+$router[] = new Route('продаются-щенки', array(
+    'presenter' => 'puppy',
+    'action' => 'puppy_sold_list',
+    'lang' => 'ru'));
+$router[] = new Route('predane-steniatka', array(
+    'presenter' => 'puppy',
+    'action' => 'puppy_sold_list',
+    'lang' => 'sk'));
+
 $router[] = new Route('puppy-profile', 'puppy:puppy_description');
 $router[] = new Route('puppy-pedigree', 'puppy:puppy_pedigree_list');
 $router[] = new Route('puppy-pedigree-edit', 'puppy:puppy_pedigree_edit');
