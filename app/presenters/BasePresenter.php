@@ -404,6 +404,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         return $control;
     }
 
+    protected function createComponentCtlMessage() {
+        $row = array();
+        $control = new \MessageControl($row, $this->logged_in_profile_id, $this->logged_in_id, $this->profile_id, $this->data_model, $this->database, $this->translator);
+        return $control;
+    }
+
     protected function createComponentEventComments() {
 
         $control = new \Nette\Application\UI\Multiplier(function ($id) {

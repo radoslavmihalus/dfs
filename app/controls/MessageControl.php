@@ -10,8 +10,9 @@ class MessageControl extends UI\Control {
     private $active_profile_id;
     private $data_model;
     private $database;
+    private $translator;
 
-    public function __construct($row, $active_profile_id, $logged_in_id, $profile_id, DataModel $data_model, Nette\Database\Context $database) {
+    public function __construct($row, $active_profile_id, $logged_in_id, $profile_id, DataModel $data_model, Nette\Database\Context $database, $translator) {
         parent::__construct();
         $this->row = $row;
         $this->active_profile_id = $active_profile_id;
@@ -19,10 +20,12 @@ class MessageControl extends UI\Control {
         $this->profile_id = $profile_id;
         $this->data_model = $data_model;
         $this->database = $database;
+        $this->translator = $translator;
     }
 
     public function render() {
         $this->template->setFile(__DIR__ . "/MessageControl.latte");
+        $this->template->setTranslator($this->translator);
         $this->template->row = $this->row;
         $this->template->active_profile_id = $this->active_profile_id;
         $this->template->logged_in_id = $this->logged_in_id;
@@ -56,14 +59,34 @@ class MessageControl extends UI\Control {
     public function messageSucceeded(UI\Form $form) {
         $values = $form->values;
 
-        $this->data_model->addTimelineComment($this->logged_in_id, $this->profile_id, $values['snippet_id'], $values['comment']);
+        try {
+            if ($this->logged_in_id > 0)
+                $recaptcha = "123456789012345";
+            else
+                $recaptcha = $_POST['g-recaptcha-response'];
 
-        if ($this->presenter->isAjax()) {
-            $this->presenter->payload->message = "Success";
-            $form->setValues([], TRUE);
-            $this->redrawControl();
-        } else {
-            $this->presenter->redirect('this');
+
+            if (strlen($recaptcha) > 10) {
+                $mail = new Message();
+
+                $mail->setFrom($values['txtName'] . ' ' . $values['txtSurname'] . ' <' . $values['txtEmail'] . '>') //$values['txtEmail']) //DOGFORSHOW <info@dogforshow.com>
+                        ->addTo('info@dogforshow.com')
+                        ->addTo('radoslav.mihalus@gmail.com')
+                        ->setSubject('DOGFORSHOW - Contact Form')
+                        ->setHtmlBody('Name: ' . $values['txtName'] . '<br/>Surname: ' . $values['txtSurname'] . '<br/>Email: ' . $values['txtEmail'] . '<br/><br/>Message:<br/>' . $values['txtMessage'])
+                        ->setContentType('text/html')
+                        ->setEncoding('UTF-8');
+
+                $mailer = new SendmailMailer();
+                $mailer->send($mail);
+
+                $this->flashMessage($this->translate("Your message has been successfully sent. We will contact you as soon as possible."), "Info");
+            } else {
+                $this->flashMessage($this->translate("Your message has not been sent. Verification is required."), "Info");
+            }
+//}
+        } catch (\Exception $ex) {
+            $this->flashMessage($ex->getMessage(), "Error");
         }
     }
 
