@@ -1,9 +1,31 @@
-{layout '@pages.latte'}
 {block content}
 <div class="col-lg-12" style="font-size: 12px;">
     <div class="panel-body component" style="background-color: white;min-height:430px;margin-bottom: 10px;">
-        <h2 class="text-center text-uppercase"><i class="fa fa-leanpub"></i>&nbsp;&nbsp;{_ 'Contact us'}</h2>
-        {include '../components/contact_form.latte'}
+        <h2 class="text-center text-uppercase"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'Contact us'}</h2>
+        <div class="col-md-6">
+            <p>
+                {include '../components/contact_form.latte'}
+            </p>
+        </div>
+        <div class="col-md-6">
+            <p class="secondary_heading text-center">
+                <a href="https://www.facebook.com/dogforshow" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on facebook'}" style="margin-right:15px;text-decoration: none;">
+                    <span style="color:#d5d0c0" class="fa fa-facebook-official fa-2x follow_link"></span>
+                </a>
+                <a href="https://plus.google.com/+Dogforshow" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Google+'}" style="margin-right:15px;text-decoration: none;">
+                    <span style="color:#d5d0c0" class="fa fa-google-plus-square fa-2x white follow_link"></span>
+                </a>
+                <a href="https://twitter.com/DOGFORSHOW" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Twitter'}" style="margin-right:15px;text-decoration: none;">
+                    <span style="color:#d5d0c0" class="fa fa-twitter-square fa-2x white follow_link"></span>
+                </a>
+                <a href="https://www.pinterest.com/DOGFORSHOW" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Pinterest'}" style="margin-right:15px;text-decoration: none;">
+                    <span style="color:#d5d0c0" class="fa fa-pinterest-square fa-2x white follow_link"></span>
+                </a>
+                <a href="http://dog-for-show.tumblr.com/" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Tumblr'}" style="text-decoration: none;">
+                    <span style="color:#d5d0c0" class="fa fa-tumblr-square fa-2x white follow_link"></span>
+                </a>
+            </p>
+        </div>
     </div>
 </div>
 {/block}
