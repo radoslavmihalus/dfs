@@ -521,6 +521,32 @@ $router[] = new Route('casova-os', array(
     'presenter' => 'timeline',
     'action' => 'timeline_wall',
     'lang' => 'sk'));
+//---------------------------   Pages / contact us -----------------------------------
+$router[] = new Route('contact-us', array(
+    'presenter' => 'pages',
+    'action' => 'contact_us',
+    'lang' => 'en'));
+$router[] = new Route('cz-kontakt', array(
+    'presenter' => 'pages',
+    'action' => 'contact_us',
+    'lang' => 'cz'));
+$router[] = new Route('de-kontakt', array(
+    'presenter' => 'pages',
+    'action' => 'contact_us',
+    'lang' => 'de'));
+$router[] = new Route('hu-kontakt', array(
+    'presenter' => 'pages',
+    'action' => 'contact_us',
+    'lang' => 'hu'));
+$router[] = new Route('ru-kontakt', array(
+    'presenter' => 'pages',
+    'action' => 'contact_us',
+    'lang' => 'ru'));
+$router[] = new Route('sk-kontakt', array(
+    'presenter' => 'pages',
+    'action' => 'contact_us',
+    'lang' => 'sk'));
+
 //---------------------------   Pages / general terms -----------------------------------
 $router[] = new Route('general-terms', array(
     'presenter' => 'pages',
