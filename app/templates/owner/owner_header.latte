@@ -2,6 +2,7 @@
 {includeblock '../components/image_UploadPicture_modal_control.latte'}
 {include image_UploadPicture_modal_control name=>'cover', aspect_x => 16, aspect_y => 5, description => "Update cover photo"}
 {include image_UploadPicture_modal_control name=>'profile', aspect_x => 10, aspect_y => 10, description => "Select profile image"}
+{include '../components/message.latte' profile_id=>$profile_id}
 <div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body component">
         <div class="profile-header-image" style="{if $have_background_image} background: url('{$background_image}')no-repeat center center;background-size:cover;background-position:50% 20%; {else} background-color:#D5D0C0; background-image: none{/if}">

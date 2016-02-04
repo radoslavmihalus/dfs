@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,55 +14,53 @@ class DataModel {
         $this->database = $database;
     }
 
-    function sendPrivateMessage($from_user_id, $from_profile_id, $to_user_id, $to_profile_id, $message)
-    {
-        $data_group['from_user_id'] = $this->logged_in_id;
+    function sendPrivateMessage($from_user_id, $from_profile_id, $to_user_id, $to_profile_id, $message) {
+        $data_group['from_user_id'] = $from_user_id;
 
-        $data_group['from_profile_id'] = $this->profile_id;
-        $data_group['to_user_id'] = $this->receiver_user_id;
-        $data_group['to_profile_id'] = $this->receiver_profile_id;
+        $data_group['from_profile_id'] = $from_profile_id;
+        $data_group['to_user_id'] = $to_user_id;
+        $data_group['to_profile_id'] = $to_profile_id;
         $data_group['message'] = $message;
         $data_group['unreaded'] = 1;
         $data_group['active_from'] = 1;
         $data_group['active_to'] = 1;
 
-        $cnt = $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->logged_in_id, $this->receiver_user_id, $this->profile_id, $this->receiver_profile_id)->count();
+        $cnt = $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $from_user_id, $to_user_id, $from_profile_id, $to_profile_id)->count();
 
         if ($cnt > 0)
-            $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->logged_in_id, $this->receiver_user_id, $this->profile_id, $this->receiver_profile_id)->update($data_group);
+            $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $from_user_id, $to_user_id, $from_profile_id, $to_profile_id)->update($data_group);
         else
             $this->database->table("tbl_messages_groups")->insert($data_group);
 
-        $data_group['to_user_id'] = $this->logged_in_id;
-        $data_group['to_profile_id'] = $this->profile_id;
-        $data_group['from_user_id'] = $this->receiver_user_id;
-        $data_group['from_profile_id'] = $this->receiver_profile_id;
+        $data_group['to_user_id'] = $from_user_id;
+        $data_group['to_profile_id'] = $from_profile_id;
+        $data_group['from_user_id'] = $to_user_id;
+        $data_group['from_profile_id'] = $to_profile_id;
         $data_group['message'] = $message;
         $data_group['unreaded'] = 0;
         $data_group['active_from'] = 1;
         $data_group['active_to'] = 1;
 
-        $cnt = $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->receiver_user_id, $this->logged_in_id, $this->receiver_profile_id, $this->profile_id)->count();
+        $cnt = $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $to_user_id, $from_user_id, $to_profile_id, $from_profile_id)->count();
 
         if ($cnt > 0)
-            $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $this->receiver_user_id, $this->logged_in_id, $this->receiver_profile_id, $this->profile_id)->update($data_group);
+            $this->database->table("tbl_messages_groups")->where("from_user_id=? AND to_user_id=? AND from_profile_id=? AND to_profile_id=?", $to_user_id, $from_user_id, $to_profile_id, $from_profile_id)->update($data_group);
         else
             $this->database->table("tbl_messages_groups")->insert($data_group);
 
         $data['message'] = $values['txtMessageCompose'];
 
-        $data['from_user_id'] = $this->logged_in_id;
-        $data['from_profile_id'] = $this->profile_id;
-        $data['to_user_id'] = $this->receiver_user_id;
-        $data['to_profile_id'] = $this->receiver_profile_id;
+        $data['from_user_id'] = $from_user_id;
+        $data['from_profile_id'] = $from_profile_id;
+        $data['to_user_id'] = $to_user_id;
+        $data['to_profile_id'] = $to_profile_id;
         $data['unreaded'] = 1;
         $data['active_from'] = 1;
         $data['active_to'] = 1;
 
         $this->database->table("tbl_messages")->insert($data);
-        
     }
-            
+
     function getField($form_name, $element_name) {
         $fields = $this->database->query("SELECT * FROM form_fields WHERE form_name=? AND element_name=?", $form_name, $element_name);
 
@@ -402,6 +399,9 @@ class DataModel {
 // handler_profile_picture
                 $row = $database->table("tbl_puppies")->where("id=?", $id)->fetch();
                 $name = DataModel::getProfileName($row->profile_id);
+            } elseif ($id >= 9000000001 && $id < 10000000000) {
+                $row = $database->table("tbl_emails")->where("id=?", $id)->fetch();
+                $name = $row->email;
             } else {
                 $row = $database->table("tbl_user")->where("id=?", $id)->fetch();
                 $name = $row->name . " " . $row->surname;

@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <h2 class="heading text-center text-uppercase" style="color:white"><i class="fa fa-envelope"></i>&nbsp;&nbsp;<strong>{_ 'Message'}</strong></h2>
         {if $logged_in_id>0}
-            {form frmContactForm}
+            {form frmMessageForm}
                 <div class="col-md-6">
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="txtName" n:name=txtName placeholder="{_ 'Name'}">
@@ -29,7 +29,7 @@
                 </div>
             {/form}
         {else}
-            {form frmContactForm}
+            {form frmMessageForm}
                 <div class="col-md-6">
                     <div class="form-group">
                         <input type="text" class="form-control" id="txtName" n:name=txtName placeholder="{_ 'Name'}">
