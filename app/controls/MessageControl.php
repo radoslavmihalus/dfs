@@ -64,9 +64,9 @@ class MessageControl extends UI\Control {
 
     public function getMessageBody($name, $par_Name, $par_Surname, $par_Email, $par_Text, $par_URL, $isPremium) {
         if (!$isPremium) {
-            $par_Name = mb_strimwidth($par_Name . ' ' . $par_Surname, 0, 3, "...");
-            $par_Email = mb_strimwidth($par_Email, 0, 3, "...");
-            $par_Text = mb_strimwidth($par_Text, 0, 3, "...");
+            $par_Name = $par_Name . mb_strimwidth(' ' . $par_Surname, 0, 3, "...");
+            $par_Email = mb_strimwidth($par_Email, 0, 6, "...");
+            $par_Text = mb_strimwidth($par_Text, 0, 6, "...");
         } else {
             $par_Name = $par_Name . " " . $par_Surname;
         }
@@ -95,10 +95,10 @@ class MessageControl extends UI\Control {
         </tr>
         <tr>
         <td align = "left">
-        <p style = "font-size:15px;color:#8C8067;">' . $this->translator->translate("Name") . ': ' . $par_Name . '</p>
-        <p style = "font-size:15px;color:#8C8067;">' . $this->translator->translate("Email") . ': ' . $par_Email . '</p>
-        <p style = "font-size:15px;color:#8C8067;">' . $this->translator->translate("Profile URL") . ': <a href="' . $par_URL . '">' . $par_URL . '</a></p>
-        <p style = "font-size:15px;color:#8C8067;">' . $this->translator->translate("Message text") . ': ' . $par_Text . '</p>
+        <p style = "font-size:15px;font-weight:bold;color:#8C8067;">' . $this->translator->translate("Name") . ': <span style="color:black">' . $par_Name . '</span></p>
+        <p style = "font-size:15px;font-weight:bold;color:#8C8067;">' . $this->translator->translate("Email") . ': <span style="color:black">' . $par_Email . '</span></p>
+        <p style = "font-size:15px;font-weight:bold;color:#8C8067;">' . $this->translator->translate("Profile URL") . ': <span style="color:black"><a href="' . $par_URL . '">' . $par_URL . '</a></span></p>
+        <p style = "font-size:15px;font-weight:bold;color:#8C8067;">' . $this->translator->translate("Message text") . ': <span style="color:black">' . $par_Text . '</span></p>
         </td>
         </tr>
         <tr>
@@ -135,6 +135,8 @@ class MessageControl extends UI\Control {
                 $recaptcha = $_POST['g-recaptcha-response'];
                 $recaptcha = "123456789012345";
             }
+
+            $this->translator->lang = $this->row->lang;
 
             if (strlen($recaptcha) > 10) {
 
