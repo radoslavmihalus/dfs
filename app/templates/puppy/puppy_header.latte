@@ -1,5 +1,6 @@
 {block content}
 {includeblock '../components/modal_confirmation.latte'}
+{include '../components/message.latte' profile_id=>$dog->profile_id}
 
 {var $plannedLitter = DataModel::getPlannedLitterById($dog->planned_litter_id)}
 <!--{ var $mother = DataModel::getPlannedLitterMother($dog->planned_litter_id)}
@@ -86,10 +87,12 @@
                 {if ($dog->puppy_state=="ForSale")}
                     {if $logged_in_id>0}
                         {if !DataModel::getPermission($dog->id,$logged_in_id,5)}
-                            <a style="margin-top: 10px" n:href="user:user_message_compose profile_id=>$dog->profile_id" class="btn btn-default btn-lg"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</a>
+                            <a type="button" class="btn btn-default" data-toggle="modal" data-target="#MessageModal" data-parent="#accordion1" href="#"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</a>
+<!--                            <a style="margin-top: 10px" n:href="user:user_message_compose profile_id=>$dog->profile_id" class="btn btn-default btn-lg"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</a>-->
                         {/if}
                     {else}
-                        <a style="margin-top: 10px"  id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-default btn-lg"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</a>
+                        <a type="button" class="btn btn-default" data-toggle="modal" data-target="#MessageModal" data-parent="#accordion1" href="#"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</a>
+<!--                        <a style="margin-top: 10px"  id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-default btn-lg"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{_ 'I am interested'}</a>-->
                     {/if}
                 {/if}
             </div>

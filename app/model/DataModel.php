@@ -48,7 +48,7 @@ class DataModel {
         else
             $this->database->table("tbl_messages_groups")->insert($data_group);
 
-        $data['message'] = $values['txtMessageCompose'];
+        $data['message'] = $message;
 
         $data['from_user_id'] = $from_user_id;
         $data['from_profile_id'] = $from_profile_id;

@@ -324,6 +324,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $user_row = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
             $this->logged_in_profile_id = $user_row->active_profile_id;
             $this->template->logged_in_profile_id = $this->logged_in_profile_id;
+            $this->template->is_premium_user = \DataModel::getPremium($this->logged_in_id);
         } catch (\Exception $ex) {
             $this->template->logged_in_id = 0;
             $this->logged_in_id = 0;
@@ -331,6 +332,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->template->has_kennel_profile = false;
             $this->template->has_user_profile = false;
             $this->template->has_handler_profile = false;
+
+            $this->template->is_premium_user = false;
 
             $this->page_title = "DOGFORSHOW";
             $this->template->page_title = $this->page_title;
@@ -411,7 +414,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $control = new \MessageControl($row, $this->logged_in_profile_id, $this->logged_in_id, $id, $this->data_model, $this->database, $this->translator);
             return $control;
         });
-        
+
         return $control;
     }
 
@@ -429,13 +432,17 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public function renderUser_message_compose($profile_id = 0) {
 //$this->template->users_messages = $this->getMessagesUsersList();
 //$this->template->messages_rows = $this->database->table("tbl_messages")->order("message_datetime ASC")->fetchAll();
-
-        $this->template->message_profile_id = $profile_id;
+        if (\DataModel::getPremium($this->logged_in_id))
+            $this->template->message_profile_id = $profile_id;
+        else
+            $this->redirect("user:user_premium");
     }
 
     public function renderUser_message_list() {
-        $messages_rows = $this->database->table("tbl_messages_groups")->where("to_profile_id=?", $this->logged_in_profile_id)->order("message_datetime DESC")->fetchAll();
-
+        if ($this->logged_in_profile_id > 0)
+            $messages_rows = $this->database->table("tbl_messages_groups")->where("to_profile_id=?", $this->logged_in_profile_id)->order("message_datetime DESC")->fetchAll();
+        else
+            $messages_rows = $this->database->table("tbl_messages_groups")->where("to_user_id=?", $this->logged_in_id)->order("message_datetime DESC")->fetchAll();
         $this->template->users_messages = $messages_rows;
     }
 
@@ -868,7 +875,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public function handleClearMessages($limit = 3) {
         $user_id = $this->logged_in_id;
 
-        $messages_rows = $this->database->table("tbl_messages_groups")->where("to_profile_id=?", $this->logged_in_profile_id)->limit($limit)->fetchAll();
+        $messages_rows = $this->database->table("tbl_messages_groups")->where("to_profile_id=?", $this->logged_in_profile_id)->order("message_datetime DESC")->limit($limit)->fetchAll();
 
         $result = '<li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">' . $this->translator->translate("Messages") . '</li>';
 
@@ -878,14 +885,25 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             else
                 $profile_id = $message->from_user_id;
 
-            $result .= '<li role="presentation">';
-            $result .= '<a role="menuitem" tabindex="-1" href="message-compose?profile_id=' . $profile_id . '">';
-            $result .= '<img class="user-block-thumb" src="' . \DataModel::getProfileImage($profile_id) . '"/>';
-            $result .= '<span class="notification-item-header text-uppercase">' . \DataModel::getProfileName($profile_id) . '</span>';
-            $result .= '<span class="notification-item-event-time">' . date("d.m.Y", strtotime($message->message_datetime)) . '&nbsp;&nbsp;' . date("H:i:s", strtotime($message->message_datetime)) . '</span>';
-            $result .= '<span class="notification-item-event">' . $message->message . '</span>';
-            $result .= '</a>';
-            $result .= '</li>';
+            if (\DataModel::getPremium($this->logged_in_id)) {
+                $result .= '<li role="presentation">';
+                $result .= '<a role="menuitem" tabindex="-1" href="message-compose?profile_id=' . $profile_id . '">';
+                $result .= '<img class="user-block-thumb" src="' . \DataModel::getProfileImage($profile_id) . '"/>';
+                $result .= '<span class="notification-item-header text-uppercase">' . \DataModel::getProfileName($profile_id) . '</span>';
+                $result .= '<span class="notification-item-event-time">' . date("d.m.Y", strtotime($message->message_datetime)) . '&nbsp;&nbsp;' . date("H:i:s", strtotime($message->message_datetime)) . '</span>';
+                $result .= '<span class="notification-item-event">' . mb_strimwidth($message->message, 0, 8, "...") . '</span>';
+                $result .= '</a>';
+                $result .= '</li>';
+            } else {
+                $result .= '<li role="presentation">';
+                $result .= '<a role="menuitem" tabindex="-1" href="message-compose?profile_id=' . $profile_id . '">';
+                $result .= '<img class="user-block-thumb" src="' . \DataModel::getProfileImage($profile_id) . '"/>';
+                $result .= '<span class="notification-item-header text-uppercase">' . mb_strimwidth(\DataModel::getProfileName($profile_id), 0, 0, "...") . '</span>';
+                $result .= '<span class="notification-item-event-time">' . date("d.m.Y", strtotime($message->message_datetime)) . '&nbsp;&nbsp;' . date("H:i:s", strtotime($message->message_datetime)) . '</span>';
+                $result .= '<span class="notification-item-event">' . mb_strimwidth($message->message, 0, 8, "...") . '</span>';
+                $result .= '</a>';
+                $result .= '</li>';
+            }
         }
 
         $result .= '<li role = "presentation" class="messages_list_item">
@@ -895,6 +913,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         </li>';
 
         $this->database->query("UPDATE tbl_messages_groups SET unreaded = 0 WHERE to_user_id = $user_id");
+        $this->database->query("UPDATE tbl_messages SET unreaded = 0 WHERE to_user_id = $user_id");
 
         echo $result;
         $this->terminate();
@@ -903,7 +922,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public function handleMessageCheck($profile_id = 0) {
         if ($profile_id > 0) {
 
-            if ($profile_id >= 100000000 && $profile_id < 200000000)
+            if (($profile_id >= 100000000 && $profile_id < 200000000) || ($profile_id >= 9000000001 && $profile_id < 10000000000))
                 if ($this->logged_in_profile_id > 0)
                     $messages_rows = $this->database->table('tbl_messages')->where("(from_user_id = ? AND to_profile_id=?) OR (from_profile_id=? AND to_user_id=?)", $profile_id, $this->logged_in_profile_id, $this->logged_in_profile_id, $profile_id)->order("id ASC")->fetchAll();
                 else

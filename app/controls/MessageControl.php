@@ -994,10 +994,10 @@ class MessageControl extends UI\Control {
                             ->setEncoding('UTF-8');
                 }
 
-                $body = $this->translator->translate("Name") . ": " . $values['txtName'] . "<br/>" .
-                        $this->translator->translate("Surname") . ": " . $values['txtSurname'] . "<br/>" .
-                        $this->translator->translate("Email") . ": " . $values['txtEmail'] . "<br/>" .
-                        $this->translator->translate("Profile URL") . ": <a href=\"" . $values['txtUrl'] . "\">" . $values['txtUrl'] . "</a><br/>" .
+                $body = $this->translator->translate("Name") . ": " . $values['txtName'] . "\n" .
+                        $this->translator->translate("Surname") . ": " . $values['txtSurname'] . "\n" .
+                        $this->translator->translate("Email") . ": " . $values['txtEmail'] . "\n" .
+                        $this->translator->translate("Profile URL") . ": <a href=\"" . $values['txtUrl'] . "\">" . $values['txtUrl'] . "</a>\n" .
                         $this->translator->translate("Message text") . ": " . $values['txtMessage'];
 
                 $mailer = new Nette\Mail\SendmailMailer();
@@ -1015,7 +1015,7 @@ class MessageControl extends UI\Control {
 
                 $this->data_model->sendPrivateMessage($from_user_id, $from_profile_id, $to_user_id, $to_profile_id, $body);
 
-                $this->presenter->flashMessage($this->translator->translate("Your message has been successfully sent. We will contact you as soon as possible."), "Info");
+                $this->presenter->flashMessage($this->translator->translate("Your message has been successfully sent."), "Info");
             } else {
                 $this->presenter->flashMessage($this->translator->translate("Your message has not been sent. Verification is required."), "Info");
             }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Presenters;
 
 use App\Model,
@@ -27,7 +26,7 @@ class photoPresenter extends BasePresenter {
     public function beforeRender() {
         parent::beforeRender();
     }
-    
+
     public function renderPhoto_list() {
         $filter_ids = array();
         $ids = $this->database->table("tbl_user")->select("id")->where("premium_expiry_date >= DATE(now())")->fetchAll();
@@ -36,7 +35,7 @@ class photoPresenter extends BasePresenter {
         }
 
         $count = $this->database->table("tbl_photos")->where("user_id IN ?", $filter_ids)->count();
-        
+
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(24);
 
@@ -47,14 +46,12 @@ class photoPresenter extends BasePresenter {
 
     public function actionPhoto_add($profile_id) {
         if (!\DataModel::getPremium($this->logged_in_id)) {
-            $cnt = $this->database->table("tbl_photos")->where("profile_id=?", $profile_id)->count();
-
-            if ($cnt > 4) {
-                $this->redirect("user:user_premium");
-                $this->terminate();
-            }
+//            $cnt = $this->database->table("tbl_photos")->where("profile_id=?", $profile_id)->count();
+//            if ($cnt > 4) {
+            $this->redirect("user:user_premium");
+            $this->terminate();
+//            }
         }
-
         $this->photo_profile_id = $profile_id;
     }
 

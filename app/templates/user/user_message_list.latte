@@ -15,13 +15,21 @@
                             {/if}
                             {if ( $message->from_profile_id > 0 )}
                                 <img class="user-block-thumb" src="{DataModel::getProfileImage($message->from_profile_id)}"/>
-                                <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_profile_id)}</span>
+                                {if $is_premium_user}
+                                    <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_profile_id)}</span>
+                                {else}
+                                    <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_profile_id)|truncate:1}</span>
+                                {/if}
                             {else}
                                 <img class="user-block-thumb" src="{DataModel::getProfileImage($message->from_user_id)}"/>
-                                <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_user_id)}</span>
+                                {if $is_premium_user}
+                                    <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_user_id)}</span>
+                                {else}
+                                    <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_user_id)|truncate:1}</span>
+                                {/if}
                             {/if}
                             <span class="notification-item-event-time">{$message->message_datetime|date:'%d.%m.%Y'}&nbsp;&nbsp;{$message->message_datetime|date:'H:i:s'}</span>
-                            <span class="notification-item-event" style="color:black">{$message->message}</span>
+                            <span class="notification-item-event" style="color:black">{!$message->message|truncate:10}</span>
                             <button class="btn btn-danger btn-xs pull-left" title="{_ 'Delete messages'}" type="button"><i class="fa fa-trash"></i>&nbsp;&nbsp;{_ 'Delete messages'}</button>
                         </a>
                     {/foreach}
