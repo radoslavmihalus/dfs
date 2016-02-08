@@ -1341,23 +1341,23 @@ class DataModel {
 
     public static function premiumNotified($user_id) {
         // no action
-        return TRUE;
+//        return TRUE;
 
         // for notifications please remove commented commands bellow
-//        $database = $GLOBALS['database'];
-//
-//        $database->query("CREATE TABLE IF NOT EXISTS tbl_user_promoted(user_id BIGINT NOT NULL)");
-//
-//        $count = $database->table("tbl_user_promoted")->where("user_id = ?", $user_id)->count();
-//
-//        if ($count > 0)
-//            return TRUE;
-//        else {
-//            $data = array();
-//            $data['user_id'] = $user_id;
-//            $database->table("tbl_user_promoted")->insert($data);
-//            return FALSE;
-//        }
+        $database = $GLOBALS['database'];
+
+        $database->query("CREATE TABLE IF NOT EXISTS tbl_user_promoted(user_id BIGINT NOT NULL)");
+
+        $count = $database->table("tbl_user_promoted")->where("user_id = ?", $user_id)->count();
+
+        if ($count > 0)
+            return TRUE;
+        else {
+            $data = array();
+            $data['user_id'] = $user_id;
+            $database->table("tbl_user_promoted")->insert($data);
+            return FALSE;
+        }
     }
 
     static function getRowForComments($id) {

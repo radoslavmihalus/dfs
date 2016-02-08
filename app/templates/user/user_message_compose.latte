@@ -8,6 +8,7 @@
             </div>
             <div class="col-md-12">
                 <div id="areaMessages">
+                    {var $isEmail=false}
                     {foreach $messages_rows as $row}
                         <div style="display:block;float:left;width:100%;padding: 10px 0px 10px 0px;">
                             <img class="user-block-thumb" src="
@@ -15,6 +16,7 @@
                                      {DataModel::getProfileImage($row->from_profile_id)}
                                  {else}
                                      {DataModel::getProfileImage($row->from_user_id)}
+                                     {$isEmail = true}
                                  {/if}
                                  "/>
                             <a href="#"><span class="notification-item-header text-uppercase">
@@ -22,6 +24,7 @@
                                         {DataModel::getProfileName($row->from_profile_id)}
                                     {else}
                                         {DataModel::getProfileName($row->from_user_id)}
+                                        {$isEmail = true}
                                     {/if}
                                 </span></a>
                             <span class="notification-item-event-time">{$row->message_datetime|date:'%d.%m.%Y'}&nbsp;&nbsp;{$row->message_datetime|date:'H:i:s'}</span>
@@ -29,14 +32,16 @@
                         </div>
                     {/foreach}
                 </div>
-                {snippet form}
-                    <form n:name=formSendMessage id="formSendMessage" class="ajax">
-                        <div style="background-color: whitesmoke;display:block;float:left;width:100%;padding: 15px;">
-                            <textarea type="text" style="height:80px;" class="col-md-12 textarea-compose-message form-control contact_textarea font_size_13px" id="txtMessageCompose" n:name=txtMessageCompose placeholder="{_ 'Type your message'}"></textarea>
-                            <button class="btn btn-default btn-sm btn-block" id="btnSubmit" n:name=btnSubmit>{_ 'Send'}</button>
-                        </div>
-                    </form>
-                {/snippet}
+                {if $isEmail==false}
+                    {snippet form}
+                        <form n:name=formSendMessage id="formSendMessage" class="ajax">
+                            <div style="background-color: whitesmoke;display:block;float:left;width:100%;padding: 15px;">
+                                <textarea type="text" style="height:80px;" class="col-md-12 textarea-compose-message form-control contact_textarea font_size_13px" id="txtMessageCompose" n:name=txtMessageCompose placeholder="{_ 'Type your message'}"></textarea>
+                                <button class="btn btn-default btn-sm btn-block" id="btnSubmit" n:name=btnSubmit>{_ 'Send'}</button>
+                            </div>
+                        </form>
+                    {/snippet}
+                {/if}
             </div>
         </div>
     </div>
@@ -51,7 +56,7 @@
                 }).done(function (data) {
                     $("#areaMessages").html(data);
                 });
-            }, 1000
+            }, 100
             );
 
 </script>

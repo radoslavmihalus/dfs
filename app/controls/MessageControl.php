@@ -714,11 +714,13 @@ class MessageControl extends UI\Control {
             <td style="padding-top:10px; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
                 <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 3px;background-color: #EB9419;">
                     <tbody>
-                        <tr>
-                            <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 15px;">
+                        <tr>';
+        if (!$isPremium) {
+            $body .='<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 15px;">
                                 <a class="mcnButton " title="Read message now" href="http://www.dogforshow.com/" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">' . $this->translator->translate('Read message on DOGFORSHOW') . '</a>
-                            </td>
-                        </tr>
+                 </td>';
+        }
+        $body .='</tr>
                     </tbody>
                 </table>
             </td>
