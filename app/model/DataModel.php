@@ -1341,10 +1341,21 @@ class DataModel {
 
     public static function premiumNotified($user_id) {
         // no action
-        return FALSE;
+        // return TRUE;
 
         // for notifications please remove commented commands bellow
         $database = $GLOBALS['database'];
+
+
+        try {
+            $userdata = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+            $ped = date("Ymd", strtotime($userdata->premium_expiry_date));
+            $now = date("Ymd");
+            if ($ped > $now)
+                return TRUE;
+        } catch (\Exception $ex) {
+            
+        }
 
         $database->query("CREATE TABLE IF NOT EXISTS tbl_user_promoted(user_id BIGINT NOT NULL)");
 

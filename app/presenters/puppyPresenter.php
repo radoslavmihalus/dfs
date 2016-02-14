@@ -181,6 +181,10 @@ class puppyPresenter extends BasePresenter {
             $this->terminate();
         }
         $this->planned_litter_id = $plid;
+        
+//        $fb = new \Facebook\Facebook();
+//        
+//        $fb->post($endpoint);
     }
 
     public function actionPuppy_edit_profile($id = 0) {
