@@ -50,6 +50,15 @@
         {/if}
         <ul class="nav nav-stacked user-menu-links" id="accordion1">
             {if $logged_in_id>0}
+                <li class="panel">
+                    {if DataModel::getPremium($logged_in_id)}
+                        <a style="background-color:#EB9419;color:white;font-weight:bold;" n:href="user:user_premium lang=>$lang" data-parent="#accordion1" id=""><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Premium account'}:&nbsp;{DataModel::getPremiumExpiryDate($logged_in_id)}</a>
+                    {else}
+                        <a style="background-color:#EB9419;color:white;font-weight:bold;" n:href="user:user_premium lang=>$lang" data-parent="#accordion1" id=""><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'I want to get all the benefits'}</a>
+                    {/if}
+                </li>
+            {/if}            
+            {if $logged_in_id>0}
                 {if ($profile_url=="#")}
                     <li class="panel">
                         {if (DataModel::getUserProfilesCount($logged_in_id)>0)}
@@ -194,9 +203,6 @@
                             </div>
                         </li>-->
             {if $logged_in_id>0}
-                <li class="panel">
-                    <a style="background-color:#EB9419;color:white;font-weight:bold;" n:href="user:user_premium lang=>$lang" data-parent="#accordion1" id=""><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'I want to get all the benefits'}</a>
-                </li>
             {else}
                 <li class="panel">
                     <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowLang"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-flag"></i>&nbsp;&nbsp;{_ 'Language'}</a>

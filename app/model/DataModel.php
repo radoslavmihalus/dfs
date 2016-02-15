@@ -1339,10 +1339,21 @@ class DataModel {
             return FALSE;
     }
 
+    public static function getPremiumExpiryDate($user_id) {
+//        require_once 'www/inc/config_ajax.php';
+//        $database = getContext();
+        $database = $GLOBALS['database'];
+
+        $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
+
+        $date = date("d.m.Y", strtotime($row->premium_expiry_date));
+
+        return $date;
+    }
+
     public static function premiumNotified($user_id) {
         // no action
         // return TRUE;
-
         // for notifications please remove commented commands bellow
         $database = $GLOBALS['database'];
 
