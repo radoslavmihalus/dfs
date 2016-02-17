@@ -953,7 +953,6 @@ class MessageControl extends UI\Control {
                 $recaptcha = "123456789012345";
             } else {
                 $recaptcha = $_POST['g-recaptcha-response'];
-                $recaptcha = "123456789012345";
             }
 
             $this->translator->lang = $this->row->lang;
@@ -1003,7 +1002,7 @@ class MessageControl extends UI\Control {
                         $this->translator->translate("Message text") . ": " . $values['txtMessage'];
 
                 $mailer = new Nette\Mail\SendmailMailer();
-                $mailer->send($mail);
+                // $mailer->send($mail);
 
                 $from_user_id = $this->logged_in_id;
                 if ($from_user_id == 0)
