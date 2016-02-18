@@ -3,7 +3,7 @@
 <a n:href="puppy:puppy_description id=>$row->id">
     {var $litter = DataModel::getPlannedLitterById($row->planned_litter_id)}
     <div class="list-item">
-        <div class="dog-image-profile-thumb" style="background: url('{$row->puppy_photo}') no-repeat center center; background-size: cover;min-height: 240px;">
+        <div class="dog-image-profile-thumb" style="background: url('{$row->puppy_photo}') no-repeat top center; background-size: cover;min-height: 240px;">
             <span {if ($row->puppy_state=="ForSale")}class="puppy-info-forsale"{elseif (($row->puppy_state=="Reserved"))}class="puppy-info-reserved"{else}class="puppy-info-sold"{/if} style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ $row->puppy_state}</span>
         </div>
         <h3 class="text-uppercase" style="height:40px;">{$row->puppy_name}</h3>

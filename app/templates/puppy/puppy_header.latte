@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-md-4">
                 <a href="{$dog->puppy_photo}" data-gallery>
-                    <div class="dog-image-profile-thumb" style="background: url('{$dog->puppy_photo}') no-repeat center center; background-size: cover;min-height: 240px;">
+                    <div class="dog-image-profile-thumb" style="background: url('{$dog->puppy_photo}') no-repeat top center; background-size: cover;min-height: 240px;">
                         <span {if ($dog->puppy_state=="ForSale")}class="puppy-info-forsale"{elseif (($dog->puppy_state=="Reserved"))}class="puppy-info-reserved"{else}class="puppy-info-sold"{/if}style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ $dog->puppy_state}</span>
     <!--                    <span  style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Reserved'}</span>-->
     <!--                    <span  style="font-size:15px;"><i class="fa fa-paw"></i>&nbsp;{_ 'Sold'}</span>-->
