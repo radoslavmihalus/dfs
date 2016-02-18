@@ -597,6 +597,31 @@ $router[] = new Route('sk-politika-cookies', array(
     'presenter' => 'pages',
     'action' => 'cookie_policy',
     'lang' => 'sk'));
+//---------------------------   Pages / our team -----------------------------------
+$router[] = new Route('our-team', array(
+    'presenter' => 'pages',
+    'action' => 'our_team',
+    'lang' => 'en'));
+$router[] = new Route('nas-tym', array(
+    'presenter' => 'pages',
+    'action' => 'our_team',
+    'lang' => 'cz'));
+$router[] = new Route('unsere-team', array(
+    'presenter' => 'pages',
+    'action' => 'our_team',
+    'lang' => 'de'));
+$router[] = new Route('csapatunk', array(
+    'presenter' => 'pages',
+    'action' => 'our_team',
+    'lang' => 'hu'));
+$router[] = new Route('Наша-команда', array(
+    'presenter' => 'pages',
+    'action' => 'our_team',
+    'lang' => 'ru'));
+$router[] = new Route('nas-tim', array(
+    'presenter' => 'pages',
+    'action' => 'our_team',
+    'lang' => 'sk'));
 
 $router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>/]<presenter>/<action>', "LandingPage:default");
 //$router[] = new Route('<presenter>/<action>[/<id>]', 'LandingPage:default');
