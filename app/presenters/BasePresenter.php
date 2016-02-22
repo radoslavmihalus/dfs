@@ -385,6 +385,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             }
         }
 
+        if ($presenter == "LandingPage" && $action == "default") {
+            $url = $this->getHttpRequest()->getUrl();
+            $sharer_tags = \DataModel::getShareTagsGlobal($this->translator->lang, $presenter, $action, $url);
+        }
+
         $this->template->sharer_tags = $sharer_tags;
 
 

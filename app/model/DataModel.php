@@ -1667,6 +1667,9 @@ class DataModel {
             //$database = new Nette\Database\Context($conn);
             $database = $GLOBALS['database'];
 
+            if ($lang == NULL)
+                $lang = "en";
+
             $database->query("CREATE TABLE IF NOT EXISTS tbl_global_router(`id` BIGINT NOT NULL AUTO_INCREMENT, `presenter` VARCHAR(250) DEFAULT NULL, `action` VARCHAR(250) DEFAULT NULL, `title` VARCHAR(250) DEFAULT NULL, `description` MEDIUMTEXT DEFAULT NULL, `image_url` VARCHAR(255) DEFAULT NULL, `url` VARCHAR(255) DEFAULT NULL, `lang` VARCHAR(25) DEFAULT NULL, PRIMARY KEY(`id`)) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci");
 
             $count = $database->table("tbl_global_router")->where("presenter=?", $presenter)->where("action=?", $action)->where("lang=?", $lang)->count();
