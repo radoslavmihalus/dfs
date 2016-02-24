@@ -1859,7 +1859,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $langs = array();
 
         $langs['cz'] = 'cz';
-        $langs['de'] = 'de';
+//        $langs['de'] = 'de';
         $langs['en'] = 'en';
         $langs['hu'] = 'hu';
         $langs['ru'] = 'ru';
@@ -2080,6 +2080,10 @@ class DFSTranslator implements Nette\Localization\ITranslator {
 
     public function __construct($lang = "en") { //Nette\Database\Context $database) {
         $this->lang = $lang;
+
+        if ($this->lang == "de")
+            $this->lang = "en";
+
         $this->database = $GLOBALS['database'];
     }
 
@@ -2104,7 +2108,7 @@ class DFSTranslator implements Nette\Localization\ITranslator {
                         $message = $row->translated_text_cz;
                         break;
                     case "de":
-                        $message = $row->translated_text_de;
+                        $message = $row->translated_text_en;
                         break;
                     case "sk":
                         $message = $row->translated_text_sk;

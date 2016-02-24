@@ -1002,7 +1002,7 @@ class MessageControl extends UI\Control {
                         $this->translator->translate("Message text") . ": " . $values['txtMessage'];
 
                 $mailer = new Nette\Mail\SendmailMailer();
-                // $mailer->send($mail);
+                $mailer->send($mail);
 
                 $from_user_id = $this->logged_in_id;
                 if ($from_user_id == 0)

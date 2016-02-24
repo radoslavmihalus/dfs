@@ -102,7 +102,7 @@ class userPresenter extends BasePresenter {
         $langs = array();
 
         $langs['cz'] = 'cz';
-        $langs['de'] = 'de';
+//        $langs['de'] = 'de';
         $langs['en'] = 'en';
         $langs['hu'] = 'hu';
         $langs['ru'] = 'ru';
