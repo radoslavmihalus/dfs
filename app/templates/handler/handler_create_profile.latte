@@ -3,12 +3,14 @@
 {includeblock '../components/image_UploadPicture_control.latte'}
 {includeblock '../components/dropdown_BreedList_control.latte'}
 {includeblock '../components/textarea_control.latte'}
+{includeblock '../components/image_hint_control.latte'}
 <div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
     <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
         {form formCreateHandlerProfile}
             <h2 class="section_heading text-center text-uppercase"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_ 'Handler profile'}</h2>
             <span class="form-secondary-description" style="display:block;margin-top:30px;"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about you'}</span>
             <hr>
+            {include image_hint_control, description => "Your profile picture"}
             {include image_UploadPicture_control, aspect_x => 50, aspect_y => 50, needed_crop=>1, description => "Your profile picture", placeholder => "Select picture", id => "txtHandlerProfilePhoto", name => "txtHandlerProfilePhoto", tooltip => "Your profile picture in jpeg or jpg format", _form => $_form}
             {include textarea_control, _form => $_form, description => "Short description about you", placeholder => "Short description", id => "txtHandlerDescription", name => "txtHandlerDescription",  tooltip => "Enter some informations about yourself"}
             {include dropdown_BreedList_control, _form => $form, description => "Select the breed that you can handle", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList",  tooltip => "Select the breeds that you can handle"}
