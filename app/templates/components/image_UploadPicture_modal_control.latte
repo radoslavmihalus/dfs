@@ -1,4 +1,5 @@
 {define #image_UploadPicture_modal_control}
+{includeblock 'image_hint_control.latte'}
 <div id="modalFlashUpload{$name}" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -11,6 +12,7 @@
                 <p id="modalText">
                     <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;">{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
                     <!-- imgSelect Container -->
+                    {include image_hint_control, description => "Your Profile image or background image must not include unsuitable content (website,email,phone numbers,planned litters,stud dogs,puppies for sale) that disadvantage PREMIUM ACCOUNT users."}
                 <div id="imgselect_container{$name}">
                     <!-- Upload & Webcam buttons -->
                     <div class="btn btn-default btn-sm imgs-upload"><i class="fa fa-upload"></i>&nbsp;&nbsp;{_ 'Upload'}</div> <!-- .imgs-upload -->

@@ -1,5 +1,7 @@
 {define #image_hint_control}
-<div class="form-group">
-    <span class="alert alert-error" style="display:block;color: #c09853;background-color: #fcf8e3;border-color: #fbeed5;margin-bottom: 5px;"><i style="margin-right: 5px;" class="fa fa-info-circle fa-1x"></i>{_$description}</span>
-</div>
+{if !DataModel::getPremium($logged_in_id)}
+    <div class="form-group">
+        <span class="alert alert-error" style="display:block;color: #c09853;background-color: #fcf8e3;border-color: #fbeed5;margin-bottom: 5px;"><i style="margin-right: 5px;" class="fa fa-info-circle fa-1x"></i>{_$description}</span>
+    </div>
+{/if}
 {/define}
