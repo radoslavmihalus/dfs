@@ -4,6 +4,7 @@
 {includeblock '../components/textarea_control.latte'}
 {includeblock '../components/image_UploadPicture_control.latte'}
 {includeblock '../components/dropdown_BreedList_control.latte'}
+{includeblock '../components/image_hint_control.latte'}
 <div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
     <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
         <!--        <form id="frmCreateKennelProfile" enctype="multipart/form-data">-->
@@ -14,6 +15,7 @@
             <input type="hidden" name="formName" value="kennel-edit-profile"/>
             {include textbox_control, description => "Kennel name", placeholder => "Kennel name", id => "txtKennelName", name => "txtKennelName", tooltip => "Name of your kennel", _form => $_form}
             {include textbox_control, description => "FCI number", placeholder => "FCI number", id => "txtKennelFciNumber", name => "txtKennelFciNumber", tooltip => "Fill the FCI number in the form 1580/2015. If you are non FCI kennel, please leave this field empty", _form => $_form}
+            {include image_hint_control, description => "Your Profile image or background image must not include unsuitable content (website,email,phone numbers,planned litters,stud dogs,puppies for sale) that disadvantage PREMIUM ACCOUNT users."}
             {include image_UploadPicture_control, aspect_x => 50, aspect_y => 50, needed_crop=>1, description => "Kennel profile picture", placeholder => "Select picture", id => "txtKennelProfilePicture", name => "txtKennelProfilePicture", tooltip => "Profile picture of your kennel in jpeg or jpg format", _form => $_form}
             {include textbox_control, description => "Kennel website", placeholder => "www.yourwebsite.com", id => "txtKennelWebsite", name => "txtKennelWebsite", tooltip => "Enter the website of your kennel", _form => $_form}
             {include textarea_control, description => "Kennel description", placeholder => "Kennel description", id => "txtKennelDescription", name => "txtKennelDescription", tooltip => "Enter some informations about your kennel", _form => $_form}
