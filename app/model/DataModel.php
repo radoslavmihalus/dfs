@@ -1447,14 +1447,18 @@ class DataModel {
                 // dog 500000000
                 $row = $database->table("tbl_dogs")->where("id=?", $id)->fetch();
                 $title = mb_strtoupper($row->dog_name);
-                $description = mb_strtoupper($row->breed_name) . " | " . mb_strtoupper($translator->translate($row->dog_gender)) . " | " . mb_strtoupper($translator->translate($row->country));
+                $type = array();
+                $type['type'] = 'breed';
+                $description = mb_strtoupper( $translator->translate($row->breed_name, $type)) . " | " . mb_strtoupper($translator->translate($row->dog_gender)) . " | " . mb_strtoupper($translator->translate($row->country));
                 $image = DataModel::getURL() . "/" . $row->dog_image;
                 break;
             case ($id >= 600000000 && $id < 700000000):
                 // puppy 600000000
                 $row = $database->table("tbl_puppies")->where("id=?", $id)->fetch();
                 $title = mb_strtoupper($translator->translate($row->puppy_state)) . " - " . mb_strtoupper($row->puppy_name);
-                $description = mb_strtoupper($row->breed_name) . " | " . mb_strtoupper($translator->translate($row->puppy_gender)) . " | " . mb_strtoupper($translator->translate($row->country)) . " | " . $row->puppy_description;
+                $type = array();
+                $type['type'] = 'breed';
+                $description = mb_strtoupper($translator->translate($row->breed_name, $type)) . " | " . mb_strtoupper($translator->translate($row->puppy_gender)) . " | " . mb_strtoupper($translator->translate($row->country)) . " | " . $row->puppy_description;
                 $image = DataModel::getURL() . "/" . $row->puppy_photo;
                 break;
             case ($id >= 800000000 && $id < 900000000):

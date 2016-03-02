@@ -16,7 +16,7 @@
             </div>
             <!--  Second row  -->
             <div class="col-lg-6 col-md-6 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
-                <i class="fa fa-tag" ></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}" style="margin-left: 10px;">{$row->bitch_breed}</span>
+                <i class="fa fa-tag" ></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}" style="margin-left: 10px;">{_$row->bitch_breed, [type => 'breed']}</span>
             </div>
             <div class="col-lg-3 col-md-3 col-xs-12" style="margin-bottom: 5px;color:#a5987f;">
                 <i class="fa fa-map-marker"></i><span data-toggle="tooltip" data-placement='top' title="{_ 'Country'}" style="margin-left: 10px;">{_$row->bitch_state}</span>
@@ -66,7 +66,7 @@
                                 </div>
                                 <h3 class="text-uppercase"><i class="fa fa-mars" style="color:#0c9eea;"></i>&nbsp;&nbsp;{$row->dog_name}</h3>
                                 <hr style="margin-bottom: 10px;">
-                                <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{$row->dog_breed}</span>
+                                <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{_$row->dog_breed, [type => 'breed']}</span>
                                 <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_$row->dog_state}</span>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                 </div>
                                 <h3 class="text-uppercase"><i class="fa fa-mars" style="color:#0c9eea;"></i>&nbsp;&nbsp;{$row->dog_name}</h3>
                                 <hr style="margin-bottom: 10px;">
-                                <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{$row->dog_breed}</span>
+                                <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{_$row->dog_breed, [type => 'breed']}</span>
                                 <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_$row->dog_state}</span>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                                 </div>
                                 <h3 class="text-uppercase"><i class="fa fa-venus gender-bitch"></i>&nbsp;&nbsp;{$row->bitch_name}</h3>
                                 <hr style="margin-bottom: 10px;">
-                                <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{$row->bitch_breed}</span>
+                                <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{_$row->bitch_breed, [type => 'breed']}</span>
                                 <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_$row->bitch_state}</span>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                                 </div>
                                 <h3 class="text-uppercase"><i class="fa fa-venus gender-bitch"></i>&nbsp;&nbsp;{$row->bitch_name}</h3>
                                 <hr style="margin-bottom: 10px;">
-                                <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{$row->bitch_breed}</span>
+                                <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{_$row->bitch_breed, [type => 'breed']}</span>
                                 <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_$row->bitch_state}</span>
                             </div>
                         </div>

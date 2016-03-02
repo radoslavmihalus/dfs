@@ -8,7 +8,7 @@
         </div>
         <h3 class="text-uppercase" style="height:40px;">{$row->puppy_name}</h3>
         <hr style="margin-bottom: 10px;">
-        <span class="list-item-breed" style="height:40px;"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{$litter->bitch_breed}</span>
+        <span class="list-item-breed" style="height:40px;"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{_$litter->bitch_breed, [type => 'breed']}</span>
         <hr style="margin-top: 5px;margin-bottom:5px;">
         <span class="list-item-gender">{if $row->puppy_gender=='Dog'}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;"></i>{else}<i class="fa fa-venus gender-bitch" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}"></i>{/if}&nbsp;&nbsp;{_$row->puppy_gender}</span>
         <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_$row->country}</span>

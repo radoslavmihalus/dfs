@@ -24,12 +24,13 @@
             // GitHub uses 1-based pages with 30 results, by default
             return {
             q: term,
+                    lang: {$lang},
                     page: offset
             };
             },
             processItem: function (item) {
             return {
-            id: item.name,
+            id: item.id,
                     text: item.name,
                     description: item.name
             };

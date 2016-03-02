@@ -97,7 +97,7 @@
             <div class="col-md-8">
                 <table style="border-spacing:5px;border-collapse: separate;font-family: 'Roboto Condensed', sans-serif;font-size:15px">
                     <tr>
-                        <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i></span></td><td><span><strong>{$dog->breed_name}</strong></span></td>
+                        <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i></span></td><td><span><strong>{_$dog->breed_name, [type => 'breed']}</strong></span></td>
                     </tr>
                     <tr>
                         <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}">{if $dog->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i></span>{/if}</td><td><span>{_$dog->dog_gender}</span></td>

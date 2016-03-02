@@ -493,15 +493,16 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     //dropdowns handle ajax lists
-    public function handleBreedList($q = "") {
-        $fields = $this->database->table("tbl_breeds")->where("BreedName LIKE ?", "%$q%")->fetchAll(); //->query("SELECT BreedName FROM tbl_breeds WHERE BreedName LIKE '%" . $_GET['q'] . "%'  ORDER BY BreedName")->fetchAll();
+    public function handleBreedList($q = "", $lang = "en") {
+        $fields = $this->database->table("tbl_breeds")->where("BreedName_$lang LIKE ?", "%$q%")->order("BreedName_$lang")->fetchAll(); //->query("SELECT BreedName FROM tbl_breeds WHERE BreedName LIKE '%" . $_GET['q'] . "%'  ORDER BY BreedName")->fetchAll();
 
         $return = array();
 
         $str = '{"items":';
 
         foreach ($fields as $field) {
-            $return[]['name'] = $field->BreedName;
+            $return[]['id'] = $field->BreedName;
+            $return[count($return) - 1]['name'] = $field['BreedName_' . $lang];
         }
 
         $str .= json_encode($return);
@@ -2087,62 +2088,67 @@ class DFSTranslator implements Nette\Localization\ITranslator {
         $this->database = $GLOBALS['database'];
     }
 
-    public function translate($message, $count = NULL) {
+    public function translate($message, $type = 'std') {
         $actual_link = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 //$uri = $tmpuri;
 //$query = "SELECT * FROM tbl_translate where text_to_translate = '$message' AND uri = '$uri'";
 
         if ($message != NULL) {
-            $rows = $this->database->table("tbl_translate")->where("text_to_translate = ?", $message)->fetchAll();
-            $id = 0;
-
-            foreach ($rows as $row) {
-
-                $id = $row->id;
-                switch ($this->lang) {
-                    case "en":
-                        $message = $row->translated_text_en;
-                        break;
-                    case "cz":
-                        $message = $row->translated_text_cz;
-                        break;
-                    case "de":
-                        $message = $row->translated_text_en;
-                        break;
-                    case "sk":
-                        $message = $row->translated_text_sk;
-                        break;
-                    case "ru":
-                        $message = $row->translated_text_ru;
-                        break;
-                    case "hu":
-                        $message = $row->translated_text_hu;
-                        break;
-                    default :
-                        $message = $row->translated_text_en;
-                        break;
-                }
-            }
-
-            if ($id == 0) {
-                $values = array();
-                $values["text_to_translate"] = $message;
-                $values["translated_text_en"] = $message;
-                $values["translated_text_cz"] = $message;
-                $values["translated_text_sk"] = $message;
-                $values["translated_text_hu"] = $message;
-                $values["translated_text_ru"] = $message;
-                $values["translated_text_de"] = $message;
-                $values["lang"] = "en";
-                $values["url"] = $actual_link;
-                $this->database->table("tbl_translate")->insert($values);
-
-                $return = '*' . $message;
+            if ($type['type'] == 'breed') {
+                $row = $this->database->table("tbl_breeds")->where("BreedName = ?", $message)->fetch();
+                return $row['BreedName_' . $this->lang];
             } else {
-                $return = $message;
+                $rows = $this->database->table("tbl_translate")->where("text_to_translate = ?", $message)->fetchAll();
+                $id = 0;
+
+                foreach ($rows as $row) {
+
+                    $id = $row->id;
+                    switch ($this->lang) {
+                        case "en":
+                            $message = $row->translated_text_en;
+                            break;
+                        case "cz":
+                            $message = $row->translated_text_cz;
+                            break;
+                        case "de":
+                            $message = $row->translated_text_en;
+                            break;
+                        case "sk":
+                            $message = $row->translated_text_sk;
+                            break;
+                        case "ru":
+                            $message = $row->translated_text_ru;
+                            break;
+                        case "hu":
+                            $message = $row->translated_text_hu;
+                            break;
+                        default :
+                            $message = $row->translated_text_en;
+                            break;
+                    }
+                }
+
+                if ($id == 0) {
+                    $values = array();
+                    $values["text_to_translate"] = $message;
+                    $values["translated_text_en"] = $message;
+                    $values["translated_text_cz"] = $message;
+                    $values["translated_text_sk"] = $message;
+                    $values["translated_text_hu"] = $message;
+                    $values["translated_text_ru"] = $message;
+                    $values["translated_text_de"] = $message;
+                    $values["lang"] = "en";
+                    $values["url"] = $actual_link;
+                    $this->database->table("tbl_translate")->insert($values);
+
+                    $return = '*' . $message;
+                } else {
+                    $return = $message;
+                }
+                return $return;
             }
-            return $return;
         } else {
             return $message;
         }

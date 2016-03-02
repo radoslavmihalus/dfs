@@ -54,7 +54,7 @@
                         <td colspan="2"><a n:href="kennel:kennel_planned_litter_list id=>$dog->profile_id" style="color:#a5987f;text-decoration: underline;"><span class="panel-description" data-toggle="tooltip" data-placement='top' title="{_ 'Planned litter'}"><i class="fa fa-calendar" style="margin-right: 10px;"></i>{$plannedLitter->name}</span></td>
                     </tr>
                     <tr>
-                        <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i></span></td><td><span><strong>{$plannedLitter->bitch_breed}</strong></span></td>
+                        <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"><i class="fa fa-tag" style="margin-right: 10px;"></i></span></td><td><span><strong>{_$plannedLitter->bitch_breed, [type => 'breed']}</strong></span></td>
                     </tr>
                     <tr>
                         <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}">{if $dog->puppy_gender=="Bitch"}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars gender-dog" style="color:#0c9eea;margin-right: 10px;"></i></span>{/if}</td><td><span>{_ $dog->puppy_gender}</span></td>

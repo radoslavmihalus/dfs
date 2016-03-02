@@ -14,7 +14,7 @@
     <div class="text-justify" style="font-size:12px;padding-top: 10px;">
         <ul>
             {foreach $breeds as $breed}
-                <li>{$breed->breed_name}</li>
+                <li>{_$breed->breed_name, [type => 'breed']}</li>
                 {/foreach}
         </ul>
     </div>
