@@ -1407,12 +1407,21 @@ class DataModel {
         return $url;
     }
 
+    static function azbuka2latin($s) {
+        return strtr($s, array(
+            'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'jo', 'ж' => 'zh', 'з' => 'z', 'и' => 'i', 'й' => 'jj', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'kh', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shh', 'ъ' => '', 'ы' => 'y', 'ь' => '', 'э' => 'eh', 'ю' => 'ju', 'я' => 'ja',
+            'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'G', 'Д' => 'D', 'Е' => 'E', 'Ё' => 'JO', 'Ж' => 'ZH', 'З' => 'Z', 'И' => 'I', 'Й' => 'JJ', 'К' => 'K', 'Л' => 'L', 'М' => 'M', 'Н' => 'N', 'О' => 'O', 'П' => 'P', 'Р' => 'R', 'С' => 'S', 'Т' => 'T', 'У' => 'U', 'Ф' => 'F', 'Х' => 'KH', 'Ц' => 'C', 'Ч' => 'CH', 'Ш' => 'SH', 'Щ' => 'SHH', 'Ъ' => '', 'Ы' => 'Y', 'Ь' => '', 'Э' => 'EH', 'Ю' => 'JU', 'Я' => 'JA',
+        ));
+    }
+
     static function getShareTags($lang, $id, $alt_id = 0) {
 //        $lang = $GLOBALS['lang'];
         $translator = new App\Presenters\DFSTranslator($lang);
         $database = $GLOBALS['database'];
 
         $title = "DOGFORSHOW";
+        $site_title = "DOGFORSHOW";
+        $keywords = "DOGFORSHOW";
         $description = "";
         $image = "";
         $url = DataModel::getShareUrl($lang, $id, $alt_id);
@@ -1422,6 +1431,20 @@ class DataModel {
                 // kennel 200000000
                 $row = $database->table("tbl_userkennel")->where("id=?", $id)->fetch();
                 $title = mb_strtoupper($row->kennel_name) . " - " . $translator->translate("Kennel");
+
+                $i = 0;
+                $breeds = "";
+                $type = array();
+                $type['type'] = 'breed';
+                foreach ($row->related("link_kennel_breed.kennel_id") as $breed_row) {
+                    if ($i == 0)
+                        $breeds .= DataModel::azbuka2latin($translator->translate($breed_row->breed_name, $type));
+                    else
+                        $breeds .= "," . DataModel::azbuka2latin($translator->translate($breed_row->breed_name, $type));
+                    $i++;
+                }
+                $site_title = $breeds . " - " . DataModel::azbuka2latin($translator->translate("Kennels")) . " | " . mb_strtoupper(DataModel::azbuka2latin($row->kennel_name));
+                $keywords = $breeds . "," . DataModel::azbuka2latin($translator->translate("Kennels")) . "," . DataModel::azbuka2latin($translator->translate("Kennel")) . "," . mb_strtoupper(DataModel::azbuka2latin($row->kennel_name));
                 $description = $row->kennel_description;
                 $image = DataModel::getURL() . "/" . $row->kennel_profile_picture;
                 break;
@@ -1433,15 +1456,33 @@ class DataModel {
                 $user_id = $row->user_id;
                 $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
                 $title = mb_strtoupper($row->name . " " . $row->surname) . " - " . $translator->translate("Owner of purebred dog");
+                $site_title = DataModel::azbuka2latin($translator->translate("Owner of purebred dog")) . " - " . mb_strtoupper(DataModel::azbuka2latin($row->name) . " " . DataModel::azbuka2latin($row->surname));
+                $keywords = DataModel::azbuka2latin($translator->translate("Owner of purebred dog")) . "," . mb_strtoupper(DataModel::azbuka2latin($row->name) . " " . DataModel::azbuka2latin($row->surname));
                 break;
             case ($id >= 400000000 && $id < 500000000):
                 // handler 400000000
-                $row = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
-                $description = $row->handler_description;
-                $image = DataModel::getURL() . "/" . $row->handler_profile_picture;
-                $user_id = $row->user_id;
+                $row_handler = $database->table("tbl_userhandler")->where("id=?", $id)->fetch();
+                $description = $row_handler->handler_description;
+                $image = DataModel::getURL() . "/" . $row_handler->handler_profile_picture;
+                $user_id = $row_handler->user_id;
                 $row = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
                 $title = mb_strtoupper($row->name . " " . $row->surname) . " - " . $translator->translate("Handler");
+                $site_title = DataModel::azbuka2latin($translator->translate("Handler")) . " - " . mb_strtoupper(DataModel::azbuka2latin($row->name) . " " . DataModel::azbuka2latin($row->surname));
+
+                $i = 0;
+                $breeds = "";
+
+                $type = array();
+                $type['type'] = 'breed';
+                foreach ($row_handler->related("tbl_handler_breed.handler_id") as $breed_row) {
+                    if ($i == 0)
+                        $breeds .= DataModel::azbuka2latin($translator->translate($breed_row->breed_name, $type));
+                    else
+                        $breeds .= "," . DataModel::azbuka2latin($translator->translate($breed_row->breed_name, $type));
+                    $i++;
+                }
+
+                $keywords = $breeds . "," . DataModel::azbuka2latin($translator->translate("Handler")) . "," . mb_strtoupper(DataModel::azbuka2latin($row->name) . " " . DataModel::azbuka2latin($row->surname));
                 break;
             case ($id >= 500000000 && $id < 600000000):
                 // dog 500000000
@@ -1449,7 +1490,9 @@ class DataModel {
                 $title = mb_strtoupper($row->dog_name);
                 $type = array();
                 $type['type'] = 'breed';
-                $description = mb_strtoupper( $translator->translate($row->breed_name, $type)) . " | " . mb_strtoupper($translator->translate($row->dog_gender)) . " | " . mb_strtoupper($translator->translate($row->country));
+                $site_title = DataModel::azbuka2latin($translator->translate($row->breed_name, $type)) . " - " . mb_strtoupper(DataModel::azbuka2latin($row->dog_name));
+                $keywords = DataModel::azbuka2latin($translator->translate($row->breed_name, $type)) . "," . mb_strtoupper(DataModel::azbuka2latin($row->dog_name));
+                $description = $translator->translate($row->breed_name, $type) . " | " . mb_strtoupper($translator->translate($row->dog_gender)) . " | " . mb_strtoupper($translator->translate($row->country));
                 $image = DataModel::getURL() . "/" . $row->dog_image;
                 break;
             case ($id >= 600000000 && $id < 700000000):
@@ -1458,7 +1501,11 @@ class DataModel {
                 $title = mb_strtoupper($translator->translate($row->puppy_state)) . " - " . mb_strtoupper($row->puppy_name);
                 $type = array();
                 $type['type'] = 'breed';
-                $description = mb_strtoupper($translator->translate($row->breed_name, $type)) . " | " . mb_strtoupper($translator->translate($row->puppy_gender)) . " | " . mb_strtoupper($translator->translate($row->country)) . " | " . $row->puppy_description;
+
+                $site_title = DataModel::azbuka2latin($translator->translate($row->breed_name, $type)) . " - " . DataModel::azbuka2latin($translator->translate("Puppies for sale")) . " | " . mb_strtoupper(DataModel::azbuka2latin($row->puppy_name));
+                $keywords = DataModel::azbuka2latin($translator->translate($row->breed_name, $type)) . "," . DataModel::azbuka2latin($translator->translate("Puppies for sale")) . "," . mb_strtoupper(DataModel::azbuka2latin($row->puppy_name));
+
+                $description = $translator->translate($row->breed_name, $type) . " | " . mb_strtoupper($translator->translate($row->puppy_gender)) . " | " . mb_strtoupper($translator->translate($row->country)) . " | " . $row->puppy_description;
                 $image = DataModel::getURL() . "/" . $row->puppy_photo;
                 break;
             case ($id >= 800000000 && $id < 900000000):
@@ -1658,6 +1705,8 @@ class DataModel {
         $return = array();
 
         $return['title'] = $title;
+        $return['site_title'] = $site_title;
+        $return['keywords'] = $keywords;
         $return['description'] = $description;
         $return['image'] = $image;
         $return['url'] = $url;
@@ -1686,12 +1735,16 @@ class DataModel {
                 $return['description'] = $row->description;
                 $return['image'] = $row->image_url;
                 $return['url'] = $row->url;
+                $return['site_title'] = DataModel::azbuka2latin($row->site_title);
+                $return['keywords'] = $row->keywords;
             } else {
                 $data = array();
                 $data['presenter'] = $presenter;
                 $data['action'] = $action;
                 $data['url'] = $url;
                 $data['title'] = $presenter . '-' . $action;
+                $data['site_title'] = $presenter . '-' . $action;
+                $data['keywords'] = "";
                 $data['description'] = $presenter . '-' . $action;
                 $data['lang'] = $lang;
                 $database->table("tbl_global_router")->insert($data);
@@ -1702,12 +1755,16 @@ class DataModel {
                 $return['description'] = $row->description;
                 $return['image'] = $row->image_url;
                 $return['url'] = $row->url;
+                $return['site_title'] = DataModel::azbuka2latin($row->site_title);
+                $return['keywords'] = $row->keywords;
             }
 
             return $return;
         } catch (\Exception $ex) {
             $return = array();
             $return['title'] = 'DOGFORSHOW';
+            $return['site_title'] = 'DOGFORSHOW';
+            $return['keywords'] = '';
             $return['description'] = 'DOGFORSHOW';
             $return['image'] = '';
             $return['url'] = '';
