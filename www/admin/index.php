@@ -17,6 +17,10 @@ $bt = new blueticket_objects();
 
 if (isset($_GET['report'])) {
     switch ($_GET['report']) {
+        case 'import_mw':
+            $bt->fillMailWizzAll();
+            header('location: index.php');
+            break;
 //        case 'print_purchase':
 //            $inv = new InvoicePDF();
 //            echo $inv->CreateInvoice(TRUE);
@@ -127,76 +131,76 @@ if (isset($_GET['report'])) {
         </style>
     </head>
     <body>
-<?php
-echo $bt->generateMenu();
-?>
-        <div style="height: auto; padding:10px 10px 10px 10px; border: 1px solid graytext">
         <?php
-        if (isset($_GET['report'])) {
-            switch ($_GET['report']) {
-                case 'forms':
-                    // echo $bt->generateForms();
-                    break;
-                case 'active_users':
-                    echo $bt->generateActiveUsers();
-                    break;
-                case 'users':
-                    echo $bt->generateUsers();
-                    break;
-                case 'users_wo_profile':
-                    echo $bt->generateUsersWithoutProfile();
-                    break;
-                case 'kennels':
-                    echo $bt->generateKennels();
-                    break;
-                case 'owners':
-                    echo $bt->generateOwners();
-                    break;
-                case 'handlers':
-                    echo $bt->generateHandlers();
-                    break;
-                case 'dogs':
-                    echo $bt->generateDogs();
-                    break;
-                case 'puppies':
-                    echo $bt->generatePuppies();
-                    break;
-                case 'payments':
-                    echo $bt->generatePayments();
-                    break;
-                case 'active_payments':
-                    echo $bt->generatePayments(NULL, 1);
-                    break;
-                case 'messages':
-                    echo $bt->generateMessages();
-                    break;
-                case 'timeline':
-                    echo $bt->generateTimeline();
-                    break;
-                case 'comments':
-                    echo $bt->generateComments();
-                    break;
-                case 'likes':
-                    echo $bt->generateLikes();
-                    break;
-                case 'timeline_events_types':
-                    echo $bt->generateTimelineEventsTypes();
-                    break;
-                case 'translate':
-                    echo $bt->generateTranslate();
-                    break;
-                case 'premium':
-                    echo $bt->generatePremiumVisits();
-                    break;
-                case 'photos':
-                    echo $bt->generatePhotos();
-                    break;
-                case 'videos':
-                    echo $bt->generateVideos();
-                    break;
-                case 'router':
-                    echo $bt->generateRouter();
-                    break;
+        echo $bt->generateMenu();
+        ?>
+        <div style="height: auto; padding:10px 10px 10px 10px; border: 1px solid graytext">
+            <?php
+            if (isset($_GET['report'])) {
+                switch ($_GET['report']) {
+                    case 'forms':
+                        // echo $bt->generateForms();
+                        break;
+                    case 'active_users':
+                        echo $bt->generateActiveUsers();
+                        break;
+                    case 'users':
+                        echo $bt->generateUsers();
+                        break;
+                    case 'users_wo_profile':
+                        echo $bt->generateUsersWithoutProfile();
+                        break;
+                    case 'kennels':
+                        echo $bt->generateKennels();
+                        break;
+                    case 'owners':
+                        echo $bt->generateOwners();
+                        break;
+                    case 'handlers':
+                        echo $bt->generateHandlers();
+                        break;
+                    case 'dogs':
+                        echo $bt->generateDogs();
+                        break;
+                    case 'puppies':
+                        echo $bt->generatePuppies();
+                        break;
+                    case 'payments':
+                        echo $bt->generatePayments();
+                        break;
+                    case 'active_payments':
+                        echo $bt->generatePayments(NULL, 1);
+                        break;
+                    case 'messages':
+                        echo $bt->generateMessages();
+                        break;
+                    case 'timeline':
+                        echo $bt->generateTimeline();
+                        break;
+                    case 'comments':
+                        echo $bt->generateComments();
+                        break;
+                    case 'likes':
+                        echo $bt->generateLikes();
+                        break;
+                    case 'timeline_events_types':
+                        echo $bt->generateTimelineEventsTypes();
+                        break;
+                    case 'translate':
+                        echo $bt->generateTranslate();
+                        break;
+                    case 'premium':
+                        echo $bt->generatePremiumVisits();
+                        break;
+                    case 'photos':
+                        echo $bt->generatePhotos();
+                        break;
+                    case 'videos':
+                        echo $bt->generateVideos();
+                        break;
+                    case 'router':
+                        echo $bt->generateRouter();
+                        break;
 //                    case 'stats':
 //                        if (isset($_GET['type'])) {
 //                            $type = $_GET['type'];
@@ -238,11 +242,11 @@ echo $bt->generateMenu();
 //                    case 'unset_all':
 //                        echo $bt->unset_all();
 //                        break;
+                }
+            } else {
+                echo $bt->generateUsers();
             }
-        } else {
-            echo $bt->generateUsers();
-        }
-        ?>
+            ?>
         </div>
         <script type="text/javascript">
             jQuery(document).on("ready blueticket_formsafterrequest", function () {

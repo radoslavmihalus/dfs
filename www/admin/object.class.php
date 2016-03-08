@@ -71,6 +71,77 @@ class blueticket_objects {
         return $form->render();
     }
 
+    function fillMailWizzAll() {
+        $btdb = blueticket_forms_db::get_instance();
+        //$btdb = new blueticket_forms_db();
+
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1");
+        $users = $btdb->result();
+
+        foreach ($users as $user) {
+            // set lists and fields id's by lang
+            $list_id = 0;
+            $name_fid = 0;
+            $surname_fid = 0;
+            $email_fid = 0;
+            switch ($user['lang']) {
+                case "en":
+                    $list_id = 2;
+                    $email_fid = 4;
+                    $name_fid = 5;
+                    $surname_fid = 6;
+                    break;
+                case "cz":
+                    $list_id = 3;
+                    $email_fid = 7;
+                    $name_fid = 8;
+                    $surname_fid = 9;
+                    break;
+                case "sk":
+                    $list_id = 4;
+                    $email_fid = 10;
+                    $name_fid = 11;
+                    $surname_fid = 12;
+                    break;
+                case "hu":
+                    $list_id = 5;
+                    $email_fid = 13;
+                    $name_fid = 14;
+                    $surname_fid = 15;
+                    break;
+                case "ru":
+                    $list_id = 6;
+                    $email_fid = 16;
+                    $name_fid = 17;
+                    $surname_fid = 18;
+                    break;
+            }
+
+            $subscriber_uid = uniqid();
+            $email = $user['email'];
+            $name = str_replace("'", "`", $user['name']);
+            $surname = str_replace("'", "`", $user['surname']);
+
+            $ip_address = "127.0.0.1";
+            $source = "web";
+            $status = "confirmed";
+            $date_added = date("Y-m-d H:i:s");
+            $last_updated = date("Y-m-d H:i:s");
+
+            $btdb->query("SELECT COUNT(*) as Cnt FROM mw_list_subscriber WHERE email='$email' AND list_id=$list_id");
+            $row = $btdb->row();
+
+            if ($row['Cnt'] == 0) {
+                $btdb->query("INSERT INTO mw_list_subscriber(subscriber_uid, list_id, email, ip_address, source, status, date_added, last_updated) VALUES('$subscriber_uid', $list_id, '$email', '$ip_address', '$source', '$status', '$date_added', '$last_updated')");
+                $subscriber_id = $btdb->insert_id();
+
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($email_fid, $subscriber_id, '$email', '$date_added', '$last_updated')");
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($name_fid, $subscriber_id, '$name', '$date_added', '$last_updated')");
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($surname_fid, $subscriber_id, '$surname', '$date_added', '$last_updated')");
+            }
+        }
+    }
+
     function generateUsers() {
         $form = blueticket_forms::get_instance();
 

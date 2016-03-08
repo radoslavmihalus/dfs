@@ -2098,7 +2098,13 @@ class DFSTranslator implements Nette\Localization\ITranslator {
         if ($message != NULL) {
             if ($type['type'] == 'breed') {
                 $row = $this->database->table("tbl_breeds")->where("BreedName = ?", $message)->fetch();
-                return $row['BreedName_' . $this->lang];
+                if (strlen($this->lang) > 1)
+                    if (strtolower($this->lang) == "de")
+                        return $row['BreedName'];
+                    else
+                        return $row['BreedName_' . $this->lang];
+                else
+                    return $row['BreedName'];
             } else {
                 $rows = $this->database->table("tbl_translate")->where("text_to_translate = ?", $message)->fetchAll();
                 $id = 0;
