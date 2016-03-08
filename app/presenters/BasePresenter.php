@@ -347,10 +347,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $sharer_tags = "";
 
         if (isset($_GET['id']) || isset($_GET['dog_id'])) {
+            if (isset($_GET['id']))
+                $id = $_GET['id'];
+            else
             if (isset($_GET['dog_id']))
                 $id = $_GET['dog_id'];
-            else
-                $id = $_GET['id'];
             try {
                 // zdielanie cudzieho profilu, psov a steniat
                 if ($action == "dog_show_list" || $action == "handler_show_list") // zdielanie vystavy

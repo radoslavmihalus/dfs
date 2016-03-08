@@ -8,6 +8,13 @@
  *
  * @version 1.2.2
  */
+function fbShare(url, title, descr, image, winWidth, winHeight) {
+    var winTop = (screen.height / 2) - (winHeight / 2);
+    var winLeft = (screen.width / 2) - (winWidth / 2);
+    var rndm = Math.random();
+    //window.open('https://www.facebook.com/sharer.php?app_id=1667568453531965&s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+    window.open('https://www.facebook.com/dialog/share?app_id=1667568453531965&redirect_uri=http%3A%2F%2Fwww.facebook.com%2Fdialog%2Freturn%2Fclose&display=popup&href=' + encodeURIComponent(url + '&rndm=' + rndm), 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+}
 
 (function(window, $, undefined) {
 
