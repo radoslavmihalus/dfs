@@ -346,51 +346,54 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         $sharer_tags = "";
 
-        if (isset($_GET['id']) || isset($_GET['dog_id'])) {
-            if (isset($_GET['id']))
-                $id = $_GET['id'];
-            else
-            if (isset($_GET['dog_id']))
-                $id = $_GET['dog_id'];
-            try {
-                // zdielanie cudzieho profilu, psov a steniat
-                if ($action == "dog_show_list" || $action == "handler_show_list") // zdielanie vystavy
-                    $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['show'], $id);
+        try {
+            if (isset($_GET['id']) || isset($_GET['dog_id'])) {
+                if (isset($_GET['id']))
+                    $id = $_GET['id'];
                 else
-                if ($action == "kennel_planned_litter_list")
-                    $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['litter'], $id);
-                else
-                    $sharer_tags = \DataModel::getShareTags($this->translator->lang, $id);
-            } catch (\Exception $ex) {
-                
-            }
-        } else {
-            // zdielanie vlastneho profilu
-            if ($action == "kennel_profile_home" || $action == "owner_profile_home" || $action == "handler_profile_home") {
+                if (isset($_GET['dog_id']))
+                    $id = $_GET['dog_id'];
                 try {
-                    $sharer_tags = \DataModel::getShareTags($this->translator->lang, $this->logged_in_profile_id);
+                    // zdielanie cudzieho profilu, psov a steniat
+                    if ($action == "dog_show_list" || $action == "handler_show_list") // zdielanie vystavy
+                        $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['show'], $id);
+                    else
+                    if ($action == "kennel_planned_litter_list")
+                        $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['litter'], $id);
+                    else
+                        $sharer_tags = \DataModel::getShareTags($this->translator->lang, $id);
                 } catch (\Exception $ex) {
                     
                 }
             } else {
-                // zdielanie vystavy
-                if ($action == "handler_show_list")
-                    $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['show'], $this->logged_in_profile_id);
-                else
-                if ($action == "kennel_planned_litter_list")
-                    $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['litter'], $this->logged_in_profile_id);
-                else {
-                    $url = $this->getHttpRequest()->getUrl();
-                    $sharer_tags = \DataModel::getShareTagsGlobal($this->translator->lang, $presenter, $action, $url);
+                // zdielanie vlastneho profilu
+                if ($action == "kennel_profile_home" || $action == "owner_profile_home" || $action == "handler_profile_home") {
+                    try {
+                        $sharer_tags = \DataModel::getShareTags($this->translator->lang, $this->logged_in_profile_id);
+                    } catch (\Exception $ex) {
+                        
+                    }
+                } else {
+                    // zdielanie vystavy
+                    if ($action == "handler_show_list")
+                        $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['show'], $this->logged_in_profile_id);
+                    else
+                    if ($action == "kennel_planned_litter_list")
+                        $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['litter'], $this->logged_in_profile_id);
+                    else {
+                        $url = $this->getHttpRequest()->getUrl();
+                        $sharer_tags = \DataModel::getShareTagsGlobal($this->translator->lang, $presenter, $action, $url);
+                    }
                 }
             }
-        }
 
-        if ($presenter == "LandingPage" && $action == "default") {
-            $url = $this->getHttpRequest()->getUrl();
-            $sharer_tags = \DataModel::getShareTagsGlobal($this->translator->lang, $presenter, $action, $url);
+            if ($presenter == "LandingPage" && $action == "default") {
+                $url = $this->getHttpRequest()->getUrl();
+                $sharer_tags = \DataModel::getShareTagsGlobal($this->translator->lang, $presenter, $action, $url);
+            }
+        } catch (\Exception $ex) {
+            
         }
-
         $this->template->sharer_tags = $sharer_tags;
 
 
@@ -416,6 +419,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     protected function createComponentCtlMessage() {
         $control = new \Nette\Application\UI\Multiplier(function ($id) {
             $uid = $this->data_model->getUserIdByProfileId($id);
+            if ($uid == NULL)
+                $uid = 0;
             $row = $this->database->table("tbl_user")->where("id=?", $uid)->fetch();
             $control = new \MessageControl($row, $this->logged_in_profile_id, $this->logged_in_id, $id, $this->data_model, $this->database, $this->translator);
             return $control;
@@ -1005,6 +1010,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function handleDeleteProfile($id) {
+        if ($id == NULL)
+            $this->redirect("LandingPage:default");
+        
         $type = \DataModel::getProfileType($id);
 
         $error = true;
@@ -2097,7 +2105,38 @@ class DFSTranslator implements Nette\Localization\ITranslator {
 
         if ($message != NULL) {
             if ($type['type'] == 'breed') {
-                $row = $this->database->table("tbl_breeds")->where("BreedName = ?", $message)->fetch();
+                $cnt = $this->database->table("tbl_breeds")->where("BreedName = ?", $message)->count();
+                if ($cnt > 0)
+                    $row = $this->database->table("tbl_breeds")->where("BreedName = ?", $message)->fetch();
+                else {
+                    $cnt = $this->database->table("tbl_breeds")->where("BreedName_en = ?", $message)->count();
+                    if ($cnt > 0)
+                        $row = $this->database->table("tbl_breeds")->where("BreedName_en = ?", $message)->fetch();
+                    else {
+                        $cnt = $this->database->table("tbl_breeds")->where("BreedName_cz = ?", $message)->count();
+                        if ($cnt > 0)
+                            $row = $this->database->table("tbl_breeds")->where("BreedName_cz = ?", $message)->fetch();
+                        else {
+                            $cnt = $this->database->table("tbl_breeds")->where("BreedName_sk = ?", $message)->count();
+                            if ($cnt > 0)
+                                $row = $this->database->table("tbl_breeds")->where("BreedName_sk = ?", $message)->fetch();
+                            else {
+                                $cnt = $this->database->table("tbl_breeds")->where("BreedName_hu = ?", $message)->count();
+                                if ($cnt > 0)
+                                    $row = $this->database->table("tbl_breeds")->where("BreedName_hu = ?", $message)->fetch();
+                                else {
+                                    $cnt = $this->database->table("tbl_breeds")->where("BreedName_ru = ?", $message)->count();
+                                    if ($cnt > 0)
+                                        $row = $this->database->table("tbl_breeds")->where("BreedName_ru = ?", $message)->fetch();
+                                    else
+                                        return $message;
+                                }
+                            }
+                        }
+                    }
+                }
+
+
                 if (strlen($this->lang) > 1)
                     if (strtolower($this->lang) == "de")
                         return $row['BreedName'];

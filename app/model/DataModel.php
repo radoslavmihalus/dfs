@@ -415,6 +415,8 @@ class DataModel {
     static function havePuppies($profile_id) {
 //        require_once 'www/inc/config_ajax.php';
 //        $database = getContext();
+        if ($profile_id == NULL)
+            return FALSE;
         $database = $GLOBALS['database'];
 
         $cnt = $database->table("tbl_puppies")->where("profile_id=?", $profile_id)->where("puppy_state=?", "ForSale")->count();
@@ -1329,6 +1331,10 @@ class DataModel {
     public static function getPremium($user_id) {
 //        require_once 'www/inc/config_ajax.php';
 //        $database = getContext();
+        
+        if($user_id==NULL)
+            return FALSE;
+        
         $database = $GLOBALS['database'];
 
         $cnt = $database->table("tbl_user")->where("id=? AND premium_expiry_date >= now()", $user_id)->count();
@@ -1436,13 +1442,15 @@ class DataModel {
                 $breeds = "";
                 $type = array();
                 $type['type'] = 'breed';
-                foreach ($row->related("link_kennel_breed.kennel_id") as $breed_row) {
+                $breed_rows = $database->table("link_kennel_breed")->where("kennel_id=?", $row->id)->fetchAll();
+                foreach ($breed_rows as $breed_row) {
                     if ($i == 0)
                         $breeds .= DataModel::azbuka2latin($translator->translate($breed_row->breed_name, $type));
                     else
                         $breeds .= "," . DataModel::azbuka2latin($translator->translate($breed_row->breed_name, $type));
                     $i++;
                 }
+
                 $site_title = $breeds . " - " . DataModel::azbuka2latin($translator->translate("Kennels")) . " | " . mb_strtoupper(DataModel::azbuka2latin($row->kennel_name));
                 $keywords = $breeds . "," . DataModel::azbuka2latin($translator->translate("Kennels")) . "," . DataModel::azbuka2latin($translator->translate("Kennel")) . "," . mb_strtoupper(DataModel::azbuka2latin($row->kennel_name));
                 $description = $row->kennel_description;
@@ -1474,7 +1482,10 @@ class DataModel {
 
                 $type = array();
                 $type['type'] = 'breed';
-                foreach ($row_handler->related("tbl_handler_breed.handler_id") as $breed_row) {
+
+                $breed_rows = $database->table("tbl_handler_breed")->where("handler_id=?", $row_handler->id)->fetchAll();
+
+                foreach ($breed_rows as $breed_row) {
                     if ($i == 0)
                         $breeds .= DataModel::azbuka2latin($translator->translate($breed_row->breed_name, $type));
                     else

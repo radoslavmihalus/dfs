@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Presenters;
 
 use App\Model,
@@ -416,6 +415,8 @@ class kennelPresenter extends BasePresenter {
     public function renderKennel_dog_list_home($id = 0) {
         if ($id == 0)
             $id = $this->logged_in_kennel_id;
+        if ($this->current_user_id == NULL)
+            $this->current_user_id = 0;
         $rows = $this->database->table("tbl_dogs")->where("profile_id=? AND user_id=?", $id, $this->current_user_id)->fetchAll();
         $this->template->rows = $rows;
     }

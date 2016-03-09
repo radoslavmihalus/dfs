@@ -101,6 +101,9 @@ switch ($ext) {
     case 'jpg':     // jpg
         $src = imagecreatefromjpeg($image) or notfound();
         break;
+    case 'jpeg':     // jpeg
+        $src = imagecreatefromjpeg($image) or notfound();
+        break;
     case 'png':     // png
         $src = imagecreatefrompng($image) or notfound();
         break;

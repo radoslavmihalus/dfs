@@ -156,6 +156,10 @@ $router[] = new Route('kennels', array(
     'presenter' => 'kennel',
     'action' => 'kennel_list',
     'lang' => 'en'));
+$router[] = new Route('list-of-kennels', array(
+    'presenter' => 'kennel',
+    'action' => 'kennel_list',
+    'lang' => 'en'));
 $router[] = new Route('cz-chovatelske-stanice', array(
     'presenter' => 'kennel',
     'action' => 'kennel_list',
@@ -309,6 +313,8 @@ $router[] = new Route('owner-videogallery', 'owner:video_photogallery');
 $router[] = new Route('add-dog', 'dog:dog_create_profile');
 //---------------------------   Dogs / profile home -----------------------------------
 $router[] = new Route('dog', 'dog:dog_profile_home');
+$router[] = new Route('dog-home', 'dog:dog_profile_home');
+$router[] = new Route('dog-profile', 'dog:dog_profile_home');
 //---------------------------   Dogs / list of dogs -----------------------------------
 $router[] = new Route('dogs-with-pedigree', array(
     'presenter' => 'dog',
@@ -362,6 +368,10 @@ $router[] = new Route('chovni-psy', array(
     'lang' => 'sk'));
 //---------------------------   Dogs / Dog best in show list -----------------------------------
 $router[] = new Route('en-best-in-show', array(
+    'presenter' => 'dog',
+    'action' => 'dog_bis_list',
+    'lang' => 'en'));
+$router[] = new Route('list-of-bis-dogs', array(
     'presenter' => 'dog',
     'action' => 'dog_bis_list',
     'lang' => 'en'));
