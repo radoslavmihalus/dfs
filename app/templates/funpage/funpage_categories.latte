@@ -1,0 +1,18 @@
+{define #funpage_categories}
+<div class="panel-body component col-lg-12">
+    <div class="list-group">
+        <a href="dog_championschip_list id=>$dog->id" class="list-group-item">
+            <i class="fa fa-trophy"></i>&nbsp;&nbsp;{_ 'Championchips'}<span class="badge">0</span>
+        </a>
+        <a href="dog_show_list id=>$dog->id" class="list-group-item">
+            <i class="fa fa-clipboard"></i>&nbsp;&nbsp;{_ 'Show results'}<span class="badge">0</span>
+        </a>
+        <a href="dog_workexam_list id=>$dog->id" class="list-group-item">
+            <i class="fa fa-flag"></i>&nbsp;&nbsp;{_ 'Working exams'}<span class="badge">0</span>
+        </a>
+        <a href="dog_health_list id=>$dog->id" class="list-group-item">
+            <i class="fa fa-heartbeat"></i>&nbsp;&nbsp;{_ 'Health'}<span class="badge">0</span>
+        </a>
+    </div>
+</div>
+{/define}

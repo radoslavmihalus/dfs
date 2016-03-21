@@ -1,6 +1,5 @@
 <?php
 
-
 // Load Nette Framework
 if (@!include __DIR__ . '/../libs/Nette/loader.php') {
     die('Install Nette using `composer update`');
@@ -73,6 +72,8 @@ $router = $container->getService('router');
 //        ));
 
 $router[] = new Route('index.php', 'LandingPage:default');
+$router[] = new Route('PayPal', 'LandingPage:PayPal');
+$router[] = new Route('funpage', 'funpage:funpage_profile_home');
 $router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>]', 'LandingPage:default');
 $router[] = new Route('payment_return.php', 'LandingPage:payment');
 //$router[] = new Route('forgot-password', 'LandingPage:forgot_password');

@@ -8,12 +8,6 @@ use App\Model,
 
 class photoPresenter extends BasePresenter {
 
-    /** @var Model\AlbumRepository */
-//private $albums;
-//    public function __construct() {
-//        
-//    }
-//    private $database;
     private $photo_profile_id;
     private $photo_id;
 
@@ -44,10 +38,12 @@ class photoPresenter extends BasePresenter {
         $this->template->photos = $rows;
     }
 
+    /*     * *************** actions ********************* */
+
     public function actionPhoto_add($profile_id) {
         if (!\DataModel::getPremium($this->logged_in_id)) {
 //            $cnt = $this->database->table("tbl_photos")->where("profile_id=?", $profile_id)->count();
-//            if ($cnt > 4) {
+//            if ($cnt > 4) { //redirect to premium account if photos count is more than 4
             $this->redirect("user:user_premium");
             $this->terminate();
 //            }
@@ -61,12 +57,15 @@ class photoPresenter extends BasePresenter {
         $this->photo_profile_id = $photo->profile_id;
     }
 
+    /*     * ********************* components ************************ */
+
     protected function createComponentFormAddPhoto() {
         $form = new Form();
 
         $form->addText("txtPhotoName")->setRequired($this->translate("Required field"));
         $form->addText("txtPhoto")->setRequired($this->translate("Required field"));
-        $form->addSubmit('btnSubmit', 'Add')->onClick[] = array($this, 'frmAddPhotoSucceeded');
+        $form->addSubmit('btnSubmit', 'Add'); //->onClick[] = array($this, 'frmAddPhotoSucceeded');
+        $form->onSuccess[] = callback($this, 'frmAddPhotoSucceeded');
 
         return $form;
     }
@@ -78,8 +77,8 @@ class photoPresenter extends BasePresenter {
 
         $form->addText("txtPhotoName")->setRequired($this->translate("Required field"))->setValue($photo->description);
         $form->addText("txtPhoto")->setRequired($this->translate("Required field"))->setValue($photo->image);
-        $form->addSubmit('btnSubmit', 'Edit')->onClick[] = array($this, 'frmEditPhotoSucceeded');
-
+        $form->addSubmit('btnSubmit', 'Edit'); //->onClick[] = array($this, 'frmEditPhotoSucceeded');
+        $form->onSuccess[] = callback($this, 'frmEditPhotoSucceeded');
         return $form;
     }
 
@@ -98,7 +97,7 @@ class photoPresenter extends BasePresenter {
             $this->photo_id = $this->database->getInsertId();
             $this->data_model->addToTimeline($this->photo_profile_id, $this->photo_id, 10, $data['description'], $data['image']);
         } catch (\Exception $ex) {
-            
+            \Tracy\Debugger::log($ex);
         }
         $this->redirect(\DataModel::getGalleryProfileLinkUrl($this->photo_profile_id), array(id => $this->photo_profile_id));
     }
@@ -111,11 +110,10 @@ class photoPresenter extends BasePresenter {
             $data['description'] = $values->txtPhotoName;
 
             $this->database->table("tbl_photos")->where("id=?", $this->photo_id)->update($data);
-
-            //$photo = $this->database->table("tbl_photos")->where("id=?", $this->photo_id)->fetch();
         } catch (\Exception $ex) {
-            
+            \Tracy\Debugger::log($ex);
         }
+        
         $this->redirect(\DataModel::getGalleryProfileLinkUrl($this->photo_profile_id), array(id => $this->photo_profile_id));
     }
 

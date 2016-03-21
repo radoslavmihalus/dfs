@@ -6,34 +6,39 @@
                 <div class="panel-description" style="margin-bottom: 20px;"><i class="fa fa-envelope"></i>&nbsp;&nbsp{_ 'Messages'} 
                 </div>
             </div>
-            <div class="col-md-12">
-                {foreach $users_messages as $message}
-                    {if ( $message->from_profile_id > 0 )}
-                        <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" n:href="user:user_message_compose profile_id => $message->from_profile_id">
-                        {else}
-                            <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" n:href="user:user_message_compose profile_id => $message->from_user_id">
-                            {/if}
-                            {if ( $message->from_profile_id > 0 )}
-                                <img class="user-block-thumb" src="{DataModel::getProfileImage($message->from_profile_id)}"/>
-                                {if $is_premium_user}
-                                    <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_profile_id)}</span>
-                                {else}
-                                    <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_profile_id)|truncate:1}</span>
-                                {/if}
+            {foreach $users_messages as $message}
+                <div class="col-md-12">
+                    <div class="col-md-11">
+                        {if ( $message->from_profile_id > 0 )}
+                            <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" n:href="user:user_message_compose profile_id => $message->from_profile_id">
                             {else}
-                                <img class="user-block-thumb" src="{DataModel::getProfileImage($message->from_user_id)}"/>
-                                {if $is_premium_user}
-                                    <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_user_id)}</span>
-                                {else}
-                                    <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_user_id)|truncate:1}</span>
+                                <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" n:href="user:user_message_compose profile_id => $message->from_user_id">
                                 {/if}
-                            {/if}
-                            <span class="notification-item-event-time">{$message->message_datetime|date:'%d.%m.%Y'}&nbsp;&nbsp;{$message->message_datetime|date:'H:i:s'}</span>
-                            <span class="notification-item-event" style="color:black">{!$message->message|truncate:10}</span>
-                            <button class="btn btn-danger btn-xs pull-left" title="{_ 'Delete messages'}" type="button"><i class="fa fa-trash"></i>&nbsp;&nbsp;{_ 'Delete messages'}</button>
-                        </a>
-                    {/foreach}
-            </div>
+                                {if ( $message->from_profile_id > 0 )}
+                                    <img class="user-block-thumb" src="{DataModel::getProfileImage($message->from_profile_id)}"/>
+                                    {if $is_premium_user}
+                                        <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_profile_id)}</span>
+                                    {else}
+                                        <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_profile_id)|truncate:1}</span>
+                                    {/if}
+                                {else}
+                                    <img class="user-block-thumb" src="{DataModel::getProfileImage($message->from_user_id)}"/>
+                                    {if $is_premium_user}
+                                        <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_user_id)}</span>
+                                    {else}
+                                        <span class="notification-item-header text-uppercase">{DataModel::getProfileName($message->from_user_id)|truncate:1}</span>
+                                    {/if}
+                                {/if}
+                                <span class="notification-item-event-time">{$message->message_datetime|date:'%d.%m.%Y'}&nbsp;&nbsp;{$message->message_datetime|date:'H:i:s'}</span>
+                                <span class="notification-item-event" style="color:black">{!$message->message|truncate:10}</span>
+                            </a>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-danger btn-xs pull-left" title="{_ 'Delete messages'}" type="button"><i class="fa fa-trash"></i>&nbsp;&nbsp;{_ 'Delete messages'}</button>
+<!--                        <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_'Delete'}" type="button"><i class="fa fa-trash"></i></a>-->
+                    </div>
+                </div>
+            {/foreach}
         </div>
 
     </div>
