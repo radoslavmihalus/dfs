@@ -1,18 +1,75 @@
 {define #funpage_categories}
-<div class="panel-body component col-lg-12">
-    <div class="list-group">
-        <a href="dog_championschip_list id=>$dog->id" class="list-group-item">
-            <i class="fa fa-trophy"></i>&nbsp;&nbsp;{_ 'Championchips'}<span class="badge">0</span>
-        </a>
-        <a href="dog_show_list id=>$dog->id" class="list-group-item">
-            <i class="fa fa-clipboard"></i>&nbsp;&nbsp;{_ 'Show results'}<span class="badge">0</span>
-        </a>
-        <a href="dog_workexam_list id=>$dog->id" class="list-group-item">
-            <i class="fa fa-flag"></i>&nbsp;&nbsp;{_ 'Working exams'}<span class="badge">0</span>
-        </a>
-        <a href="dog_health_list id=>$dog->id" class="list-group-item">
-            <i class="fa fa-heartbeat"></i>&nbsp;&nbsp;{_ 'Health'}<span class="badge">0</span>
-        </a>
+<div class="panel-heading" style="background-color: #a5987f;"><h3 style="color:white;margin:0px;">Last added</h3></div>
+<div class="panel-body component">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" style="border-right: #EDEBE4 1px solid;">
+        <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-users"></i>&nbsp;&nbsp;Profiles</div>
+        <div class="list-group" style="float:left;box-shadow: none;width:100%">
+            <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/referer1.jpg">
+                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">La rosa de inca</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Russia</span>
+            </a>
+            <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/referer2.jpg">
+                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Michal Slepanek</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user"></i>&nbsp;&nbsp;{_ 'Owner of purebred dog'}</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Russia</span>
+            </a>
+            <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/referer3.jpg">
+                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Diana mazutopovska</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-male"></i>&nbsp;&nbsp;{_ 'Handler'}</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Russia</span>
+            </a>
+        </div>
     </div>
+<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" style="border-right: #EDEBE4 1px solid;">
+    <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs</div>
+    <div class="list-group" style="float:left;box-shadow: none;width:100%">
+            <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog1.jpg">
+                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Bronca la rosa de inca</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;Berger de Beauce / The Beauceron - Čierny s pálením</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-mars"></i>&nbsp;&nbsp;{_ 'Dog'}</span>
+            </a>
+            <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog2.jpg">
+                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Michal Slepanek</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;Nemecký špic malý - Oranžová, vlkošedá a ostatné farby</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-venus"></i>&nbsp;&nbsp;{_ 'Bitch'}</span>
+            </a>
+            <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog3.jpg">
+                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Michal Slepanek</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-mars"></i>&nbsp;&nbsp;{_ 'Dog'}</span>
+            </a>
+        </div>
 </div>
+<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+    <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-paw"></i>&nbsp;&nbsp;Puppies for sale</div>
+    <div class="list-group" style="float:left;box-shadow: none;width:100%">
+            <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog1.jpg">
+                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Bronca la rosa de inca</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;Berger de Beauce / The Beauceron - Čierny s pálením</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-mars"></i>&nbsp;&nbsp;{_ 'Dog'}</span>
+            </a>
+            <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog2.jpg">
+                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Michal Slepanek</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;Nemecký špic malý - Oranžová, vlkošedá a ostatné farby</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-venus"></i>&nbsp;&nbsp;{_ 'Bitch'}</span>
+            </a>
+            <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog3.jpg">
+                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Michal Slepanek</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
+                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-mars"></i>&nbsp;&nbsp;{_ 'Dog'}</span>
+            </a>
+        </div>
+</div>
+</div>
+
 {/define}

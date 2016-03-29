@@ -1,14 +1,9 @@
 {layout '@funpage_layout.latte'}
 {block content}
-<div class="col-md-4" style="padding:0px">
+<div class="col-md-12" style="padding:0px">
     <!-- Dog results counter-->
     {includeblock 'funpage_categories.latte'}
     {include funpage_categories}
-</div>
-<div class="col-md-8" style="padding:0px">
-    <!-- Dog timeline-->
-    {includeblock 'funpage_timeline_home.latte'}
-    {include funpage_timeline_home}
 </div>
 <script type="text/javascript">
     jQuery(function ()
