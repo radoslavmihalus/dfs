@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>  
+  <lang slug="slug-dashboard">
+    <text>bảng điều khiển</text>
+  </lang>
+  <lang slug="slug-main-navigation">
+    <text>định hướng chính</text>
+  </lang>
+  <lang slug="slug-settings">
+    <text>Cài đặt</text>
+  </lang>
+  <lang slug="slug-manage-user">
+    <text>quản lý người dùng</text>
+  </lang>
+  <lang slug="slug-list-user">
+    <text>danh sách người dùng</text>
+  </lang>
+  <lang slug="slug-language">
+    <text>ngôn ngữ</text>
+  </lang>
+  <lang slug="slug-website-name">
+    <text>website tên</text>
+  </lang>
+  <lang slug="slug-customization-options">
+    <text>tuỳ chọn tuỳ chỉnh</text>
+  </lang>
+  <lang slug="slug-admin-options">
+    <text>Tùy chọn quản trị</text>
+  </lang>
+  <lang slug="slug-default-language">
+    <text>Ngôn ngữ mặc định</text>
+  </lang>
+  <lang slug="slug-add-new-language">
+    <text>Thêm ngôn ngữ mới</text>
+  </lang>
+  <lang slug="slug-posting-options">
+    <text>tùy chọn đăng</text>
+  </lang>
+  <lang slug="slug-facebook-users-limits">
+    <text>Facebook người dùng giới hạn</text>
+  </lang>
+  <lang slug="slug-default-delay">
+    <text>chậm trễ mặc định</text>
+  </lang>
+  <lang slug="slug-minimum-delay">
+    <text>chậm trễ tối thiểu</text>
+  </lang>
+  <lang slug="slug-cron-run-delay">
+    <text>Cron chạy chậm</text>
+  </lang>
+  <lang slug="slug-maximum-posts">
+    <text>bài viết tối đa trên mỗi lần chạy Cron</text>
+  </lang>
+  <lang slug="slug-logo">
+    <text>Logo</text>
+  </lang>
+  <lang slug="slug-theme">
+    <text>chủ đề</text>
+  </lang>
+  <lang slug="slug-layout">
+    <text>Bố trí</text>
+  </lang>
+  <lang slug="slug-fixed-layout">
+    <text>Giao diện cố định</text>
+  </lang>
+  <lang slug="slug-boxed-layout">
+    <text>đóng hộp Layout</text>
+  </lang>
+  <lang slug="slug-default-layout">
+    <text>mặc định Layout</text>
+  </lang>
+  <lang slug="slug-sidebar">
+    <text>sidebar</text>
+  </lang>
+  <lang slug="slug-collapse">
+    <text>Sự sụp đổ</text>
+  </lang>
+  <lang slug="slug-open">
+    <text>Mở</text>
+  </lang>
+  <lang slug="slug-yes">
+    <text>Vâng</text>
+  </lang>
+  <lang slug="slug-no">
+    <text>Không</text>
+  </lang>
+  <lang slug="slug-submit">
+    <text>Đệ trình</text>
+  </lang>
+  <lang slug="slug-update">
+    <text>cập nhật</text>
+  </lang>
+  <lang slug="slug-add-new">
+    <text>Thêm mới</text>
+  </lang>
+  <lang slug="slug-show">
+    <text>Chỉ</text>
+  </lang>
+  <lang slug="slug-hide">
+    <text>Ẩn giấu</text>
+  </lang>
+  <lang slug="slug-delete">
+    <text>Xóa bỏ</text>
+  </lang>
+  <lang slug="slug-user-manage">
+    <text>người sử dụng quản lý</text>
+  </lang>
+  <lang slug="slug-manage-schedules">
+    <text>quản lý tiến độ</text>
+  </lang>
+  <lang slug="slug-list-schedules">
+    <text>danh sách lịch</text>
+  </lang>
+  <lang slug="slug-accounts-facebook">
+    <text>tài khoản facebook</text>
+  </lang>
+  <lang slug="slug-option">
+    <text>Tùy chọn</text>
+  </lang>
+  <lang slug="slug-status">
+    <text>trạng thái</text>
+  </lang>
+  <lang slug="slug-type">
+    <text>Kiểu</text>
+  </lang>
+  <lang slug="slug-name">
+    <text>Tên</text>
+  </lang>
+  <lang slug="slug-time-post">
+    <text>thời gian bài</text>
+  </lang>
+  <lang slug="slug-empty">
+    <text>Trống</text>
+  </lang>
+  <lang slug="slug-order">
+    <text>Không.</text>
+  </lang>
+  <lang slug="slug-profile-id">
+    <text>Hồ sơ ID</text>
+  </lang>
+  <lang slug="slug-list-account-facebook">
+    <text>Danh sách tài khoản facebook</text>
+  </lang>
+  <lang slug="slug-sign-out">
+    <text>Đăng xuất</text>
+  </lang>
+  <lang slug="slug-sign-out">
+    <text>Đăng xuất</text>
+  </lang>
+  <lang slug="slug-register">
+    <text>Ghi danh</text>
+  </lang>
+  <lang slug="slug-seconds">
+    <text>giây</text>
+  </lang>
+  <lang slug="slug-minutes">
+    <text>từ phút</text>
+  </lang>
+  <lang slug="slug-users">
+    <text>người sử dụng</text>
+  </lang>
+  <lang slug="slug-posts">
+    <text>bài viết</text>
+  </lang>
+  <lang slug="slug-save">
+    <text>Tiết kiệm</text>
+  </lang>
+  <lang slug="slug-update-access-token">
+    <text>Cập nhật Truy cập Mã</text>
+  </lang>
+  <lang slug="slug-profile-id">
+    <text>Hồ sơ ID</text>
+  </lang>
+  <lang slug="slug-is-admin">
+    <text>Admin</text>
+  </lang>
+  <lang slug="slug-role">
+    <text>Vai trò</text>
+  </lang>
+  <lang slug="slug-user">
+    <text>Người dùng</text>
+  </lang>
+  <lang slug="slug-admin">
+    <text>quản trị viên</text>
+  </lang>
+  <lang slug="slug-username">
+    <text>Tên đăng nhập</text>
+  </lang>
+  <lang slug="slug-password">
+    <text>Mật khẩu</text>
+  </lang>
+  <lang slug="slug-re-password">
+    <text>Re-mật khẩu</text>
+  </lang>
+  <lang slug="slug-app-id">
+    <text>App ID</text>
+  </lang>
+  <lang slug="slug-app-secret">
+    <text>App bí mật</text>
+  </lang>
+  <lang slug="slug-facebook-user-id">
+    <text>Facebook User ID</text>
+  </lang>
+  <lang slug="slug-avatar">
+    <text>hình đại diện</text>
+  </lang>
+  <lang slug="slug-cancel">
+    <text>hủy bỏ</text>
+  </lang>
+  <lang slug="slug-failure">
+    <text>Thất bại</text>
+  </lang>
+  <lang slug="slug-time-zone">
+    <text>Múi giờ</text>
+  </lang>
+  <lang slug="slug-show-hide">
+    <text>Hiện an</text>
+  </lang>
+  <lang slug="slug-message">
+    <text>Thông điệp</text>
+  </lang>
+  <lang slug="slug-time">
+    <text>thời gian gửi</text>
+  </lang>
+  <lang slug="slug-delete-after-finished">
+    <text>Delete sau khi hoàn thành</text>
+  </lang>
+  <lang slug="slug-deplay">
+    <text>Trưng bày</text>
+  </lang>
+  <lang slug="slug-video-url">
+    <text>URL của video</text>
+  </lang>
+  <lang slug="slug-video-description">
+    <text>video Description</text>
+  </lang>
+  <lang slug="slug-video-title">
+    <text>Tiêu đề video</text>
+  </lang>
+  <lang slug="slug-image-url">
+    <text>URL hình ảnh</text>
+  </lang>
+  <lang slug="slug-image-description">
+    <text>hình ảnh Mô tả</text>
+  </lang>
+  <lang slug="slug-picture-url">
+    <text>URL hình ảnh</text>
+  </lang>
+  <lang slug="slug-link-description">
+    <text>liên kết Mô tả</text>
+  </lang>
+  <lang slug="slug-link-title">
+    <text>link Title</text>
+  </lang>
+  <lang slug="slug-link-url">
+    <text>URL liên kết</text>
+  </lang>
+  <lang slug="slug-video">
+    <text>Video</text>
+  </lang>
+  <lang slug="slug-image">
+    <text>hình ảnh</text>
+  </lang>
+  <lang slug="slug-link">
+    <text>liên kết</text>
+  </lang>
+  <lang slug="slug-text-post">
+    <text>Tiêu đề bài viết</text>
+  </lang>
+  <lang slug="slug-schedule-posts">
+    <text>lịch bài viết</text>
+  </lang>
+  <lang slug="slug-publish-post">
+    <text>Xuất bản bài viết</text>
+  </lang>
+  <lang slug="slug-select-page-group-profile">
+    <text>Chọn trang / Nhóm / Hồ sơ</text>
+  </lang>
+  <lang slug="slug-groups">
+    <text>Các nhóm</text>
+  </lang>
+  <lang slug="slug-pages">
+    <text>trang</text>
+  </lang>
+  <lang slug="slug-page">
+    <text>Trang</text>
+  </lang>
+  <lang slug="slug-profile-timeline">
+    <text>Hồ sơ / Timeline</text>
+  </lang>
+  <lang slug="slug-version">
+    <text>Phiên bản</text>
+  </lang>
+  <lang slug="slug-hi">
+    <text>Chào</text>
+  </lang>
+  <lang slug="slug-login">
+    <text>Đăng nhập</text>
+  </lang>
+  <lang slug="slug-profile">
+    <text>Cập nhật hồ sơ</text>
+  </lang>
+  <lang slug="slug-your-profile">
+    <text>Hồ sơ của bạn</text>
+  </lang>
+  <lang slug="slug-change-password">
+    <text>Đổi mật khẩu</text>
+  </lang>
+  <lang slug="slug-facebook-app">
+    <text>Facebook App</text>
+  </lang>
+  <lang slug="slug-reports">
+    <text>báo cáo bài viết</text>
+  </lang>
+  <lang slug="slug-posts-by-day">
+    <text>Bài viết theo ngày</text>
+  </lang>
+  <lang slug="slug-posts-by-status">
+    <text>Bài viết theo tình trạng</text>
+  </lang>
+  <lang slug="slug-posts-complete">
+    <text>Bài viết theo loại hoàn chỉnh</text>
+  </lang>
+  <lang slug="slug-successfully">
+    <text>thành công</text>
+  </lang>
+  <lang slug="slug-cannot-delete-item">
+    <text>Không thể xóa mục. Xin vui lòng kiểm tra lại</text>
+  </lang>
+  <lang slug="slug-delete-successfully">
+    <text>xóa thành công</text>
+  </lang>
+  <lang slug="slug-password-length">
+    <text>Mật khẩu của bạn phải có ít nhất 5 ký tự</text>
+  </lang>
+  <lang slug="slug-update-successfully">
+    <text>Cập nhật thành công</text>
+  </lang>
+  <lang slug="slug-app-serect-not-valid">
+    <text>App Serect là không hợp lệ</text>
+  </lang>
+  <lang slug="slug-app-id-not-valid">
+    <text>App ID không hợp lệ</text>
+  </lang>
+  <lang slug="slug-facebook-user-id-not-valid">
+    <text>Facebook ID người dùng không hợp lệ</text>
+  </lang>
+  <lang slug="slug-this-password-is-not-matching">
+    <text>Mật khẩu này không phù hợp</text>
+  </lang>
+  <lang slug="slug-new-password-is-required">
+    <text>Mật khẩu mới là cần thiết</text>
+  </lang>
+  <lang slug="slug-old-password-incorrect">
+    <text>Mật khẩu cũ không chính xác</text>
+  </lang>
+  <lang slug="slug-username-is-required">
+    <text>Tên đăng nhập là cần thiết</text>
+  </lang>
+  <lang slug="slug-register-successfully">
+    <text>Đăng ký thành công</text>
+  </lang>
+  <lang slug="slug-username-already-exists">
+    <text>tên này đã có người dùng</text>
+  </lang>
+  <lang slug="slug-password-is-required">
+    <text>tên này đã có người dùng</text>
+  </lang>
+  <lang slug="slug-username-or-password-incorrect">
+    <text>tên hoặc mật khẩu không đúng</text>
+  </lang>
+  <lang slug="slug-login-successfully">
+    <text>Đăng nhập thành công ...</text>
+  </lang>
+  <lang slug="slug-link-url-is-required">
+    <text>URL liên kết là cần thiết</text>
+  </lang>
+  <lang slug="slug-image-url-is-required">
+    <text>URL của hình ảnh là cần thiết</text>
+  </lang>
+  <lang slug="slug-video-url-is-required">
+    <text>URL của video được yêu cầu</text>
+  </lang>
+  <lang slug="slug-message-is-required">
+    <text>Tin nhắn được yêu cầu</text>
+  </lang>
+  <lang slug="slug-time-post-required">
+    <text>Thời gian bài yêu cầu</text>
+  </lang>
+  <lang slug="slug-select-at-least-one-page-group-profile">
+    <text>Chọn ít nhất một trang / Nhóm / Hồ sơ</text>
+  </lang>
+  <lang slug="slug-add-schedule-posts-successfully">
+    <text>Thêm bài lịch thành công</text>
+  </lang>
+  <lang slug="slug-the-error-occurred-during-processing">
+    <text>Đã xảy ra lỗi trong quá trình xử lý</text>
+  </lang>
+  <lang slug="slug-processing">
+    <text>Chế biến</text>
+  </lang>
+  <lang slug="slug-complete">
+    <text>Hoàn thành</text>
+  </lang>
+  <lang slug="slug-cancel">
+    <text>hủy bỏ</text>
+  </lang>
+  <lang slug="slug-re-post">
+    <text>Re-post</text>
+  </lang>
+  <lang slug="slug-system-processing">
+    <text>Xử lý hệ thống</text>
+  </lang>
+  <lang slug="slug-confirm-delete">
+    <text>Bạn có chắc chắn xóa mục?</text>
+  </lang>
+  <lang slug="slug-comments">
+    <text>Bình luận</text>
+  </lang>
+  <lang slug="slug-likes">
+    <text>Likes</text>
+  </lang>
+  <lang slug="slug-shares">
+    <text>cổ phiếu</text>
+  </lang>
+  <lang slug="slug-read-the-manual-here">
+    <text>Đọc hướng dẫn sử ở đây</text>
+  </lang>
+  <lang slug="slug-guide">
+    <text>Hướng dẫn</text>
+  </lang>
+  <lang slug="slug-get-facebook-user-id">
+    <text>Nhận ID của người dùng Facebook</text>
+  </lang>
+  <lang slug="slug-guide-create-app">
+    <text>Hướng dẫn tạo ứng dụng</text>
+  </lang>
+  <lang slug="slug-remember-me">
+    <text>Ghi nhớ tôi</text>
+  </lang>
+  <lang slug="slug-login-facebook">
+    <text>Đăng nhập facebook</text>
+  </lang>
+  <lang slug="slug-desc-user-limit">
+    <text>Bạn đã vượt quá số lượng tài khoản cho phép</text>
+  </lang>
+  <lang slug="slug-desc-change-app-api">
+    <text>Nếu bạn thay đổi các ID App và App bí mật, tất cả các tài khoản và lịch gửi Facebook sẽ được gỡ bỏ</text>
+  </lang>
+</data>

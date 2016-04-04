@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <lang slug="slug-dashboard">
+    	<text>Dashboard</text>
+   	</lang>
+   	<lang slug="slug-main-navigation">
+    	<text>Main Navigation</text>
+   	</lang>
+   	<lang slug="slug-settings">
+    	<text>Settings</text>
+   	</lang>
+   	<lang slug="slug-manage-user">
+    	<text>Manage user</text>
+   	</lang>
+   	<lang slug="slug-list-user">
+    	<text>List user</text>
+   	</lang>
+   	<lang slug="slug-language">
+    	<text>Language</text>
+   	</lang>
+   	<lang slug="slug-website-name">
+    	<text>Website name</text>
+   	</lang>
+    <lang slug="slug-customization-options">
+      <text>Customization Options</text>
+    </lang>
+    <lang slug="slug-admin-options">
+      <text>Admin Options</text>
+    </lang>
+    <lang slug="slug-default-language">
+      <text>Default Language</text>
+    </lang>
+    <lang slug="slug-add-new-language">
+      <text>Add new language</text>
+    </lang>
+    <lang slug="slug-posting-options">
+      <text>Posting options</text>
+    </lang>
+    <lang slug="slug-facebook-users-limits">
+      <text>Facebook users limits</text>
+    </lang>
+    <lang slug="slug-default-delay">
+      <text>Default delay</text>
+    </lang>
+    <lang slug="slug-minimum-delay">
+      <text>Minimum delay</text>
+    </lang>
+    <lang slug="slug-cron-run-delay">
+      <text>Cron run delay</text>
+    </lang>
+    <lang slug="slug-maximum-posts">
+      <text>Maximum posts on each Cron run</text>
+    </lang>
+   	<lang slug="slug-logo">
+    	<text>Logo</text>
+   	</lang>
+   	<lang slug="slug-theme">
+    	<text>Theme</text>
+   	</lang>
+    <lang slug="slug-layout">
+      <text>Layout</text>
+    </lang>
+    <lang slug="slug-fixed-layout">
+      <text>Fixed Layout</text>
+    </lang>
+    <lang slug="slug-boxed-layout">
+      <text>Boxed Layout</text>
+    </lang>
+    <lang slug="slug-default-layout">
+      <text>Default Layout</text>
+    </lang>
+    <lang slug="slug-sidebar">
+      <text>Sidebar</text>
+    </lang>
+    <lang slug="slug-collapse">
+      <text>Collapse</text>
+    </lang>
+    <lang slug="slug-open">
+      <text>Open</text>
+    </lang>
+   	<lang slug="slug-yes">
+      <text>Yes</text>
+    </lang>
+   	<lang slug="slug-no">
+    	<text>No</text>
+   	</lang>
+   	<lang slug="slug-submit">
+    	<text>Submit</text>
+   	</lang>
+    <lang slug="slug-update">
+      <text>Update</text>
+    </lang>
+   	<lang slug="slug-add-new">
+    	<text>Add new</text>
+   	</lang>
+   	<lang slug="slug-show">
+    	<text>Show</text>
+   	</lang>
+   	<lang slug="slug-hide">
+    	<text>Hide</text>
+   	</lang>
+   	<lang slug="slug-delete">
+    	<text>Delete</text>
+   	</lang>
+   	<lang slug="slug-user-manage">
+    	<text>User manage</text>
+   	</lang>
+   	<lang slug="slug-manage-schedules">
+    	<text>Manage schedules</text>
+   	</lang>
+    <lang slug="slug-list-schedules">
+      <text>List schedules</text>
+    </lang>
+    <lang slug="slug-accounts-facebook">
+      <text>Accounts facebook</text>
+    </lang>
+    <lang slug="slug-option">
+      <text>Option</text>
+    </lang>
+    <lang slug="slug-status">
+      <text>Status</text>
+    </lang>
+    <lang slug="slug-type">
+      <text>Type</text>
+    </lang>
+    <lang slug="slug-name">
+      <text>Name</text>
+    </lang>
+    <lang slug="slug-time-post">
+      <text>Time post</text>
+    </lang>
+    <lang slug="slug-empty">
+      <text>Empty</text>
+    </lang>
+    <lang slug="slug-order">
+      <text>No.</text>
+    </lang>
+    <lang slug="slug-profile-id">
+      <text>Profile ID</text>
+    </lang>
+    <lang slug="slug-list-account-facebook">
+      <text>List account facebook</text>
+    </lang>
+    <lang slug="slug-sign-out">
+      <text>Sign Out</text>
+    </lang>
+    <lang slug="slug-sign-out">
+      <text>Sign Out</text>
+    </lang>
+    <lang slug="slug-register">
+      <text>Register</text>
+    </lang>
+    <lang slug="slug-seconds">
+      <text>seconds</text>
+    </lang>
+    <lang slug="slug-minutes">
+      <text>minutes</text>
+    </lang>
+    <lang slug="slug-users">
+      <text>users</text>
+    </lang>
+    <lang slug="slug-posts">
+      <text>posts</text>
+    </lang>
+    <lang slug="slug-save">
+      <text>Save</text>
+    </lang>
+    <lang slug="slug-update-access-token">
+      <text>Update Access Token</text>
+    </lang>
+    <lang slug="slug-profile-id">
+      <text>Profile ID</text>
+    </lang>
+    <lang slug="slug-is-admin">
+      <text>Is Admin</text>
+    </lang>
+    <lang slug="slug-role">
+      <text>Role</text>
+    </lang>
+    <lang slug="slug-user">
+      <text>User</text>
+    </lang>
+    <lang slug="slug-admin">
+      <text>Admin</text>
+    </lang>
+    <lang slug="slug-username">
+      <text>Username</text>
+    </lang>
+    <lang slug="slug-password">
+      <text>Password</text>
+    </lang>
+    <lang slug="slug-re-password">
+      <text>Re-password</text>
+    </lang>
+    <lang slug="slug-app-id">
+      <text>App ID</text>
+    </lang>
+    <lang slug="slug-app-secret">
+      <text>App Secret</text>
+    </lang>
+    <lang slug="slug-facebook-user-id">
+      <text>Facebook User ID</text>
+    </lang>
+    <lang slug="slug-avatar">
+      <text>Avatar</text>
+    </lang>
+    <lang slug="slug-cancel">
+      <text>Cancel</text>
+    </lang>
+    <lang slug="slug-time-zone">
+      <text>Time Zone</text>
+    </lang>
+    <lang slug="slug-show-hide">
+      <text>Show/Hide</text>
+    </lang>
+    <lang slug="slug-message">
+      <text>Message</text>
+    </lang>
+    <lang slug="slug-time">
+      <text>Time Post</text>
+    </lang>
+    <lang slug="slug-delete-after-finished">
+      <text>Delete after finished</text>
+    </lang>
+    <lang slug="slug-deplay">
+      <text>Deplay</text>
+    </lang>
+    <lang slug="slug-video-url">
+      <text>Video URL</text>
+    </lang>
+    <lang slug="slug-video-description">
+      <text>Video Description</text>
+    </lang>
+    <lang slug="slug-video-title">
+      <text>Video Title</text>
+    </lang>
+    <lang slug="slug-image-url">
+      <text>Image URL</text>
+    </lang>
+    <lang slug="slug-image-description">
+      <text>Image Description</text>
+    </lang>
+    <lang slug="slug-picture-url">
+      <text>Picture URL</text>
+    </lang>
+    <lang slug="slug-link-description">
+      <text>Link Description</text>
+    </lang>
+    <lang slug="slug-link-title">
+      <text>Link Title</text>
+    </lang>
+    <lang slug="slug-link-url">
+      <text>Link URL</text>
+    </lang>
+    <lang slug="slug-video">
+      <text>Video</text>
+    </lang>
+    <lang slug="slug-image">
+      <text>Image</text>
+    </lang>
+    <lang slug="slug-link">
+      <text>Link</text>
+    </lang>
+    <lang slug="slug-text-post">
+      <text>Text Post</text>
+    </lang>
+    <lang slug="slug-schedule-posts">
+      <text>Schedule Posts</text>
+    </lang>
+    <lang slug="slug-publish-post">
+      <text>Publish Post</text>
+    </lang>
+    <lang slug="slug-select-page-group-profile">
+      <text>Select Page/Group/Profile</text>
+    </lang>
+    <lang slug="slug-groups">
+      <text>Groups</text>
+    </lang>
+    <lang slug="slug-pages">
+      <text>Pages</text>
+    </lang>
+    <lang slug="slug-page">
+      <text>Page</text>
+    </lang>
+    <lang slug="slug-profile-timeline">
+      <text>Profile/Timeline</text>
+    </lang>
+    <lang slug="slug-version">
+      <text>Version</text>
+    </lang>
+    <lang slug="slug-hi">
+      <text>Hi</text>
+    </lang>
+    <lang slug="slug-login">
+      <text>Login</text>
+    </lang>
+    <lang slug="slug-profile">
+      <text>Update Profile</text>
+    </lang>
+    <lang slug="slug-your-profile">
+      <text>Your Profile</text>
+    </lang>
+    <lang slug="slug-change-password">
+      <text>Change Password</text>
+    </lang>
+    <lang slug="slug-facebook-app">
+      <text>Facebook App</text>
+    </lang>
+    <lang slug="slug-reports">
+      <text>Report posts</text>
+    </lang>
+    <lang slug="slug-posts-by-day">
+      <text>Posts by day</text>
+    </lang>
+    <lang slug="slug-posts-by-status">
+      <text>Posts by status</text>
+    </lang>
+    <lang slug="slug-posts-complete">
+      <text>Posts by type complete</text>
+    </lang>
+    <lang slug="slug-successfully">
+      <text>Successfully</text>
+    </lang>
+    <lang slug="slug-cannot-delete-item">
+      <text>Cannot delete item. Please check again</text>
+    </lang>
+    <lang slug="slug-delete-successfully">
+      <text>Delete successfully</text>
+    </lang>
+    <lang slug="slug-password-length">
+      <text>Your password must have at least 5 characters</text>
+    </lang>
+    <lang slug="slug-update-successfully">
+      <text>Update successfully</text>
+    </lang>
+    <lang slug="slug-app-serect-not-valid">
+      <text>App Serect is not valid</text>
+    </lang>
+    <lang slug="slug-app-id-not-valid">
+      <text>App ID is not valid</text>
+    </lang>
+    <lang slug="slug-facebook-user-id-not-valid">
+      <text>Facebook User ID is not valid</text>
+    </lang>
+    <lang slug="slug-this-password-is-not-matching">
+      <text>This password is not matching</text>
+    </lang>
+    <lang slug="slug-new-password-is-required">
+      <text>New Password is required</text>
+    </lang>
+    <lang slug="slug-old-password-incorrect">
+      <text>Old password incorrect</text>
+    </lang>
+    <lang slug="slug-username-is-required">
+      <text>Username is required</text>
+    </lang>
+    <lang slug="slug-register-successfully">
+      <text>Register successfully</text>
+    </lang>
+    <lang slug="slug-username-already-exists">
+      <text>Username already exists</text>
+    </lang>
+    <lang slug="slug-password-is-required">
+      <text>Password is required</text>
+    </lang>
+    <lang slug="slug-username-or-password-incorrect">
+      <text>Username or password incorrect</text>
+    </lang>
+    <lang slug="slug-login-successfully">
+      <text>Login successfully...</text>
+    </lang>
+    <lang slug="slug-link-url-is-required">
+      <text>Link URL is required</text>
+    </lang>
+    <lang slug="slug-image-url-is-required">
+      <text>Image URL is required</text>
+    </lang>
+    <lang slug="slug-video-url-is-required">
+      <text>Video URL is required</text>
+    </lang>
+    <lang slug="slug-message-is-required">
+      <text>Message is required</text>
+    </lang>
+    <lang slug="slug-time-post-required">
+      <text>Time post required</text>
+    </lang>
+    <lang slug="slug-select-at-least-one-page-group-profile">
+      <text>Select at least one Page/Group/Profile</text>
+    </lang>
+    <lang slug="slug-add-schedule-posts-successfully">
+      <text>Add schedule posts successfully</text>
+    </lang>
+    <lang slug="slug-the-error-occurred-during-processing">
+      <text>The error occurred during processing</text>
+    </lang>
+    <lang slug="slug-processing">
+      <text>Processing</text>
+    </lang>
+    <lang slug="slug-complete">
+      <text>Complete</text>
+    </lang>
+    <lang slug="slug-cancel">
+      <text>Cancel</text>
+    </lang>
+    <lang slug="slug-failure">
+      <text>Failure</text>
+    </lang>
+    <lang slug="slug-re-post">
+      <text>Re-post</text>
+    </lang>
+    <lang slug="slug-system-processing">
+      <text>System Processing</text>
+    </lang>
+    <lang slug="slug-confirm-delete">
+      <text>Are you sure delete item?</text>
+    </lang>
+    <lang slug="slug-comments">
+      <text>Comments</text>
+    </lang>
+    <lang slug="slug-likes">
+      <text>Likes</text>
+    </lang>
+    <lang slug="slug-shares">
+      <text>Shares</text>
+    </lang>
+    <lang slug="slug-read-the-manual-here">
+      <text>Read the manual here</text>
+    </lang>
+    <lang slug="slug-guide">
+      <text>Guide</text>
+    </lang>
+    <lang slug="slug-get-facebook-user-id">
+      <text>Get Facebook user ID</text>
+    </lang>
+    <lang slug="slug-guide-create-app">
+      <text>Guide create app</text>
+    </lang>
+    <lang slug="slug-remember-me">
+      <text>Remember me</text>
+    </lang>
+
+    
+    
+    <lang slug="slug-login-facebook">
+      <text>Login facebook</text>
+    </lang>
+    <lang slug="slug-desc-user-limit">
+      <text>You have exceeded the number of accounts allowed</text>
+    </lang>
+    <lang slug="slug-desc-change-app-api">
+      <text>If you change the App ID and App secret, all the accounts and schedule Facebook posts will be removed</text>
+    </lang>
+    
+</data>
+
+

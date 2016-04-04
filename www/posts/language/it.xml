@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+  <lang slug="slug-dashboard">
+    <text>Cruscotto</text>
+  </lang>
+  <lang slug="slug-main-navigation">
+    <text>navigazione principale</text>
+  </lang>
+  <lang slug="slug-settings">
+    <text>impostazioni</text>
+  </lang>
+  <lang slug="slug-manage-user">
+    <text>gestire utente</text>
+  </lang>
+  <lang slug="slug-list-user">
+    <text>lista utenti</text>
+  </lang>
+  <lang slug="slug-language">
+    <text>Lingua</text>
+  </lang>
+  <lang slug="slug-website-name">
+    <text>nome del sito web</text>
+  </lang>
+  <lang slug="slug-customization-options">
+    <text>Opzioni di personalizzazione</text>
+  </lang>
+  <lang slug="slug-admin-options">
+    <text>Opzioni Admin</text>
+  </lang>
+  <lang slug="slug-default-language">
+    <text>Lingua di default</text>
+  </lang>
+  <lang slug="slug-add-new-language">
+    <text>Aggiungere nuova lingua</text>
+  </lang>
+  <lang slug="slug-posting-options">
+    <text>opzioni di scrittura</text>
+  </lang>
+  <lang slug="slug-facebook-users-limits">
+    <text>Facebook limiti degli utenti</text>
+  </lang>
+  <lang slug="slug-default-delay">
+    <text>ritardo di default</text>
+  </lang>
+  <lang slug="slug-minimum-delay">
+    <text>ritardo minimo</text>
+  </lang>
+  <lang slug="slug-cron-run-delay">
+    <text>Cron ritardo corsa</text>
+  </lang>
+  <lang slug="slug-maximum-posts">
+    <text>messaggi massimo su ogni esecuzione Cron</text>
+  </lang>
+  <lang slug="slug-logo">
+    <text>Logo</text>
+  </lang>
+  <lang slug="slug-theme">
+    <text>Tema</text>
+  </lang>
+  <lang slug="slug-layout">
+    <text>disposizione</text>
+  </lang>
+  <lang slug="slug-fixed-layout">
+    <text>layout fisso</text>
+  </lang>
+  <lang slug="slug-boxed-layout">
+    <text>Boxed layout</text>
+  </lang>
+  <lang slug="slug-default-layout">
+    <text>layout predefinito</text>
+  </lang>
+  <lang slug="slug-sidebar">
+    <text>Sidebar</text>
+  </lang>
+  <lang slug="slug-collapse">
+    <text>Crollo</text>
+  </lang>
+  <lang slug="slug-open">
+    <text>aperto</text>
+  </lang>
+  <lang slug="slug-yes">
+    <text>sì</text>
+  </lang>
+  <lang slug="slug-no">
+    <text>No</text>
+  </lang>
+  <lang slug="slug-submit">
+    <text>invio</text>
+  </lang>
+  <lang slug="slug-update">
+    <text>Aggiornare</text>
+  </lang>
+  <lang slug="slug-add-new">
+    <text>Aggiungere nuova</text>
+  </lang>
+  <lang slug="slug-show">
+    <text>Mostrare</text>
+  </lang>
+  <lang slug="slug-hide">
+    <text>nascondere</text>
+  </lang>
+  <lang slug="slug-delete">
+    <text>cancellare</text>
+  </lang>
+  <lang slug="slug-failure">
+    <text>Fallimento</text>
+  </lang>
+  <lang slug="slug-user-manage">
+    <text>gestire per l'utente</text>
+  </lang>
+  <lang slug="slug-manage-schedules">
+    <text>gestire le pianificazioni</text>
+  </lang>
+  <lang slug="slug-list-schedules">
+    <text>Elenco programmi</text>
+  </lang>
+  <lang slug="slug-accounts-facebook">
+    <text>account di Facebook</text>
+  </lang>
+  <lang slug="slug-option">
+    <text>Opzione</text>
+  </lang>
+  <lang slug="slug-status">
+    <text>Stato</text>
+  </lang>
+  <lang slug="slug-type">
+    <text>Digitare</text>
+  </lang>
+  <lang slug="slug-name">
+    <text>Nome</text>
+  </lang>
+  <lang slug="slug-time-post">
+    <text>Data messaggio</text>
+  </lang>
+  <lang slug="slug-empty">
+    <text>Vuoto</text>
+  </lang>
+  <lang slug="slug-order">
+    <text>No.</text>
+  </lang>
+  <lang slug="slug-profile-id">
+    <text>Profilo ID</text>
+  </lang>
+  <lang slug="slug-list-account-facebook">
+    <text>Lista account facebook</text>
+  </lang>
+  <lang slug="slug-sign-out">
+    <text>Disconnessione</text>
+  </lang>
+  <lang slug="slug-sign-out">
+    <text>Disconnessione</text>
+  </lang>
+  <lang slug="slug-register">
+    <text>registro</text>
+  </lang>
+  <lang slug="slug-seconds">
+    <text>secondi</text>
+  </lang>
+  <lang slug="slug-minutes">
+    <text>minuti</text>
+  </lang>
+  <lang slug="slug-users">
+    <text>utenti</text>
+  </lang>
+  <lang slug="slug-posts">
+    <text>messaggi</text>
+  </lang>
+  <lang slug="slug-save">
+    <text>Salvare</text>
+  </lang>
+  <lang slug="slug-update-access-token">
+    <text>Aggiornamento token di accesso</text>
+  </lang>
+  <lang slug="slug-profile-id">
+    <text>Profilo ID</text>
+  </lang>
+  <lang slug="slug-is-admin">
+    <text>è admin</text>
+  </lang>
+  <lang slug="slug-role">
+    <text>Ruolo</text>
+  </lang>
+  <lang slug="slug-user">
+    <text>Utente</text>
+  </lang>
+  <lang slug="slug-admin">
+    <text>Admin</text>
+  </lang>
+  <lang slug="slug-username">
+    <text>Nome utente</text>
+  </lang>
+  <lang slug="slug-password">
+    <text>parola d'ordine</text>
+  </lang>
+  <lang slug="slug-re-password">
+    <text>Re-parola</text>
+  </lang>
+  <lang slug="slug-app-id">
+    <text>App ID</text>
+  </lang>
+  <lang slug="slug-app-secret">
+    <text>App Segreto</text>
+  </lang>
+  <lang slug="slug-facebook-user-id">
+    <text>Facebook User ID</text>
+  </lang>
+  <lang slug="slug-avatar">
+    <text>Avatar</text>
+  </lang>
+  <lang slug="slug-cancel">
+    <text>Annulla</text>
+  </lang>
+  <lang slug="slug-time-zone">
+    <text>Fuso orario</text>
+  </lang>
+  <lang slug="slug-show-hide">
+    <text>Mostra nascondi</text>
+  </lang>
+  <lang slug="slug-message">
+    <text>Messaggio</text>
+  </lang>
+  <lang slug="slug-time">
+    <text>Ora di invio</text>
+  </lang>
+  <lang slug="slug-delete-after-finished">
+    <text>Elimina dopo finito</text>
+  </lang>
+  <lang slug="slug-deplay">
+    <text>Display</text>
+  </lang>
+  <lang slug="slug-video-url">
+    <text>Video URL</text>
+  </lang>
+  <lang slug="slug-video-description">
+    <text>Descrizione video</text>
+  </lang>
+  <lang slug="slug-video-title">
+    <text>Video Titolo</text>
+  </lang>
+  <lang slug="slug-image-url">
+    <text>URL dell'immagine</text>
+  </lang>
+  <lang slug="slug-image-description">
+    <text>Descrizione dell'immagine</text>
+  </lang>
+  <lang slug="slug-picture-url">
+    <text>URL immagine</text>
+  </lang>
+  <lang slug="slug-link-description">
+    <text>collegamento Descrizione</text>
+  </lang>
+  <lang slug="slug-link-title">
+    <text>Titolo del link</text>
+  </lang>
+  <lang slug="slug-link-url">
+    <text>URL del link</text>
+  </lang>
+  <lang slug="slug-video">
+    <text>Video</text>
+  </lang>
+  <lang slug="slug-image">
+    <text>Immagine</text>
+  </lang>
+  <lang slug="slug-link">
+    <text>collegamento</text>
+  </lang>
+  <lang slug="slug-text-post">
+    <text>Testo Messaggio</text>
+  </lang>
+  <lang slug="slug-schedule-posts">
+    <text>Programma Messaggi</text>
+  </lang>
+  <lang slug="slug-publish-post">
+    <text>Pubblica post</text>
+  </lang>
+  <lang slug="slug-select-page-group-profile">
+    <text>Selezionare pagina / gruppo / Profilo</text>
+  </lang>
+  <lang slug="slug-groups">
+    <text>gruppi</text>
+  </lang>
+  <lang slug="slug-pages">
+    <text>pagine</text>
+  </lang>
+  <lang slug="slug-page">
+    <text>Pagina</text>
+  </lang>
+  <lang slug="slug-profile-timeline">
+    <text>Profilo / Timeline</text>
+  </lang>
+  <lang slug="slug-version">
+    <text>Versione</text>
+  </lang>
+  <lang slug="slug-hi">
+    <text>Ciao</text>
+  </lang>
+  <lang slug="slug-login">
+    <text>Accesso</text>
+  </lang>
+  <lang slug="slug-profile">
+    <text>Aggiorna il profilo</text>
+  </lang>
+  <lang slug="slug-your-profile">
+    <text>Il tuo profilo</text>
+  </lang>
+  <lang slug="slug-change-password">
+    <text>Cambia la password</text>
+  </lang>
+  <lang slug="slug-facebook-app">
+    <text>Facebook App</text>
+  </lang>
+  <lang slug="slug-reports">
+    <text>messaggi report</text>
+  </lang>
+  <lang slug="slug-posts-by-day">
+    <text>Messaggi per giorno</text>
+  </lang>
+  <lang slug="slug-posts-by-status">
+    <text>Messaggi di stato</text>
+  </lang>
+  <lang slug="slug-posts-complete">
+    <text>Messaggi di tipo completo</text>
+  </lang>
+  <lang slug="slug-successfully">
+    <text>Con successo</text>
+  </lang>
+  <lang slug="slug-cannot-delete-item">
+    <text>Non è possibile eliminare l'elemento. Si prega di verificare di nuovo</text>
+  </lang>
+  <lang slug="slug-delete-successfully">
+    <text>Eliminare con successo</text>
+  </lang>
+  <lang slug="slug-password-length">
+    <text>La password deve avere almeno 5 caratteri</text>
+  </lang>
+  <lang slug="slug-update-successfully">
+    <text>aggiornare con successo</text>
+  </lang>
+  <lang slug="slug-app-serect-not-valid">
+    <text>App Serect non è valido</text>
+  </lang>
+  <lang slug="slug-app-id-not-valid">
+    <text>App ID non è valido</text>
+  </lang>
+  <lang slug="slug-facebook-user-id-not-valid">
+    <text>Facebook User ID non è valido</text>
+  </lang>
+  <lang slug="slug-this-password-is-not-matching">
+    <text>Questa password non corrisponde</text>
+  </lang>
+  <lang slug="slug-new-password-is-required">
+    <text>è richiesta nuova password</text>
+  </lang>
+  <lang slug="slug-old-password-incorrect">
+    <text>Vecchio password errata</text>
+  </lang>
+  <lang slug="slug-username-is-required">
+    <text>Nome Utente è richiesto</text>
+  </lang>
+  <lang slug="slug-register-successfully">
+    <text>Registrati con successo</text>
+  </lang>
+  <lang slug="slug-username-already-exists">
+    <text>Il nome utente esiste già</text>
+  </lang>
+  <lang slug="slug-password-is-required">
+    <text>E 'richiesta la password</text>
+  </lang>
+  <lang slug="slug-username-or-password-incorrect">
+    <text>Nome utente o password errata</text>
+  </lang>
+  <lang slug="slug-login-successfully">
+    <text>Effettua il login con successo ...</text>
+  </lang>
+  <lang slug="slug-link-url-is-required">
+    <text>è richiesto URL del link</text>
+  </lang>
+  <lang slug="slug-image-url-is-required">
+    <text>è richiesto URL immagine</text>
+  </lang>
+  <lang slug="slug-video-url-is-required">
+    <text>è richiesto l'URL del video</text>
+  </lang>
+  <lang slug="slug-message-is-required">
+    <text>è necessario Messaggio</text>
+  </lang>
+  <lang slug="slug-time-post-required">
+    <text>Ora di invio richiesta</text>
+  </lang>
+  <lang slug="slug-select-at-least-one-page-group-profile">
+    <text>Selezionare almeno una pagina / gruppo / Profilo</text>
+  </lang>
+  <lang slug="slug-add-schedule-posts-successfully">
+    <text>Aggiungere messaggi pianificare con successo</text>
+  </lang>
+  <lang slug="slug-the-error-occurred-during-processing">
+    <text>Si è verificato l'errore durante l'elaborazione</text>
+  </lang>
+  <lang slug="slug-processing">
+    <text>lavorazione</text>
+  </lang>
+  <lang slug="slug-complete">
+    <text>Completare</text>
+  </lang>
+  <lang slug="slug-cancel">
+    <text>Annulla</text>
+  </lang>
+  <lang slug="slug-re-post">
+    <text>Re-post</text>
+  </lang>
+  <lang slug="slug-system-processing">
+    <text>Processing system</text>
+  </lang>
+  <lang slug="slug-confirm-delete">
+    <text>Sei sicuro di eliminare articolo?</text>
+  </lang>
+  <lang slug="slug-comments">
+    <text>Commenti</text>
+  </lang>
+  <lang slug="slug-likes">
+    <text>Piace</text>
+  </lang>
+  <lang slug="slug-shares">
+    <text>azioni</text>
+  </lang>
+  <lang slug="slug-read-the-manual-here">
+    <text>Leggere il manuale qui</text>
+  </lang>
+  <lang slug="slug-guide">
+    <text>Guida</text>
+  </lang>
+  <lang slug="slug-get-facebook-user-id">
+    <text>Get Facebook ID utente</text>
+  </lang>
+  <lang slug="slug-guide-create-app">
+    <text>Guida creare app</text>
+  </lang>
+  <lang slug="slug-remember-me">
+    <text>Ricordati di me</text>
+  </lang>
+  <lang slug="slug-login-facebook">
+    <text>Accesso facebook</text>
+  </lang>
+  <lang slug="slug-desc-user-limit">
+    <text>È stato superato il numero di account consentito</text>
+  </lang>
+  <lang slug="slug-desc-change-app-api">
+    <text>Se si modifica l'ID app e segreta App, tutti i conti e pianificare Facebook posti saranno rimossi</text>
+  </lang>
+</data>
