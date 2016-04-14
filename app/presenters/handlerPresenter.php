@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Presenters;
 
 use App\Model,
@@ -209,6 +208,18 @@ class handlerPresenter extends BasePresenter {
         $rows = $this->database->table("tbl_videos")->where("profile_id=?", $id)->fetchAll();
         $this->template->photos = $rows;
         $this->renderHandler_profile_home($id);
+    }
+
+    public function actionHandler_profile_home($id = 0) {
+//        if ($id == 0) {
+//            
+//        }
+//        if ($this->logged_in_handler_id > 0) {
+//            
+//        } else {
+//            $this->flashMessage($this->translate("To view this site, you must be logged in."));
+//            $this->redirect("LandingPage:default");
+//        }
     }
 
     public function renderHandler_profile_home($id = 0) {

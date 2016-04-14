@@ -203,11 +203,26 @@ class blueticket_objects {
 
     public function generateActiveUsers() {
         $form = blueticket_forms::get_instance();
+        $form_date = blueticket_forms::get_instance();
 
+        $btdb = blueticket_forms_db::get_instance();
+        $btdb->query("CREATE TABLE IF NOT EXISTS tbl_stat_dates(id BIGINT NOT NULL auto_increment, date_from DATE NOT NULL, date_to DATE NOT NULL, PRIMARY KEY(id)) ENGINE=MyISAM");
+        
+        $form_date->table("tbl_stat_dates");
+        $form_date->table_name("Statistics period");
+
+        $form_date->unset_add();
+        $form_date->unset_remove();
+        
+        echo $form_date->render();
+        
+        echo '<a class="btn btn-lg btn-default" href="http://www.dogforshow.com/www/admin/index.php?report=active_users">Obnoviť</a>';
+        
 //$form= new blueticket_forms();
-
+        
         $form->table("tbl_user");
-        $form->where("login_count > 0");
+        $form->where("active > 0");
+        $form->where("DATE(registration_date) >= (SELECT MAX(date_from) FROM tbl_stat_dates) AND DATE(registration_date) <= (SELECT MAX(date_to) FROM tbl_stat_dates)");
         $form->table_name("Active users");
         $form->default_tab("Active users");
         $form->columns("registration_date, active, full_name, email, state, lang, last_login, login_count, premium_expiry_date, kennels, owners, handlers, dogs, puppies");

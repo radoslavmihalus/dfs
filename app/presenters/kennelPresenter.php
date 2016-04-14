@@ -229,6 +229,17 @@ class kennelPresenter extends BasePresenter {
         $this->template->result_awards = $result_awards;
     }
 
+    public function actionKennel_profile_home($id = 0) {
+//        if ($id == 0) {
+//            
+//        }
+//        if ($this->logged_in_kennel_id > 0) {
+//        } else {
+//            $this->flashMessage($this->translate("To view this site, you must be logged in."));
+//            $this->redirect("LandingPage:default");
+//        }
+    }
+
     public function renderKennel_profile_home($id = 0) {
         if ($id == 0) {
             $id = $this->logged_in_kennel_id;

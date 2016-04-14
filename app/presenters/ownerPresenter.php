@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Presenters;
 
 use App\Model,
@@ -73,6 +72,17 @@ class ownerPresenter extends BasePresenter {
     }
 
     /*     * ******************* view default ******************** */
+
+    public function actionOwner_profile_home($id = 0) {
+//        if ($id == 0) {
+//            
+//        }
+//        if ($this->logged_in_owner_id > 0) {
+//        } else {
+//            $this->flashMessage($this->translate("To view this site, you must be logged in."));
+//            $this->redirect("LandingPage:default");
+//        }
+    }
 
     public function renderOwner_profile_home($id = 0) {
         if ($id == 0) {
