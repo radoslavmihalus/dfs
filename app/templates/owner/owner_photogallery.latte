@@ -26,9 +26,9 @@
     <!-- Gallery -->
     <div id="gallery">
         {foreach $photos as $row}
-            <div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
-                <a href="javascript:void(0)" onclick="ShowGaleryModal({$row->id})" title="{$row->description}" style="float:left;margin-bottom: 10px;display:block;width:218px;height:218px;background-position: 50% 25%;background-size: cover;background-image: url({$row->image});">
-                </a>
+            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12" style="padding:5px;border:#eee 1px solid;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">
+                <div class="thumbnail img-responsive" href="javascript:void(0)" onclick="ShowGaleryModal({$row->id})" title="{$row->description}" style="padding:50%; cursor:pointer; margin-bottom: 10px;background-position: 50% 25%;background-size: cover;background-image: url({$row->image});">
+                </div>
                 <div class="col-xs-6" style="text-align: center;padding-left: 0px;padding-right: 0px;">
                     <a href="javascript:void(0)" onclick="ShowGaleryModal({$row->id})" title="{$row->description}">
                         <i style="color: #777;" class="fa fa-thumbs-up"><span style="font-size:12px;margin-left: 2px;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">{DataModel::getTimelineLikesCount(0,$row->id)}</span></i>
