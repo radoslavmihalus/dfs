@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Presenters;
 
 use App\Model,
@@ -29,16 +28,16 @@ class puppyPresenter extends BasePresenter {
     public function beforeRender() {
         parent::beforeRender();
     }
-    
+
     /*     * ******** renderers ************* */
-    
+
     public function actionPuppy_list($lang) {
         $mysection = $this->getSession('language');
 
         $mysection->lang = $lang;
 
         $this->translator->lang = $mysection->lang;
-        
+
         $this->template->lang = $this->translator->lang;
     }
 
@@ -172,6 +171,7 @@ class puppyPresenter extends BasePresenter {
         $this->renderDefault($id);
 //        $this->renderKennel_profile_home($id);
     }
+
     /*     * ******************* action methods ******************** */
 
     public function actionPuppy_create_profile($plid = 0) {
@@ -181,7 +181,7 @@ class puppyPresenter extends BasePresenter {
             $this->terminate();
         }
         $this->planned_litter_id = $plid;
-        
+
 //        $fb = new \Facebook\Facebook();
 //        
 //        $fb->post($endpoint);
@@ -500,11 +500,12 @@ class puppyPresenter extends BasePresenter {
             $data['country'] = $values['ddlCountry'];
             $data['puppy_state'] = $values['ddlPuppyStatus'];
 
-
             $planned_litter = \DataModel::getPlannedLitterById($data['planned_litter_id']);
             $father_name = $planned_litter->dog_name;
             $mother_name = $planned_litter->bitch_name;
             $data['breed_name'] = $planned_litter->bitch_breed;
+
+            $breed_name = $data['breed_name'];
 
             $this->data_model->setParents($data['puppy_name'], $father_name, $mother_name);
 
@@ -513,6 +514,36 @@ class puppyPresenter extends BasePresenter {
             $id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($this->profile_id, $id, 13, $values['txtPuppyName'], $values['txtPuppyProfilePhoto']);
+
+            try {
+                $tran = new DFSTranslator();
+
+                $tran->lang = 'en';
+
+                $fb_post = array();
+
+                $fb_post['title'] = $tran->translate($values['ddlPuppyStatus']) . ' - ' . $values['txtPuppyName'];
+                $fb_post['image'] = 'http://www.dogforshow.com/' . $data['puppy_photo'];
+                $fb_post['type'] = 'link'; // post type
+                $fb_post['fid'] = '251674108333436'; //'114274177380'; //''; // dogforshow facebook funpage id
+                $fb_post['name'] = 'DOGFORSHOW'; // dogforshow facebook funpage name
+                $fb_post['cid'] = 'page'; // funpage type
+                $fb_post['message'] = 'Offer your purebred puppies for sale worldwide'; // dogforshow facebook funpage name
+                $fb_post['description'] = mb_strtoupper($breed_name) . ' | ' . mb_strtoupper($tran->translate($values['radGender'])) . ' | ' . mb_strtoupper($tran->translate($values['ddlCountry']));
+                $fb_post['url'] = "http://www.dogforshow.com/puppy-profile?id=$id&lang=en";
+                $fb_post['time_post'] = date("Y-m-d H:i:s");
+                $fb_post['status'] = 1;
+                $fb_post['uid'] = 1;
+                $fb_post['delete'] = 0;
+                $fb_post['deplay'] = 5;
+                $fb_post['created'] = date("Y-m-d H:i:s");
+                $fb_post['changed'] = date("Y-m-d H:i:s");
+                $fb_post['access_token'] = 'CAAXspQlPuT0BAEu0Hcu54ht8J3ZBueZA9gwzCj2OZBPYv0a5Oy7pLbOBdOZCHsN63e4BnluUHZCUFjlAlNZCrOwawcQ2pkPytObK3KL7IYjTkRekZBLISek7ZC5Je4WXVfNc8g5kFvqEhckT3JEQOl4kFnZAavudqnUM3HhNa9joDefTprkxfDUZAPZA6dZBplZC0hHUZD'; //$this->getPostToken();
+
+                $this->database->table("tbl_posts")->insert($fb_post);
+            } catch (\Exception $ex) {
+                
+            }
         } catch (\Exception $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
         }

@@ -66,6 +66,25 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //        }
     }
 
+    /*
+     * gets unique facebook post token
+     */
+
+    function getPostToken() {
+        $app_id = '1667568453531965';
+        $app_secret = '31b497e2fa6cb206b406624ae2a39e00';
+        
+        // access token from tbl_users
+        $access_token = 'CAAXspQlPuT0BACGJxNdvFWCHvbLNXJdFEf1Wis995OyZBZB3cqGjHOZAxZBSUYXFPmGaR9oyTeqBXkJqYw5f04EAgOOcEgZBi7CPX7XiwZAV7s6D227mX0SGRokGP7zmb7lGloeOKMNHPTh1UOXLnbwWYSxZCbrYk4uFEUOq4NBMsZAT3Jp2ERPp'; // from tbl_users
+
+        $extend_url = "https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id=$app_id&client_secret=$app_secret&fb_exchange_token=$access_token";
+
+        $resp = file_get_contents($extend_url);
+        parse_str($resp, $output);
+        $extended_token = $output['access_token'];
+        return $extended_token;
+    }
+
     protected function beforeRender() {
         parent::beforeRender();
         if ($this->isAjax())
@@ -2149,6 +2168,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->flashMessage($ex->getMessage(), "Error");
         }
     }
+
 }
 
 class DFSTranslator implements Nette\Localization\ITranslator {

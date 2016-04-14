@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+  <lang slug="slug-dashboard">
+    <text>gösterge paneli</text>
+  </lang>
+  <lang slug="slug-main-navigation">
+    <text>ana Navigasyon</text>
+  </lang>
+  <lang slug="slug-settings">
+    <text>Ayarlar</text>
+  </lang>
+  <lang slug="slug-manage-user">
+    <text>kullanıcı yönetmek</text>
+  </lang>
+  <lang slug="slug-list-user">
+    <text>Liste kullanıcı</text>
+  </lang>
+  <lang slug="slug-language">
+    <text>Dil</text>
+  </lang>
+  <lang slug="slug-website-name">
+    <text>Web sitesi adı</text>
+  </lang>
+  <lang slug="slug-customization-options">
+    <text>Özelleştirme Seçenekleri</text>
+  </lang>
+  <lang slug="slug-admin-options">
+    <text>Yönetici Seçenekleri</text>
+  </lang>
+  <lang slug="slug-default-language">
+    <text>Varsayılan dil</text>
+  </lang>
+  <lang slug="slug-add-new-language">
+    <text>Yeni bir dil ekleyin</text>
+  </lang>
+  <lang slug="slug-posting-options">
+    <text>Gönderme seçenekleri</text>
+  </lang>
+  <lang slug="slug-facebook-users-limits">
+    <text>Facebook kullanıcıları sınırlar</text>
+  </lang>
+  <lang slug="slug-default-delay">
+    <text>varsayılan gecikme</text>
+  </lang>
+  <lang slug="slug-minimum-delay">
+    <text>minimum gecikme</text>
+  </lang>
+  <lang slug="slug-cron-run-delay">
+    <text>Cron çalışma gecikmesi</text>
+  </lang>
+  <lang slug="slug-maximum-posts">
+    <text>Her Cron kaçak maksimum mesajlar</text>
+  </lang>
+  <lang slug="slug-logo">
+    <text>Logo</text>
+  </lang>
+  <lang slug="slug-theme">
+    <text>Tema</text>
+  </lang>
+  <lang slug="slug-layout">
+    <text>düzen</text>
+  </lang>
+  <lang slug="slug-fixed-layout">
+    <text>sabit Düzeni</text>
+  </lang>
+  <lang slug="slug-boxed-layout">
+    <text>Kutulu Düzen</text>
+  </lang>
+  <lang slug="slug-default-layout">
+    <text>Standart Düzeni</text>
+  </lang>
+  <lang slug="slug-sidebar">
+    <text>Kenar çubuğu</text>
+  </lang>
+  <lang slug="slug-collapse">
+    <text>çöküş</text>
+  </lang>
+  <lang slug="slug-open">
+    <text>Açık</text>
+  </lang>
+  <lang slug="slug-yes">
+    <text>Evet</text>
+  </lang>
+  <lang slug="slug-no">
+    <text>hayır</text>
+  </lang>
+  <lang slug="slug-submit">
+    <text>sunmak</text>
+  </lang>
+  <lang slug="slug-update">
+    <text>Güncelleştirme</text>
+  </lang>
+  <lang slug="slug-add-new">
+    <text>Yeni ekle</text>
+  </lang>
+  <lang slug="slug-show">
+    <text>Göstermek</text>
+  </lang>
+  <lang slug="slug-hide">
+    <text>gizlemek</text>
+  </lang>
+  <lang slug="slug-delete">
+    <text>silmek</text>
+  </lang>
+  <lang slug="slug-user-manage">
+    <text>kullanıcı yönetmek</text>
+  </lang>
+  <lang slug="slug-manage-schedules">
+    <text>programları yönetmek</text>
+  </lang>
+  <lang slug="slug-list-schedules">
+    <text>Liste programları</text>
+  </lang>
+  <lang slug="slug-accounts-facebook">
+    <text>facebook hesapları</text>
+  </lang>
+  <lang slug="slug-option">
+    <text>seçenek</text>
+  </lang>
+  <lang slug="slug-status">
+    <text>durum</text>
+  </lang>
+  <lang slug="slug-type">
+    <text>tip</text>
+  </lang>
+  <lang slug="slug-name">
+    <text>isim</text>
+  </lang>
+  <lang slug="slug-time-post">
+    <text>Zaman sonrası</text>
+  </lang>
+  <lang slug="slug-empty">
+    <text>Boş</text>
+  </lang>
+  <lang slug="slug-order">
+    <text>Hayır.</text>
+  </lang>
+  <lang slug="slug-profile-id">
+    <text>Profil kimliği</text>
+  </lang>
+  <lang slug="slug-list-account-facebook">
+    <text>Liste hesap facebook</text>
+  </lang>
+  <lang slug="slug-sign-out">
+    <text>Oturumu Kapat</text>
+  </lang>
+  <lang slug="slug-sign-out">
+    <text>Oturumu Kapat</text>
+  </lang>
+  <lang slug="slug-register">
+    <text>Kayıt</text>
+  </lang>
+  <lang slug="slug-seconds">
+    <text>saniye</text>
+  </lang>
+  <lang slug="slug-minutes">
+    <text>dakika</text>
+  </lang>
+  <lang slug="slug-users">
+    <text>kullanıcılar</text>
+  </lang>
+  <lang slug="slug-posts">
+    <text>Mesajları</text>
+  </lang>
+  <lang slug="slug-save">
+    <text>Kaydet</text>
+  </lang>
+  <lang slug="slug-update-access-token">
+    <text>Güncelleme Erişim Jetonu</text>
+  </lang>
+  <lang slug="slug-profile-id">
+    <text>Profil kimliği</text>
+  </lang>
+  <lang slug="slug-is-admin">
+    <text>Admin</text>
+  </lang>
+  <lang slug="slug-role">
+    <text>rol</text>
+  </lang>
+  <lang slug="slug-user">
+    <text>kullanıcı</text>
+  </lang>
+  <lang slug="slug-admin">
+    <text>yönetim</text>
+  </lang>
+  <lang slug="slug-username">
+    <text>Kullanıcı adı</text>
+  </lang>
+  <lang slug="slug-password">
+    <text>Parola</text>
+  </lang>
+  <lang slug="slug-re-password">
+    <text>Yeniden şifre</text>
+  </lang>
+  <lang slug="slug-app-id">
+    <text>Uygulama kimliği</text>
+  </lang>
+  <lang slug="slug-app-secret">
+    <text>Uygulama Gizli</text>
+  </lang>
+  <lang slug="slug-facebook-user-id">
+    <text>Facebook Kullanıcı Kimliği</text>
+  </lang>
+  <lang slug="slug-avatar">
+    <text>Avatar</text>
+  </lang>
+  <lang slug="slug-cancel">
+    <text>İptal</text>
+  </lang>
+  <lang slug="slug-failure">
+    <text>Başarısızlık</text>
+  </lang>
+  <lang slug="slug-time-zone">
+    <text>Saat dilimi</text>
+  </lang>
+  <lang slug="slug-show-hide">
+    <text>Göster / Gizle</text>
+  </lang>
+  <lang slug="slug-message">
+    <text>Mesaj</text>
+  </lang>
+  <lang slug="slug-time">
+    <text>Zaman Mesaj</text>
+  </lang>
+  <lang slug="slug-delete-after-finished">
+    <text>Sildikten sonra bitmiş</text>
+  </lang>
+  <lang slug="slug-deplay">
+    <text>ekran</text>
+  </lang>
+  <lang slug="slug-video-url">
+    <text>Video URL'si</text>
+  </lang>
+  <lang slug="slug-video-description">
+    <text>Video Açıklama</text>
+  </lang>
+  <lang slug="slug-video-title">
+    <text>Video Başlık</text>
+  </lang>
+  <lang slug="slug-image-url">
+    <text>Image URL</text>
+  </lang>
+  <lang slug="slug-image-description">
+    <text>Görüntü açıklaması</text>
+  </lang>
+  <lang slug="slug-picture-url">
+    <text>Resim URL</text>
+  </lang>
+  <lang slug="slug-link-description">
+    <text>Bağlantı açıklaması</text>
+  </lang>
+  <lang slug="slug-link-title">
+    <text>bağlantı Başlığı</text>
+  </lang>
+  <lang slug="slug-link-url">
+    <text>bağlantı URL'si</text>
+  </lang>
+  <lang slug="slug-video">
+    <text>Video</text>
+  </lang>
+  <lang slug="slug-image">
+    <text>görüntü</text>
+  </lang>
+  <lang slug="slug-link">
+    <text>Bağlantı</text>
+  </lang>
+  <lang slug="slug-text-post">
+    <text>metin Mesaj</text>
+  </lang>
+  <lang slug="slug-schedule-posts">
+    <text>Program Mesajlar</text>
+  </lang>
+  <lang slug="slug-publish-post">
+    <text>Yazıyı Yayınla</text>
+  </lang>
+  <lang slug="slug-select-page-group-profile">
+    <text>Sayfa / Grup / Profili seçin</text>
+  </lang>
+  <lang slug="slug-groups">
+    <text>Gruplar</text>
+  </lang>
+  <lang slug="slug-pages">
+    <text>Sayfalar</text>
+  </lang>
+  <lang slug="slug-page">
+    <text>Sayfa</text>
+  </lang>
+  <lang slug="slug-profile-timeline">
+    <text>Profil / Timeline</text>
+  </lang>
+  <lang slug="slug-version">
+    <text>versiyon</text>
+  </lang>
+  <lang slug="slug-hi">
+    <text>Merhaba</text>
+  </lang>
+  <lang slug="slug-login">
+    <text>Oturum aç</text>
+  </lang>
+  <lang slug="slug-profile">
+    <text>Profili güncelle</text>
+  </lang>
+  <lang slug="slug-your-profile">
+    <text>Senin profil</text>
+  </lang>
+  <lang slug="slug-change-password">
+    <text>Şifre değiştir</text>
+  </lang>
+  <lang slug="slug-facebook-app">
+    <text>Facebook App</text>
+  </lang>
+  <lang slug="slug-reports">
+    <text>Rapor mesajlar</text>
+  </lang>
+  <lang slug="slug-posts-by-day">
+    <text>gün Mesajlar</text>
+  </lang>
+  <lang slug="slug-posts-by-status">
+    <text>duruma göre Mesajlar</text>
+  </lang>
+  <lang slug="slug-posts-complete">
+    <text>tam türüne göre Mesajlar</text>
+  </lang>
+  <lang slug="slug-successfully">
+    <text>başarılı olarak</text>
+  </lang>
+  <lang slug="slug-cannot-delete-item">
+    <text>öğe silinemiyor. tekrar kontrol edin</text>
+  </lang>
+  <lang slug="slug-delete-successfully">
+    <text>başarıyla Sil</text>
+  </lang>
+  <lang slug="slug-password-length">
+    <text>Şifreniz en az 5 karakter uzunluğunda olmalıdır</text>
+  </lang>
+  <lang slug="slug-update-successfully">
+    <text>başarıyla güncellemek</text>
+  </lang>
+  <lang slug="slug-app-serect-not-valid">
+    <text>Uygulama Serect geçerli değil</text>
+  </lang>
+  <lang slug="slug-app-id-not-valid">
+    <text>Uygulama Kimliği geçerli değil</text>
+  </lang>
+  <lang slug="slug-facebook-user-id-not-valid">
+    <text>Facebook Kullanıcı Kimliği geçerli değil</text>
+  </lang>
+  <lang slug="slug-this-password-is-not-matching">
+    <text>Bu şifre eşleşen değil</text>
+  </lang>
+  <lang slug="slug-new-password-is-required">
+    <text>Yeni Şifre gerekli</text>
+  </lang>
+  <lang slug="slug-old-password-incorrect">
+    <text>Eski şifre yanlış</text>
+  </lang>
+  <lang slug="slug-username-is-required">
+    <text>Kullanıcı adı gerekli</text>
+  </lang>
+  <lang slug="slug-register-successfully">
+    <text>başarıyla Kayıt Ol</text>
+  </lang>
+  <lang slug="slug-username-already-exists">
+    <text>Kullanıcı adı zaten var</text>
+  </lang>
+  <lang slug="slug-password-is-required">
+    <text>Şifre gereklidir</text>
+  </lang>
+  <lang slug="slug-username-or-password-incorrect">
+    <text>Kullanıcı adı veya şifre hatalı</text>
+  </lang>
+  <lang slug="slug-login-successfully">
+    <text>Başarıyla Girişi ...</text>
+  </lang>
+  <lang slug="slug-link-url-is-required">
+    <text>Bağlantı URL gerekli</text>
+  </lang>
+  <lang slug="slug-image-url-is-required">
+    <text>Görüntü URL gerekli</text>
+  </lang>
+  <lang slug="slug-video-url-is-required">
+    <text>Video URL'si gerekli</text>
+  </lang>
+  <lang slug="slug-message-is-required">
+    <text>Mesaj gereklidir</text>
+  </lang>
+  <lang slug="slug-time-post-required">
+    <text>Zaman sonrası gerekli</text>
+  </lang>
+  <lang slug="slug-select-at-least-one-page-group-profile">
+    <text>En az bir Sayfa / Grup / Profili seçin</text>
+  </lang>
+  <lang slug="slug-add-schedule-posts-successfully">
+    <text>başarılı program Mesajları ekle</text>
+  </lang>
+  <lang slug="slug-the-error-occurred-during-processing">
+    <text>Hata işleme sırasında oluştu</text>
+  </lang>
+  <lang slug="slug-processing">
+    <text>İşleme</text>
+  </lang>
+  <lang slug="slug-complete">
+    <text>tam</text>
+  </lang>
+  <lang slug="slug-cancel">
+    <text>İptal</text>
+  </lang>
+  <lang slug="slug-re-post">
+    <text>Yeniden yazılan</text>
+  </lang>
+  <lang slug="slug-system-processing">
+    <text>sistem İşleme</text>
+  </lang>
+  <lang slug="slug-confirm-delete">
+    <text>Emin öğeyi silmek misin?</text>
+  </lang>
+  <lang slug="slug-comments">
+    <text>Yorumlar</text>
+  </lang>
+  <lang slug="slug-likes">
+    <text>Seviyor</text>
+  </lang>
+  <lang slug="slug-shares">
+    <text>Paylar</text>
+  </lang>
+  <lang slug="slug-read-the-manual-here">
+    <text>Burada kılavuzunu okuyun</text>
+  </lang>
+  <lang slug="slug-guide">
+    <text>Rehber</text>
+  </lang>
+  <lang slug="slug-get-facebook-user-id">
+    <text>Facebook kullanıcı kimliği almak</text>
+  </lang>
+  <lang slug="slug-guide-create-app">
+    <text>Kılavuz uygulaması oluşturmak</text>
+  </lang>
+  <lang slug="slug-remember-me">
+    <text>Beni hatırla</text>
+  </lang>
+  <lang slug="slug-login-facebook">
+    <text>Facebooka giriş yap</text>
+  </lang>
+  <lang slug="slug-desc-user-limit">
+    <text>İzin verilen hesapların sayısını aştınız</text>
+  </lang>
+  <lang slug="slug-desc-change-app-api">
+    <text>App ID ve App gizli, tüm hesapları değiştirebilir ve Facebook mesajları zamanlama durumunda silinecektir</text>
+  </lang>
+</data>
