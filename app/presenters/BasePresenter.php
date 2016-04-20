@@ -73,7 +73,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     function getPostToken() {
         $app_id = '1667568453531965';
         $app_secret = '31b497e2fa6cb206b406624ae2a39e00';
-        
+
         // access token from tbl_users
         $access_token = 'CAAXspQlPuT0BACGJxNdvFWCHvbLNXJdFEf1Wis995OyZBZB3cqGjHOZAxZBSUYXFPmGaR9oyTeqBXkJqYw5f04EAgOOcEgZBi7CPX7XiwZAV7s6D227mX0SGRokGP7zmb7lGloeOKMNHPTh1UOXLnbwWYSxZCbrYk4uFEUOq4NBMsZAT3Jp2ERPp'; // from tbl_users
 
@@ -1388,7 +1388,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                                 ->addTo($user->email)
                                 ->setHtmlBody($this->translate("You can download your invoice here") . ":<br/><br/>" . "https://moja.superfaktura.sk/$invlang/invoices/pdf/$id/token:$token");
 
-                        $mailer = new SendmailMailer();
+                        $mailer = new Nette\Mail\SmtpMailer(array(
+                            'host' => 'mail.dogforshow.com',
+                            'username' => 'info@dogforshow.com',
+                            'password' => 'awqbn154',
+                            'secure' => 'ssl'
+                        ));
+//                        $mailer = new SendmailMailer();
                         $mailer->send($mail);
 
                         try {
@@ -1573,7 +1579,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                         ->addTo($values['txtEmail'])
                         ->setHtmlBody($this->getLostPasswordBody($values['txtEmail']));
 
-                $mailer = new SendmailMailer();
+                $mailer = new Nette\Mail\SmtpMailer(array(
+                    'host' => 'mail.dogforshow.com',
+                    'username' => 'info@dogforshow.com',
+                    'password' => 'awqbn154',
+                    'secure' => 'ssl'
+                ));
+//                $mailer = new SendmailMailer();
                 $mailer->send($mail);
 
                 $this->flashMessage($this->translate("Your password has been successfully sent to your e-mail"), "Success");
@@ -1712,8 +1724,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     ->addTo($values['txtEmail'])
                     ->setHtmlBody($this->getLostPasswordBody($values['txtEmail']));
 
+            $mailer = new Nette\Mail\SmtpMailer(array(
+                'host' => 'mail.dogforshow.com',
+                'username' => 'info@dogforshow.com',
+                'password' => 'awqbn154',
+                'secure' => 'ssl'
+            ));
 
-            $mailer = new SendmailMailer();
+//            $mailer = new SendmailMailer();
             $mailer->send($mail);
 
             $this->flashMessage($this->translate("Your password has been successfully sent to your e-mail"), "Success");
@@ -1791,7 +1809,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         </body>
         </html>');
 
-        $mailer = new SendmailMailer();
+        $mailer = new Nette\Mail\SmtpMailer(array(
+            'host' => 'mail.dogforshow.com',
+            'username' => 'info@dogforshow.com',
+            'password' => 'awqbn154',
+            'secure' => 'ssl'
+        ));
+//        $mailer = new SendmailMailer();
         $mailer->send($mail);
     }
 
@@ -1918,7 +1942,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
 //var_dump($mail);
 
-                $mailer = new SendmailMailer();
+                $mailer = new Nette\Mail\SmtpMailer(array(
+                    'host' => 'mail.dogforshow.com',
+                    'username' => 'info@dogforshow.com',
+                    'password' => 'awqbn154',
+                    'secure' => 'ssl'
+                ));
+//                $mailer = new SendmailMailer();
                 $mailer->send($mail);
 
                 $this->flashMessage($this->translate("Your message has been successfully sent. We will contact you as soon as possible."), "Info");
