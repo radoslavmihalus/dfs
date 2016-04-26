@@ -704,55 +704,59 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function handleLike($timeline_id = 0, $event_id = 0) {
-        if ($timeline_id != 0)
-            $timeline = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
-        elseif ($event_id != 0)
-            $timeline = $this->database->table("tbl_timeline")->where("event_id=?", $event_id)->fetch();
-        else
-            $this->terminate();
-
-        if ($timeline_id != 0)
-            $count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
-        elseif ($event_id != 0)
-            $count = $this->database->table("tbl_likes")->where("event_id=?", $event_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
-        else {
-            $this->terminate();
-        }
-
-        if ($timeline->id > 0) {
-            
-        } else {
-            if ($event_id > 0) {
-                $timeline = new \stdClass();
-                $timeline->id = 0;
-                $timeline->event_id = $event_id;
-            } else
+        try {
+            if ($timeline_id != 0)
+                $timeline = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
+            elseif ($event_id != 0)
+                $timeline = $this->database->table("tbl_timeline")->where("event_id=?", $event_id)->fetch();
+            else
                 $this->terminate();
+
+            if ($timeline_id != 0)
+                $count = $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
+            elseif ($event_id != 0)
+                $count = $this->database->table("tbl_likes")->where("event_id=?", $event_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->count();
+            else {
+                $this->terminate();
+            }
+
+            if ($timeline->id > 0) {
+                
+            } else {
+                if ($event_id > 0) {
+                    $timeline = new \stdClass();
+                    $timeline->id = 0;
+                    $timeline->event_id = $event_id;
+                } else
+                    $this->terminate();
+            }
+
+            if ($count > 0)
+                $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->delete();
+            else {
+                $data['timeline_id'] = $timeline_id;
+                $data['event_id'] = $timeline->event_id;
+                $data['user_id'] = $this->logged_in_id;
+                $data['profile_id'] = $this->profile_id;
+                $this->database->table("tbl_likes")->insert($data);
+
+                $timeline = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
+
+                $notify['notify_user_id'] = \DataModel::getUserIdByProfileId($timeline->profile_id);
+                $notify['notify_profile_id'] = $timeline->profile_id;
+                $notify['user_id'] = $this->logged_in_id;
+                $notify['profile_id'] = $this->profile_id;
+                $notify['timeline_id'] = $timeline_id;
+                $notify['comment'] = "";
+                $notify['type'] = "like";
+
+                $this->database->table("tbl_notify")->insert($notify);
+            }
+
+            echo \DataModel::getTimelineLikesCount($timeline_id, $event_id);
+        } catch (\Exception $ex) {
+            echo 0;
         }
-
-        if ($count > 0)
-            $this->database->table("tbl_likes")->where("timeline_id=?", $timeline_id)->where("user_id=?", $this->logged_in_id)->where("profile_id=?", $this->profile_id)->delete();
-        else {
-            $data['timeline_id'] = $timeline_id;
-            $data['event_id'] = $timeline->event_id;
-            $data['user_id'] = $this->logged_in_id;
-            $data['profile_id'] = $this->profile_id;
-            $this->database->table("tbl_likes")->insert($data);
-
-            $timeline = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
-
-            $notify['notify_user_id'] = \DataModel::getUserIdByProfileId($timeline->profile_id);
-            $notify['notify_profile_id'] = $timeline->profile_id;
-            $notify['user_id'] = $this->logged_in_id;
-            $notify['profile_id'] = $this->profile_id;
-            $notify['timeline_id'] = $timeline_id;
-            $notify['comment'] = "";
-            $notify['type'] = "like";
-
-            $this->database->table("tbl_notify")->insert($notify);
-        }
-
-        echo \DataModel::getTimelineLikesCount($timeline_id, $event_id);
         $this->terminate();
     }
 
@@ -1653,8 +1657,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public function getLostPasswordBody($email) {
         $data = $this->database->table("tbl_user")->where("email=?", $email)->fetch();
 
-        $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns = "http://www.w3.org/1999/xhtml">
+        $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns = "https://www.w3.org/1999/xhtml">
         <head>
         <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8" />
         <title>Welcome to DOGFORSHOW</title>
@@ -1679,7 +1683,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         </tr>
         <tr>
         <td align = "center">
-        <p style = "font-size:15px;"><a href = "http://www.dogforshow.com" style = "padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Login to your account') . '</a></p>
+        <p style = "font-size:15px;"><a href = "https://www.dogforshow.com" style = "padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Login to your account') . '</a></p>
         </td>
         </tr>
         </table>
@@ -1769,8 +1773,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $mail->setFrom('DOGFORSHOW <info@dogforshow.com>')
                 ->addTo($to)
                 ->setSubject($this->translate('Welcome to DOGFORSHOW'))
-                ->setHtmlBody('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns = "http://www.w3.org/1999/xhtml">
+                ->setHtmlBody('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns = "https://www.w3.org/1999/xhtml">
         <head>
         <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8" />
         <title>Welcome to DOGFORSHOW</title>
@@ -1792,7 +1796,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         </tr>
         <tr>
         <td align = "center">
-        <p style = "font-size:15px;"><a href = "http://www.dogforshow.com/' . $this->lang . '/?do=activation&alink=' . $id . '" style = "padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Activate account') . '</a></p>
+        <p style = "font-size:15px;"><a href = "https://www.dogforshow.com/' . $this->lang . '/?do=activation&alink=' . $id . '" style = "padding:10px; color:#FFFFFF; background-color: #c12e2a; text-decoration: none; text-transform: uppercase; font-weight: bold;">' . $this->translate('Activate account') . '</a></p>
         </td>
         </tr>
         </table>
@@ -2222,7 +2226,7 @@ class DFSTranslator implements Nette\Localization\ITranslator {
     }
 
     public function translate($message, $type = 'std') {
-        $actual_link = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $actual_link = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 //$uri = $tmpuri;
 //$query = "SELECT * FROM tbl_translate where text_to_translate = '$message' AND uri = '$uri'";
