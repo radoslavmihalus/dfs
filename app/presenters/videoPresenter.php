@@ -105,7 +105,7 @@ class videoPresenter extends BasePresenter {
 
             $data['profile_id'] = $this->photo_profile_id;
             $data['user_id'] = $user_id;
-            $data['image'] = "http://img.youtube.com/vi/$url/0.jpg";
+            $data['image'] = "https://img.youtube.com/vi/$url/0.jpg";
             $data['video'] = $values->txtVideo;
             $data['youtube'] = $url;
             $data['description'] = $values->txtVideoName;
@@ -134,7 +134,7 @@ class videoPresenter extends BasePresenter {
             }
 
 
-            $data['image'] = "http://img.youtube.com/vi/$url/0.jpg";
+            $data['image'] = "https://img.youtube.com/vi/$url/0.jpg";
             $data['video'] = $values->txtVideo;
             $data['youtube'] = $url;
             $data['description'] = $values->txtVideoName;

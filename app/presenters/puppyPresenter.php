@@ -523,14 +523,14 @@ class puppyPresenter extends BasePresenter {
                 $fb_post = array();
 
                 $fb_post['title'] = $tran->translate($values['ddlPuppyStatus']) . ' - ' . $values['txtPuppyName'];
-                $fb_post['image'] = 'http://www.dogforshow.com/' . $data['puppy_photo'];
+                $fb_post['image'] = 'https://www.dogforshow.com/' . $data['puppy_photo'];
                 $fb_post['type'] = 'link'; // post type
                 $fb_post['fid'] = '251674108333436'; //'114274177380'; //''; // dogforshow facebook funpage id
                 $fb_post['name'] = 'DOGFORSHOW'; // dogforshow facebook funpage name
                 $fb_post['cid'] = 'page'; // funpage type
                 $fb_post['message'] = 'Offer your purebred puppies for sale worldwide'; // dogforshow facebook funpage name
                 $fb_post['description'] = mb_strtoupper($breed_name) . ' | ' . mb_strtoupper($tran->translate($values['radGender'])) . ' | ' . mb_strtoupper($tran->translate($values['ddlCountry']));
-                $fb_post['url'] = "http://www.dogforshow.com/puppy-profile?id=$id&lang=en";
+                $fb_post['url'] = "https://www.dogforshow.com/puppy-profile?id=$id&lang=en";
                 $fb_post['time_post'] = date("Y-m-d H:i:s");
                 $fb_post['status'] = 1;
                 $fb_post['uid'] = 1;

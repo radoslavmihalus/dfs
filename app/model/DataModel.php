@@ -1409,7 +1409,7 @@ class DataModel {
 // share tags
 
     static function getURL() {
-        $url = "http://" . $_SERVER['HTTP_HOST'];
+        $url = "https://" . $_SERVER['HTTP_HOST'];
         return $url;
     }
 
