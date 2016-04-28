@@ -72,9 +72,11 @@ $router = $container->getService('router');
 //        ));
 //, \Nette\Application\IRouter::SECURED);
 
-Route::$defaultFlags = Route::SECURED;
+// comment this line for development server
+// Route::$defaultFlags = Route::SECURED;
 
 $router[] = new Route('index.php', 'LandingPage:default'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('advertisement-step1', 'advertisement:advertisement_step1'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('PayPal', 'LandingPage:PayPal'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('funpage', 'funpage:funpage_profile_home'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>]', 'LandingPage:default'); //, \Nette\Application\IRouter::SECURED);
