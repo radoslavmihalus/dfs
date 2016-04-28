@@ -1,6 +1,6 @@
 .logotyp{height:auto;}
 .option-icon{margin:auto;color:#a5987f;}
-.landing_header{height:auto;background:url("../img/header.jpg")no-repeat center center;background-size:cover;min-height:657px;}
+.landing_header{background-color: #8C8067;height:auto;/*background:url("../img/header.jpg")no-repeat center center;background-size:cover;min-height:657px;*/}
 .landing_header_forgot_password{height:auto;background:url("../img/header2.jpg")no-repeat center center;background-size:cover;min-height:657px;}
 .landing_header_reset_password{height:auto;background:url("../img/header3.jpg")no-repeat center center;background-size:cover;min-height:657px;}
 .landing_header_slogan{color:white;font-family:'Roboto Condensed', sans-serif;font-size:25px !important;margin-bottom:30px !important;}
