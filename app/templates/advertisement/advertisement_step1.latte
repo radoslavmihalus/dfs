@@ -3,8 +3,105 @@
 {includeblock '../components/textbox_control.latte'}
 {includeblock '../components/image_UploadPicture_control.latte'}
 {includeblock '../components/dropdown_DatePicker_control.latte'}
-<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
-    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
+<div class="panel-default col-md-12" style="font-size: 12px;min-width: 244px">
+    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;padding-top:0px">
+        <div class="row" style="background-color: #8C8067;padding: 40px 0px 40px 0px;">
+            <div class="col-lg-6 col-md-6" style="color:white;font-size:17px;">
+                <div style="max-width:550px;margin:0 auto;">
+                    <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 30px;color:white;">Inzerujte s DOGFORSHOW</p>
+                    <p style="font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-check"></i>&nbsp;Ponúknite vaše produkty alebo služby na správnom mieste</p>
+                    <p style="font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-check"></i>&nbsp;Za jednu cenu zobrazujeme vašu reklamu na 3 miestach</p>
+                    <p style="font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-check"></i>&nbsp;Pridanie odkazov na sociálne siete</p>
+                    <p style="text-align: center;"><a href="#" type="button" class="btn btn-lg btn-warning">Chcem si vytvoriť reklamu</a></p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div style="margin:0 auto;border: #D8D4CB 3px solid;max-width: 350px;background-color: white;margin-top: 10px;box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4)">
+                    <span style="text-align: center;display:block;padding:10px;font-size:13px;color:#83765E;"><i class="fa fa-bullhorn"></i>&nbsp;&nbsp;Advertisment</span>
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-top: 0px;">
+                        <!--Wrapper for slides--> 
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img class="img-responsive" style="padding:5px;" alt="advert_services" src="../www/img/advert_slide.png" alt="...">
+                                <div class="">
+                                    <div style="font-size:1.3em;display:block;padding:10px 10px 5px 10px;color:black;font-weight:bold;">Názov produktu alebo služby</div>
+                                    <div style="display:block;padding:0px 10px 10px 10px;color:black;font-size:12px;">Popis ponúkaného produktu alebo služby pre Vašich potencionálnych zákazníkov</div>
+                                    <div style="display:block;padding:5px 10px 5px 10px;color:#83765E;">
+                                        <i style="margin-right:10px;" class="fa fa-facebook-official fa-2x"></i>
+                                        <i style="margin-right:10px;" class="fa fa-twitter-square fa-2x"></i>
+                                        <i style="margin-right:10px;" class="fa fa-youtube-square fa-2x"></i>
+                                        <i style="margin-right:10px;" class="fa fa-vk fa-2x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 style="margin-top: 30px;margin-bottom: 30px;font-weight:700;" class="text-center text-uppercase"><i class="fa fa-check"></i>&nbsp;&nbsp;Ponúknite vaše produkty alebo služby na správnom mieste</h2>
+        <div class="row">
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_pageviews" src="../www/img/advert_pageviews.png"/></p>
+                <p style="text-align: center;font-size: 15px;font-weight:bold;">Zobrazení stránok za mesiac</p>
+                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">1.200.000</p>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_users" src="../www/img/advert_users.png"/></p>
+                <p style="text-align: center;font-size: 15px;font-weight:bold;">Návštevníkov za mesiac</p>
+                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">140.000</p>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_pagetime" src="../www/img/advert_pagetime.png"/></p>
+                <p style="text-align: center;font-size: 15px;font-weight:bold;">Priemerná dĺžka návštevy</p>
+                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">12 minút</p>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_regscount" src="../www/img/advert_regscount.png"/></p>
+                <p style="text-align: center;font-size: 15px;font-weight:bold;">Počet registrácií za mesiac</p>
+                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">630</p>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_audience" src="../www/img/advert_audience.png"/></p>
+                <p style="text-align: center;font-size: 15px;font-weight:bold;">Vek používateľov</p>
+                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">25 - 54 rokov</p>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_womens" src="../www/img/advert_womens.png"/></p>
+                <p style="text-align: center;font-size: 15px;font-weight:bold;">Pohlavie</p>
+                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">77% ženy</p>
+            </div>
+        </div>
+        <hr>
+        <h2 style="margin-top: 30px;margin-bottom: 30px;font-weight:700" class="text-center text-uppercase"><i class="fa fa-check"></i>&nbsp;&nbsp;Za jednu cenu zobrazujeme vašu reklamu na 3 miestach</h2>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <p style="text-align: center;font-size: 15px;font-weight:bold;">1. Na úvodnej stránke</p>
+                <p style="min-height: 70px;font-size:14px;">Zobrazovanie reklamy na úvodnej stránke zvyšuje úspešnosť zobrazenia Vašich reklám čo najväčšiemu počtu návštevníkov z celého sveta</p>
+                <p style="text-align: center;"><img class="img img-responsive" style="margin: 0 auto;" alt="advert_placement1" src="../www/img/advert_placement1.png"/></p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <p style="text-align: center;font-size: 15px;font-weight:bold;">2. Vo vami vybraných zoznamoch</p>
+                <p style="min-height: 70px;font-size:14px;">Možnosť cieliť reklamu pre jednotlivé zoznamy ako napríklad chovateľské stanice alebo šteniatka na predaj podľa toho, aký produkt alebo službu ponúkate.</p>
+                <p style="text-align: center;"><img class="img img-responsive" style="margin: 0 auto;" alt="advert_placement2" src="../www/img/advert_placement2.png"/></p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <p style="text-align: center;font-size: 15px;font-weight:bold;">3. Na časovej osi</p>
+                <p style="min-height: 70px;font-size:14px;">Reklama sa bude zobrazovať na časovej osi vždy navrchu, aby bola stále viditeľná a nestratila sa v množstve pridaných udalostí.</p>
+                <p style="text-align: center;"><img class="img img-responsive" style="margin: 0 auto;" alt="advert_placement3" src="../www/img/advert_placement3.png"/></p>
+            </div>
+        </div>
+        <hr>
+        <h2 style="margin-top: 30px;margin-bottom: 30px;font-weight:700" class="text-center text-uppercase"><i class="fa fa-check"></i>&nbsp;&nbsp;Pridanie odkazov na sociálne siete</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <p style="text-align: center;font-size:14px;">Pridanie odkazov na sociálne siete zvyšuje účinnosť reklamy. Výhodou je možnosť stať sa fanúšikom Vašej stránky, produktu alebo služby na sociálnych sieťach.</p>
+                <p style="text-align:center"><i style="margin-right:10px;color:#83765E;" class="fa fa-facebook-official fa-4x"></i>
+                    <i style="margin-right:10px;color:#83765E;" class="fa fa-twitter-square fa-4x"></i>
+                    <i style="margin-right:10px;color:#83765E;" class="fa fa-youtube-square fa-4x"></i>
+                    <i style="margin-right:10px;color:#83765E;" class="fa fa-vk fa-4x"></i></p>
+            </div>
+        </div>
     </div>
 </div>
 {/block}
