@@ -1,0 +1,103 @@
+{define #image_UploadPicture_control}
+<div class="form-group">
+    <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;"><span id="req-span-{$id}" style="color:red"></span>{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
+    <div id="old_image{$name}" style="width:240px; height: 180px;margin-bottom: 10px; background-repeat:no-repeat;background-size:cover;"><button type="button" id="delete{$name}" class="btn btn-danger btn-sm" style="position: relative; left: 203px;top: 5px;"><i class="fa fa-trash"></i></button></div>
+    <!-- imgSelect Container -->
+    <div id="imgselect_container{$name}">
+        <input type="hidden" id="{$name}" n:name="{$name}" />
+        <!-- Upload & Webcam buttons -->
+        <div class="btn btn-default btn-sm imgs-upload"><i class="fa fa-upload"></i>&nbsp;&nbsp;{_ 'Upload'}</div> <!-- .imgs-upload -->
+        <button type="button" class="btn btn-default btn-sm imgs-webcam"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Take picture'}</button> <!-- .imgs-webcam -->
+
+        {if ($needed_crop==1)}
+            <!-- Webcam & Crop containers -->
+            <div class="imgs-webcam-container"></div> <!-- .imgs-webcam-container -->
+            <div class="imgs-crop-container"></div> <!-- .imgs-crop-container -->
+
+            <!-- Action buttons -->
+            <button type="button" class="btn btn-danger btn-sm imgs-save">{_'Save Image'}</button> <!-- .imgs-save -->
+            <button type="button" class="btn btn-danger btn-sm imgs-newsnap">{_'New Snapshot'}</button> <!-- .imgs-newsnap -->
+            <button type="button" class="btn btn-danger btn-sm imgs-capture">{_'Capture'}</button> <!-- .imgs-capture -->
+            <button type="button" class="btn btn-default btn-sm imgs-cancel">{_'Cancel'}</button> <!-- .imgs-cancel -->
+        {/if}
+        <div class="imgs-alert alert" style="margin-top: 10px;font-size:13px;"></div> <!-- .imgs-alert -->
+    </div>
+</div>
+
+<script>
+    $(function () {
+    $('[data-toggle="popover"]').popover()
+            })
+</script>
+<script>
+            new ImgSelect($('#imgselect_container' + {$name}), {
+    {if ($needed_crop==1)}
+            cropComplete: function (image) {
+            $("#" + {$name}).val("uploads/" + image.name);
+                    str = $("#" + {$name}).val();
+                    if (str == "")
+            {
+            $('#old_image' + {$name}).hide();
+            }
+            else
+            {
+            $('#old_image' + {$name}).show();
+            }
+
+            url = "url(" + str + ")";
+                    $('#old_image' + {$name}).css("background-image", url);
+            },
+                    crop: {
+                    aspectRatio: {$aspect_x} / {$aspect_y},
+                            setSelect: [0, 0, {$aspect_x} * 15, {$aspect_y} * 15]
+                    }
+    {else}
+            uploadComplete: function (image) {
+            $("#" + {$name}).val("uploads/" + image.name);
+                    str = $("#" + {$name}).val();
+                    if (str == "")
+            {
+            $('#old_image' + {$name}).hide();
+            }
+            else
+            {
+            $('#old_image' + {$name}).show();
+            }
+
+            url = "url(" + str + ")";
+                    $('#old_image' + {$name}).css("background-image", url);
+            }
+    {/if}
+            });
+            str = $("#" + {$name}).val();
+            url = "url(" + str + ")";
+            if (str == "")
+    {
+    $('#old_image' + {$name}).hide();
+    }
+    else
+    {
+    $('#old_image' + {$name}).show();
+    }
+
+    $('#old_image' + {$name}).css("background-image", url);
+            $("#delete" + {$name}).click(function () {
+    $("#" + {$name}).val("");
+            str = $("#" + {$name}).val();
+            if (str == "")
+    {
+    $('#old_image' + {$name}).hide();
+    }
+    else
+    {
+    $('#old_image' + {$name}).show();
+    }
+
+    url = "url(" + str + ")";
+            $('#old_image' + {$name}).css("background-image", url);
+    });
+            if ($("#" + {$id}).attr('required')) {
+    $("#req-span-" + {$id}).html("*");
+    }
+</script>
+{/define}
