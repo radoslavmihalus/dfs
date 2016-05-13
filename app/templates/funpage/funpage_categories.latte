@@ -97,97 +97,32 @@
                 </div>
             </div>
             <div class="row">
+                {foreach $photos as $row}
+                    {include '../components/modal_gallery.latte' row=>$row}
+                {/foreach}
                 <div class="col-md-12" style="margin-top:10px;">
                     <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-camera"></i>&nbsp;&nbsp;Photos</div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-                        <a href="#">
-                            <div class="thumbnail img-responsive" style="padding:50%;background: url('http://thumbs10.dreamstime.com/x/dog-15697601.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-                        <a href="#">
-                            <div class="thumbnail img-responsive" style="padding:50%;background: url('http://thumbs10.dreamstime.com/x/doggy-language-3000227.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                        </a>
-                    </div> 
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-                        <a href="#">
-                            <div class="thumbnail img-responsive" style="padding:50%;background: url('http://thumbs8.dreamstime.com/x/woman-enjoys-time-out-peace-walking-her-best-friend-dog-takes-much-needed-hectic-week-to-take-beloved-walk-44198015.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                        </a>
-                    </div> 
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-                        <a href="#">
-                            <div class="thumbnail img-responsive" style="padding:50%;background: url('http://thumbs4.dreamstime.com/x/dog-3238612.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-                        <a href="#">
-                            <div class="thumbnail img-responsive" style="padding:50%;background: url('http://thumbs5.dreamstime.com/x/dress-up-party-dog-cute-little-attentive-jack-russell-terrier-lipstick-kiss-his-cheek-sunglasses-dressed-fancy-44064763.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-                        <a href="#">
-                            <div class="thumbnail img-responsive" style="padding:50%;background: url('http://thumbs5.dreamstime.com/x/dogs-12736745.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                        </a>
-                    </div>
-                    <!--                    <a  href="" style="float:left;padding:2px;">
-                                            <div style="background: url('http://thumbs5.dreamstime.com/x/dogs-12736745.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                        </a>
-                                        <a href="" style="float:left;padding:2px;">
-                                            <div style="background: url('http://thumbs4.dreamstime.com/x/outdoor-dogs-walk-looking-distance-53470027.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                        </a>
-                                        <a href="" style="float:left;padding:2px;">
-                                            <div style="background: url('http://thumbs6.dreamstime.com/x/dogs-running-pack-5425376.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                        </a>
-                                        <a href="" style="float:left;padding:2px;">
-                                            <div style="background: url('http://thumbs10.dreamstime.com/x/schnauzer-dogs-18256637.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                        </a>
-                                        <a href="" style="float:left;padding:2px;">
-                                            <div style="background: url('http://thumbs1.dreamstime.com/x/girls-dogs-funny-close-up-wide-angle-portrait-teenage-three-sitting-grass-park-44101603.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                        </a>
-                                        <a href="" style="float:left;padding:2px;">
-                                            <div style="background: url('http://thumbs1.dreamstime.com/x/girls-dogs-funny-close-up-wide-angle-portrait-teenage-three-sitting-grass-park-44101603.jpg')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                        </a>-->
+                    {foreach $photos as $row}
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+                            <a href="javascript:void(0)" onclick="ShowGaleryModal({$row->id})" title="{$row->description}">
+                                <div class="thumbnail img-responsive" style="padding:50%;background: url({$row->image})no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                            </a>
+                        </div>
+                    {/foreach}
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12" style="margin-top:10px;">
                     <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-video-camera"></i>&nbsp;&nbsp;Videos</div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6" style="padding:5px;">
-                        <!--<div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">-->
-                        <div class="thumbnail img-responsive" href="" onclick="" title="" style="padding:20%; cursor:pointer; margin-bottom: 10px;background-position: 50% 25%;background-size: cover;background-image: url('http://thumbs1.dreamstime.com/x/girls-dogs-funny-close-up-wide-angle-portrait-teenage-three-sitting-grass-park-44101603.jpg');">
-                            <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:50%;margin-left: 0.5em;color:white;"></i>
+
+                    {foreach $videos as $row}
+                        {include '../components/modal_video.latte' row=>$row}
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6" style="padding:5px;">
+                            <div class="thumbnail img-responsive" href="javascript:void(0)" onclick="ShowGaleryModalVideo({$row->id})" title="{$row->description}" style="padding:20%; cursor:pointer; margin-bottom: 10px;background-position: 50% 25%;background-size: cover;background-image: url({$row->image});">
+                                <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:50%;margin-left: 0.5em;color:white;"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6" style="padding:5px;">
-                        <!--<div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">-->
-                        <div class="thumbnail img-responsive" href="" onclick="" title="" style="padding:20%; cursor:pointer; margin-bottom: 10px;background-position: 50% 25%;background-size: cover;background-image: url('http://thumbs1.dreamstime.com/x/girls-dogs-funny-close-up-wide-angle-portrait-teenage-three-sitting-grass-park-44101603.jpg');">
-                            <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:50%;margin-left: 0.5em;color:white;"></i>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6" style="padding:5px;">
-                        <!--<div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">-->
-                        <div class="thumbnail img-responsive" href="" onclick="" title="" style="padding:20%; cursor:pointer; margin-bottom: 10px;background-position: 50% 25%;background-size: cover;background-image: url('http://thumbs1.dreamstime.com/x/girls-dogs-funny-close-up-wide-angle-portrait-teenage-three-sitting-grass-park-44101603.jpg');">
-                            <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:50%;margin-left: 0.5em;color:white;"></i>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6" style="padding:5px;">
-                        <!--<div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">-->
-                        <div class="thumbnail img-responsive" href="" onclick="" title="" style="padding:20%; cursor:pointer; margin-bottom: 10px;background-position: 50% 25%;background-size: cover;background-image: url('http://thumbs1.dreamstime.com/x/girls-dogs-funny-close-up-wide-angle-portrait-teenage-three-sitting-grass-park-44101603.jpg');">
-                            <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:50%;margin-left: 0.5em;color:white;"></i>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6" style="padding:5px;">
-                        <!--<div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">-->
-                        <div class="thumbnail img-responsive" href="" onclick="" title="" style="padding:20%; cursor:pointer; margin-bottom: 10px;background-position: 50% 25%;background-size: cover;background-image: url('http://thumbs1.dreamstime.com/x/girls-dogs-funny-close-up-wide-angle-portrait-teenage-three-sitting-grass-park-44101603.jpg');">
-                            <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:50%;margin-left: 0.5em;color:white;"></i>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6" style="padding:5px;">
-                        <!--<div style="width:230px;float:left;padding:5px;border:#eee 1px solid;margin:5px;webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);">-->
-                        <div class="thumbnail img-responsive" href="" onclick="" title="" style="padding:20%; cursor:pointer; margin-bottom: 10px;background-position: 50% 25%;background-size: cover;background-image: url('http://thumbs1.dreamstime.com/x/girls-dogs-funny-close-up-wide-angle-portrait-teenage-three-sitting-grass-park-44101603.jpg');">
-                            <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:50%;margin-left: 0.5em;color:white;"></i>
-                        </div>
-                    </div>
+                    {/foreach}
                 </div>
             </div>
         </div>
@@ -196,24 +131,20 @@
                 <div class="col-md-12">
                     <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-users"></i>&nbsp;&nbsp;Profiles</div>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
-                        <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
-                            <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/referer1.jpg">
-                            <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">La rosa de inca</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Russia</span>
-                        </a>
-                        <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
-                            <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/referer2.jpg">
-                            <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Michal Slepanek</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user"></i>&nbsp;&nbsp;{_ 'Owner of purebred dog'}</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Russia</span>
-                        </a>
-                        <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
-                            <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/referer3.jpg">
-                            <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Diana mazutopovska</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-male"></i>&nbsp;&nbsp;{_ 'Handler'}</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Russia</span>
-                        </a>
+                        {foreach $profiles as $row}
+                            <a href="{DataModel::getProfileLinkUrl($row->id, TRUE, TRUE)}" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="{DataModel::getProfileImage($row->id)}">
+                                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{DataModel::getProfileName($row->id)}</span>
+                                {if (DataModel::getProfileType($row->id)==1)}
+                                    <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
+                                {elseif (DataModel::getProfileType($row->id)==2)}
+                                    <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user"></i>&nbsp;&nbsp;{_ 'Owner of purebred dog'}</span>
+                                {else}
+                                    <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-male"></i>&nbsp;&nbsp;{_ 'Handler'}</span>
+                                {/if}
+                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{DataModel::getProfileState($row->id)}</span>
+                            </a>
+                        {/foreach}
                     </div>
                 </div>
             </div>
@@ -221,24 +152,14 @@
                 <div class="col-md-12">
                     <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;Dogs</div>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
-                        <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
-                            <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog1.jpg">
-                            <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Bronca la rosa de inca</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;Berger de Beauce / The Beauceron - Čierny s pálením</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-mars"></i>&nbsp;&nbsp;{_ 'Dog'}</span>
-                        </a>
-                        <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
-                            <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog2.jpg">
-                            <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Michal Slepanek</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;Nemecký špic malý - Oranžová, vlkošedá a ostatné farby</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-venus"></i>&nbsp;&nbsp;{_ 'Bitch'}</span>
-                        </a>
-                        <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
-                            <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog3.jpg">
-                            <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Michal Slepanek</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-mars"></i>&nbsp;&nbsp;{_ 'Dog'}</span>
-                        </a>
+                        {foreach $dogs as $row}
+                            <a n:href="dog:dog_profile_home id => $row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="{$row->dog_image}">
+                                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{$row->dog_name}</span>
+                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_$row->breed_name, [type => 'breed']}</span>
+                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$row->dog_gender}</span>
+                            </a>
+                        {/foreach}
                     </div>
                 </div>
             </div>
@@ -246,24 +167,15 @@
                 <div class="col-md-12">
                     <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-paw"></i>&nbsp;&nbsp;Puppies for sale</div>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
-                        <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
-                            <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog1.jpg">
-                            <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Bronca la rosa de inca</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;Berger de Beauce / The Beauceron - Čierny s pálením</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-mars"></i>&nbsp;&nbsp;{_ 'Dog'}</span>
-                        </a>
-                        <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
-                            <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog2.jpg">
-                            <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Michal Slepanek</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;Nemecký špic malý - Oranžová, vlkošedá a ostatné farby</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-venus"></i>&nbsp;&nbsp;{_ 'Bitch'}</span>
-                        </a>
-                        <a href="" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
-                            <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="../www/img/dog3.jpg">
-                            <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">Michal Slepanek</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
-                            <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-mars"></i>&nbsp;&nbsp;{_ 'Dog'}</span>
-                        </a>
+                        {foreach $puppies as $row}                        
+                            <a n:href="puppy:puppy_description id=>$row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
+                                {var $litter = DataModel::getPlannedLitterById($row->planned_litter_id)}
+                                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="{$row->puppy_photo}">
+                                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{$row->puppy_name}</span>
+                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_$litter->bitch_breed, [type => 'breed']}</span>
+                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->puppy_gender=='Dog'}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;"></i>{else}<i class="fa fa-venus gender-bitch" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}"></i>{/if}&nbsp;&nbsp;{_$row->puppy_gender}</span>
+                            </a>
+                        {/foreach}
                     </div>
                 </div>
             </div>
@@ -319,4 +231,42 @@
         </div>
     </div>
 </div>
+
+<script>
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.ytPlayerList = [];
+    window.players = [];
+</script>
+
+<script type="text/javascript">
+    {foreach $videos as $video}
+    window.ytPlayerList.push(
+            {
+                Id: 'ctl100_phContent_{$video->id}player',
+                DivId: 'ctl100_phContent_div{$video->id}player',
+                VideoId: {$video->youtube}
+            }
+    );
+    {/foreach}
+
+    function onYouTubeIframeAPIReady() {
+        initVideos();
+    }
+
+    function initVideos() {
+        for (var i = 0; i < ytPlayerList.length; i++) {
+            var player = ytPlayerList[i];
+            var pl = new YT.Player(player.DivId, {
+                width: '100%',
+                videoId: player.VideoId,
+            });
+            window[player.Id] = pl;
+        }
+    }
+</script>
 {/define}
