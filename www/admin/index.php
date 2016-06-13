@@ -19,7 +19,6 @@ if (isset($_GET['report'])) {
     switch ($_GET['report']) {
         case 'import_mw':
             $bt->fillMailWizzAll();
-            $bt->fillMailWizzProfiles();
             header('location: index.php');
             break;
 //        case 'print_purchase':

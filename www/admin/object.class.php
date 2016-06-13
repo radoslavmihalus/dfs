@@ -140,8 +140,14 @@ class blueticket_objects {
                 $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($surname_fid, $subscriber_id, '$surname', '$date_added', '$last_updated')");
             }
         }
+
+        $this->fillMailWizzProfiles();
+        $this->fillMailWizzWithoutProfilesWithoutDogs();
+        $this->fillMailWizzProfilesWithoutDogs();
+        $this->fillMailWizzProfilesWithoutShows();
+        $this->fillMailWizzProfilesWithoutPremiumProfile();
     }
-    
+
     function fillMailWizzProfiles() {
         $btdb = blueticket_forms_db::get_instance();
         //$btdb = new blueticket_forms_db();
@@ -212,7 +218,315 @@ class blueticket_objects {
             }
         }
     }
-    
+
+    function fillMailWizzProfilesWithoutDogs() {
+        $btdb = blueticket_forms_db::get_instance();
+        //$btdb = new blueticket_forms_db();
+
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND ((id NOT IN (SELECT user_id FROM tbl_dogs)) AND ((id IN (SELECT user_id FROM tbl_userkennel)) OR (id IN (SELECT user_id FROM tbl_userowner))))");
+        $users = $btdb->result();
+
+        $btdb->query("DELETE FROM mw_list_subscriber WHERE list_id=13 OR list_id=14 OR list_id=15 OR list_id=16 OR list_id=17");
+
+        $btdb->query("DELETE FROM mw_list_field_value WHERE field_id=37 OR field_id=38 OR field_id=39 OR field_id=40 OR field_id=41");
+        $btdb->query("DELETE FROM mw_list_field_value WHERE field_id=42 OR field_id=43 OR field_id=44 OR field_id=45 OR field_id=46");
+        $btdb->query("DELETE FROM mw_list_field_value WHERE field_id=47 OR field_id=48 OR field_id=49 OR field_id=50 OR field_id=51");
+
+
+        foreach ($users as $user) {
+            // set lists and fields id's by lang
+            $list_id = 0;
+            $name_fid = 0;
+            $surname_fid = 0;
+            $email_fid = 0;
+            switch ($user['lang']) {
+                case "en":
+                    $list_id = 13;
+                    $email_fid = 37;
+                    $name_fid = 38;
+                    $surname_fid = 39;
+                    break;
+                case "cz":
+                    $list_id = 14;
+                    $email_fid = 40;
+                    $name_fid = 41;
+                    $surname_fid = 42;
+                    break;
+                case "sk":
+                    $list_id = 15;
+                    $email_fid = 43;
+                    $name_fid = 44;
+                    $surname_fid = 45;
+                    break;
+                case "hu":
+                    $list_id = 16;
+                    $email_fid = 46;
+                    $name_fid = 47;
+                    $surname_fid = 48;
+                    break;
+                case "ru":
+                    $list_id = 17;
+                    $email_fid = 49;
+                    $name_fid = 50;
+                    $surname_fid = 51;
+                    break;
+            }
+
+            $subscriber_uid = uniqid();
+            $email = $user['email'];
+            $name = str_replace("'", "`", $user['name']);
+            $surname = str_replace("'", "`", $user['surname']);
+
+            $ip_address = "127.0.0.1";
+            $source = "web";
+            $status = "confirmed";
+            $date_added = date("Y-m-d H:i:s");
+            $last_updated = date("Y-m-d H:i:s");
+
+            $btdb->query("SELECT COUNT(*) as Cnt FROM mw_list_subscriber WHERE email='$email' AND list_id=$list_id");
+            $row = $btdb->row();
+
+            if ($row['Cnt'] == 0) {
+                $btdb->query("INSERT INTO mw_list_subscriber(subscriber_uid, list_id, email, ip_address, source, status, date_added, last_updated) VALUES('$subscriber_uid', $list_id, '$email', '$ip_address', '$source', '$status', '$date_added', '$last_updated')");
+                $subscriber_id = $btdb->insert_id();
+
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($email_fid, $subscriber_id, '$email', '$date_added', '$last_updated')");
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($name_fid, $subscriber_id, '$name', '$date_added', '$last_updated')");
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($surname_fid, $subscriber_id, '$surname', '$date_added', '$last_updated')");
+            }
+        }
+    }
+
+    function fillMailWizzProfilesWithoutShows() {
+        $btdb = blueticket_forms_db::get_instance();
+        //$btdb = new blueticket_forms_db();
+
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND (id IN (SELECT user_id FROM tbl_dogs WHERE tbl_dogs.id NOT IN (SELECT dog_id FROM tbl_dogs_shows)))");
+        $users = $btdb->result();
+
+        $btdb->query("DELETE FROM mw_list_subscriber WHERE list_id=18 OR list_id=19 OR list_id=20 OR list_id=21 OR list_id=22");
+
+        $btdb->query("DELETE FROM mw_list_field_value WHERE field_id>=52 AND field_id<=66");
+
+
+        foreach ($users as $user) {
+            // set lists and fields id's by lang
+            $list_id = 0;
+            $name_fid = 0;
+            $surname_fid = 0;
+            $email_fid = 0;
+            switch ($user['lang']) {
+                case "en":
+                    $list_id = 18;
+                    $email_fid = 52;
+                    $name_fid = 53;
+                    $surname_fid = 54;
+                    break;
+                case "cz":
+                    $list_id = 19;
+                    $email_fid = 55;
+                    $name_fid = 56;
+                    $surname_fid = 57;
+                    break;
+                case "sk":
+                    $list_id = 20;
+                    $email_fid = 58;
+                    $name_fid = 59;
+                    $surname_fid = 60;
+                    break;
+                case "hu":
+                    $list_id = 21;
+                    $email_fid = 61;
+                    $name_fid = 62;
+                    $surname_fid = 63;
+                    break;
+                case "ru":
+                    $list_id = 22;
+                    $email_fid = 64;
+                    $name_fid = 65;
+                    $surname_fid = 66;
+                    break;
+            }
+
+            $subscriber_uid = uniqid();
+            $email = $user['email'];
+            $name = str_replace("'", "`", $user['name']);
+            $surname = str_replace("'", "`", $user['surname']);
+
+            $ip_address = "127.0.0.1";
+            $source = "web";
+            $status = "confirmed";
+            $date_added = date("Y-m-d H:i:s");
+            $last_updated = date("Y-m-d H:i:s");
+
+            $btdb->query("SELECT COUNT(*) as Cnt FROM mw_list_subscriber WHERE email='$email' AND list_id=$list_id");
+            $row = $btdb->row();
+
+            if ($row['Cnt'] == 0) {
+                $btdb->query("INSERT INTO mw_list_subscriber(subscriber_uid, list_id, email, ip_address, source, status, date_added, last_updated) VALUES('$subscriber_uid', $list_id, '$email', '$ip_address', '$source', '$status', '$date_added', '$last_updated')");
+                $subscriber_id = $btdb->insert_id();
+
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($email_fid, $subscriber_id, '$email', '$date_added', '$last_updated')");
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($name_fid, $subscriber_id, '$name', '$date_added', '$last_updated')");
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($surname_fid, $subscriber_id, '$surname', '$date_added', '$last_updated')");
+            }
+        }
+    }
+
+    function fillMailWizzProfilesWithoutPremiumProfile() {
+        $btdb = blueticket_forms_db::get_instance();
+        //$btdb = new blueticket_forms_db();
+
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND (id IN (SELECT user_id FROM tbl_dogs WHERE tbl_dogs.id IN (SELECT dog_id FROM tbl_dogs_shows))) AND (premium_expiry_date<CURDATE())");
+        $users = $btdb->result();
+
+        $btdb->query("DELETE FROM mw_list_subscriber WHERE list_id=23 OR list_id=24 OR list_id=25 OR list_id=26 OR list_id=27");
+
+        $btdb->query("DELETE FROM mw_list_field_value WHERE field_id>=67 AND field_id<=81");
+
+
+        foreach ($users as $user) {
+            // set lists and fields id's by lang
+            $list_id = 0;
+            $name_fid = 0;
+            $surname_fid = 0;
+            $email_fid = 0;
+            switch ($user['lang']) {
+                case "en":
+                    $list_id = 23;
+                    $email_fid = 67;
+                    $name_fid = 68;
+                    $surname_fid = 69;
+                    break;
+                case "cz":
+                    $list_id = 24;
+                    $email_fid = 70;
+                    $name_fid = 71;
+                    $surname_fid = 72;
+                    break;
+                case "sk":
+                    $list_id = 25;
+                    $email_fid = 73;
+                    $name_fid = 74;
+                    $surname_fid = 75;
+                    break;
+                case "hu":
+                    $list_id = 26;
+                    $email_fid = 76;
+                    $name_fid = 77;
+                    $surname_fid = 78;
+                    break;
+                case "ru":
+                    $list_id = 27;
+                    $email_fid = 79;
+                    $name_fid = 80;
+                    $surname_fid = 81;
+                    break;
+            }
+
+            $subscriber_uid = uniqid();
+            $email = $user['email'];
+            $name = str_replace("'", "`", $user['name']);
+            $surname = str_replace("'", "`", $user['surname']);
+
+            $ip_address = "127.0.0.1";
+            $source = "web";
+            $status = "confirmed";
+            $date_added = date("Y-m-d H:i:s");
+            $last_updated = date("Y-m-d H:i:s");
+
+            $btdb->query("SELECT COUNT(*) as Cnt FROM mw_list_subscriber WHERE email='$email' AND list_id=$list_id");
+            $row = $btdb->row();
+
+            if ($row['Cnt'] == 0) {
+                $btdb->query("INSERT INTO mw_list_subscriber(subscriber_uid, list_id, email, ip_address, source, status, date_added, last_updated) VALUES('$subscriber_uid', $list_id, '$email', '$ip_address', '$source', '$status', '$date_added', '$last_updated')");
+                $subscriber_id = $btdb->insert_id();
+
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($email_fid, $subscriber_id, '$email', '$date_added', '$last_updated')");
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($name_fid, $subscriber_id, '$name', '$date_added', '$last_updated')");
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($surname_fid, $subscriber_id, '$surname', '$date_added', '$last_updated')");
+            }
+        }
+    }
+
+    function fillMailWizzWithoutProfilesWithoutDogs() {
+        $btdb = blueticket_forms_db::get_instance();
+        //$btdb = new blueticket_forms_db();
+
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND (id NOT IN (SELECT user_id FROM tbl_userkennel) AND id NOT IN (SELECT user_id FROM tbl_userowner) AND id NOT IN (SELECT user_id FROM tbl_userhandler))");
+        $users = $btdb->result();
+
+        $btdb->query("DELETE FROM mw_list_subscriber WHERE list_id=28 OR list_id=29 OR list_id=30 OR list_id=31 OR list_id=32");
+
+        $btdb->query("DELETE FROM mw_list_field_value WHERE field_id=82 OR field_id=85 OR field_id=88 OR field_id=91 OR field_id=94");
+        $btdb->query("DELETE FROM mw_list_field_value WHERE field_id=83 OR field_id=86 OR field_id=89 OR field_id=92 OR field_id=95");
+        $btdb->query("DELETE FROM mw_list_field_value WHERE field_id=84 OR field_id=87 OR field_id=90 OR field_id=93 OR field_id=96");
+
+
+        foreach ($users as $user) {
+            // set lists and fields id's by lang
+            $list_id = 0;
+            $name_fid = 0;
+            $surname_fid = 0;
+            $email_fid = 0;
+            switch ($user['lang']) {
+                case "en":
+                    $list_id = 28;
+                    $email_fid = 82;
+                    $name_fid = 83;
+                    $surname_fid = 84;
+                    break;
+                case "cz":
+                    $list_id = 29;
+                    $email_fid = 85;
+                    $name_fid = 86;
+                    $surname_fid = 87;
+                    break;
+                case "sk":
+                    $list_id = 30;
+                    $email_fid = 88;
+                    $name_fid = 89;
+                    $surname_fid = 90;
+                    break;
+                case "hu":
+                    $list_id = 31;
+                    $email_fid = 91;
+                    $name_fid = 92;
+                    $surname_fid = 93;
+                    break;
+                case "ru":
+                    $list_id = 32;
+                    $email_fid = 94;
+                    $name_fid = 95;
+                    $surname_fid = 96;
+                    break;
+            }
+
+            $subscriber_uid = uniqid();
+            $email = $user['email'];
+            $name = str_replace("'", "`", $user['name']);
+            $surname = str_replace("'", "`", $user['surname']);
+
+            $ip_address = "127.0.0.1";
+            $source = "web";
+            $status = "confirmed";
+            $date_added = date("Y-m-d H:i:s");
+            $last_updated = date("Y-m-d H:i:s");
+
+            $btdb->query("SELECT COUNT(*) as Cnt FROM mw_list_subscriber WHERE email='$email' AND list_id=$list_id");
+
+            $row = $btdb->row();
+
+            if ($row['Cnt'] == 0) {
+                $btdb->query("INSERT INTO mw_list_subscriber(subscriber_uid, list_id, email, ip_address, source, status, date_added, last_updated) VALUES('$subscriber_uid', $list_id, '$email', '$ip_address', '$source', '$status', '$date_added', '$last_updated')");
+                $subscriber_id = $btdb->insert_id();
+
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($email_fid, $subscriber_id, '$email', '$date_added', '$last_updated')");
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($name_fid, $subscriber_id, '$name', '$date_added', '$last_updated')");
+                $btdb->query("INSERT INTO mw_list_field_value(field_id,subscriber_id, value, date_added, last_updated) VALUES ($surname_fid, $subscriber_id, '$surname', '$date_added', '$last_updated')");
+            }
+        }
+    }
 
     function generateUsers() {
         $form = blueticket_forms::get_instance();
@@ -279,19 +593,19 @@ class blueticket_objects {
 
         $btdb = blueticket_forms_db::get_instance();
         $btdb->query("CREATE TABLE IF NOT EXISTS tbl_stat_dates(id BIGINT NOT NULL auto_increment, date_from DATE NOT NULL, date_to DATE NOT NULL, PRIMARY KEY(id)) ENGINE=MyISAM");
-        
+
         $form_date->table("tbl_stat_dates");
         $form_date->table_name("Statistics period");
 
         $form_date->unset_add();
         $form_date->unset_remove();
-        
+
         echo $form_date->render();
-        
+
         echo '<a class="btn btn-lg btn-default" href="http://www.dogforshow.com/www/admin/index.php?report=active_users">Obnoviť</a>';
-        
+
 //$form= new blueticket_forms();
-        
+
         $form->table("tbl_user");
         $form->where("active > 0");
         $form->where("DATE(registration_date) >= (SELECT MAX(date_from) FROM tbl_stat_dates) AND DATE(registration_date) <= (SELECT MAX(date_to) FROM tbl_stat_dates)");
