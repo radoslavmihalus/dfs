@@ -1,0 +1,162 @@
+{layout '@funpage_layout.latte'}
+{define content}
+<!--<div class="panel-heading" style="background-color: #a5987f;"><h3 style="color:white;margin:0px;">Recently added</h3></div>-->
+<div class="panel-body component">
+    <div class="row">
+        <div class="col-md-8" style="border-right: #EDEBE4 1px solid;">
+            <div class="row">
+<!--                <div class="col-md-12">
+                    <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-book"></i>&nbsp;&nbsp;Articles</div>
+                </div>-->
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px;">
+                    <div style="height:230px;background: url('http://thumbs9.dreamstime.com/x/beautiful-veterinary-doctor-checking-dog-s-ear-29924875.jpg')no-repeat top center;background-size:cover;background-position:50% 40%;" >
+                        <span style="position:relative;top:160px;float:right;width:auto;padding:10px;background-color:#EDEBE4;color:#83765E;font-size:15px;font-family: 'Roboto Condensed', sans-serif;">Health & lifestyle</span>
+                    </div>
+                    <div style="display:block;height:48px;">
+                        <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Morbi quis massa magna.</span>
+                    </div>
+                    <div style="display:block;">
+                        <a href="#" style="color:#83765E;text-decoration: underline;">
+                            <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-book"></i>&nbsp;Articles</span>
+                        </a>
+                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;29.3.2016</span>
+                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;270</span>
+                    </div>
+                    <div style="display:block;">
+                        <span style="display:block;margin-top: 5px;font-size:14px;">
+                            <p>Praesent placerat porro error corporis corporis, eros? Rerum, aliquid adipisci. Diamlorem, dapibus diam nullam eiusmod quibusdam, perspiciatis numquam perferendis! Adipisicing! Torquent libero fuga numquam! Facilisi vel corporis. Torquent? Iaculis ligula, doloribus, euismod litora quam porro integer sodales recusandae, vehicula nostrud, ducimus nisi montes sint, cillum, nullam sint ut, mauris molestias porttitor sodales voluptatum cupidatat ac, reiciendis, tenetur morbi minima tempore, netus commodo purus illum officia, facere, auctor ligula, expedita! Non laboriosam eius, dis eum augue necessitatibus aut labore mollis ab volutpat, sunt, provident dolorum aperiam eaque senectus, expedita ullam venenatis, optio veritatis unde, suspendisse dapibus nostrud ratione luctus ullam blandit.</p>
+
+                            <p>Omnis volutpat error commodo. Hac elementum, doloribus justo quasi mollitia pede? Beatae dictumst, per commodi assumenda penatibus libero, mollis ipsam primis aute convallis anim, etiam necessitatibus, mattis repudiandae. Commodo porttitor, magnam quae eveniet platea, pellentesque dolorum, in enim nisl quo, pretium vero, ultrices torquent, illum mattis do officiis fringilla officia exercitation delectus mattis numquam qui mus dolorem incidunt nemo hic, quibusdam mus facere. Eaque ratione elit. Officia viverra error egestas, condimentum ullamco, cras maecenas, libero laboriosam! Gravida totam. Vehicula. Nemo, numquam quisquam wisi malesuada? Taciti, rerum corporis viverra! Vestibulum malesuada? Provident fugit! Eget etiam class, laudantium, reiciendis aperiam voluptatum similique.</p>
+
+                            <p>Impedit risus qui maecenas tortor, sapiente doloremque? Iusto, tristique. Ratione, porta architecto fermentum! Suscipit ultricies in pulvinar, volutpat, recusandae netus, quas quam asperiores et, wisi iaculis fugiat! Eaque sed fuga, tristique repellendus dignissim quisquam quae facilisi scelerisque! Sollicitudin deserunt dui eros labore! Quisque at porttitor. Occaecat doloribus sagittis enim scelerisque, doloribus ultrices parturient sem possimus qui. Veritatis quos congue, ligula ullam blanditiis, mollis exercitationem! Turpis, morbi? Quasi at facilisi ultrices quos quidem? Iaculis magna purus! Sed hymenaeos ipsum, metus pellentesque, id, nec donec morbi atque vero asperiores repellat, voluptate sollicitudin? Hymenaeos eius sunt diam saepe. Litora irure potenti occaecati facilisis.</p>
+                        </span>
+                    </div>
+                    <div class="dropdown" style="float:left;">
+                        <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><i class="fa fa-share-alt"></i>&nbsp;{_ 'Share'}&nbsp;<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="Share" style="min-width:50px;">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:fbShare('{!$sharer_tags['url']}', '{!$sharer_tags['title']}', '{!$sharer_tags['description']}', '{!$sharer_tags['image']}', 520, 350)"><i class="fa fa-facebook-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Facebook'}</span></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/share?url={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-google-plus-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Google+'}</span></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/home?status={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-twitter-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Twitter'}</span></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="https://pinterest.com/pin/create/button/?url={!DataModel::getShareUrl($lang,$dog->id)}&media={$sharer_tags['image']}&image_url={$sharer_tags['image']}&description={$sharer_tags['description']}"><i class="fa fa-pinterest-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Pinterest'}</span></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="https://tumblr.com/widgets/share/tool?canonicalUrl={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-tumblr-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Tumblr'}</span></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-envelope-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Email'}</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-book"></i>&nbsp;&nbsp;Similar articles</div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px;">
+                    <a n:href="funpage:article">
+                        <div style="height:230px;background: url('http://thumbs9.dreamstime.com/x/beautiful-veterinary-doctor-checking-dog-s-ear-29924875.jpg')no-repeat top center;background-size:cover;background-position:50% 40%;" >
+                            <span style="position:relative;top:160px;float:right;width:auto;padding:10px;background-color:#EDEBE4;color:#83765E;font-size:15px;font-family: 'Roboto Condensed', sans-serif;">Health & lifestyle</span>
+                        </div>
+                    </a>
+                    <div style="display:block;height:48px;">
+                        <a n:href="funpage:article" style="color:black;text-decoration: underline;">
+                            <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Morbi quis massa magna.</span>
+                        </a>
+                    </div>
+                    <div style="display:block;">
+                        <a href="#" style="color:#83765E;text-decoration: underline;">
+                            <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-book"></i>&nbsp;Articles</span>
+                        </a>
+                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;29.3.2016</span>
+                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;270</span>
+                    </div>
+                    <div style="display:block;">
+                        <span style="display:block;margin-top: 5px;font-size:13px;">
+                            Morbi accumsan mauris vel cursus dictum. Curabitur ullamcorper egestas purus, eget auctor tortor vestibulum a. Nullam accumsan ex molestie vulputate ...
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px;">
+                    <div style="height:230px;background: url('http://thumbs1.dreamstime.com/x/international-dog-show-spring-petersburg-40478036.jpg')no-repeat top center;background-size:cover;background-position:50% 40%;" >
+                        <span style="position:relative;top:160px;float:right;width:auto;padding:10px;background-color:#EDEBE4;color:#83765E;font-size:15px;font-family: 'Roboto Condensed', sans-serif;">Dogshows</span>
+                    </div>
+                    <div style="display:block;height:48px;">
+                        <a href="#" style="color:black;text-decoration: underline;">
+                            <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Lorem ipsum dolor sit amet, consectetur adipiscing ...</span>
+                        </a>
+                    </div>
+                    <div style="display:block;">
+                        <a href="#" style="color:#83765E;text-decoration: underline;">
+                            <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-microphone"></i>&nbsp;Interviews</span>
+                        </a>
+                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;29.3.2016</span>
+                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;270</span>
+                    </div>
+                    <div style="display:block;">
+                        <span style="display:block;margin-top: 5px;font-size:13px;">
+                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molesti ...
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px;">
+                    <div style="height:230px;background: url('http://thumbs8.dreamstime.com/x/hunter-his-hunting-dog-looking-hideout-17699482.jpg')no-repeat top center;background-size:cover;background-position:50% 40%;" >
+                        <span style="position:relative;top:160px;float:right;width:auto;padding:10px;background-color:#EDEBE4;color:#83765E;font-size:15px;font-family: 'Roboto Condensed', sans-serif;">Sport & work</span>
+                    </div>
+                    <div style="display:block;height:48px;">
+                        <a href="#" style="color:black;text-decoration: underline;">
+                            <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Nam libero tempore, cum soluta nobis est eligendi ...</span>
+                        </a>
+                    </div>
+                    <div style="display:block;">
+                        <a href="#" style="color:#83765E;text-decoration: underline;">
+                            <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-microphone"></i>&nbsp;Interviews</span>
+                        </a>
+                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;29.3.2016</span>
+                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;270</span>
+                    </div>
+                    <div style="display:block;">
+                        <span style="display:block;margin-top: 5px;font-size:13px;">
+                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molesti ...
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.ytPlayerList = [];
+    window.players = [];
+</script>
+
+<script type="text/javascript">
+    {foreach $videos as $video}
+    window.ytPlayerList.push(
+            {
+                Id: 'ctl100_phContent_{$video->id}player',
+                DivId: 'ctl100_phContent_div{$video->id}player',
+                VideoId: {$video->youtube}
+            }
+    );
+    {/foreach}
+
+    function onYouTubeIframeAPIReady() {
+        initVideos();
+    }
+
+    function initVideos() {
+        for (var i = 0; i < ytPlayerList.length; i++) {
+            var player = ytPlayerList[i];
+            var pl = new YT.Player(player.DivId, {
+                width: '100%',
+                videoId: player.VideoId,
+            });
+            window[player.Id] = pl;
+        }
+    }
+</script>
+{/define}
