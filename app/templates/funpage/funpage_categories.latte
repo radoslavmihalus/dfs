@@ -8,11 +8,13 @@
                     <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-list-alt"></i>&nbsp;&nbsp;Posts</div>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12" style="margin-bottom:10px;">
+                    <a n:href="funpage:article">
                     <div style="height:230px;background: url('http://thumbs9.dreamstime.com/x/beautiful-veterinary-doctor-checking-dog-s-ear-29924875.jpg')no-repeat top center;background-size:cover;background-position:50% 40%;" >
                         <span style="position:relative;top:160px;float:right;width:auto;padding:10px;background-color:#EDEBE4;color:#83765E;font-size:15px;font-family: 'Roboto Condensed', sans-serif;">Health & lifestyle</span>
                     </div>
+                    </a>
                     <div style="display:block;height:48px;">
-                        <a href="#" style="color:black;text-decoration: underline;">
+                        <a n:href="funpage:article" style="color:black;text-decoration: underline;">
                             <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Morbi quis massa magna.</span>
                         </a>
                     </div>
@@ -30,11 +32,13 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12" style="margin-bottom:10px;">
+                    <a n:href="funpage:interview">
                     <div style="height:230px;background: url('http://thumbs1.dreamstime.com/x/international-dog-show-spring-petersburg-40478036.jpg')no-repeat top center;background-size:cover;background-position:50% 40%;" >
                         <span style="position:relative;top:160px;float:right;width:auto;padding:10px;background-color:#EDEBE4;color:#83765E;font-size:15px;font-family: 'Roboto Condensed', sans-serif;">Dogshows</span>
                     </div>
+                    </a>
                     <div style="display:block;height:48px;">
-                        <a href="#" style="color:black;text-decoration: underline;">
+                        <a n:href="funpage:interview" style="color:black;text-decoration: underline;">
                             <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Lorem ipsum dolor sit amet, consectetur adipiscing ...</span>
                         </a>
                     </div>
@@ -52,11 +56,13 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12" style="margin-bottom:10px;">
+                    <a n:href="funpage:interview">
                     <div style="height:230px;background: url('http://thumbs8.dreamstime.com/x/hunter-his-hunting-dog-looking-hideout-17699482.jpg')no-repeat top center;background-size:cover;background-position:50% 40%;" >
                         <span style="position:relative;top:160px;float:right;width:auto;padding:10px;background-color:#EDEBE4;color:#83765E;font-size:15px;font-family: 'Roboto Condensed', sans-serif;">Sport & work</span>
                     </div>
+                    </a>
                     <div style="display:block;height:48px;">
-                        <a href="#" style="color:black;text-decoration: underline;">
+                        <a n:href="funpage:interview" style="color:black;text-decoration: underline;">
                             <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Nam libero tempore, cum soluta nobis est eligendi ...</span>
                         </a>
                     </div>
@@ -74,11 +80,13 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12" style="margin-bottom:10px;">
+                    <a n:href="funpage:interview">
                     <div style="height:230px;background: url('http://thumbs6.dreamstime.com/x/dog-food-bowl-women-hand-47185378.jpg')no-repeat top center;background-size:cover;background-position:50% 40%;" >
                         <span style="position:relative;top:160px;float:right;width:auto;padding:10px;background-color:#EDEBE4;color:#83765E;font-size:15px;font-family: 'Roboto Condensed', sans-serif;">Tips & tricks</span>
                     </div>
+                    </a>
                     <div style="display:block;height:48px;">
-                        <a href="#" style="color:black;text-decoration: underline;">
+                        <a n:href="funpage:interview" style="color:black;text-decoration: underline;">
                             <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Nam libero tempore, cum soluta</span>
                         </a>
                     </div>
@@ -103,7 +111,7 @@
                 <div class="col-md-12" style="margin-top:10px;">
                     <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-camera"></i>&nbsp;&nbsp;Photos</div>
                     {foreach $photos as $row}
-                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6" style="padding:5px;">
                             <a href="javascript:void(0)" onclick="ShowGaleryModal({$row->id})" title="{$row->description}">
                                 <div class="thumbnail img-responsive" style="padding:50%;background: url({$row->image})no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
                             </a>
@@ -114,7 +122,6 @@
             <div class="row">
                 <div class="col-md-12" style="margin-top:10px;">
                     <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-video-camera"></i>&nbsp;&nbsp;Videos</div>
-
                     {foreach $videos as $row}
                         {include '../components/modal_video.latte' row=>$row}
                         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6" style="padding:5px;">
@@ -133,7 +140,7 @@
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
                         {foreach $profiles as $row}
                             <a href="{DataModel::getProfileLinkUrl($row->id, TRUE, TRUE)}" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
-                                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="{DataModel::getProfileImage($row->id)}">
+                                <div class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;background: url('{DataModel::getProfileImage($row->id)}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
                                 <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{DataModel::getProfileName($row->id)}</span>
                                 {if (DataModel::getProfileType($row->id)==1)}
                                     <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
@@ -154,7 +161,7 @@
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
                         {foreach $dogs as $row}
                             <a n:href="dog:dog_profile_home id => $row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
-                                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="{$row->dog_image}">
+                                <div class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;background: url('{$row->dog_image}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
                                 <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{$row->dog_name}</span>
                                 <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_$row->breed_name, [type => 'breed']}</span>
                                 <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$row->dog_gender}</span>
@@ -170,7 +177,7 @@
                         {foreach $puppies as $row}                        
                             <a n:href="puppy:puppy_description id=>$row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;border-bottom:#EDEBE4 1px solid;">
                                 {var $litter = DataModel::getPlannedLitterById($row->planned_litter_id)}
-                                <img class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;"  src="{$row->puppy_photo}">
+                                <div class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #83765E;background: url('{$row->puppy_photo}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
                                 <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{$row->puppy_name}</span>
                                 <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_$litter->bitch_breed, [type => 'breed']}</span>
                                 <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->puppy_gender=='Dog'}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;"></i>{else}<i class="fa fa-venus gender-bitch" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}"></i>{/if}&nbsp;&nbsp;{_$row->puppy_gender}</span>
@@ -183,7 +190,6 @@
     </div>
     <div class="row" style="margin-top:10px;background-color:#83765E;color:white;">
         <div class="col-md-4">
-            <div class="panel-description" style="color:#d5d0c0;margin-bottom:10px;margin-top:30px;"><i style="" class="fa fa-list"></i>&nbsp;&nbsp;{_ 'Lists'}</div>
             <ul style="padding-left: 0px;">
                 <li style="list-style-type: none;">
                     <a style="padding-top: 8px;padding-bottom: 8px;display:block;color:white;font-size:0.9em;" n:href="kennel:kennel_list lang=>$lang"><i style="color:#D5D0C0;" class="fa fa-home"></i>&nbsp;&nbsp;{_'Kennels'}<span class="badge" style="float:right;background-color: #D5D0C0;color: #83765E;">{DataModel::getKennelsCount()}</span></a>
@@ -197,7 +203,11 @@
                 <li style="list-style-type: none;">
                     <a style="padding-top: 8px;padding-bottom: 8px;display:block;color:white;font-size:0.9em;" n:href="dog:dog_list lang=>$lang"><i style="color:#D5D0C0;" class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Dogs'}<span class="badge" style="float:right;background-color: #D5D0C0;color: #83765E;">{DataModel::getDogsCount()}</span></a>
                 </li>
-                <li style="list-style-type: none;">
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul style="padding-left: 0px;">
+            <li style="list-style-type: none;">
                     <a style="padding-top: 8px;padding-bottom: 8px;display:block;color:white;font-size:0.9em;" n:href="dog:dog_for_mating_list lang=>$lang"><i style="color:#D5D0C0;" class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_'Dogs for mating'}<span class="badge" style="float:right;background-color: #D5D0C0;color: #83765E;">{DataModel::getMattingDogsCount()}</span></a>
                 </li>
                 <li style="list-style-type: none;">
@@ -209,6 +219,10 @@
                 <li style="list-style-type: none;">
                     <a style="padding-top: 8px;padding-bottom: 8px;display:block;color:white;font-size:0.9em;" n:href="puppy:puppy_list lang=>$lang"><i style="color:#D5D0C0;" class="fa fa-paw"></i>&nbsp;&nbsp;{_'Puppies for sale'}<span class="badge" style="float:right;background-color: #D5D0C0;color: #83765E;">{DataModel::getPuppiesForSaleCount()}</span></a>
                 </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul style="padding-left: 0px;">
                 <li style="list-style-type: none;">
                     <a style="padding-top: 8px;padding-bottom: 8px;display:block;color:white;font-size:0.9em;" n:href="puppy:puppy_sold_list lang=>$lang"><i style="color:#D5D0C0;" class="fa fa-paw"></i>&nbsp;&nbsp;{_'Sold puppies'}<span class="badge" style="float:right;background-color: #D5D0C0;color: #83765E;">{DataModel::getPuppiesSoldCount()}</span></a>
                 </li>
@@ -222,12 +236,6 @@
                     <a style="padding-top: 8px;padding-bottom: 8px;display:block;color:white;font-size:0.9em;" n:href="video:video_list lang=>$lang"><i style="color:#D5D0C0;" class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}<span class="badge" style="float:right;background-color: #D5D0C0;color: #83765E;">{DataModel::getVideosCount()}</span></a>
                 </li>
             </ul>
-        </div>
-        <div class="col-md-4">
-            2
-        </div>
-        <div class="col-md-4">
-            3
         </div>
     </div>
 </div>

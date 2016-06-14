@@ -79,6 +79,10 @@ $router[] = new Route('index.php', 'LandingPage:default'); //, \Nette\Applicatio
 $router[] = new Route('advertisement-step1', 'advertisement:advertisement_step1'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('PayPal', 'LandingPage:PayPal'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('funpage', 'funpage:funpage_profile_home'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('article', 'funpage:article'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('article-list', 'funpage:article_list'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('interview', 'funpage:interview'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('interview-list', 'funpage:interview_list'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>]', 'LandingPage:default'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('payment_return.php', 'LandingPage:payment'); //, \Nette\Application\IRouter::SECURED);
 //$router[] = new Route('forgot-password', 'LandingPage:forgot_password'); //, \Nette\Application\IRouter::SECURED);
