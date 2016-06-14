@@ -1,0 +1,83 @@
+{snippet}
+    <div id="modalFlashConfirmation{$logged_in_id}" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="color: #FDB42F;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <i class="fa fa-question-circle fa-1x" style="float:left;margin-right: 5px;font-size:22px;"></i>
+                    <h4 class="modal-title" id="modalTitleConfirmation" style="font-weight:bold;font-size:15px;">{_"Question"}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{_'Are you sure you want to delete your user account? If you will agree, all of your profiles and dogs profiles will be deleted too.'}</p>
+                </div>
+                <div class="modal-footer">
+                    <a n:href="deleteProfile! $logged_in_id" class="btn btn-default" id="confirm{$logged_in_id}">{_"Yes"}</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{_"No"}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="dropdown" style="float:left;">
+        <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="Messages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="badge notify" id="messages_count"></span>
+            <i class="notification-icon fa fa-envelope fa-1x" data-toggle="tooltip" data-placement='bottom' title="{_ 'Messages'}"></i>
+            <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu messages" role="menu" aria-labelledby="Messages" id="messages_list">
+        </ul>
+    </div>
+    <!-- Top menu notifications -->
+    <div class="dropdown" style="float:left;">
+        <a class="dropdown-toggle" style="margin-right: 2px;" id="Notifications" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {snippet badge}
+                {if $notifyCount > 0}
+                    <span class="badge notify">{$notifyCount}</span>
+                {/if}
+            {/snippet}
+            <i class="notification-icon fa fa-bell fa-1x" data-toggle="tooltip" data-placement='bottom' title="{_ 'Notifications'}"></i>
+            <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu notifications" role="menu" aria-labelledby="Notifications" n:snippet="notifications_list">
+            <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_ 'Notifications'}</li>
+                {foreach $notifications as $row}
+                <li role="presentation" class="notify_item">
+                    <a role="menuitem" tabindex="-1" href="{DataModel::getProfileLinkUrl($row->notify_profile_id, TRUE, TRUE)}#timelineid{$row->timeline_id}">
+                        <img class="user-block-thumb" src="{DataModel::getProfileImage($row->profile_id)}"/>
+                        <span class="notification-item-header text-uppercase">{DataModel::getProfileName($row->profile_id)}</span>
+                        {if $row->type == 'comment'}
+                            <span class="notification-item-event"><i class="fa fa-comment"></i>&nbsp;&nbsp;{_'comment your post'}</span>
+                        {elseif $row->type == 'like'}
+                            <span class="notification-item-event"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;{_'like your post'}</span>
+                        {/if}
+                    </a>
+                </li>
+            {/foreach}
+            <li role="presentation" class="notify_item"><a class="dropdown-footer" href="notification-list">{_"View all"}&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></a></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        $("#Notifications").on("click", function ()
+        {
+            $.nette.ajax({
+                type: 'GET',
+                url: {link clearNotify!},
+                data: {
+                }
+            });
+        });
+    </script>
+
+{/snippet}
+
+<script type="text/javascript">
+    setInterval(function ()
+    {
+        $.nette.ajax({
+            type: 'GET',
+            url: {link newNotifyCount!},
+            data: {
+            }
+        });
+    }, 1000);
+</script>

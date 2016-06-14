@@ -714,7 +714,9 @@ class DataModel {
             $notify_user_id = $row->user_id;
         }
 
+        $notify_rows = $this->database->query("SELECT DISTINCT user_id, profile_id FROM tbl_comments WHERE timeline_id = $timeline_id AND user_id != $notify_user_id AND type='comment'")->fetchAll();
 
+        $notify = array();
         $notify['notify_user_id'] = $notify_user_id;
         $notify['notify_profile_id'] = $notify_profile_id;
         $notify['user_id'] = $user_id;
@@ -722,8 +724,20 @@ class DataModel {
         $notify['timeline_id'] = $timeline_id;
         $notify['comment'] = $comment;
         $notify['type'] = "comment";
-
         $this->database->table("tbl_notify")->insert($notify);
+
+        foreach ($notify_rows as $row) {
+            $notify = array();
+            $notify['notify_user_id'] = $row->user_id;
+            $notify['notify_profile_id'] = $row->profile_id;
+            $notify['user_id'] = $user_id;
+            $notify['profile_id'] = $profile_id;
+            $notify['timeline_id'] = $timeline_id;
+            $notify['comment'] = $comment;
+            $notify['type'] = "comment";
+            $this->database->table("tbl_notify")->insert($notify);
+        }
+
         $this->database->table("tbl_comments")->insert($data);
     }
 
@@ -751,8 +765,16 @@ class DataModel {
                 $row = $this->database->table("tbl_userhandler")->where("id=?", $notify_profile_id)->fetch();
                 $notify_user_id = $row->user_id;
             }
+        } else {
+            $data['timeline_id'] = 0;
+        }
 
+        $timeline_id = $data['timeline_id'];
 
+        if ($timeline_id > 0) {
+            $notify_rows = $this->database->query("SELECT DISTINCT user_id, profile_id FROM tbl_comments WHERE timeline_id = $timeline_id AND user_id != $notify_user_id AND type='comment'")->fetchAll();
+
+            $notify = array();
             $notify['notify_user_id'] = $notify_user_id;
             $notify['notify_profile_id'] = $notify_profile_id;
             $notify['user_id'] = $user_id;
@@ -762,8 +784,18 @@ class DataModel {
             $notify['type'] = "comment";
 
             $this->database->table("tbl_notify")->insert($notify);
-        } else {
-            $data['timeline_id'] = 0;
+
+            foreach ($notify_rows as $row) {
+                $notify = array();
+                $notify['notify_user_id'] = $row->user_id;
+                $notify['notify_profile_id'] = $row->profile_id;
+                $notify['user_id'] = $user_id;
+                $notify['profile_id'] = $profile_id;
+                $notify['timeline_id'] = $timeline_id;
+                $notify['comment'] = $comment;
+                $notify['type'] = "comment";
+                $this->database->table("tbl_notify")->insert($notify);
+            }
         }
 
         $this->database->table("tbl_comments")->insert($data);
@@ -1331,10 +1363,10 @@ class DataModel {
     public static function getPremium($user_id) {
 //        require_once 'www/inc/config_ajax.php';
 //        $database = getContext();
-        
-        if($user_id==NULL)
+
+        if ($user_id == NULL)
             return FALSE;
-        
+
         $database = $GLOBALS['database'];
 
         $cnt = $database->table("tbl_user")->where("id=? AND premium_expiry_date >= now()", $user_id)->count();
