@@ -7,8 +7,37 @@
                 </div>
             </div>
             <div class="col-md-12">
+                <script>
+                    var tag = document.createElement('script');
+
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                    window.ytPlayerList = [];
+                    window.players = [];
+                </script>
+                {includeblock '../timeline/timeline_item_modal.latte'}
                 {foreach $notifications_list as $row}
-                    <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" href="{DataModel::getProfileLinkUrl($row->notify_profile_id,TRUE)}#timelineid{$row->timeline_id}">
+                    <div id="modalFlashTimeline{$row->id}" class="modal fade" style="z-index: 1050;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="color:#a5987f;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="timeline">
+                                        {var $timeline_row = DataModel::getTimelineRow($row->timeline_id)}
+                                        {include timeline_item_modal row=>$timeline_row}
+                                    </ul>
+                                </div>
+<!--                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">{_'Close'}</button>
+                                </div>-->
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                    <a style="display:block;float:left;width:100%;border-top: whitesmoke 1px solid;padding: 10px 0px 10px 0px;" href="javascript:void(0)" id="modalOpen{$row->id}"> <!-- href="{ DataModel::getProfileLinkUrl($row->notify_profile_id,TRUE)}#timelineid{ $row->timeline_id}" -->
                         <img class="user-block-thumb" src="{DataModel::getProfileImage($row->profile_id)}"/>
                         <span class="notification-item-header text-uppercase">{DataModel::getProfileName($row->profile_id)}</span>
                         {if ($row->type == 'comment')}
@@ -17,7 +46,29 @@
                             <span class="notification-item-event" style="color:black;"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;{_ 'like your post'}</span>
                         {/if}
                     </a>
+                    <script type="text/javascript">
+                        $("#modalOpen{$row->id}").on("click", function ()
+                        {
+                            $("#modalFlashTimeline{$row->id}").modal('show');
+                        });
+                    </script>
                 {/foreach}
+                <script type="text/javascript">
+                    function onYouTubeIframeAPIReady() {
+                        initVideos();
+                    }
+
+                    function initVideos() {
+                        for (var i = 0; i < ytPlayerList.length; i++) {
+                            var player = ytPlayerList[i];
+                            var pl = new YT.Player(player.DivId, {
+                                width: '100%',
+                                videoId: player.VideoId,
+                            });
+                            window[player.Id] = pl;
+                        }
+                    }
+                </script>
             </div>
         </div>
     </div>

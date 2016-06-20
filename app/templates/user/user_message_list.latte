@@ -1,4 +1,5 @@
 {block content}
+{includeblock '../components/modal_confirmation.latte'}
 <div id="profile_div" class="panel-default col-lg-12 profile_wrapper" style="font-size: 12px;">
     <div class="panel-body component">
         <div class="row">
@@ -34,8 +35,14 @@
                             </a>
                     </div>
                     <div class="col-md-1">
-                        <button class="btn btn-danger btn-xs pull-left" title="{_ 'Delete messages'}" type="button"><i class="fa fa-trash"></i>&nbsp;&nbsp;{_ 'Delete messages'}</button>
-<!--                        <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_'Delete'}" type="button"><i class="fa fa-trash"></i></a>-->
+                        <button class="btn btn-danger btn-xs pull-left" title="{_ 'Delete messages'}" id="message_delete{$message->id}" type="button"><i class="fa fa-trash"></i>&nbsp;&nbsp;{_ 'Delete messages'}</button>
+                        {include modalConfirmation description=>"Are you sure you want to delete this record?", id => $message->id, do => "deleteMessage"}
+                        <script type="text/javascript">
+                            $("#message_delete{$message->id}").on("click", function () {
+                                $("#modalFlashConfirmation{$message->id}").modal("show");
+                            });
+                        </script>
+        <!--                        <a class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement='top' title="{_'Delete'}" type="button"><i class="fa fa-trash"></i></a>-->
                     </div>
                 </div>
             {/foreach}

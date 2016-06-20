@@ -118,6 +118,14 @@ class DataModel {
         return $return;
     }
 
+    static function getTimelineRow($id = 0) {
+        $database = $GLOBALS['database'];
+
+        $rows = $database->table("tbl_timeline")->where("id=?", $id)->fetch();
+
+        return $rows;
+    }
+
     /**
      * 
      * @param type $id

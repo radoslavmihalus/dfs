@@ -18,15 +18,57 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+
     <div class="dropdown" style="float:left;">
         <a href="#" class="dropdown-toggle" style="margin-right: 2px;" type="button" id="Messages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="badge notify" id="messages_count"></span>
-            <i class="notification-icon fa fa-envelope fa-1x" data-toggle="tooltip" data-placement='bottom' title="{_ 'Messages'}"></i>
+            {snippet badge_messages}
+                {if $messagesCount > 0}
+                    <span class="badge notify">{$messagesCount}</span>
+                {/if}
+            {/snippet}
+            <i class="notification-icon fa fa-envelope fa-1x" data-toggle="tooltip" data-placement='bottom' title="{_ 'Messages'}"></i>&nbsp;
             <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
         </a>
-        <ul class="dropdown-menu messages" role="menu" aria-labelledby="Messages" id="messages_list">
+
+        <ul class="dropdown-menu messages" role="menu" aria-labelledby="Messages">
+            <li role="presentation" class="dropdown-header text-uppercase" style="border-bottom: whitesmoke 1px solid;padding:10px;">{_"Messages"}</li>
+                {foreach $messages_rows as $message}
+                    {if $message->from_profile_id > 0}
+                        {var $profile_id = $message->from_profile_id}
+                    {else}
+                        {var $profile_id = $message->from_user_id}
+                    {/if}
+                    {if DataModel::getPremium($logged_in_id)}
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="message-compose?profile_id={$profile_id}">
+                            <img class="user-block-thumb" src="{DataModel::getProfileImage($profile_id)}"/>
+                            <span class="notification-item-header text-uppercase">{DataModel::getProfileName($profile_id)}</span>
+                            <span class="notification-item-event-time">{$message->message_datetime|date:'d.m.Y'}&nbsp;&nbsp;{$message->message_datetime|date:'H:i:s'}</span>
+                            <span class="notification-item-event">{mb_strimwidth($message->message, 0, 8, "...")}</span>
+                        </a>
+                    </li>
+                {else}
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="message-compose?profile_id={$profile_id}">
+                            <img class="user-block-thumb" src="{DataModel::getProfileImage($profile_id)}"/>
+                            <span class="notification-item-header text-uppercase">{mb_strimwidth(DataModel::getProfileName($profile_id), 0, 0, "...")}</span>
+                            <span class="notification-item-event-time">{$message->message_datetime|date:'d.m.Y'}&nbsp;&nbsp;{$message->message_datetime|date:'H:i:s'}</span>
+                            <span class="notification-item-event">{mb_strimwidth($message->message, 0, 8, "...")}</span>
+                        </a>
+                    </li>
+                {/if}
+            {/foreach}
+            <li role = "presentation" class="messages_list_item">
+                <a class = "dropdown-footer" href = "message-list">
+                    {_"View all"}&nbsp;&nbsp;<i class = "fa fa-angle-double-right"></i>
+                </a>
+            </li>
         </ul>
+
+
     </div>
+
+
     <!-- Top menu notifications -->
     <div class="dropdown" style="float:left;">
         <a class="dropdown-toggle" style="margin-right: 2px;" id="Notifications" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,7 +77,7 @@
                     <span class="badge notify">{$notifyCount}</span>
                 {/if}
             {/snippet}
-            <i class="notification-icon fa fa-bell fa-1x" data-toggle="tooltip" data-placement='bottom' title="{_ 'Notifications'}"></i>
+            <i class="notification-icon fa fa-bell fa-1x" data-toggle="tooltip" data-placement='bottom' title="{_ 'Notifications'}"></i>&nbsp;
             <i class="notification-icon notification-icon-caret fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu notifications" role="menu" aria-labelledby="Notifications" n:snippet="notifications_list">
@@ -62,6 +104,15 @@
             $.nette.ajax({
                 type: 'GET',
                 url: {link clearNotify!},
+                data: {
+                }
+            });
+        });
+        $("#Messages").on("click", function ()
+        {
+            $.nette.ajax({
+                type: 'GET',
+                url: {link clearMessages!},
                 data: {
                 }
             });

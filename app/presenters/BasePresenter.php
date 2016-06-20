@@ -1142,6 +1142,19 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         }
     }
 
+    public function handlePM($transaction_id, $amount) {
+        $user = $this->database->table("tbl_user")->where("id=?", $transaction_id)->fetch();
+
+        $sf = new \invoice();
+        $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 6 months"), "1", $amount, $user->state);
+
+        $id = $response->data->Invoice->id;
+        $token = $response->data->Invoice->token;
+        echo $id;
+        echo $token;
+        $this->terminate();
+    }
+
     public function actionPayment($PayPal = FALSE) {
         if ($PayPal) {
             
@@ -1213,11 +1226,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
                         if ($amount == 30)
                             $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 6 months"), "1", $amount, $user->state);
-                        else
-                        if ($amount == 54)
+                        elseif ($amount == 54)
                             $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 12 months"), "1", $amount, $user->state);
-                        else
-                        if ($amount == 84)
+                        elseif ($amount == 84)
                             $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 24 months"), "1", $amount, $user->state);
 
                         $id = $response->data->Invoice->id;
@@ -1940,7 +1951,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     protected function createComponentTopMenu() {
-        $component = new \TopMenuControl($this->database, $this->logged_in_profile_id, $this->logged_in_id, $this->translator);
+        $component = new \TopMenuControl($this->database, $this->logged_in_profile_id, $this->logged_in_id, $this->translator, $this->logged_in_profile_id);
 
         return $component;
     }
@@ -2060,6 +2071,51 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $this->redirect("handler:handler_profile_home");
         } catch (\ErrorException $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
+        }
+    }
+
+    public function handleMessageCheck($profile_id = 0) {
+        if ($profile_id > 0) {
+
+            if (($profile_id >= 100000000 && $profile_id < 200000000) || ($profile_id >= 9000000001 && $profile_id < 10000000000))
+                if ($this->logged_in_profile_id > 0)
+                    $messages_rows = $this->database->table('tbl_messages')->where("(from_user_id = ? AND to_profile_id=?) OR (from_profile_id=? AND to_user_id=?)", $profile_id, $this->logged_in_profile_id, $this->logged_in_profile_id, $profile_id)->order("id ASC")->fetchAll();
+                else
+                    $messages_rows = $this->database->table('tbl_messages')->where("(from_user_id = ? AND to_user_id=?) OR (from_user_id=? AND to_user_id=?)", $profile_id, $this->logged_in_id, $this->logged_in_id, $profile_id)->order("id DESC")->order("id ASC")->fetchAll();
+            else
+                $messages_rows = $this->database->table('tbl_messages')->where("(from_profile_id = ? AND to_profile_id=?) OR (from_profile_id=? AND to_profile_id=?)", $profile_id, $this->logged_in_profile_id, $this->logged_in_profile_id, $profile_id)->order("id ASC")->fetchAll();
+
+            $data = "";
+
+            foreach ($messages_rows as $row) {
+                $data .= '<div style = "display:block;float:left;width:100%;padding: 10px 0px 10px 0px;">';
+
+                if ($row->from_profile_id > 0) {
+                    $profile_image = \DataModel::getProfileImage($row->from_profile_id);
+                    $profile_name = \DataModel::getProfileName($row->from_profile_id);
+                    $profile_id = $row->from_profile_id;
+                } else {
+                    $profile_image = \DataModel::getProfileImage($row->from_user_id);
+                    $profile_name = \DataModel::getProfileName($row->from_user_id);
+                    $profile_id = 0;
+                }
+                $data .= '<img class = "user-block-thumb" src = "' . $profile_image . '"/>';
+                if ($profile_id > 0)
+                    $data .= '<a href = "' . \DataModel::getProfileLinkUrl($profile_id, TRUE) . '?id=' . $profile_id . '"><span class = "notification-item-header text-uppercase">' . $profile_name . '</span></a>';
+                else
+                    $data .= '<a href = "#"><span class = "notification-item-header text-uppercase">' . $profile_name . '</span></a>';
+                $data .= '<span class = "notification-item-event-time">' . date('d.m.Y', strtotime($row->message_datetime)) . '&nbsp;
+        &nbsp;
+        ' . date('H:i:s', strtotime($row->message_datetime)) . '</span>';
+                $data .= '<span class = "notification-item-event" style = "color:black">' . nl2br($row->message) . '</span></div>';
+            }
+
+            echo $data;
+            $this->terminate();
+//$this->invalidateControl("areaMessages");
+        } else {
+            echo '';
+            $this->terminate();
         }
     }
 
