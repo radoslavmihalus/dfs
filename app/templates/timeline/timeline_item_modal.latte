@@ -70,24 +70,6 @@
                     <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-user"></i></span>&nbsp;&nbsp;{_ 'Add coowner'}</h3>
                     -->
                 </div>
-                {if DataModel::getPermission($row->id,$logged_in_id,7)}
-                    <div class="dropdown" style="position:absolute;right:10px;">
-                        <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><span class="caret"></span></a>
-                        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="Share" style="min-width:50px;right:0;font-size: 12px;z-index:1;">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="?do=timelineRemove&id={$row->id}">{_'Remove from timeline'}</a></li>
-                        </ul>
-                        <script type="text/javascript">
-                            $("#timeline_remove_{$row->id}").click(function () {
-                                $.ajax({
-                                    url: '/?do=timelineRemove&id={$row->id}',
-                                    dataType: 'html',
-                                }).done(function (data) {
-                                    $.get(document.href);
-                                });
-                            });
-                        </script>
-                    </div>
-                {/if}
             </div>
         </div>
         <div class="clearfix"></div>

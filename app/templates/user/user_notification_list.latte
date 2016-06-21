@@ -21,9 +21,9 @@
                                         {include timeline_item_modal timeline_id=>$row->timeline_id}
                                     </ul>
                                 </div>
-<!--                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">{_'Close'}</button>
-                                </div>-->
+                                <!--                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">{_'Close'}</button>
+                                                                </div>-->
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
@@ -39,7 +39,14 @@
                     <script type="text/javascript">
                         $("#modalOpen{$row->id}").on("click", function ()
                         {
-                            $("#modalFlashTimeline{$row->id}").modal('show');
+                            $.ajax({
+                                url: '/?do=clearNotify&notify_id={$row->id}',
+                                dataType: 'html',
+                            }).done(function (data) {
+                                $("#modalOpen{$row->id}").css("background-color", "white");
+                                $("#modalOpen{$row->id}").css("border-top", "whitesmoke 1px solid");
+                                $("#modalFlashTimeline{$row->id}").modal('show');
+                            });
                         });
                     </script>
                 {/foreach}
