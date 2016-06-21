@@ -1,178 +1,157 @@
 {define #timeline_item_modal}
-    <li id="timelineid{$row->id}">
-        <div class="timeline-panel">
-            <div class="timeline-heading">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-xs-12">
-                        <img class="user-block-thumb" src="{DataModel::getProfileImage($row->profile_id)}" style="position:absolute;left:15px;top:0px;"/>
-                        {var $url = DataModel::getProfileLinkUrl($row->profile_id)}
-                        <a n:href="$url id=>$row->profile_id">
-                            <span class="notification-item-header text-uppercase" style="width:auto;margin-left:55px;font-family: 'Roboto Condensed', sans-serif;font-size: 15px !important;">{DataModel::getProfileName($row->profile_id)}</span><br>
-                            <!-- Doplnenie ikon k zobrazovanym menam na timeline 
-                            <i class="fa fa-home"></i> / Kennel
-                            <i class="glyphicons glyphicons-user"></i> / Owner
-                            <i class="glyphicons glyphicons-shirt"></i> / Handler
-                            -->
-                        </a>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-xs-12">
-                        {if ($row->event_type == 1)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"></span>&nbsp;&nbsp;{_'Profile created'}</h3>
-                        {/if}
-                        {if ($row->event_type == 2)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"></span>&nbsp;&nbsp;{_'Profile updated'}</h3>
-                        {/if}
-                        {if ($row->event_type == 3)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-camera"></i></span>&nbsp;&nbsp;{_'Profile image updated'}</h3>
-                        {/if}
-                        {if ($row->event_type == 4)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-image"></i></span>&nbsp;&nbsp;{_'Cover image updated'}</h3>
-                        {/if}
-                        {if ($row->event_type == 5)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-certificate"></i></span>&nbsp;&nbsp;{_'Add award'}</h3>
-                        {/if}
-                        {if ($row->event_type == 6)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-certificate"></i></span>&nbsp;&nbsp;{_'Edit award'}</h3>
-                        {/if}
-                        {if ($row->event_type == 7)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-calendar"></i></span>&nbsp;&nbsp;{_'Add planned litter'}</h3>
-                        {/if}
-                        {if ($row->event_type == 8)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-list-alt"></i></span>&nbsp;&nbsp;{_'Add certificate'}</h3>
-                        {/if}
-                        <!--                        { if ($row->event_type == 9)}
-                                                    <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-flag"></i></span>&nbsp;&nbsp;{_ 'Add working exam'}</h3>
-                                                { /if}-->
-                        {if ($row->event_type == 10)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-camera"></i></span>&nbsp;&nbsp;{_'Add photo'}</h3>
-                        {/if}
-                        {if ($row->event_type == 11)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-clipboard"></i></span>&nbsp;&nbsp;{_'Add show result'}</h3>
-                        {/if}
-                        {if ($row->event_type == 12)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-dog"></i></span>&nbsp;&nbsp;{_'Add dog'}</h3>
-                        {/if}
-                        {if ($row->event_type == 13)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-paw"></i></span>&nbsp;&nbsp;{_'Add puppy for sale'}</h3>
-                        {/if}
-                        {if ($row->event_type == 14)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-trophy"></i></span>&nbsp;&nbsp;{_'Add championchip'}</h3>
-                        {/if}
-                        {if ($row->event_type == 15)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-video-camera"></i></span>&nbsp;&nbsp;{_'Add video'}</h3>
-                        {/if}
-                        {if ($row->event_type == 16)}
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-heartbeat"></i></span>&nbsp;&nbsp;{_ 'Add health record'}</h3>
-                        {/if}
-                        <!-- Chybajuce eventy
-                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-venus-mars"></i></span>&nbsp;&nbsp;{_ 'Add mating'}</h3>
-                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-user"></i></span>&nbsp;&nbsp;{_ 'Add coowner'}</h3>
+{var $row = $presenter->getTimelineRow($timeline_id)}
+<li id="timelineid{$row->id}">
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <img class="user-block-thumb" src="{DataModel::getProfileImage($row->profile_id)}" style="position:absolute;left:15px;top:0px;"/>
+                    {var $url = DataModel::getProfileLinkUrl($row->profile_id, TRUE, TRUE)}
+                    <a href="{$url}">
+                        <span class="notification-item-header text-uppercase" style="width:auto;margin-left:55px;font-family: 'Roboto Condensed', sans-serif;font-size: 15px !important;">{DataModel::getProfileName($row->profile_id)}</span><br>
+                        <!-- Doplnenie ikon k zobrazovanym menam na timeline 
+                        <i class="fa fa-home"></i> / Kennel
+                        <i class="glyphicons glyphicons-user"></i> / Owner
+                        <i class="glyphicons glyphicons-shirt"></i> / Handler
                         -->
-                    </div>
-                    {if DataModel::getPermission($row->id,$logged_in_id,7)}
-                        <div class="dropdown" style="position:absolute;right:10px;">
-                            <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><span class="caret"></span></a>
-                            <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="Share" style="min-width:50px;right:0;font-size: 12px;z-index:1;">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" n:href="timelineRemove! id=>$row->id">{_'Remove from timeline'}</a></li>
-                            </ul>
-                            <script type="text/javascript">
-                                    $("#timeline_remove_{$row->id}").click(function () {
-                                        $.ajax({
-                                            url: '/?do=timelineRemove&id={$row->id}',
-                                            dataType: 'html',
-                                        }).done(function (data) {
-                                            $.get(document.href);
-                                        });
-                                    });
-                            </script>
-                        </div>
-                    {/if}
+                    </a>
                 </div>
-            </div>
-            <div class="clearfix"></div>
-            <hr style="margin-top: 10px;margin-bottom: 2px;">
-            <div class="col-lg-12 col-md-12 col-xs-12" style="padding-left:0px;margin-bottom: 5px;">
-                <span style="color:#C1C1C1"><i class="glyphicon glyphicon-time"></i>&nbsp;{$row->date|date:'%d.%m.%Y'}&nbsp;|&nbsp;{$row->date|date:'H:i'}</span>
-            </div>
-            {if (strlen($row->event_image)>1)}
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding-left: 0px;padding-right: 0px;">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    {if ($row->event_type == 1)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"></span>&nbsp;&nbsp;{_'Profile created'}</h3>
+                    {/if}
+                    {if ($row->event_type == 2)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"></span>&nbsp;&nbsp;{_'Profile updated'}</h3>
+                    {/if}
+                    {if ($row->event_type == 3)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-camera"></i></span>&nbsp;&nbsp;{_'Profile image updated'}</h3>
+                    {/if}
+                    {if ($row->event_type == 4)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-image"></i></span>&nbsp;&nbsp;{_'Cover image updated'}</h3>
+                    {/if}
+                    {if ($row->event_type == 5)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-certificate"></i></span>&nbsp;&nbsp;{_'Add award'}</h3>
+                    {/if}
+                    {if ($row->event_type == 6)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-certificate"></i></span>&nbsp;&nbsp;{_'Edit award'}</h3>
+                    {/if}
+                    {if ($row->event_type == 7)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-calendar"></i></span>&nbsp;&nbsp;{_'Add planned litter'}</h3>
+                    {/if}
+                    {if ($row->event_type == 8)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-list-alt"></i></span>&nbsp;&nbsp;{_'Add certificate'}</h3>
+                    {/if}
+                    <!--                        { if ($row->event_type == 9)}
+                                                <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-flag"></i></span>&nbsp;&nbsp;{_ 'Add working exam'}</h3>
+                                            { /if}-->
+                    {if ($row->event_type == 10)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-camera"></i></span>&nbsp;&nbsp;{_'Add photo'}</h3>
+                    {/if}
+                    {if ($row->event_type == 11)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-clipboard"></i></span>&nbsp;&nbsp;{_'Add show result'}</h3>
+                    {/if}
+                    {if ($row->event_type == 12)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-dog"></i></span>&nbsp;&nbsp;{_'Add dog'}</h3>
+                    {/if}
+                    {if ($row->event_type == 13)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-paw"></i></span>&nbsp;&nbsp;{_'Add puppy for sale'}</h3>
+                    {/if}
+                    {if ($row->event_type == 14)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-trophy"></i></span>&nbsp;&nbsp;{_'Add championchip'}</h3>
+                    {/if}
                     {if ($row->event_type == 15)}
-                        {var $row_video = DataModel::getVideoRow($row->event_id)}
-                        {include '../components/modal_video.latte' row=>$row_video}
-                        <a href="javascript:void(0)" onclick="ShowGaleryModalVideo({$row->event_id})" title="{$row->event_description}" style="float:left;margin-bottom: 10px;display:block;width:100%;height:230px;background-position: 50% 10%;background-size: cover;background-image: url({$row->event_image});">
-                            <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:40%;left:43%;color:white;"></i>
-                        </a>
-                    {else}
-                        <a href="{$row->event_image}" title="{$row->event_description}" data-gallery style="float:left;margin-bottom: 10px;display:block;width:100%;height:230px;background-position: 50% 10%;background-size: cover;background-image: url({$row->event_image});">
-                        </a>
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-video-camera"></i></span>&nbsp;&nbsp;{_'Add video'}</h3>
                     {/if}
+                    {if ($row->event_type == 16)}
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-heartbeat"></i></span>&nbsp;&nbsp;{_ 'Add health record'}</h3>
+                    {/if}
+                    <!-- Chybajuce eventy
+                    <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-venus-mars"></i></span>&nbsp;&nbsp;{_ 'Add mating'}</h3>
+                    <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="glyphicons glyphicons-user"></i></span>&nbsp;&nbsp;{_ 'Add coowner'}</h3>
+                    -->
                 </div>
-            {/if}
-            <div class="timeline-body col-lg-12 col-md-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
-                <p style="font-size:12px;"> {$row->event_description}</p>
-            </div>
-            {if ($active_profile_id>0)}
-                <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
-                    <a id="like-{$row->id}" href="javascript:void(0)" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount($row->id)}</span></a>
-                    <a id="unlike-{$row->id}" href="javascript:void(0)" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;" href="javascript:void(0)" id="ylikes-list-{$row->id}"><span class="badge" id="ylikes-count-{$row->id}" style="margin-left: 10px;background-color: #FDB42F;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount($row->id)}</span></a>
-                </div>
-            {else}
-                <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
-                    <a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount($row->id)}</span></a>
-                </div>
-            {/if}
-            
-            {control comments-$row->id}
-            
-            <script type="text/javascript">
-                    $("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
-                    {
-                        event.preventDefault();
-
-                        $("#ajax-spinner").show();
-
-                        $.ajax({
-                            url: "/?do=LikesList&timeline_id={$row->id}",
-                            dataType: 'html',
-                        }).done(function (data) {
-                            $("#modalTextInformation").html(data);
-                            $("#modalTitleInformation").html({_'Peoples who liked this'});
-                            $("#modalFlashInformation").modal("show");
-                            $("#ajax-spinner").hide();
-                        });
-                    });
-
-                    $("#like-{$row->id},#unlike-{$row->id}").on("click", function (event)
-                    {
-                        event.preventDefault();
-                        $.ajax({
-                            url: "/?do=Like&timeline_id={$row->id}",
-                            dataType: 'html',
-                        }).done(function (data) {
-                            $("#likes-count-{$row->id}").html(data);
-                            $("#ylikes-count-{$row->id}").html(data);
-                            $.ajax({
-                                url: "/?do=HasLiked&timeline_id={$row->id}",
-                                dataType: 'html',
-                            }).done(function (data) {
-                                if (data > 0)
-                                {
-                                    $("#like-{$row->id}").hide();
-                                    $("#likes-count-{$row->id}").hide();
-                                    $("#unlike-{$row->id}").show();
-                                    $("#ylikes-count-{$row->id}").show();
-                                }
-                                else
-                                {
-                                    $("#like-{$row->id}").show();
-                                    $("#likes-count-{$row->id}").show();
-                                    $("#unlike-{$row->id}").hide();
-                                    $("#ylikes-count-{$row->id}").hide();
-                                }
+                {if DataModel::getPermission($row->id,$logged_in_id,7)}
+                    <div class="dropdown" style="position:absolute;right:10px;">
+                        <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><span class="caret"></span></a>
+                        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="Share" style="min-width:50px;right:0;font-size: 12px;z-index:1;">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="?do=timelineRemove&id={$row->id}">{_'Remove from timeline'}</a></li>
+                        </ul>
+                        <script type="text/javascript">
+                            $("#timeline_remove_{$row->id}").click(function () {
+                                $.ajax({
+                                    url: '/?do=timelineRemove&id={$row->id}',
+                                    dataType: 'html',
+                                }).done(function (data) {
+                                    $.get(document.href);
+                                });
                             });
-                        });
-                    });
+                        </script>
+                    </div>
+                {/if}
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr style="margin-top: 10px;margin-bottom: 2px;">
+        <div class="col-lg-12 col-md-12 col-xs-12" style="padding-left:0px;margin-bottom: 5px;">
+            <span style="color:#C1C1C1"><i class="glyphicon glyphicon-time"></i>&nbsp;{$row->date|date:'%d.%m.%Y'}&nbsp;|&nbsp;{$row->date|date:'H:i'}</span>
+        </div>
+        {if (strlen($row->event_image)>1)}
+            <div class="col-lg-12 col-md-12 col-xs-12" style="padding-left: 0px;padding-right: 0px;">
+                {if ($row->event_type == 15)}
+                    {var $row_video = DataModel::getVideoRow($row->event_id)}
+                    {include '../components/modal_video.latte' row=>$row_video}
+                    <a href="javascript:void(0)" onclick="ShowGaleryModalVideo({$row->event_id})" title="{$row->event_description}" style="float:left;margin-bottom: 10px;display:block;width:100%;height:230px;background-position: 50% 10%;background-size: cover;background-image: url({$row->event_image});">
+                        <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:40%;left:43%;color:white;"></i>
+                    </a>
+                {else}
+                    <a href="{$row->event_image}" title="{$row->event_description}" data-gallery style="float:left;margin-bottom: 10px;display:block;width:100%;height:230px;background-position: 50% 10%;background-size: cover;background-image: url({$row->event_image});">
+                    </a>
+                {/if}
+            </div>
+        {/if}
+        <div class="timeline-body col-lg-12 col-md-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
+            <p style="font-size:12px;"> {$row->event_description}</p>
+        </div>
+        {if ($active_profile_id>0)}
+            <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
+                <a id="like-{$row->id}" href="javascript:void(0)" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount($row->id)}</span></a>
+                <a id="unlike-{$row->id}" href="javascript:void(0)" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;" href="javascript:void(0)" id="ylikes-list-{$row->id}"><span class="badge" id="ylikes-count-{$row->id}" style="margin-left: 10px;background-color: #FDB42F;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount($row->id)}</span></a>
+            </div>
+        {else}
+            <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
+                <a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount($row->id)}</span></a>
+            </div>
+        {/if}
 
+        <!--{ control comments-$row->id}-->
+
+        <script type="text/javascript">
+            $("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
+            {
+                event.preventDefault();
+
+                $("#ajax-spinner").show();
+
+                $.ajax({
+                    url: "/?do=LikesList&timeline_id={$row->id}",
+                    dataType: 'html',
+                }).done(function (data) {
+                    $("#modalTextInformation").html(data);
+                    $("#modalTitleInformation").html({_'Peoples who liked this'});
+                    $("#modalFlashInformation").modal("show");
+                    $("#ajax-spinner").hide();
+                });
+            });
+
+            $("#like-{$row->id},#unlike-{$row->id}").on("click", function (event)
+            {
+                event.preventDefault();
+                $.ajax({
+                    url: "/?do=Like&timeline_id={$row->id}",
+                    dataType: 'html',
+                }).done(function (data) {
+                    $("#likes-count-{$row->id}").html(data);
+                    $("#ylikes-count-{$row->id}").html(data);
                     $.ajax({
                         url: "/?do=HasLiked&timeline_id={$row->id}",
                         dataType: 'html',
@@ -192,91 +171,113 @@
                             $("#ylikes-count-{$row->id}").hide();
                         }
                     });
-            </script>
-            <script>
-                $(function () {
-                    $('[data-toggle="tooltip"]').tooltip()
-                })
-            </script>
-        </div>
-    </li>
-    <!-- Planned litter -->
-    <!--    <li>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-xs-12">
-                            <img class="user-block-thumb" src="{ $row->timeline_profile_image}" style="position:absolute;left:15px;top:0px;"/>
-                            <a href="">    
-                                <span class="notification-item-header text-uppercase" style="width:auto;margin-left:55px;font-family: 'Roboto Condensed', sans-serif;font-size: 15px !important;">{ $row->timeline_name}</span><br>
-                            </a>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-xs-12">
-                            <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-calendar"></i></span>&nbsp;&nbsp;Add planned litter</h3>
-                        </div>
-                        <div class="dropdown" style="position:absolute;right:10px;">
-                            <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><span class="caret"></span></a>
-                            <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="Share" style="min-width:50px;right:0;font-size: 12px;z-index:1;">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{_'Remove from timeline'}</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-                <hr style="margin-top: 10px;margin-bottom: 2px;">
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding-left:0px;margin-bottom: 5px;">
-                    <span style="color:#C1C1C1"><i class="glyphicon glyphicon-time"></i>&nbsp;{$row->date|date:'%d.%m.%Y'}&nbsp;|&nbsp;{$row->date|date:'H:i'}</span>
-                </div>
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding-left: 0px;padding-right: 0px;padding-top: 5px;">
-                    <div class="col-lg-6 col-md-6 col-xs-12">
-                        <a href="">
-                            <div class="list-item">
-                                <div class="dog-image-profile-thumb">
-                                </div>    
-                                <h3 class="text-uppercase"><i class="fa fa-mars" style="color:#0c9eea;"></i>&nbsp;&nbsp;Bronca la rosa de inca</h3>
-                                <hr style="margin-bottom: 10px;">
-                                <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;Dogo argentino</span>
-                                <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;Slovakia</span>
-                            </div>
+                });
+            });
+
+            $.ajax({
+                url: "/?do=HasLiked&timeline_id={$row->id}",
+                dataType: 'html',
+            }).done(function (data) {
+                if (data > 0)
+                {
+                    $("#like-{$row->id}").hide();
+                    $("#likes-count-{$row->id}").hide();
+                    $("#unlike-{$row->id}").show();
+                    $("#ylikes-count-{$row->id}").show();
+                }
+                else
+                {
+                    $("#like-{$row->id}").show();
+                    $("#likes-count-{$row->id}").show();
+                    $("#unlike-{$row->id}").hide();
+                    $("#ylikes-count-{$row->id}").hide();
+                }
+            });
+        </script>
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
+    </div>
+</li>
+<!-- Planned litter -->
+<!--    <li>
+        <div class="timeline-panel">
+            <div class="timeline-heading">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <img class="user-block-thumb" src="{ $row->timeline_profile_image}" style="position:absolute;left:15px;top:0px;"/>
+                        <a href="">    
+                            <span class="notification-item-header text-uppercase" style="width:auto;margin-left:55px;font-family: 'Roboto Condensed', sans-serif;font-size: 15px !important;">{ $row->timeline_name}</span><br>
                         </a>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12">
-                        <a href="">
-                            <div class="list-item">
-                                <div class="dog-image-profile-thumb">
-                                </div>    
-                                <h3 class="text-uppercase"><i class="fa fa-venus gender-bitch"></i>&nbsp;&nbsp;Bronca la rosa de inca</h3>
-                                <hr style="margin-bottom: 10px;">
-                                <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;Dogo argentino</span>
-                                <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;Slovakia</span>
-                            </div>
-                        </a>
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-calendar"></i></span>&nbsp;&nbsp;Add planned litter</h3>
                     </div>
-                </div>
-                <div class="timeline-body col-lg-12 col-md-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
-                    <p style="font-size:12px;">dfssdfsdfsdfsdfsdfsdfsdf</p>
-                </div>
-                <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
-                    <a n:href="#" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;"><span class="badge" style="margin-left: 10px;">0</span></a>
-                    <a n:href="#" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;"><span class="badge" style="margin-left: 10px;background-color: #FDB42F;">0</span></a>
-                </div>
-                <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
-                    <img class="user-block-thumb" src="img/dog1.jpg"/>
-                    <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">Viktorij Dogshow</a></span>
-                    <span class="notification-item-event-time">25.6.2014&nbsp;&nbsp;22:30</span>
-                    <span class="notification-item-event" style="color:black">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</span>
-                </div>
-                <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;">
-                    <input type="text" class="form-control font_size_13px" style="z-index: 0;" placeholder="{_ 'Write a comment'}...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default font_size_13px" type="button"><i class="fa fa-comment fa-1x"></i></button>
-                    </span>
+                    <div class="dropdown" style="position:absolute;right:10px;">
+                        <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><span class="caret"></span></a>
+                        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="Share" style="min-width:50px;right:0;font-size: 12px;z-index:1;">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{_'Remove from timeline'}</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </li>-->
-    <!--
-    -{ $row->id }
-    -->
+            <div class="clearfix"></div>
+            <hr style="margin-top: 10px;margin-bottom: 2px;">
+            <div class="col-lg-12 col-md-12 col-xs-12" style="padding-left:0px;margin-bottom: 5px;">
+                <span style="color:#C1C1C1"><i class="glyphicon glyphicon-time"></i>&nbsp;{$row->date|date:'%d.%m.%Y'}&nbsp;|&nbsp;{$row->date|date:'H:i'}</span>
+            </div>
+            <div class="col-lg-12 col-md-12 col-xs-12" style="padding-left: 0px;padding-right: 0px;padding-top: 5px;">
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <a href="">
+                        <div class="list-item">
+                            <div class="dog-image-profile-thumb">
+                            </div>    
+                            <h3 class="text-uppercase"><i class="fa fa-mars" style="color:#0c9eea;"></i>&nbsp;&nbsp;Bronca la rosa de inca</h3>
+                            <hr style="margin-bottom: 10px;">
+                            <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;Dogo argentino</span>
+                            <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;Slovakia</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <a href="">
+                        <div class="list-item">
+                            <div class="dog-image-profile-thumb">
+                            </div>    
+                            <h3 class="text-uppercase"><i class="fa fa-venus gender-bitch"></i>&nbsp;&nbsp;Bronca la rosa de inca</h3>
+                            <hr style="margin-bottom: 10px;">
+                            <span class="list-item-breed"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;Dogo argentino</span>
+                            <span class="list-item-location"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;Slovakia</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="timeline-body col-lg-12 col-md-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
+                <p style="font-size:12px;">dfssdfsdfsdfsdfsdfsdfsdf</p>
+            </div>
+            <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
+                <a n:href="#" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;"><span class="badge" style="margin-left: 10px;">0</span></a>
+                <a n:href="#" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;"><span class="badge" style="margin-left: 10px;background-color: #FDB42F;">0</span></a>
+            </div>
+            <div class="col-lg-12 col-md-12 col-xs-12" style="padding:5px 0px 5px 0px;border-top:#EDEBE4 1px solid;">
+                <img class="user-block-thumb" src="img/dog1.jpg"/>
+                <span class="notification-item-header text-uppercase"><a n:href="" style="color:#a5987f;">Viktorij Dogshow</a></span>
+                <span class="notification-item-event-time">25.6.2014&nbsp;&nbsp;22:30</span>
+                <span class="notification-item-event" style="color:black">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</span>
+            </div>
+            <div class="input-group" style="float:left;padding:10px;background-color: #EDEBE4;">
+                <input type="text" class="form-control font_size_13px" style="z-index: 0;" placeholder="{_ 'Write a comment'}...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default font_size_13px" type="button"><i class="fa fa-comment fa-1x"></i></button>
+                </span>
+            </div>
+        </div>
+    </li>-->
+<!--
+-{ $row->id }
+-->
 <script>
     $("body").on("submit", "form.ajax", function () {
         $(this).ajaxSubmit();
@@ -294,16 +295,15 @@
 </script>
 
 <script type="text/javascript">
-        {if ($row->event_type == 15)}
-            {var $row_video = DataModel::getVideoRow($row->event_id)}
-            window.ytPlayerList.push(
-                    {
-                        Id: 'ctl100_phContent_{$row_video->id}player',
-                        DivId: 'ctl100_phContent_div{$row_video->id}player',
-                        VideoId: {$row_video->youtube}
-                    }
-            );
-        {/if}
+    {if ($row->event_type == 15)}
+        {var $row_video = DataModel::getVideoRow($row->event_id)}
+    window.ytPlayerList.push(
+            {
+                Id: 'ctl100_phContent_{$row_video->id}player',
+                DivId: 'ctl100_phContent_div{$row_video->id}player',
+                VideoId: {$row_video->youtube}
+            }
+    );
+    {/if}
 </script>
-
 {/define}

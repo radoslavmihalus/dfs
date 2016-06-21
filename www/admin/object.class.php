@@ -1016,6 +1016,7 @@ class blueticket_objects {
 
     function generatePayments($form = NULL, $only_active = 0) {
         if ($form != NULL) {
+            //$payment = new blueticket_forms();
             $payment = $form->nested_table($this->getTranslatedText("Payments"), "id", "tbl_payments", "user_id");
             $payment->table_name("Payments");
             $payment->order_by('id', 'DESC');
@@ -1026,6 +1027,7 @@ class blueticket_objects {
             $payment->highlight_row('status', '>', 0, '#B4E274');
             $payment->highlight_row('status', '=', 0, '#FFD6D6');
             $payment->sum('amount,authorized');
+            $payment->button("https://www.dogforshow.com/?do=PM&transaction_id={user_id}&amount={amount}", "Invoice", 'glyphicon glyphicon-ok');
         } else {
             echo '<a href="?report=active_payments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Only active</a>';
             $payment = blueticket_forms::get_instance();
@@ -1041,6 +1043,7 @@ class blueticket_objects {
             $payment->highlight_row('status', '>', 0, '#B4E274');
             $payment->highlight_row('status', '=', 0, '#FFD6D6');
             $payment->sum('amount,authorized');
+            $payment->button("https://www.dogforshow.com/?do=PM&transaction_id={user_id}&amount={amount}", "Invoice", 'glyphicon glyphicon-ok');
             return $payment->render();
         }
     }
