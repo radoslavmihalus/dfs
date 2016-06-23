@@ -466,7 +466,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         return $control;
     }
-    
+
+    public function handleDeleteMessage($id) {
+        $this->database->table("tbl_messages_groups")->where("id=?", $id)->delete();
+
+        $this->redirect("this");
+    }
+
     protected function createComponentCtlMessage() {
         $control = new \Nette\Application\UI\Multiplier(function ($id) {
             $uid = $this->data_model->getUserIdByProfileId($id);
