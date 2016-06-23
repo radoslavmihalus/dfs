@@ -86,7 +86,8 @@
                         <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:40%;left:43%;color:white;"></i>
                     </a>
                 {else}
-                    <a href="{$row->event_image}" title="{$row->event_description}" data-gallery style="float:left;margin-bottom: 10px;display:block;width:100%;height:230px;background-position: 50% 10%;background-size: cover;background-image: url({$row->event_image});">
+                    <a href="{$row->event_image}" title="{$row->event_description}" data-gallery>
+                        <img src="{$row->event_image}" style="float:left;width:100%;margin-bottom: 10px;">
                     </a>
                 {/if}
             </div>
