@@ -68,7 +68,7 @@
                     <tr>
                         {if DataModel::haveDogProfile($plannedLitter->dog_name)}
                             {var $father=DataModel::getDogProfileByName($plannedLitter->dog_name)}
-                            <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i></span></td><td><a n:href="dog:dog_championschip_list id=>$father->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$plannedLitter->dog_name}</a></td>
+                            <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i></span></td><td><a n:href="dog:dog_profile_home id=>$father->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$plannedLitter->dog_name}</a></td>
                                 {else}
                             <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Father'}" style="text-transform: uppercase"><i class="fa fa-mars" style="margin-right: 10px;color:#777;"></i></span></td><td><span>{$plannedLitter->dog_name}</span></td>
                                 {/if}
@@ -76,7 +76,7 @@
                     <tr>
                         {if DataModel::haveDogProfile($plannedLitter->bitch_name)}
                             {var $mother=DataModel::getDogProfileByName($plannedLitter->bitch_name)}
-                            <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i></span></td><td><a n:href="dog:dog_championschip_list id=>$mother->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$plannedLitter->bitch_name}</a></td>
+                            <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i></span></td><td><a n:href="dog:dog_profile_home id=>$mother->id" style="text-transform:uppercase;cursor:pointer;color: #a5987f;font-weight:bold;">{$plannedLitter->bitch_name}</a></td>
                                 {else}
                             <td><span data-toggle="tooltip" data-placement='top' title="{_ 'Mother'}" style="text-transform: uppercase"><i class="fa fa-venus" style="margin-right: 10px;color:#777;"></i></span></td><td><span>{$plannedLitter->bitch_name}</span></td>
                                 {/if}
