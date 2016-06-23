@@ -2,7 +2,7 @@
 
 use Nette\Application\UI;
 
-class TopMenuControl extends UI\Control {
+class notification_item extends UI\Control {
 
     public $profile_id;
     public $logged_in_id;
@@ -23,7 +23,7 @@ class TopMenuControl extends UI\Control {
     }
 
     public function render() {
-        $this->template->setFile(__DIR__ . "/TopMenuControl.latte");
+        $this->template->setFile(__DIR__ . "/notification_item.latte");
         $this->template->setTranslator($this->translator);
         $this->template->logged_in_id = $this->logged_in_id;
         $this->template->notifyCount = $this->notifyCount;

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Presenters;
 
 use App\Model,
@@ -16,6 +15,7 @@ class userPresenter extends BasePresenter {
 //    }
 
     public $amt;
+    public $timeline_id;
 
     protected function startup() {
         parent::startup();
@@ -27,6 +27,25 @@ class userPresenter extends BasePresenter {
         } else {
             $this->redirect("LandingPage:default", array("lang" => $this->lang));
         }
+    }
+
+    public function renderUser_notification_list() {
+        $rows = $this->database->table("tbl_notify")->where("notify_user_id=?", $this->logged_in_id)->order("notify_datetime DESC")->fetchAll();
+
+        $this->template->notifications_list = $rows;
+
+        if ($this->timeline_id > 0)
+            $this->template->timeline_id = $this->timeline_id;
+        else
+            $this->template->timeline_id = 0;
+    }
+
+    public function handleShowTimeline($timeline_id) {
+        $this->timeline_id = $timeline_id;
+        $this->template->timeline_id = $timeline_id;
+
+        if ($this->isAjax())
+            $this->redrawControl("myTimelineEvent");
     }
 
     public function renderUser_create_profile_switcher() {
@@ -54,11 +73,6 @@ class userPresenter extends BasePresenter {
         }
     }
 
-    public function renderUser_notification_list() {
-        $rows = $this->database->table("tbl_notify")->where("notify_user_id=?", $this->logged_in_id)->order("notify_datetime DESC")->fetchAll();
-
-        $this->template->notifications_list = $rows;
-    }
 
     public function actionUser_premium() {
         try {

@@ -714,17 +714,19 @@ class DataModel {
             $notify_user_id = $row->user_id;
         }
 
-        $notify_rows = $this->database->query("SELECT DISTINCT user_id, profile_id FROM tbl_comments WHERE timeline_id = $timeline_id AND user_id != $notify_user_id AND type='comment'")->fetchAll();
+        $notify_rows = $this->database->query("SELECT DISTINCT user_id, profile_id FROM tbl_comments WHERE timeline_id = $timeline_id AND user_id != $notify_user_id")->fetchAll();
 
-        $notify = array();
-        $notify['notify_user_id'] = $notify_user_id;
-        $notify['notify_profile_id'] = $notify_profile_id;
-        $notify['user_id'] = $user_id;
-        $notify['profile_id'] = $profile_id;
-        $notify['timeline_id'] = $timeline_id;
-        $notify['comment'] = $comment;
-        $notify['type'] = "comment";
-        $this->database->table("tbl_notify")->insert($notify);
+        if ($user_id != $notify_user_id) {
+            $notify = array();
+            $notify['notify_user_id'] = $notify_user_id;
+            $notify['notify_profile_id'] = $notify_profile_id;
+            $notify['user_id'] = $user_id;
+            $notify['profile_id'] = $profile_id;
+            $notify['timeline_id'] = $timeline_id;
+            $notify['comment'] = $comment;
+            $notify['type'] = "comment";
+            $this->database->table("tbl_notify")->insert($notify);
+        }
 
         foreach ($notify_rows as $row) {
             $notify = array();

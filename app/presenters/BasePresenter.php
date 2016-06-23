@@ -455,14 +455,18 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     protected function createComponentComments() {
 
         $control = new \Nette\Application\UI\Multiplier(function ($id) {
-            $row = $this->database->table("tbl_timeline")->where("id=?", $id)->fetch();
-            $control = new \CommentsControl($row, $this->logged_in_profile_id, $this->logged_in_id, $this->profile_id, $this->data_model, $this->database);
-            return $control;
+            try {
+                $row = $this->database->table("tbl_timeline")->where("id=?", $id)->fetch();
+                $control = new \CommentsControl($row, $this->logged_in_profile_id, $this->logged_in_id, $this->profile_id, $this->data_model, $this->database);
+                return $control;
+            } catch (\Exception $ex) {
+                
+            }
         });
 
         return $control;
     }
-
+    
     protected function createComponentCtlMessage() {
         $control = new \Nette\Application\UI\Multiplier(function ($id) {
             $uid = $this->data_model->getUserIdByProfileId($id);
@@ -2380,4 +2384,5 @@ class DFSTranslator implements Nette\Localization\ITranslator {
     }
 
 }
+
 ?>

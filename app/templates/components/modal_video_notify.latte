@@ -1,0 +1,145 @@
+<script>
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.ytPlayerList = [];
+    window.players = [];
+</script>
+<div id="modalFlashVideoGallery{$row->id}" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="color: #c12e2a">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalTitle" style="font-weight:bold;font-size:15px;">{DataModel::getVideoDescription($row->id)}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid" style="padding:5px 0px 5px 0px">
+                    <!--                    <a data-dismiss="modal"><img src="{ DataModel::getPhotoImage($row->id)}" class="img-responsive" style="margin-left: auto;margin-right: auto;margin-bottom: 10px;"></a>-->
+                    <div id="ctl100_phContent_divplayer"></div>
+                    <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
+                        <a id="like-{$row->id}" href="javascript:void(0)" style="color:#777;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Like'}</span></a></a><a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{$row->id}"><span class="badge" id="likes-count-{$row->id}" style="margin-left: 10px;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount(0, $row->id)}</span></a>
+                        <a id="unlike-{$row->id}" href="javascript:void(0)" style="color:#FDB42F;text-decoration: none;"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{_'Unlike'}</span></a><a style="cursor:pointer;" href="javascript:void(0)" id="ylikes-list-{$row->id}"><span class="badge" id="ylikes-count-{$row->id}" style="margin-left: 10px;background-color: #FDB42F;" data-toggle="tooltip" data-placement='top' title="{_ 'Peoples who liked this'}">{DataModel::getTimelineLikesCount(0,$row->id)}</span></a>
+                        <!--<a style="cursor:pointer;" href="javascript:void(0)" id="likes-list-{ $row->id}"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;{ _'Like'}</span><span class="badge" id="likes-count-{ $row->id}" style="margin-left: 10px;">{ DataModel::getTimelineLikesCount(0,$row->id)}</span></a>-->
+                    </div>
+                    {control eventComments-$row->id}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{_ 'Close'}</button>
+                </div>
+                <script type="text/javascript">
+                    $("#likes-list-{$row->id}, #ylikes-list-{$row->id}").on("click", function (event)
+                    {
+                        event.preventDefault();
+
+                        $("#ajax-spinner").show();
+
+                        $.ajax({
+                            url: "/?do=LikesList&timeline_id=0&event_id={$row->id}",
+                            dataType: 'html',
+                        }).done(function (data) {
+                            $("#modalTextInformation").html(data);
+                            $("#modalTitleInformation").html({_'Peoples who liked this'});
+                            $("#modalFlashInformation").modal("show");
+                            $("#ajax-spinner").hide();
+                        });
+                    });
+
+                    $("#like-{$row->id},#unlike-{$row->id}").on("click", function (event)
+                    {
+                        event.preventDefault();
+                        $.ajax({
+                            url: "/?do=Like&timeline_id=0&event_id={$row->id}",
+                            dataType: 'html',
+                        }).done(function (data) {
+                            $("#likes-count-{$row->id}").html(data);
+                            $("#ylikes-count-{$row->id}").html(data);
+                            $.ajax({
+                                url: "/?do=HasLiked&timeline_id=0&event_id={$row->id}",
+                                dataType: 'html',
+                            }).done(function (data) {
+                                if (data > 0)
+                                {
+                                    $("#like-{$row->id}").hide();
+                                    $("#likes-count-{$row->id}").hide();
+                                    $("#unlike-{$row->id}").show();
+                                    $("#ylikes-count-{$row->id}").show();
+                                }
+                                else
+                                {
+                                    $("#like-{$row->id}").show();
+                                    $("#likes-count-{$row->id}").show();
+                                    $("#unlike-{$row->id}").hide();
+                                    $("#ylikes-count-{$row->id}").hide();
+                                }
+                            });
+                        });
+                    });
+                </script>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
+<script type="text/javascript">
+    {var $row_video = DataModel::getVideoRow($row->event_id)}
+    window.ytPlayerList.push(
+            {
+                Id: 'ctl100_phContent_player',
+                DivId: 'ctl100_phContent_divplayer',
+                VideoId: {$row_video->youtube}
+            }
+    );
+</script>
+<script type="text/javascript">
+    function onYouTubeIframeAPIReady() {
+        initVideos();
+    }
+
+    function initVideos() {
+        for (var i = 0; i < ytPlayerList.length; i++) {
+            var player = ytPlayerList[i];
+            var pl = new YT.Player(player.DivId, {
+                width: '100%',
+                videoId: player.VideoId,
+            });
+            window[player.Id] = pl;
+        }
+    }
+</script>
+<script type="text/javascript">
+    //playVideo
+    $("#modalFlashVideoGallery{$row->id}").on("shown.bs.modal", function ()
+    {
+        //alert("shown");
+        window.ctl100_phContent_player.playVideo();
+    });
+    //stopVideo
+    $("#modalFlashVideoGallery{$row->id}").on("hidden.bs.modal", function ()
+    {
+        window.ctl100_phContent_player.stopVideo();
+    });
+
+    $.ajax({
+        url: "/?do=HasLiked&timeline_id=0&event_id={$row->id}",
+        dataType: 'html',
+    }).done(function (data) {
+        if (data > 0)
+        {
+            $("#like-{$row->id}").hide();
+            $("#likes-count-{$row->id}").hide();
+            $("#unlike-{$row->id}").show();
+            $("#ylikes-count-{$row->id}").show();
+        }
+        else
+        {
+            $("#like-{$row->id}").show();
+            $("#likes-count-{$row->id}").show();
+            $("#unlike-{$row->id}").hide();
+            $("#ylikes-count-{$row->id}").hide();
+        }
+    });
+
+</script>
