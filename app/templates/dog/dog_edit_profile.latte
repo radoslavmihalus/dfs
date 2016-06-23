@@ -4,6 +4,7 @@
 {includeblock '../components/dropdown_BreedList_control.latte'}
 {includeblock '../components/textarea_control.latte'}
 {includeblock '../components/dropdown_DatePicker_control.latte'}
+{includeblock '../components/dropdown_Profile_control.latte'}
 {includeblock '../components/dropdown_CountryList_control.latte'}
 {includeblock '../components/textbox_control.latte'}
 {includeblock '../components/radio_DogGender_control.latte'}
@@ -16,6 +17,7 @@
         <span class="form-secondary-description text-uppercase"><i class="fa fa-long-arrow-down"></i>&nbsp;&nbsp;{_ 'Basic informations about your dog'}</span>
         <hr>
         {form formEditDogProfile}
+            {include dropdown_Profile_control, description => "Profile", placeholder => "Please select", id => "ddlProfile", name => "ddlProfile", tooltip => "Profile", _form => $_form}
             {include radio_DogGender_control, description => "Gender", placeholder => "Gender", id => "radGender", name => "radGender", tooltip => "Select the dog’s gender", _form => $_form}
             <!--{ include checkbox_DogMating_control, description => "Offer your dog for mating", placeholder => "Offer your dog for mating", id => "chckMating", name => "chckMating", tooltip => "This option can by selected only for a male dog. After checking this option, your dog will be automatically also in the list of dogs for mating", _form => $_form}-->
             {include dropdown_BreedList_control, onlyOne=>true, description => "Select breed", placeholder => "Please select", id => "ddlBreedList", name => "ddlBreedList", tooltip => "Choose a breed from the list.", _form => $_form}

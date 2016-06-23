@@ -1,104 +1,103 @@
 {define #image_UploadPicture_control}
-<link href="www/js/fapi/statics/main.css" rel="stylesheet" type="text/css"/>
 <div class="form-group">
     <span style="font-size: 13px;display:block;margin-bottom: 5px;font-weight:bold;"><span id="req-span-{$id}" style="color:red"></span>{_$description} <i data-toggle="popover" data-trigger="hover" title="{_$description}" data-content="{_$tooltip}" class="fa fa-question-circle tooltip_brown fa-1x" style="color:#83765E;cursor:pointer;"></i></span>
-    <!--<div id="old_image{$name}" class="old_image{$name}" style="width:240px; height: 180px;margin-bottom: 10px; background-repeat:no-repeat;background-size:cover;"><button type="button" id="delete{$name}" class="btn btn-danger btn-sm" style="position: relative; left: 203px;top: 5px;"><i class="fa fa-trash"></i></button></div>-->
+    <div id="old_image{$name}" style="width:240px; height: 180px;margin-bottom: 10px; background-repeat:no-repeat;background-size:cover;"><button type="button" id="delete{$name}" class="btn btn-danger btn-sm" style="position: relative; left: 203px;top: 5px;"><i class="fa fa-trash"></i></button></div>
     <!-- imgSelect Container -->
-    <input type="hidden" id="{$name}" n:name="{$name}" />
-    {if ($needed_crop==1)}
-        <div id="userpic" class="userpic">
-            <div class="js-preview userpic__preview"></div>
-            <div class="jbtn jbtn-success js-fileapi-wrapper">
-                <div class="js-browse">
-                    <span class="jbtn-txt">Choose</span>
-                    <input type="file" name="filedata"/>
-                </div>
-                <div class="js-upload" style="display: none;">
-                    <div class="progress progress-success"><div class="js-progress bar"></div></div>
-                    <span class="jbtn-txt">Uploading</span>
-                </div>
-            </div>
-        </div>
-    {/if}
-</div>
+    <div id="imgselect_container{$name}">
+        <input type="hidden" id="{$name}" n:name="{$name}" />
+        <!-- Upload & Webcam buttons -->
+        <div class="btn btn-default btn-sm imgs-upload"><i class="fa fa-upload"></i>&nbsp;&nbsp;{_ 'Upload'}</div> <!-- .imgs-upload -->
+        <button type="button" class="btn btn-default btn-sm imgs-webcam"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Take picture'}</button> <!-- .imgs-webcam -->
 
-<div id="popup" class="popup" style="display: none;">
-    <div class="popup__body"><div class="js-img"></div></div>
-    <div style="margin: 0 0 5px; text-align: center;">
-        <div class="js-upload jbtn jbtn_browse jbtn_browse_small">Upload</div>
+        {if ($needed_crop==1)}
+            <!-- Webcam & Crop containers -->
+            <div class="imgs-webcam-container"></div> <!-- .imgs-webcam-container -->
+            <div class="imgs-crop-container"></div> <!-- .imgs-crop-container -->
+
+            <!-- Action buttons -->
+            <button type="button" class="btn btn-danger btn-sm imgs-save">{_'Save Image'}</button> <!-- .imgs-save -->
+            <button type="button" class="btn btn-danger btn-sm imgs-newsnap">{_'New Snapshot'}</button> <!-- .imgs-newsnap -->
+            <button type="button" class="btn btn-danger btn-sm imgs-capture">{_'Capture'}</button> <!-- .imgs-capture -->
+            <button type="button" class="btn btn-default btn-sm imgs-cancel">{_'Cancel'}</button> <!-- .imgs-cancel -->
+        {/if}
+        <div class="imgs-alert alert" style="margin-top: 10px;font-size:13px;"></div> <!-- .imgs-alert -->
     </div>
 </div>
 
-<script type="text/javascript">
-    var FileAPI = {
-        debug: true
-        , media: true
-        , staticPath: 'www/js/fapi/FileAPI/'
-    };
-</script>
-
-<link href="www/js/fapi/jcrop/jquery.Jcrop.min.css" rel="stylesheet" type="text/css"/>
-<script src="www/js/fapi/FileAPI/FileAPI.min.js"></script>
-<script src="www/js/fapi/FileAPI/FileAPI.exif.js"></script>
-<script src="www/js/fapi/jquery.fileapi.js"></script>
-<script src="www/js/fapi/jcrop/jquery.Jcrop.min.js"></script>
-<script src="www/js/fapi/statics/jquery.modal.js"></script>
-
-<script type="text/javascript">
-    $('#userpic').fileapi({
-        url: 'http://www.dogshow.com/www/js/fileapi/server/ctrl.php',
-        accept: 'image/*',
-        imageSize: {
-            minWidth: 200, minHeight: 200
-        },
-        elements: {
-            active: {
-                show: '.js-upload', hide: '.js-browse'
-            },
-            preview: {
-                el: '.js-preview',
-                width: 200,
-                height: 200
-            },
-            progress: '.js-progress'
-        },
-        onSelect: function (evt, ui) {
-            var file = ui.files[0];
-
-            if (!FileAPI.support.transform) {
-                alert('Your browser does not support Flash :(');
-            }
-            else if (file) {
-                $('#popup').jmodal({
-                    closeOnEsc: true,
-                    closeOnOverlayClick: false,
-                    onOpen: function (overlay) {
-                        $(overlay).on('click', '.js-upload', function () {
-                            $.jmodal().close();
-                            $('#userpic').fileapi('upload');
-                        });
-
-                        $('.js-img', overlay).cropper({
-                            file: file,
-                            bgColor: '#fff',
-                            maxSize: [$(window).width() - 100, $(window).height() - 100],
-                            minSize: [200, 200],
-                            selection: '90%',
-                            onSelect: function (coords) {
-                                $('#userpic').fileapi('crop', file, coords);
-                            }
-                        });
-                    }
-                }).open();
-            }
-        }
-    });
-
-</script>
 <script>
     $(function () {
-        $('[data-toggle="popover"]').popover()
-    })
+    $('[data-toggle="popover"]').popover()
+            })
 </script>
+<script>
+            new ImgSelect($('#imgselect_container' + {$name}), {
+    {if ($needed_crop==1)}
+            cropComplete: function (image) {
+            $("#" + {$name}).val("uploads/" + image.name);
+                    str = $("#" + {$name}).val();
+                    if (str == "")
+            {
+            $('#old_image' + {$name}).hide();
+            }
+            else
+            {
+            $('#old_image' + {$name}).show();
+            }
 
+            url = "url(" + str + ")";
+                    $('#old_image' + {$name}).css("background-image", url);
+            },
+                    crop: {
+                    aspectRatio: {$aspect_x} / {$aspect_y},
+                            setSelect: [0, 0, {$aspect_x} * 15, {$aspect_y} * 15]
+                    }
+    {else}
+            uploadComplete: function (image) {
+            $("#" + {$name}).val("uploads/" + image.name);
+                    str = $("#" + {$name}).val();
+                    if (str == "")
+            {
+            $('#old_image' + {$name}).hide();
+            }
+            else
+            {
+            $('#old_image' + {$name}).show();
+            }
+
+            url = "url(" + str + ")";
+                    $('#old_image' + {$name}).css("background-image", url);
+            }
+    {/if}
+            });
+            str = $("#" + {$name}).val();
+            url = "url(" + str + ")";
+            if (str == "")
+    {
+    $('#old_image' + {$name}).hide();
+    }
+    else
+    {
+    $('#old_image' + {$name}).show();
+    }
+
+    $('#old_image' + {$name}).css("background-image", url);
+            $("#delete" + {$name}).click(function () {
+    $("#" + {$name}).val("");
+            str = $("#" + {$name}).val();
+            if (str == "")
+    {
+    $('#old_image' + {$name}).hide();
+    }
+    else
+    {
+    $('#old_image' + {$name}).show();
+    }
+
+    url = "url(" + str + ")";
+            $('#old_image' + {$name}).css("background-image", url);
+    });
+            if ($("#" + {$id}).attr('required')) {
+    $("#req-span-" + {$id}).html("*");
+    }
+</script>
 {/define}

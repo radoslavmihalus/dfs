@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Presenters;
 
 use App\Model,
@@ -743,6 +742,24 @@ class dogPresenter extends BasePresenter {
             $lang = "en";
         }
 
+        $profiles = array();
+
+        $cnt = $this->database->table("tbl_userowner")->where("user_id=?", $this->logged_in_id)->count();
+
+        if ($cnt > 0) {
+            $result = $this->database->table("tbl_userowner")->where("user_id=?", $this->logged_in_id)->fetch();
+
+            $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+            $profiles[$result->id] = $this->translate("Owner") . " - " . $user->name . " " . $user->surname;
+        }
+
+        $cnt = $this->database->table("tbl_userkennel")->where("user_id=?", $this->logged_in_id)->count();
+
+        if ($cnt > 0) {
+            $result = $this->database->table("tbl_userkennel")->where("user_id=?", $this->logged_in_id)->fetch();
+            $profiles[$result->id] = $this->translate("Kennel") . " - " . $result->kennel_name;
+        }
+
         $result = $this->database->table("lk_countries")->order("CountryName_$lang");
         $countries = array();
 
@@ -767,6 +784,7 @@ class dogPresenter extends BasePresenter {
         $form->addText("txtDogHeight");
         $form->addText("txtDogWeight");
         $form->addSelect("ddlCountry")->setPrompt($this->translate("Please select"))->setItems($countries)->setRequired($this->translate("Required field"));
+        $form->addSelect("ddlProfile")->setItems($profiles)->setValue($this->logged_in_profile_id)->setRequired($this->translate("Required field"));
         $form->addText("ddlDogFather")->setRequired($this->translate("Required field"));
         $form->addText("ddlDogMother")->setRequired($this->translate("Required field"));
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmCreateDogProfileSucceeded');
@@ -789,6 +807,24 @@ class dogPresenter extends BasePresenter {
                 $lang = strtolower($section->lang);
         } catch (\Exception $ex) {
             $lang = "en";
+        }
+
+        $profiles = array();
+
+        $cnt = $this->database->table("tbl_userowner")->where("user_id=?", $this->logged_in_id)->count();
+
+        if ($cnt > 0) {
+            $result = $this->database->table("tbl_userowner")->where("user_id=?", $this->logged_in_id)->fetch();
+
+            $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+            $profiles[$result->id] = $this->translate("Owner") . " - " . $user->name . " " . $user->surname;
+        }
+
+        $cnt = $this->database->table("tbl_userkennel")->where("user_id=?", $this->logged_in_id)->count();
+
+        if ($cnt > 0) {
+            $result = $this->database->table("tbl_userkennel")->where("user_id=?", $this->logged_in_id)->fetch();
+            $profiles[$result->id] = $this->translate("Kennel") . " - " . $result->kennel_name;
         }
 
         $result = $this->database->table("lk_countries")->order("CountryName_$lang");
@@ -818,6 +854,7 @@ class dogPresenter extends BasePresenter {
         $form->addText("txtDogHeight")->setValue($profile->height);
         $form->addText("txtDogWeight")->setValue($profile->weight);
         $form->addSelect("ddlCountry")->setItems($countries)->setPrompt($this->translate("Please select"))->setValue($profile->country)->setRequired();
+        $form->addSelect("ddlProfile")->setItems($profiles)->setValue($profile->profile_id)->setRequired($this->translate("Required field"));
         $form->addText("ddlDogFather")->setValue($profile->dog_father);
         $form->addText("ddlDogMother")->setValue($profile->dog_mother);
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfileSucceeded');
@@ -1657,7 +1694,7 @@ class dogPresenter extends BasePresenter {
 
             $values = $this->data_model->assignFields($values, "frmCreateDogProfile");
             $values['user_id'] = $this->logged_in_id;
-            $values['profile_id'] = $this->profile_id;
+            //$values['profile_id'] = $this->profile_id;
 
             $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
             $values['premium_expiry_date'] = $user->premium_expiry_date;
@@ -1698,7 +1735,7 @@ class dogPresenter extends BasePresenter {
 
             $values = $this->data_model->assignFields($values, "frmCreateDogProfile");
             $values['user_id'] = $this->logged_in_id;
-            $values['profile_id'] = $this->profile_id;
+            //$values['profile_id'] = $this->profile_id;
 
             $this->database->table("tbl_dogs")->where("id=?", $this->dog_id)->update($values);
 
