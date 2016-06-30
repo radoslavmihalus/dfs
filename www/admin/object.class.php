@@ -1099,7 +1099,7 @@ class blueticket_objects {
         $form->default_tab("Global routing");
         $form->order_by('presenter, action, lang', 'ASC');
         $form->columns("presenter, action, title, description, image_url, lang");
-        $form->no_editor('presenter, action, title, description, image_url, lang');
+        $form->no_editor("presenter, action, title, site_title, keywords, description, image_url, lang");
         return $form->render();
     }
 
