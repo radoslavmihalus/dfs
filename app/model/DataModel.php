@@ -560,9 +560,13 @@ class DataModel {
 
 //counter functions
 
+    static function getRegistrationsCount() {
+        $database = $GLOBALS['database'];
+
+        return $database->table("tbl_user")->where("active=?", 1)->count();
+    }
+
     static function getKennelsCount() {
-//        require_once 'www/inc/config_ajax.php';
-//        $database = getContext();
         $database = $GLOBALS['database'];
 
         return $database->table("tbl_userkennel")->count();
