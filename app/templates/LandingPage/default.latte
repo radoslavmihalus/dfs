@@ -230,29 +230,144 @@
                 </div>
             </div>
         </nav>
-        <!-- DOGFORSHOW landing jumbotron -->
-        <div id="join">
-            <div class="jumbotron landing_header" style="background:url('www/img/header1.jpg')no-repeat center;background-size:cover;height:730px;">
+        <!-- DOGFORSHOW landing header section -->
+        <div id="main">
+            <div class="jumbotron landing_header" style="background:url('www/img/header1.jpg')no-repeat center;background-size:cover;min-height:730px;margin-bottom: 0px;">
                 <div class="container" >
                     <div class="row">
-                        <div class="col-md-12">
-
-                        </div>
-                        <!--                        <div class="col-md-6">
-                                                    <img class="img img-responsive text-center" src="www/img/dfshead.jpg" style="max-height:450px;margin:0 auto;" alt="DFS_head_info">
-                                                </div>-->
                         <div class="col-md-6 col-md-offset-6 container">
-                            <p class="text-center text-uppercase landing_header_slogan"><strong>"{_ 'We support breeding of happy and healthy dogs with pedigree'}"</strong></p>
-                            {include '../registration/registration.latte'}
+                            <p class="text-center text-uppercase landing_header_slogan"><strong><i class="fa fa-paw"></i>&nbsp;&nbsp;{_ 'We support breeding of happy and healthy dogs with pedigree'}</strong></p>
+                            <div class="col-md-12" style="margin-bottom:5px;padding: 0px;">
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <i class="section_heading_icon_border fa fa-user-plus"></i>
+                                </div>
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <span class="info_heading">{_ 'Possibility to create your own kennel, owners and handlers profile'}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-bottom:5px;padding: 0px;">
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <i class="section_heading_icon_border glyphicons glyphicons-dog"></i>
+                                </div>
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <span class="info_heading">{_ 'Create unique profiles of your dogs with possibility to offer your dog at stud'}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-bottom:5px;padding: 0px;">
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <i class="section_heading_icon_border fa fa-trophy drop"></i>
+                                </div>
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <span class="info_heading">{_ 'Add dogshow successes, awards, titles, working exams, health informations, photos and videos'}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-bottom:5px;padding: 0px;">
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <i class="section_heading_icon_border fa fa-calendar"></i>
+                                </div>
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <span class="info_heading">{_ 'Inform about planned litters and offer puppies for sale'}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-bottom:5px;padding: 0px;">
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <i class="section_heading_icon_border fa fa-users"></i>
+                                </div>
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <span class="info_heading">{_ 'Create friendships and communicate with each other'}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-bottom:5px;padding: 0px;">
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <i class="section_heading_icon_border fa fa-envelope"></i>
+                                </div>
+                                <div style="display:table-cell;vertical-align: middle;">
+                                    <span class="info_heading">{_ 'Take opportunity to be contacted by potential buyers from all over the world'}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="padding: 0px;">
+                                <a id="joinreg" href="javascript:void(0)" class="btn btn-landing-order btn-block"><i style="color:#FFD8A2;line-height: 50px;" class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_'Registration'}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <a id="whowearemouse" href="javascript:void(0)">
-                    <div class="mouse"><div class="wheel"></div></div>
-                </a>
-                <div style="position: relative;top: 50px;">
-                    <div class="mouse-placeholder">
-                        <span class="unu"></span>
+            </div>
+        </div>
+        <!-- Join section -->
+        <div id="join">
+            <div class="container-fluid brown" style="padding:30px 0px 30px 0px;">
+                <div class="container">
+                    <div class="col-md-12">
+                        <h2 class="heading text-center text-uppercase" style="font-size:25px !important;"><strong><i class="fa fa-globe"></i>&nbsp;&nbsp;{_ 'Present internationally on the right place'}</strong></h2>
+                        <p class="secondary_heading" style="margin-bottom:20px;">{_ 'International social network dedicated to owners of dogs with pedigree, kennels and handlers, which help them to present themselves, communicate with each other and motivate each other. Forget about the classic advertising portals and join to the fast growing community from all over the world.'}</p>
+                    </div>
+                    <div class="col-md-6">
+                        {include '../registration/registration.latte'}
+                    </div>
+                    <div class="col-md-6" style="min-height:450px;">
+                        <div id="myCarousel" class="carousel slide" data-interval="10000" data-ride="carousel">
+                            <!-- Wrapper for carousel items -->
+                            <div class="carousel-inner">
+                                <div class="active item">
+                                    <div class="col-md-12">
+                                        <p class="text-center">
+                                            <img src="www/img/referer.jpg" class="img-circle" alt="Fred Lanting" style="height:130px;border:#d0c2a5 4px solid;"/>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h3 class="carousel_heading text-center">Fred Lanting</h3>
+                                        <p class="carousel_secondary_heading text-center"><i class="fa fa-user"></i>&nbsp;&nbsp;{_'Respected breeder, judge, writer'}</p>
+                                        <p class="carousel_description">"&nbsp;{_'I am very impressed with the quality of what I have seen so far on the DOGFORSHOW. I wish for website to have much circulation, as I am sure that it will benefit people, whether dog owners or others.'}&nbsp;"</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="col-md-12">
+                                        <p class="text-center">
+                                            <img src="www/img/referer1.jpg" class="img-circle" style="height:130px;border:#d0c2a5 4px solid;"/>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h3 class="carousel_heading text-center">Andrax Gold</h3>
+                                        <p class="carousel_secondary_heading text-center"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Kennel'}</p>
+                                        <p class="carousel_description">"&nbsp;{_'Jednoduchosť, dostupnosť, prehľadnosť a krásna grafika portálu ma oslovila a pridala som na ňu svoju chovateľskú stanicu. Jej celkový dosah a návštevnosť na webe sú výbornou prezentáciou úspešných jedincov a vynikajúcou podporou pre skutočných chovateľov.'}&nbsp;"</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="col-md-12">
+                                        <p class="text-center">
+                                            <img src="www/img/referer2.jpg" class="img-circle" style="height:130px;border:#d0c2a5 4px solid;"/>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h3 class="carousel_heading text-center">Veronika Olešovská</h3>
+                                        <p class="carousel_secondary_heading text-center"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_'Handler'}</p>
+                                        <p class="carousel_description">"&nbsp;{_'Myslím že je to skvelý nápad vytvoriť rozsiahlu databázu chovateľov, ich chovných staníc, krycích psov a handlerov. Držím palce aby sa Vaša databáza aj naďalej rozrastala a aby o nej vedeli ľudia z celého sveta!'}&nbsp;"</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="col-md-12">
+                                        <p class="text-center">
+                                            <img src="www/img/referer3.jpg" class="img-circle" style="height:130px;border:#d0c2a5 4px solid;"/>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h3 class="carousel_heading text-center">Gripp's crowd</h3>
+                                        <p class="carousel_secondary_heading text-center"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Kennel'}</p>
+                                        <p class="carousel_description">"&nbsp;{_'Pekná a prehľadná stránka, user friendly s veľmi prijemným vizuálom. Teším sa z nej, pomôže mi mať prehľad v mojich absolvovaných vystavách ako aj odreprezentovať moje psy a chovnú stanicu.'}&nbsp;"</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="text-align:center;padding-top: 15px;">
+                                <!-- Carousel indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                                </ol>
+                            </div>
+                            <!-- Carousel controls -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -262,7 +377,7 @@
             <div class="container">
                 <div class="row">
                     <h1 class="heading text-center text-uppercase" style="font-size:40px !important;"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;<strong>DOGFORSHOW</strong></h1>
-                    <p class="secondary_heading text-center" style="margin-bottom:20px;">{_ 'International social network dedicated to owners of dogs with pedigree, kennels and handlers, which help them to present themselves, communicate with each other and motivate each other. Forget about the classic advertising portals and join to the fast growing community from all over the world.'}</p>
+                    
                 </div>
                 <div class="row">
                     <div class="col-md-3 community_link form-group">
@@ -330,99 +445,6 @@
                             <p class="text-center counter_description">{_ 'Puppies for sale'}</p>
                         </div>
                     </div>
-                    <!--                    <div class="row" style="margin-top:15px;">
-                                            <div class="col-md-12" id="div_with_map">
-                                                 google geo chart 
-                                                <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['geochart']}]}"></script>
-                                                <div id="regions_div" style="width:100%"></div>
-                                                <script type="text/javascript">
-                                                    google.setOnLoadCallback(drawRegionsMap);
-                    
-                                                    function drawRegionsMap() {
-                    
-                                                        var data = google.visualization.arrayToDataTable([
-                                                            ['Country', 'Name'],
-                                                            ['Czech Republic', 2568],
-                                                            ['Slovakia', 2568],
-                                                            ['Serbia', 2568],
-                                                            ['United States', 2568],
-                                                            ['Lithuania', 2568],
-                                                            ['Hungary', 2568],
-                                                            ['Poland', 2568],
-                                                            ['Romania', 2568],
-                                                            ['Italy', 2568],
-                                                            ['United Kingdom', 2568],
-                                                            ['Germany', 2568],
-                                                            ['Austria', 2568],
-                                                            ['Kosovo', 2568],
-                                                            ['Russia', 2568],
-                                                            ['Bulgaria', 2568],
-                                                            ['France', 2568],
-                                                            ['Croatia', 2568],
-                                                            ['Ukraine', 2568],
-                                                            ['Portugal', 2568],
-                                                            ['Finland', 2568],
-                                                            ['Spain', 2568],
-                                                            ['Japan', 2568],
-                                                            ['Australia', 2568],
-                                                            ['Latvia', 2568],
-                                                            ['Slovenia', 2568],
-                                                            ['Denmark', 2568],
-                                                            ['Sweden', 2568],
-                                                            ['Philippines', 2568],
-                                                            ['Greece', 2568],
-                                                            ['Netherland', 2568],
-                                                            ['Canada', 2568],
-                                                            ['Norway', 2568],
-                                                            ['Bosnia & Herzegovina', 2568],
-                                                            ['China', 2568],
-                                                            ['Brazil', 2568],
-                                                            ['Belgium', 2568],
-                                                            ['Ireland', 2568],
-                                                            ['Montenegro', 2568],
-                                                            ['Switzerland', 2568],
-                                                            ['Estonia', 2568],
-                                                            ['India', 2568],
-                                                            ['South Korea', 2568],
-                                                            ['Argentina', 2568],
-                                                            ['Indonesia', 2568],
-                                                            ['Thailand', 2568],
-                                                            ['Malta', 2568],
-                                                            ['Mexico', 2568],
-                                                            ['South Africa', 2568],
-                                                            ['New Zealand', 2568]
-                                                        ]);
-                    
-                                                        var options = {
-                                                            legend: 'none',
-                                                            colorAxis: {
-                                                                colors: ['#fff', 'black', '#fff']
-                                                            },
-                                                            enableRegionInteractivity: 0,
-                                                            backgroundColor: 'transparent',
-                                                            datalessRegionColor: 'transparent',
-                                                            defaultColor: '#fff'
-                                                        };
-                    
-                                                        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-                    
-                                                        chart.draw(data, options);
-                                                    }
-                    
-                                                    /*                                window.onresize = function () {
-                                                     var mywidth;
-                                                     mywidth = $(window).width() - 60;
-                                                     
-                                                     $("#region_div").html(" ");
-                                                     
-                                                     $("#region_div").height("auto");
-                                                     $("#region_div").width(mywidth);
-                                                     $("#region_div").html(" ");
-                                                     drawRegionsMap();
-                                                     };*/
-                                                </script>
-                                            </div>
-                                        </div>-->
                 </div>
             </div>
         </div>
@@ -430,101 +452,13 @@
         <div id="about">
             <div class="container">
                 <div class="row">
-                    <h2 class="heading text-center text-uppercase"><strong><i class="fa fa-globe"></i>&nbsp;&nbsp;{_ 'Present internationally on the right place'}</strong></h2>
+                    
                 </div>
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <p class="text-center block "><i class="section_heading_icon_border fa fa-user-plus"></i></p>
-                        <h5 class="section_heading_h5 text-center text-uppercase">{_ 'Possibility to create your own kennel, owners and handlers profile'}</h5>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="text-center block "><i class="section_heading_icon_border glyphicons glyphicons-dog"></i></p>
-                        <h5 class="section_heading_h5 text-center text-uppercase">{_ 'Create unique profiles of your dogs with possibility to offer your dog at stud'}</h5>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="text-center block "><i class="section_heading_icon_border fa fa-trophy drop"></i></p>
-                        <h5 class="section_heading_h5 text-center text-uppercase">{_ 'Add dogshow successes, awards, titles, working exams, health informations, photos and videos'}</h5>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="text-center block "><i class="section_heading_icon_border fa fa-calendar"></i></p>
-                        <h5 class="section_heading_h5 text-center text-uppercase">{_ 'Inform about planned litters and offer puppies for sale'}</h5>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="text-center block "><i class="section_heading_icon_border fa fa-users"></i></p>
-                        <h5 class="section_heading_h5 text-center text-uppercase">{_ 'Create friendships and communicate with each other'}</h5>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="text-center block "><i class="section_heading_icon_border fa fa-envelope"></i></p>
-                        <h5 class="section_heading_h5 text-center text-uppercase">{_ 'Take opportunity to be contacted by potential buyers from all over the world'}</h5>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-12">
-                        <div id="myCarousel" class="carousel slide" data-interval="10000" data-ride="carousel">
-                            <!-- Wrapper for carousel items -->
-                            <div class="carousel-inner">
-                                <div class="active item">
-                                    <div class="col-md-12">
-                                        <p class="text-center">
-                                            <img src="www/img/referer.jpg" class="img-circle" alt="Fred Lanting" style="height:180px;border:#a5987f 4px solid;"/>
-                                        </p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <h3 class="carousel_heading text-center">Fred Lanting</h3>
-                                        <p class="carousel_secondary_heading text-center"><i class="fa fa-user"></i>&nbsp;&nbsp;{_'Respected breeder, judge, writer'}</p>
-                                        <p class="carousel_description"><i class="fa fa-quote-left"></i>&nbsp;{_'I am very impressed with the quality of what I have seen so far on the DOGFORSHOW. I wish for website to have much circulation, as I am sure that it will benefit people, whether dog owners or others.'}&nbsp;<i class="fa fa-quote-right"></i></p>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="col-md-12">
-                                        <p class="text-center">
-                                            <img src="www/img/referer1.jpg" class="img-circle" style="height:180px;border:#a5987f 4px solid;"/>
-                                        </p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <h3 class="carousel_heading text-center">Andrax Gold</h3>
-                                        <p class="carousel_secondary_heading text-center"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Kennel'}</p>
-                                        <p class="carousel_description"><i class="fa fa-quote-left"></i>&nbsp;{_'Jednoduchosť, dostupnosť, prehľadnosť a krásna grafika portálu ma oslovila a pridala som na ňu svoju chovateľskú stanicu. Jej celkový dosah a návštevnosť na webe sú výbornou prezentáciou úspešných jedincov a vynikajúcou podporou pre skutočných chovateľov.'}&nbsp;<i class="fa fa-quote-right"></i></p>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="col-md-12">
-                                        <p class="text-center">
-                                            <img src="www/img/referer2.jpg" class="img-circle" style="height:180px;border:#a5987f 4px solid;"/>
-                                        </p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <h3 class="carousel_heading text-center">Veronika Olešovská</h3>
-                                        <p class="carousel_secondary_heading text-center"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_'Handler'}</p>
-                                        <p class="carousel_description"><i class="fa fa-quote-left"></i>&nbsp;{_'Myslím že je to skvelý nápad vytvoriť rozsiahlu databázu chovateľov, ich chovných staníc, krycích psov a handlerov. Držím palce aby sa Vaša databáza aj naďalej rozrastala a aby o nej vedeli ľudia z celého sveta!'}&nbsp;<i class="fa fa-quote-right"></i></p>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="col-md-12">
-                                        <p class="text-center">
-                                            <img src="www/img/referer3.jpg" class="img-circle" style="height:180px;border:#a5987f 4px solid;"/>
-                                        </p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <h3 class="carousel_heading text-center">Gripp's crowd</h3>
-                                        <p class="carousel_secondary_heading text-center"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Kennel'}</p>
-                                        <p class="carousel_description"><i class="fa fa-quote-left"></i>&nbsp;{_'Pekná a prehľadná stránka, user friendly s veľmi prijemným vizuálom. Teším sa z nej, pomôže mi mať prehľad v mojich absolvovaných vystavách ako aj odreprezentovať moje psy a chovnú stanicu.'}&nbsp;<i class="fa fa-quote-right"></i></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12" style="text-align:center;padding-top: 15px;">
-                                <!-- Carousel indicators -->
-                                <ol class="carousel-indicators">
-                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                                </ol>
-                            </div>
-                            <!-- Carousel controls -->
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -613,7 +547,7 @@
                             $("#logo").click(function (event)
                             {
                                 event.preventDefault();
-                                var target = "#join";
+                                var target = "#main";
 
                                 $('html,body').animate({
                                     scrollTop: $(target).offset().top - 69
@@ -627,6 +561,28 @@
                             });
 
                             $("#joinme").click(function (event) {
+                                $("#login_link").removeClass("active");
+                                $("#register_link").addClass("active");
+                                $("#login").removeClass("in");
+                                $("#login").removeClass("active");
+                                $("#registration").addClass("in");
+                                $("#registration").addClass("active");
+
+                                event.preventDefault();
+                                var target = "#join";
+
+                                $('html,body').animate({
+                                    scrollTop: $(target).offset().top - 69
+                                }, 800, 'easeInOutCirc');
+
+                                $("#joinmeli").addClass("active");
+                                $("#whoweareli").removeClass("active");
+                                $("#howwegrowli").removeClass("active");
+                                $("#whatweofferli").removeClass("active");
+                                $("#contactusli").removeClass("active");
+                            });
+                            
+                            $("#joinreg").click(function (event) {
                                 $("#login_link").removeClass("active");
                                 $("#register_link").addClass("active");
                                 $("#login").removeClass("in");
@@ -662,7 +618,7 @@
                                 $("#whatweofferli").removeClass("active");
                                 $("#contactusli").removeClass("active");
                             });
-                            
+
                             $('#whowearemouse').click(function (event) {
                                 event.preventDefault();
                                 var target = "#discover";
