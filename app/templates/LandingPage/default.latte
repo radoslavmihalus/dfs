@@ -84,10 +84,15 @@
         <!--        <link rel="stylesheet" href="www/css/image-gallery/css/bootstrap-image-gallery.min.css">
                 <script src="www/js/image-gallery/bootstrap-image-gallery.min.js" type="text/javascript"></script>   -->
         <script src="www/js/live-form-validation.js" type="text/javascript"></script>
-
         <!-- bootstrap select -->
         <link rel="stylesheet" href="www/css/bootstrap-select.min.css">
         <script type="text/javascript" src="www/js/bootstrap-select.min.js"></script>
+        <!-- gallery js -->
+        <link rel="stylesheet" href="www/css/gallery/blueimp-gallery.min.css">
+        <link rel="stylesheet" href="www/css/gallery/bootstrap-image-gallery.css">
+        <script src="www/js/gallery/blueimp-gallery.js"></script>
+        <script src="www/js/gallery/blueimp-gallery-youtube.js"></script>
+        <script src="www/js/gallery/jquery.blueimp-gallery.js"></script>
         <!-- Hotjar Tracking Code for www.dogforshow.com -->
         <script>
             (function (h, o, t, j, a, r) {
@@ -140,29 +145,38 @@
             }
             )(window, document, 'script', 'dataLayer', 'GTM-MTKG8H');
         </script>
+        <!-- Blueimp init widget -->
+        <div id="blueimp-gallery" class="blueimp-gallery">
+            <div class="slides"></div>
+            <h3 class="title"></h3>
+            <a class="prev">‹</a>
+            <a class="next">›</a>
+            <a class="close">×</a>
+            <a class="play-pause"></a>
+            <ol class="indicator"></ol>
+            <div class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body next"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left prev">
+                                <i class="glyphicon glyphicon-chevron-left"></i>
+                                {_'Previous'}
+                            </button>
+                            <button type="button" class="btn btn-primary next">
+                                {_'Next'}
+                                <i class="glyphicon glyphicon-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <!--        <noscript>
-                <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WGBJR3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-                </noscript>
-                <script>
-                    (function (w, d, s, l, i) {
-                        w[l] = w[l] || [];
-                        w[l].push({
-                            'gtm.start':
-                                    new Date().getTime(), event: 'gtm.js'
-                        });
-                        var f = d.getElementsByTagName(s)[0],
-                                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-                        j.async = true;
-                        j.src =
-                                '//www.googletagmanager.com/gtm.js?id=' + i + dl;
-                        f.parentNode.insertBefore(j, f);
-                    })(window, document, 'script', 'dataLayer', 'GTM-WGBJR3');
-                </script>-->
-        <!-- End Google Tag Manager -->
-        <!-- HOTJAR tracking -->
-        <!-- / HOTJAR tracking -->
-        <!-- Modal Flash control  -->
         {include '../components/modal_control.latte'}
         <!-- Navigation DOGFORSHOW  -->
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -295,12 +309,8 @@
         </div>
         <!-- Join section -->
         <div id="join">
-            <div class="container-fluid brown" style="padding:30px 0px 30px 0px;">
+            <div class="container-fluid brown" style="padding:30px 15px 30px 15px;">
                 <div class="container">
-                    <div class="col-md-12">
-                        <h2 class="heading text-center text-uppercase" style="font-size:25px !important;"><strong><i class="fa fa-globe"></i>&nbsp;&nbsp;{_ 'Present internationally on the right place'}</strong></h2>
-                        <p class="secondary_heading" style="margin-bottom:20px;">{_ 'International social network dedicated to owners of dogs with pedigree, kennels and handlers, which help them to present themselves, communicate with each other and motivate each other. Forget about the classic advertising portals and join to the fast growing community from all over the world.'}</p>
-                    </div>
                     <div class="col-md-6">
                         {include '../registration/registration.latte'}
                     </div>
@@ -366,103 +376,140 @@
                                     <li data-target="#myCarousel" data-slide-to="3"></li>
                                 </ol>
                             </div>
-                            <!-- Carousel controls -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Discover section -->
+        <!-- Follow with us how we are grow section -->
         <div id="discover">
-            <div class="container">
-                <div class="row">
-                    <h1 class="heading text-center text-uppercase" style="font-size:40px !important;"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;<strong>DOGFORSHOW</strong></h1>
-                    
-                </div>
-                <div class="row">
-                    <div class="col-md-3 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:kennel_list lang=>$lang" role="button">{_ 'Kennels'}</a>
-                    </div>
-                    <div class="col-md-3 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="owner:owner_list lang=>$lang" role="button">{_ 'Owners'}</a>
-                    </div>
-                    <div class="col-md-3 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="handler:handler_list lang=>$lang" role="button">{_ 'Handlers'}</a>
-                    </div>
-                    <div class="col-md-3 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_list lang=>$lang" role="button">{_ 'Dogs with pedigree'}</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="puppy:puppy_list lang=>$lang" role="button">{_ 'Puppies for sale'}</a>
-                    </div>
-                    <div class="col-md-3 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:planned_litter_list lang=>$lang" role="button">{_ 'Planned litters'}</a>
-                    </div>
-                    <div class="col-md-3 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_for_mating_list lang=>$lang" role="button">{_ 'Stud dogs'}</a>
-                    </div>
-                    <div class="col-md-3 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_bis_list lang=>$lang" role="button">{_ 'Best in show'}</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Reference Carousel -->
-            <div class="section_divider"></div>
-        </div>
-        <!-- Follow section -->
-        <div id="follow">
-            <div class="jumbotron brown">
+            <div class="container-fluid" style="padding:30px 0px 30px 0px;">
                 <div class="container">
-                    <div class="row animated">
-                        <h2 class="heading text-center text-uppercase"><span class="fa fa-line-chart" aria-hidden="true"></span>&nbsp;&nbsp;<strong>{_ 'Follow with us how we are growing'}</strong></h2>
+                    <div class="row">
+                        <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#8C8067;"><strong><i class="fa fa-globe"></i>&nbsp;&nbsp;{_ 'Present internationally on the right place'}</strong></h2>
+                        <p class="secondary_heading text-center" style="margin-bottom:20px;">{_ 'International social network dedicated to owners of dogs with pedigree, kennels and handlers, which help them to present themselves, communicate with each other and motivate each other. Forget about the classic advertising portals and join to the fast growing community from all over the world.'}</p>
+    <!--                    <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#8C8067;"><span class="fa fa-line-chart" aria-hidden="true"></span>&nbsp;&nbsp;<strong>{_ 'Follow with us how we are growing'}</strong></h2>-->
                     </div>
-                    <!-- Registered users counters -->
-                    <div class="row animated">
-                        <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">{DataModel::getKennelsCount()}</p>
-                            <p class="text-center counter_description">{_ 'Kennels'}</p>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:kennel_list lang=>$lang" role="button">{_ 'Kennels'}<span class="badge landing_category_badge">{DataModel::getKennelsCount()}</span></a>
+                    </div>
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="owner:owner_list lang=>$lang" role="button">{_ 'Owners'}<span class="badge landing_category_badge">{DataModel::getOwnersCount()}</span></a>
+                    </div>
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="handler:handler_list lang=>$lang" role="button">{_ 'Handlers'}<span class="badge landing_category_badge">{DataModel::getHandlersCount()}</span></a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_list lang=>$lang" role="button">{_ 'Dogs with pedigree'}<span class="badge landing_category_badge">{DataModel::getDogsCount()}</span></a>
+                    </div>
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_for_mating_list lang=>$lang" role="button">{_ 'Stud dogs'}<span class="badge landing_category_badge">{DataModel::getMattingDogsCount()}</span></a>
+                    </div>
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_for_sale_list lang=>$lang" role="button">{_ 'Dogs with pedigree for sale'}<span class="badge landing_category_badge">{DataModel::getDogsForSaleCount()}</span></a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:planned_litter_list lang=>$lang" role="button">{_ 'Planned litters'}<span class="badge landing_category_badge">{DataModel::getPlannedLittersCount()}</span></a>
+                    </div>
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="puppy:puppy_list lang=>$lang" role="button">{_ 'Puppies for sale'}<span class="badge landing_category_badge">{DataModel::getPuppiesForSaleCount()}</span></a>
+                    </div>
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_bis_list lang=>$lang" role="button">{_ 'Sold puppies'}<span class="badge landing_category_badge">{DataModel::getPuppiesSoldCount()}</span></a>
+                    </div>
+                </div>
+                <!-- Recently added profiles section -->
+                <div class="col-md-4">
+                    <div class="list-group" style="float:left;box-shadow: none;width:100%">
+                        {foreach $profiles as $row}
+                            <a href="{DataModel::getProfileLinkUrl($row->id, TRUE, TRUE)}" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;">
+                                <div class="user-block-thumb" style="border-radius: 50px !important;float:left;width:80px;height:80px;border: 2px solid #83765E;background: url('{DataModel::getProfileImage($row->id)}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{DataModel::getProfileName($row->id)}</span>
+                                {if (DataModel::getProfileType($row->id)==1)}
+                                    <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
+                                {elseif (DataModel::getProfileType($row->id)==2)}
+                                    <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user"></i>&nbsp;&nbsp;{_ 'Owner of purebred dog'}</span>
+                                {else}
+                                    <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-male"></i>&nbsp;&nbsp;{_ 'Handler'}</span>
+                                {/if}
+                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{DataModel::getProfileState($row->id)}</span>
+                            </a>
+                        {/foreach}
+                    </div>
+                </div>
+                <!-- Recently added dogs section -->
+                <div class="col-md-4">
+                    <div class="list-group" style="float:left;box-shadow: none;width:100%">
+                        {foreach $dogs as $row}
+                            <a n:href="dog:dog_profile_home id => $row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;">
+                                <div class="user-block-thumb" style="border-radius: 50px !important;float:left;width:80px;height:80px;border: 2px solid #83765E;background: url('{$row->dog_image}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{$row->dog_name}</span>
+                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_$row->breed_name, [type => 'breed']}</span>
+                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$row->dog_gender}</span>
+                            </a>
+                        {/foreach}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="list-group" style="float:left;box-shadow: none;width:100%">
+                        {foreach $puppies as $row}                        
+                            <a n:href="puppy:puppy_description id=>$row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;">
+                                {var $litter = DataModel::getPlannedLitterById($row->planned_litter_id)}
+                                <div class="user-block-thumb" style="border-radius: 50px !important;float:left;width:80px;height:80px;border: 2px solid #83765E;background: url('{$row->puppy_photo}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{$row->puppy_name}</span>
+                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_$litter->bitch_breed, [type => 'breed']}</span>
+                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->puppy_gender=='Dog'}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;"></i>{else}<i class="fa fa-venus gender-bitch" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}"></i>{/if}&nbsp;&nbsp;{_$row->puppy_gender}</span>
+                            </a>
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid" style="padding:15px 0px 15px 0px;background-color: #d0c2a5;">
+                <!-- Recently added photos section -->
+                <div class="col-md-4" style="margin-bottom:10px;">
+                    <div style="background-color: #e8e2d4;border-radius: 5px;padding:0px 15px 0px 15px;">
+                        <p class="text-center" style="margin: 0px 0px 0px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;&nbsp;Photos</p>
+                        <div class="row">
+                            {foreach $photos as $row}
+                                {include '../components/modal_gallery.latte' row=>$row}
+                            {/foreach}
+                            <div class="col-md-12" style="margin-top:10px;">
+                                {foreach $photos as $row}
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" style="padding:5px;">
+                                        <a href="{$row->image}" data-gallery title="{$row->description}">
+                                            <div class="thumbnail img-responsive" style="padding:45%;background: url({$row->image})no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                        </a>
+                                    </div>
+                                {/foreach}
+                            </div>
                         </div>
-                        <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">{DataModel::getOwnersCount()}</p>
-                            <p class="text-center counter_description">{_ 'Owners'}</p>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">{DataModel::getHandlersCount()}</p>
-                            <p class="text-center counter_description">{_ 'Handlers'}</p>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">{DataModel::getDogsCount()}</p>
-                            <p class="text-center counter_description">{_ 'Dogs with pedigree'}</p>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">{DataModel::getPlannedLittersCount()}</p>
-                            <p class="text-center counter_description">{_ 'Planned litters'}</p>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-xs-6">
-                            <p class="text-center counter_number">{DataModel::getPuppiesForSaleCount()}</p>
-                            <p class="text-center counter_description">{_ 'Puppies for sale'}</p>
+                    </div>
+                </div>
+                <!-- Recently added videos section -->
+                <div class="col-md-4" style="margin-bottom:10px;">
+                    <div style="background-color: #e8e2d4;border-radius: 5px;padding:0px 15px 0px 15px;">
+                        <p class="text-center" style="margin: 0px 0px 0px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-video-camera" aria-hidden="true"></i>&nbsp;&nbsp;Videos</p>
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top:10px;">
+                                {foreach $videos as $row}
+                                    {include '../components/modal_video.latte' row=>$row}
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" style="padding:5px;">
+                                        <div class="thumbnail img-responsive" href="javascript:void(0)" onclick="ShowGaleryModalVideo({$row->id})" title="{$row->description}" style="padding:45%; cursor:pointer;background-position: 50% 25%;background-size: cover;background-image: url({$row->image});">
+                                            <i class="fa fa-play-circle-o" style="font-size:40px;position:absolute;top:30%;margin-left: 0;color: rgba(255, 255, 255, 0.57);"></i>
+                                        </div>
+                                    </div>
+                                {/foreach}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- About DOGFORSHOW section -->
-        <div id="about">
-            <div class="container">
-                <div class="row">
-                    
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="section_divider"></div>
         </div>
         <!-- Contact section -->
         <div id="contact">
@@ -496,7 +543,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="g-recaptcha" data-sitekey="6LdBSgITAAAAAPHEfML6Of8AKPJ1CTbIrI7BdEql" data-theme="light"></div>    
-<!--                                        1+1&nbsp;=&nbsp;<input type="text" class="form-control" id="txtVerify" name="txtVerify" placeholder="{_ 'Verify'}">-->
+    <!--                                        1+1&nbsp;=&nbsp;<input type="text" class="form-control" id="txtVerify" name="txtVerify" placeholder="{_ 'Verify'}">-->
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -540,143 +587,143 @@
         <!--{ include '../components/promotion_modal.latte'}-->
 
         <script>
-                            $(function () {
-                                $('[data-toggle="tooltip"]').tooltip()
-                            });
+                                            $(function () {
+                                                $('[data-toggle="tooltip"]').tooltip()
+                                            });
 
-                            $("#logo").click(function (event)
-                            {
-                                event.preventDefault();
-                                var target = "#main";
+                                            $("#logo").click(function (event)
+                                            {
+                                                event.preventDefault();
+                                                var target = "#main";
 
-                                $('html,body').animate({
-                                    scrollTop: $(target).offset().top - 69
-                                }, 800, 'easeInOutCirc');
+                                                $('html,body').animate({
+                                                    scrollTop: $(target).offset().top - 69
+                                                }, 800, 'easeInOutCirc');
 
-                                $("#joinmeli").removeClass("active");
-                                $("#whoweareli").removeClass("active");
-                                $("#howwegrowli").removeClass("active");
-                                $("#whatweofferli").removeClass("active");
-                                $("#contactusli").removeClass("active");
-                            });
+                                                $("#joinmeli").removeClass("active");
+                                                $("#whoweareli").removeClass("active");
+                                                $("#howwegrowli").removeClass("active");
+                                                $("#whatweofferli").removeClass("active");
+                                                $("#contactusli").removeClass("active");
+                                            });
 
-                            $("#joinme").click(function (event) {
-                                $("#login_link").removeClass("active");
-                                $("#register_link").addClass("active");
-                                $("#login").removeClass("in");
-                                $("#login").removeClass("active");
-                                $("#registration").addClass("in");
-                                $("#registration").addClass("active");
+                                            $("#joinme").click(function (event) {
+                                                $("#login_link").removeClass("active");
+                                                $("#register_link").addClass("active");
+                                                $("#login").removeClass("in");
+                                                $("#login").removeClass("active");
+                                                $("#registration").addClass("in");
+                                                $("#registration").addClass("active");
 
-                                event.preventDefault();
-                                var target = "#join";
+                                                event.preventDefault();
+                                                var target = "#join";
 
-                                $('html,body').animate({
-                                    scrollTop: $(target).offset().top - 69
-                                }, 800, 'easeInOutCirc');
+                                                $('html,body').animate({
+                                                    scrollTop: $(target).offset().top - 69
+                                                }, 800, 'easeInOutCirc');
 
-                                $("#joinmeli").addClass("active");
-                                $("#whoweareli").removeClass("active");
-                                $("#howwegrowli").removeClass("active");
-                                $("#whatweofferli").removeClass("active");
-                                $("#contactusli").removeClass("active");
-                            });
-                            
-                            $("#joinreg").click(function (event) {
-                                $("#login_link").removeClass("active");
-                                $("#register_link").addClass("active");
-                                $("#login").removeClass("in");
-                                $("#login").removeClass("active");
-                                $("#registration").addClass("in");
-                                $("#registration").addClass("active");
+                                                $("#joinmeli").addClass("active");
+                                                $("#whoweareli").removeClass("active");
+                                                $("#howwegrowli").removeClass("active");
+                                                $("#whatweofferli").removeClass("active");
+                                                $("#contactusli").removeClass("active");
+                                            });
 
-                                event.preventDefault();
-                                var target = "#join";
+                                            $("#joinreg").click(function (event) {
+                                                $("#login_link").removeClass("active");
+                                                $("#register_link").addClass("active");
+                                                $("#login").removeClass("in");
+                                                $("#login").removeClass("active");
+                                                $("#registration").addClass("in");
+                                                $("#registration").addClass("active");
 
-                                $('html,body').animate({
-                                    scrollTop: $(target).offset().top - 69
-                                }, 800, 'easeInOutCirc');
+                                                event.preventDefault();
+                                                var target = "#join";
 
-                                $("#joinmeli").addClass("active");
-                                $("#whoweareli").removeClass("active");
-                                $("#howwegrowli").removeClass("active");
-                                $("#whatweofferli").removeClass("active");
-                                $("#contactusli").removeClass("active");
-                            });
+                                                $('html,body').animate({
+                                                    scrollTop: $(target).offset().top - 69
+                                                }, 800, 'easeInOutCirc');
 
-                            $('#whoweare').click(function (event) {
-                                event.preventDefault();
-                                var target = "#discover";
+                                                $("#joinmeli").addClass("active");
+                                                $("#whoweareli").removeClass("active");
+                                                $("#howwegrowli").removeClass("active");
+                                                $("#whatweofferli").removeClass("active");
+                                                $("#contactusli").removeClass("active");
+                                            });
 
-                                $('html,body').animate({
-                                    scrollTop: $(target).offset().top - 89
-                                }, 800, 'easeInOutCirc');
+                                            $('#whoweare').click(function (event) {
+                                                event.preventDefault();
+                                                var target = "#discover";
 
-                                $("#joinmeli").removeClass("active");
-                                $("#whoweareli").addClass("active");
-                                $("#howwegrowli").removeClass("active");
-                                $("#whatweofferli").removeClass("active");
-                                $("#contactusli").removeClass("active");
-                            });
+                                                $('html,body').animate({
+                                                    scrollTop: $(target).offset().top - 89
+                                                }, 800, 'easeInOutCirc');
 
-                            $('#whowearemouse').click(function (event) {
-                                event.preventDefault();
-                                var target = "#discover";
+                                                $("#joinmeli").removeClass("active");
+                                                $("#whoweareli").addClass("active");
+                                                $("#howwegrowli").removeClass("active");
+                                                $("#whatweofferli").removeClass("active");
+                                                $("#contactusli").removeClass("active");
+                                            });
 
-                                $('html,body').animate({
-                                    scrollTop: $(target).offset().top - 89
-                                }, 800, 'easeInOutCirc');
+                                            $('#whowearemouse').click(function (event) {
+                                                event.preventDefault();
+                                                var target = "#discover";
 
-                                $("#joinmeli").removeClass("active");
-                                $("#whoweareli").addClass("active");
-                                $("#howwegrowli").removeClass("active");
-                                $("#whatweofferli").removeClass("active");
-                                $("#contactusli").removeClass("active");
-                            });
+                                                $('html,body').animate({
+                                                    scrollTop: $(target).offset().top - 89
+                                                }, 800, 'easeInOutCirc');
 
-                            $('#howwegrow').click(function (event) {
-                                event.preventDefault();
-                                var target = "#follow";
+                                                $("#joinmeli").removeClass("active");
+                                                $("#whoweareli").addClass("active");
+                                                $("#howwegrowli").removeClass("active");
+                                                $("#whatweofferli").removeClass("active");
+                                                $("#contactusli").removeClass("active");
+                                            });
 
-                                $('html,body').animate({
-                                    scrollTop: $(target).offset().top - 69
-                                }, 800, 'easeInOutCirc');
-                                $("#joinmeli").removeClass("active");
-                                $("#whoweareli").removeClass("active");
-                                $("#howwegrowli").addClass("active");
-                                $("#whatweofferli").removeClass("active");
-                                $("#contactusli").removeClass("active");
-                            });
+                                            $('#howwegrow').click(function (event) {
+                                                event.preventDefault();
+                                                var target = "#follow";
 
-                            $('#whatweoffer').click(function (event) {
-                                event.preventDefault();
-                                var target = "#about";
+                                                $('html,body').animate({
+                                                    scrollTop: $(target).offset().top - 69
+                                                }, 800, 'easeInOutCirc');
+                                                $("#joinmeli").removeClass("active");
+                                                $("#whoweareli").removeClass("active");
+                                                $("#howwegrowli").addClass("active");
+                                                $("#whatweofferli").removeClass("active");
+                                                $("#contactusli").removeClass("active");
+                                            });
 
-                                $('html,body').animate({
-                                    scrollTop: $(target).offset().top - 89
-                                }, 800, 'easeInOutCirc');
+                                            $('#whatweoffer').click(function (event) {
+                                                event.preventDefault();
+                                                var target = "#about";
 
-                                $("#joinmeli").removeClass("active");
-                                $("#whoweareli").removeClass("active");
-                                $("#howwegrowli").removeClass("active");
-                                $("#whatweofferli").addClass("active");
-                                $("#contactusli").removeClass("active");
-                            });
+                                                $('html,body').animate({
+                                                    scrollTop: $(target).offset().top - 89
+                                                }, 800, 'easeInOutCirc');
 
-                            $('#contactus').click(function (event) {
-                                event.preventDefault();
-                                var target = "#contact";
+                                                $("#joinmeli").removeClass("active");
+                                                $("#whoweareli").removeClass("active");
+                                                $("#howwegrowli").removeClass("active");
+                                                $("#whatweofferli").addClass("active");
+                                                $("#contactusli").removeClass("active");
+                                            });
 
-                                $('html,body').animate({
-                                    scrollTop: $(target).offset().top - 69
-                                }, 800, 'easeInOutCirc');
+                                            $('#contactus').click(function (event) {
+                                                event.preventDefault();
+                                                var target = "#contact";
 
-                                $("#joinmeli").removeClass("active");
-                                $("#whoweareli").removeClass("active");
-                                $("#howwegrowli").removeClass("active");
-                                $("#whatweofferli").removeClass("active");
-                                $("#contactusli").addClass("active");
-                            });
+                                                $('html,body').animate({
+                                                    scrollTop: $(target).offset().top - 69
+                                                }, 800, 'easeInOutCirc');
+
+                                                $("#joinmeli").removeClass("active");
+                                                $("#whoweareli").removeClass("active");
+                                                $("#howwegrowli").removeClass("active");
+                                                $("#whatweofferli").removeClass("active");
+                                                $("#contactusli").addClass("active");
+                                            });
         </script>
 
         {foreach $flashes as $flash}
