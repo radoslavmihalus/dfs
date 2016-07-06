@@ -383,7 +383,7 @@
         </div>
         <!-- Follow with us how we are grow section -->
         <div id="discover">
-            <div class="container-fluid" style="padding:30px 0px 30px 0px;">
+            <div class="container-fluid" style="padding:15px 0px 15px 0px;">
                 <div class="container">
                     <div class="row">
                         <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#8C8067;"><strong><i class="fa fa-globe"></i>&nbsp;&nbsp;{_ 'Present internationally on the right place'}</strong></h2>
@@ -424,23 +424,78 @@
                         <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_bis_list lang=>$lang" role="button">{_ 'Sold puppies'}<span class="badge landing_category_badge">{DataModel::getPuppiesSoldCount()}</span></a>
                     </div>
                 </div>
-                <!-- Recently added profiles section -->
+            </div>
+            <div class="container-fluid" style="padding:15px 0px 15px 0px;">
+                <!-- Recently added kennels section -->
                 <div class="col-md-4">
-                    <div class="list-group" style="float:left;box-shadow: none;width:100%">
-                        {foreach $profiles as $row}
-                            <a href="{DataModel::getProfileLinkUrl($row->id, TRUE, TRUE)}" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;">
-                                <div class="user-block-thumb" style="border-radius: 50px !important;float:left;width:80px;height:80px;border: 2px solid #83765E;background: url('{DataModel::getProfileImage($row->id)}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{DataModel::getProfileName($row->id)}</span>
-                                {if (DataModel::getProfileType($row->id)==1)}
-                                    <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
-                                {elseif (DataModel::getProfileType($row->id)==2)}
-                                    <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user"></i>&nbsp;&nbsp;{_ 'Owner of purebred dog'}</span>
-                                {else}
-                                    <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-male"></i>&nbsp;&nbsp;{_ 'Handler'}</span>
-                                {/if}
-                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{DataModel::getProfileState($row->id)}</span>
-                            </a>
-                        {/foreach}
+                    <div style="width:100%;float:left;border:#d0c2a5 1px solid;border-radius:5px;padding:5px;">
+                        <span style="position: relative;top: -20px;background-color:white;padding:5px 10px 5px 10px;font-family: 'Roboto Condensed', sans-serif;color: #8C8067;font-size: 18px;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennels'}</span>
+                        <span class="badge landing_category_badge">{DataModel::getKennelsCount()}</span>
+                        <div class="list-group" style="float:left;box-shadow: none;width:100%">
+                            {foreach $profiles as $row}
+                                <a href="{DataModel::getProfileLinkUrl($row->id, TRUE, TRUE)}" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;">
+                                    <div class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #d0c2a5;background: url('{DataModel::getProfileImage($row->id)}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                    <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{DataModel::getProfileName($row->id)}</span>
+                                    {if (DataModel::getProfileType($row->id)==1)}
+                                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
+                                    {elseif (DataModel::getProfileType($row->id)==2)}
+                                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user"></i>&nbsp;&nbsp;{_ 'Owner of purebred dog'}</span>
+                                    {else}
+                                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-male"></i>&nbsp;&nbsp;{_ 'Handler'}</span>
+                                    {/if}
+                                    <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_DataModel::getProfileState($row->id)}</span>
+                                </a>
+                            {/foreach}
+                        </div>
+                        <a class="btn btn-landing-view-all btn-block" n:href="kennel:kennel_list lang=>$lang" role="button">view all &nbsp;&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <!-- Recently added owners section -->
+                <div class="col-md-4">
+                    <div style="width:100%;float:left;border:#d0c2a5 1px solid;border-radius:5px;padding:5px;">
+                        <span style="position: relative;top: -20px;background-color:white;padding:5px 10px 5px 10px;font-family: 'Roboto Condensed', sans-serif;color: #8C8067;font-size: 18px;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Owners'}</span>
+                        <span class="badge landing_category_badge">{DataModel::getOwnersCount()}</span>
+                        <div class="list-group" style="float:left;box-shadow: none;width:100%">
+                            {foreach $profiles as $row}
+                                <a href="{DataModel::getProfileLinkUrl($row->id, TRUE, TRUE)}" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;">
+                                    <div class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #d0c2a5;background: url('{DataModel::getProfileImage($row->id)}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                    <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{DataModel::getProfileName($row->id)}</span>
+                                    {if (DataModel::getProfileType($row->id)==1)}
+                                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
+                                    {elseif (DataModel::getProfileType($row->id)==2)}
+                                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user"></i>&nbsp;&nbsp;{_ 'Owner of purebred dog'}</span>
+                                    {else}
+                                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-male"></i>&nbsp;&nbsp;{_ 'Handler'}</span>
+                                    {/if}
+                                    <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_DataModel::getProfileState($row->id)}</span>
+                                </a>
+                            {/foreach}
+                        </div>
+                        <a class="btn btn-landing-view-all btn-block" n:href="owner:owner_list lang=>$lang" role="button">view all &nbsp;&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <!-- Recently added handlers section -->
+                <div class="col-md-4">
+                    <div style="width:100%;float:left;border:#d0c2a5 1px solid;border-radius:5px;padding:5px;">
+                        <span style="position: relative;top: -20px;background-color:white;padding:5px 10px 5px 10px;font-family: 'Roboto Condensed', sans-serif;color: #8C8067;font-size: 18px;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Handlers'}</span>
+                        <span class="badge landing_category_badge">{DataModel::getHandlersCount()}</span>
+                        <div class="list-group" style="float:left;box-shadow: none;width:100%">
+                            {foreach $profiles as $row}
+                                <a href="{DataModel::getProfileLinkUrl($row->id, TRUE, TRUE)}" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;">
+                                    <div class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #d0c2a5;background: url('{DataModel::getProfileImage($row->id)}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                    <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{DataModel::getProfileName($row->id)}</span>
+                                    {if (DataModel::getProfileType($row->id)==1)}
+                                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
+                                    {elseif (DataModel::getProfileType($row->id)==2)}
+                                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user"></i>&nbsp;&nbsp;{_ 'Owner of purebred dog'}</span>
+                                    {else}
+                                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-male"></i>&nbsp;&nbsp;{_ 'Handler'}</span>
+                                    {/if}
+                                    <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_DataModel::getProfileState($row->id)}</span>
+                                </a>
+                            {/foreach}
+                        </div>
+                        <a class="btn btn-landing-view-all btn-block" n:href="handler:handler_list lang=>$lang" role="button">view all &nbsp;&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <!-- Recently added dogs section -->
@@ -448,23 +503,24 @@
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
                         {foreach $dogs as $row}
                             <a n:href="dog:dog_profile_home id => $row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;">
-                                <div class="user-block-thumb" style="border-radius: 50px !important;float:left;width:80px;height:80px;border: 2px solid #83765E;background: url('{$row->dog_image}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                <div class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #d0c2a5;background: url('{$row->dog_image}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
                                 <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{$row->dog_name}</span>
-                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_$row->breed_name, [type => 'breed']}</span>
-                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" style="margin-right: 10px;"></i>{else}<i class="fa fa-mars" style="color:#0c9eea;margin-right: 10px;"></i>{/if}{_$row->dog_gender}</span>
+                                <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{_$row->breed_name, [type => 'breed']}</span>
+                                <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#f67aec !important;margin-right: 5px;"></i>{else}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;margin-right: 5px;"></i>{/if}{_$row->dog_gender}</span>
                             </a>
                         {/foreach}
                     </div>
                 </div>
+                <!-- Recently added puppies section -->
                 <div class="col-md-4">
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
                         {foreach $puppies as $row}                        
                             <a n:href="puppy:puppy_description id=>$row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;">
                                 {var $litter = DataModel::getPlannedLitterById($row->planned_litter_id)}
-                                <div class="user-block-thumb" style="border-radius: 50px !important;float:left;width:80px;height:80px;border: 2px solid #83765E;background: url('{$row->puppy_photo}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                <div class="user-block-thumb" style="float:left;width:80px;height:80px;border: 2px solid #d0c2a5;background: url('{$row->puppy_photo}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
                                 <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;">{$row->puppy_name}</span>
-                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag"></i>&nbsp;&nbsp;{_$litter->bitch_breed, [type => 'breed']}</span>
-                                <span style="display:block;width:100%;font-size: 13px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->puppy_gender=='Dog'}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;"></i>{else}<i class="fa fa-venus gender-bitch" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}"></i>{/if}&nbsp;&nbsp;{_$row->puppy_gender}</span>
+                                <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{_$litter->bitch_breed, [type => 'breed']}</span>
+                                <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->puppy_gender=='Dog'}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;"></i>{else}<i class="fa fa-venus gender-bitch" style="color:#f67aec !important;" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}"></i>{/if}&nbsp;&nbsp;{_$row->puppy_gender}</span>
                             </a>
                         {/foreach}
                     </div>
