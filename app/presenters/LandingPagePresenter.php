@@ -119,8 +119,8 @@ class LandingPagePresenter extends BasePresenter {
         $dogs = $this->database->table("tbl_dogs")->order("id DESC")->limit(3)->fetchAll();
         $puppies = $this->database->table("tbl_puppies")->order("id DESC")->limit(3)->fetchAll();
 
-        $photos = $this->database->table("tbl_photos")->limit(6)->order("id DESC")->fetchAll();
-        $videos = $this->database->table("tbl_videos")->limit(6)->order("id DESC")->fetchAll();
+        $photos = $this->database->table("tbl_photos")->limit(12)->order("id DESC")->fetchAll();
+        $videos = $this->database->table("tbl_videos")->limit(12)->order("id DESC")->fetchAll();
 
 
         $this->template->profiles = $profiles;
