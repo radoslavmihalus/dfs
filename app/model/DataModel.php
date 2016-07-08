@@ -718,7 +718,10 @@ class DataModel {
             $notify_user_id = $row->user_id;
         }
 
-        $notify_rows = $this->database->query("SELECT DISTINCT user_id, profile_id FROM tbl_comments WHERE timeline_id = $timeline_id AND user_id != $notify_user_id")->fetchAll();
+        if ($notify_user_id > 0)
+            $notify_rows = $this->database->query("SELECT DISTINCT user_id, profile_id FROM tbl_comments WHERE timeline_id = $timeline_id AND user_id != $notify_user_id")->fetchAll();
+        else
+            $notify_rows = $this->database->query("SELECT DISTINCT user_id, profile_id FROM tbl_comments WHERE timeline_id = $timeline_id")->fetchAll();
 
         if ($user_id != $notify_user_id) {
             $notify = array();

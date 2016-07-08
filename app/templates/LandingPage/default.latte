@@ -573,6 +573,43 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    var tag = document.createElement('script');
+
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                    window.ytPlayerList = [];
+                    window.players = [];
+                </script>
+
+                <script type="text/javascript">
+                    {foreach $videos as $photo}
+                    window.ytPlayerList.push(
+                            {
+                                Id: 'ctl100_phContent_{$photo->id}player',
+                                DivId: 'ctl100_phContent_div{$photo->id}player',
+                                VideoId: {$photo->youtube}
+                            }
+                    );
+                    {/foreach}
+
+                    function onYouTubeIframeAPIReady() {
+                        initVideos();
+                    }
+
+                    function initVideos() {
+                        for (var i = 0; i < ytPlayerList.length; i++) {
+                            var player = ytPlayerList[i];
+                            var pl = new YT.Player(player.DivId, {
+                                width: '100%',
+                                videoId: player.VideoId,
+                            });
+                            window[player.Id] = pl;
+                        }
+                    }
+                </script>
             </div>
         </div>
         <!-- Our team section -->
@@ -749,143 +786,143 @@
         <!--{ include '../components/promotion_modal.latte'}-->
 
         <script>
-                                        $(function () {
-                                            $('[data-toggle="tooltip"]').tooltip()
-                                        });
+                    $(function () {
+                        $('[data-toggle="tooltip"]').tooltip()
+                    });
 
-                                        $("#logo").click(function (event)
-                                        {
-                                            event.preventDefault();
-                                            var target = "#main";
+                    $("#logo").click(function (event)
+                    {
+                        event.preventDefault();
+                        var target = "#main";
 
-                                            $('html,body').animate({
-                                                scrollTop: $(target).offset().top - 69
-                                            }, 800, 'easeInOutCirc');
+                        $('html,body').animate({
+                            scrollTop: $(target).offset().top - 69
+                        }, 800, 'easeInOutCirc');
 
-                                            $("#joinmeli").removeClass("active");
-                                            $("#whoweareli").removeClass("active");
-                                            $("#howwegrowli").removeClass("active");
-                                            $("#whatweofferli").removeClass("active");
-                                            $("#contactusli").removeClass("active");
-                                        });
+                        $("#joinmeli").removeClass("active");
+                        $("#whoweareli").removeClass("active");
+                        $("#howwegrowli").removeClass("active");
+                        $("#whatweofferli").removeClass("active");
+                        $("#contactusli").removeClass("active");
+                    });
 
-                                        $("#joinme").click(function (event) {
-                                            $("#login_link").removeClass("active");
-                                            $("#register_link").addClass("active");
-                                            $("#login").removeClass("in");
-                                            $("#login").removeClass("active");
-                                            $("#registration").addClass("in");
-                                            $("#registration").addClass("active");
+                    $("#joinme").click(function (event) {
+                        $("#login_link").removeClass("active");
+                        $("#register_link").addClass("active");
+                        $("#login").removeClass("in");
+                        $("#login").removeClass("active");
+                        $("#registration").addClass("in");
+                        $("#registration").addClass("active");
 
-                                            event.preventDefault();
-                                            var target = "#join";
+                        event.preventDefault();
+                        var target = "#join";
 
-                                            $('html,body').animate({
-                                                scrollTop: $(target).offset().top - 69
-                                            }, 800, 'easeInOutCirc');
+                        $('html,body').animate({
+                            scrollTop: $(target).offset().top - 69
+                        }, 800, 'easeInOutCirc');
 
-                                            $("#joinmeli").addClass("active");
-                                            $("#whoweareli").removeClass("active");
-                                            $("#howwegrowli").removeClass("active");
-                                            $("#whatweofferli").removeClass("active");
-                                            $("#contactusli").removeClass("active");
-                                        });
+                        $("#joinmeli").addClass("active");
+                        $("#whoweareli").removeClass("active");
+                        $("#howwegrowli").removeClass("active");
+                        $("#whatweofferli").removeClass("active");
+                        $("#contactusli").removeClass("active");
+                    });
 
-                                        $("#joinreg").click(function (event) {
-                                            $("#login_link").removeClass("active");
-                                            $("#register_link").addClass("active");
-                                            $("#login").removeClass("in");
-                                            $("#login").removeClass("active");
-                                            $("#registration").addClass("in");
-                                            $("#registration").addClass("active");
+                    $("#joinreg").click(function (event) {
+                        $("#login_link").removeClass("active");
+                        $("#register_link").addClass("active");
+                        $("#login").removeClass("in");
+                        $("#login").removeClass("active");
+                        $("#registration").addClass("in");
+                        $("#registration").addClass("active");
 
-                                            event.preventDefault();
-                                            var target = "#join";
+                        event.preventDefault();
+                        var target = "#join";
 
-                                            $('html,body').animate({
-                                                scrollTop: $(target).offset().top - 69
-                                            }, 800, 'easeInOutCirc');
+                        $('html,body').animate({
+                            scrollTop: $(target).offset().top - 69
+                        }, 800, 'easeInOutCirc');
 
-                                            $("#joinmeli").addClass("active");
-                                            $("#whoweareli").removeClass("active");
-                                            $("#howwegrowli").removeClass("active");
-                                            $("#whatweofferli").removeClass("active");
-                                            $("#contactusli").removeClass("active");
-                                        });
+                        $("#joinmeli").addClass("active");
+                        $("#whoweareli").removeClass("active");
+                        $("#howwegrowli").removeClass("active");
+                        $("#whatweofferli").removeClass("active");
+                        $("#contactusli").removeClass("active");
+                    });
 
-                                        $('#whoweare').click(function (event) {
-                                            event.preventDefault();
-                                            var target = "#discover";
+                    $('#whoweare').click(function (event) {
+                        event.preventDefault();
+                        var target = "#discover";
 
-                                            $('html,body').animate({
-                                                scrollTop: $(target).offset().top - 89
-                                            }, 800, 'easeInOutCirc');
+                        $('html,body').animate({
+                            scrollTop: $(target).offset().top - 89
+                        }, 800, 'easeInOutCirc');
 
-                                            $("#joinmeli").removeClass("active");
-                                            $("#whoweareli").addClass("active");
-                                            $("#howwegrowli").removeClass("active");
-                                            $("#whatweofferli").removeClass("active");
-                                            $("#contactusli").removeClass("active");
-                                        });
+                        $("#joinmeli").removeClass("active");
+                        $("#whoweareli").addClass("active");
+                        $("#howwegrowli").removeClass("active");
+                        $("#whatweofferli").removeClass("active");
+                        $("#contactusli").removeClass("active");
+                    });
 
-                                        $('#whowearemouse').click(function (event) {
-                                            event.preventDefault();
-                                            var target = "#discover";
+                    $('#whowearemouse').click(function (event) {
+                        event.preventDefault();
+                        var target = "#discover";
 
-                                            $('html,body').animate({
-                                                scrollTop: $(target).offset().top - 89
-                                            }, 800, 'easeInOutCirc');
+                        $('html,body').animate({
+                            scrollTop: $(target).offset().top - 89
+                        }, 800, 'easeInOutCirc');
 
-                                            $("#joinmeli").removeClass("active");
-                                            $("#whoweareli").addClass("active");
-                                            $("#howwegrowli").removeClass("active");
-                                            $("#whatweofferli").removeClass("active");
-                                            $("#contactusli").removeClass("active");
-                                        });
+                        $("#joinmeli").removeClass("active");
+                        $("#whoweareli").addClass("active");
+                        $("#howwegrowli").removeClass("active");
+                        $("#whatweofferli").removeClass("active");
+                        $("#contactusli").removeClass("active");
+                    });
 
-                                        $('#howwegrow').click(function (event) {
-                                            event.preventDefault();
-                                            var target = "#follow";
+                    $('#howwegrow').click(function (event) {
+                        event.preventDefault();
+                        var target = "#follow";
 
-                                            $('html,body').animate({
-                                                scrollTop: $(target).offset().top - 69
-                                            }, 800, 'easeInOutCirc');
-                                            $("#joinmeli").removeClass("active");
-                                            $("#whoweareli").removeClass("active");
-                                            $("#howwegrowli").addClass("active");
-                                            $("#whatweofferli").removeClass("active");
-                                            $("#contactusli").removeClass("active");
-                                        });
+                        $('html,body').animate({
+                            scrollTop: $(target).offset().top - 69
+                        }, 800, 'easeInOutCirc');
+                        $("#joinmeli").removeClass("active");
+                        $("#whoweareli").removeClass("active");
+                        $("#howwegrowli").addClass("active");
+                        $("#whatweofferli").removeClass("active");
+                        $("#contactusli").removeClass("active");
+                    });
 
-                                        $('#whatweoffer').click(function (event) {
-                                            event.preventDefault();
-                                            var target = "#about";
+                    $('#whatweoffer').click(function (event) {
+                        event.preventDefault();
+                        var target = "#about";
 
-                                            $('html,body').animate({
-                                                scrollTop: $(target).offset().top - 89
-                                            }, 800, 'easeInOutCirc');
+                        $('html,body').animate({
+                            scrollTop: $(target).offset().top - 89
+                        }, 800, 'easeInOutCirc');
 
-                                            $("#joinmeli").removeClass("active");
-                                            $("#whoweareli").removeClass("active");
-                                            $("#howwegrowli").removeClass("active");
-                                            $("#whatweofferli").addClass("active");
-                                            $("#contactusli").removeClass("active");
-                                        });
+                        $("#joinmeli").removeClass("active");
+                        $("#whoweareli").removeClass("active");
+                        $("#howwegrowli").removeClass("active");
+                        $("#whatweofferli").addClass("active");
+                        $("#contactusli").removeClass("active");
+                    });
 
-                                        $('#contactus').click(function (event) {
-                                            event.preventDefault();
-                                            var target = "#contact";
+                    $('#contactus').click(function (event) {
+                        event.preventDefault();
+                        var target = "#contact";
 
-                                            $('html,body').animate({
-                                                scrollTop: $(target).offset().top - 69
-                                            }, 800, 'easeInOutCirc');
+                        $('html,body').animate({
+                            scrollTop: $(target).offset().top - 69
+                        }, 800, 'easeInOutCirc');
 
-                                            $("#joinmeli").removeClass("active");
-                                            $("#whoweareli").removeClass("active");
-                                            $("#howwegrowli").removeClass("active");
-                                            $("#whatweofferli").removeClass("active");
-                                            $("#contactusli").addClass("active");
-                                        });
+                        $("#joinmeli").removeClass("active");
+                        $("#whoweareli").removeClass("active");
+                        $("#howwegrowli").removeClass("active");
+                        $("#whatweofferli").removeClass("active");
+                        $("#contactusli").addClass("active");
+                    });
         </script>
 
         {foreach $flashes as $flash}
