@@ -127,6 +127,18 @@
                     ga('send', 'pageview');
         
                 </script>-->
+        <!-- animated counter -->
+        <script src="www/js/counter/waypoints.min.js"></script>
+        <script src="www/js/counter/jquery.counterup.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function ()
+            {
+                $('.counter').counterUp({
+                    delay: 10,
+                    time: 1000
+                });
+            });
+        </script>
     </head>
 
     <body role="document" data-spy="scroll" data-target=".navbar" data-offset="12">
@@ -312,7 +324,7 @@
             <div class="container-fluid brown" style="padding:30px 15px 30px 15px;">
                 <div class="container">
                     <div class="col-md-6">
-                        <span style="display:block;width:100%;font-size: 20px !important;font-family: 'Roboto Condensed', sans-serif;">{DataModel::getRegistrationsCount()}</span>
+                        <span class="counter" style="display:block;width:100%;font-size: 20px !important;font-family: 'Roboto Condensed', sans-serif;">{DataModel::getRegistrationsCount()}</span>
                         {include '../registration/registration.latte'}
                     </div>
                     <div class="col-md-6" style="min-height:450px;">

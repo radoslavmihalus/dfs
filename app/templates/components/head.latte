@@ -84,6 +84,10 @@
     <link rel="stylesheet" href="../www/css/toogle/bootstrap-toggle.min.css">
     <script type="text/javascript" src="../www/js/toogle/bootstrap-toggle.min.js"></script>
 
+    <!-- animated counter -->
+    <script src="www/js/counter/waypoints.min.js"></script>
+    <script src="www/js/counter/jquery.counterup.min.js"></script>
+
     <meta property="og:type" content="article" /> 
     <meta property="og:url" content="{!$sharer_tags['url']}" /> 
     <meta property="og:title" content="{!$sharer_tags['title']}" /> 
@@ -130,6 +134,10 @@
             var wheight = $(window).height() - 51;
             $(".user-menu").css("max-height", wheight);
             $.nette.init();
+            $('.counter').counterUp({
+                delay: 10,
+                time: 1000
+            });
         });
 
         $(window).resize(function () {
