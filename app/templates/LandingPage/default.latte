@@ -312,7 +312,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12" style="padding: 0px;">
-                                <a id="joinreg" href="javascript:void(0)" class="btn btn-landing-order btn-block"><i style="color:#FFD8A2;line-height: 50px;" class="fa fa-arrow-circle-right"></i>&nbsp;&nbsp;Try it for FREE</a>
+                                <a id="joinreg" href="javascript:void(0)" class="btn btn-landing-order btn-block"><i style="color:#FFD8A2;line-height: 50px;" class="fa fa-arrow-circle-right"></i>&nbsp;&nbsp;{_ 'Try it for FREE'}</a>
                             </div>
                         </div>
                     </div>
@@ -472,7 +472,7 @@
     <!--                    <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#8C8067;"><span class="fa fa-line-chart" aria-hidden="true"></span>&nbsp;&nbsp;<strong>{_ 'Follow with us how we are growing'}</strong></h2>-->
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12">
+                <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="col-md-12 community_link form-group">
                         <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:kennel_list lang=>$lang" role="button">{_ 'Kennels'}<span class="badge landing_category_badge counter">{DataModel::getKennelsCount()}</span></a>
                     </div>
@@ -483,7 +483,7 @@
                         <a class="btn text-uppercase btn-lg btn-block" n:href="handler:handler_list lang=>$lang" role="button">{_ 'Handlers'}<span class="badge landing_category_badge counter">{DataModel::getHandlersCount()}</span></a>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12">
+                <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="col-md-12 community_link form-group">
                         <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_list lang=>$lang" role="button">{_ 'Dogs with pedigree'}<span class="badge landing_category_badge counter">{DataModel::getDogsCount()}</span></a>
                     </div>
@@ -494,7 +494,7 @@
                         <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_for_sale_list lang=>$lang" role="button">{_ 'Dogs with pedigree for sale'}<span class="badge landing_category_badge counter">{DataModel::getDogsForSaleCount()}</span></a>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12">
+                <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="col-md-12 community_link form-group">
                         <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:planned_litter_list lang=>$lang" role="button">{_ 'Planned litters'}<span class="badge landing_category_badge counter">{DataModel::getPlannedLittersCount()}</span></a>
                     </div>
@@ -509,7 +509,7 @@
             <div class="container-fluid" style="padding:15px 0px 15px 0px;background-color: #e8e2d4;">
                 <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#8C8067;"><strong><i class="fa fa-history"></i>&nbsp;&nbsp;{_ 'Recently added'}</strong></h2>
                 <!-- Recently added kennels section -->
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-12 col-xs-12">
                     <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Profiles'}</p>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
                         {foreach $profiles as $row}
@@ -529,7 +529,7 @@
                     </div>
                 </div>
                 <!-- Recently added dogs section -->
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-12 col-xs-12">
                     <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="glyphicons glyphicons-dog" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Dogs with pedigree'}</p>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
                         {foreach $dogs as $row}
@@ -543,7 +543,7 @@
                     </div>
                 </div>
                 <!-- Recently added puppies section -->
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-12 col-xs-12">
                     <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-paw" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Puppies for sale'}</p>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
                         {foreach $puppies as $row}                        
