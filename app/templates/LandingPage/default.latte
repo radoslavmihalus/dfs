@@ -312,7 +312,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12" style="padding: 0px;">
-                                <a id="joinreg" href="javascript:void(0)" class="btn btn-landing-order btn-block"><i style="color:#FFD8A2;line-height: 50px;" class="fa fa-unlock-alt"></i>&nbsp;&nbsp;{_'Registration'}</a>
+                                <a id="joinreg" href="javascript:void(0)" class="btn btn-landing-order btn-block"><i style="color:#FFD8A2;line-height: 50px;" class="fa fa-arrow-circle-right"></i>&nbsp;&nbsp;Try it for FREE</a>
                             </div>
                         </div>
                     </div>
@@ -324,7 +324,10 @@
             <div class="container-fluid brown" style="padding:30px 15px 30px 15px;">
                 <div class="container">
                     <div class="col-md-6">
-                        <span class="counter" style="display:block;width:100%;font-size: 20px !important;font-family: 'Roboto Condensed', sans-serif;">{DataModel::getRegistrationsCount()}</span>
+                        <div class="col-md-12" style="margin-bottom:30px;">
+                        <span class="counter" style="display:table-cell;padding-right: 10px;font-size: 40px !important;font-family: 'Roboto Condensed', sans-serif;">{DataModel::getRegistrationsCount()}</span>
+                        <span style="display:table-cell;vertical-align: middle;">{_ 'registered users from around the world'}</span>
+                        </div>
                         {include '../registration/registration.latte'}
                     </div>
                     <div class="col-md-6" style="min-height:450px;">
@@ -471,35 +474,35 @@
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <div class="col-md-12 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:kennel_list lang=>$lang" role="button">{_ 'Kennels'}<span class="badge landing_category_badge">{DataModel::getKennelsCount()}</span></a>
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:kennel_list lang=>$lang" role="button">{_ 'Kennels'}<span class="badge landing_category_badge counter">{DataModel::getKennelsCount()}</span></a>
                     </div>
                     <div class="col-md-12 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="owner:owner_list lang=>$lang" role="button">{_ 'Owners'}<span class="badge landing_category_badge">{DataModel::getOwnersCount()}</span></a>
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="owner:owner_list lang=>$lang" role="button">{_ 'Owners'}<span class="badge landing_category_badge counter">{DataModel::getOwnersCount()}</span></a>
                     </div>
                     <div class="col-md-12 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="handler:handler_list lang=>$lang" role="button">{_ 'Handlers'}<span class="badge landing_category_badge">{DataModel::getHandlersCount()}</span></a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <div class="col-md-12 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_list lang=>$lang" role="button">{_ 'Dogs with pedigree'}<span class="badge landing_category_badge">{DataModel::getDogsCount()}</span></a>
-                    </div>
-                    <div class="col-md-12 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_for_mating_list lang=>$lang" role="button">{_ 'Stud dogs'}<span class="badge landing_category_badge">{DataModel::getMattingDogsCount()}</span></a>
-                    </div>
-                    <div class="col-md-12 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_for_sale_list lang=>$lang" role="button">{_ 'Dogs with pedigree for sale'}<span class="badge landing_category_badge">{DataModel::getDogsForSaleCount()}</span></a>
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="handler:handler_list lang=>$lang" role="button">{_ 'Handlers'}<span class="badge landing_category_badge counter">{DataModel::getHandlersCount()}</span></a>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <div class="col-md-12 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:planned_litter_list lang=>$lang" role="button">{_ 'Planned litters'}<span class="badge landing_category_badge">{DataModel::getPlannedLittersCount()}</span></a>
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_list lang=>$lang" role="button">{_ 'Dogs with pedigree'}<span class="badge landing_category_badge counter">{DataModel::getDogsCount()}</span></a>
                     </div>
                     <div class="col-md-12 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="puppy:puppy_list lang=>$lang" role="button">{_ 'Puppies for sale'}<span class="badge landing_category_badge">{DataModel::getPuppiesForSaleCount()}</span></a>
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_for_mating_list lang=>$lang" role="button">{_ 'Stud dogs'}<span class="badge landing_category_badge counter">{DataModel::getMattingDogsCount()}</span></a>
                     </div>
                     <div class="col-md-12 community_link form-group">
-                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_bis_list lang=>$lang" role="button">{_ 'Sold puppies'}<span class="badge landing_category_badge">{DataModel::getPuppiesSoldCount()}</span></a>
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_for_sale_list lang=>$lang" role="button">{_ 'Dogs with pedigree for sale'}<span class="badge landing_category_badge counter">{DataModel::getDogsForSaleCount()}</span></a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:planned_litter_list lang=>$lang" role="button">{_ 'Planned litters'}<span class="badge landing_category_badge counter">{DataModel::getPlannedLittersCount()}</span></a>
+                    </div>
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="puppy:puppy_list lang=>$lang" role="button">{_ 'Puppies for sale'}<span class="badge landing_category_badge counter">{DataModel::getPuppiesForSaleCount()}</span></a>
+                    </div>
+                    <div class="col-md-12 community_link form-group">
+                        <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_bis_list lang=>$lang" role="button">{_ 'Sold puppies'}<span class="badge landing_category_badge counter">{DataModel::getPuppiesSoldCount()}</span></a>
                     </div>
                 </div>
             </div>
