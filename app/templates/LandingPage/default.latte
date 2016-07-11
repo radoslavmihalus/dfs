@@ -312,6 +312,7 @@
             <div class="container-fluid brown" style="padding:30px 15px 30px 15px;">
                 <div class="container">
                     <div class="col-md-6">
+                        <span style="display:block;width:100%;font-size: 20px !important;font-family: 'Roboto Condensed', sans-serif;">{DataModel::getRegistrationsCount()}</span>
                         {include '../registration/registration.latte'}
                     </div>
                     <div class="col-md-6" style="min-height:450px;">
@@ -446,7 +447,7 @@
                 </div>
             </div>
         </div>
-        <!-- Follow with us how we are grow section -->
+        <!-- About us -->
         <div id="discover">
             <div class="container-fluid" style="padding:15px 0px 15px 0px;">
                 <div class="container">
@@ -491,8 +492,10 @@
                 </div>
             </div>
             <div class="container-fluid" style="padding:15px 0px 15px 0px;background-color: #e8e2d4;">
+                <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#8C8067;"><strong><i class="fa fa-history"></i>&nbsp;&nbsp;{_ 'Recently added'}</strong></h2>
                 <!-- Recently added kennels section -->
                 <div class="col-md-4">
+                    <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Profiles'}</p>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
                         {foreach $profiles as $row}
                             <a href="{DataModel::getProfileLinkUrl($row->id, TRUE, TRUE)}" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;background-color: #e8e2d4;">
@@ -512,6 +515,7 @@
                 </div>
                 <!-- Recently added dogs section -->
                 <div class="col-md-4">
+                    <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="glyphicons glyphicons-dog" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Dogs with pedigree'}</p>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
                         {foreach $dogs as $row}
                             <a n:href="dog:dog_profile_home id => $row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;background-color: #e8e2d4;">
@@ -525,6 +529,7 @@
                 </div>
                 <!-- Recently added puppies section -->
                 <div class="col-md-4">
+                    <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-paw" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Puppies for sale'}</p>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
                         {foreach $puppies as $row}                        
                             <a n:href="puppy:puppy_description id=>$row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;background-color: #e8e2d4;">
@@ -541,7 +546,7 @@
             <div class="container-fluid" style="padding:15px 0px 15px 0px;background-color: #e8e2d4;">
                 <!-- Recently added photos section -->
                 <div class="col-lg-12 col-md-6">
-                    <p class="text-center" style="margin: 0px 0px 0px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;&nbsp;Photos</p>
+                    <p class="text-center" style="margin: 0px 0px 0px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Photos'}</p>
                     <div class="row">
                         {foreach $photos as $row}
                             {include '../components/modal_gallery.latte' row=>$row}
@@ -559,7 +564,7 @@
                 </div>
                 <!-- Recently added videos section -->
                 <div class="col-lg-12 col-md-6" style="margin-bottom:10px;">
-                    <p class="text-center" style="margin: 0px 0px 0px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-video-camera" aria-hidden="true"></i>&nbsp;&nbsp;Videos</p>
+                    <p class="text-center" style="margin: 0px 0px 0px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-video-camera" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Videos'}</p>
                     <div class="row">
                         <div class="col-md-12" style="margin-top:10px;">
                             {foreach $videos as $row}
