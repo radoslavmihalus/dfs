@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Presenters;
 
 use App\Model,
@@ -20,17 +19,14 @@ class timelinePresenter extends BasePresenter {
         parent::startup();
     }
 
-    public function beforeRender() {
-        parent::beforeRender();
-
+    public function fetchResult() {
         $count = $this->data_model->getTimelineCount();
 
         $this->paginator->getPaginator()->setItemCount($count);
-        $this->paginator->getPaginator()->setItemsPerPage(18);
+        $this->paginator->getPaginator()->setItemsPerPage(10);
 
-        $this->template->timeline_rows = $this->data_model->getTimeline(0, $this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset());
+        return $this->data_model->getTimeline(0, $this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset());
     }
-
 
     /*     * ******************* view default ******************** */
 
@@ -130,4 +126,43 @@ class timelinePresenter extends BasePresenter {
         $this->redirect('default');
     }
 
+    //dynamic loading timeline start
+
+    public function actionTimeline_wall($reset = 0) {
+        if ($reset == 1) {
+            $page = $this->session->getSection("timeline_page");
+            $page->page = 0;
+        }
+    }
+
+    public function renderTimeline_wall() {
+        $page = $this->session->getSection("timeline_page");
+
+        if ($page->page > 0) {
+            $this->paginator->getPaginator()->setPage($page->page);
+        }
+
+        $this->template->timeline_rows = $this->fetchResult($offset);
+
+        $page->page = $page->page + 1;
+
+        $i = 0;
+        // vypise prvnich 9 hodnot
+    }
+
+    public function handleLoadMore() {
+        $page = $this->session->getSection("timeline_page");
+        $page->page = $page->page + 1;
+        $result = $this->fetchResult();
+
+        $this->template->timeline_rows = $result;
+
+        if ($this->isAjax()) {
+            $this->redrawControl("timeline");
+        }
+
+        // zvýšení poradi o 9 - pocet vypsaných prvků
+    }
+
+    //dynamic loading timeline end
 }

@@ -541,6 +541,17 @@ $router[] = new Route('casova-os', array(
     'presenter' => 'timeline',
     'action' => 'timeline_wall',
     'lang' => 'sk')); //, \Nette\Application\IRouter::SECURED);
+
+//---------------------------   Pages / dynamic timeline -----------------------------------
+$router[] = new Route('timeline', array(
+    'presenter' => 'timeline',
+    'action' => 'timeline_dynamic',
+    'lang' => 'en')); //, \Nette\Application\IRouter::SECURED);
+
+$router[] = new Route('timeline-items', array(
+    'presenter' => 'timeline',
+    'action' => 'timeline_item_dynamic',
+    'lang' => 'en')); //, \Nette\Application\IRouter::SECURED);
 //---------------------------   Pages / contact us -----------------------------------
 $router[] = new Route('contact-us', array(
     'presenter' => 'pages',

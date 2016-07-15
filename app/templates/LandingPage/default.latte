@@ -325,8 +325,8 @@
                 <div class="container">
                     <div class="col-md-6">
                         <div class="col-md-12" style="margin-bottom:30px;">
-                        <span class="counter" style="display:table-cell;padding-right: 10px;font-size: 40px !important;font-family: 'Roboto Condensed', sans-serif;">{DataModel::getRegistrationsCount()}</span>
-                        <span style="display:table-cell;vertical-align: middle;">{_ 'registered users from around the world'}</span>
+                            <span class="counter" style="display:table-cell;padding-right: 10px;font-size: 40px !important;font-family: 'Roboto Condensed', sans-serif;">{DataModel::getRegistrationsCount()}</span>
+                            <span style="display:table-cell;vertical-align: middle;">{_ 'registered users from around the world'}</span>
                         </div>
                         {include '../registration/registration.latte'}
                     </div>
@@ -508,7 +508,7 @@
             </div>
             <div class="container-fluid" style="padding:15px 0px 15px 0px;background-color: #e8e2d4;">
                 <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#8C8067;"><strong><i class="fa fa-history"></i>&nbsp;&nbsp;{_ 'Recently added'}</strong></h2>
-                <!-- Recently added kennels section -->
+                <!--Recently added kennels section--> 
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Profiles'}</p>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
@@ -528,7 +528,7 @@
                         {/foreach}
                     </div>
                 </div>
-                <!-- Recently added dogs section -->
+                <!--Recently added dogs section--> 
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="glyphicons glyphicons-dog" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Dogs with pedigree'}</p>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
@@ -542,7 +542,7 @@
                         {/foreach}
                     </div>
                 </div>
-                <!-- Recently added puppies section -->
+                <!--Recently added puppies section--> 
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-paw" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Puppies for sale'}</p>
                     <div class="list-group" style="float:left;box-shadow: none;width:100%">
@@ -564,7 +564,7 @@
                     <p class="text-center" style="margin: 0px 0px 0px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Photos'}</p>
                     <div class="row">
                         {foreach $photos as $row}
-                            {include '../components/modal_gallery.latte' row=>$row}
+                            <!--{ include '../components/modal_gallery.latte' row=>$row}-->
                         {/foreach}
                         <div class="col-md-12" style="margin-top:10px;">
                             {foreach $photos as $row}
@@ -578,58 +578,24 @@
                     </div>
                 </div>
                 <!-- Recently added videos section -->
-                <div class="col-lg-12 col-md-6" style="margin-bottom:10px;">
+<!--                <div class="col-lg-12 col-md-6" style="margin-bottom:10px;">
                     <p class="text-center" style="margin: 0px 0px 0px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-video-camera" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Videos'}</p>
                     <div class="row">
                         <div class="col-md-12" style="margin-top:10px;">
-                            {foreach $videos as $row}
-                                {include '../components/modal_video.latte' row=>$row}
-                                <div class="col-lg-1 col-md-4 col-sm-4 col-xs-6" style="padding:5px;" data-toggle="tooltip" data-placement='bottom' title="{$row->description}">
-                                    <div class="thumbnail img-responsive" href="javascript:void(0)" onclick="ShowGaleryModalVideo({$row->id})" title="{$row->description}" style="padding:45%; cursor:pointer;background-position: 50% 25%;background-size: cover;margin-bottom:0px;background-image: url({$row->image});">
-                                        <i class="fa fa-play-circle-o" style="font-size:40px;position:absolute;top:30%;margin-left: 0;color: rgba(255, 255, 255, 0.57);"></i>
-                                    </div>
-                                </div>
-                            {/foreach}
-                        </div>
+                            { foreach $videos as $row}
+                                <div class="col-lg-1 col-md-4 col-sm-4 col-xs-6" style="padding:5px;" data-toggle="tooltip" data-placement='bottom' title="{ $row->description}">
+                                    <iframe id="cartoonVideo{$row->id}" width="100%" src="//www.youtube.com/embed/{ $row->youtube}?showinfo=0&modestbranding=0" frameborder="0" allowfullscreen></iframe>
+                                </div>-->
+<!--                                                                { include '../components/modal_video.latte' row=>$row, ignore_like=>TRUE}
+                                                                <div class="col-lg-1 col-md-4 col-sm-4 col-xs-6" style="padding:5px;" data-toggle="tooltip" data-placement='bottom' title="{ $row->description}">
+                                                                    <div class="thumbnail img-responsive" href="javascript:void(0)" onclick="ShowGaleryModalVideo({ $row->id})" title="{ $row->description}" style="padding:45%; cursor:pointer;background-position: 50% 25%;background-size: cover;margin-bottom:0px;background-image: url({ $row->image});">
+                                                                        <i class="fa fa-play-circle-o" style="font-size:40px;position:absolute;top:30%;margin-left: 0;color: rgba(255, 255, 255, 0.57);"></i>
+                                                                    </div>
+                                                                </div>-->
+                            <!--{ /foreach}-->
+<!--                        </div>
                     </div>
-                </div>
-                <script>
-                    var tag = document.createElement('script');
-
-                    tag.src = "https://www.youtube.com/iframe_api";
-                    var firstScriptTag = document.getElementsByTagName('script')[0];
-                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-                    window.ytPlayerList = [];
-                    window.players = [];
-                </script>
-
-                <script type="text/javascript">
-                    {foreach $videos as $photo}
-                    window.ytPlayerList.push(
-                            {
-                                Id: 'ctl100_phContent_{$photo->id}player',
-                                DivId: 'ctl100_phContent_div{$photo->id}player',
-                                VideoId: {$photo->youtube}
-                            }
-                    );
-                    {/foreach}
-
-                    function onYouTubeIframeAPIReady() {
-                        initVideos();
-                    }
-
-                    function initVideos() {
-                        for (var i = 0; i < ytPlayerList.length; i++) {
-                            var player = ytPlayerList[i];
-                            var pl = new YT.Player(player.DivId, {
-                                width: '100%',
-                                videoId: player.VideoId,
-                            });
-                            window[player.Id] = pl;
-                        }
-                    }
-                </script>
+                </div>-->
             </div>
         </div>
         <!-- Our team section -->

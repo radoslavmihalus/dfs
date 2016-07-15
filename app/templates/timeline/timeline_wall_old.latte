@@ -1,0 +1,18 @@
+<!--<div class="container">-->
+{block content}
+<div class="panel-default col-xs-12 col-md-6 col-sm-12 col-lg-6" style="font-size: 12px;min-width: 244px;">
+    {control vp, right, large}
+    <!--    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
+            <div class="row" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
+                <div class="panel-description"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{_ 'Timeline events'} 
+                </div>
+            </div>-->
+    <ul class="timeline">
+        {includeblock 'timeline_item.latte'}
+        {include timeline_item}
+    </ul>
+    <!--    </div>-->
+    {control vp, right, large}
+</div>
+{/block}
+<!--</div>-->
