@@ -9,16 +9,31 @@
         {include #timeline_item}
     </ul>
     <script type="text/javascript">
+        var need_load = true;
         $(window).scroll(function () {
-            if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-                $("body").addClass("loading");
-                $.nette.ajax({
-                    url: '?do=LoadMore'
-                }).done(function (payload) {
-                    $("body").removeClass("loading");
-                });
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() / 2) {
+                if (need_load)
+                {
+                    need_load = false;
+                    //$("body").addClass("loading");
+                    $.nette.ajax({
+                        url: '?do=LoadMore'
+                    }).done(function (payload) {
+                        need_load = true;
+                        //$("body").removeClass("loading");
+                    });
+                }
             }
         });
+//            if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+//                //$("body").addClass("loading");
+//                $.nette.ajax({
+//                    url: '?do=LoadMore'
+//                }).done(function (payload) {
+//                    //$("body").removeClass("loading");
+//                });
+//            }
+//        });
     </script>
     <!--<li><a n: href="LoadMore!" class="btn btn-default col-md-12 col-lg-12 col-sm-12 col-xs-12 ajax">Load more</a></li>-->
     <div class="modal"></div>
