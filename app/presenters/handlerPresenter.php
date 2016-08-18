@@ -183,14 +183,14 @@ class handlerPresenter extends BasePresenter {
             $page->page = $page->page + 1;
             $rows = $this->database->table("tbl_userhandler")
                             ->where("user_id IN ?", $users_id)
-//                        ->order('premium_expiry_date DESC, id DESC')
-                            ->order('id DESC')
+                            ->order('premium_expiry_date DESC, rand()')
+//                            ->order('id DESC')
                             ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
             $this->template->handler_rows = $rows;
         }
     }
-    
+
     public function handleLoadMore() {
         $page = $this->session->getSection("handlers_page");
         $page->page = $page->page + 1;
@@ -1002,7 +1002,7 @@ class handlerPresenter extends BasePresenter {
 
         $page = $this->session->getSection("handlers_page");
         $page->page = 0;
-        
+
         $this->redirect("this");
     }
 

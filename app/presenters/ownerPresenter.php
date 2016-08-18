@@ -224,8 +224,8 @@ class ownerPresenter extends BasePresenter {
             $page->page = $page->page + 1;
             $rows = $this->database->table("tbl_userowner")
                             ->where("user_id IN ?", $ids)
-//                        ->order('premium_expiry_date DESC, id DESC')
-                            ->order('id DESC')
+                            ->order('premium_expiry_date DESC, rand()')
+//                            ->order('id DESC')
                             ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
             $this->template->owners = $rows;
