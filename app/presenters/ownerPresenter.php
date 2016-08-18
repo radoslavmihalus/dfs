@@ -224,7 +224,7 @@ class ownerPresenter extends BasePresenter {
             $page->page = $page->page + 1;
             $rows = $this->database->table("tbl_userowner")
                             ->where("user_id IN ?", $ids)
-                            ->order('premium_expiry_date DESC, rand()')
+                            ->order('(SELECT COUNT(*) FROM `tbl_dogs` WHERE `tbl_dogs`.`profile_id`=`tbl_userowner`.`id` AND `tbl_dogs`.`offer_for_mating`=1) DESC, premium_expiry_date DESC')
 //                            ->order('id DESC')
                             ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 

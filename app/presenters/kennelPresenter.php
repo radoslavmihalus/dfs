@@ -203,14 +203,14 @@ class kennelPresenter extends BasePresenter {
                                     ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
                                     ->where("user_id IN ?", $ids_users)
                                     ->where("id IN ?", $ids)
-                                    ->order('premium_expiry_date DESC, rand()')
+                                    ->order('(SELECT COUNT(*) FROM `tbl_puppies` WHERE `tbl_puppies`.`profile_id`=`tbl_userkennel`.`id` AND `tbl_puppies`.`puppy_state`="ForSale") DESC, premium_expiry_date DESC')
 //                                    ->order('id DESC')
                                     ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
                 else
                     $rows = $this->database->table("tbl_userkennel")
                                     ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
                                     ->where("id IN ?", $ids)
-                                    ->order('premium_expiry_date DESC, rand()')
+                                    ->order('(SELECT COUNT(*) FROM `tbl_puppies` WHERE `tbl_puppies`.`profile_id`=`tbl_userkennel`.`id` AND `tbl_puppies`.`puppy_state`="ForSale") DESC, premium_expiry_date DESC')
 //                                    ->order('id DESC')
                                     ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
             } else {
@@ -218,13 +218,13 @@ class kennelPresenter extends BasePresenter {
                     $rows = $this->database->table("tbl_userkennel")
                                     ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
                                     ->where("user_id IN ?", $ids_users)
-                                    ->order('premium_expiry_date DESC, rand()')
+                                    ->order('(SELECT COUNT(*) FROM `tbl_puppies` WHERE `tbl_puppies`.`profile_id`=`tbl_userkennel`.`id` AND `tbl_puppies`.`puppy_state`="ForSale") DESC, premium_expiry_date DESC')
 //                                    ->order('id DESC')
                                     ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
                 else {
                     $rows = $this->database->table("tbl_userkennel")
                                     ->where("kennel_name LIKE ?", "%" . $this->filter_kennel_name . "%")
-                                    ->order('premium_expiry_date DESC, rand()')
+                                    ->order('(SELECT COUNT(*) FROM `tbl_puppies` WHERE `tbl_puppies`.`profile_id`=`tbl_userkennel`.`id` AND `tbl_puppies`.`puppy_state`="ForSale") DESC, premium_expiry_date DESC')
 //                                    ->order('id DESC')
                                     ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
                 }

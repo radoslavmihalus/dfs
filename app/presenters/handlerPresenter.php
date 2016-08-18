@@ -183,7 +183,7 @@ class handlerPresenter extends BasePresenter {
             $page->page = $page->page + 1;
             $rows = $this->database->table("tbl_userhandler")
                             ->where("user_id IN ?", $users_id)
-                            ->order('premium_expiry_date DESC, rand()')
+                            ->order('premium_expiry_date DESC, (SELECT COUNT(*) FROM `tbl_handler_shows` WHERE `tbl_handler_shows`.`handler_id`=`tbl_userhandler`.`id`) DESC')
 //                            ->order('id DESC')
                             ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
