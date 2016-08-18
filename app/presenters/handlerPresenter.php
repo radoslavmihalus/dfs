@@ -61,7 +61,7 @@ class handlerPresenter extends BasePresenter {
 
     /*     * ******** renderers ************* */
 
-    public function actionHandler_list($lang) {
+    public function actionHandler_list($lang, $reset = 0) {
         $mysection = $this->getSession('language');
 
         $mysection->lang = $lang;
@@ -69,6 +69,11 @@ class handlerPresenter extends BasePresenter {
         $this->translator->lang = $mysection->lang;
 
         $this->template->lang = $this->translator->lang;
+
+        if ($reset == 1) {
+            $page = $this->session->getSection("handlers_page");
+            $page->page = 0;
+        }
     }
 
     public function renderHandler_awards_list($id = 0) {
@@ -168,13 +173,35 @@ class handlerPresenter extends BasePresenter {
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(20);
 
-        $rows = $this->database->table("tbl_userhandler")
-                        ->where("user_id IN ?", $users_id)
-//                        ->order('premium_expiry_date DESC, id DESC')
-                        ->order('id DESC')
-                        ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        $page = $this->session->getSection("handlers_page");
 
-        $this->template->handler_rows = $rows;
+        if ($page->page <= $this->paginator->getPaginator()->getPageCount()) {
+            if ($page->page > 0) {
+                $this->paginator->getPaginator()->setPage($page->page);
+            }
+
+            $page->page = $page->page + 1;
+            $rows = $this->database->table("tbl_userhandler")
+                            ->where("user_id IN ?", $users_id)
+//                        ->order('premium_expiry_date DESC, id DESC')
+                            ->order('id DESC')
+                            ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+
+            $this->template->handler_rows = $rows;
+        }
+    }
+    
+    public function handleLoadMore() {
+        $page = $this->session->getSection("handlers_page");
+        $page->page = $page->page + 1;
+        //$result = $this->fetchResult();
+        //$this->template->timeline_rows = $result;
+
+        if ($this->isAjax()) {
+            $this->redrawControl("list");
+        }
+
+        // zvýšení poradi o 9 - pocet vypsaných prvků
     }
 
     public function renderDefault($id = 0) {
@@ -973,6 +1000,9 @@ class handlerPresenter extends BasePresenter {
         $section->filter_handler_breed = $this->filter_handler_breed;
         $section->filter_handler_country = $this->filter_handler_country;
 
+        $page = $this->session->getSection("handlers_page");
+        $page->page = 0;
+        
         $this->redirect("this");
     }
 

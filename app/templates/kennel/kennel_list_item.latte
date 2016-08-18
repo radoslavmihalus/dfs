@@ -1,11 +1,10 @@
 {define #kennel_list_item}
-<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding">
-        <!--<a n:href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="position:absolute;top:10px;right:25px;font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></a>-->
+<!--<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding">
+        <a n :href="user:user_premium" class="btn btn-warning btn-sm pull-right" style="position:absolute;top:10px;right:25px;font-size: 13px;margin-top: 5px;margin-right:5px;" data-toggle="tooltip" data-placement='top' title="{_ 'User with premium account'}" type="button"><i class="fa fa-star"></i></a>
         <div class="list-item" style="height:421px;">
             <div style="float:left;width:100%;background-color: white;">
                 <span style="text-align: center;display:block;font-size:13px;color:#83765E;"><i class="fa fa-bullhorn"></i>&nbsp;&nbsp;Advertisment</span>
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-top: 0px;">
-                    <!--Wrapper for slides--> 
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
                             <img class="img-responsive" style="padding:5px;" src="../www/img/advert_slide1.png" alt="...">
@@ -41,25 +40,10 @@
                             </div>
                         </div>
                     </div>
-                    <!--Indicators--> 
-                    <!--                <ol class="carousel-indicators" style="background-color: #83765E;margin-bottom: 10px;">
-                                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                                    </ol>-->
-                    <!--Controls--> 
-                    <!--                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>-->
                 </div>
             </div>
         </div>
-</div>
+</div>-->
 {foreach $result as $row}
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding">
         {if ( DataModel::getPremium($row->user_id) )}

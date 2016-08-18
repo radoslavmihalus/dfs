@@ -241,40 +241,40 @@
                 <a data-toggle="collapse" data-parent="#accordion1" href="#DogforshowLists"><i style="color:rgb(131, 118, 94);float:right" class="fa fa-chevron-down"></i><i style="color:#83765E" class="fa fa-list"></i>&nbsp;&nbsp;{_ 'Lists'}</a>
                 <ul id="DogforshowLists" class="collapse panel-collapse">
                     <li>
-                        <a n:href="kennel:kennel_list lang=>$lang"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Kennels'}<span class="badge" style="float:right">{DataModel::getKennelsCount()}</span></a>
+                        <a n:href="kennel:kennel_list lang=>$lang, reset=>1"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Kennels'}<span class="badge" style="float:right">{DataModel::getKennelsCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="owner:owner_list lang=>$lang"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{_'Owners of purebred dogs'}<span class="badge" style="float:right">{DataModel::getOwnersCount()}</span></a>
+                        <a n:href="owner:owner_list lang=>$lang, reset=>1"><i class="glyphicons glyphicons-user"></i>&nbsp;&nbsp;{_'Owners of purebred dogs'}<span class="badge" style="float:right">{DataModel::getOwnersCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="handler:handler_list lang=>$lang"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_'Handlers'}<span class="badge" style="float:right">{DataModel::getHandlersCount()}</span></a>
+                        <a n:href="handler:handler_list lang=>$lang, reset=>1"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_'Handlers'}<span class="badge" style="float:right">{DataModel::getHandlersCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="dog:dog_list lang=>$lang"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Dogs'}<span class="badge" style="float:right">{DataModel::getDogsCount()}</span></a>
+                        <a n:href="dog:dog_list lang=>$lang, reset=>1"><i class="glyphicons glyphicons-dog"></i>&nbsp;&nbsp;{_'Dogs'}<span class="badge" style="float:right">{DataModel::getDogsCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="dog:dog_for_mating_list lang=>$lang"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_'Dogs for mating'}<span class="badge" style="float:right">{DataModel::getMattingDogsCount()}</span></a>
+                        <a n:href="dog:dog_for_mating_list lang=>$lang, reset=>1"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{_'Dogs for mating'}<span class="badge" style="float:right">{DataModel::getMattingDogsCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="dog:dog_for_sale_list lang=>$lang"><i class="fa fa-eur"></i>&nbsp;&nbsp;{_'Dogs with pedigree for sale'}<span class="badge" style="float:right">{DataModel::getDogsForSaleCount()}</span></a>
+                        <a n:href="dog:dog_for_sale_list lang=>$lang, reset=>1"><i class="fa fa-eur"></i>&nbsp;&nbsp;{_'Dogs with pedigree for sale'}<span class="badge" style="float:right">{DataModel::getDogsForSaleCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="kennel:planned_litter_list lang=>$lang"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}<span class="badge" style="float:right">{DataModel::getPlannedLittersCount()}</span></a>
+                        <a n:href="kennel:planned_litter_list lang=>$lang, reset=>1"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{_'Planned litters'}<span class="badge" style="float:right">{DataModel::getPlannedLittersCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="puppy:puppy_list lang=>$lang"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Puppies for sale'}<span class="badge" style="float:right">{DataModel::getPuppiesForSaleCount()}</span></a>
+                        <a n:href="puppy:puppy_list lang=>$lang, reset=>1"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Puppies for sale'}<span class="badge" style="float:right">{DataModel::getPuppiesForSaleCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="puppy:puppy_sold_list lang=>$lang"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Sold puppies'}<span class="badge" style="float:right">{DataModel::getPuppiesSoldCount()}</span></a>
+                        <a n:href="puppy:puppy_sold_list lang=>$lang, reset=>1"><i class="fa fa-paw"></i>&nbsp;&nbsp;{_'Sold puppies'}<span class="badge" style="float:right">{DataModel::getPuppiesSoldCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="dog:dog_bis_list lang=>$lang"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_'Best in show'}<span class="badge" style="float:right">{DataModel::getBISCount()}</span></a>
+                        <a n:href="dog:dog_bis_list lang=>$lang, reset=>1"><i class="glyphicons glyphicons-certificate"></i>&nbsp;&nbsp;{_'Best in show'}<span class="badge" style="float:right">{DataModel::getBISCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="photo:photo_list lang=>$lang"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<span class="badge" style="float:right">{DataModel::getPhotosCount()}</span></a>
+                        <a n:href="photo:photo_list lang=>$lang, reset=>1"><i class="fa fa-camera"></i>&nbsp;&nbsp;{_ 'Photos'}<span class="badge" style="float:right">{DataModel::getPhotosCount()}</span></a>
                     </li>
                     <li>
-                        <a n:href="video:video_list lang=>$lang"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}<span class="badge" style="float:right">{DataModel::getVideosCount()}</span></a>
+                        <a n:href="video:video_list lang=>$lang, reset=>1"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Videos'}<span class="badge" style="float:right">{DataModel::getVideosCount()}</span></a>
                     </li>
                 </ul>
             </li>

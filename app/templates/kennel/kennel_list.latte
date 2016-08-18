@@ -2,13 +2,42 @@
 <div class="panel-default col-lg-12 col-md-12 col-xs-12" style="font-size: 13px;min-width: 244px">
     <h1><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennels'}</h1>
     {include 'kennel_list_filter.latte'}
-    {control vp, right, large}
-    <div class="row">
+    <div style="display:none">
+        {control vp, right, large}
+    </div>
+    <div class="row" n:snippet="list" data-ajax-append="true">
         <!-- List profile component -->
         {includeblock 'kennel_list_item.latte'}
         {include kennel_list_item}
         <!-- / List profile component -->
     </div>
-    {control vp, right, large}
-</div>  
+    <!--{ control vp, right, large}-->
+    <script type="text/javascript">
+        var need_load = true;
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() / 2) {
+                if (need_load)
+                {
+                    need_load = false;
+                    //$("body").addClass("loading");
+                    $.nette.ajax({
+                        url: '?do=LoadMore'
+                    }).done(function (payload) {
+                        need_load = true;
+                        //$("body").removeClass("loading");
+                    });
+                }
+            }
+        });
+//            if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+//                //$("body").addClass("loading");
+//                $.nette.ajax({
+//                    url: '?do=LoadMore'
+//                }).done(function (payload) {
+//                    //$("body").removeClass("loading");
+//                });
+//            }
+//        });
+    </script>
+</div>
 {/block}

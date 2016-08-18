@@ -61,7 +61,7 @@ class ownerPresenter extends BasePresenter {
 
     /*     * ******** renderers ************* */
 
-    public function actionOwner_list($lang) {
+    public function actionOwner_list($lang, $reset = 0) {
         $mysection = $this->getSession('language');
 
         $mysection->lang = $lang;
@@ -69,6 +69,11 @@ class ownerPresenter extends BasePresenter {
         $this->translator->lang = $mysection->lang;
 
         $this->template->lang = $this->translator->lang;
+
+        if ($reset == 1) {
+            $page = $this->session->getSection("owners_page");
+            $page->page = 0;
+        }
     }
 
     /*     * ******************* view default ******************** */
@@ -209,13 +214,35 @@ class ownerPresenter extends BasePresenter {
         $this->paginator->getPaginator()->setItemCount($count);
         $this->paginator->getPaginator()->setItemsPerPage(20);
 
-        $rows = $this->database->table("tbl_userowner")
-                        ->where("user_id IN ?", $ids)
-//                        ->order('premium_expiry_date DESC, id DESC')
-                        ->order('id DESC')
-                        ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+        $page = $this->session->getSection("owners_page");
 
-        $this->template->owners = $rows;
+        if ($page->page <= $this->paginator->getPaginator()->getPageCount()) {
+            if ($page->page > 0) {
+                $this->paginator->getPaginator()->setPage($page->page);
+            }
+
+            $page->page = $page->page + 1;
+            $rows = $this->database->table("tbl_userowner")
+                            ->where("user_id IN ?", $ids)
+//                        ->order('premium_expiry_date DESC, id DESC')
+                            ->order('id DESC')
+                            ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
+
+            $this->template->owners = $rows;
+        }
+    }
+
+    public function handleLoadMore() {
+        $page = $this->session->getSection("owners_page");
+        $page->page = $page->page + 1;
+        //$result = $this->fetchResult();
+        //$this->template->timeline_rows = $result;
+
+        if ($this->isAjax()) {
+            $this->redrawControl("list");
+        }
+
+        // zvýšení poradi o 9 - pocet vypsaných prvků
     }
 
     public function renderOwner_dog_list_home($id = 0) {
@@ -340,6 +367,9 @@ class ownerPresenter extends BasePresenter {
         $section->filter_owner_name = $this->filter_owner_name;
         $section->filter_owner_breed = $this->filter_owner_breed;
         $section->filter_owner_country = $this->filter_owner_country;
+
+        $page = $this->session->getSection("owners_page");
+        $page->page = 0;
 
         $this->redirect("this");
     }
