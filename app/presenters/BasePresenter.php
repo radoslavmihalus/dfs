@@ -1586,7 +1586,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $message = $values['txtMessageCompose'];
 
         if (strlen($message) > 23) {
-            $message = substr($message, 0, 20) . '...';
+            //$message = substr($message, 0, 20) . '...';
         }
 
         if ($this->profile_id > 0) {
