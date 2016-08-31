@@ -505,6 +505,74 @@
                         <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_bis_list lang=>$lang, reset=>1" role="button">{_ 'Sold puppies'}<span class="badge landing_category_badge counter">{DataModel::getPuppiesSoldCount()}</span></a>
                     </div>
                 </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:30px;">
+                    <div class="row">
+                        <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#8C8067;"><strong><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Activate the premium account for DOGFORSHOW'}</strong></h2>
+                        <p class="secondary_heading text-center" style="margin-bottom:20px;color: #8C8067;">{_ 'What functions does your premium account bring you?'}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="text-center" style="font-size:25px;">
+                                <img style="margin: 0 auto;" class="img-responsive" src="../www/img/worldwide.png"/>
+                            </p>
+                            <p style="font-size:15px;margin: 3px;">{_ 'Transparent presentation in 6 languages directly in the international community of breeders, owners and handlers of purebred dogs with pedigree.'}</p>        
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="text-center" style="font-size:25px;">
+                                <img style="margin: 0 auto;" class="img-responsive" src="../www/img/allinone.png"/>
+                            </p>
+                            <p style="font-size:15px;margin: 3px;">{_ 'For a single price you get the option of creating all profiles - the kennel, the owner of purebred dog and the handler.'}</p>        
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="text-center" style="font-size:25px;">
+                                <img style="margin: 0 auto;" class="img-responsive" src="../www/img/editprofile.png"/>
+                            </p>
+                            <p style="font-size:15px;margin: 3px;">{_ 'Adding new data and updating and collecting them in a single place provides you with a good overview and saves you time.'}</p>        
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="text-center" style="font-size:25px;">
+                                <img style="margin: 0 auto;" class="img-responsive" src="../www/img/functions.png"/>
+                            </p>
+                            <p style="font-size:15px;margin: 3px;">
+                                {_ 'We offer you many interactive functions which would otherwise require high development costs on your site.'}
+                            </p>        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="text-center" style="font-size:25px;">
+                                <img style="margin: 0 auto;" class="img-responsive" src="../www/img/present.png"/>
+                            </p>
+                            <p style="font-size:15px;margin: 3px;">{_ 'The continuous adding of new functions automatically is included in the price.'}</p>        
+                        </div>
+                        <div class="col-md-3">
+                            <p class="text-center" style="font-size:25px;">
+                                <img style="margin: 0 auto;" class="img-responsive" src="../www/img/responsive.png"/>
+                            </p>
+                            <p style="font-size:15px;margin: 3px;">{_ 'Good arrangement and optimization of your profiles for devices such as a computer, laptop, tablet or mobile.'}</p>        
+                        </div>
+                        <div class="col-md-3">
+                            <p class="text-center" style="font-size:25px;">
+                                <img style="margin: 0 auto;" class="img-responsive" src="../www/img/share.png"/>
+                            </p>
+                            <p style="font-size:15px;margin: 3px;">{_ 'Sharing successes, information and an unlimited number of attached photos on social networks.'}</p>        
+                        </div>
+                        <div class="col-md-3">
+                            <p class="text-center" style="font-size:25px;">
+                                <img style="margin: 0 auto;" class="img-responsive" src="../www/img/views.png"/>
+                            </p>
+                            <p style="font-size:15px;margin: 3px;">{_ 'More than 1,000,000 views of the DOGFORSHOW pages will provide you with potentially interested people from all over the world.'}</p>        
+                        </div>
+                    </div>
+                        <div class="row" style="margin-bottom:40px;margin-top: 30px;">
+                            <div class="col-md-12">
+                                <p class="secondary_heading text-center" style="font-size:20px !important;color:#8C8067;"><strong>{_ 'The cost of a DOGFORSHOW premium membership for one month is less than capuccino with your friend'}</strong></p>
+                                <p class="text-center">
+                                    <a class="btn btn-warning btn-lg" n:href="user:user_premium lang=>$lang"><i style="color:#FFD8A2;" class="fa fa-arrow-circle-right"></i>&nbsp;&nbsp;{_ 'I want to know more'}</a>
+                                </p>
+                            </div>
+                        </div>
+                </div>
             </div>
             <div class="container-fluid" style="padding:15px 0px 15px 0px;background-color: #e8e2d4;">
                 <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#8C8067;"><strong><i class="fa fa-history"></i>&nbsp;&nbsp;{_ 'Recently added'}</strong></h2>
@@ -578,24 +646,24 @@
                     </div>
                 </div>
                 <!-- Recently added videos section -->
-<!--                <div class="col-lg-12 col-md-6" style="margin-bottom:10px;">
-                    <p class="text-center" style="margin: 0px 0px 0px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-video-camera" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Videos'}</p>
-                    <div class="row">
-                        <div class="col-md-12" style="margin-top:10px;">
-                            { foreach $videos as $row}
-                                <div class="col-lg-1 col-md-4 col-sm-4 col-xs-6" style="padding:5px;" data-toggle="tooltip" data-placement='bottom' title="{ $row->description}">
-                                    <iframe id="cartoonVideo{$row->id}" width="100%" src="//www.youtube.com/embed/{ $row->youtube}?showinfo=0&modestbranding=0" frameborder="0" allowfullscreen></iframe>
+                <!--                <div class="col-lg-12 col-md-6" style="margin-bottom:10px;">
+                                    <p class="text-center" style="margin: 0px 0px 0px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-video-camera" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Videos'}</p>
+                                    <div class="row">
+                                        <div class="col-md-12" style="margin-top:10px;">
+                                            { foreach $videos as $row}
+                                                <div class="col-lg-1 col-md-4 col-sm-4 col-xs-6" style="padding:5px;" data-toggle="tooltip" data-placement='bottom' title="{ $row->description}">
+                                                    <iframe id="cartoonVideo{$row->id}" width="100%" src="//www.youtube.com/embed/{ $row->youtube}?showinfo=0&modestbranding=0" frameborder="0" allowfullscreen></iframe>
+                                                </div>-->
+                <!--                                                                { include '../components/modal_video.latte' row=>$row, ignore_like=>TRUE}
+                                                                                <div class="col-lg-1 col-md-4 col-sm-4 col-xs-6" style="padding:5px;" data-toggle="tooltip" data-placement='bottom' title="{ $row->description}">
+                                                                                    <div class="thumbnail img-responsive" href="javascript:void(0)" onclick="ShowGaleryModalVideo({ $row->id})" title="{ $row->description}" style="padding:45%; cursor:pointer;background-position: 50% 25%;background-size: cover;margin-bottom:0px;background-image: url({ $row->image});">
+                                                                                        <i class="fa fa-play-circle-o" style="font-size:40px;position:absolute;top:30%;margin-left: 0;color: rgba(255, 255, 255, 0.57);"></i>
+                                                                                    </div>
+                                                                                </div>-->
+                <!--{ /foreach}-->
+                <!--                        </div>
+                                    </div>
                                 </div>-->
-<!--                                                                { include '../components/modal_video.latte' row=>$row, ignore_like=>TRUE}
-                                                                <div class="col-lg-1 col-md-4 col-sm-4 col-xs-6" style="padding:5px;" data-toggle="tooltip" data-placement='bottom' title="{ $row->description}">
-                                                                    <div class="thumbnail img-responsive" href="javascript:void(0)" onclick="ShowGaleryModalVideo({ $row->id})" title="{ $row->description}" style="padding:45%; cursor:pointer;background-position: 50% 25%;background-size: cover;margin-bottom:0px;background-image: url({ $row->image});">
-                                                                        <i class="fa fa-play-circle-o" style="font-size:40px;position:absolute;top:30%;margin-left: 0;color: rgba(255, 255, 255, 0.57);"></i>
-                                                                    </div>
-                                                                </div>-->
-                            <!--{ /foreach}-->
-<!--                        </div>
-                    </div>
-                </div>-->
             </div>
         </div>
         <!-- Our team section -->
@@ -701,7 +769,18 @@
             <div class="jumbotron brown">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 brown">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#e8e2d4;"><strong>{_ 'Links'}</strong></h2>
+                            <ul class="landing_page_links">
+                                <li>
+                                    <a n:href="pages:general_terms lang=>$lang"><i class="fa fa-gavel"></i>&nbsp;&nbsp;{_'General terms'}</a>
+                                </li>
+                                <li>
+                                    <a n:href="pages:cookie_policy lang=>$lang"><i class="fa fa-leanpub"></i>&nbsp;&nbsp;{_'Cookie policy'}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 brown">
                             <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#e8e2d4;"><i class="fa fa-envelope"></i>&nbsp;&nbsp;<strong>{_ 'Contact us'}</strong></h2>
                             <p class="secondary_heading text-center">{_ 'Please contact us via the contact form below if you have any questions, issues or if you are interested in advertising on the DOGFORSHOW'}</p>
                             {form frmContactForm}
@@ -736,24 +815,24 @@
                                 </div>
                             {/form}
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                            <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#e8e2d4;"><strong>{_ 'Follow us'}</strong></h2>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <h2 class="heading text-center text-uppercase" style="font-size:25px !important;color:#e8e2d4;"><i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;&nbsp;<strong>{_ 'Follow us'}</strong></h2>
                             <p class="secondary_heading text-center">
                                 <a href="https://www.facebook.com/dogforshow" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on facebook'}" style="margin-right:15px;text-decoration: none;">
                                     <span class="fa fa-facebook-official fa-2x follow_link"></span>
                                 </a>
-                                <a href="https://plus.google.com/+Dogforshow" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Google+'}" style="margin-right:15px;text-decoration: none;">
+<!--                                <a href="https://plus.google.com/+Dogforshow" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Google+'}" style="margin-right:15px;text-decoration: none;">
                                     <span class="fa fa-google-plus-square fa-2x white follow_link"></span>
-                                </a>
+                                </a>-->
                                 <a href="https://twitter.com/DOGFORSHOW" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Twitter'}" style="margin-right:15px;text-decoration: none;">
                                     <span class="fa fa-twitter-square fa-2x white follow_link"></span>
                                 </a>
                                 <a href="https://www.pinterest.com/DOGFORSHOW" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Pinterest'}" style="margin-right:15px;text-decoration: none;">
                                     <span class="fa fa-pinterest-square fa-2x white follow_link"></span>
                                 </a>
-                                <a href="https://dog-for-show.tumblr.com/" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Tumblr'}" style="text-decoration: none;">
+<!--                                <a href="https://dog-for-show.tumblr.com/" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Tumblr'}" style="text-decoration: none;">
                                     <span class="fa fa-tumblr-square fa-2x white follow_link"></span>
-                                </a>
+                                </a>-->
                             </p>
                         </div>
                     </div>
@@ -772,143 +851,143 @@
         <!--{ include '../components/promotion_modal.latte'}-->
 
         <script>
-                    $(function () {
-                        $('[data-toggle="tooltip"]').tooltip()
-                    });
+                            $(function () {
+                                $('[data-toggle="tooltip"]').tooltip()
+                            });
 
-                    $("#logo").click(function (event)
-                    {
-                        event.preventDefault();
-                        var target = "#main";
+                            $("#logo").click(function (event)
+                            {
+                                event.preventDefault();
+                                var target = "#main";
 
-                        $('html,body').animate({
-                            scrollTop: $(target).offset().top - 69
-                        }, 800, 'easeInOutCirc');
+                                $('html,body').animate({
+                                    scrollTop: $(target).offset().top - 69
+                                }, 800, 'easeInOutCirc');
 
-                        $("#joinmeli").removeClass("active");
-                        $("#whoweareli").removeClass("active");
-                        $("#howwegrowli").removeClass("active");
-                        $("#whatweofferli").removeClass("active");
-                        $("#contactusli").removeClass("active");
-                    });
+                                $("#joinmeli").removeClass("active");
+                                $("#whoweareli").removeClass("active");
+                                $("#howwegrowli").removeClass("active");
+                                $("#whatweofferli").removeClass("active");
+                                $("#contactusli").removeClass("active");
+                            });
 
-                    $("#joinme").click(function (event) {
-                        $("#login_link").removeClass("active");
-                        $("#register_link").addClass("active");
-                        $("#login").removeClass("in");
-                        $("#login").removeClass("active");
-                        $("#registration").addClass("in");
-                        $("#registration").addClass("active");
+                            $("#joinme").click(function (event) {
+                                $("#login_link").removeClass("active");
+                                $("#register_link").addClass("active");
+                                $("#login").removeClass("in");
+                                $("#login").removeClass("active");
+                                $("#registration").addClass("in");
+                                $("#registration").addClass("active");
 
-                        event.preventDefault();
-                        var target = "#join";
+                                event.preventDefault();
+                                var target = "#join";
 
-                        $('html,body').animate({
-                            scrollTop: $(target).offset().top - 69
-                        }, 800, 'easeInOutCirc');
+                                $('html,body').animate({
+                                    scrollTop: $(target).offset().top - 69
+                                }, 800, 'easeInOutCirc');
 
-                        $("#joinmeli").addClass("active");
-                        $("#whoweareli").removeClass("active");
-                        $("#howwegrowli").removeClass("active");
-                        $("#whatweofferli").removeClass("active");
-                        $("#contactusli").removeClass("active");
-                    });
+                                $("#joinmeli").addClass("active");
+                                $("#whoweareli").removeClass("active");
+                                $("#howwegrowli").removeClass("active");
+                                $("#whatweofferli").removeClass("active");
+                                $("#contactusli").removeClass("active");
+                            });
 
-                    $("#joinreg").click(function (event) {
-                        $("#login_link").removeClass("active");
-                        $("#register_link").addClass("active");
-                        $("#login").removeClass("in");
-                        $("#login").removeClass("active");
-                        $("#registration").addClass("in");
-                        $("#registration").addClass("active");
+                            $("#joinreg").click(function (event) {
+                                $("#login_link").removeClass("active");
+                                $("#register_link").addClass("active");
+                                $("#login").removeClass("in");
+                                $("#login").removeClass("active");
+                                $("#registration").addClass("in");
+                                $("#registration").addClass("active");
 
-                        event.preventDefault();
-                        var target = "#join";
+                                event.preventDefault();
+                                var target = "#join";
 
-                        $('html,body').animate({
-                            scrollTop: $(target).offset().top - 69
-                        }, 800, 'easeInOutCirc');
+                                $('html,body').animate({
+                                    scrollTop: $(target).offset().top - 69
+                                }, 800, 'easeInOutCirc');
 
-                        $("#joinmeli").addClass("active");
-                        $("#whoweareli").removeClass("active");
-                        $("#howwegrowli").removeClass("active");
-                        $("#whatweofferli").removeClass("active");
-                        $("#contactusli").removeClass("active");
-                    });
+                                $("#joinmeli").addClass("active");
+                                $("#whoweareli").removeClass("active");
+                                $("#howwegrowli").removeClass("active");
+                                $("#whatweofferli").removeClass("active");
+                                $("#contactusli").removeClass("active");
+                            });
 
-                    $('#whoweare').click(function (event) {
-                        event.preventDefault();
-                        var target = "#discover";
+                            $('#whoweare').click(function (event) {
+                                event.preventDefault();
+                                var target = "#discover";
 
-                        $('html,body').animate({
-                            scrollTop: $(target).offset().top - 89
-                        }, 800, 'easeInOutCirc');
+                                $('html,body').animate({
+                                    scrollTop: $(target).offset().top - 89
+                                }, 800, 'easeInOutCirc');
 
-                        $("#joinmeli").removeClass("active");
-                        $("#whoweareli").addClass("active");
-                        $("#howwegrowli").removeClass("active");
-                        $("#whatweofferli").removeClass("active");
-                        $("#contactusli").removeClass("active");
-                    });
+                                $("#joinmeli").removeClass("active");
+                                $("#whoweareli").addClass("active");
+                                $("#howwegrowli").removeClass("active");
+                                $("#whatweofferli").removeClass("active");
+                                $("#contactusli").removeClass("active");
+                            });
 
-                    $('#whowearemouse').click(function (event) {
-                        event.preventDefault();
-                        var target = "#discover";
+                            $('#whowearemouse').click(function (event) {
+                                event.preventDefault();
+                                var target = "#discover";
 
-                        $('html,body').animate({
-                            scrollTop: $(target).offset().top - 89
-                        }, 800, 'easeInOutCirc');
+                                $('html,body').animate({
+                                    scrollTop: $(target).offset().top - 89
+                                }, 800, 'easeInOutCirc');
 
-                        $("#joinmeli").removeClass("active");
-                        $("#whoweareli").addClass("active");
-                        $("#howwegrowli").removeClass("active");
-                        $("#whatweofferli").removeClass("active");
-                        $("#contactusli").removeClass("active");
-                    });
+                                $("#joinmeli").removeClass("active");
+                                $("#whoweareli").addClass("active");
+                                $("#howwegrowli").removeClass("active");
+                                $("#whatweofferli").removeClass("active");
+                                $("#contactusli").removeClass("active");
+                            });
 
-                    $('#howwegrow').click(function (event) {
-                        event.preventDefault();
-                        var target = "#follow";
+                            $('#howwegrow').click(function (event) {
+                                event.preventDefault();
+                                var target = "#follow";
 
-                        $('html,body').animate({
-                            scrollTop: $(target).offset().top - 69
-                        }, 800, 'easeInOutCirc');
-                        $("#joinmeli").removeClass("active");
-                        $("#whoweareli").removeClass("active");
-                        $("#howwegrowli").addClass("active");
-                        $("#whatweofferli").removeClass("active");
-                        $("#contactusli").removeClass("active");
-                    });
+                                $('html,body').animate({
+                                    scrollTop: $(target).offset().top - 69
+                                }, 800, 'easeInOutCirc');
+                                $("#joinmeli").removeClass("active");
+                                $("#whoweareli").removeClass("active");
+                                $("#howwegrowli").addClass("active");
+                                $("#whatweofferli").removeClass("active");
+                                $("#contactusli").removeClass("active");
+                            });
 
-                    $('#whatweoffer').click(function (event) {
-                        event.preventDefault();
-                        var target = "#about";
+                            $('#whatweoffer').click(function (event) {
+                                event.preventDefault();
+                                var target = "#about";
 
-                        $('html,body').animate({
-                            scrollTop: $(target).offset().top - 89
-                        }, 800, 'easeInOutCirc');
+                                $('html,body').animate({
+                                    scrollTop: $(target).offset().top - 89
+                                }, 800, 'easeInOutCirc');
 
-                        $("#joinmeli").removeClass("active");
-                        $("#whoweareli").removeClass("active");
-                        $("#howwegrowli").removeClass("active");
-                        $("#whatweofferli").addClass("active");
-                        $("#contactusli").removeClass("active");
-                    });
+                                $("#joinmeli").removeClass("active");
+                                $("#whoweareli").removeClass("active");
+                                $("#howwegrowli").removeClass("active");
+                                $("#whatweofferli").addClass("active");
+                                $("#contactusli").removeClass("active");
+                            });
 
-                    $('#contactus').click(function (event) {
-                        event.preventDefault();
-                        var target = "#contact";
+                            $('#contactus').click(function (event) {
+                                event.preventDefault();
+                                var target = "#contact";
 
-                        $('html,body').animate({
-                            scrollTop: $(target).offset().top - 69
-                        }, 800, 'easeInOutCirc');
+                                $('html,body').animate({
+                                    scrollTop: $(target).offset().top - 69
+                                }, 800, 'easeInOutCirc');
 
-                        $("#joinmeli").removeClass("active");
-                        $("#whoweareli").removeClass("active");
-                        $("#howwegrowli").removeClass("active");
-                        $("#whatweofferli").removeClass("active");
-                        $("#contactusli").addClass("active");
-                    });
+                                $("#joinmeli").removeClass("active");
+                                $("#whoweareli").removeClass("active");
+                                $("#howwegrowli").removeClass("active");
+                                $("#whatweofferli").removeClass("active");
+                                $("#contactusli").addClass("active");
+                            });
         </script>
 
         {foreach $flashes as $flash}

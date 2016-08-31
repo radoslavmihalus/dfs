@@ -98,3 +98,43 @@ a.myTabslink:visited{color:white;font-size:15px !important;}
     background-color: #e8e2d4;
     color: #796b4d;
 }
+ul.landing_page_links
+{
+    list-style:none;
+}
+ul.landing_page_links li
+{
+    padding:5px;
+    color:white;
+    display:block
+}
+ul.landing_page_links li a:link
+{
+    display:block;
+    text-decoration: none;
+    color:white;
+}
+ul.landing_page_links li a:active
+{
+    display:block;
+    text-decoration: none;
+    color:white;
+}
+ul.landing_page_links li a:visited
+{
+    display:block;
+    text-decoration: none;
+    color:white;
+}
+ul.landing_page_links li a:hover
+{
+    text-decoration:underline;
+    display:block;
+    color:white;
+}
+ul.landing_page_links li a:focus
+{
+    display:block;
+    text-decoration: none;
+    color:white;
+}
