@@ -1130,6 +1130,7 @@ class dogPresenter extends BasePresenter {
 
         $titles_junior = array();
         $titles_junior["CAJC"] = "CAJC";
+        $titles_junior["CAC"] = "CAC";
         $titles_junior["JBOB"] = "JBOB";
         $titles_junior["BOB"] = "BOB";
         $titles_junior["BOS"] = "BOS";
@@ -1302,6 +1303,7 @@ class dogPresenter extends BasePresenter {
 
         $titles_junior = array();
         $titles_junior["CAJC"] = "CAJC";
+        $titles_junior["CAC"] = "CAC";
         $titles_junior["JBOB"] = "JBOB";
         $titles_junior["BOB"] = "BOB";
         $titles_junior["BOS"] = "BOS";
@@ -1309,6 +1311,8 @@ class dogPresenter extends BasePresenter {
         $sel_titles_junior = array();
         if ($show->CAJC == 1)
             $sel_titles_junior["CAJC"] = "CAJC";
+        if ($show->CAC == 1)
+            $sel_titles_junior["CAC"] = "CAC";
         if ($show->JBOB == 1)
             $sel_titles_junior["JBOB"] = "JBOB";
         if ($show->BOB == 1)
