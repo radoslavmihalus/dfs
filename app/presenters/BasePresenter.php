@@ -1251,7 +1251,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $description = "DOGFORSHOW - " . $this->translate("Premium account activation") . " " . $this->translate("for 6 months");
         else
         if ($amt == 54)
-            $description = "DOGFORSHOW - " . $this->translate("Premium account activation") . " " . $this->translate("for 12 months");
+            $description = "DOGFORSHOW - " . $this->translate("Premium account activation") . " " . $this->translate("for 24 months");
         else
         if ($amt == 84)
             $description = "DOGFORSHOW - " . $this->translate("Premium account activation") . " " . $this->translate("for 24 months");
@@ -1375,7 +1375,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                                 $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 6 months"));
                             else
                             if ($amount == 54)
-                                $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 12 months"));
+                                $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 2 years"));
                             else
                             if ($amount == 84)
                                 $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 2 years"));
@@ -1384,7 +1384,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                                 $end = date('Y-m-d', strtotime('+6 months'));
                             else
                             if ($amount == 54)
-                                $end = date('Y-m-d', strtotime('+12 months'));
+                                $end = date('Y-m-d', strtotime('+2 years'));
                             else
                             if ($amount == 84)
                                 $end = date('Y-m-d', strtotime('+2 years'));
@@ -1422,7 +1422,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                             $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 6 months"), "1", $amount, $user->state);
                         else
                         if ($amount == 54)
-                            $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 12 months"), "1", $amount, $user->state);
+                            $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 24 months"), "1", $amount, $user->state);
                         else
                         if ($amount == 84)
                             $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 24 months"), "1", $amount, $user->state);

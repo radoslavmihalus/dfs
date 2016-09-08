@@ -1400,7 +1400,7 @@ class DataModel {
 
     public static function premiumNotified($user_id) {
         // no action
-        return false;
+        //return false;
         // for notifications please remove commented commands bellow
         $database = $GLOBALS['database'];
 
@@ -1409,22 +1409,34 @@ class DataModel {
             $userdata = $database->table("tbl_user")->where("id=?", $user_id)->fetch();
             $ped = date("Ymd", strtotime($userdata->premium_expiry_date));
             $now = date("Ymd");
-            if ($ped > $now)
+
+            //if ($ped > $now && $ped != "2016-10-25")
+            if ($ped != "20161025")
                 return TRUE;
         } catch (\Exception $ex) {
             
         }
 
-        $database->query("CREATE TABLE IF NOT EXISTS tbl_user_promoted(user_id BIGINT NOT NULL)");
+        try {
+            $date = date("Y-m-d");
+            $newdate = strtotime("-1 day", strtotime($date));
+            $newdate = date("Ymd", $newdate);
 
-        $count = $database->table("tbl_user_promoted")->where("user_id = ?", $user_id)->count();
+            //$database->query("DROP TABLE IF EXISTS tbl_user_promoted$newdate(user_id BIGINT NOT NULL)");
+        } catch (\Exception $ex) {
+            
+        }
+
+        $database->query("CREATE TABLE IF NOT EXISTS tbl_user_promoted_$now(user_id BIGINT NOT NULL)");
+
+        $count = $database->table("tbl_user_promoted_$now")->where("user_id = ?", $user_id)->count();
 
         if ($count > 0)
             return TRUE;
         else {
             $data = array();
             $data['user_id'] = $user_id;
-            $database->table("tbl_user_promoted")->insert($data);
+            $database->table("tbl_user_promoted_$now")->insert($data);
             return FALSE;
         }
     }
