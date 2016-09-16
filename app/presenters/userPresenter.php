@@ -73,7 +73,6 @@ class userPresenter extends BasePresenter {
         }
     }
 
-
     public function actionUser_premium() {
         try {
             $data = array();
@@ -174,6 +173,58 @@ class userPresenter extends BasePresenter {
 //
 //		$form->addProtection();
 //		return $form;
+    }
+
+    public function createComponentFrmVoucher() {
+        $form = new Form();
+
+        $form->addText("voucher")->setRequired();
+        $form->addSubmit("submit");
+        $form->onSuccess[] = callback($this, "frmVoucherCompleted");
+
+        return $form;
+    }
+
+    public function frmVoucherCompleted(Form $form) {
+        $values = $form->getValues();
+
+        if ($this->logged_in_id > 0) {
+            $voucher = $this->database->table("tbl_voucher")->where("voucher=?", $values['voucher'])->where("used=?", 0)->fetch();
+
+            if ($voucher) {
+                $data = array();
+
+                $data['user_id'] = $this->logged_in_id;
+                //$data['applied'] = date("Y-m-d H:i:s");
+                $data['used'] = 1;
+
+                $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+
+                if ($user) {
+                    $user_data = array();
+                    if ($user->premium_expiry_date >= date("Y-m-d"))
+                        $user_data['premium_expiry_date'] = date("Y-m-d", strtotime($user['premium_expiry_date'] . ' + ' . $voucher->days . ' days'));
+                    else
+                        $user_data['premium_expiry_date'] = date("Y-m-d", strtotime(date("Y-m-d") . ' + ' . $voucher->days . ' days'));
+
+                    $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->update($user_data);
+                    $this->database->table("tbl_voucher")->where("voucher=?", $values['voucher'])->update($data);
+
+                    $this->flashMessage($this->translate("Your premium account has been successfully activated."), "Success");
+                    if ($this->logged_in_profile_id > 0)
+                        $this->redirect(\DataModel::getProfileLinkUrl($this->logged_in_profile_id));
+                    else
+                        $this->redirect("this");
+                }
+                else {
+                    $this->flashMessage($this->translate("Invalid voucher number"), "Warning");
+                    $this->redirect("this");
+                }
+            } else {
+                $this->flashMessage($this->translate("Invalid voucher number"), "Warning");
+                $this->redirect("this");
+            }
+        }
     }
 
     public function editUserSucceeded($button) {

@@ -201,6 +201,9 @@ if (isset($_GET['report'])) {
                     case 'router':
                         echo $bt->generateRouter();
                         break;
+                    case 'vouchers':
+                        echo $bt->generateVouchers();
+                        break;
 //                    case 'stats':
 //                        if (isset($_GET['type'])) {
 //                            $type = $_GET['type'];

@@ -1175,6 +1175,17 @@ class blueticket_objects {
         return $form->render();
     }
 
+    function generateVouchers() {
+        $form = blueticket_forms::get_instance();
+
+        $form->table("tbl_voucher");
+        $form->table_name("Vouchers");
+        $form->default_tab("Vouchers");
+        $form->columns("voucher,user_id,days,applied,used");
+        $form->fields("voucher,days,used");
+        return $form->render();
+    }
+
     function generateMenu() {
         $return = '<div style="width:100%; height:50px;padding-left:5px">';
 
@@ -1196,6 +1207,7 @@ class blueticket_objects {
         $return .= '<a href="?report=photos" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Photos</a>';
         $return .= '<a href="?report=videos" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Videos</a>';
         $return .= '<a href="?report=router" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Router</a>';
+        $return .= '<a href="?report=vouchers" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Vouchers</a>';
 //        $return .= '<a href="?report=forms" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Forms</a>';
 //        $return .= '<a href="?report=movements" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Pohyby</a>';
 //        $return .= '<a href="?report=payments" class="btn btn-primary" style="width:100px; height:30px; margin-top:5px; margin-right:5px">Platby</a>';
