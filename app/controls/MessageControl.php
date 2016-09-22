@@ -1016,8 +1016,17 @@ class MessageControl extends UI\Control {
 
                 $this->data_model->sendPrivateMessage($from_user_id, $from_profile_id, $to_user_id, $to_profile_id, $body);
 
+                if (strlen($this->presenter->lang) > 0)
+                    $this->translator->lang = $this->presenter->lang;
+                else
+                    $this->translator->lang = "en";
+
                 $this->presenter->flashMessage($this->translator->translate("Your message has been successfully sent."), "Info");
             } else {
+                if (strlen($this->presenter->lang) > 0)
+                    $this->translator->lang = $this->presenter->lang;
+                else
+                    $this->translator->lang = "en";
                 $this->presenter->flashMessage($this->translator->translate("Your message has not been sent. Verification is required."), "Info");
             }
 //}
