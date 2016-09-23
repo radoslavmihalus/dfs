@@ -50,6 +50,10 @@
         {if (!DataModel::premiumNotified($logged_in_id))}
             {include '../components/promotion_modal.latte'}
         {/if}
+        {if (!DataModel::allNonPremiumNotified($logged_in_id))}
+            {include '../components/promotion_modal_new_users.latte'}
+        {/if}
+
         <!-- Main content -->
         <div class="container-fluid content-wrapper">
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
