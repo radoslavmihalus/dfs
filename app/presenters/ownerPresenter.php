@@ -183,6 +183,13 @@ class ownerPresenter extends BasePresenter {
             
         }
 
+        $premium_users = array();
+        $premium_rows = $this->database->table("tbl_user")->select('id')->where("premium_expiry_date>=?", date('Y-m-d'))->group('id')->fetchAll();
+        foreach ($premium_rows as $id_row) {
+            $premium_users[] = $id_row->id;
+        }
+
+
         if (strlen($this->filter_owner_breed) > 1) {
             $user_ids = $this->database->table("tbl_dogs")->select("user_id")->where("breed_name LIKE ?", "%" . $this->filter_owner_breed . "%")->group("user_id");
 
@@ -224,11 +231,18 @@ class ownerPresenter extends BasePresenter {
             $page->page = $page->page + 1;
             $rows = $this->database->table("tbl_userowner")
                             ->where("user_id IN ?", $ids)
-                            ->order('(SELECT COUNT(*) FROM `tbl_dogs` WHERE `tbl_dogs`.`profile_id`=`tbl_userowner`.`id` AND `tbl_dogs`.`offer_for_mating`=1) DESC, premium_expiry_date DESC')
-//                            ->order('id DESC')
+//                            ->order('(SELECT COUNT(*) FROM `tbl_dogs` WHERE `tbl_dogs`.`profile_id`=`tbl_userowner`.`id` AND `tbl_dogs`.`offer_for_mating`=1) DESC, premium_expiry_date DESC')
+                            ->order('id DESC')
                             ->limit($this->paginator->getPaginator()->getLength(), $this->paginator->getPaginator()->getOffset())->fetchAll();
 
+            $random_rows = $this->database->table("tbl_userowner")
+                            ->where("user_id IN ?", $premium_users)
+//                            ->order('(SELECT COUNT(*) FROM `tbl_dogs` WHERE `tbl_dogs`.`profile_id`=`tbl_userowner`.`id` AND `tbl_dogs`.`offer_for_mating`=1) DESC, premium_expiry_date DESC')
+                            ->order('rand() DESC')
+                            ->limit(3)->fetchAll();
+
             $this->template->owners = $rows;
+            $this->template->owners_random = $random_rows;
         }
     }
 
