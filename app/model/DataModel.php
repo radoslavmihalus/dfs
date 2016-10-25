@@ -1411,7 +1411,7 @@ class DataModel {
             $now = date("Ymd");
 
             //if ($ped > $now && $ped != "2016-10-25")
-            if ($ped != "20161025")
+            if ($ped <= $now && $ped >= 20160101)
                 return TRUE;
         } catch (\Exception $ex) {
             
