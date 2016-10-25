@@ -1422,7 +1422,7 @@ class DataModel {
             $newdate = strtotime("-1 day", strtotime($date));
             $newdate = date("Ymd", $newdate);
 
-            //$database->query("DROP TABLE IF EXISTS tbl_user_promoted$newdate(user_id BIGINT NOT NULL)");
+            $database->query("DROP TABLE IF EXISTS tbl_user_promoted$newdate(user_id BIGINT NOT NULL)");
         } catch (\Exception $ex) {
             
         }
@@ -1465,7 +1465,7 @@ class DataModel {
             $newdate = strtotime("-1 day", strtotime($date));
             $newdate = date("Ymd", $newdate);
 
-            //$database->query("DROP TABLE IF EXISTS tbl_user_promoted$newdate(user_id BIGINT NOT NULL)");
+            $database->query("DROP TABLE IF EXISTS tbl_user_promoted$newdate(user_id BIGINT NOT NULL)");
         } catch (\Exception $ex) {
             
         }
