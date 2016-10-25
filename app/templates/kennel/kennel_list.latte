@@ -5,6 +5,12 @@
     <div style="display:none">
         {control vp, right, large}
     </div>
+    <div class="row">
+        <!-- Random List profile component -->
+        {includeblock 'kennel_list_random_item.latte'}
+        {include kennel_list_random_item}
+        <!-- / Random List profile component -->
+    </div>
     <div class="row" n:snippet="list" data-ajax-append="true">
         <!-- List profile component -->
         {includeblock 'kennel_list_item.latte'}
