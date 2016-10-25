@@ -1410,8 +1410,11 @@ class DataModel {
             $ped = date("Ymd", strtotime($userdata->premium_expiry_date));
             $now = date("Ymd");
 
+            $iped = (int) $ped;
+            $inow = (int) $now;
+
             //if ($ped > $now && $ped != "2016-10-25")
-            if ($ped <= $now && $ped >= 20160101)
+            if ($iped > $inow && $iped < 20160101)
                 return TRUE;
         } catch (\Exception $ex) {
             
@@ -1453,8 +1456,11 @@ class DataModel {
             $ped = date("Ymd", strtotime($userdata->premium_expiry_date));
             $now = date("Ymd");
 
+            $iped = (int) $ped;
+            $inow = (int) $now;
+
             //if ($ped > $now && $ped != "2016-10-25")
-            if ($ped >= $now)
+            if ($iped >= $inow && $iped >= 20160101)
                 return TRUE;
         } catch (\Exception $ex) {
             
