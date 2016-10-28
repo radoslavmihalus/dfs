@@ -1414,7 +1414,7 @@ class DataModel {
             $inow = (int) $now;
 
             //if ($ped > $now && $ped != "2016-10-25")
-            if ($iped > $inow && $iped < 20160101)
+            if ($iped > $inow || $iped < 20160101)
                 return TRUE;
         } catch (\Exception $ex) {
             
