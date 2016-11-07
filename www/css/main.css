@@ -33,3 +33,35 @@ body
     font-size:15px;
     font-family: 'Roboto Condensed', sans-serif;
 }
+.article-perex
+{
+    font-size: 15px;
+    font-weight:bold;
+    margin:10px 0px;
+}
+.article-text
+{
+    font-size: 15px;
+    margin:10px 0px;
+}
+.article-quotes
+{
+    font-size: 15px;
+    margin:10px 0px;
+    font-style: italic;
+    color: gray;
+}
+.article-quotes:before
+{
+    font-family: FontAwesome;
+    content:"\f10d";
+    color: gray;
+    margin-right: 15px;
+}
+.article-quotes:after
+{
+    font-family: FontAwesome;
+    content:"\f10e";
+    color: gray;
+    margin-left: 15px;
+}
