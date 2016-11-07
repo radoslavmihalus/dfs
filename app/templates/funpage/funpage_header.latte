@@ -2,45 +2,47 @@
 {includeblock '../components/modal_confirmation.latte'}
 <div class="hero">
     <div class="clickablemenu ttmenu dark-style menu-color-gradient">
-        <div class="navbar navbar-default" role="navigation">
+        <div class="navbar navbar-default" role="navigation" style="margin-bottom: 10px;">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#funpagemenu" style="margin-top: 5px;margin-right: 10px;margin-bottom: 2px;">
+                    <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#"><i class="fa fa-home"></i></a>
+                <a class="navbar-brand" n:href="funpage:funpage_profile_home"><i class="fa fa-home"></i></a>
             </div><!-- end navbar-header -->
 
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse" id="funpagemenu">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="dropme"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book" style="margin-right: 5px;"></i>Articles<span class="dropme"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Custom Menu</a></li>
-                            <li class="dropdown-submenu">
-                                <a href="#">Sub Menu <span class="dropme-left"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Second level</a></li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#">Even More.. <span class="dropme-left"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">3rd level</a></li>
-                                            <li><a href="#">3rd level</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Second level</a></li>
-                                    <li><a href="#">Second level</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Custom Menu</a></li>
-                            <li><a href="#">Custom Menu</a></li>
-                            <li><a href="#">Custom Menu</a></li>
-                            <li><a href="#">Custom Menu</a></li>
-                            <li><a href="#">Custom Menu</a></li>
-                            <li><a href="#">Custom Menu</a></li>
-                            <li><a href="#">Custom Menu</a></li>
+                            <li><a n:href="funpage:article_list">Health & lifestyle</a></li>
+                            <li><a href="#">Dog shows</a></li>
+                            <li><a href="#">Sport & work</a></li>
+                            <li><a href="#">Tips & tricks</a></li>
+                            <li><a href="#">Children & dogs</a></li>
+                            <li><a href="#">Breeds</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-microphone" style="margin-right: 5px;"></i>Interviews<span class="dropme"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Breeders</a></li>
+                            <li><a href="#">Owners</a></li>
+                            <li><a href="#">Handlers</a></li>
+                            <li><a href="#">Judges</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-camera" style="margin-right: 5px;"></i>Photos<span class="dropme"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Dog shows</a></li>
+                            <li><a href="#">DFS backstage</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-video-camera" style="margin-right: 5px;"></i>Videos<span class="dropme"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Videos</a></li>
                         </ul>
                     </li>
                 </ul>

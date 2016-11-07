@@ -20,3 +20,16 @@ body
         margin: 0px 0px 0px 0px;
     }
 }
+.article-category
+{
+    opacity:0.6;
+    position:absolute;
+    top:5%;
+    right:15px;
+    width:auto;
+    padding:10px;
+    background-color:#EDEBE4;
+    color:#83765E;
+    font-size:15px;
+    font-family: 'Roboto Condensed', sans-serif;
+}

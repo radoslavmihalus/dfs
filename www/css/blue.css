@@ -5,13 +5,64 @@
 .demo_changer .demo-icon,
 .menu-color-gradient .btn-primary,
 .menu-color-gradient .label-danger,
-.menu-color-gradient .navbar-brand,
-.menu-color-gradient .navbar-default .navbar-nav > .open > a,
-.menu-color-gradient .navbar-default .navbar-nav > .open > a:hover,
-.menu-color-gradient .navbar-default .navbar-nav > .open > a:focus,
-.menu-color-gradient .navbar-default .navbar-nav > li > a:focus,
-.menu-color-gradient .navbar-default .navbar-nav > li > a:active,
-.menu-color-gradient .navbar-default .navbar-nav > li > a.active,
+.menu-color-gradient .navbar-brand
+{
+    color:white;
+    background-color: #83765E;
+}
+.menu-color-gradient .navbar-brand:hover
+{
+    color:white;
+    background-color: #83765E;
+}
+.menu-color-gradient .navbar-brand:focus
+{
+    color:white;
+    background-color: #83765E;
+}
+.menu-color-gradient .navbar-default .navbar-nav > .open > a
+{
+    background-image: none;
+    background-color: #d5d0c0;
+}
+.menu-color-gradient .navbar-default .navbar-nav > .open > a:hover
+{
+    background-image: none;
+    background-color: #d5d0c0;
+}
+.menu-color-gradient .navbar-default .navbar-nav > .open > a:focus
+{
+    padding-top: 17px;
+    font-size: 13px;
+    padding-bottom: 10px;
+    border-bottom: #83765E 3px solid;
+}
+.menu-color-gradient .navbar-default .navbar-nav > li > a
+{
+    padding-top: 17px;
+    font-size: 13px;
+    padding-bottom: 10px;
+}
+.menu-color-gradient .navbar-default .navbar-nav > li > a:focus
+{
+    padding-top: 17px;
+    font-size: 13px;
+    padding-bottom: 10px;
+    background-color: #d5d0c0;
+}
+.menu-color-gradient .navbar-default .navbar-nav > li > a:active
+{
+    padding-top: 17px;
+    font-size: 13px;
+    padding-bottom: 10px;
+    background-color: #d5d0c0;
+}
+.menu-color-gradient .navbar-default .navbar-nav > li > a.active
+{
+    padding-top: 17px;
+    font-size: 13px;
+    padding-bottom: 10px;
+}
 .menu-color-gradient .navbar-default .navbar-nav > li > a:hover {
     background: white; /* Old browsers */
     /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -64,9 +115,33 @@
 }
 .dark-style .dropdown-menu {
     background-color:#ffffff !important;
+    padding:0px;
 
 }
-.dark-style .navbar-default .dropdown-menu li a,
+.dark-style .navbar-default .dropdown-menu li
+{
+    border-bottom: #d5d0c0 1px solid;
+}
+.dark-style .navbar-default .dropdown-menu li a
+{
+    color:#83765e;
+    padding:10px;
+    font-size: 13px;
+}
+.dark-style .navbar-default .dropdown-menu li a:before
+{
+    font-family: FontAwesome;
+    content:"\f101";
+    color:#83765E;
+    margin-right:5px;
+}
+.dark-style .navbar-default .dropdown-menu li a:hover
+{
+    padding:10px;
+    font-size: 13px;
+    border-bottom: none;
+    background-color: #d5d0c0 !important;
+}
 .dark-style .ttmenu-content .box li a,
 .dark-style .ttmenu-content .box li:before {
     color:#1a1a1a !important;
