@@ -1264,7 +1264,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $query['cmd'] = '_cart';
         $query['upload'] = '1';
         $query['business'] = 'info@dogforshow.com';
-        $query['address_override'] = '1';
+        //$query['address_override'] = '1';
         $query['first_name'] = $user->name;
         $query['last_name'] = $user->surname;
         $query['email'] = $user->email;
