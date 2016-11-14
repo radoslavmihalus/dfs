@@ -65,3 +65,17 @@ body
     color: gray;
     margin-left: 15px;
 }
+.banner-header-placeholder
+{
+    background-color: #83765e;
+}
+.banner-header
+{
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size:18px;
+    display:block;
+    padding:10px 10px 5px 10px;
+    color:white;
+    font-weight:bold;
+}
