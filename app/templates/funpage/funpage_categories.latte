@@ -11,7 +11,9 @@
                                 <img class="img-responsive" style="padding:0px;" src="../www/img/dummy_article.png" alt="...">
                             </a>
                             <div class="banner-header-placeholder">
-                                <div class="banner-header" style="">DOGFORSHOW prepares an awesome blog for you</div>
+                                <div class="banner-header" style=""><span style="display:block;">Would you like to share interesting articles from dogs world with our fans?</span>
+                                    <p class="text-center" style="margin-top:10px;"><a n:href="pages:contact_us" class="btn btn-warning btn-lg"><i style="margin-right:10px;" class="fa fa-envelope"></i><span>Contact us</span></a></p>
+                                </div>
 <!--                                <div style="display:block;padding:5px 10px 5px 10px;color:#83765E;">
                                     <a href="https://www.facebook.com/dogforshow" style="color:#83765E;"><i style="margin-right:10px;" class="fa fa-facebook-official fa-2x"></i></a>
                                 </div>-->
@@ -22,7 +24,9 @@
                                 <img class="img-responsive" style="padding:0px;" src="../www/img/dummy_article.png" alt="...">
                             </a>
                             <div class="banner-header-placeholder">
-                                <div class="banner-header" style="">Lorem ipsum</div>
+                                <div class="banner-header" style=""><span style="display:block;">Would you like to share interesting articles from dogs world with our fans?</span>
+                                    <p class="text-center" style="margin-top:10px;"><a n:href="pages:contact_us" class="btn btn-warning btn-lg"><i style="margin-right:10px;" class="fa fa-envelope"></i><span>Contact us</span></a></p>
+                                </div>
 <!--                                <div style="display:block;padding:5px 10px 5px 10px;color:#83765E;">
                                     <a href="https://www.facebook.com/dogforshow" style="color:#83765E;"><i style="margin-right:10px;" class="fa fa-facebook-official fa-2x"></i></a>
                                 </div>-->
@@ -121,18 +125,13 @@
                 </div>
             </div>
             <div class="row">
-                {foreach $photos as $row}
-                    {include '../components/modal_gallery.latte' row=>$row}
-                {/foreach}
                 <div class="col-md-12" style="margin-top:10px;">
                     <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-camera"></i>&nbsp;&nbsp;Photos</div>
-                    {foreach $photos as $row}
                         <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6" style="padding:5px;">
                             <a href="javascript:void(0)" onclick="ShowGaleryModal({$row->id})" title="{$row->description}">
                                 <div class="thumbnail img-responsive" style="padding:50%;background: url({$row->image})no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
                             </a>
                         </div>
-                    {/foreach}
                 </div>
             </div>
             <div class="row">

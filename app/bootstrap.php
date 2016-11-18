@@ -83,6 +83,8 @@ $router[] = new Route('article', 'funpage:article'); //, \Nette\Application\IRou
 $router[] = new Route('article-list', 'funpage:article_list'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('interview', 'funpage:interview'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('interview-list', 'funpage:interview_list'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('photos-list', 'funpage:blog_photo_list'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('photos', 'funpage:blog_photo_item'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('[<lang=en cz|en|de|sk|hu|ru>]', 'LandingPage:default'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('payment_return.php', 'LandingPage:payment'); //, \Nette\Application\IRouter::SECURED);
 //$router[] = new Route('forgot-password', 'LandingPage:forgot_password'); //, \Nette\Application\IRouter::SECURED);
