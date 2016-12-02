@@ -1460,7 +1460,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                            'password' => 'awqbn154',
 //                            'secure' => 'ssl'
 //                        ));
-                        $mailer = new SendmailMailer();
+                        //$mailer = new SendmailMailer();
+                        $mailer = new Nette\Mail\SmtpMailer(array(
+                            'host' => 'mail.dogforshow.com',
+                            'username' => 'info@dogforshow.com',
+                            'password' => 'awqbn154',
+                        ));
                         $mailer->send($mail);
 
                         try {
@@ -1651,7 +1656,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                    'password' => 'awqbn154',
 //                    'secure' => 'ssl'
 //                ));
-                $mailer = new SendmailMailer();
+                //$mailer = new SendmailMailer();
+                $mailer = new Nette\Mail\SmtpMailer(array(
+            'host' => 'mail.dogforshow.com',
+            'username' => 'info@dogforshow.com',
+            'password' => 'awqbn154',
+        ));
                 $mailer->send($mail);
 
                 $this->flashMessage($this->translate("Your password has been successfully sent to your e-mail"), "Success");
@@ -1797,7 +1807,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                'secure' => 'ssl'
 //            ));
 
-            $mailer = new SendmailMailer();
+            //$mailer = new SendmailMailer();
+            $mailer = new Nette\Mail\SmtpMailer(array(
+                            'host' => 'mail.dogforshow.com',
+                            'username' => 'info@dogforshow.com',
+                            'password' => 'awqbn154',
+                        ));
             $mailer->send($mail);
 
             $this->flashMessage($this->translate("Your password has been successfully sent to your e-mail"), "Success");
@@ -1881,7 +1896,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //            'password' => 'awqbn154',
 //            'secure' => 'ssl'
 //        ));
-        $mailer = new SendmailMailer();
+        //$mailer = new SendmailMailer();
+        $mailer = new Nette\Mail\SmtpMailer(array(
+                            'host' => 'mail.dogforshow.com',
+                            'username' => 'info@dogforshow.com',
+                            'password' => 'awqbn154',
+                        ));
         $mailer->send($mail);
     }
 
@@ -2013,7 +2033,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                    'password' => 'awqbn154',
 //                    'secure' => 'ssl'
 //                ));
-                $mailer = new SendmailMailer();
+                //$mailer = new SendmailMailer();
+                $mailer = new Nette\Mail\SmtpMailer(array(
+                            'host' => 'mail.dogforshow.com',
+                            'username' => 'info@dogforshow.com',
+                            'password' => 'awqbn154',
+                        ));
                 $mailer->send($mail);
 
                 $this->flashMessage($this->translate("Your message has been successfully sent. We will contact you as soon as possible."), "Info");
