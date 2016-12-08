@@ -509,9 +509,9 @@ class puppyPresenter extends BasePresenter {
 
             $this->data_model->setParents($data['puppy_name'], $father_name, $mother_name);
 
-            $this->database->table("tbl_puppies")->insert($data);
+            $id = $this->database->table("tbl_puppies")->insert($data)->id;
 
-            $id = $this->database->getInsertId();
+            //$id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($this->profile_id, $id, 13, $values['txtPuppyName'], $values['txtPuppyProfilePhoto']);
 

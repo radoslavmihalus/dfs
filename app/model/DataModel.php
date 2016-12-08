@@ -848,9 +848,9 @@ class DataModel {
         $data['event_image'] = $event_image;
         $data['event_video'] = $event_video;
 
-        $this->database->table("tbl_timeline")->insert($data);
+        $id = $this->database->table("tbl_timeline")->insert($data)->id;
 
-        $id = $this->database->getInsertId();
+        //$id = $this->database->getInsertId();
 
         return $id;
     }
