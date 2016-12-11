@@ -93,8 +93,8 @@ class photoPresenter extends BasePresenter {
             $data['image'] = $values->txtPhoto;
             $data['description'] = $values->txtPhotoName;
 
-            $this->database->table("tbl_photos")->insert($data);
-            $this->photo_id = $this->database->getInsertId();
+            $this->photo_id = $this->database->table("tbl_photos")->insert($data)->id;
+            //$this->photo_id = $this->database->getInsertId();
             $this->data_model->addToTimeline($this->photo_profile_id, $this->photo_id, 10, $data['description'], $data['image']);
         } catch (\Exception $ex) {
             \Tracy\Debugger::log($ex);
@@ -113,7 +113,7 @@ class photoPresenter extends BasePresenter {
         } catch (\Exception $ex) {
             \Tracy\Debugger::log($ex);
         }
-        
+
         $this->redirect(\DataModel::getGalleryProfileLinkUrl($this->photo_profile_id), array(id => $this->photo_profile_id));
     }
 

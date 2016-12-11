@@ -1042,8 +1042,8 @@ class kennelPresenter extends BasePresenter {
             $values = $this->data_model->assignFields($values, 'frmAddAward');
             $values['kennel_id'] = $this->logged_in_kennel_id;
 
-            $this->database->table("link_kennel_awards")->insert($values);
-            $id = $this->database->getInsertId();
+            $id = $this->database->table("link_kennel_awards")->insert($values)->id;
+            //$id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 5, date("d.m.Y", strtotime($values['kennel_award_date'])) . " - " . $values['kennel_award_title'], $values['kennel_award_image']);
 
@@ -1121,8 +1121,8 @@ class kennelPresenter extends BasePresenter {
                 throw new \ErrorException($exc);
 
 
-            $this->database->table("tbl_planned_litters")->insert($data);
-            $id = $this->database->getInsertId();
+            $id = $this->database->table("tbl_planned_litters")->insert($data)->id;
+            //$id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 7, $data['name'] . " - " . $data['month'] . "/" . $data['year'], $data['dog_image']);
             $this->redirect("kennel_planned_litter_list", array(id => $this->logged_in_kennel_id));
@@ -1173,7 +1173,7 @@ class kennelPresenter extends BasePresenter {
 
 
             $this->database->table("tbl_planned_litters")->where("id=?", $this->planned_litter_id)->update($data);
-//$id = $this->database->getInsertId();
+            //$id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 7, $data['name'] . " - " . $data['month'] . "/" . $data['year'], $data['dog_image']);
             $this->redirect("kennel_planned_litter_list", array(id => $this->logged_in_kennel_id));

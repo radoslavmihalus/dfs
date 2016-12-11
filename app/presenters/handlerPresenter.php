@@ -1058,8 +1058,8 @@ class handlerPresenter extends BasePresenter {
 //$values = $this->data_model->assignFields($values, "frmHandlerAddTitle");
 //unset($values["handler_id"]);
 
-            $this->database->table("tbl_handler_awards")->insert($data);
-            $id = $this->database->getInsertId();
+            $id = $this->database->table("tbl_handler_awards")->insert($data)->id;
+            //$id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($this->handler_id, $id, 5, $data['description'], $data['image']);
 
@@ -1086,8 +1086,8 @@ class handlerPresenter extends BasePresenter {
 //$values = $this->data_model->assignFields($values, "frmHandlerAddTitle");
 //unset($values["handler_id"]);
 
-            $this->database->table("tbl_handler_certificates")->insert($data);
-            $id = $this->database->getInsertId();
+            $id = $this->database->table("tbl_handler_certificates")->insert($data)->id;
+            //$id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($this->handler_id, $id, 8, $data['description'], $data['image']);
 
@@ -1276,8 +1276,8 @@ class handlerPresenter extends BasePresenter {
 
         $data['show_image'] = $values->txtShowImage;
 
-        $this->database->table("tbl_handler_shows")->insert($data);
-        $id = $this->database->getInsertId();
+        $id = $this->database->table("tbl_handler_shows")->insert($data)->id;
+        //$id = $this->database->getInsertId();
 
         $this->data_model->addToTimeline($this->logged_in_handler_id, $id, 11, $result, $values->txtShowImage);
 

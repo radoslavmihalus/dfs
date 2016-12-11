@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -169,8 +168,8 @@ class ImportModel {
             else
                 $data['lang'] = 'en';
 
-            $database->table("tbl_user")->insert($data);
-            $last_user_id = $database->getInsertId();
+            $last_user_id = $database->table("tbl_user")->insert($data)->id;
+            //$last_user_id = $database->getInsertId();
 
             switch ($description[0]) {
                 case 1:
@@ -239,9 +238,9 @@ class ImportModel {
 
         $data['kennel_create_date'] = $date;
 
-        $context->table("tbl_userkennel")->insert($data);
+        $id = $context->table("tbl_userkennel")->insert($data)->id;
 
-        $id = $context->getInsertId();
+        //$id = $context->getInsertId();
 
         $breeds = explode("^^", $breeds);
 
@@ -287,9 +286,9 @@ class ImportModel {
 
         $data['owner_create_date'] = $date;
 
-        $context->table("tbl_userowner")->insert($data);
+        $id = $context->table("tbl_userowner")->insert($data)->id;
 
-        $id = $context->getInsertId();
+        //$id = $context->getInsertId();
 
         return $id;
     }
@@ -328,9 +327,9 @@ class ImportModel {
 
         $data['handler_create_date'] = $date;
 
-        $context->table("tbl_userhandler")->insert($data);
+        $id = $context->table("tbl_userhandler")->insert($data)->id;
 
-        $id = $context->getInsertId();
+        //$id = $context->getInsertId();
 
         $breeds = explode("^^", $breeds);
 
@@ -469,9 +468,9 @@ class ImportModel {
                 if ($father != "-" && $mother != "-")
                     ImportModel::setParents($description[0], $father, $mother, $database);
 
-                $database->table("tbl_dogs")->insert($data);
+                $dog_id = $database->table("tbl_dogs")->insert($data)->id;
 
-                $dog_id = $database->getInsertId();
+                //$dog_id = $database->getInsertId();
 
                 $data_model->addToTimeline($kennel_id, $dog_id, 12, $data['dog_name'], $data['dog_image']);
 
@@ -550,9 +549,9 @@ class ImportModel {
 
             $data['bitch_state'] = $user->state;
 
-            $database->table("tbl_planned_litters")->insert($data);
+            $pl_id = $database->table("tbl_planned_litters")->insert($data)->id;
 
-            $pl_id = $database->getInsertId();
+            //$pl_id = $database->getInsertId();
             $old_plid = $description[9];
 
             $data_model->addToTimeline($kennel_id, $pl_id, 7, $data['name'] . ' - ' . $data['month'] . '/' . $data['year'] . ' - ' . $data['dog_name'] . ' X ' . $data['bitch_name'], $data['dog_image']);
@@ -604,9 +603,9 @@ class ImportModel {
 
             $data['date_of_birth'] = $date;
 
-            $database->table("tbl_puppies")->insert($data);
+            $puppy_id = $database->table("tbl_puppies")->insert($data)->id;
 
-            $puppy_id = $database->getInsertId();
+            //$puppy_id = $database->getInsertId();
 
             $data_model->addToTimeline($kennel_id, $puppy_id, 13, $data['puppy_name'], $data['puppy_photo']);
         }
@@ -823,9 +822,9 @@ class ImportModel {
 
 
             try {
-                $database->table("tbl_dogs_shows")->insert($data);
+                $id = $database->table("tbl_dogs_shows")->insert($data)->id;
 
-                $id = $database->getInsertId();
+                //$id = $database->getInsertId();
 
                 $data_model->addToTimeline($dog->kennel_id, $id, 11, $data['show_date'] . ' - ' . $data['show_name'], $data['show_image']);
             } catch (\Exception $ex) {
@@ -1020,12 +1019,12 @@ class ImportModel {
 
 
             try {
-                $database->table("tbl_handler_show_groups")->insert($data_group);
-                $id = $database->getInsertId();
+                $id = $database->table("tbl_handler_show_groups")->insert($data_group)->id;
+                //$id = $database->getInsertId();
                 $data['show_id'] = $id;
-                $database->table("tbl_handler_shows")->insert($data);
+                $id = $database->table("tbl_handler_shows")->insert($data)->id;
 
-                $id = $database->getInsertId();
+                //$id = $database->getInsertId();
 
                 $data_model->addToTimeline($handler_id, $id, 11, $data_group['show_date'] . ' - ' . $data_group['show_name'], $data['show_image']);
             } catch (\Exception $ex) {
@@ -1058,8 +1057,8 @@ class ImportModel {
             $data['image'] = str_replace("http://www.dogforshow.com/", "", $description[2]);
 
             try {
-                $database->table("tbl_dogs_championship")->insert($data);
-                $id = $database->getInsertId();
+                $id = $database->table("tbl_dogs_championship")->insert($data)->id;
+                //$id = $database->getInsertId();
 
                 $data_model->addToTimeline($dog->kennel_id, $id, 5, $data['description'], $data['image']);
             } catch (\Exception $ex) {
@@ -1156,8 +1155,8 @@ class ImportModel {
             $data['image'] = str_replace("http://www.dogforshow.com/", "", $description[1]);
 
             try {
-                $database->table("tbl_photos")->insert($data);
-                $id = $database->getInsertId();
+                $id = $database->table("tbl_photos")->insert($data)->id;
+                //$id = $database->getInsertId();
 
                 $data_model->addToTimeline($dog->profile_id, $id, 10, $data['description'], $data['image']);
             } catch (\Exception $ex) {
@@ -1182,8 +1181,8 @@ class ImportModel {
             $data['image'] = str_replace("http://www.dogforshow.com/", "", $description[1]);
 
             try {
-                $database->table("tbl_photos")->insert($data);
-                $id = $database->getInsertId();
+                $id = $database->table("tbl_photos")->insert($data)->id;
+                //$id = $database->getInsertId();
 
                 $data_model->addToTimeline($handler_id, $id, 10, $data['description'], $data['image']);
             } catch (\Exception $ex) {
@@ -1210,8 +1209,8 @@ class ImportModel {
             $data['image'] = str_replace("http://www.dogforshow.com/", "", $description[2]);
 
             try {
-                $database->table("tbl_handler_awards")->insert($data);
-                $id = $database->getInsertId();
+                $id = $database->table("tbl_handler_awards")->insert($data)->id;
+                //$id = $database->getInsertId();
 
                 $data_model->addToTimeline($handler_id, $id, 5, $data['description'], $data['image']);
             } catch (\Exception $ex) {

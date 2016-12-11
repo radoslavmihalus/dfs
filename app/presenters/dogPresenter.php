@@ -1673,9 +1673,9 @@ class dogPresenter extends BasePresenter {
 
             $values = $this->data_model->assignFields($values, "frmDogAddTitle");
 
-            $this->database->table("tbl_dogs_championship")->insert($values);
+            $id = $this->database->table("tbl_dogs_championship")->insert($values)->id;
 
-            $id = $this->database->getInsertId();
+            //$id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($this->dog_id, $id, 14, $description, $image);
 
@@ -1703,8 +1703,8 @@ class dogPresenter extends BasePresenter {
             $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
             $values['premium_expiry_date'] = $user->premium_expiry_date;
 
-            $this->database->table("tbl_dogs")->insert($values);
-            $id = $this->database->getInsertId();
+            $id = $this->database->table("tbl_dogs")->insert($values)->id;
+            //$id = $this->database->getInsertId();
 
             $father_name = $values['dog_father'];
             $mother_name = $values['dog_mother'];
@@ -1841,9 +1841,9 @@ class dogPresenter extends BasePresenter {
 
         $data['show_image'] = $values->txtShowImage;
 
-        $this->database->table("tbl_dogs_shows")->insert($data);
+        $id = $this->database->table("tbl_dogs_shows")->insert($data)->id;
 
-        $id = $this->database->getInsertId();
+        //$id = $this->database->getInsertId();
 
         $this->data_model->addToTimeline($this->dog_id, $id, 11, $result, $values->txtShowImage);
 

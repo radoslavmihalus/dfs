@@ -1954,8 +1954,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     $values['lang'] = 'en';
                 }
                 try {
-                    $this->database->table("tbl_user")->insert($values);
-                    $userid = $this->database->getInsertId();
+                    $userid =$this->database->table("tbl_user")->insert($values)->id;
+                    //$userid = $this->database->getInsertId();
 
                     $this->sendActivationEmail($values['email'], $values['name'], $userid);
 
@@ -2215,8 +2215,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
             $values['premium_expiry_date'] = $user->premium_payment_date;
 
-            $this->database->table("tbl_userowner")->insert($data);
-            $id = $this->database->getInsertId();
+            $id = $this->database->table("tbl_userowner")->insert($data)->id;
+            //$id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($id, $id, 1, \DataModel::getProfileName($id), $data['owner_profile_picture']);
 
@@ -2241,8 +2241,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
             $values['premium_expiry_date'] = $user->premium_payment_date;
 
-            $this->database->table("tbl_userkennel")->insert($values);
-            $id = $this->database->getInsertId();
+            $id = $this->database->table("tbl_userkennel")->insert($values)->id;
+            //$id = $this->database->getInsertId();
 
             $breeds = explode(",", $breeds);
 
@@ -2271,8 +2271,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
             $values['premium_expiry_date'] = $user->premium_payment_date;
 
-            $this->database->table("tbl_userhandler")->insert($values);
-            $id = $this->database->getInsertId();
+            $id = $this->database->table("tbl_userhandler")->insert($values)->id;
+            //$id = $this->database->getInsertId();
 
             $breeds = explode(",", $breeds);
 

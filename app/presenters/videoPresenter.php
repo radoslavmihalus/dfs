@@ -110,8 +110,8 @@ class videoPresenter extends BasePresenter {
             $data['youtube'] = $url;
             $data['description'] = $values->txtVideoName;
 
-            $this->database->table("tbl_videos")->insert($data);
-            $this->photo_id = $this->database->getInsertId();
+            $this->photo_id = $this->database->table("tbl_videos")->insert($data)->id;
+            //$this->photo_id = $this->database->getInsertId();
             $this->data_model->addToTimeline($this->photo_profile_id, $this->photo_id, 15, $data['description'], $data['image'], $data['video']);
         } catch (\Exception $ex) {
             
