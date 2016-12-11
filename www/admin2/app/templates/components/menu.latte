@@ -1,0 +1,48 @@
+{block menu}
+<nav class="navbar top-menu navbar-fixed-top">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" style="background-color: #2c3e50;">
+        <button type="button" class="navbar-toggle collapsed btn-menu-collapse" style="border:#06b6e8 1px solid;" data-toggle="collapse" data-target="#pos-menu" aria-expanded="false">
+            <i style="color:#06b6e8;" class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand logotyp" style="padding:10px 0px 0px 5px;margin-right: 20px;" id="logo">
+            <img alt="Brand" style="width:120px;" src="www/img/logo.png">
+        </a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="pos-menu" style="background-color: #2c3e50;">
+        <ul class="nav navbar-nav">
+            {foreach $menu_items as $item}
+                {if $presenter->checkPermissions($item->form_name)}
+                    {if $item->menu_id==0}
+                        <li><a class="top-menu-link" {if strlen($item->form_name)>0}href="{link items:items form_name=>$item->form_name}"{else}href="#"{/if} {if $item->related("blueticket_menu.menu_id")->count()>0}class="dropdown-toggle" data-toggle="dropdown"{/if}>{if strlen($item->icon)>0}<i class="{$item->icon}" style="margin-right: 8px;color:#06b6e8;"></i>{/if}<span class="">{_$item->name}</span><span class="sr-only">(current)</span>{if strlen($item->form_name)>0}{else}&nbsp;<b class="caret"></b>{/if}</a>
+                                    {if $item->related("blueticket_menu.menu_id")->count()>0}
+                                <ul class="dropdown-menu multi-level">
+                                    {foreach $item->related("blueticket_menu.menu_id")->order("ordering ASC") as $itemr}
+                                        {if $presenter->checkPermissions($itemr->form_name)}
+                                            <li><a class="top-menu-link" {if strlen($itemr->form_name)>0}href="{link items:items form_name=>$itemr->form_name}"{else}href="#"{/if} {if $itemr->related("blueticket_menu.menu_id")->count()>0}class="dropdown-toggle" data-toggle="dropdown"{/if}>{if strlen($itemr->icon)>0}<i class="{$itemr->icon}" style="margin-right: 8px;color:#06b6e8;"></i>{/if}<span class="">{_$itemr->name}</span><span class="sr-only">(current)</span>{if strlen($itemr->form_name)>0}{else}&nbsp;<b class="caret"></b>{/if}</a>
+                                                        {if $itemr->related("blueticket_menu.menu_id")->count()>0}
+                                                    <ul class="dropdown-menu multi-level">
+                                                        {foreach $itemr->related("blueticket_menu.menu_id")->order("ordering ASC") as $itemr2}
+                                                            {if $presenter->checkPermissions($itemr2->form_name)}
+                                                                <li><a class="top-menu-link" {if strlen($itemr2->form_name)>0}href="{link items:items form_name=>$itemr2->form_name}"{else}href="#"{/if} {if $itemr2->related("blueticket_menu.menu_id")->count()>0}class="dropdown-toggle" data-toggle="dropdown"{/if}>{if strlen($itemr2->icon)>0}<i class="{$itemr2->icon}" style="margin-right: 8px;color:#06b6e8;"></i>{/if}<span class="">{_$itemr2->name}</span><span class="sr-only">(current)</span>{if strlen($itemr2->form_name)>0}{else}&nbsp;<b class="caret"></b>{/if}</a>
+                                                                </li>
+                                                            {/if}
+                                                        {/foreach}
+                                                    </ul>
+                                                {/if}
+                                            </li>
+                                        {/if}
+                                    {/foreach}
+                                </ul>
+                            {/if}
+                        </li>
+                    {/if}
+                {/if}
+            {/foreach}
+            <li><a class="top-menu-link" target="_blank" href="adminer/adminer.php"><i class="fa fa-database" style="margin-right: 8px;color:#06b6e8;"></i><span class="">{_'Adminer'}</span><span class="sr-only">(current)</span></a></li>
+            <li><a class="top-menu-link" n:href="logout!"><i class="fa fa-power-off" style="margin-right: 8px;color:#06b6e8;"></i><span class="">{_'Logout'} ({$username})</span><span class="sr-only">(current)</span></a></li>
+        </ul>
+    </div>
+</nav>
+{/block}

@@ -1,0 +1,351 @@
+// COMPONENTS GENERAL
+root { 
+    display: block;
+}
+
+ul.section_list
+{
+    padding-left: 0px;
+    margin-left: 0px;
+    display:table;
+    list-style-type: none;
+}
+ul.section_list li
+{
+    margin-left: 0px;
+}
+.section_list_icon
+{
+    color:#a5987f;
+    font-size:10px;
+    margin-right: 8px;
+}
+.component
+{
+  border-top:#a5987f 3px solid;
+  background-color: white;
+  margin-bottom: 15px;
+  webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+.panel-description
+{
+    color:#a5987f;
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 17px !important;
+}
+.message-brown
+{
+    display:block;
+    padding: 15px;
+     margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: rgba(237, 235, 228, 0.34);
+    color:#A5987F;
+    border-color:#EDEBE4;
+}
+.panel-edit-button
+{
+    font-family: sans-serif !important;
+}
+.spacer
+{
+    display:block;
+    height:20px;
+}
+// ADDED DOGS COMPONENT
+.gender-dog
+{
+    color:#2087de;
+}
+.gender-bitch
+{
+    color:#f67aec;
+}
+.dog-list
+{
+    width:100%;
+    float:left;
+    margin:0px 0px 15px 0px;
+    padding:0px 0px 0px 0px;
+    
+}
+.dog-list li
+{
+    padding:10px;
+    width:100%;
+    border:1px solid #d4d4d4;
+    float:left;
+    display:block;
+    border-radius: 4px;
+    list-style-type: none;
+    cursor:pointer;
+    margin-bottom: 5px;
+    webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+.dog-list li:hover
+{
+    background-color: whitesmoke;
+}
+.dog-list li a
+{
+    width:100%;
+    float:left;
+    display:block;
+}
+.dog-list li a:hover
+{
+    width:100%;
+    float:left;
+    display:block;
+    text-decoration: none;
+}
+.dog-thumb
+{
+    float:left;
+    display:block;
+    background-size:cover;
+    width:50px;
+    height:50px;
+    margin-right: 10px;
+    border-radius: 4px;
+    background: url("../img/dog1.jpg")no-repeat center center;
+}
+.dog-name
+{
+   display:block;
+   font-family: 'Roboto Condensed', sans-serif;
+   font-size:16px;
+   margin-left: 80px;
+   text-transform: uppercase;
+   color:gray;
+   margin-bottom: 5px;
+}
+.dog-datebirth
+{
+    display:block;
+    width:100%;
+    font-size:12px;
+    margin-left: 80px;
+    text-decoration: none;
+    color:gray;
+}
+.list-item
+{
+    display:block;
+    float:left;
+    background-color: white;
+    webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    width:100%;
+    margin-bottom: 15px;
+    min-width: 230px;
+    padding: 10px;
+}
+.list-puppy-info
+{
+  position:absolute;
+  top:15px;
+  min-width: 150px;
+  left:35px;
+  display: inline;
+  padding: .7em;
+  font-size: 13px !important;
+  font-weight: 200;
+  line-height: 1;
+  color: #fff !important;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  /*border:white 1px solid;*/
+  background-color: #d9534f;
+  webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.list-puppy-info-detail
+{
+  position:absolute;
+  top:25px;
+  min-width: 150px;
+  left:40px;
+  display: inline;
+  padding: .7em;
+  font-size: 13px !important;
+  font-weight: 200;
+  line-height: 1;
+  color: #fff !important;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  /*border:white 1px solid;*/
+  background-color: #d9534f;
+  webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.list-mating-info
+{
+  position:absolute;
+  top:15px;
+  left:30px;
+  display: inline;
+  padding: .7em;
+  font-size: 13px !important;
+  font-weight: 200;
+  line-height: 1;
+  color: #fff !important;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  /*border:white 1px solid;*/
+  background-color: #0c9eea;
+  webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.best-in-show-info
+{
+  position:absolute;
+  top:15px;
+  right:30px;
+  display: inline;
+  padding: .7em;
+  font-size: 13px !important;
+  font-weight: 200;
+  line-height: 1;
+  color: #fff !important;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  /*border:white 1px solid;*/
+  background-color: rgb(250, 182, 35);
+  webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.puppy-info-forsale
+{
+  position:absolute;
+  top:15px;
+  left:30px;
+  display: inline;
+  padding: .7em;
+  font-size: 13px !important;
+  font-weight: 200;
+  line-height: 1;
+  color: #fff !important;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  /*border:white 1px solid;*/
+  background-color: #3CAE0D;
+  webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.puppy-info-reserved
+{
+  position:absolute;
+  top:15px;
+  left:30px;
+  display: inline;
+  padding: .7em;
+  font-size: 13px !important;
+  font-weight: 200;
+  line-height: 1;
+  color: #fff !important;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  /*border:white 1px solid;*/
+  background-color: #e06919;
+  webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.puppy-info-sold
+{
+  position:absolute;
+  top:15px;
+  left:30px;
+  display: inline;
+  padding: .7em;
+  font-size: 13px !important;
+  font-weight: 200;
+  line-height: 1;
+  color: #fff !important;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  /*border:white 1px solid;*/
+  background-color: #CB3D39;
+  webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.list-item-location
+{
+    display:block;
+    color:#777;
+    font-size:13px;
+    margin-bottom: 5px;
+}
+.list-item-regdate
+{
+    display:block;
+    color:#bababa;
+    font-size:12px;
+}
+.list-item-breed
+{
+    display:block;
+    color:#777;
+    font-size:13px;
+    margin-bottom: 5px;
+}
+.list-item-gender
+{
+    display:block;
+    color:#777;
+    font-size:13px;
+    margin-bottom: 5px;
+}
+.list-item-image
+{
+    background: url("../img/profile_header.jpg")no-repeat center center;
+    background-size:cover;
+    height:200px;
+}
+ul.pagination li > a
+{
+    color:#a5987f !important;
+    
+}
+ul.pagination li > a:focus
+{
+    background-color:#a5987f !important;
+    color:white !important;
+}
+.image-list-thumb
+{
+    width:100px;
+    position:absolute;
+    top:100px;
+    margin-left: 10px;
+    border: white 2px solid;
+}
+.column-spacer
+{
+    margin-bottom: 5px;
+}
+
+.add-list-item
+{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-left: 10px;
+    text-transform: capitalize
+}

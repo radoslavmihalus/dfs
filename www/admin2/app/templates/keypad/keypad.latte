@@ -1,0 +1,57 @@
+{layout '../@layout_login.latte'}
+{define content}
+<div class="container">
+    <ul>
+        {foreach $flashes as $flash}
+            <li>{$flash->message}</li>
+            {/foreach}
+    </ul>
+    <div class="panel panel-default simple_login_box animated fadeInDown" style="max-width: 100%;">
+        <div class="panel-body">
+            <span class="login_icon">
+                <i class="fa fa-calculator fa-2x"></i>
+            </span>
+            <div class="row" style="margin-top: 70px;">
+                <div class="col-md-12">
+                    {form frmNumpad}
+                        <div class="col-md-12" style="margin-bottom: 10px">
+                            {foreach $variants as $variant}
+                                <div class="col-md-3">
+                                    <label><input type="checkbox" {if $variant->DefaultValue==1}checked{/if} n:name="variant:$variant->Description"> {$variant->Description}</label>
+                                </div>
+                            {/foreach}
+                        </div>
+                        <div class="input-group" style="margin-bottom:20px;">
+                            <input type="hidden" n:name="type">
+                            <input type="hidden" n:name="itemid">
+                            <input type="text" placeholder="{_'Zadajte poznámku'}" n:name="value" id="currentRegNum" class="form-control box accounting_line input_border">
+                            <span class="input-group-btn">
+                                <button class="btn btn-accounting-line-clear box key" value="CLR" type="button" data-toggle="tooltip" data-placement="bottom" title="Zmazať"><i class="fa fa-times-circle fa-2x"></i></button>
+                                <button class="btn btn-accounting-line-ok box" n:name="submit" type="submit" data-toggle="tooltip" data-placement="bottom" title="Prihlásenie"><i class="fa fa fa-check-circle fa-2x"></i></button>
+                            </span>
+                        </div>
+                    {/form}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 hidden-sm hidden-xs">
+                    <div id="keyboard" style="background-color: #144766; border-radius: 5px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(".key").on("click", function ()
+        {
+            var val = $(this).attr("value");
+
+            if (val === "CLR")
+            {
+                var res = "";
+                $("#currentRegNum").val(res);
+            }
+        });
+    </script>
+</div>
+{/define}

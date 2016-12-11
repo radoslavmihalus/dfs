@@ -1,0 +1,39 @@
+{define content}
+<div class="container">
+    <ul>
+        {foreach $flashes as $flash}
+            <li>{$flash->message}</li>
+            {/foreach}
+    </ul>
+    {form frmLogin}
+        <div class="panel panel-default login_box animated fadeInDown">
+            <div class="panel-body">
+                <span class="login_icon">
+                    <i class="fa fa-user fa-2x"></i>
+                </span>
+                <div class="row" style="margin-top:80px;">
+                    <div class="col-md-12">
+                        <div class="input-group" style="margin-bottom:20px;">
+                            <span class="input-group-addon box bt_invert_color" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
+                            <input type="email" class="form-control box" placeholder="{_'Email'}" n:name="Email" value="" aria-describedby="sizing-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group" style="margin-bottom:20px;">
+                            <span class="input-group-addon box bt_invert_color" style="padding: 6px 14px;" id="sizing-addon1"><i class="fa fa-lock"></i></span>
+                            <input type="password" class="form-control box" placeholder="{_'Password'}" n:name="Password" value="" aria-describedby="sizing-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button n:name="submit" class="btn btn-login btn-block box"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{_'LogIn'}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/form}
+</div>
+{/define}

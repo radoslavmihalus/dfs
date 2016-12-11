@@ -1,0 +1,32 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# http://nette.org/security-warning
+#
+php:
+	date.timezone: Europe/Bratislava
+
+nette:
+    application:
+        mapping:
+            *: App\*Module\Presenters\*Presenter
+
+parameters:
+    database:
+        host: localhost
+        dbname: u147232041_dfs
+        user: root
+        pass: L884fv57
+
+database:
+    default:
+        dsn: "mysql:host=%database.host%;dbname=%database.dbname%"
+        user: %database.user%
+        password: %database.pass%
+
+services:
+    - MyDbService(%database.host%, %database.dbname%, %database.user%, %database.pass%)
+    - MyAuthenticator
+    nette.latteFactory:
+        setup:
+#            - setTempDirectory(%appDir%/../temp)
+            - setTempDirectory(null)

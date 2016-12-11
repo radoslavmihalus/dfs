@@ -1,0 +1,131 @@
+.profile-header-image
+{
+    background: url("../img/profile_header.jpg")no-repeat center center;
+    background-size:cover;
+    height:350px;
+}
+.header-spacer
+{
+    display:block;
+    height:180px;
+}
+.image-profile-thumb
+{
+    position: relative;
+    top: 190px;
+    left: 10px;
+    width: 150px;
+    height: 150px;
+    overflow:hidden;
+    border: white 2px solid;
+}
+.image-profile-thumb img
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+.change-image-icon
+{
+    color: white;
+    padding: 5px;
+    background-color: rgba(0,0,0,0.5);
+    bottom: 5px;
+    z-index: 1;
+    left: 5px;
+    position: absolute;
+    webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.change-image-icon:hover
+{
+    color: white;
+    padding: 5px;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1;
+    bottom: 5px;
+    left: 5px;
+    position: absolute;
+    webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.change-cover-icon
+{
+    color: white;
+    padding: 5px;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+    left: 40px;
+    top:30px;
+    position: absolute;
+    webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.change-cover-icon:hover
+{
+    color: white;
+    padding: 5px;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1;
+    left: 40px;
+    top:30px;
+    position: absolute;
+    webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.dog-image-profile-thumb
+{
+    background: url("../img/dog.jpg")no-repeat center center;
+    background-size:cover;
+    min-height: 240px;
+}
+.profile-type-description
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px !important;
+    color:black;
+}
+ul.dog-information-list
+{
+    margin:0px;
+    padding-left: 0px;
+    list-style-type: none;
+}
+ul.dog-information-list > li
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px !important;
+    color:black;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+th.pedigree
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14px;
+    color:#777;
+    text-align: center;
+    font-weight:normal;
+}
+td.pedigree
+{
+    border:1px solid #E4E4E4;
+    width:33%;
+    font-size: 12px;
+}
+.table>thead
+{
+    border-left: 1px solid #E4E4E4;
+    border-right: 1px solid #E4E4E4;
+    background-color: rgb(237, 235, 228);
+}
+.table>thead:first-child>tr:first-child>th 
+{
+    border-top: 1px solid #E4E4E4;
+    border-bottom: 0;
+}

@@ -36,7 +36,6 @@ class funpagePresenter extends BasePresenter {
         $photos = $this->database->table("tbl_photos")->limit(6)->order("id DESC")->fetchAll();
         $videos = $this->database->table("tbl_videos")->limit(6)->order("id DESC")->fetchAll();
 
-
         $this->template->profiles = $profiles;
         $this->template->dogs = $dogs;
         $this->template->puppies = $puppies;

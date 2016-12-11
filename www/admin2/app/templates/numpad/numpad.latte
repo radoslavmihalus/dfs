@@ -1,0 +1,125 @@
+{layout '../@layout_login.latte'}
+{define content}
+<div class="container">
+    <ul>
+        {foreach $flashes as $flash}
+            <li>{$flash->message}</li>
+            {/foreach}
+    </ul>
+    <div class="panel panel-default simple_login_box animated fadeInDown">
+        <div class="panel-body">
+            <span class="login_icon">
+                <i class="fa fa-calculator fa-2x"></i>
+            </span>
+            <div class="row" style="margin-top: 40px;">
+                <div class="col-md-12">
+                    {form frmNumpad}
+                        <div class="input-group" style="margin-bottom:20px;">
+                            <input type="hidden" n:name="type">
+                            <input type="hidden" n:name="itemid">
+                            <input type="text" placeholder="{$description}" n:name="value" id="currentRegNum" class="form-control box accounting_line input_border">
+                            <span class="input-group-btn">
+                                <button class="btn btn-accounting-line-clear box key" value="CLR" type="button" data-toggle="tooltip" data-placement="bottom" title="Zmazať"><i class="fa fa-times-circle fa-2x"></i></button>
+                                <button class="btn btn-accounting-line-ok box" n:name="submit" type="submit" data-toggle="tooltip" data-placement="bottom" title="Prihlásenie"><i class="fa fa fa-check-circle fa-2x"></i></button>
+                            </span>
+                        </div>
+                    {/form}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4 col-xs-4 col-sm-4" style="padding:3px;">
+                        <audio id="bflat" src="www/img/Beep.mp3"></audio>
+                        <button class="btn btn-numpad box key" value="1">1</button>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4" style="padding:3px;">
+                        <button class="btn btn-numpad box key" value="2">2</button>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4" style="padding:3px;">
+                        <button class="btn btn-numpad box key" value="3">3</button>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4" style="padding:3px;">
+                        <button class="btn btn-numpad box key" value="4">4</button>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4" style="padding:3px;">
+                        <button class="btn btn-numpad box key" value="5">5</button>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4" style="padding:3px;">
+                        <button class="btn btn-numpad box key" value="6">6</button>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4" style="padding:3px;">
+                        <button class="btn btn-numpad box key" value="7">7</button>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4" style="padding:3px;">
+                        <button class="btn btn-numpad box key" value="8">8</button>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4" style="padding:3px;">
+                        <button class="btn btn-numpad box key" value="9">9</button>
+                    </div>
+                    <div class="col-md-8 col-xs-8 col-sm-8" style="padding:3px;">
+                        <button class="btn btn-numpad box key" value="0">0</button>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4" style="padding:3px;">
+                        <button class="btn btn-numpad box key" value=".">,</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(".key").on("click", function ()
+        {
+            var val = $(this).attr("value");
+            var currentRegNum = $("#currentRegNum").val();
+
+            if (currentRegNum == "0.00")
+                currentRegNum = "";
+
+            if (val === "CLR")
+            {
+                var res = "";
+                $("#currentRegNum").val(res);
+            }
+            else
+            {
+                var res = currentRegNum.concat(val);
+                $("#currentRegNum").val(res);
+            }
+        });
+
+        $(document).on("keydown", function (e)
+        {
+            var val = e.keyCode;
+
+            console.log(val);
+
+            if ((val >= 48 && val <= 57) || (val >= 96 && val <= 105))
+            {
+                if (val >= 96)
+                    val = val - 48;
+
+                val = String.fromCharCode(val);
+
+                var reg = $("#currentRegNum").val();
+                var res = reg.concat(val);
+
+                $("#currentRegNum").val(res);
+            }
+
+            if (val == 110 || val == 188 || val == 190)
+            {
+                val = '.';
+                var reg = $("#currentRegNum").val();
+                var res = reg.concat(val);
+
+                $("#currentRegNum").val(res);
+            }
+
+            if (val === 13)
+            {
+                $("#frm-frmNumpad").submit();
+            }
+        });
+    </script>
+</div>
+{/define}

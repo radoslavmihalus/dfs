@@ -1,0 +1,30 @@
+a.EditProfilelink
+{
+    color:black;
+    font-size:13px !important;
+    background-color: whitesmoke;
+    border: 1px solid #ddd;
+}
+a.EditProfilelink:active
+{
+    color:black;
+    font-size:13px !important;
+    background-color: white;
+}
+a.EditProfilelink:link
+{
+    color:black;
+    font-size:13px !important;
+    background-color: whitesmoke;
+    border: 1px solid #ddd;
+}
+a.EditProfilelink:hover
+{
+    color:black !important;
+    font-size:13px !important;
+}
+a.EditProfilelink:visited
+{
+    color:black;
+    font-size:13px !important;
+}
