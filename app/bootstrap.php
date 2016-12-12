@@ -73,7 +73,7 @@ $router = $container->getService('router');
 //, \Nette\Application\IRouter::SECURED);
 
 // comment this line for development server
-// Route::$defaultFlags = Route::SECURED;
+Route::$defaultFlags = Route::SECURED;
 
 $router[] = new Route('index.php', 'LandingPage:default'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('advertisement-step1', 'advertisement:advertisement_step1'); //, \Nette\Application\IRouter::SECURED);
@@ -158,6 +158,7 @@ $router[] = new Route('notification-list', 'user:user_notification_list'); //, \
 $router[] = new Route('message-list', 'user:user_message_list'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('message-compose', 'user:user_message_compose'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('premium-account', 'user:user_premium'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('premium-action', 'user:user_premium_action'); //, \Nette\Application\IRouter::SECURED);
 // Kennel routes
 //---------------------------   Kennels / create profile -----------------------------------
 $router[] = new Route('kennel-create-profile', 'kennel:kennel_create_profile'); //, \Nette\Application\IRouter::SECURED);
