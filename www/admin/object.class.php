@@ -75,7 +75,7 @@ class blueticket_objects {
         $btdb = blueticket_forms_db::get_instance();
         //$btdb = new blueticket_forms_db();
 
-        $btdb->query("SELECT * FROM tbl_user WHERE active=1");
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND DATE(premium_expiry_date)<DATE(now())");
         $users = $btdb->result();
 
         foreach ($users as $user) {
