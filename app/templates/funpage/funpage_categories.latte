@@ -124,12 +124,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+<!--            <div class="row">
                 <div class="col-md-12" style="margin-top:10px;">
                     <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-camera"></i>&nbsp;&nbsp;Photos</div>
                         <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6" style="padding:5px;">
-                            <a href="javascript:void(0)" onclick="ShowGaleryModal({$row->id})" title="{$row->description}">
-                                <div class="thumbnail img-responsive" style="padding:50%;background: url({$row->image})no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                            <a href="javascript:void(0)" onclick="ShowGaleryModal({ $row->id})" title="{ $row->description}">
+                                <div class="thumbnail img-responsive" style="padding:50%;background: url({ $row->image})no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
                             </a>
                         </div>
                 </div>
@@ -137,16 +137,16 @@
             <div class="row">
                 <div class="col-md-12" style="margin-top:10px;">
                     <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="fa fa-video-camera"></i>&nbsp;&nbsp;Videos</div>
-                    {foreach $videos as $row}
-                        {include '../components/modal_video.latte' row=>$row}
+                    { foreach $videos as $row}
+                        { include '../components/modal_video.latte' row=>$row}
                         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6" style="padding:5px;">
-                            <div class="thumbnail img-responsive" href="javascript:void(0)" onclick="ShowGaleryModalVideo({$row->id})" title="{$row->description}" style="padding:20%; cursor:pointer; margin-bottom: 10px;background-position: 50% 25%;background-size: cover;background-image: url({$row->image});">
+                            <div class="thumbnail img-responsive" href="javascript:void(0)" onclick="ShowGaleryModalVideo({ $row->id})" title="{ $row->description}" style="padding:20%; cursor:pointer; margin-bottom: 10px;background-position: 50% 25%;background-size: cover;background-image: url({ $row->image});">
                                 <i class="fa fa-play-circle-o fa-4x" style="position:relative;top:50%;margin-left: 0.5em;color:white;"></i>
                             </div>
                         </div>
-                    {/foreach}
+                    { /foreach}
                 </div>
-            </div>
+            </div>-->
         </div>
         <div class="col-md-4" style="background-color: #f7f5f0;padding-top: 15px;">
             <div class="row">

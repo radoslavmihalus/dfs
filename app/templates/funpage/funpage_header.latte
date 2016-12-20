@@ -12,39 +12,16 @@
 
             <div class="navbar-collapse collapse" id="funpagemenu">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book" style="margin-right: 5px;"></i>Articles<span class="dropme"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a n:href="funpage:article_list">Health & lifestyle</a></li>
-                            <li><a href="#">Dog shows</a></li>
-                            <li><a href="#">Sport & work</a></li>
-                            <li><a href="#">Tips & tricks</a></li>
-                            <li><a href="#">Children & dogs</a></li>
-                            <li><a href="#">Breeds</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-microphone" style="margin-right: 5px;"></i>Interviews<span class="dropme"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Breeders</a></li>
-                            <li><a href="#">Owners</a></li>
-                            <li><a href="#">Handlers</a></li>
-                            <li><a href="#">Judges</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-camera" style="margin-right: 5px;"></i>Photos<span class="dropme"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a n:href="funpage:blog_photo_list">Dog shows</a></li>
-                            <li><a href="#">DFS backstage</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-video-camera" style="margin-right: 5px;"></i>Videos<span class="dropme"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Videos</a></li>
-                        </ul>
-                    </li>
+                    {foreach $groups as $group}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book" style="margin-right: 5px;"></i>{_$group->group_name}<span class="dropme"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                {foreach $group->related("tbl_articles_groups.parent_id")->where("active=1") as $nested_group}
+                                    <li><a n:href="funpage:article_list group_id=>$nested_group->id">{_$nested_group->group_name}</a></li>
+                                    {/foreach}
+                            </ul>
+                        </li>
+                    {/foreach}
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!-- end navbar navbar-default clearfix -->
