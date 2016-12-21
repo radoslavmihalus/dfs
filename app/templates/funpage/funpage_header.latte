@@ -14,7 +14,7 @@
                 <ul class="nav navbar-nav">
                     {foreach $groups as $group}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book" style="margin-right: 5px;"></i>{_$group->group_name}<span class="dropme"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$group->icon}" style="margin-right: 5px;"></i>{_$group->group_name}<span class="dropme"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 {foreach $group->related("tbl_articles_groups.parent_id")->where("active=1") as $nested_group}
                                     <li><a n:href="funpage:article_list group_id=>$nested_group->id">{_$nested_group->group_name}</a></li>
@@ -27,7 +27,8 @@
         </div><!-- end navbar navbar-default clearfix -->
     </div><!-- end menu 1 -->  
 </div><!-- end hero -->  
-<div class="row">
+<!--Language switcher-->
+<!--<div class="row">
     <div class="col-md-12" style="margin-bottom: 10px;">
         <label class="checkbox-inline blog-lang-switcher-caption"><input type="checkbox" value="">All</label>
         <label class="checkbox-inline blog-lang-switcher-caption"><input type="checkbox" value=""><span style="margin-right: 5px;" class="flag-icon flag-icon-us"></span>English</label>
@@ -36,5 +37,6 @@
         <label class="checkbox-inline blog-lang-switcher-caption"><input type="checkbox" value=""><span style="margin-right: 5px;" class="flag-icon flag-icon-ru"></span>Pусский</label>
         <label class="checkbox-inline blog-lang-switcher-caption"><input type="checkbox" value=""><span style="margin-right: 5px;" class="flag-icon flag-icon-sk"></span>Slovenčina</label>
     </div>
-</div>
+</div>-->
+<!--End Language switcher-->
 {/block}

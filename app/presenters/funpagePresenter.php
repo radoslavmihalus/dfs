@@ -8,8 +8,33 @@ use App\Model,
 
 class funpagePresenter extends BasePresenter {
 
+    public $image_path = "http://dfsadmin.btcloud.sk/app/uploads/";
+
     protected function startup() {
         parent::startup();
+    }
+
+    public function actionArticle($id) {
+        $article = $this->database->table("tbl_articles")->where("id=?", $id)->fetch();
+
+        $views_count = $article->views_count + 1;
+
+        $data = array();
+        $data['views_count'] = $views_count;
+
+        $this->database->table("tbl_articles")->where("id=?", $article->id)->update($data);
+
+        $this->template->article = $article;
+
+        $similar_articles = $this->database->table("tbl_articles")->where("group_id=?", $article->group_id)->where("active=?",1)->where("id NOT IN(?)", $article->id)->order("rand()")->limit(4)->fetchAll();
+
+        $this->template->similar_articles = $similar_articles;
+    }
+
+    public function actionArticle_list($group_id) {
+        $articles = $this->database->table("tbl_articles")->where("group_id=?", $group_id)->where("active=?",1)->order("posting_date DESC")->fetchAll();
+        $this->template->category_id = $group_id;
+        $this->template->articles = $articles;
     }
 
     /**
@@ -44,8 +69,32 @@ class funpagePresenter extends BasePresenter {
         $this->template->videos = $videos;
     }
 
+    public function getCategoryName($category_id = 0) {
+        $group = $this->database->table("tbl_articles_groups")->where("id=?", $category_id)->fetch();
+
+        return $group->group_name;
+    }
+
+    public function getParentCategoryName($category_id = 0) {
+        $group = $this->database->table("tbl_articles_groups")->where("id=?", $category_id)->fetch();
+        $parent_group = $this->database->table("tbl_articles_groups")->where("id=?", $group->parent_id)->fetch();
+
+        return $parent_group->group_name;
+    }
+
+    public function getParentCategoryIcon($category_id = 0) {
+        $group = $this->database->table("tbl_articles_groups")->where("id=?", $category_id)->fetch();
+        $parent_group = $this->database->table("tbl_articles_groups")->where("id=?", $group->parent_id)->fetch();
+
+        return $parent_group->icon;
+    }
+
     public function renderFunpage_profile_home() {
+        $popular_articles = $this->database->table("tbl_articles")->where("active=?",1)->order("views_count DESC")->limit(4)->fetchAll();
+        $newest_articles = $this->database->table("tbl_articles")->where("active=?",1)->order("posting_date DESC")->limit(4)->fetchAll();
         
+        $this->template->popular_articles = $popular_articles;
+        $this->template->newest_articles = $newest_articles;
     }
 
     /*     * ******** renderers ************* */
