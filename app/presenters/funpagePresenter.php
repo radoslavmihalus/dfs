@@ -8,7 +8,7 @@ use App\Model,
 
 class funpagePresenter extends BasePresenter {
 
-    public $image_path = "http://dfsadmin.btcloud.sk/app/uploads/";
+    public $image_path = "https://dogforshow.com/";
 
     protected function startup() {
         parent::startup();
