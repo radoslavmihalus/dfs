@@ -67,7 +67,7 @@
                                                 </a>
                                             </div>
                                         </div>-->
-                    <div class="dropdown" style="float:left;">
+                    <div class="dropdown" style="float:left;margin-bottom: 20px">
                         <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><i class="fa fa-share-alt"></i>&nbsp;{_ 'Share'}&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="Share" style="min-width:50px;">
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:fbShare('{!$sharer_tags['url']}', '{!$sharer_tags['title']}', '{!$sharer_tags['description']}', '{!$sharer_tags['image']}', 520, 350)"><i class="fa fa-facebook-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Facebook'}</span></a></li>
@@ -96,7 +96,7 @@
                         </a>
                         <div style="display:block;height:48px;">
                             <a n:href="funpage:article id=>$similar_article->id" style="color:black;text-decoration: underline;">
-                                <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">{$similar_article->header|truncate:58}</span>
+                                <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">{$similar_article->header|truncate:44}</span>
                             </a>
                         </div>
                         <div style="display:block;">
