@@ -5,6 +5,46 @@
         {control vp, right, large}
     </div>
     <ul class="timeline" n:snippet="timeline" data-ajax-append="true">
+        <!--DOGFORSHOW fanpage timeline item -->
+        <li style="border: 2px solid #83765e;">
+        <div class="timeline-panel">
+            <div class="timeline-heading">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <img class="user-block-thumb" src="www/img/dfs_fanpage_icon.png" style="position:absolute;left:15px;top:0px;">
+                        <a href="#">
+                            <span class="notification-item-header text-uppercase" style="width:auto;margin-left:55px;font-family: 'Roboto Condensed', sans-serif;font-size: 15px !important;">DOGFORSHOW</span><br>
+                        </a>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;">{_ 'Add article'}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr style="margin-top: 10px;margin-bottom: 2px;">
+            <div class="col-lg-12 col-md-12 col-xs-12" style="padding-left:0px;margin-bottom: 5px;">
+                <span style="color:#C1C1C1"><i class="glyphicon glyphicon-time"></i>&nbsp;13.01.2017&nbsp;|&nbsp;08:50</span>
+            </div>
+            <div class="col-lg-12 col-md-12 col-xs-12" style="padding-left: 0px;padding-right: 0px;">
+                <a href="www/img/dummy_article.png" title="" data-gallery=""> 
+                    <img src="www/img/dummy_article.png" style="float:left;width:100%;margin-bottom: 10px;">
+                </a>
+            </div>
+            <div class="timeline-body col-lg-12 col-md-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
+                <a href="#" style="color:black;text-decoration: underline;">
+                <span style="display:block;width:100%;font-weight:bold;margin:0px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Lorem ipsum dolor im sum bl a blablabla ldfuieijife</span>
+                </a>
+                <p>Optio class ipsum minus! Ipsam sodales minus nec, occaecati beatae, est quisque,</p>
+            </div>
+            <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
+                <a style="cursor:pointer;color: #cecece;text-decoration: none;" href="javascript:void(0)" id="likes-list-42440"><i class="fa fa-thumbs-up fa-1x"></i><span style="font-size:12px;">&nbsp;&nbsp;Like</span><span class="badge" id="likes-count-42440" style="margin-left: 10px;" data-toggle="tooltip" data-placement="top" title="" data-original-title="People who liked this">0</span></a>
+            </div>
+            <div id="snippet-comments-42440-">
+            </div>
+        </div>
+        </li>
+        <!-- -->
         {includeblock 'timeline_item.latte'}
         {include #timeline_item}
     </ul>
