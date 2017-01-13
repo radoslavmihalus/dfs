@@ -456,7 +456,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         $control = new \Nette\Application\UI\Multiplier(function ($id) {
             try {
-                $row = $this->database->table("tbl_timeline")->where("id=?", $id)->fetch();
+                if ($id > 290000000000)
+                    $row = $this->database->table("tbl_articles")->where("id=?", $id)->fetch();
+                else
+                    $row = $this->database->table("tbl_timeline")->where("id=?", $id)->fetch();
                 $control = new \CommentsControl($row, $this->logged_in_profile_id, $this->logged_in_id, $this->profile_id, $this->data_model, $this->database);
                 return $control;
             } catch (\Exception $ex) {
@@ -882,7 +885,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $url = \DataModel::getProfileLinkUrl($row->profile_id, TRUE) . "?id=" . $row->profile_id;
             $return .= '<span class="notification-item-header text-uppercase"><a href="' . $url . '" style="color:#a5987f;">' . \DataModel::getProfileName($row->profile_id) . '</a></span>';
             $return .= '<span class="notification-item-event-time">' . $date . '|&nbsp;' . $time . '</span>';
-            $return.='<span style="color:black" class="notification-item-event"></span>';
+            $return .= '<span style="color:black" class="notification-item-event"></span>';
             $return .= '</div>';
         }
         $return .= '</div>';
@@ -1658,10 +1661,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                ));
                 //$mailer = new SendmailMailer();
                 $mailer = new Nette\Mail\SmtpMailer(array(
-            'host' => 'mail.dogforshow.com',
-            'username' => 'info@dogforshow.com',
-            'password' => 'awqbn154',
-        ));
+                    'host' => 'mail.dogforshow.com',
+                    'username' => 'info@dogforshow.com',
+                    'password' => 'awqbn154',
+                ));
                 $mailer->send($mail);
 
                 $this->flashMessage($this->translate("Your password has been successfully sent to your e-mail"), "Success");
@@ -1806,13 +1809,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                'password' => 'awqbn154',
 //                'secure' => 'ssl'
 //            ));
-
             //$mailer = new SendmailMailer();
             $mailer = new Nette\Mail\SmtpMailer(array(
-                            'host' => 'mail.dogforshow.com',
-                            'username' => 'info@dogforshow.com',
-                            'password' => 'awqbn154',
-                        ));
+                'host' => 'mail.dogforshow.com',
+                'username' => 'info@dogforshow.com',
+                'password' => 'awqbn154',
+            ));
             $mailer->send($mail);
 
             $this->flashMessage($this->translate("Your password has been successfully sent to your e-mail"), "Success");
@@ -1898,10 +1900,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //        ));
         //$mailer = new SendmailMailer();
         $mailer = new Nette\Mail\SmtpMailer(array(
-                            'host' => 'mail.dogforshow.com',
-                            'username' => 'info@dogforshow.com',
-                            'password' => 'awqbn154',
-                        ));
+            'host' => 'mail.dogforshow.com',
+            'username' => 'info@dogforshow.com',
+            'password' => 'awqbn154',
+        ));
         $mailer->send($mail);
     }
 
@@ -1954,7 +1956,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     $values['lang'] = 'en';
                 }
                 try {
-                    $userid =$this->database->table("tbl_user")->insert($values)->id;
+                    $userid = $this->database->table("tbl_user")->insert($values)->id;
                     //$userid = $this->database->getInsertId();
 
                     $this->sendActivationEmail($values['email'], $values['name'], $userid);
@@ -2035,10 +2037,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                ));
                 //$mailer = new SendmailMailer();
                 $mailer = new Nette\Mail\SmtpMailer(array(
-                            'host' => 'mail.dogforshow.com',
-                            'username' => 'info@dogforshow.com',
-                            'password' => 'awqbn154',
-                        ));
+                    'host' => 'mail.dogforshow.com',
+                    'username' => 'info@dogforshow.com',
+                    'password' => 'awqbn154',
+                ));
                 $mailer->send($mail);
 
                 $this->flashMessage($this->translate("Your message has been successfully sent. We will contact you as soon as possible."), "Info");
