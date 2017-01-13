@@ -703,9 +703,16 @@ class DataModel {
         $data['comment'] = $comment;
 
         $row = $this->database->table("tbl_timeline")->where("id=?", $timeline_id)->fetch();
-        $data['event_id'] = $row->event_id;
+        if ($timeline_id > 290000000000) { // article comment
+            $data['event_id'] = 0;
+        } else
+            $data['event_id'] = $row->event_id;
 
-        $notify_profile_id = $row->profile_id;
+        if ($timeline_id > 290000000000) { // article comment
+            $notify_user_id = 0;
+            $notify_profile_id = 0;
+        } else
+            $notify_profile_id = $row->profile_id;
 
         if ($notify_profile_id >= 200000000 && $notify_profile_id < 300000000) {
             $row = $this->database->table("tbl_userkennel")->where("id=?", $notify_profile_id)->fetch();
