@@ -10,12 +10,12 @@
                                 </div>-->
                 <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:50px;">
                     <img class="img img-responsive" src="{$presenter->image_path}{$article->image}">
-                    <span class="article-category">{$presenter->getCategoryName($article->group_id)}</span>
+                    <span class="article-category">{_$presenter->getCategoryName($article->group_id)}</span>
                     <div style="display:block;height:48px;">
                         <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">{$article->header}</span>
                     </div>
                     <div style="display:block;">
-                        <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="{$presenter->getParentCategoryIcon($article->group_id)}"></i>&nbsp;{$presenter->getParentCategoryName($article->group_id)}</span>
+                        <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="{$presenter->getParentCategoryIcon($article->group_id)}"></i>&nbsp;{_$presenter->getParentCategoryName($article->group_id)}</span>
                         <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;{$article->posting_date|date:'d.m.Y'}</span>
                         <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;{$article->views_count}</span>
                     </div>
@@ -92,7 +92,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px;">
                         <a n:href="funpage:article id=>$similar_article->id">
                             <img class="img img-responsive" src="{$presenter->image_path}{$similar_article->image}">
-                            <span class="article-category">{$presenter->getCategoryName($article->group_id)}</span>
+                            <span class="article-category">{_$presenter->getCategoryName($article->group_id)}</span>
                         </a>
                         <div style="display:block;height:48px;">
                             <a n:href="funpage:article id=>$similar_article->id" style="color:black;text-decoration: underline;">
@@ -100,7 +100,7 @@
                             </a>
                         </div>
                         <div style="display:block;">
-                            <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="{$presenter->getParentCategoryIcon($article->group_id)}"></i>&nbsp;{$presenter->getParentCategoryName($article->group_id)}</span>
+                            <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="{$presenter->getParentCategoryIcon($article->group_id)}"></i>&nbsp;{_$presenter->getParentCategoryName($article->group_id)}</span>
                             <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;{$similar_article->posting_date|date:'d.m.Y'}</span>
                             <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;{$similar_article->views_count}</span>
                         </div>
