@@ -1817,6 +1817,12 @@ class DataModel {
                 $description = mb_strtoupper($row->dog_name) . " X " . mb_strtoupper($row->bitch_name) . " - " . mb_strtoupper($row->bitch_breed);
                 $image = DataModel::getURL() . "/" . $row->bitch_image;
                 break;
+            case ($id >= 290000000000 && $id < 300000000000):
+                $row = $database->table("tbl_articles")->where("id=?", $id)->fetch();
+                $title = "DOGFORSHOW BLOG - " . $row->header;
+                $description = $row->preface;
+                $image = DataModel::getURL() . "/" . $row->image;
+                break;
             default :
                 return "";
                 break;
@@ -1929,6 +1935,9 @@ class DataModel {
                 // planned litter 700000000
                 $return = "$url/kennel-planned-litter-list?id=$alt_id&litter=$id&lang=$lang#litterid_$id";
                 break;
+            case ($id >= 290000000000 && $id < 300000000000): //article
+                $return = "$url/article?id=$id&lang=$lang";
+                break;            
             default :
                 $return = "";
                 break;

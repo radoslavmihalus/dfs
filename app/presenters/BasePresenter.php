@@ -42,11 +42,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     /** @persistent */
     public $lang;
 
-    // /** @var \Kdyby\Translation\Translator @inject */
-    //public $translator;
+// /** @var \Kdyby\Translation\Translator @inject */
+//public $translator;
 
     public function __construct(Nette\Database\Context $database) {
-        //parent::__construct();
+//parent::__construct();
         $this->database = $database;
         $this->data_model = new \DataModel($database);
 
@@ -74,7 +74,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $app_id = '1667568453531965';
         $app_secret = '31b497e2fa6cb206b406624ae2a39e00';
 
-        // access token from tbl_users
+// access token from tbl_users
         $access_token = 'CAAXspQlPuT0BACGJxNdvFWCHvbLNXJdFEf1Wis995OyZBZB3cqGjHOZAxZBSUYXFPmGaR9oyTeqBXkJqYw5f04EAgOOcEgZBi7CPX7XiwZAV7s6D227mX0SGRokGP7zmb7lGloeOKMNHPTh1UOXLnbwWYSxZCbrYk4uFEUOq4NBMsZAT3Jp2ERPp'; // from tbl_users
 
         $extend_url = "https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id=$app_id&client_secret=$app_secret&fb_exchange_token=$access_token";
@@ -383,7 +383,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 if (isset($_GET['dog_id']))
                     $id = $_GET['dog_id'];
                 try {
-                    // zdielanie cudzieho profilu, psov a steniat
+// zdielanie cudzieho profilu, psov a steniat
                     if ($action == "dog_show_list" || $action == "handler_show_list") // zdielanie vystavy
                         $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['show'], $id);
                     else
@@ -395,7 +395,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                     
                 }
             } else {
-                // zdielanie vlastneho profilu
+// zdielanie vlastneho profilu
                 if ($action == "kennel_profile_home" || $action == "owner_profile_home" || $action == "handler_profile_home") {
                     try {
                         $sharer_tags = \DataModel::getShareTags($this->translator->lang, $this->logged_in_profile_id);
@@ -403,15 +403,19 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                         
                     }
                 } else {
-                    // zdielanie vystavy
+// zdielanie vystavy
                     if ($action == "handler_show_list")
                         $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['show'], $this->logged_in_profile_id);
                     else
                     if ($action == "kennel_planned_litter_list")
                         $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['litter'], $this->logged_in_profile_id);
                     else {
-                        $url = $this->getHttpRequest()->getUrl();
-                        $sharer_tags = \DataModel::getShareTagsGlobal($this->translator->lang, $presenter, $action, $url);
+                        if ($action == "article") {
+                        $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['id'], $this->logged_in_profile_id); //290000000000
+                        } else {
+                            $url = $this->getHttpRequest()->getUrl();
+                            $sharer_tags = \DataModel::getShareTagsGlobal($this->translator->lang, $presenter, $action, $url);
+                        }
                     }
                 }
             }
@@ -558,7 +562,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         return $form;
     }
 
-    //dropdowns handle ajax lists
+//dropdowns handle ajax lists
     public function handleBreedList($q = "", $lang = "en") {
         $fields = $this->database->table("tbl_breeds")->where("BreedName_$lang LIKE ?", "%$q%")->order("BreedName_$lang")->fetchAll(); //->query("SELECT BreedName FROM tbl_breeds WHERE BreedName LIKE '%" . $_GET['q'] . "%'  ORDER BY BreedName")->fetchAll();
 
@@ -693,7 +697,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->terminate();
     }
 
-    //dropdowns handle ajax lists
+//dropdowns handle ajax lists
 
     public function handleOfferForSale($id = 0) {
         $id = $_GET['id'];
@@ -732,9 +736,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         try {
 //            if (isset($_GET['lang']))
 //                $lang = $_GET['lang'];
-            //$mysection = $this->getSession('language');
+//$mysection = $this->getSession('language');
 //            $this->lang = strtolower($lang);
-            //$mysection->lang = $this->lang;
+//$mysection->lang = $this->lang;
 //            $this->translator->lang = $this->lang;
         } catch (\Exception $ex) {
 //            if (isset($_GET['lang']))
@@ -1260,14 +1264,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $description = "DOGFORSHOW - " . $this->translate("Premium account activation") . " " . $this->translate("for 24 months");
 
 
-        // Prepare GET data
+// Prepare GET data
         $query = array();
         $query['currency_code'] = 'EUR';
         $query['notify_url'] = 'payment_return.php';
         $query['cmd'] = '_cart';
         $query['upload'] = '1';
         $query['business'] = 'info@dogforshow.com';
-        //$query['address_override'] = '1';
+//$query['address_override'] = '1';
         $query['first_name'] = $user->name;
         $query['last_name'] = $user->surname;
         $query['email'] = $user->email;
@@ -1279,7 +1283,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $query['quantity_1'] = 1;
         $query['amount_1'] = $amt;
 
-        // Prepare query string
+// Prepare query string
         $query_string = http_build_query($query);
 
         $this->redirectUrl('https://www.paypal.com/cgi-bin/webscr?' . $query_string);
@@ -1393,8 +1397,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                                 $end = date('Y-m-d', strtotime('+2 years'));
                         }
 
-                        // vykonaj upravy v db a superfakture, len pokial je transakcia autorizovana
-                        //if ($_GET['RES'] == 3) {
+// vykonaj upravy v db a superfakture, len pokial je transakcia autorizovana
+//if ($_GET['RES'] == 3) {
                         $data = array();
                         $data['premium_expiry_date'] = $end;
                         $data['premium_payment_date'] = $curdate;
@@ -1416,7 +1420,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                         $data['premium_expiry_date'] = $curdate;
                         $this->database->table("tbl_dogs")->where("user_id=?", $user_id)->update($data);
 
-                        //}
+//}
 // invoice - superfaktura
 
                         $sf = new \invoice();
@@ -1463,7 +1467,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                            'password' => 'awqbn154',
 //                            'secure' => 'ssl'
 //                        ));
-                        //$mailer = new SendmailMailer();
+//$mailer = new SendmailMailer();
                         $mailer = new Nette\Mail\SmtpMailer(array(
                             'host' => 'mail.dogforshow.com',
                             'username' => 'info@dogforshow.com',
@@ -1594,7 +1598,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $message = $values['txtMessageCompose'];
 
         if (strlen($message) > 23) {
-            //$message = substr($message, 0, 20) . '...';
+//$message = substr($message, 0, 20) . '...';
         }
 
         if ($this->profile_id > 0) {
@@ -1659,7 +1663,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                    'password' => 'awqbn154',
 //                    'secure' => 'ssl'
 //                ));
-                //$mailer = new SendmailMailer();
+//$mailer = new SendmailMailer();
                 $mailer = new Nette\Mail\SmtpMailer(array(
                     'host' => 'mail.dogforshow.com',
                     'username' => 'info@dogforshow.com',
@@ -1809,7 +1813,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                'password' => 'awqbn154',
 //                'secure' => 'ssl'
 //            ));
-            //$mailer = new SendmailMailer();
+//$mailer = new SendmailMailer();
             $mailer = new Nette\Mail\SmtpMailer(array(
                 'host' => 'mail.dogforshow.com',
                 'username' => 'info@dogforshow.com',
@@ -1898,7 +1902,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //            'password' => 'awqbn154',
 //            'secure' => 'ssl'
 //        ));
-        //$mailer = new SendmailMailer();
+//$mailer = new SendmailMailer();
         $mailer = new Nette\Mail\SmtpMailer(array(
             'host' => 'mail.dogforshow.com',
             'username' => 'info@dogforshow.com',
@@ -1957,7 +1961,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 }
                 try {
                     $userid = $this->database->table("tbl_user")->insert($values)->id;
-                    //$userid = $this->database->getInsertId();
+//$userid = $this->database->getInsertId();
 
                     $this->sendActivationEmail($values['email'], $values['name'], $userid);
 
@@ -2035,7 +2039,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //                    'password' => 'awqbn154',
 //                    'secure' => 'ssl'
 //                ));
-                //$mailer = new SendmailMailer();
+//$mailer = new SendmailMailer();
                 $mailer = new Nette\Mail\SmtpMailer(array(
                     'host' => 'mail.dogforshow.com',
                     'username' => 'info@dogforshow.com',
@@ -2218,7 +2222,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $values['premium_expiry_date'] = $user->premium_payment_date;
 
             $id = $this->database->table("tbl_userowner")->insert($data)->id;
-            //$id = $this->database->getInsertId();
+//$id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($id, $id, 1, \DataModel::getProfileName($id), $data['owner_profile_picture']);
 
@@ -2244,7 +2248,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $values['premium_expiry_date'] = $user->premium_payment_date;
 
             $id = $this->database->table("tbl_userkennel")->insert($values)->id;
-            //$id = $this->database->getInsertId();
+//$id = $this->database->getInsertId();
 
             $breeds = explode(",", $breeds);
 
@@ -2274,7 +2278,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $values['premium_expiry_date'] = $user->premium_payment_date;
 
             $id = $this->database->table("tbl_userhandler")->insert($values)->id;
-            //$id = $this->database->getInsertId();
+//$id = $this->database->getInsertId();
 
             $breeds = explode(",", $breeds);
 
