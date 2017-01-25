@@ -1819,7 +1819,7 @@ class DataModel {
                 break;
             case ($id >= 290000000000 && $id < 300000000000):
                 $row = $database->table("tbl_articles")->where("id=?", $id)->fetch();
-                $title = "DOGFORSHOW BLOG - " . $row->header;
+                $title = $row->header;
                 $description = $row->preface;
                 $image = DataModel::getURL() . "/" . $row->image;
                 break;
