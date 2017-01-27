@@ -22,9 +22,9 @@
                     <span style="font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;{$article->posting_date|date:'d.m.Y'}</span>
                     <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;{$article->views_count}</span>
                 </div>
-                <div style="display:block;">
+                <div style="display:block; height: 80px">
                     <span style="display:block;margin-top: 5px;font-size:13px;">
-                        {!$article->preface|nl2br|truncate:150}
+                        {!$article->preface|nl2br|truncate:120}
                     </span>
                 </div>
             </div>

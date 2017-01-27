@@ -21,141 +21,164 @@
                     </div>
                     <div style="display:block;">
                         <p class="article-perex">{!$article->preface|nl2br}</p>
+                        {var $photo = 0}
                         {foreach $article->related("tbl_articles_content.article_id") as $related}
                             {if $related->content_type_id==1}
-                                <p class="article-text">
-                                    {!$related->content|nl2br}
-                                </p>
-                            {else}
-                                <p class="article-quotes">
-                                    {!$related->content|nl2br}
-                                </p>
-                            {/if}
-                        {/foreach}
-                        <!--                        <p class="article-text">Praesent placerat porro error corporis corporis, eros? Rerum, aliquid adipisci. Diamlorem, dapibus diam nullam eiusmod quibusdam, perspiciatis numquam perferendis! Adipisicing! Torquent libero fuga numquam! Facilisi vel corporis. Torquent? Iaculis ligula, doloribus, euismod litora quam porro integer sodales recusandae, vehicula nostrud, ducimus nisi montes sint, cillum, nullam sint ut, mauris molestias porttitor sodales voluptatum cupidatat ac, reiciendis, tenetur morbi minima tempore, netus commodo purus illum officia, facere, auctor ligula, expedita! Non laboriosam eius, dis eum augue necessitatibus aut labore mollis ab volutpat, sunt, provident dolorum aperiam eaque senectus, expedita ullam venenatis, optio veritatis unde, suspendisse dapibus nostrud ratione luctus ullam blandit.</p>
-                                                <p class="article-quotes">Praesent placerat porro error corporis corporis, eros? Rerum, aliquid adipisci. Diamlorem, dapibus diam nullam eiusmod quibusdam, perspiciatis numquam perferendis! Adipisicing! Torquent libero fuga numquam! Facilisi vel corporis. Torquent? Iaculis ligula, doloribus, euismod litora quam porro integer sodales recusandae, vehicula nostrud, ducimus nisi montes sint, cillum, nullam sint ut, mauris molestias porttitor sodales voluptatum cupidatat ac, reiciendis, tenetur morbi minima tempore, netus commodo purus illum officia, facere, auctor ligula, expedita! Non laboriosam eius, dis eum augue necessitatibus aut labore mollis ab volutpat, sunt, provident dolorum aperiam eaque senectus, expedita ullam venenatis, optio veritatis unde, suspendisse dapibus nostrud ratione luctus ullam blandit.</p>-->
-                    </div>
-                    <!--                    <div class="row" style="margin-right: 0px;margin-left: 0px;">
-                                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
-                                                <a href="javascript:void(0)" onclick="" title="">
-                                                    <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                                </a>
-                                            </div>
-                                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
-                                                <a href="javascript:void(0)" onclick="" title="">
-                                                    <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                                </a>
-                                            </div>
-                                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
-                                                <a href="javascript:void(0)" onclick="" title="">
-                                                    <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                                </a>
-                                            </div>
-                                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
-                                                <a href="javascript:void(0)" onclick="" title="">
-                                                    <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                                </a>
-                                            </div>
-                                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
-                                                <a href="javascript:void(0)" onclick="" title="">
-                                                    <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                                </a>
-                                            </div>
-                                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
-                                                <a href="javascript:void(0)" onclick="" title="">
-                                                    <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
-                                                </a>
-                                            </div>
-                                        </div>-->
-                    <div class="dropdown" style="float:left;margin-bottom: 20px">
-                        <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><i class="fa fa-share-alt"></i>&nbsp;{_ 'Share'}&nbsp;<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="Share" style="min-width:50px;">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:fbShare('{!$sharer_tags['url']}', '{!$sharer_tags['title']}', '{!$sharer_tags['description']}', '{!$sharer_tags['image']}', 520, 350)"><i class="fa fa-facebook-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Facebook'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/share?url={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-google-plus-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Google+'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/home?status={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-twitter-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Twitter'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="https://pinterest.com/pin/create/button/?url={!DataModel::getShareUrl($lang,$dog->id)}&media={$sharer_tags['image']}&image_url={$sharer_tags['image']}&description={$sharer_tags['description']}"><i class="fa fa-pinterest-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Pinterest'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="https://tumblr.com/widgets/share/tool?canonicalUrl={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-tumblr-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Tumblr'}</span></a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-envelope-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Email'}</span></a></li>
-                        </ul>
-                    </div>
-
-                    {control comments-$article->id}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="{$presenter->getParentCategoryIcon($article->group_id)}"></i>&nbsp;&nbsp;{_'Similar articles'}</div>
-                </div>
-                {foreach $similar_articles as $similar_article}
-                    <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px;">
-                        <a n:href="funpage:article id=>$similar_article->id">
-                            <img class="img img-responsive" src="{$presenter->image_path}{$similar_article->image}">
-                            <span class="article-category">{_$presenter->getCategoryName($article->group_id)}</span>
-                        </a>
-                        <div style="display:block;height:48px;">
-                            <a n:href="funpage:article id=>$similar_article->id" style="color:#a5987f;text-decoration: underline;">
-                                <h1 style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">{$similar_article->header|truncate:44}</h1>
-                            </a>
-                        </div>
-                        <div style="display:block;">
-                            <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="{$presenter->getParentCategoryIcon($article->group_id)}"></i>&nbsp;{_$presenter->getParentCategoryName($article->group_id)}</span>
-                            <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;{$similar_article->posting_date|date:'d.m.Y'}</span>
-                            <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;{$similar_article->views_count}</span>
-                        </div>
-                        <div style="display:block;">
-                            <span style="display:block;margin-top: 5px;font-size:13px;">
-                                {!$similar_article->preface|nl2br|truncate:150}
-                            </span>
-                        </div>
-                    </div>
-                {/foreach}
-                <!--                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px;">
-                                    <a n:href="funpage:article">
-                                        <img class="img img-responsive" src="../www/img/dummy_article.png">
-                                        <span class="article-category">Health & lifestyle</span>
-                                    </a>
-                                    <div style="display:block;height:48px;">
-                                        <a href="#" style="color:black;text-decoration: underline;">
-                                            <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Lorem ipsum dolor sit amet, consectetur adipiscing ...</span>
-                                        </a>
-                                    </div>
-                                    <div style="display:block;">
-                                        <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-microphone"></i>&nbsp;Interviews</span>
-                                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;29.3.2016</span>
-                                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;270</span>
-                                    </div>
-                                    <div style="display:block;">
-                                        <span style="display:block;margin-top: 5px;font-size:13px;">
-                                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molesti ...
-                                        </span>
-                                    </div>
+                                {if $photo==1}
+                                    {var $photo = 0}
                                 </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px;">
-                                    <a n:href="funpage:article">
-                                        <img class="img img-responsive" src="../www/img/dummy_article.png">
-                                        <span class="article-category">Health & lifestyle</span>
-                                    </a>
-                                    <div style="display:block;height:48px;">
-                                        <a href="#" style="color:black;text-decoration: underline;">
-                                            <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Nam libero tempore, cum soluta nobis est eligendi ...</span>
+                            {/if}
+                            <p class="article-text">
+                                {!$related->content|nl2br}
+                            </p>
+                        {elseif $related->content_type_id ==2}
+                            {if $photo==1}
+                                {var $photo = 0}
+                            </div>
+                        {/if}
+                        <p class="article-quotes">
+                            {!$related->content|nl2br}
+                        </p>
+                    {else}
+                        {if $photo == 0}
+                            <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                                {var $photo = 1}
+                            {/if}
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
+                                <a href="{!$related->content_image}" title="{$related->content}" data-gallery>
+                                    <div class="thumbnail img-responsive" style="padding:50%;background: url('{$presenter->image_path}{$related->content_image}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                </a>
+                            </div>
+                        {/if}
+                    {/foreach}
+                    {if $photo == 1}
+                        {var $photo = 0}
+                    </div>
+                {/if}
+                <!--                        <p class="article-text">Praesent placerat porro error corporis corporis, eros? Rerum, aliquid adipisci. Diamlorem, dapibus diam nullam eiusmod quibusdam, perspiciatis numquam perferendis! Adipisicing! Torquent libero fuga numquam! Facilisi vel corporis. Torquent? Iaculis ligula, doloribus, euismod litora quam porro integer sodales recusandae, vehicula nostrud, ducimus nisi montes sint, cillum, nullam sint ut, mauris molestias porttitor sodales voluptatum cupidatat ac, reiciendis, tenetur morbi minima tempore, netus commodo purus illum officia, facere, auctor ligula, expedita! Non laboriosam eius, dis eum augue necessitatibus aut labore mollis ab volutpat, sunt, provident dolorum aperiam eaque senectus, expedita ullam venenatis, optio veritatis unde, suspendisse dapibus nostrud ratione luctus ullam blandit.</p>
+                                        <p class="article-quotes">Praesent placerat porro error corporis corporis, eros? Rerum, aliquid adipisci. Diamlorem, dapibus diam nullam eiusmod quibusdam, perspiciatis numquam perferendis! Adipisicing! Torquent libero fuga numquam! Facilisi vel corporis. Torquent? Iaculis ligula, doloribus, euismod litora quam porro integer sodales recusandae, vehicula nostrud, ducimus nisi montes sint, cillum, nullam sint ut, mauris molestias porttitor sodales voluptatum cupidatat ac, reiciendis, tenetur morbi minima tempore, netus commodo purus illum officia, facere, auctor ligula, expedita! Non laboriosam eius, dis eum augue necessitatibus aut labore mollis ab volutpat, sunt, provident dolorum aperiam eaque senectus, expedita ullam venenatis, optio veritatis unde, suspendisse dapibus nostrud ratione luctus ullam blandit.</p>-->
+            </div>
+            <!--                    <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
+                                        <a href="javascript:void(0)" onclick="" title="">
+                                            <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
                                         </a>
                                     </div>
-                                    <div style="display:block;">
-                                        <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-microphone"></i>&nbsp;Interviews</span>
-                                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;29.3.2016</span>
-                                        <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;270</span>
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
+                                        <a href="javascript:void(0)" onclick="" title="">
+                                            <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                        </a>
                                     </div>
-                                    <div style="display:block;">
-                                        <span style="display:block;margin-top: 5px;font-size:13px;">
-                                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molesti ...
-                                        </span>
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
+                                        <a href="javascript:void(0)" onclick="" title="">
+                                            <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
+                                        <a href="javascript:void(0)" onclick="" title="">
+                                            <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
+                                        <a href="javascript:void(0)" onclick="" title="">
+                                            <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
+                                        <a href="javascript:void(0)" onclick="" title="">
+                                            <div class="thumbnail img-responsive" style="padding:50%;background: url('../www/img/dummy_article.png')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                                        </a>
                                     </div>
                                 </div>-->
+            <div class="dropdown" style="float:left;margin-bottom: 20px">
+                <a class="btn btn-default btn-sm dropdown-toggle" type="button" id="Share" data-toggle="dropdown"><i class="fa fa-share-alt"></i>&nbsp;{_ 'Share'}&nbsp;<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="Share" style="min-width:50px;">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:fbShare('{!$sharer_tags['url']}', '{!$sharer_tags['title']}', '{!$sharer_tags['description']}', '{!$sharer_tags['image']}', 520, 350)"><i class="fa fa-facebook-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Facebook'}</span></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/share?url={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-google-plus-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Google+'}</span></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/home?status={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-twitter-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Twitter'}</span></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://pinterest.com/pin/create/button/?url={!DataModel::getShareUrl($lang,$dog->id)}&media={$sharer_tags['image']}&image_url={$sharer_tags['image']}&description={$sharer_tags['description']}"><i class="fa fa-pinterest-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Pinterest'}</span></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://tumblr.com/widgets/share/tool?canonicalUrl={!DataModel::getShareUrl($lang,$dog->id)}"><i class="fa fa-tumblr-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Share on Tumblr'}</span></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-envelope-square fa-1x"></i><span style="margin-left: 5px;font-size:11px;">{_ 'Email'}</span></a></li>
+                </ul>
             </div>
+
+            {control comments-$article->id}
         </div>
     </div>
+</div>
+<div class="col-md-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-description" style="color:#777;margin-bottom:10px;"><i style="color:#D5D0C0;" class="{$presenter->getParentCategoryIcon($article->group_id)}"></i>&nbsp;&nbsp;{_'Similar articles'}</div>
+        </div>
+        {foreach $similar_articles as $similar_article}
+            <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px;">
+                <a n:href="funpage:article id=>$similar_article->id">
+                    <img class="img img-responsive" src="{$presenter->image_path}{$similar_article->image}">
+                    <span class="article-category">{_$presenter->getCategoryName($article->group_id)}</span>
+                </a>
+                <div style="display:block;height:48px;">
+                    <a n:href="funpage:article id=>$similar_article->id" style="color:#a5987f;text-decoration: underline;">
+                        <h1 style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">{$similar_article->header|truncate:44}</h1>
+                    </a>
+                </div>
+                <div style="display:block;">
+                    <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="{$presenter->getParentCategoryIcon($article->group_id)}"></i>&nbsp;{_$presenter->getParentCategoryName($article->group_id)}</span>
+                    <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;{$similar_article->posting_date|date:'d.m.Y'}</span>
+                    <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;{$similar_article->views_count}</span>
+                </div>
+                <div style="display:block;">
+                    <span style="display:block;margin-top: 5px;font-size:13px;">
+                        {!$similar_article->preface|nl2br|truncate:150}
+                    </span>
+                </div>
+            </div>
+        {/foreach}
+        <!--                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px;">
+                            <a n:href="funpage:article">
+                                <img class="img img-responsive" src="../www/img/dummy_article.png">
+                                <span class="article-category">Health & lifestyle</span>
+                            </a>
+                            <div style="display:block;height:48px;">
+                                <a href="#" style="color:black;text-decoration: underline;">
+                                    <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Lorem ipsum dolor sit amet, consectetur adipiscing ...</span>
+                                </a>
+                            </div>
+                            <div style="display:block;">
+                                <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-microphone"></i>&nbsp;Interviews</span>
+                                <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;29.3.2016</span>
+                                <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;270</span>
+                            </div>
+                            <div style="display:block;">
+                                <span style="display:block;margin-top: 5px;font-size:13px;">
+                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molesti ...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px;">
+                            <a n:href="funpage:article">
+                                <img class="img img-responsive" src="../www/img/dummy_article.png">
+                                <span class="article-category">Health & lifestyle</span>
+                            </a>
+                            <div style="display:block;height:48px;">
+                                <a href="#" style="color:black;text-decoration: underline;">
+                                    <span style="display:block;width:100%;font-weight:bold;margin:10px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">Nam libero tempore, cum soluta nobis est eligendi ...</span>
+                                </a>
+                            </div>
+                            <div style="display:block;">
+                                <span style="width:auto;color:#83765E;font-size:14px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-microphone"></i>&nbsp;Interviews</span>
+                                <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="glyphicon glyphicon-time"></i>&nbsp;29.3.2016</span>
+                                <span style="padding-left: 10px;font-size:12px;width:100%;color:#C1C1C1; margin:5px 0px 5px 0px"><i class="fa fa-eye"></i>&nbsp;270</span>
+                            </div>
+                            <div style="display:block;">
+                                <span style="display:block;margin-top: 5px;font-size:13px;">
+                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molesti ...
+                                </span>
+                            </div>
+                        </div>-->
+    </div>
+</div>
+</div>
 </div>
 <script>
     var tag = document.createElement('script');
