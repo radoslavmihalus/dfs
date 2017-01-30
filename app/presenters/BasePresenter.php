@@ -95,6 +95,31 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         }
     }
 
+    public function actionAddArticleNotifications() {
+        $articles = $this->database->table("tbl_articles")->where("publish=?", 1)->fetchAll();
+
+        foreach ($articles as $article) {
+            $this->data_model->addToTimeline(-1, $article->id, 17, $article->header, $article->image);
+
+            $rows = $this->database->table("tbl_user")->where("active=?", 1)->fetchAll();
+            foreach ($rows as $row) {
+                $notify = array();
+                $notify['notify_user_id'] = $row->user_id;
+                $notify['notify_profile_id'] = 0;
+                $notify['user_id'] = 0;
+                $notify['profile_id'] = 0;
+                $notify['timeline_id'] = $article->id;
+                $notify['comment'] = "";
+                $notify['type'] = "article";
+                $this->database->table("tbl_notify")->insert($notify);
+            }
+        $data = array();
+        $data['publish'] = 0;
+        $data['active'] = 1;
+        $articles = $this->database->table("tbl_articles")->where("id=?", $article->id)->update($data);
+        }
+    }
+
     protected function beforeRender() {
         parent::beforeRender();
         if ($this->isAjax())
@@ -411,7 +436,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                         $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['litter'], $this->logged_in_profile_id);
                     else {
                         if ($action == "article") {
-                        $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['id'], $this->logged_in_profile_id); //290000000000
+                            $sharer_tags = \DataModel::getShareTags($this->translator->lang, $_GET['id'], $this->logged_in_profile_id); //290000000000
                         } else {
                             $url = $this->getHttpRequest()->getUrl();
                             $sharer_tags = \DataModel::getShareTagsGlobal($this->translator->lang, $presenter, $action, $url);

@@ -845,6 +845,8 @@ class DataModel {
          * 13 - add puppy
          * 14 - championship
          * 15 - video
+         * 16 - health record
+         * 17 - new article
          */
         $data = array();
 

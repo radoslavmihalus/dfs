@@ -42,29 +42,49 @@
                     $(".timeline_event").html("<img src=\"www/img/ajax-loader.gif\" style=\"position:relative; left:50%\"/>");
                 </script>
                 {foreach $notifications_list as $row}
-                    <a style="{if $row->unreaded == 1}background-color:#f5f2e9;{/if}display:block;float:left;width:100%;{if $row->unreaded == 1}border-top: #e0d3bb 1px solid;{else}border-top: whitesmoke 1px solid;{/if}padding: 10px 0px 10px 0px;" href="javascript:void(0)" id="modalOpen{$row->id}"> <!-- href="{ DataModel::getProfileLinkUrl($row->notify_profile_id,TRUE)}#timelineid{ $row->timeline_id}" -->
-                        <img class="user-block-thumb" src="{DataModel::getProfileImage($row->profile_id)}"/>
-                        <span class="notification-item-header text-uppercase">{DataModel::getProfileName($row->profile_id)}</span>
-                        {if ($row->type == 'comment')}
-                            <span class="notification-item-event" style="color:black;"><i class="fa fa-comment"></i>&nbsp;&nbsp;{_ 'comment your post'}</span>
-                        {else}
-                            <span class="notification-item-event" style="color:black;"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;{_ 'like your post'}</span>
-                        {/if}
-                    </a>
-                    <script type="text/javascript">
-                        $("#modalOpen{$row->id}").on("click", function ()
-                        {
-                            $.ajax({
-                                url: '/?do=clearNotify&notify_id={$row->id}',
-                                dataType: 'html',
-                            }).done(function (data) {
-                                $("#modalOpen{$row->id}").css("background-color", "white");
-                                $("#modalOpen{$row->id}").css("border-top", "whitesmoke 1px solid");
-                                $("#timeline_id").val({$row->timeline_id});
-                                $("#modalFlashTimeline").modal('show');
+                    {if $row->type == "article"}
+                        <a style="{if $row->unreaded == 1}background-color:#f5f2e9;{/if}display:block;float:left;width:100%;{if $row->unreaded == 1}border-top: #e0d3bb 1px solid;{else}border-top: whitesmoke 1px solid;{/if}padding: 10px 0px 10px 0px;" href="javascript:void(0)" id="open{$row->id}"> <!-- href="{ DataModel::getProfileLinkUrl($row->notify_profile_id,TRUE)}#timelineid{ $row->timeline_id}" -->
+                            <img class="user-block-thumb" src="www/img/dfs_fanpage_icon.png"/>
+                            <span class="notification-item-header text-uppercase">DOGFORSHOW</span>
+                            <span class="notification-item-event" style="color:black;"><i class="fa fa-comment"></i>&nbsp;&nbsp;{_ 'Add article'}</span>
+                        </a>
+
+                        <script type="text/javascript">
+                            $("#open{$row->id}").on("click", function ()
+                            {
+                                $.ajax({
+                                    url: '/?do=clearNotify&notify_id={$row->id}',
+                                    dataType: 'html',
+                                }).done(function (data) {
+                                    document.location.href = "article?id={$row->timeline_id}";
+                                });
                             });
-                        });
-                    </script>
+                        </script>
+                    {else}
+                        <a style="{if $row->unreaded == 1}background-color:#f5f2e9;{/if}display:block;float:left;width:100%;{if $row->unreaded == 1}border-top: #e0d3bb 1px solid;{else}border-top: whitesmoke 1px solid;{/if}padding: 10px 0px 10px 0px;" href="javascript:void(0)" id="modalOpen{$row->id}"> <!-- href="{ DataModel::getProfileLinkUrl($row->notify_profile_id,TRUE)}#timelineid{ $row->timeline_id}" -->
+                            <img class="user-block-thumb" src="{DataModel::getProfileImage($row->profile_id)}"/>
+                            <span class="notification-item-header text-uppercase">{DataModel::getProfileName($row->profile_id)}</span>
+                            {if ($row->type == 'comment')}
+                                <span class="notification-item-event" style="color:black;"><i class="fa fa-comment"></i>&nbsp;&nbsp;{_ 'comment your post'}</span>
+                            {else}
+                                <span class="notification-item-event" style="color:black;"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;{_ 'like your post'}</span>
+                            {/if}
+                        </a>
+                        <script type="text/javascript">
+                            $("#modalOpen{$row->id}").on("click", function ()
+                            {
+                                $.ajax({
+                                    url: '/?do=clearNotify&notify_id={$row->id}',
+                                    dataType: 'html',
+                                }).done(function (data) {
+                                    $("#modalOpen{$row->id}").css("background-color", "white");
+                                    $("#modalOpen{$row->id}").css("border-top", "whitesmoke 1px solid");
+                                    $("#timeline_id").val({$row->timeline_id});
+                                    $("#modalFlashTimeline").modal('show');
+                                });
+                            });
+                        </script>
+                    {/if}
                 {/foreach}
             </div>
         </div>
