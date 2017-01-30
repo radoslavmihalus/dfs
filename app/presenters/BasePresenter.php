@@ -95,7 +95,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         }
     }
 
-    public function actionAddArticleNotifications() {
+    public function handleAddArticleNotifications() {
         $articles = $this->database->table("tbl_articles")->where("publish=?", 1)->fetchAll();
 
         foreach ($articles as $article) {
@@ -104,7 +104,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $rows = $this->database->table("tbl_user")->where("active=?", 1)->fetchAll();
             foreach ($rows as $row) {
                 $notify = array();
-                $notify['notify_user_id'] = $row->user_id;
+                $notify['notify_user_id'] = $row->id;
                 $notify['notify_profile_id'] = 0;
                 $notify['user_id'] = 0;
                 $notify['profile_id'] = 0;

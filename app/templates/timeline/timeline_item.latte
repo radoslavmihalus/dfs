@@ -79,7 +79,7 @@
                                 <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-heartbeat"></i></span>&nbsp;&nbsp;{_ 'Add health record'}</h3>
                             {/if}
                             {if ($row->event_type == 17)}
-                                <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-heartbeat"></i></span>&nbsp;&nbsp;{_ 'Add article'}</h3>
+                                <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-book"></i></span>&nbsp;&nbsp;{_ 'Add article'}</h3>
                             {/if}
                             <!-- Chybajuce eventy
                             <h3 class="timeline-title pull-left text-uppercase" style="margin-left: 55px;"><i class="fa fa-venus-mars"></i></span>&nbsp;&nbsp;{_ 'Add mating'}</h3>
@@ -132,7 +132,11 @@
                     </div>
                 {/if}
                 <div class="timeline-body col-lg-12 col-md-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
-                    <p style="font-size:12px;"> {$row->event_description}</p>
+                    {if $row->event_type == 17}
+                        <span style="display:block;width:100%;font-weight:bold;margin:0px 0px 5px 0px;font-size: 17px !important;font-family: 'Roboto Condensed', sans-serif;">{$row->event_description}</span>
+                    {else}
+                        <p style="font-size:12px;"> {$row->event_description}</p>
+                    {/if}
                 </div>
                 {if ($active_profile_id>0)}
                     <div class="timeline-actions col-md-12" style="margin-bottom: 5px;">
