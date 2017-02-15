@@ -75,7 +75,7 @@ class blueticket_objects {
         $btdb = blueticket_forms_db::get_instance();
         //$btdb = new blueticket_forms_db();
 
-        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND DATE(premium_expiry_date)<DATE(now())");
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND mailing=1 AND DATE(premium_expiry_date)<DATE(now())");
         $users = $btdb->result();
 
         foreach ($users as $user) {
@@ -153,7 +153,7 @@ class blueticket_objects {
         $btdb = blueticket_forms_db::get_instance();
         //$btdb = new blueticket_forms_db();
 
-        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND (id IN (SELECT user_id FROM tbl_userkennel) OR id IN (SELECT user_id FROM tbl_userowner) OR id IN (SELECT user_id FROM tbl_userhandler))");
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND mailing=1 AND (id IN (SELECT user_id FROM tbl_userkennel) OR id IN (SELECT user_id FROM tbl_userowner) OR id IN (SELECT user_id FROM tbl_userhandler))");
         $users = $btdb->result();
 
         foreach ($users as $user) {
@@ -224,7 +224,7 @@ class blueticket_objects {
         $btdb = blueticket_forms_db::get_instance();
         //$btdb = new blueticket_forms_db();
 
-        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND premium_expiry_date='2016-10-25'");
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND mailing=1 AND premium_expiry_date='2016-10-25'");
         $users = $btdb->result();
 
         foreach ($users as $user) {
@@ -295,7 +295,7 @@ class blueticket_objects {
         $btdb = blueticket_forms_db::get_instance();
         //$btdb = new blueticket_forms_db();
 
-        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND ((id NOT IN (SELECT user_id FROM tbl_dogs)) AND ((id IN (SELECT user_id FROM tbl_userkennel)) OR (id IN (SELECT user_id FROM tbl_userowner))))");
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND mailing=1 AND ((id NOT IN (SELECT user_id FROM tbl_dogs)) AND ((id IN (SELECT user_id FROM tbl_userkennel)) OR (id IN (SELECT user_id FROM tbl_userowner))))");
         $users = $btdb->result();
 
         $btdb->query("DELETE FROM mw_list_subscriber WHERE list_id=13 OR list_id=14 OR list_id=15 OR list_id=16 OR list_id=17");
@@ -373,7 +373,7 @@ class blueticket_objects {
         $btdb = blueticket_forms_db::get_instance();
         //$btdb = new blueticket_forms_db();
 
-        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND (id IN (SELECT user_id FROM tbl_dogs WHERE tbl_dogs.id NOT IN (SELECT dog_id FROM tbl_dogs_shows)))");
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND mailing=1 AND (id IN (SELECT user_id FROM tbl_dogs WHERE tbl_dogs.id NOT IN (SELECT dog_id FROM tbl_dogs_shows)))");
         $users = $btdb->result();
 
         $btdb->query("DELETE FROM mw_list_subscriber WHERE list_id=18 OR list_id=19 OR list_id=20 OR list_id=21 OR list_id=22");
@@ -449,7 +449,7 @@ class blueticket_objects {
         $btdb = blueticket_forms_db::get_instance();
         //$btdb = new blueticket_forms_db();
 
-        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND (id IN (SELECT user_id FROM tbl_dogs WHERE tbl_dogs.id IN (SELECT dog_id FROM tbl_dogs_shows))) AND (premium_expiry_date<CURDATE())");
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND mailing=1 AND (id IN (SELECT user_id FROM tbl_dogs WHERE tbl_dogs.id IN (SELECT dog_id FROM tbl_dogs_shows))) AND (premium_expiry_date<CURDATE())");
         $users = $btdb->result();
 
         $btdb->query("DELETE FROM mw_list_subscriber WHERE list_id=23 OR list_id=24 OR list_id=25 OR list_id=26 OR list_id=27");
@@ -525,7 +525,7 @@ class blueticket_objects {
         $btdb = blueticket_forms_db::get_instance();
         //$btdb = new blueticket_forms_db();
 
-        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND (id NOT IN (SELECT user_id FROM tbl_userkennel) AND id NOT IN (SELECT user_id FROM tbl_userowner) AND id NOT IN (SELECT user_id FROM tbl_userhandler))");
+        $btdb->query("SELECT * FROM tbl_user WHERE active=1 AND mailing=1 AND (id NOT IN (SELECT user_id FROM tbl_userkennel) AND id NOT IN (SELECT user_id FROM tbl_userowner) AND id NOT IN (SELECT user_id FROM tbl_userhandler))");
         $users = $btdb->result();
 
         $btdb->query("DELETE FROM mw_list_subscriber WHERE list_id=28 OR list_id=29 OR list_id=30 OR list_id=31 OR list_id=32");
