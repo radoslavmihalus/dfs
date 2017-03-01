@@ -79,8 +79,13 @@ class itemsGrid extends UI\Control {
             $grid->where(str_replace('{$lang}', $this->presenter->translator->lang, $form->default_where));
         }
 
-        if (strlen($form->default_order_by) > 0)
-            $grid->order_by($form->default_order_by);
+        if (strlen($form->default_order_by) > 0) {
+            $order_by = explode("|", $form->default_order_by);
+            if (count($order_by) > 1)
+                $grid->order_by($order_by[0], $order_by[1]);
+            else
+                $grid->order_by($form->default_order_by);
+        }
 
         if ($form->allow_view == 0)
             $grid->unset_view();
@@ -297,7 +302,14 @@ class itemsGrid extends UI\Control {
         $fields = $this->database->table("blueticket_forms_fields")->where("form_id=?", $form->id)->where("field_type=?", "RELATION")->order("field_order ASC")->fetchAll();
 
         foreach ($fields as $field) {
-            $grid->relation(str_replace('{$lang}', $this->presenter->translator->lang, $field->field_name), str_replace('{$lang}', $this->presenter->translator->lang, $field->relation_target_table), str_replace('{$lang}', $this->presenter->translator->lang, $field->relation_target_id), str_replace('{$lang}', $this->presenter->translator->lang, $field->relation_target_name), $field->relation_where, $field->relation_order_by, '', ' ', '', $field->relation_depend_field, $field->relation_depend_on);
+            $target_name = explode("|", $field->relation_target_name);
+
+            if (count($target_name) > 1) {
+                
+            } else
+                $target_name = $field->relation_target_name;
+
+            $grid->relation(str_replace('{$lang}', $this->presenter->translator->lang, $field->field_name), str_replace('{$lang}', $this->presenter->translator->lang, $field->relation_target_table), str_replace('{$lang}', $this->presenter->translator->lang, $field->relation_target_id), $target_name, $field->relation_where, $field->relation_order_by, '', ' - ', '', $field->relation_depend_field, $field->relation_depend_on);
         }
 
         //
