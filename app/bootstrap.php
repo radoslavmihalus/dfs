@@ -73,7 +73,7 @@ $router = $container->getService('router');
 //, \Nette\Application\IRouter::SECURED);
 
 // comment this line for development server
-// Route::$defaultFlags = Route::SECURED;
+Route::$defaultFlags = Route::SECURED;
 
 $router[] = new Route('index.php', 'LandingPage:default'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('advertisement-step1', 'advertisement:advertisement_step1'); //, \Nette\Application\IRouter::SECURED);
