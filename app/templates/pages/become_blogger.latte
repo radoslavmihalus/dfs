@@ -19,12 +19,18 @@
                 <h2 style="color:#fbe8c3;text-align: center;"><i style="margin-right: 10px;" class="fa fa-microphone"></i>{_ 'Interview'}</h2>
                 <img class="img img-responsive" src="www/img/interview_banner.png">
                 <p>
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#interview_specification">technical specification</a>
+                </p>
+                <p>
                     <button class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</button>
                 </p>
             </div>
             <div class="col-md-6 col-lg-3 col-sm-6 col-xs-12">
                 <h2 style="color:#fbe8c3;text-align: center;"><i style="margin-right: 10px;" class="fa fa-camera"></i>{_ 'Photos'}</h2>
                 <img class="img img-responsive" src="www/img/photo_banner.png">
+                <p>
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#photos_specification">technical specification</a>
+                </p>
                 <p>
                     <button class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</button>
                 </p>
@@ -41,7 +47,7 @@
 </div>
 <!-- Article specification -->
 <div id="article_specification" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -100,4 +106,138 @@
     </div>
 </div>
 <!-- /Article specification -->
+<!-- Interview specification -->
+<div id="interview_specification" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 style="margin:0px !important"><i style="margin-right: 10px;" class="fa fa-microphone"></i>{_ 'Interview'}</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="margin:0px;">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;margin-bottom: 15px">
+                        <span class="article-modal-specification-heading"><i style="margin-right:5px;color:#a5987f;" class="fa fa-question-circle"></i>{_ 'Interview main image'}</span>
+                    </div>
+                    <img class="img img-responsive" src="www/img/dummy_article.png">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Dimensions'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">1200px x 650px</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'File type'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ '.jpg .jpeg .png'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Image size'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'maximum'} 300 KB</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 15px 0px;border-top: #dedede 1px solid;">
+                        <span class="article-modal-specification-heading"><i style="margin-right:5px;color:#a5987f;" class="fa fa-question-circle"></i>{_ 'Interview heading'}</span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Specification'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'Eye-cathing heading (max.size: 40 characters), can be longer, but in the interviews list will be displayed only 40 characters, in the interview detail will be displayed full heading.'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Example'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'Interview with Vivien Poth - talented young handler'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 15px 0px;border-top: #dedede 1px solid;">
+                        <span class="article-modal-specification-heading"><i style="margin-right:5px;color:#a5987f;" class="fa fa-question-circle"></i>{_ 'Interview perex'}</span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Specification'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'Eye-cathing description (max.size: 120 characters), short description about interview in the 2 sentences, can be longer, but in the interviews list will be displayed only 120 characters, in the interview detail will be displayed full perex.'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Example'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'Read our newest interview with a talented young handler, Vivien Poth who was the Top Junior Handler in Hungary a few years ago and a successful handler recently'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 15px 0px;border-top: #dedede 1px solid;">
+                        <span class="article-modal-specification-heading"><i style="margin-right:5px;color:#a5987f;" class="fa fa-question-circle"></i>{_ 'Text'}</span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Specification'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'Maximum length must be +/- 1800 characters (about 250 words) formatted in paragraphs with questions and answers and with grammar correction'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Question'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'What advice could you give to junior handlers?'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Answer'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ '"Firstly, If you have a dream, never let it go. Fight for it. Secondly, don’t afraid to ask or learn from other handlers. 3., Stay in the ground. You are not a star, never forget where you started, esteem your dogs, owners, friends (so people)."'}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Interview specification -->
+<!-- Photos specification -->
+<div id="photos_specification" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 style="margin:0px !important"><i style="margin-right: 10px;" class="fa fa-camera"></i>{_ 'Photos'}</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="margin:0px;">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;margin-bottom: 15px">
+                        <span class="article-modal-specification-heading"><i style="margin-right:5px;color:#a5987f;" class="fa fa-question-circle"></i>{_ 'Photogallery main image'}</span>
+                    </div>
+                    <img class="img img-responsive" src="www/img/dummy_article.png">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Dimensions'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">1200px x 650px</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'File type'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ '.jpg .jpeg .png'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Image size'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'maximum'} 300 KB</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 15px 0px;border-top: #dedede 1px solid;">
+                        <span class="article-modal-specification-heading"><i style="margin-right:5px;color:#a5987f;" class="fa fa-question-circle"></i>{_ 'Photogallery heading'}</span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Specification'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'Eye-cathing heading (max.size: 40 characters), can be longer, but in the photogallery list will be displayed only 40 characters, in the phototgallery detail will be displayed full heading.'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Example'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'Florida Classic Gulf Coast Cluster II'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 15px 0px;border-top: #dedede 1px solid;">
+                        <span class="article-modal-specification-heading"><i style="margin-right:5px;color:#a5987f;" class="fa fa-question-circle"></i>{_ 'Photogallery perex'}</span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Specification'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'Eye-cathing description (max.size: 120 characters), short description about photogallery in the 2 sentences, can be longer, but in the photogallery list will be displayed only 120 characters, in the photogallery detail will be displayed full perex.'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Example'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'Photos from the glamurous 2nd week of Florida Classic Gulf Coast Cluster shows - a perfectly organized show with most of the USAs Top Winnings dogs.'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 15px 0px;border-top: #dedede 1px solid;">
+                        <span class="article-modal-specification-heading"><i style="margin-right:5px;color:#a5987f;" class="fa fa-question-circle"></i>{_ 'Photos'}</span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Specification'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'Maximum 25 photos, maximum size of each photo(400 KB), with maximum dimensions (1600px x 1200px) and detailed description of each photo(breed,name of the dog etc.)'}</span></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;margin-bottom: 10px;">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:2px;"><span class="article-modal-specification-caption">{_ 'Description example'}:</span></div>
+                        <div class="col-md-8 col-sm-8 col-xs-12" style="padding:2px;"><span class="article-modal-specification-description">{_ 'Siberian husky - Magic from the ice - final ring'}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Photos specification -->
 {/block}
