@@ -1,0 +1,18 @@
+{layout '../@forms_layout.latte'}
+{block content}
+{includeblock '../components/textbox_control.latte'}
+{includeblock '../components/image_UploadPicture_control.latte'}
+<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
+    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
+        {form formAddArticle}
+            <h2 class="text-center text-uppercase"><i class="fa fa-book"></i>&nbsp;&nbsp;{_ 'Add article'}</h2>
+            <hr>
+            {include dropdown_CountryList_control, _form=>$_form, description => "Article category", placeholder => "Select article category", id => "ddlArticleCategory", name => "ddlArticleCategory", tooltip => "Select article category"}
+            {include textbox_control, _form=>$_form, description => "Article heading", placeholder => "Article heading", id => "txtArticleHeading", name => "txtArticleHeading", tooltip => "Type article heading"}
+            {include image_UploadPicture_control, _form=>$_form, description => "Article main image", placeholder => "Select picture", id => "txtArticleMainImage", name => "txtArticleMainImage", tooltip => "Record the article main image"}
+            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
+            <button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-left" style="margin-right: 10px;">{_ 'Cancel'}</button>
+        {/form}
+    </div>
+</div>  
+{/block}

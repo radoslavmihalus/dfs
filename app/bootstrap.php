@@ -90,7 +90,8 @@ $router[] = new Route('payment_return.php', 'LandingPage:payment'); //, \Nette\A
 //$router[] = new Route('forgot-password', 'LandingPage:forgot_password'); //, \Nette\Application\IRouter::SECURED);
 //$router[] = new Route('reset-password', 'LandingPage:reset_password'); //, \Nette\Application\IRouter::SECURED);
 // Base routes
-$router[] = new Route('become-blogger', 'pages:become_blogger'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('become-blogger', 'blogger:become_blogger'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('add-article', 'blogger:add_article'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('add-photo', 'photo:photo_add'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('edit-photo', 'photo:photo_edit'); //, \Nette\Application\IRouter::SECURED);
 //---------------------------   Photo / photo list -----------------------------------
