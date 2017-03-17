@@ -12,8 +12,53 @@ class bloggerPresenter extends BasePresenter {
         $form = new Form();
 
         $form->addSelect("ddlArticleCategory")->setPrompt($this->translate("Please select"));
-        $form->addText("txtArticleHeading");
         $form->addText("txtArticleMainImage");
+        $form->addText("txtArticleHeading");
+        $form->addText("txtArticlePerex");
+        $form->addText("txtArticleFileUpload");
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitDogFilter');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelDogFilter');
+
+        return $form;
+    }
+    
+    protected function createComponentFormAddInterview() {
+        $form = new Form();
+
+        $form->addSelect("ddlInterviewCategory")->setPrompt($this->translate("Please select"));
+        $form->addText("txtInterviewMainImage");
+        $form->addText("txtInterviewHeading");
+        $form->addText("txtInterviewPerex");
+        $form->addText("txtInterviewFileUpload");
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitDogFilter');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelDogFilter');
+
+        return $form;
+    }
+    
+    protected function createComponentFormAddPhotos() {
+        $form = new Form();
+
+        $form->addSelect("ddlPhotogalleryCategory")->setPrompt($this->translate("Please select"));
+        $form->addText("txtPhotogalleryMainImage");
+        $form->addText("txtPhotogalleryHeading");
+        $form->addText("txtPhotogalleryPerex");
+        $form->addText("txtPhotogalleryImage");
+        $form->addText("txtPhotogalleryImageDescription");
+        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitDogFilter');
+        $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelDogFilter');
+
+        return $form;
+    }
+    
+    protected function createComponentFormAddVideos() {
+        $form = new Form();
+
+        $form->addSelect("ddlVideogalleryCategory")->setPrompt($this->translate("Please select"));
+        $form->addText("txtVideogalleryMainImage");
+        $form->addText("txtVideogalleryHeading");
+        $form->addText("txtVideogalleryPerex");
+        $form->addText("txtVideogalleryUrl");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitDogFilter');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelDogFilter');
 

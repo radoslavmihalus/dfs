@@ -1,0 +1,35 @@
+{layout '../@forms_layout.latte'}
+{block content}
+{includeblock '../components/textbox_control.latte'}
+{includeblock '../components/image_UploadPicture_control.latte'}
+{includeblock '../components/dropdown_CountryList_control.latte'}
+{includeblock '../components/modal_article_principles.latte'}
+{includeblock '../components/txt_fileupload.latte'}
+<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
+    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
+        {form formAddInterview}
+            <h2 class="text-center text-uppercase"><i class="fa fa-microphone"></i>&nbsp;&nbsp;{_ 'Add interview'}</h2>
+            <hr>
+            {include dropdown_CountryList_control, _form=>$_form, description => "Interview category", placeholder => "Select interview category", id => "ddlInterviewCategory", name => "ddlInterviewCategory", tooltip => "Select interview category"}
+            {include image_UploadPicture_control, _form=>$_form, description => "Interview main image", placeholder => "Select picture", id => "txtInterviewMainImage", name => "txtInterviewMainImage", tooltip => "Record the interview main image"}
+            {include textbox_control, _form=>$_form, description => "Interview heading", placeholder => "Interview heading", id => "txtInterviewHeading", name => "txtInterviewHeading", tooltip => "Eye-cathing heading (max.size: 40 characters), can be longer, but in the interviews list will be displayed only 40 characters, in the interview detail will be displayed full heading."}
+            {include textbox_control, _form=>$_form, description => "Interview perex", placeholder => "Interview perex", id => "txtInterviewPerex", name => "txtInterviewPerex", tooltip => "Eye-cathing description (max.size: 120 characters), short description about interview in the 2 sentences, can be longer, but in the interviews list will be displayed only 120 characters, in the interview detail will be displayed full perex."}
+            {include txt_fileupload, _form=>$_form, description => "Document upload", placeholder => "Document upload", id => "txtInterviewFileUpload", name => "txtInterviewFileUpload", tooltip => "Upload your document"}
+            <p>
+            <table style="table-layout: fixed;width:100%;">
+                <tr>
+                    <td style="width:10%;text-align: right;vertical-align: top;">
+                        <input style="margin-right: 10px;" type="checkbox" id="chkPrinciples" value="" name="chkPrinciples">
+                    </td>
+                    <td style="width:90%">
+                        <a id="principles_trigger" style="color: #efa741;text-decoration: underline;font-weight: bold;" href="#" data-toggle="modal" data-target="article_principles">I, as the author agree with the following principles, that apply to publication of my pist on DOGFORSHOW and other social media used by it.</a>
+                    </td>
+            </table>
+            </p>
+            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
+            <button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-left" style="margin-right: 10px;">{_ 'Cancel'}</button>
+        {/form}
+    </div>
+</div>
+{include Modal_Article_Principles}
+{/block}

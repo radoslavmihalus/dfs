@@ -92,6 +92,9 @@ $router[] = new Route('payment_return.php', 'LandingPage:payment'); //, \Nette\A
 // Base routes
 $router[] = new Route('become-blogger', 'blogger:become_blogger'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('add-article', 'blogger:add_article'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('add-interview', 'blogger:add_interview'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('add-photos', 'blogger:add_photos'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('add-videos', 'blogger:add_videos'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('add-photo', 'photo:photo_add'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('edit-photo', 'photo:photo_edit'); //, \Nette\Application\IRouter::SECURED);
 //---------------------------   Photo / photo list -----------------------------------

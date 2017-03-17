@@ -1,0 +1,42 @@
+{layout '../@forms_layout.latte'}
+{block content}
+{includeblock '../components/textbox_control.latte'}
+{includeblock '../components/image_UploadPicture_control.latte'}
+{includeblock '../components/dropdown_CountryList_control.latte'}
+{includeblock '../components/modal_article_principles.latte'}
+<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
+    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
+        {form formAddPhotos}
+            <h2 class="text-center text-uppercase"><i class="fa fa-photo"></i>&nbsp;&nbsp;{_ 'Add photos'}</h2>
+            <hr>
+            {include dropdown_CountryList_control, _form=>$_form, description => "Photogallery category", placeholder => "Select photogallery category", id => "ddlPhotogalleryCategory", name => "ddlPhotogalleryCategory", tooltip => "Select photogallery category"}
+            {include image_UploadPicture_control, _form=>$_form, description => "Photogallery main image", placeholder => "Select picture", id => "txtPhotogalleryMainImage", name => "txtPhotogalleryMainImage", tooltip => "Record the photogallery main image"}
+            {include textbox_control, _form=>$_form, description => "Photogallery heading", placeholder => "Photogallery heading", id => "txtPhotogalleryHeading", name => "txtPhotogalleryHeading", tooltip => "Eye-cathing heading (max.size: 40 characters), can be longer, but in the photogallery list will be displayed only 40 characters, in the phototgallery detail will be displayed full heading."}
+            {include textbox_control, _form=>$_form, description => "Photogallery perex", placeholder => "Photogallery perex", id => "txtPhotogalleryPerex", name => "txtPhotogalleryPerex", tooltip => "Eye-cathing description (max.size: 120 characters), short description about photogallery in the 2 sentences, can be longer, but in the photogallery list will be displayed only 120 characters, in the photogallery detail will be displayed full perex."}
+            <hr>
+            <div class="col-md-12" style="padding:0px;border-bottom:1px solid #eee;margin-bottom: 10px;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage", name => "txtPhotogalleryImage", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription", name => "txtPhotogalleryImageDescription", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+            <p>
+            <table style="table-layout: fixed;width:100%;">
+                <tr>
+                    <td style="width:10%;text-align: right;vertical-align: top;">
+                        <input style="margin-right: 10px;" type="checkbox" id="chkPrinciples" value="" name="chkPrinciples">
+                    </td>
+                    <td style="width:90%">
+                        <a id="principles_trigger" style="color: #efa741;text-decoration: underline;font-weight: bold;" href="#" data-toggle="modal" data-target="article_principles">I, as the author agree with the following principles, that apply to publication of my pist on DOGFORSHOW and other social media used by it.</a>
+                    </td>
+            </table>
+            </p>
+            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
+            <button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-left" style="margin-right: 10px;">{_ 'Cancel'}</button>
+        {/form}
+    </div>
+</div>
+{include Modal_Article_Principles}
+{/block}

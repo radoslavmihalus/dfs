@@ -1,0 +1,34 @@
+{layout '../@forms_layout.latte'}
+{block content}
+{includeblock '../components/textbox_control.latte'}
+{includeblock '../components/image_UploadPicture_control.latte'}
+{includeblock '../components/dropdown_CountryList_control.latte'}
+{includeblock '../components/modal_article_principles.latte'}
+<div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
+    <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
+        {form formAddVideos}
+            <h2 class="text-center text-uppercase"><i class="fa fa-video-camera"></i>&nbsp;&nbsp;{_ 'Add videos'}</h2>
+            <hr>
+            {include dropdown_CountryList_control, _form=>$_form, description => "Video category", placeholder => "Select video category", id => "ddlVideogalleryCategory", name => "ddlVideogalleryCategory", tooltip => "Select video category"}
+            {include image_UploadPicture_control, _form=>$_form, description => "Video main image", placeholder => "Select picture", id => "txtVideogalleryMainImage", name => "txtVideogalleryMainImage", tooltip => "Record the video main image"}
+            {include textbox_control, _form=>$_form, description => "Video heading", placeholder => "Video heading", id => "txtVideogalleryHeading", name => "txtVideogalleryHeading", tooltip => ""}
+            {include textbox_control, _form=>$_form, description => "Video perex", placeholder => "Video perex", id => "txtVideogalleryPerex", name => "txtVideogalleryPerex", tooltip => ""}
+            {include textbox_control, _form=>$_form, description => "Video url", placeholder => "Video urp", id => "txtVideogalleryUrl", name => "txtVideogalleryUrl", tooltip => ""}
+            <p>
+            <table style="table-layout: fixed;width:100%;">
+                <tr>
+                    <td style="width:10%;text-align: right;vertical-align: top;">
+                        <input style="margin-right: 10px;" type="checkbox" id="chkPrinciples" value="" name="chkPrinciples">
+                    </td>
+                    <td style="width:90%">
+                        <a id="principles_trigger" style="color: #efa741;text-decoration: underline;font-weight: bold;" href="#" data-toggle="modal" data-target="article_principles">I, as the author agree with the following principles, that apply to publication of my pist on DOGFORSHOW and other social media used by it.</a>
+                    </td>
+            </table>
+            </p>
+            <button type="submit" n:name=btnSubmit class="btn btn-danger btn-xl pull-right">{_ 'Add'}</button>
+            <button type="submit" n:name=btnCancel class="btn btn-default btn-xl pull-left" style="margin-right: 10px;">{_ 'Cancel'}</button>
+        {/form}
+    </div>
+</div>
+{include Modal_Article_Principles}
+{/block}
