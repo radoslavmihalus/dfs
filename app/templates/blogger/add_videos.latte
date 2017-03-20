@@ -11,9 +11,9 @@
             <hr>
             {include dropdown_CountryList_control, _form=>$_form, description => "Video category", placeholder => "Select video category", id => "ddlVideogalleryCategory", name => "ddlVideogalleryCategory", tooltip => "Select video category"}
             {include image_UploadPicture_control, _form=>$_form, description => "Video main image", placeholder => "Select picture", id => "txtVideogalleryMainImage", name => "txtVideogalleryMainImage", tooltip => "Record the video main image"}
-            {include textbox_control, _form=>$_form, description => "Video heading", placeholder => "Video heading", id => "txtVideogalleryHeading", name => "txtVideogalleryHeading", tooltip => ""}
-            {include textbox_control, _form=>$_form, description => "Video perex", placeholder => "Video perex", id => "txtVideogalleryPerex", name => "txtVideogalleryPerex", tooltip => ""}
-            {include textbox_control, _form=>$_form, description => "Video url", placeholder => "Video urp", id => "txtVideogalleryUrl", name => "txtVideogalleryUrl", tooltip => ""}
+            {include textbox_control, _form=>$_form, description => "Video heading", placeholder => "Video heading", id => "txtVideogalleryHeading", name => "txtVideogalleryHeading", tooltip => "Eye-cathing heading (max.size: 40 characters), can be longer, but in the videogallery list will be displayed only 40 characters, in the videogallery detail will be displayed full heading."}
+            {include textbox_control, _form=>$_form, description => "Video description", placeholder => "Video description", id => "txtVideogalleryDescription", name => "txtVideogalleryDescription", tooltip => "Eye-cathing description (max.size: 120 characters), short description about videogallery in the 2 sentences, can be longer, but in the videogallery list will be displayed only 120 characters, in the videogallery detail will be displayed full description."}
+            {include textbox_control, _form=>$_form, description => "Video url", placeholder => "Video url", id => "txtVideogalleryUrl", name => "txtVideogalleryUrl", tooltip => "Paste url of your video from YouTube."}
             <p>
             <table style="table-layout: fixed;width:100%;">
                 <tr>
@@ -21,7 +21,7 @@
                         <input style="margin-right: 10px;" type="checkbox" id="chkPrinciples" value="" name="chkPrinciples">
                     </td>
                     <td style="width:90%">
-                        <a id="principles_trigger" style="color: #efa741;text-decoration: underline;font-weight: bold;" href="#" data-toggle="modal" data-target="article_principles">I, as the author agree with the following principles, that apply to publication of my pist on DOGFORSHOW and other social media used by it.</a>
+                        <a id="principles_trigger" style="color: #efa741;text-decoration: underline;font-weight: bold;" href="#" data-toggle="modal" data-target="article_principles">{_ 'I, as the author agree with the following principles, that apply to publication of my pist on DOGFORSHOW and other social media used by it.'}</a>
                     </td>
             </table>
             </p>

@@ -12,7 +12,7 @@
             {include dropdown_CountryList_control, _form=>$_form, description => "Photogallery category", placeholder => "Select photogallery category", id => "ddlPhotogalleryCategory", name => "ddlPhotogalleryCategory", tooltip => "Select photogallery category"}
             {include image_UploadPicture_control, _form=>$_form, description => "Photogallery main image", placeholder => "Select picture", id => "txtPhotogalleryMainImage", name => "txtPhotogalleryMainImage", tooltip => "Record the photogallery main image"}
             {include textbox_control, _form=>$_form, description => "Photogallery heading", placeholder => "Photogallery heading", id => "txtPhotogalleryHeading", name => "txtPhotogalleryHeading", tooltip => "Eye-cathing heading (max.size: 40 characters), can be longer, but in the photogallery list will be displayed only 40 characters, in the phototgallery detail will be displayed full heading."}
-            {include textbox_control, _form=>$_form, description => "Photogallery perex", placeholder => "Photogallery perex", id => "txtPhotogalleryPerex", name => "txtPhotogalleryPerex", tooltip => "Eye-cathing description (max.size: 120 characters), short description about photogallery in the 2 sentences, can be longer, but in the photogallery list will be displayed only 120 characters, in the photogallery detail will be displayed full perex."}
+            {include textbox_control, _form=>$_form, description => "Photogallery description", placeholder => "Photogallery description", id => "txtPhotogalleryDescription", name => "txtPhotogalleryDescription", tooltip => "Eye-cathing description (max.size: 120 characters), short description about photogallery in the 2 sentences, can be longer, but in the photogallery list will be displayed only 120 characters, in the photogallery detail will be displayed full description."}
             <hr>
             <div class="col-md-12" style="padding:0px;border-bottom:1px solid #eee;margin-bottom: 10px;">
                 <div class="col-md-6" style="padding:0px;">
@@ -29,7 +29,7 @@
                         <input style="margin-right: 10px;" type="checkbox" id="chkPrinciples" value="" name="chkPrinciples">
                     </td>
                     <td style="width:90%">
-                        <a id="principles_trigger" style="color: #efa741;text-decoration: underline;font-weight: bold;" href="#" data-toggle="modal" data-target="article_principles">I, as the author agree with the following principles, that apply to publication of my pist on DOGFORSHOW and other social media used by it.</a>
+                        <a id="principles_trigger" style="color: #efa741;text-decoration: underline;font-weight: bold;" href="#" data-toggle="modal" data-target="article_principles">{_ 'I, as the author agree with the following principles, that apply to publication of my pist on DOGFORSHOW and other social media used by it.'}</a>
                     </td>
             </table>
             </p>

@@ -14,7 +14,7 @@ class bloggerPresenter extends BasePresenter {
         $form->addSelect("ddlArticleCategory")->setPrompt($this->translate("Please select"));
         $form->addText("txtArticleMainImage");
         $form->addText("txtArticleHeading");
-        $form->addText("txtArticlePerex");
+        $form->addText("txtArticleDescription");
         $form->addText("txtArticleFileUpload");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitDogFilter');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelDogFilter');
@@ -28,7 +28,7 @@ class bloggerPresenter extends BasePresenter {
         $form->addSelect("ddlInterviewCategory")->setPrompt($this->translate("Please select"));
         $form->addText("txtInterviewMainImage");
         $form->addText("txtInterviewHeading");
-        $form->addText("txtInterviewPerex");
+        $form->addText("txtInterviewDescription");
         $form->addText("txtInterviewFileUpload");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitDogFilter');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelDogFilter');
@@ -42,7 +42,7 @@ class bloggerPresenter extends BasePresenter {
         $form->addSelect("ddlPhotogalleryCategory")->setPrompt($this->translate("Please select"));
         $form->addText("txtPhotogalleryMainImage");
         $form->addText("txtPhotogalleryHeading");
-        $form->addText("txtPhotogalleryPerex");
+        $form->addText("txtPhotogalleryDescription");
         $form->addText("txtPhotogalleryImage");
         $form->addText("txtPhotogalleryImageDescription");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitDogFilter');
@@ -57,7 +57,7 @@ class bloggerPresenter extends BasePresenter {
         $form->addSelect("ddlVideogalleryCategory")->setPrompt($this->translate("Please select"));
         $form->addText("txtVideogalleryMainImage");
         $form->addText("txtVideogalleryHeading");
-        $form->addText("txtVideogalleryPerex");
+        $form->addText("txtVideogalleryDescription");
         $form->addText("txtVideogalleryUrl");
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitDogFilter');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'frmCancelDogFilter');

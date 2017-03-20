@@ -13,7 +13,7 @@
             {include dropdown_CountryList_control, _form=>$_form, description => "Article category", placeholder => "Select article category", id => "ddlArticleCategory", name => "ddlArticleCategory", tooltip => "Select article category"}
             {include image_UploadPicture_control, _form=>$_form, description => "Article main image", placeholder => "Select picture", id => "txtArticleMainImage", name => "txtArticleMainImage", tooltip => "Record the article main image"}
             {include textbox_control, _form=>$_form, description => "Article heading", placeholder => "Article heading", id => "txtArticleHeading", name => "txtArticleHeading", tooltip => "Eye-cathing heading (max.size: 40 characters), can be longer, but in the articles list will be displayed only 40 characters, in the article detail will be displayed full heading."}
-            {include textbox_control, _form=>$_form, description => "Article perex", placeholder => "Article perex", id => "txtArticlePerex", name => "txtArticlePerex", tooltip => "Eye-cathing description (max.size: 120 characters), short description about article in the 2 sentences, can be longer, but in the articles list will be displayed only 120 characters, in the article detail will be displayed full perex."}
+            {include textbox_control, _form=>$_form, description => "Article description", placeholder => "Article description", id => "txtArticleDescription", name => "txtArticleDescription", tooltip => "Eye-cathing description (max.size: 120 characters), short description about article in the 2 sentences, can be longer, but in the articles list will be displayed only 120 characters, in the article detail will be displayed full description."}
             {include txt_fileupload, _form=>$_form, description => "Document upload", placeholder => "Document upload", id => "txtArticleFileUpload", name => "txtArticleFileUpload", tooltip => "Upload your document"}
             <p>
             <table style="table-layout: fixed;width:100%;">
@@ -22,7 +22,7 @@
                         <input style="margin-right: 10px;" type="checkbox" id="chkPrinciples" value="" name="chkPrinciples">
                     </td>
                     <td style="width:90%">
-                        <a id="principles_trigger" style="color: #efa741;text-decoration: underline;font-weight: bold;" href="#" data-toggle="modal" data-target="article_principles">I, as the author agree with the following principles, that apply to publication of my pist on DOGFORSHOW and other social media used by it.</a>
+                        <a id="principles_trigger" style="color: #efa741;text-decoration: underline;font-weight: bold;" href="#" data-toggle="modal" data-target="article_principles">{_ 'I, as the author agree with the following principles, that apply to publication of my pist on DOGFORSHOW and other social media used by it.'}</a>
                     </td>
             </table>
             </p>
