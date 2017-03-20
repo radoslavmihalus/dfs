@@ -13,14 +13,16 @@
             {include image_UploadPicture_control, _form=>$_form, description => "Photogallery main image", placeholder => "Select picture", id => "txtPhotogalleryMainImage", name => "txtPhotogalleryMainImage", tooltip => "Record the photogallery main image"}
             {include textbox_control, _form=>$_form, description => "Photogallery heading", placeholder => "Photogallery heading", id => "txtPhotogalleryHeading", name => "txtPhotogalleryHeading", tooltip => "Eye-cathing heading (max.size: 40 characters), can be longer, but in the photogallery list will be displayed only 40 characters, in the phototgallery detail will be displayed full heading."}
             {include textbox_control, _form=>$_form, description => "Photogallery description", placeholder => "Photogallery description", id => "txtPhotogalleryDescription", name => "txtPhotogalleryDescription", tooltip => "Eye-cathing description (max.size: 120 characters), short description about photogallery in the 2 sentences, can be longer, but in the photogallery list will be displayed only 120 characters, in the photogallery detail will be displayed full description."}
-            <hr>
-            <div class="col-md-12" style="padding:0px;border-bottom:1px solid #eee;margin-bottom: 10px;">
+            <div class="col-md-12" style="padding:10px 0px;border-top:1px solid #eee;">
                 <div class="col-md-6" style="padding:0px;">
                     {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage", name => "txtPhotogalleryImage", tooltip => "Record the photogallery image"}
                 </div>
                 <div class="col-md-6" style="padding:0px;">
                     {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription", name => "txtPhotogalleryImageDescription", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
                 </div>
+            </div>
+            <div class="col-md-12" style="padding:10px 0px;border-bottom:1px solid #eee;margin-bottom: 10px;">
+                <button class="form-add-photo btn-block"><i style="margin-right: 5px;" class="fa fa-plus-circle"></i>{_ 'Add more images'}</button>
             </div>
             <p>
             <table style="table-layout: fixed;width:100%;">
