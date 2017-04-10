@@ -113,15 +113,65 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $notify['type'] = "article";
                 $this->database->table("tbl_notify")->insert($notify);
             }
-        $data = array();
-        $data['publish'] = 0;
-        $data['active'] = 1;
-        $articles = $this->database->table("tbl_articles")->where("id=?", $article->id)->update($data);
+            $data = array();
+            $data['publish'] = 0;
+            $data['active'] = 1;
+            $articles = $this->database->table("tbl_articles")->where("id=?", $article->id)->update($data);
         }
     }
 
     protected function beforeRender() {
         parent::beforeRender();
+
+        $httpRequest = $GLOBALS['httpRequest'];
+
+        $url = $httpRequest->getUrl();
+
+        $url = str_replace("?lang=en", "", $url);
+        $url = str_replace("?lang=cz", "", $url);
+        $url = str_replace("?lang=sk", "", $url);
+        $url = str_replace("?lang=hu", "", $url);
+        $url = str_replace("?lang=ru", "", $url);
+
+        $url = str_replace("&lang=en", "", $url);
+        $url = str_replace("&lang=cz", "", $url);
+        $url = str_replace("&lang=sk", "", $url);
+        $url = str_replace("&lang=hu", "", $url);
+        $url = str_replace("&lang=ru", "", $url);
+
+        $url = str_replace("lang=en", "", $url);
+        $url = str_replace("lang=cz", "", $url);
+        $url = str_replace("lang=sk", "", $url);
+        $url = str_replace("lang=hu", "", $url);
+        $url = str_replace("lang=ru", "", $url);
+
+        $url = str_replace("?reset=1", "", $url);
+
+        $url = str_replace("&reset=1", "", $url);
+
+        $url = str_replace("reset=1", "", $url);
+
+        if (strpos($url, "?") > 0)
+            $delim = "&";
+        else
+            $delim = "?";
+
+        $url_cz = new \Nette\Http\Url($url . $delim . "lang=cz");
+        $url_en = new \Nette\Http\Url($url . $delim . "lang=en");
+        $url_sk = new \Nette\Http\Url($url . $delim . "lang=sk");
+        $url_hu = new \Nette\Http\Url($url . $delim . "lang=hu");
+        $url_ru = new \Nette\Http\Url($url . $delim . "lang=ru");
+//        $url_en = new \Nette\Http\Url("https://dogforshow.com/" . $this->link($this->getPresenter()->name . ":" . $this->getAction(), array("lang" => "en")));
+//        $url_sk = new \Nette\Http\Url("https://dogforshow.com/" . $this->link($this->getPresenter()->name . ":" . $this->getAction(), array("lang" => "sk")));
+//        $url_hu = new \Nette\Http\Url("https://dogforshow.com/" . $this->link($this->getPresenter()->name . ":" . $this->getAction(), array("lang" => "hu")));
+//        $url_ru = new \Nette\Http\Url("https://dogforshow.com/" . $this->link($this->getPresenter()->name . ":" . $this->getAction(), array("lang" => "ru")));
+
+        $this->template->hreflang['cz'] = $url_cz;
+        $this->template->hreflang['en'] = $url_en;
+        $this->template->hreflang['sk'] = $url_sk;
+        $this->template->hreflang['hu'] = $url_hu;
+        $this->template->hreflang['ru'] = $url_ru;
+
         if ($this->isAjax())
             $this->redrawControl('contentBody');
     }

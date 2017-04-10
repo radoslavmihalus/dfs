@@ -40,6 +40,9 @@ $configurator->addConfig(__DIR__ . '/config.neon');
 $container = $configurator->createContainer();
 
 
+$GLOBALS['httpRequest'] = $container->getByType('Nette\Http\Request');
+
+
 // Setup router using mod_rewrite detection
 $router = $container->getService('router');
 
@@ -71,7 +74,6 @@ $router = $container->getService('router');
 //    'id' => '300000000',
 //        ));
 //, \Nette\Application\IRouter::SECURED);
-
 // comment this line for development server
 Route::$defaultFlags = Route::SECURED;
 
@@ -549,7 +551,6 @@ $router[] = new Route('casova-os', array(
     'presenter' => 'timeline',
     'action' => 'timeline_wall',
     'lang' => 'sk')); //, \Nette\Application\IRouter::SECURED);
-
 //---------------------------   Pages / dynamic timeline -----------------------------------
 $router[] = new Route('timeline', array(
     'presenter' => 'timeline',
@@ -585,7 +586,6 @@ $router[] = new Route('sk-kontakt', array(
     'presenter' => 'pages',
     'action' => 'contact_us',
     'lang' => 'sk')); //, \Nette\Application\IRouter::SECURED);
-
 //---------------------------   Pages / general terms -----------------------------------
 $router[] = new Route('general-terms', array(
     'presenter' => 'pages',
