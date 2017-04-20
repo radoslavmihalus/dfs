@@ -14,7 +14,27 @@ class funpagePresenter extends BasePresenter {
         parent::startup();
     }
 
+    public function handleArticleLanguageSwitch($artlang) {
+        $mysection = $this->getSession('articlelanguage');
+        $mysection->article_language = $artlang;
+
+        if ($this->isAjax()) {
+            $this->redrawControl("contentBody");
+        }
+    }
+
     public function actionArticle($id) {
+        $mysection = $this->getSession('articlelanguage');
+
+        $lang = "en";
+
+        if (strlen($mysection->article_language) > 0) {
+            $lang = $mysection->article_language;
+        } else {
+            $mysection->article_language = $this->lang;
+            $lang = $this->lang;
+        }
+
         $article = $this->database->table("tbl_articles")->where("id=?", $id)->fetch();
 
         $views_count = $article->views_count + 1;
@@ -26,13 +46,27 @@ class funpagePresenter extends BasePresenter {
 
         $this->template->article = $article;
 
-        $similar_articles = $this->database->table("tbl_articles")->where("group_id=?", $article->group_id)->where("active=?",1)->where("id NOT IN(?)", $article->id)->order("rand()")->limit(4)->fetchAll();
+        $similar_articles = $this->database->table("tbl_articles")->where("(lang LIKE ? OR lang LIKE ?)","%$lang%","%all%")->where("group_id=?", $article->group_id)->where("active=?", 1)->where("id NOT IN(?)", $article->id)->order("rand()")->limit(4)->fetchAll();
 
+        $this->template->articles_language = $lang;
         $this->template->similar_articles = $similar_articles;
     }
 
     public function actionArticle_list($group_id) {
-        $articles = $this->database->table("tbl_articles")->where("group_id=?", $group_id)->where("active=?",1)->order("posting_date DESC")->fetchAll();
+        $mysection = $this->getSession('articlelanguage');
+
+        $lang = "en";
+
+        if (strlen($mysection->article_language) > 0) {
+            $lang = $mysection->article_language;
+        } else {
+            $mysection->article_language = $this->lang;
+            $lang = $this->lang;
+        }
+        
+        $articles = $this->database->table("tbl_articles")->where("(lang LIKE ? OR lang LIKE ?)","%$lang%","%all%")->where("group_id=?", $group_id)->where("active=?", 1)->order("posting_date DESC")->fetchAll();
+
+        $this->template->articles_language = $lang;
         $this->template->category_id = $group_id;
         $this->template->articles = $articles;
     }
@@ -90,9 +124,21 @@ class funpagePresenter extends BasePresenter {
     }
 
     public function renderFunpage_profile_home() {
-        $popular_articles = $this->database->table("tbl_articles")->where("active=?",1)->order("views_count DESC")->limit(4)->fetchAll();
-        $newest_articles = $this->database->table("tbl_articles")->where("active=?",1)->order("posting_date DESC")->limit(4)->fetchAll();
+        $mysection = $this->getSession('articlelanguage');
+
+        $lang = "en";
+
+        if (strlen($mysection->article_language) > 0) {
+            $lang = $mysection->article_language;
+        } else {
+            $mysection->article_language = $this->lang;
+            $lang = $this->lang;
+        }
         
+        $popular_articles = $this->database->table("tbl_articles")->where("(lang LIKE ? OR lang LIKE ?)","%$lang%","%all%")->where("active=?", 1)->order("views_count DESC")->limit(4)->fetchAll();
+        $newest_articles = $this->database->table("tbl_articles")->where("(lang LIKE ? OR lang LIKE ?)","%$lang%","%all%")->where("active=?", 1)->order("posting_date DESC")->limit(4)->fetchAll();
+
+        $this->template->articles_language = $lang;
         $this->template->popular_articles = $popular_articles;
         $this->template->newest_articles = $newest_articles;
     }

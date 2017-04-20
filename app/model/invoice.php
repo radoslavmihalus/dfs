@@ -1,6 +1,5 @@
 <?php
 
-
 class invoice {
 
     public $id;
@@ -20,6 +19,12 @@ class invoice {
 
     private function l($param) {
         return $param;
+    }
+
+    public function log($string) {
+        $handle = fopen("invoice.log", "a+");
+        fwrite($handle, $string . "\n");
+        fclose($handle);
     }
 
     public function __construct() {
@@ -170,6 +175,9 @@ class invoice {
             CURLOPT_RETURNTRANSFER => true,
         );
 
+        $this->log("URL: " . $url);
+        $this->log("Options: " . json_decode($options));
+
         curl_setopt_array($c, $options);
 
         $result = curl_exec($c);
@@ -177,6 +185,13 @@ class invoice {
         $http_code = curl_getinfo($c, CURLINFO_HTTP_CODE);
 
         curl_close($c);
+
+        $write_in = json_encode($data);
+        $write_out = json_encode($result);
+
+        $this->log("HTTP_CODE: " . json_decode($http_code));
+        $this->log("Request data: " . $write_in);
+        $this->log("Response data: " . $write_out);
 
         if ((false === $result) || (200 != $http_code)) {
             return false;
@@ -188,7 +203,6 @@ class invoice {
         }
 
         $result = explode("\r\n\r\n", $result);
-
 
         return $result[count($result) - 1];
     }
@@ -226,6 +240,10 @@ class invoice {
             'unit_price' => $item_price,
             'tax' => 0
         );
+
+        $this->log("Prepare URL: " . self::SF_URL_CREATE_INVOICE);
+        $this->log("Prepare request URL: " . json_encode($data));
+
 
         $response = $this->_request(self::SF_URL_CREATE_INVOICE, array('data' => json_encode($data)));
 
