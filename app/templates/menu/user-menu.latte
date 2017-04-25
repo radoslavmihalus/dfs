@@ -49,7 +49,7 @@
             </a>
         {/if}
         <ul class="nav nav-stacked user-menu-links" id="accordion1">
-            {if $logged_in_id>0}
+            {if $logged_in_id>0 && $logged_in_profile_id>0}
                 <li class="panel">
                     {if DataModel::getPremium($logged_in_id)}
                         <a style="background-color:#EB9419;color:white;font-weight:bold;" n:href="user:user_premium lang=>$lang" data-parent="#accordion1" id=""><i class="fa fa-star"></i>&nbsp;&nbsp;{_ 'Premium account'}:&nbsp;{DataModel::getPremiumExpiryDate($logged_in_id)}</a>

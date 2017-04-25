@@ -24,6 +24,7 @@ class bloggerPresenter extends BasePresenter {
         $form->addText("txtArticleHeading")->setRequired();
         $form->addText("txtArticleDescription")->setRequired();
         $form->addUpload("txtArticleFileUpload")->setRequired();
+        $form->addCheckbox("chkArticleTerms")->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitAddArticle');
         $form->addSubmit('btnCancel')->setValidationScope(FALSE)->onClick[] = array($this, 'frmCancelAddArticle');
 
@@ -68,7 +69,7 @@ class bloggerPresenter extends BasePresenter {
 
             $mail->setHtmlBody($body);
             $mail->addTo("radoslav.mihalus@gmail.com");
-            $mail->addTo("michal.slepanek@gmail.com");
+            $mail->addTo("info@dogforshow.com");
             $mail->setFrom($user->email);
             $mail->setEncoding("utf-8");
             $mail->setSubject("DOGFORSHOW - new article");
@@ -81,7 +82,7 @@ class bloggerPresenter extends BasePresenter {
 
             $mailer->send($mail);
 
-            $this->flashMessage("Success", "Success");
+            $this->flashMessage($this->translate("Your message has been successfully sent."), "Success");
             $this->redirect("blogger:become_blogger");
         } else {
             $this->flashMessage("You must be logged in", "Warning");
@@ -105,6 +106,7 @@ class bloggerPresenter extends BasePresenter {
         $form->addText("txtInterviewHeading")->setRequired();
         $form->addText("txtInterviewDescription")->setRequired();
         $form->addUpload("txtInterviewFileUpload")->setRequired();
+        $form->addCheckbox("chkArticleTerms")->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitAddInterview');
         $form->addSubmit('btnCancel')->setValidationScope(FALSE)->onClick[] = array($this, 'frmCancelAddArticle');
 
@@ -145,7 +147,7 @@ class bloggerPresenter extends BasePresenter {
 
             $mail->setHtmlBody($body);
             $mail->addTo("radoslav.mihalus@gmail.com");
-            $mail->addTo("michal.slepanek@gmail.com");
+            $mail->addTo("info@dogforshow.com");
             $mail->setFrom($user->email);
             $mail->setEncoding("utf-8");
             $mail->setSubject("DOGFORSHOW - new interview");
@@ -158,7 +160,7 @@ class bloggerPresenter extends BasePresenter {
 
             $mailer->send($mail);
 
-            $this->flashMessage("Success", "Success");
+            $this->flashMessage($this->translate("Your message has been successfully sent."), "Success");
             $this->redirect("blogger:become_blogger");
         } else {
             $this->flashMessage("You must be logged in", "Warning");
@@ -183,6 +185,7 @@ class bloggerPresenter extends BasePresenter {
         $form->addText("txtPhotogalleryDescription")->setRequired();
         $form->addText("txtPhotogalleryImage");
         $form->addText("txtPhotogalleryImageDescription");
+        $form->addCheckbox("chkArticleTerms")->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitAddPhotos');
         $form->addSubmit('btnCancel')->setValidationScope(FALSE)->onClick[] = array($this, 'frmCancelAddArticle');
 
@@ -221,10 +224,10 @@ class bloggerPresenter extends BasePresenter {
 
             $mail->setHtmlBody($body);
             $mail->addTo("radoslav.mihalus@gmail.com");
-            $mail->addTo("michal.slepanek@gmail.com");
+            $mail->addTo("info@dogforshow.com");
             $mail->setFrom($user->email);
             $mail->setEncoding("utf-8");
-            $mail->setSubject("DOGFORSHOW - new interview");
+            $mail->setSubject("DOGFORSHOW - new photos");
 
             $mailer = new Nette\Mail\SmtpMailer(array(
                 'host' => 'mail.dogforshow.com',
@@ -234,7 +237,7 @@ class bloggerPresenter extends BasePresenter {
 
             $mailer->send($mail);
 
-            $this->flashMessage("Success", "Success");
+            $this->flashMessage($this->translate("Your message has been successfully sent."), "Success");
             $this->redirect("blogger:become_blogger");
         } else {
             $this->flashMessage("You must be logged in", "Warning");
@@ -258,6 +261,7 @@ class bloggerPresenter extends BasePresenter {
         $form->addText("txtVideogalleryHeading")->setRequired();
         $form->addText("txtVideogalleryDescription")->setRequired();
         $form->addText("txtVideogalleryUrl")->setRequired();
+        $form->addCheckbox("chkArticleTerms")->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitAddVideo');
         $form->addSubmit('btnCancel')->setValidationScope(FALSE)->onClick[] = array($this, 'frmCancelAddArticle');
 
@@ -284,6 +288,7 @@ class bloggerPresenter extends BasePresenter {
             $body .= "<b>Category:</b><br/>" . $values["ddlVideogalleryCategory"] . "<br/>" . "<br/>";
             $body .= "<b>Heading:</b><br/>" . $values["txtVideogalleryHeading"] . "<br/>" . "<br/>";
             $body .= "<b>Description:</b><br/>" . $values["txtVideogalleryDescription"] . "<br/>" . "<br/>";
+            $body .= "<b>Video URL:</b><br/>" . $values["txtVideogalleryUrl"] . "<br/>" . "<br/>";
 
             $file_ext = strtolower(mb_substr($values["txtVideogalleryMainImage"], strrpos($values["txtVideogalleryMainImage"], ".")));
             $file_name = "videogalery_main_image" . $file_ext;
@@ -291,10 +296,10 @@ class bloggerPresenter extends BasePresenter {
 
             $mail->setHtmlBody($body);
             $mail->addTo("radoslav.mihalus@gmail.com");
-            $mail->addTo("michal.slepanek@gmail.com");
+            $mail->addTo("info@dogforshow.com");
             $mail->setFrom($user->email);
             $mail->setEncoding("utf-8");
-            $mail->setSubject("DOGFORSHOW - new interview");
+            $mail->setSubject("DOGFORSHOW - new video");
 
             $mailer = new Nette\Mail\SmtpMailer(array(
                 'host' => 'mail.dogforshow.com',
@@ -304,7 +309,7 @@ class bloggerPresenter extends BasePresenter {
 
             $mailer->send($mail);
 
-            $this->flashMessage("Success", "Success");
+            $this->flashMessage($this->translate("Your message has been successfully sent."), "Success");
             $this->redirect("blogger:become_blogger");
         } else {
             $this->flashMessage("You must be logged in", "Warning");
