@@ -16,7 +16,11 @@
                     <a style="color: #efa741;text-decoration: underline;font-weight: bold;" href="javascript:void(0)" data-toggle="modal" data-target="#article_specification">{_'view technical specification'}</a>
                 </p>
                 <p>
-                    <a n:href="blogger:add_article" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                    {if $logged_in_id>0}
+                        <a n:href="blogger:add_article" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                        {else}
+                        <a id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                        {/if}
                 </p>
             </div>
             <div class="col-md-6 col-lg-3 col-sm-6 col-xs-12">
@@ -30,7 +34,11 @@
                     <a style="color: #efa741;text-decoration: underline;font-weight: bold;" href="javascript:void(0)" data-toggle="modal" data-target="#interview_specification">{_'view technical specification'}</a>
                 </p>
                 <p>
-                    <a n:href="blogger:add_interview" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                    {if $logged_in_id>0}
+                        <a n:href="blogger:add_interview" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                        {else}
+                        <a id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                        {/if}
                 </p>
             </div>
             <div class="col-md-6 col-lg-3 col-sm-6 col-xs-12">
@@ -44,7 +52,11 @@
                     <a style="color: #efa741;text-decoration: underline;font-weight: bold;" href="javascript:void(0)" data-toggle="modal" data-target="#photos_specification">{_'view technical specification'}</a>
                 </p>
                 <p>
-                    <a n:href="blogger:add_photos" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                    {if $logged_in_id>0}
+                        <a n:href="blogger:add_photos" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                        {else}
+                        <a id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                        {/if}
                 </p>
             </div>
             <div class="col-md-6 col-lg-3 col-sm-6 col-xs-12">
@@ -58,44 +70,48 @@
                     <a style="color: #efa741;text-decoration: underline;font-weight: bold;" href="javascript:void(0)" data-toggle="modal" data-target="#videos_specification">{_'view technical specification'}</a>
                 </p>
                 <p>
-                    <a n:href="blogger:add_videos" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                    {if $logged_in_id>0}
+                        <a n:href="blogger:add_videos" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                        {else}
+                        <a id="btnLogIn" data-toggle="modal" data-target="#RegistrationModal" class="btn btn-md btn-warning pull-right"><i style="margin-right: 10px;" class="fa fa-plus-circle"></i>{_ 'Add'}</a>
+                        {/if}
                 </p>
             </div>
         </div>
         <div class="row">
             <h2 style="margin-top: 30px;margin-bottom: 30px;font-weight:700;" class="text-center">{_ 'Present your articles in the right place'}</h2>
-        <div class="row">
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_pageviews" src="../www/img/advert_pageviews.png"/></p>
-                <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Monthly pageviews'}</p>
-                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">20.000.000</p>
+            <div class="row">
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_pageviews" src="../www/img/advert_pageviews.png"/></p>
+                    <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Monthly pageviews'}</p>
+                    <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">20.000.000</p>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_users" src="../www/img/advert_users.png"/></p>
+                    <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Monthly visitors'}</p>
+                    <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">530.000</p>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_pagetime" src="../www/img/advert_pagetime.png"/></p>
+                    <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Average visit duration'}</p>
+                    <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">12 {_ 'minutes'}</p>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_regscount" src="../www/img/advert_regscount.png"/></p>
+                    <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Monthly registrations'}</p>
+                    <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">630</p>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_audience" src="../www/img/advert_audience.png"/></p>
+                    <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Age'}</p>
+                    <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">25 - 54 {_ 'years'}</p>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_womens" src="../www/img/advert_womens.png"/></p>
+                    <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Gender'}</p>
+                    <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">77% {_ 'women'}</p>
+                </div>
             </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_users" src="../www/img/advert_users.png"/></p>
-                <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Monthly visitors'}</p>
-                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">530.000</p>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_pagetime" src="../www/img/advert_pagetime.png"/></p>
-                <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Average visit duration'}</p>
-                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">12 {_ 'minutes'}</p>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_regscount" src="../www/img/advert_regscount.png"/></p>
-                <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Monthly registrations'}</p>
-                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">630</p>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_audience" src="../www/img/advert_audience.png"/></p>
-                <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Age'}</p>
-                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">25 - 54 {_ 'years'}</p>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-                <p style="text-align: center;"><img style="margin: 0 auto;" alt="advert_womens" src="../www/img/advert_womens.png"/></p>
-                <p style="text-align: center;font-size: 15px;font-weight:bold;">{_ 'Gender'}</p>
-                <p style="text-align: center;font-family: 'Roboto Condensed', sans-serif;font-size: 25px;display:block;">77% {_ 'women'}</p>
-            </div>
-        </div>
         </div>
     </div>
 </div>
