@@ -4,6 +4,9 @@
 {includeblock '../components/image_UploadPicture_control.latte'}
 {includeblock '../components/dropdown_CountryList_control.latte'}
 {includeblock '../components/modal_article_principles.latte'}
+<script type="text/javascript">
+    var current_image = 2;
+</script>
 <div class="panel-default col-md-8" style="font-size: 12px;min-width: 244px">
     <div class="panel-body component" style="background-color: white;margin-bottom: 10px;">
         {form formAddPhotos}
@@ -21,8 +24,190 @@
                     {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription", name => "txtPhotogalleryImageDescription", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
                 </div>
             </div>
+
+            <div class="col-md-12" id="image2" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage2", name => "txtPhotogalleryImage2", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription2", name => "txtPhotogalleryImageDescription2", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image3" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage3", name => "txtPhotogalleryImage3", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription3", name => "txtPhotogalleryImageDescription3", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image4" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage4", name => "txtPhotogalleryImage4", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription4", name => "txtPhotogalleryImageDescription4", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image5" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage5", name => "txtPhotogalleryImage5", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription5", name => "txtPhotogalleryImageDescription5", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image6" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage6", name => "txtPhotogalleryImage6", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription6", name => "txtPhotogalleryImageDescription6", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image7" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage7", name => "txtPhotogalleryImage7", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription7", name => "txtPhotogalleryImageDescription7", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image8" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage8", name => "txtPhotogalleryImage8", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription8", name => "txtPhotogalleryImageDescription8", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image9" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage9", name => "txtPhotogalleryImage9", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription9", name => "txtPhotogalleryImageDescription9", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image10" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage10", name => "txtPhotogalleryImage10", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription10", name => "txtPhotogalleryImageDescription10", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image11" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage11", name => "txtPhotogalleryImage11", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription11", name => "txtPhotogalleryImageDescription11", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image12" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage12", name => "txtPhotogalleryImage12", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription12", name => "txtPhotogalleryImageDescription12", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image13" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage13", name => "txtPhotogalleryImage13", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription13", name => "txtPhotogalleryImageDescription13", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image14" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage14", name => "txtPhotogalleryImage14", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription14", name => "txtPhotogalleryImageDescription14", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image15" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage15", name => "txtPhotogalleryImage15", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription15", name => "txtPhotogalleryImageDescription15", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image16" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage16", name => "txtPhotogalleryImage16", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription16", name => "txtPhotogalleryImageDescription16", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image17" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage17", name => "txtPhotogalleryImage17", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription17", name => "txtPhotogalleryImageDescription17", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image18" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage18", name => "txtPhotogalleryImage18", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription18", name => "txtPhotogalleryImageDescription18", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image19" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage19", name => "txtPhotogalleryImage19", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription19", name => "txtPhotogalleryImageDescription19", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>
+
+            <div class="col-md-12" id="image20" style="padding:10px 0px;border-top:1px solid #eee; display: none;">
+                <div class="col-md-6" style="padding:0px;">
+                    {include image_UploadPicture_control, _form=>$_form, description => "Image", placeholder => "Select picture", id => "txtPhotogalleryImage20", name => "txtPhotogalleryImage20", tooltip => "Record the photogallery image"}
+                </div>
+                <div class="col-md-6" style="padding:0px;">
+                    {include textbox_control, _form=>$_form, description => "Image description", placeholder => "Image description", id => "txtPhotogalleryImageDescription20", name => "txtPhotogalleryImageDescription20", tooltip => "Detailed description of the photo(breed,name of the dog etc.)"}
+                </div>
+            </div>                
+
             <div class="col-md-12" style="padding:10px 0px;border-bottom:1px solid #eee;margin-bottom: 10px;">
-                <button class="form-add-photo btn-block"><i style="margin-right: 5px;" class="fa fa-plus-circle"></i>{_ 'Add more images'}</button>
+                <button class="form-add-photo btn-block" id="unhide_image"><i style="margin-right: 5px;" class="fa fa-plus-circle"></i>{_ 'Add more images'}</button>
+                <script type="text/javascript">
+                    $("#unhide_image").on("click", function (event) {
+                        event.preventDefault();
+                        if (current_image < 21)
+                        {
+                            $("#image" + current_image).show();
+                            current_image++;
+                        }
+                    });
+                </script>
             </div>
             <p>
             <table style="table-layout: fixed;width:100%;">

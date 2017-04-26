@@ -185,6 +185,10 @@ class bloggerPresenter extends BasePresenter {
         $form->addText("txtPhotogalleryDescription")->setRequired();
         $form->addText("txtPhotogalleryImage");
         $form->addText("txtPhotogalleryImageDescription");
+        for ($i = 2; $i < 21; $i++) {
+            $form->addText("txtPhotogalleryImage" . $i);
+            $form->addText("txtPhotogalleryImageDescription" . $i);
+        }
         $form->addCheckbox("chkArticleTerms")->setRequired();
         $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmSubmitAddPhotos');
         $form->addSubmit('btnCancel')->setValidationScope(FALSE)->onClick[] = array($this, 'frmCancelAddArticle');
@@ -219,8 +223,15 @@ class bloggerPresenter extends BasePresenter {
 
             $file_ext = strtolower(mb_substr($values["txtPhotogalleryImage"], strrpos($values["txtPhotogalleryImage"], ".")));
             $mail->addAttachment("photogalery_image1$file_ext", file_get_contents($values["txtPhotogalleryImage"]));
-
             $body .= "<b>photogalery_image1$file_ext:</b><br/>" . $values["txtPhotogalleryImageDescription"] . "<br/>" . "<br/>";
+
+            for ($i = 2; $i < 21; $i++) {
+                if (strlen($values["txtPhotogalleryImage" . $i]) > 0) {
+                    $file_ext = strtolower(mb_substr($values["txtPhotogalleryImage" . $i], strrpos($values["txtPhotogalleryImage" . $i], ".")));
+                    $mail->addAttachment("photogalery_image" . $i . "$file_ext", file_get_contents($values["txtPhotogalleryImage" . $i]));
+                    $body .= "<b>photogalery_image" . $i . "$file_ext:</b><br/>" . $values["txtPhotogalleryImageDescription" . $i] . "<br/>" . "<hr>";
+                }
+            }
 
             $mail->setHtmlBody($body);
             $mail->addTo("radoslav.mihalus@gmail.com");
