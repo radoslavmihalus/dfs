@@ -223,7 +223,7 @@ class bloggerPresenter extends BasePresenter {
 
             $file_ext = strtolower(mb_substr($values["txtPhotogalleryImage"], strrpos($values["txtPhotogalleryImage"], ".")));
             $mail->addAttachment("photogalery_image1$file_ext", file_get_contents($values["txtPhotogalleryImage"]));
-            $body .= "<b>photogalery_image1$file_ext:</b><br/>" . $values["txtPhotogalleryImageDescription"] . "<br/>" . "<br/>";
+            $body .= "<b>photogalery_image1$file_ext:</b><br/>" . $values["txtPhotogalleryImageDescription"] . "<br/>" . "<hr>";
 
             for ($i = 2; $i < 21; $i++) {
                 if (strlen($values["txtPhotogalleryImage" . $i]) > 0) {
