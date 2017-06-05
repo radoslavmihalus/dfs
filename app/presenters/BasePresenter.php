@@ -282,7 +282,28 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 //        if (isset($_GET['lang']))
 //            $mylang = $_GET['lang'];
 
+
         parent::startup();
+
+/// log visits
+        try {
+            $logdata = array();
+
+            $log_ip = $_SERVER['REMOTE_ADDR'];
+            $log_name = $this->presenter->name;
+            $log_action = $this->presenter->action;
+
+            $logdata['log_ip'] = $log_ip;
+            $logdata['log_presenter'] = $log_name;
+            $logdata['log_action'] = $log_action;
+
+            $this->database->table("tbl_visits_log")->insert($logdata);
+        } catch (\Exception $ex) {
+            
+        }
+
+/// log visits
+
         $GLOBALS['database'] = $this->database;
 
         $this->translator = new DFSTranslator();
