@@ -1,0 +1,81 @@
+{include '../components/head.latte'}
+<body role="document" data-spy="scroll" data-target=".navbar" data-offset="12">
+<!-- Navigation DOGFORSHOW  -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" style="margin-top:20px;" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand logotyp" id="logo" href="https://www.dogforshow.com">
+                    <img alt="Brand" style="width:150px;" src="www/img/logo.png">
+                </a>
+                <div id="ddlLang" class="btn-group" style="float:left;margin-top: 20px">
+                    <button class="btn dropdown-toggle btn-default text-uppercase" data-toggle="dropdown" href="#">
+                        {if strlen($lang)>1}
+                            {$lang}
+                        {else}
+                            EN
+                        {/if}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a n:href="changeLang! lang=>en"><span class="flag-icon flag-icon-us"></span>&nbsp;&nbsp;English</a>
+                        </li>
+                        <li>
+                            <a n:href="changeLang! lang=>cz"><span class="flag-icon flag-icon-cz"></span>&nbsp;&nbsp;Čeština</a>
+                        </li>
+                        <!--                            <li>
+                                                        <a n:href="changeLang! lang=>de"><span class="flag-icon flag-icon-de"></span>&nbsp;&nbsp;Deutsch</a>
+                                                    </li>-->
+                        <li>
+                            <a n:href="changeLang! lang=>hu"><span class="flag-icon flag-icon-hu"></span>&nbsp;&nbsp;Magyar</a>
+                        </li>
+                        <li>
+                            <a n:href="changeLang! lang=>ru"><span class="flag-icon flag-icon-ru"></span>&nbsp;&nbsp;Pусский</a>
+                        </li>
+                        <li>
+                            <a n:href="changeLang! lang=>sk"><span class="flag-icon flag-icon-sk"></span>&nbsp;&nbsp;Slovenčina</a>
+                        </li>
+                    </ul>
+                    <script type="text/javascript">
+                        $("#ddlLang").on("change", function () {
+                            var val = $("#ddlLang option:selected").text();
+
+                            $.ajax({
+                                url: '/?do=changeLang&lang=' + val,
+                                dataType: 'html',
+                            }).done(function (data) {
+                                window.location.href = document.location.href;
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="joinmeli"><a style="font-weight:bold;" id="joinme" href="javascript:void(0)" class="text-uppercase landing_navbar_typography">{_'Registration'}</a></li>
+                    <li id="whoweareli"><a id="whoweare" href="javascript:void(0)" class="text-uppercase landing_navbar_typography">{_ 'About DOGFORSHOW'}</a></li>
+                    <li id="contactusli"><a id="contactus" href="javascript:void(0)" class="text-uppercase landing_navbar_typography">{_ 'Contact'}</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron wide">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 hero-caption-container">
+        <h1>{_ 'Present internationally on the right place'}</h1>
+        <h2>{_ 'Transparent presentation in 6 languages directly in the international community of breeders, owners and handlers of purebred dogs with pedigree.'}</h2>
+        <div class="col-md-6 cta-placeholder">
+            <a href="#" class="btn-cta">{_ 'Try it for FREE'}</a>
+        </div>
+        <div class="col-md-6 cta-placeholder">
+            <a href="#" class="btn-cta-invert">{_ 'I want to know more'}</a>
+        </div>
+        </div>
+    </div>
+<!-- /Navigation DOGFORSHOW  -->
+</body>
