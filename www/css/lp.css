@@ -2,6 +2,7 @@
   display:flex;
   align-items: center;
   margin-top: 66px;
+  margin-bottom: 0px !important;
   text-align: center;
   width:100%;
   min-height:600px;
@@ -22,6 +23,20 @@
     /*font-weight:700 !important;*/
     color:white !important;
     font-size: 28px !important;
+}
+.reason_heading
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #a5987f;
+    margin-bottom: 20px;
+}
+.reason
+{
+    text-align: left;
+    font-size: 15px !important;
+    color:#7b7b7b;
 }
 .hero-caption-container
 {
@@ -165,5 +180,46 @@
     font-size:1.5em;
     border-radius: 4px;
     text-decoration: none !important;
+}
+.light_bar
+{
+    background-color: #e8e2d4;
+    padding:10px 10px 10px 10px;
+}
+.dark_bar
+{
+    background-color: #8C8067;
+    padding:10px 10px 10px 10px;
+}
+.white_bar
+{
+    background-color: white;
+    padding:10px 10px 10px 10px;
+}
+.counter_placeholder
+{
+    text-align: center;
+    color:#a5997f;
+    border-right:#a5997f 1px dotted;
+}
+.counter_value
+{
+    display:block;
+    font-size:30px;
+    font-weight:bold;
+}
+.counter_description
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 17px;
+    font-weight:700;
+}
+.icon_spacing
+{
+    margin-right: 10px;
+}
+.login_placeholder
+{
+  padding-top: 50px;
 }
 

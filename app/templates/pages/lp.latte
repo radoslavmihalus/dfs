@@ -1,6 +1,6 @@
 {include '../components/head.latte'}
 <body role="document" data-spy="scroll" data-target=".navbar" data-offset="12">
-<!-- Navigation DOGFORSHOW  -->
+    <!-- Navigation DOGFORSHOW  -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -65,17 +65,211 @@
             </div>
         </div>
     </nav>
+    <!-- /Navigation DOGFORSHOW  -->
+    <!-- Hero section  -->
     <div class="jumbotron wide">
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 hero-caption-container">
-        <h1>{_ 'Present internationally on the right place'}</h1>
-        <h2>{_ 'Transparent presentation in 6 languages directly in the international community of breeders, owners and handlers of purebred dogs with pedigree.'}</h2>
-        <div class="col-md-6 cta-placeholder">
-            <a href="#" class="btn-cta">{_ 'Try it for FREE'}</a>
-        </div>
-        <div class="col-md-6 cta-placeholder">
-            <a href="#" class="btn-cta-invert">{_ 'I want to know more'}</a>
-        </div>
+            <h1>{_ 'Present internationally on the right place'}</h1>
+            <h2>{_ 'Transparent presentation in 6 languages directly in the international community of breeders, owners and handlers of purebred dogs with pedigree.'}</h2>
+            <div class="col-md-6 cta-placeholder">
+                <a href="#" class="btn-cta">{_ 'Try it for FREE'}</a>
+            </div>
+            <div class="col-md-6 cta-placeholder">
+                <a href="#" class="btn-cta-invert">{_ 'I want to know more'}</a>
+            </div>
         </div>
     </div>
-<!-- /Navigation DOGFORSHOW  -->
+    <!-- Hero section  -->
+    <!-- Counter placeholder -->
+    <div class="container-fluid light_bar">
+        <div class="col-md-3 counter_placeholder">
+            <span class="counter_description">{_ 'registered users from around the world'}</span>
+            <span class="counter_value"><i class="fa fa-group icon_spacing"></i>{DataModel::getRegistrationsCount()|number:0}</span>
+        </div>
+        <div class="col-md-3 counter_placeholder">
+            <span class="counter_description">{_ 'Monthly pageviews'}</span>
+            <span class="counter_value"><i class="fa fa-eye icon_spacing"></i>21,660,272</span>
+        </div>
+        <div class="col-md-3 counter_placeholder">
+            <span class="counter_description">{_ 'Monthly visitors'}</span>
+            <span class="counter_value"><i class="fa fa-male icon_spacing"></i>386,070</span>
+        </div>
+        <div class="col-md-3 counter_placeholder">
+            <span class="counter_description">{_ 'Monthly registrations'}</span>
+            <span class="counter_value"><i class="fa fa-unlock-alt icon_spacing"></i>486</span>
+        </div>
+    </div>
+    <!-- /Counter placeholder -->
+    <!-- Login Section -->
+    <div class="container-fluid dark_bar">
+        <div class="container">
+            <div class="col-md-4 login_placeholder">
+                {include '../registration/registration.latte'}
+            </div>
+            <div class="col-md-8">
+                <div id="myCarousel" class="carousel slide" data-interval="10000" data-ride="carousel">
+                    <!-- Wrapper for carousel items -->
+                    <div class="carousel-inner">
+                        <div class="active item">
+                            <div class="col-md-12">
+                                <p class="text-center">
+                                    <img src="www/img/referer4.jpg" class="img-circle" alt="Lydia Frey" style="height:160px;border:#d0c2a5 4px solid;"/>
+                                </p>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="carousel_heading text-center">Lydia Frey</h3>
+                                <p class="carousel_secondary_heading text-center"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_'Best junior handler at WORLD DOG SHOW 2015,Best junior handler at Westminster Dog Show 2015'}</p>
+                                <p class="carousel_description">"&nbsp;{_'Love the website! I think its a great place for breeders and handers to showcase their dogs and their kennels.'}&nbsp;"</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-12">
+                                <p class="text-center">
+                                    <img src="www/img/referer5.jpg" class="img-circle" alt="Friedrich Birkman" style="height:160px;border:#d0c2a5 4px solid;"/>
+                                </p>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="carousel_heading text-center">Friedfrich Birkman</h3>
+                                <p class="carousel_secondary_heading text-center"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Breeder of Estava Rain American Akitas and PR manager'}</p>
+                                <p class="carousel_description">"&nbsp;{_'It´s great! I love the design. It´s up to date and easy to navigate. It will be a great success.'}&nbsp;"</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-12">
+                                <p class="text-center">
+                                    <img src="www/img/referer6.jpg" class="img-circle" alt="Charley Donaldson" style="height:160px;border:#d0c2a5 4px solid;"/>
+                                </p>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="carousel_heading text-center">Charley Donaldson</h3>
+                                <p class="carousel_secondary_heading text-center"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_'Owner, handler of Crufts, BEST IN SHOW winner dog'}</p>
+                                <p class="carousel_description">"&nbsp;{_'Dogforshow is a great website. It is a way to encourage new people to try showing. You are helping people around the world which is great. Everyone should check it out!'}&nbsp;"</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-12">
+                                <p class="text-center">
+                                    <img src="www/img/referer7.jpg" class="img-circle" alt="Marianne Gyárfás" style="height:160px;border:#d0c2a5 4px solid;"/>
+                                </p>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="carousel_heading text-center">Marianne Gyárfás</h3>
+                                <p class="carousel_secondary_heading text-center"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Breeder of Sáregresi English pointers'}</p>
+                                <p class="carousel_description">"&nbsp;{_'Congratulations to DOGFORSHOW team, the site is dynamic, informative youngish. Congratulations, and good luck in the future!'}&nbsp;"</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-12">
+                                <p class="text-center">
+                                    <img src="www/img/referer.jpg" class="img-circle" alt="Fred Lanting" style="height:160px;border:#d0c2a5 4px solid;"/>
+                                </p>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="carousel_heading text-center">Fred Lanting</h3>
+                                <p class="carousel_secondary_heading text-center"><i class="fa fa-user"></i>&nbsp;&nbsp;{_'Respected breeder, judge, writer'}</p>
+                                <p class="carousel_description">"&nbsp;{_'I am very impressed with the quality of what I have seen so far on the DOGFORSHOW. I wish for website to have much circulation, as I am sure that it will benefit people, whether dog owners or others.'}&nbsp;"</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-12">
+                                <p class="text-center">
+                                    <img src="www/img/referer1.jpg" class="img-circle" alt="Andrax Gold" style="height:160px;border:#d0c2a5 4px solid;"/>
+                                </p>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="carousel_heading text-center">Andrax Gold</h3>
+                                <p class="carousel_secondary_heading text-center"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Kennel'}</p>
+                                <p class="carousel_description">"&nbsp;{_'Jednoduchosť, dostupnosť, prehľadnosť a krásna grafika portálu ma oslovila a pridala som na ňu svoju chovateľskú stanicu. Jej celkový dosah a návštevnosť na webe sú výbornou prezentáciou úspešných jedincov a vynikajúcou podporou pre skutočných chovateľov.'}&nbsp;"</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-12">
+                                <p class="text-center">
+                                    <img src="www/img/referer2.jpg" class="img-circle" alt="Veronika Olesovska" style="height:160px;border:#d0c2a5 4px solid;"/>
+                                </p>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="carousel_heading text-center">Veronika Olešovská</h3>
+                                <p class="carousel_secondary_heading text-center"><i class="glyphicons glyphicons-shirt"></i>&nbsp;&nbsp;{_'Handler'}</p>
+                                <p class="carousel_description">"&nbsp;{_'Myslím že je to skvelý nápad vytvoriť rozsiahlu databázu chovateľov, ich chovných staníc, krycích psov a handlerov. Držím palce aby sa Vaša databáza aj naďalej rozrastala a aby o nej vedeli ľudia z celého sveta!'}&nbsp;"</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-12">
+                                <p class="text-center">
+                                    <img src="www/img/referer3.jpg" class="img-circle" alt="Gripps crowd" style="height:160px;border:#d0c2a5 4px solid;"/>
+                                </p>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="carousel_heading text-center">Gripp's crowd</h3>
+                                <p class="carousel_secondary_heading text-center"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Kennel'}</p>
+                                <p class="carousel_description">"&nbsp;{_'Pekná a prehľadná stránka, user friendly s veľmi prijemným vizuálom. Teším sa z nej, pomôže mi mať prehľad v mojich absolvovaných vystavách ako aj odreprezentovať moje psy a chovnú stanicu.'}&nbsp;"</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-12">
+                                <p class="text-center">
+                                    <img src="www/img/referer8.jpg" class="img-circle" alt="Toni Gligor" style="height:160px;border:#d0c2a5 4px solid;"/>
+                                </p>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="carousel_heading text-center">Toni Gligor</h3>
+                                <p class="carousel_secondary_heading text-center"><i class="fa fa-home"></i>&nbsp;&nbsp;{_'Breeder of Soulcharisma Golden Retrievers'}</p>
+                                <p class="carousel_description">"&nbsp;{_'I found Dogforshow a very nice, intriguing idea. I do believe that it will be structured in the future, not just a list of articles but with a menu (my humble opinion). Nevertheless, I hope many other people will see it such an opportunity as I do.'}&nbsp;"</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="text-align:center;padding-top: 15px;">
+                        <!-- Carousel indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                            <li data-target="#myCarousel" data-slide-to="3"></li>
+                            <li data-target="#myCarousel" data-slide-to="4"></li>
+                            <li data-target="#myCarousel" data-slide-to="5"></li>
+                            <li data-target="#myCarousel" data-slide-to="6"></li>
+                            <li data-target="#myCarousel" data-slide-to="7"></li>
+                            <li data-target="#myCarousel" data-slide-to="8"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Login Section -->
+    <!-- How it works -->
+    <div class="container-fluid white_bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <h3 class="reason_heading">{_ 'Possibility to create your own kennel, owners and handlers profile'}</h3>
+                    <p class="reason">{_ 'Fast and simple creating of independent profiles, adding or adjusting of exhibition success, medical records and planned litters or puppies for sale will save you time that you can devote to your four-legged friend.'}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3 class="reason_heading">{_ 'Create unique profiles of your dogs with possibility to offer your dog at stud'}</h3>
+                    <p class="reason">{_ 'We offer you many interactive functions which would otherwise require high development costs on your site.'}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3 class="reason_heading">{_ 'Add dogshow successes, awards, titles, working exams, health informations, photos and videos'}</h3>
+                    <p class="reason">{_ 'Adding new data and updating and collecting them in a single place provides you with a good overview and saves you time.'}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <h3 class="reason_heading">{_ 'Inform about planned litters and offer puppies for sale'}</h3>
+                    <p class="reason">{_ 'We support breeding of happy and healthy dogs with pedigree'}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3 class="reason_heading">{_ 'Take opportunity to be contacted by potential buyers from all over the world'}</h3>
+                    <p class="reason">{_ 'More than 1,000,000 views of the DOGFORSHOW pages will provide you with potentially interested people from all over the world.'}</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3 class="reason_heading">{_ 'Create friendships and communicate with each other'}</h3>
+                    <p class="reason">{_ 'Take advantage of the opportunity of international presentation and together with us support the purebred dogs with pedigree.'}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /How it works -->
 </body>
