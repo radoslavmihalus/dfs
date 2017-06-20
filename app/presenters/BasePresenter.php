@@ -1392,6 +1392,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         if (isset($_GET['pay']))
             $pay = $_GET['pay'];
 
+        $amt = number_format($amt, 2, ".", "");
+
         $rand = rand(10000000, 99999999);
 
         try {
