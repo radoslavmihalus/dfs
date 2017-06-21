@@ -2071,7 +2071,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 }
 
                 if (!$is_error)
-                    $this->redirect("LandingPage:default");
+                    $this->redirect("LandingPage:default", array("register" => "1"));
             }
         } catch (\ErrorException $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
