@@ -6,6 +6,7 @@
     text-align: center;
     width:100%;
     min-height:600px;
+    /*background:url("../img/new_header_brown.jpg")no-repeat center;*/
     background:url("../img/new_header.jpg")no-repeat center;
     background-size:cover;
 }
@@ -15,7 +16,7 @@
     margin-bottom: 0px !important;
     text-align: center;
     width:100%;
-    min-height:600px;
+    min-height:450px;
     background:url("../img/time.jpg")no-repeat center;
     background-size:cover;
 }
@@ -288,6 +289,14 @@
 {
     background-color: white;
     padding:10px 10px 10px 10px;
+}
+.white_bar h2
+{
+    font-family: Arial, sans-serif;
+    font-weight:700 !important;
+    color:#8C8067 !important;
+    font-size: 35px !important;
+    margin-bottom: 20px;
 }
 .bar_spacing
 {
