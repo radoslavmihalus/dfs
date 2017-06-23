@@ -241,7 +241,7 @@
     <!-- How it works -->
     <div class="container-fluid white_bar bar_spacing" id="discover">
         <div class="container">
-            <h2 class="caption text-center">{_ 'Why is DOGFORSHOW the right choice?'}</h2>
+            <h2 class="caption text-center">{!_ 'Why is DOGFORSHOW the right choice?'}</h2>
             <div class="row">
                 <div class="col-md-4 text-center reason_box">
                     <i class="fa fa-user-plus fa-4x reason_icon"></i>
@@ -330,6 +330,157 @@
         </div>
     </div>
     <!-- /Buttons with lists -->
+    <!-- Recently added section -->
+    <div class="container-fluid" style="padding:15px 0px 15px 0px;background-color: #e8e2d4;">
+        <h2 class="heading text-center" style="font-size:25px !important;color:#8C8067;margin-top: 50px;"><strong>{_ 'Recently added'}</strong></h2>
+        <!--Recently added kennels section--> 
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Profiles'}</p>
+            <div class="list-group" style="float:left;box-shadow: none;width:100%">
+                {foreach $profiles as $row}
+                    <a href="{DataModel::getProfileLinkUrl($row->id, TRUE, TRUE)}" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;background-color: #e8e2d4;">
+                        <div class="user-block-thumb" style="border-radius: 50px;float:left;width:80px;height:80px;border: 2px solid #d0c2a5;background: url('{DataModel::getProfileImage($row->id)}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                        <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;text-decoration: underline;">{DataModel::getProfileName($row->id)}</span>
+                        {if (DataModel::getProfileType($row->id)==1)}
+                            <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-home"></i>&nbsp;&nbsp;{_ 'Kennel'}</span>
+                        {elseif (DataModel::getProfileType($row->id)==2)}
+                            <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-user"></i>&nbsp;&nbsp;{_ 'Owner of purebred dog'}</span>
+                        {else}
+                            <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-male"></i>&nbsp;&nbsp;{_ 'Handler'}</span>
+                        {/if}
+                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-map-marker" data-toggle="tooltip" data-placement='top' title="{_ 'Country'}"></i>&nbsp;&nbsp;{_DataModel::getProfileState($row->id)}</span>
+                    </a>
+                {/foreach}
+            </div>
+        </div>
+        <!--Recently added dogs section--> 
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="glyphicons glyphicons-dog" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Dogs with pedigree'}</p>
+            <div class="list-group" style="float:left;box-shadow: none;width:100%">
+                {foreach $dogs as $row}
+                    <a n:href="dog:dog_profile_home id => $row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;background-color: #e8e2d4;">
+                        <div class="user-block-thumb" style="border-radius: 50px;float:left;width:80px;height:80px;border: 2px solid #d0c2a5;background: url('{$row->dog_image}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                        <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;text-decoration: underline;">{$row->dog_name}</span>
+                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{_$row->breed_name, [type => 'breed']}</span>
+                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->dog_gender=='Bitch'}<i class="fa fa-venus gender-bitch" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#f67aec !important;margin-right: 5px;"></i>{else}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;margin-right: 5px;"></i>{/if}{_$row->dog_gender}</span>
+                    </a>
+                {/foreach}
+            </div>
+        </div>
+        <!--Recently added puppies section--> 
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <p class="text-center" style="margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;color: #796b4d;font-size: 17px;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-paw" aria-hidden="true"></i>&nbsp;&nbsp;{_ 'Puppies for sale'}</p>
+            <div class="list-group" style="float:left;box-shadow: none;width:100%">
+                {foreach $puppies as $row}                        
+                    <a n:href="puppy:puppy_description id=>$row->id" class="list-group-item" style="float:left;width:100%;padding:5px;margin-bottom: 0px;border:none;background-color: #e8e2d4;">
+                        {var $litter = DataModel::getPlannedLitterById($row->planned_litter_id)}
+                        <div class="user-block-thumb" style="border-radius: 50px;float:left;width:80px;height:80px;border: 2px solid #d0c2a5;background: url('{$row->puppy_photo}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
+                        <span style="display:block;width:100%;color:#a5987f;font-weight: 700;font-family: 'Roboto Condensed', sans-serif;text-transform: uppercase;font-size: 15px !important;text-decoration: underline;">{$row->puppy_name}</span>
+                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;"><i class="fa fa-tag" data-toggle="tooltip" data-placement='top' title="{_ 'Breed'}"></i>&nbsp;&nbsp;{_$litter->bitch_breed, [type => 'breed']}</span>
+                        <span style="display:block;width:100%;font-size: 14px !important;font-family: 'Roboto Condensed', sans-serif;">{if $row->puppy_gender=='Dog'}<i class="fa fa-mars" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}" style="color:#0c9eea;"></i>{else}<i class="fa fa-venus gender-bitch" style="color:#f67aec !important;" data-toggle="tooltip" data-placement='top' title="{_ 'Gender'}"></i>{/if}&nbsp;&nbsp;{_$row->puppy_gender}</span>
+                    </a>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+    <!-- /Recetly added section -->
+    <!-- Footer section -->
+    <div class="container-fluid dark_bar" id="contact">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 brown">
+            <h2 class="heading text-center" style="font-size:25px !important;color:#e8e2d4;"><strong>{_ 'Contact us'}</strong></h2>
+            <p class="secondary_heading text-center">{_ 'Please contact us via the contact form below if you have any questions, issues or if you are interested in advertising on the DOGFORSHOW'}</p>
+            {form frmContactForm}
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtName" n:name=txtName placeholder="{_ 'Name'}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtSurname" n:name=txtSurname placeholder="{_ 'Surname'}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="txtEmail" n:name=txtEmail placeholder="{_ 'Email'}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <textarea type="text" class="form-control contact_textarea" id="txtMessage" n:name=txtMessage placeholder="{_ 'Message'}"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="6LdBSgITAAAAAPHEfML6Of8AKPJ1CTbIrI7BdEql" data-theme="light"></div>    
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-warning btn-block" id="btnSubmit" n:name=btnSubmit><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;{_ 'Send'}</button>
+                </div>
+            {/form}
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <h2 class="heading text-center" style="font-size:25px !important;color:#e8e2d4;"><strong>{_ 'Links'}</strong></h2>
+            <ul class="landing_page_links" style="padding:0px;">
+                <li class="footer_links">
+                    <a n:href="pages:general_terms lang=>$lang"><i class="fa fa-gavel footer_icon_links"></i>&nbsp;&nbsp;{_'General terms'}</a>
+                </li>
+                <li class="footer_links">
+                    <a n:href="pages:cookie_policy lang=>$lang"><i class="fa fa-leanpub footer_icon_links"></i>&nbsp;&nbsp;{_'Cookie policy'}</a>
+                </li>
+                <li class="footer_links">
+                    <a n:href="pages:our_team lang=>$lang"><i class="fa fa-users footer_icon_links"></i>&nbsp;&nbsp;{_'Our team'}</a>
+                </li>
+                <li class="footer_links">
+                    <a n:href="kennel:kennel_list lang=>$lang, reset=>1"><i class="fa fa-home footer_icon_links"></i>&nbsp;&nbsp;{_'Kennels'}</a>
+                </li>
+                <li class="footer_links">
+                    <a n:href="owner:owner_list lang=>$lang, reset=>1"><i class="glyphicons glyphicons-user footer_icon_links"></i>&nbsp;&nbsp;{_'Owners of purebred dogs'}</a>
+                </li>
+                <li class="footer_links">
+                    <a n:href="handler:handler_list lang=>$lang, reset=>1"><i class="glyphicons glyphicons-shirt footer_icon_links"></i>&nbsp;&nbsp;{_'Handlers'}</a>
+                </li>
+                <li class="footer_links">
+                    <a n:href="dog:dog_list lang=>$lang, reset=>1"><i class="glyphicons glyphicons-dog footer_icon_links"></i>&nbsp;&nbsp;{_'Dogs'}</a>
+                </li>
+                <li class="footer_links">
+                    <a n:href="dog:dog_for_mating_list lang=>$lang, reset=>1"><i class="fa fa-venus-mars footer_icon_links"></i>&nbsp;&nbsp;{_'Dogs for mating'}</a>
+                </li>
+                <li class="footer_links">
+                    <a n:href="dog:dog_for_sale_list lang=>$lang, reset=>1"><i class="fa fa-eur footer_icon_links"></i>&nbsp;&nbsp;{_'Dogs with pedigree for sale'}</a>
+                </li>
+                <li class="footer_links">
+                    <a n:href="kennel:planned_litter_list lang=>$lang, reset=>1"><i class="fa fa-calendar footer_icon_links"></i>&nbsp;&nbsp;{_'Planned litters'}</a>
+                </li>
+                <li class="footer_links">
+                    <a n:href="puppy:puppy_list lang=>$lang, reset=>1"><i class="fa fa-paw footer_icon_links"></i>&nbsp;&nbsp;{_'Puppies for sale'}</a>
+                </li>
+                <li>
+                    <a n:href="puppy:puppy_sold_list lang=>$lang, reset=>1"><i class="fa fa-paw footer_icon_links"></i>&nbsp;&nbsp;{_'Sold puppies'}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <h2 class="heading text-center" style="font-size:25px !important;color:#e8e2d4;"><strong>{_ 'Follow us'}</strong></h2>
+            <p class="secondary_heading text-center">
+                <a href="https://www.facebook.com/dogforshow" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on facebook'}" style="margin-right:15px;text-decoration: none;">
+                    <span class="fa fa-facebook-official fa-2x follow_link"></span>
+                </a>
+                <a href="https://twitter.com/DOGFORSHOW" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Twitter'}" style="margin-right:15px;text-decoration: none;">
+                    <span class="fa fa-twitter-square fa-2x white follow_link"></span>
+                </a>
+                <a href="https://www.pinterest.com/DOGFORSHOW" target="_blank" data-toggle="tooltip" data-placement='top' title="{_ 'DOGFORSHOW on Pinterest'}" style="margin-right:15px;text-decoration: none;">
+                    <span class="fa fa-pinterest-square fa-2x white follow_link"></span>
+                </a>
+            </p>
+            <h2 class="heading text-center" style="font-size:25px !important;color:#e8e2d4;"><strong>{_ 'DOGFORSHOW'}</strong><sup>&reg;</sup></h2>
+            <p class="secondary_heading text-center">
+                <img alt="Brand" src="www/img/logo.png">
+            </p>
+        </div>
+    </div>
+    <!-- /Footer section -->
     <!-- Scrolling animation -->
     <script src="www/js/css3-animate-it.js"></script>
     <script src="www/js/jquery.easing.min.js"></script>
