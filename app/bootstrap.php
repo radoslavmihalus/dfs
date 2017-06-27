@@ -99,7 +99,7 @@ $router[] = new Route('add-photos', 'blogger:add_photos'); //, \Nette\Applicatio
 $router[] = new Route('add-videos', 'blogger:add_videos'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('add-photo', 'photo:photo_add'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('edit-photo', 'photo:photo_edit'); //, \Nette\Application\IRouter::SECURED);
-$router[] = new Route('new-landing', 'LandingPage:lp'); //, \Nette\Application\IRouter::SECURED);
+//$router[] = new Route('new-landing', 'LandingPage:lp'); //, \Nette\Application\IRouter::SECURED);
 //---------------------------   Photo / photo list -----------------------------------
 $router[] = new Route('photo', array(
     'presenter' => 'photo',
