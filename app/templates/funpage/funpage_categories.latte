@@ -6,26 +6,30 @@
             <div class="row">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-top: 0px;">
                     <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <a n:href="#">
-                                <img class="img-responsive" style="padding:0px;" src="../www/img/bloggers-wanted-RU.jpg" alt="fanpage_header">
-                            </a>
-                            <div class="banner-header-placeholder">
-                                <div class="banner-header" style=""><span style="display:block;">{_ 'Would you like to share interesting articles from dogs world with our fans?'}</span>
-                                    <p class="text-center" style="margin-top:10px;"><a n:href="blogger:become_blogger" class="btn btn-warning btn-lg"><i style="margin-right:10px;" class="fa fa-envelope"></i><span>{_ 'I want to add an article'}</span></a></p>
+                        {var $i=0}
+                        {foreach $banners as $banner}
+                            <div class="item {if $i==0}active{/if}">
+                                <a href="{!$banner->link1}">
+                                    <img class="img-responsive" style="padding:0px;" src="{$banner->image}" alt="fanpage_header">
+                                </a>
+                                <div class="banner-header-placeholder">
+                                    <div class="banner-header" style=""><span style="display:block;">{$banner->title}</span>
+                                        <p class="" style="margin-top:10px; font-size: 14px">{$banner->text}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-<!--                        <div class="item">
-                            <a n:href="#">
-                                <img class="img-responsive" style="padding:0px;" src="../www/img/fanpage_header.jpg" alt="fanpage_header">
-                            </a>
-                            <div class="banner-header-placeholder">
-                                <div class="banner-header" style=""><span style="display:block;">{_ 'Would you like to share interesting articles from dogs world with our fans?'}</span>
-                                    <p class="text-center" style="margin-top:10px;"><a n:href="pages:contact_us" class="btn btn-warning btn-lg"><i style="margin-right:10px;" class="fa fa-envelope"></i><span>{_ 'Contact us'}</span></a></p>
-                                </div>
-                            </div>
-                        </div>-->
+                            {var $i=1}
+                        {/foreach}
+                        <!--                        <div class="item">
+                                                    <a n:href="#">
+                                                        <img class="img-responsive" style="padding:0px;" src="../www/img/fanpage_header.jpg" alt="fanpage_header">
+                                                    </a>
+                                                    <div class="banner-header-placeholder">
+                                                        <div class="banner-header" style=""><span style="display:block;">{_ 'Would you like to share interesting articles from dogs world with our fans?'}</span>
+                                                            <p class="text-center" style="margin-top:10px;"><a n:href="pages:contact_us" class="btn btn-warning btn-lg"><i style="margin-right:10px;" class="fa fa-envelope"></i><span>{_ 'Contact us'}</span></a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
                     </div>
                 </div>
             </div>

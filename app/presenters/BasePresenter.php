@@ -172,6 +172,33 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $this->template->hreflang['hu'] = $url_hu;
         $this->template->hreflang['ru'] = $url_ru;
 
+        $presenter = $this->getPresenter()->name;
+
+        $banner_type = $this->database->table("tbl_banners_types")->where("parameters LIKE ?", "%^$presenter^%")->fetch();
+
+        if ($banner_type) {
+            $banner_type_id = $banner_type->id;
+
+            $date_now = date("Y-m-d");
+
+            $banners = $this->database->table("tbl_banners")->where("banner_type_id LIKE ?", "%$banner_type_id%")->where("active=?", 1)->where("lang LIKE ?", "%" . $this->lang . "%")->where("valid_from <= ?", $date_now)->where("valid_to >= ?", $date_now)->order("RAND()")->fetchAll();
+
+            $this->template->banners = $banners;
+        }
+
+        $banner_type = $this->database->table("tbl_banners_types")->where("parameters LIKE ?", "%^user_menu^%")->fetch();
+
+        if ($banner_type) {
+            $banner_type_id = $banner_type->id;
+
+            $date_now = date("Y-m-d");
+
+            $banners = $this->database->table("tbl_banners")->where("banner_type_id LIKE ?", "%$banner_type_id%")->where("active=?", 1)->where("lang LIKE ?", "%" . $this->lang . "%")->where("valid_from <= ?", $date_now)->where("valid_to >= ?", $date_now)->order("RAND()")->fetchAll();
+
+            $this->template->user_menu_banners = $banners;
+        }
+        
+        
         if ($this->isAjax())
             $this->redrawControl('contentBody');
     }
