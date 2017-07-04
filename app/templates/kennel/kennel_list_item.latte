@@ -53,34 +53,6 @@
                 <span style="text-align: center;display:block;font-size:13px;color:#83765E;"><i class="fa fa-bullhorn"></i>&nbsp;&nbsp;Advertisment</span>
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-top: 0px;">
                     <div class="carousel-inner" role="listbox">
-                        <!--                        <div class="item active">
-                                                    <a n:href="#">
-                                                        <img class="img-responsive" style="padding:5px;" src="../www/img/dfs.jpg" alt="...">
-                                                    </a>
-                                                    <div class="">
-                                                        <div style="display:block;padding:10px 10px 5px 10px;color:black;font-weight:bold;">DOGFORSHOW blog for you</div>
-                                                        <div style="display:block;padding:0px 10px 10px 10px;color:black;font-size:11px;">Blog with lots of interesting articles, interviews, pictures, videos and many more things to read and watch.</div>
-                                                        <div style="display:block;padding:5px 10px 5px 10px;color:#83765E;">
-                                                            <a n:href="pages:contact_us" style="color:#83765E;"><i style="margin-right:10px;" class="fa fa-link fa-2x"></i></a>
-                                                            <a href="https://www.facebook.com/dogforshow" style="color:#83765E;"><i style="margin-right:10px;" class="fa fa-facebook-official fa-2x"></i></a>
-                                                            <a n:href="pages:contact_us" style="color:#83765E;"><i style="margin-right:10px;" class="fa fa-youtube-square fa-2x"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
-                        <!--                        <div class="item">
-                                                    <a n:href="pages:contact_us">
-                                                        <img class="img-responsive" style="padding:5px;" src="../www/img/advert_slide2.png" alt="...">
-                                                    </a>
-                                                    <div class="">
-                                                        <div style="display:block;padding:10px 10px 5px 10px;color:black;font-size:17px;font-weight:bold;">Advertise with DOGFORSHOW</div>
-                                                        <div style="display:block;padding:0px 10px 10px 10px;color:black;font-size:12px;">Advertise your dog products or services worldwide in the right place.<strong>For the best prices</strong></div>
-                                                        <div style="display:block;padding:5px 10px 5px 10px;color:#83765E;">
-                                                            <a n:href="pages:contact_us" style="color:#83765E;"><i style="margin-right:10px;" class="fa fa-link fa-2x"></i></a>
-                                                            <a n:href="pages:contact_us" style="color:#83765E;"><i style="margin-right:10px;" class="fa fa-facebook-official fa-2x"></i></a>
-                                                            <a n:href="pages:contact_us" style="color:#83765E;"><i style="margin-right:10px;" class="fa fa-youtube-square fa-2x"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
                         {var $i=0}
                         {foreach $banners as $banner}
                             <div class="item {if $i==0}active{/if}">
@@ -89,7 +61,7 @@
                                 </a>
                                 <div class="">
                                     <div style="display:block;padding:10px 10px 5px 10px;color:black;font-size:17px;font-weight:bold;">{$banner->title}</div>
-                                    <div style="display:block;padding:0px 10px 10px 10px;color:black;font-size:12px;">{$banner->text}</strong></div>
+                                    <div style="display:block;padding:0px 10px 10px 10px;color:black;font-size:12px;">{$banner->text}</div>
                                     <div style="display:block;padding:5px 10px 5px 10px;color:#83765E;">
                                         {if strlen($banner->link1)>0}
                                             <a href="{!$banner->link1}" style="color:#83765E;"><i style="margin-right:10px;" class="fa fa-link fa-2x"></i></a>
