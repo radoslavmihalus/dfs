@@ -14,7 +14,8 @@
             f.parentNode.insertBefore(j, f);
         }
         )(window, document, 'script', 'dataLayer', 'GTM-MTKG8H');
-    </script>    
+    </script>
+    {include '../components/modal_control.latte'}
     <!-- Navigation DOGFORSHOW  -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -630,6 +631,27 @@
                             $("#whoweareli").removeClass("active");
                             $("#contactusli").addClass("active");
                         });
+
+        {foreach $flashes as $flash}
+                        if ({$flash->type} == 'Error')
+                        {
+                            $("#login_link").removeClass("active");
+                            $("#register_link").addClass("active");
+                            $("#login").removeClass("active");
+                            $("#login").removeClass("in");
+                            $("#registration").addClass("in");
+                            $("#registration").addClass("active");
+                            ShowMessageModal(enumNotificationType.error, {$flash->message});
+                        }
+                        if ({$flash->type} == 'Warning')
+                            ShowMessageModal(enumNotificationType.warning, {$flash->message});
+                        if ({$flash->type} == 'Info')
+                            ShowMessageModal(enumNotificationType.information, {$flash->message});
+                        if ({$flash->type} == 'Success')
+                            ShowMessageModal(enumNotificationType.success, {$flash->message});
+                        if ({$flash->type} == 'Confirmation')
+                            ShowMessageModal(enumNotificationType.confirmation, {$flash->message});
+        {/foreach}
     </script>
     <!-- /Scrolling animation -->
 </body>
