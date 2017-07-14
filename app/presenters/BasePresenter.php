@@ -197,8 +197,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
             $this->template->user_menu_banners = $banners;
         }
-        
-        
+
+
         if ($this->isAjax())
             $this->redrawControl('contentBody');
     }
@@ -2063,6 +2063,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
             if ($values['email'] == "") {
                 $exception .= "<li>" . $this->translate("Email cannot left blank") . "</li>";
+            }
+
+            if (!filter_var($values['email'], FILTER_VALIDATE_EMAIL)) {
+                $exception .= "<li>" . $this->translate("Invalid email format") . "</li>";
             }
 
             $exception .= '</ul>';
