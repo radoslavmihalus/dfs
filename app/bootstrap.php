@@ -159,6 +159,7 @@ $router[] = new Route('switch-profile', 'user:user_create_profile_switcher'); //
 $router[] = new Route('create-profile', 'user:user_create_profile_switcher_new'); //, \Nette\Application\IRouter::SECURED);
 //---------------------------   User / premium account -----------------------------------
 //$router[] = new Route('premium-account', 'user:user_premium'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('premium-new', 'user:user_premium_new'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('premium-account-activation', 'user:user_premium_activation'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('edit-account', 'user:user_edit_account'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('list-of-friends-requests', 'user:user_friend_requests_list'); //, \Nette\Application\IRouter::SECURED);
