@@ -40,6 +40,32 @@
     font-weight: 700 !important;
     color: #8C8067 !important;
     font-size: 35px !important;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.benefits-placeholder
+{
+    padding:40px 0px;
+    margin:0px;
+    background-color: white;
+}
+.premium-reason-heading
+{
+    display: block;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700 !important;
+    color: #8C8067 !important;
+    font-size: 20px !important;
     margin-bottom: 10px;
     text-align: center;
+}
+.premium-reason-paragraph
+{
+    text-align: left;
+    font-size: 15px !important;
+    color: #7b7b7b;
+}
+.premium-reason-icon
+{
+    color: #8C8067 !important;
 }
