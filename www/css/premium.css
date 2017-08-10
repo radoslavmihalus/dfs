@@ -49,6 +49,12 @@
     margin:0px;
     background-color: white;
 }
+.reference-placeholder
+{
+    margin:0px;
+    background-color: white;
+    min-height:500px;
+}
 .premium-reason-heading
 {
     display: block;
@@ -68,4 +74,31 @@
 .premium-reason-icon
 {
     color: #8C8067 !important;
+}
+.testimonial-logo
+{
+    margin:0 auto;
+    width: 150px !important;
+    border-radius: 250px;
+    border:#8c8067 4px solid;
+}
+.carousel-company-name
+{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #8c8067 !important;
+}
+.carousel-text
+{
+    margin-top: 20px;
+    display:block;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: black !important;
+    font-weight:bold;
+    font-size: 20px !important;
+    text-align: center;
+    margin-bottom: 30px;
 }
