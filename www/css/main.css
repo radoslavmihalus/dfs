@@ -3,6 +3,10 @@ body
     background-color: #EDEBE4;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 }
+@font-face {
+    font-family: Ionicons;
+    src: url("../fonts/glyphicons/ionicons/ionicons.woff");
+}
 .content-wrapper
 {
 
