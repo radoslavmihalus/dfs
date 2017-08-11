@@ -51,9 +51,15 @@
 }
 .reference-placeholder
 {
+    padding:40px 0px;
     margin:0px;
-    background-color: white;
+    /*background-color: white;*/
     min-height:500px;
+}
+.pricing-placeholder
+{
+    padding:40px 0px;
+    margin:0px;
 }
 .premium-reason-heading
 {
@@ -101,4 +107,77 @@
     font-size: 20px !important;
     text-align: center;
     margin-bottom: 30px;
+}
+.carousel-indicators li
+{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 7px;
+    cursor: pointer;
+    background-color: none !important;
+    border: none !important;
+    border-radius: 10px;
+    text-indent:0 !important;
+}
+.carousel-indicators li:before
+{
+    font-family: FontAwesome !important;
+    content:"\f1b0" !important;
+    font-size: 16px !important;
+    color:#b5a98f;
+}
+.carousel-indicators .active:before {
+    font-family: FontAwesome !important;
+    content:"\f1b0" !important;
+    font-size: 25px !important;
+    color:#e08300;
+    border: none !important;
+    background-color: none !important;
+}
+.premium-carousel
+{
+    color:black !important;
+}
+table.pricing-table
+{
+    width:100%;
+}
+table.pricing-table td.table-pricing-head-placeholder
+{
+    position:relative;
+    background-color: white;
+    width:25%;
+    height:40px;
+    border-radius: 50px 50px 0px 0px;
+}
+table.pricing-table td.table-pricing-price-placeholder
+{
+    position:relative;
+    background-color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 70px !important;
+    color:#8C8067;
+    width:25%;
+    height:auto;
+    text-align: center;
+}
+table.pricing-table td.table-pricing-period-placeholder
+{
+    position:relative;
+    padding:5px 5px;
+    background-color: rgba(140, 128, 103, 0.68);
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px !important;
+    color:white;
+    width:25%;
+    height:auto;
+    text-align: center;
+}
+table.pricing-table td.table-pricing-head-placeholder img
+{
+    display: block;
+    right:0;
+    position: absolute;
+    top: -160px;
 }
