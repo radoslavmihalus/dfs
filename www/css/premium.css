@@ -181,3 +181,36 @@ table.pricing-table td.table-pricing-head-placeholder img
     position: absolute;
     top: -160px;
 }
+table.pricing-table td.table-pricing-info
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    color:black;
+    width:25%;
+    padding:0px 5px;
+    font-size:15px;
+    text-align: left;
+}
+table.pricing-table td.table-pricing-info i
+{
+   color:rgba(140, 128, 103, 0.68);
+   margin-right: 5px;
+}
+table.pricing-table td.table-pricing-info-value
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: white;
+    color:black;
+    width:25%;
+    padding:0px 5px;
+    font-size:15px;
+    text-align: center;
+}
+table.pricing-table td.table-pricing-info-value i
+{
+    background-color: white;
+    color:black;
+    width:25%;
+    padding:0px 5px;
+    font-size:35px;
+    text-align: center;
+}
