@@ -51,6 +51,8 @@
 }
 .reference-placeholder
 {
+    background: url(../img/testimonial_back.jpg)no-repeat center;
+    background-size: cover;
     padding:40px 0px;
     margin:0px;
     /*background-color: white;*/
