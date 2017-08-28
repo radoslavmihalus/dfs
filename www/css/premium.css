@@ -53,14 +53,14 @@
 {
     background: url(../img/testimonial_back.jpg)no-repeat center;
     background-size: cover;
-    padding:40px 0px;
+    padding:80px 0px;
     margin:0px;
     /*background-color: white;*/
     min-height:500px;
 }
 .pricing-placeholder
 {
-    padding:40px 0px;
+    padding:80px 0px;
     margin:0px;
 }
 .premium-reason-heading
@@ -101,6 +101,7 @@
 }
 .carousel-text
 {
+    min-height: 100px;
     margin-top: 20px;
     display:block;
     font-family: 'Roboto Condensed', sans-serif;
@@ -156,7 +157,7 @@ table.pricing-table td.table-pricing-head-placeholder
 table.pricing-table td.table-pricing-price-placeholder
 {
     position:relative;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.87);
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 70px !important;
     color:#8C8067;
@@ -176,12 +177,25 @@ table.pricing-table td.table-pricing-period-placeholder
     height:auto;
     text-align: center;
 }
-table.pricing-table td.table-pricing-head-placeholder img
+@media (max-width:767px)
 {
-    display: block;
-    right:0;
-    position: absolute;
-    top: -160px;
+    table.pricing-table td.table-pricing-head-placeholder img
+    {
+        display: block;
+        right:0;
+        position: absolute;
+        top: -40px;
+    }
+}
+@media (min-width:768px)
+{
+    table.pricing-table td.table-pricing-head-placeholder img
+    {
+        display: block;
+        right:0;
+        position: absolute;
+        top: -160px;
+    }
 }
 table.pricing-table td.table-pricing-info
 {
