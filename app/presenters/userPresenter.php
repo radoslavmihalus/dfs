@@ -19,6 +19,10 @@ class userPresenter extends BasePresenter {
 
     protected function startup() {
         parent::startup();
+
+        $country_users = $this->database->query("SELECT `state`, ((count(*)/(SELECT count(*) FROM tbl_user))*100) as popularity FROM `tbl_user` GROUP BY `state`")->fetchAll();
+
+        $this->template->country_users = $country_users;
     }
 
     public function actionUser_create_profile_switcher_new() {
