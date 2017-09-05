@@ -4,7 +4,7 @@
         <div class="col-sm-6">
             <div class="premium-header-text-placeholder">
                 <div>
-                    <h1 class="premium-caption">Get more for less effort</h1>
+                    <h1 class="premium-caption">Make your "Dog life" easier</h1>
                     <h2 class="premium-caption-secondary-text">Take the opportunity to be contacted by potentially interested people from all over the world.</h2>
                     <div class="col-sm-12 col-md-12 col-lg-6" style="margin-bottom: 10px;">
                         <a id="premium" class="btn-cta" id="" href="javascript:void(0)">{_ 'Become a premium'}</a>
@@ -17,14 +17,30 @@
         </div>
     </div>
 </div>
-<div id="premium-benefits" class="row benefits-map">
-    <h3 class="body-caption">Grow up your opportunities</h3>
-    <div class="col-sm-6 text-center">
-        <h3 class="premium-reason-heading">Your audience</h3>
+<div id="premium-benefits" class="row benefits-placeholder">
+    <h3 class="body-caption">Get more for less effort</h3>
+    <div class="col-sm-4 col-md-4 text-center">
+        <i class="fa fa-archive fa-4x premium-reason-icon" aria-hidden="true"></i>
+        <h3 class="premium-reason-heading">All in one affortable solution</h3>
         <p class="premium-reason-paragraph">The usual price for a website is from EUR 10 to 50 a month without functions comparable to DOGFORSHOW. We offer you many interactive functions which would otherwise require high development costs on your site.</p>
     </div>
-    <div class="col-sm-6 text-center">
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div class="col-sm-4 col-md-4 text-center">
+        <i class="fa fa-line-chart fa-4x premium-reason-icon"></i>
+        <h3 class="premium-reason-heading">The best way to present your successes</h3>
+        <p class="premium-reason-paragraph">We are working hard so that DOGFORSHOW will always achieve better positions and the best results and will continuously bring you potential buyers from all over the world.</p>
+    </div>
+    <div class="col-sm-4 col-md-4 text-center">
+        <i class="fa fa fa-history fa-4x premium-reason-icon"></i>
+        <h3 class="premium-reason-heading">Make your "Dog life" easier</h3>
+        <p class="premium-reason-paragraph">Fast and simple adjusting of exhibition successes, offering dogs at stud, informing about planned litters or offering puppies for sale will save you time that you can devote to your four-legged friend.</p>
+    </div>
+</div>
+<div class="row benefits-placeholder">
+    <h3 class="body-caption">Grow up your audience</h3>
+    <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+            <p style="font-family: 'Roboto Condensed', sans-serif;font-size: 20px !important;text-align: center;margin-bottom: 15px;" class="premium-reason-paragraph">More than 600.000 pageviews and 10.000 visitors each day from more than 200 countries will provide you potentially interested people from all over the world and the right place for your presentation.</p>
+        </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
             google.charts.load('current', {
                 'packages': ['geochart'],
@@ -44,6 +60,11 @@
 
                 var options = {
                     legend: 'none',
+                    defaultColor:'#d5d0c0',
+                    colorAxis: {
+                        values:[0,1],
+                        colors:['gray','#d5d0c0']
+                        },
                     enableRegionInteractivity: true
                 };
 
@@ -52,31 +73,12 @@
                 chart.draw(data, options);
             }
         </script>
-        <div id="regions_div" style="width: 100%; height: auto;"></div>
-        <h3 class="premium-reason-heading">Your audience with DOGFORSHOW</h3>
-        <p class="premium-reason-paragraph">We are working hard so that DOGFORSHOW will always achieve better positions and the best results and will continuously bring you potential buyers from all over the world.</p>
-    </div>
-</div>
-<div class="row benefits-placeholder">
-    <h3 class="body-caption">Grow up your opportunities</h3>
-    <div class="col-sm-4 text-center">
-        <i class="fa fa-archive fa-4x premium-reason-icon" aria-hidden="true"></i>
-        <h3 class="premium-reason-heading">All in one affortable solution</h3>
-        <p class="premium-reason-paragraph">The usual price for a website is from EUR 10 to 50 a month without functions comparable to DOGFORSHOW. We offer you many interactive functions which would otherwise require high development costs on your site.</p>
-    </div>
-    <div class="col-sm-4 text-center">
-        <i class="fa fa-line-chart fa-4x premium-reason-icon"></i>
-        <h3 class="premium-reason-heading">The best way to present your successes</h3>
-        <p class="premium-reason-paragraph">More than 600.000 pageviews and 10.000 visitors each day from more than 200 countries will provide you potentially interested people from all over the world and the right place for your presentation.</p>
-    </div>
-    <div class="col-sm-4 text-center">
-        <i class="fa fa fa-history fa-4x premium-reason-icon"></i>
-        <h3 class="premium-reason-heading">Make your "Dog life" easier</h3>
-        <p class="premium-reason-paragraph">Fast and simple adjusting of exhibition successes, offering dogs at stud, informing about planned litters or offering puppies for sale will save you time that you can devote to your four-legged friend.</p>
-    </div>
+        <div class="col-lg-6 col-lg-offset-3">
+            <div id="regions_div" style="width:100%;height:auto;"></div>
+        </div>
 </div>
 <div class="row reference-placeholder">
-    <!--<h3 class="body-caption">Make your "Dog life" easier</h3>-->
+   <h3 class="body-caption">Why people choose a premium account?</h3>
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -174,13 +176,13 @@
         <tr>
             <td style="width:25%"></td>
             <td class="table-pricing-price-placeholder" style="font-size:25px !important;color:#b1b1b1">FREE</td>
-            <td class="table-pricing-price-placeholder" style="font-size:50px !important;">29<sup style="top:-1em;font-size:40%;">&euro;</sup></td>
+            <td class="table-pricing-price-placeholder">29<sup style="top:-1em;font-size:40%;">&euro;</sup></td>
             <!--            <td class="table-pricing-price-placeholder" style="font-size:50px !important;">69<sup style="top:-1em;font-size:40%;">&euro;</sup></td>-->
         </tr>
         <tr>
-            <td class="table-pricing-period-placeholder" style="text-align: left;">Period</td>
+            <td class="table-pricing-period-placeholder" style="text-align: left;"></td>
             <td class="table-pricing-period-placeholder"><i class="ion-ios-infinite"></i></td>
-            <td class="table-pricing-period-placeholder">6 months</td>
+            <td class="table-pricing-period-placeholder">12 months</td>
             <!--            <td class="table-pricing-period-placeholder">12 months</td>-->
         </tr>
         <tr style="border-bottom: #e2ddd1 1px solid;">
