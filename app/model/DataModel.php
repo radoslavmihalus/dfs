@@ -1455,7 +1455,7 @@ class DataModel {
 
     public static function allNonPremiumNotified($user_id) {
         // no action
-        //return false;
+        return TRUE;
         // for notifications please remove commented commands bellow
         $database = $GLOBALS['database'];
 
