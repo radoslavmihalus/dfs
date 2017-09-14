@@ -78,6 +78,7 @@ $router = $container->getService('router');
 Route::$defaultFlags = Route::SECURED;
 
 $router[] = new Route('index.php', 'LandingPage:default'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('sitemap.xml', 'sitemap:sitemap'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('advertisement-step1', 'advertisement:advertisement_step1'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('PayPal', 'LandingPage:PayPal'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('fanpage', 'funpage:funpage_profile_home'); //, \Nette\Application\IRouter::SECURED);
