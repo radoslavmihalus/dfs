@@ -1875,7 +1875,9 @@ class DataModel {
                 $data['keywords'] = "";
                 $data['description'] = $presenter . '-' . $action;
                 $data['lang'] = $lang;
-                $database->table("tbl_global_router")->insert($data);
+                if (strlen($lang) == 2) {
+                    $database->table("tbl_global_router")->insert($data);
+                }
 
                 $row = $database->table("tbl_global_router")->where("presenter=?", $presenter)->where("action=?", $action)->where("lang=?", $lang)->fetch();
 
@@ -1939,7 +1941,7 @@ class DataModel {
                 break;
             case ($id >= 290000000000 && $id < 300000000000): //article
                 $return = "$url/article?id=$id&lang=$lang";
-                break;            
+                break;
             default :
                 $return = "";
                 break;
