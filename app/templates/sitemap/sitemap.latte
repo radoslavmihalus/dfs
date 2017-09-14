@@ -1,150 +1,36 @@
 {contentType application/xml}
 <?xml version="1.0" encoding="UTF-8"?>
 
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    {foreach $langs as $lang}
-        <url>
-            <loc>{link //LandingPage:default lang=>$lang}</loc>
-            <lastmod>{$date}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1</priority>
-                {foreach $langs as $lang2}
-                <xhtml:link
-                    rel="alternate"
-                    hreflang="{if $lang2=="cz"}cs{else}{$lang2}{/if}"
-                    href="{link //LandingPage:default lang=>$lang2}"
-                    />
-            {/foreach}
-        </url>
-        
-        
-        <url>
-            <loc>{link //kennel:kennel_list lang=>$lang}</loc>
-            <lastmod>{$date}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1</priority>
-                {foreach $langs as $lang2}
-                <xhtml:link
-                    rel="alternate"
-                    hreflang="{if $lang2=="cz"}cs{else}{$lang2}{/if}"
-                    href="{link //kennel:kennel_list lang=>$lang2}"
-                    />
-            {/foreach}
-        </url>
-        
-        <url>
-            <loc>{link //owner:owner_list lang=>$lang}</loc>
-            <lastmod>{$date}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1</priority>
-                {foreach $langs as $lang2}
-                <xhtml:link
-                    rel="alternate"
-                    hreflang="{if $lang2=="cz"}cs{else}{$lang2}{/if}"
-                    href="{link //owner:owner_list lang=>$lang2}"
-                    />
-            {/foreach}
-        </url>
-        
-        <url>
-            <loc>{link //handler:handler_list lang=>$lang}</loc>
-            <lastmod>{$date}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1</priority>
-                {foreach $langs as $lang2}
-                <xhtml:link
-                    rel="alternate"
-                    hreflang="{if $lang2=="cz"}cs{else}{$lang2}{/if}"
-                    href="{link //handler:handler_list lang=>$lang2}"
-                    />
-            {/foreach}
-        </url>
-        
-        <url>
-            <loc>{link //dog:dog_list lang=>$lang}</loc>
-            <lastmod>{$date}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1</priority>
-                {foreach $langs as $lang2}
-                <xhtml:link
-                    rel="alternate"
-                    hreflang="{if $lang2=="cz"}cs{else}{$lang2}{/if}"
-                    href="{link //dog:dog_list lang=>$lang2}"
-                    />
-            {/foreach}
-        </url>
-        
-        <url>
-            <loc>{link //puppy:puppy_list lang=>$lang}</loc>
-            <lastmod>{$date}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1</priority>
-                {foreach $langs as $lang2}
-                <xhtml:link
-                    rel="alternate"
-                    hreflang="{if $lang2=="cz"}cs{else}{$lang2}{/if}"
-                    href="{link //puppy:puppy_list lang=>$lang2}"
-                    />
-            {/foreach}
-        </url>
+<sitemapindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd"
+              xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+        <loc>https://dogforshow.com/sitemap_lp.xml</loc>
+        <lastmod>{$date}</lastmod>
+    </sitemap>
 
-        <url>
-            <loc>{link //puppy:puppy_sold_list lang=>$lang}</loc>
-            <lastmod>{$date}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1</priority>
-                {foreach $langs as $lang2}
-                <xhtml:link
-                    rel="alternate"
-                    hreflang="{if $lang2=="cz"}cs{else}{$lang2}{/if}"
-                    href="{link //puppy:puppy_sold_list lang=>$lang2}"
-                    />
-            {/foreach}
-        </url>
+    <sitemap>
+        <loc>https://dogforshow.com/sitemap_kennels.xml</loc>
+        <lastmod>{$date}</lastmod>
+    </sitemap>
 
-        <url>
-            <loc>{link //dog:dog_for_mating_list lang=>$lang}</loc>
-            <lastmod>{$date}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1</priority>
-                {foreach $langs as $lang2}
-                <xhtml:link
-                    rel="alternate"
-                    hreflang="{if $lang2=="cz"}cs{else}{$lang2}{/if}"
-                    href="{link //dog:dog_for_mating_list lang=>$lang2}"
-                    />
-            {/foreach}
-        </url>
-        
-        <url>
-            <loc>{link //dog:dog_for_sale_list lang=>$lang}</loc>
-            <lastmod>{$date}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1</priority>
-                {foreach $langs as $lang2}
-                <xhtml:link
-                    rel="alternate"
-                    hreflang="{if $lang2=="cz"}cs{else}{$lang2}{/if}"
-                    href="{link //dog:dog_for_sale_list lang=>$lang2}"
-                    />
-            {/foreach}
-        </url>
+    <sitemap>
+        <loc>https://dogforshow.com/sitemap_owners.xml</loc>
+        <lastmod>{$date}</lastmod>
+    </sitemap>
 
-        
-        <url>
-            <loc>{link //kennel:planned_litter_list lang=>$lang}</loc>
-            <lastmod>{$date}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1</priority>
-                {foreach $langs as $lang2}
-                <xhtml:link
-                    rel="alternate"
-                    hreflang="{if $lang2=="cz"}cs{else}{$lang2}{/if}"
-                    href="{link //kennel:planned_litter_list lang=>$lang2}"
-                    />
-            {/foreach}
-        </url>
-        
-    {/foreach}
-</urlset>
+    <sitemap>
+        <loc>https://dogforshow.com/sitemap_handlers.xml</loc>
+        <lastmod>{$date}</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://dogforshow.com/sitemap_dogs.xml</loc>
+        <lastmod>{$date}</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://dogforshow.com/sitemap_puppies.xml</loc>
+        <lastmod>{$date}</lastmod>
+    </sitemap>
+</sitemapindex>

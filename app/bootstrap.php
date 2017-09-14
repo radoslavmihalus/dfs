@@ -79,6 +79,12 @@ Route::$defaultFlags = Route::SECURED;
 
 $router[] = new Route('index.php', 'LandingPage:default'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('sitemap.xml', 'sitemap:sitemap'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('sitemap_lp.xml', 'sitemap:sitemap_lp'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('sitemap_handlers.xml', 'sitemap:sitemap_handlers'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('sitemap_owners.xml', 'sitemap:sitemap_owners'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('sitemap_kennels.xml', 'sitemap:sitemap_kennels'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('sitemap_dogs.xml', 'sitemap:sitemap_dogs'); //, \Nette\Application\IRouter::SECURED);
+$router[] = new Route('sitemap_puppies.xml', 'sitemap:sitemap_puppies'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('advertisement-step1', 'advertisement:advertisement_step1'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('PayPal', 'LandingPage:PayPal'); //, \Nette\Application\IRouter::SECURED);
 $router[] = new Route('fanpage', 'funpage:funpage_profile_home'); //, \Nette\Application\IRouter::SECURED);

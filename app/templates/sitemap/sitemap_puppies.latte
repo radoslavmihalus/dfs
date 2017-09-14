@@ -1,0 +1,23 @@
+{contentType application/xml}
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    {foreach $langs as $lang}
+        {foreach $puppies as $row}
+            <url>
+                <loc>{link //puppy:puppy_description id => $row->id, lang=>$lang, title=>$row->puppy_name}</loc>
+                <lastmod>{$date}</lastmod>
+                <changefreq>daily</changefreq>
+                <priority>1</priority>
+                    {foreach $langs as $lang2}
+                    <xhtml:link
+                        rel="alternate"
+                        hreflang="{if $lang2=="cz"}cs{else}{$lang2}{/if}"
+                        href="{link //puppy:puppy_description id => $row->id, lang=>$lang2, title=>$row->puppy_name}"
+                        />
+                {/foreach}
+            </url>
+        {/foreach}
+    {/foreach}
+</urlset>
