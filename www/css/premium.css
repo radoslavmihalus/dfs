@@ -55,6 +55,12 @@
     margin:0px;
     background-color: white;
 }
+.limited-offer-placeholder
+{
+    padding:40px 0px;
+    margin:0px;
+    background-color: black;
+}
 .reference-placeholder
 {
     background: url(../img/testimonial_back.jpg)no-repeat center;
@@ -84,6 +90,27 @@
     text-align: left;
     font-size: 15px !important;
     color: #7b7b7b;
+}
+.limited-offer-price-1
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    font-size: 60px;
+    color:white;
+}
+.limited-offer-price-2
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    font-size: 25px;
+    color:white;
+}
+.limited-offer-paragraph
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    font-size: 25px;
+    color:white;
 }
 .premium-reason-icon
 {
