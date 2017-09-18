@@ -9,6 +9,7 @@
         </div>
         <div class="col-xs-12 col-sm-6 limited-offer-price-2">
             <span>72:00:00</span>
+            <div class="countdown-clock"></div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" style="margin-bottom: 10px;">
             <a id="premium" class="btn-cta" style="text-align: center" href="javascript:void(0)">{_ 'Become a premium'}</a>
@@ -25,12 +26,12 @@
                 <div>
                     <h1 class="premium-caption">Make your "Dog life" easier</h1>
                     <h2 class="premium-caption-secondary-text">Take the opportunity to be contacted by potentially interested people from all over the world.</h2>
-<!--                    <div class="col-sm-12 col-md-12 col-lg-6" style="margin-bottom: 10px;">
-                        <a id="premium" class="btn-cta" id="" href="javascript:void(0)">{_ 'Become a premium'}</a>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                        <a id="more" href="javascript:void(0)" class="btn-cta-invert">{_ 'I want to know more'}</a>
-                    </div>-->
+                    <!--                    <div class="col-sm-12 col-md-12 col-lg-6" style="margin-bottom: 10px;">
+                                            <a id="premium" class="btn-cta" id="" href="javascript:void(0)">{_ 'Become a premium'}</a>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12 col-lg-6">
+                                            <a id="more" href="javascript:void(0)" class="btn-cta-invert">{_ 'I want to know more'}</a>
+                                        </div>-->
                 </div>
             </div>
         </div>
@@ -330,6 +331,10 @@
         }, 800, 'easeInOutCirc');
     });
 
+    var clock = $('.countdown-clock').FlipClock({
+// ... your options here
+    });
+    
     $('#premium').click(function (event) {
         event.preventDefault();
         var target = "#premium-pricing";
