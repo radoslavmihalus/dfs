@@ -45,7 +45,7 @@
                                 {var $photo = 1}
                             {/if}
                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="padding:5px;">
-                                <a href="{!$related->content_image}" title="{$related->content}" data-gallery>
+                                <a href="{$presenter->image_path}{!$related->content_image}" title="{$related->content}" data-gallery>
                                     <div class="thumbnail img-responsive" style="padding:50%;background: url('{$presenter->image_path}{$related->content_image}')no-repeat top center;background-size:cover;background-position:50% 20%;"></div>
                                 </a>
                             </div>
