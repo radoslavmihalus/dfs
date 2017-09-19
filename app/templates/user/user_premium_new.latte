@@ -8,7 +8,6 @@
             <span style="display:inline-block;color:#e08300">29&euro;</span>
         </div>
         <div class="col-xs-12 col-sm-6 limited-offer-price-2">
-            <span>72:00:00</span>
             <div class="countdown-clock"></div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" style="margin-bottom: 10px;">
@@ -331,10 +330,11 @@
         }, 800, 'easeInOutCirc');
     });
 
-    var clock = $('.countdown-clock').FlipClock({
+    var clock = $('.countdown-clock').FlipClock({$presenter->getCountdownTimer()}, {
+        countdown: true
 // ... your options here
     });
-    
+
     $('#premium').click(function (event) {
         event.preventDefault();
         var target = "#premium-pricing";

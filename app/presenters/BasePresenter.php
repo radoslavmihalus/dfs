@@ -85,6 +85,19 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         return $extended_token;
     }
 
+    public function getCountdownTimer() {
+        $date_to = strtotime("2017-09-22 9:30:00");
+        $date_now = strtotime(date("Y-m-d H:i:s"));
+
+        $date_diff = $date_to - $date_now;
+
+        if ($date_diff >= 0) {
+            return $date_diff;
+        } else {
+            return 0;
+        }
+    }
+
     public function getTimelineRow($id = 0) {
         try {
             $rows = $this->database->table("tbl_timeline")->where("id=?", $id)->fetch();
