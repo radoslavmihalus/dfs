@@ -43,6 +43,16 @@
     margin-bottom: 30px;
     text-align: center;
 }
+.body-caption-limited-offer
+{
+    display: block;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700 !important;
+    color: #8C8067 !important;
+    font-size: 35px !important;
+    margin-bottom: 30px;
+    text-align: center;
+}
 .benefits-map
 {
     padding:40px 0px;
@@ -95,11 +105,12 @@
 {
     font-family: 'Roboto Condensed', sans-serif;
     text-align: center;
-    font-size: 60px;
+    font-size: 80px;
     color:white;
 }
 .limited-offer-price-2
 {
+    padding:0px !important;
     font-family: 'Roboto Condensed', sans-serif;
     text-align: center;
     font-size: 25px;
@@ -271,4 +282,93 @@ table.pricing-table td.table-pricing-info-value i
     padding:0px 5px;
     font-size:35px;
     text-align: center;
+}
+a.limited-offer-notify
+{
+    padding: 15px 18px;
+    position: fixed;
+    z-index: 20;
+    right: 15px;
+    bottom: 10px;
+    display: block;
+    background-color: #e08300;
+    border-radius: 40px;
+    cursor: pointer;
+}
+a.limited-offer-notify i
+{
+    font-size:3em;
+    color:white;
+}
+@media only screen and (max-width: 480px)
+{
+    .body-caption-limited-offer
+{
+    display: block;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700 !important;
+    color: #8C8067 !important;
+    font-size: 30px !important;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.limited-offer-paragraph {
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+}
+.limited-offer-price-1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+.premium-caption
+{
+    text-transform: uppercase !important; 
+    font-family: Arial, sans-serif;
+    font-weight:700 !important;
+    color:white !important;
+    font-size: 30px !important;
+}
+.premium-caption-secondary-text {
+    font-family: 'Roboto Condensed', sans-serif;
+    /* font-weight: 700 !important; */
+    color: white !important;
+    font-size: 20px !important;
+    margin-bottom: 20px;
+}
+.premium-header-placeholder
+{
+    display: block;
+    margin-bottom: 0px !important;
+    text-align: center;
+    width: 100%;
+    min-height: 600px;
+    background: url(../img/premium_header_small.jpg)no-repeat center;
+    background-size: cover;
+}
+.body-caption
+{
+    display: block;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700 !important;
+    color: #8C8067 !important;
+    font-size: 25px !important;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.carousel-text
+{
+    min-height: 100px;
+    margin-top: 20px;
+    display:block;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: black !important;
+    font-weight:bold;
+    font-size: 17px !important;
+    text-align: center;
+    margin-bottom: 20px;
+}
 }
