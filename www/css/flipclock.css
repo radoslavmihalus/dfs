@@ -48,10 +48,11 @@
 .flip-clock-meridium a { color: #313333; }
 
 .flip-clock-wrapper {
+  display:inline-block;
+  top:10px;
   text-align: center;
   position: relative;
-  width: 100%;
-  margin: 0em;
+  margin: 0 auto;
 }
 
 .flip-clock-wrapper:before,
@@ -200,22 +201,22 @@
 
 .flip-clock-divider .flip-clock-label {
   position: absolute;
-  top: -1.5em;
-  right: -86px;
-  color: black;
-  text-shadow: none; }
+    top: -1.5em;
+    right: -58px;
+    color: #949494;
+    text-shadow: none; }
 
 .flip-clock-divider.minutes .flip-clock-label {
-  right: -88px; }
+  right: -60px; }
 
 .flip-clock-divider.seconds .flip-clock-label {
-  right: -91px; }
+  right: -60px; }
 
 .flip-clock-dot.top {
-  top: 20px; }
+  top: 15px; }
 
 .flip-clock-dot.bottom {
-  bottom: 20px; }
+  bottom: 30px; }
 
 @-webkit-keyframes asd {
   0% {

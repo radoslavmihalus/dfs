@@ -3,16 +3,16 @@
             <i class="fa fa-gift"></i>
         </a>
 <div id="limited-offer" class="row limited-offer-placeholder animated flipInX ">
-    <div class="container">
+    <div class="container-premium">
         <h3 class="body-caption-limited-offer" style="color:#e08300 !important;"><i class="fa fa-clock-o" style="margin-right: 5px;" aria-hidden="true"></i>Time limited offer</h3>
         <p class="limited-offer-paragraph">Get now all of the benefits of premium account for 12 months only for</p>
         <div class="col-lg-8 col-lg-offset-2" style="padding:0 !important">
-            <div class="col-xs-12 col-sm-6 limited-offer-price-1">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 limited-offer-price-1">
                 <span style="display:inline-block;text-decoration: line-through;">69</span>&euro;
                 <span style="display:inline-block;color:#e08300">29&euro;</span>
             </div>
-            <div class="col-xs-12 col-sm-6 limited-offer-price-2">
-                <p style="text-align: center;color:white;font-size:15px;">Hurry up. This offer expires in</p>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 limited-offer-price-2">
+                <p style="text-align: center;font-weight:bold;color:#e08300;font-size:18px;">Hurry up. This offer expires in</p>
                 <div class="countdown-clock"></div>
             </div>
         </div>
@@ -41,17 +41,17 @@
 </div>
 <div id="premium-benefits" class="row benefits-placeholder">
     <h3 class="body-caption">Why go premium?</h3>
-    <div class="col-sm-4 col-md-4 text-center">
+    <div class="col-sm-4 col-md-4 text-center" style="margin-bottom: 30px;">
         <i class="fa fa-archive fa-4x premium-reason-icon" aria-hidden="true"></i>
         <h3 class="premium-reason-heading">All in one affortable solution</h3>
         <p class="premium-reason-paragraph">Fast and simple adjusting of exhibition successes, offering dogs at stud, informing about planned litters or offering puppies for sale will save you time that you can devote to your four-legged friend.</p>
     </div>
-    <div class="col-sm-4 col-md-4 text-center">
+    <div class="col-sm-4 col-md-4 text-center" style="margin-bottom: 30px;">
         <i class="fa fa-line-chart fa-4x premium-reason-icon"></i>
         <h3 class="premium-reason-heading">High performance and low price</h3>
         <p class="premium-reason-paragraph">The usual price for a website is from EUR 10 to 50 a month without functions comparable to DOGFORSHOW. We offer you many interactive functions which would otherwise require high development costs on your site.</p>
     </div>
-    <div class="col-sm-4 col-md-4 text-center">
+    <div class="col-sm-4 col-md-4 text-center" style="margin-bottom: 30px;">
         <i class="fa fa-users fa-4x premium-reason-icon"></i>
         <h3 class="premium-reason-heading">Grow up your audience</h3>
         <p class="premium-reason-paragraph">More than 600.000 pageviews and 10.000 visitors each day from more than 200 countries will provide you potentially interested people from all over the world and the right place for your presentation.</p>
@@ -334,7 +334,8 @@
     });
 
     var clock = $('.countdown-clock').FlipClock({$presenter->getCountdownTimer()}, {
-        countdown: true
+        countdown: true,
+        language: {$presenter->lang}
 // ... your options here
     });
 

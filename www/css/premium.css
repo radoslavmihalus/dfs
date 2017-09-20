@@ -372,3 +372,39 @@ a.limited-offer-notify i
     margin-bottom: 20px;
 }
 }
+@media (min-width: 1200px)
+{
+    .container-premium
+    {
+        max-width:1170px !important;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+@media (min-width: 992px)
+{
+    .container-premium
+    {
+        max-width:1170px !important;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+}
+
+@media (min-width: 768px)
+{
+    .container-premium
+    {
+        max-width:1170px !important;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+}

@@ -2756,6 +2756,90 @@ var FlipClock;
 (function($) {
 		
 	/**
+	 * FlipClock Swedish Language Pack
+	 *
+	 * This class will used to translate tokens into the Swedish language.
+	 *	
+	 */
+	 
+	FlipClock.Lang.Slovak = {
+		
+		'years'   : 'Rokov',
+		'months'  : 'Mesiacov',
+		'days'    : 'Dní',
+		'hours'   : 'Hodín',
+		'minutes' : 'Minút',
+		'seconds' : 'Sekúnd'	
+
+	};
+	
+	/* Create various aliases for convenience */
+
+	FlipClock.Lang['sk']      = FlipClock.Lang.Slovak;
+	FlipClock.Lang['sk-sk']   = FlipClock.Lang.Slovak;
+	FlipClock.Lang['slovak']  = FlipClock.Lang.Slovak;
+
+}(jQuery));
+
+(function($) {
+		
+	/**
+	 * FlipClock Swedish Language Pack
+	 *
+	 * This class will used to translate tokens into the Swedish language.
+	 *	
+	 */
+	 
+	FlipClock.Lang.Czech = {
+		
+		'years'   : 'Roků',
+		'months'  : 'Měsíců',
+		'days'    : 'Dnů',
+		'hours'   : 'Hodin',
+		'minutes' : 'Minut',
+		'seconds' : 'Sekund'	
+
+	};
+	
+	/* Create various aliases for convenience */
+
+	FlipClock.Lang['cz']      = FlipClock.Lang.Czech;
+	FlipClock.Lang['cz-cz']   = FlipClock.Lang.Czech;
+	FlipClock.Lang['czech']   = FlipClock.Lang.Czech;
+
+}(jQuery));
+
+(function($) {
+		
+	/**
+	 * FlipClock Swedish Language Pack
+	 *
+	 * This class will used to translate tokens into the Swedish language.
+	 *	
+	 */
+	 
+	FlipClock.Lang.Hungarian = {
+		
+		'years'   : 'Évek',
+		'months'  : 'Hónap',
+		'days'    : 'Nap',
+		'hours'   : 'Óra',
+		'minutes' : 'Perc',
+		'seconds' : 'Másodperc'
+
+	};
+	
+	/* Create various aliases for convenience */
+
+	FlipClock.Lang['hu']      = FlipClock.Lang.Hungarian;
+	FlipClock.Lang['hu-hu']   = FlipClock.Lang.Hungarian;
+	FlipClock.Lang['hungarian']   = FlipClock.Lang.Hungarian;
+
+}(jQuery));
+
+(function($) {
+		
+	/**
 	 * FlipClock Chinese Language Pack
 	 *
 	 * This class will used to translate tokens into the Chinese language.
