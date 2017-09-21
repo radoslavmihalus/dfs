@@ -82,7 +82,12 @@
 }
 .pricing-placeholder
 {
-    padding:80px 0px;
+    padding: 80px 0px 20px 0px;
+    margin:0px;
+}
+.premium-cta-placeholder
+{
+    padding: 0px 0px 30px 0px;
     margin:0px;
 }
 .premium-reason-heading
@@ -154,14 +159,15 @@
 }
 .carousel-text
 {
+    padding: 0px 20px;
     min-height: 100px;
     margin-top: 20px;
-    display:block;
+    display: block;
     font-family: 'Roboto Condensed', sans-serif;
     color: black !important;
-    font-weight:bold;
-    font-size: 20px !important;
-    text-align: center;
+    font-weight: bold;
+    font-size: 18px !important;
+    text-align: left;
     margin-bottom: 30px;
 }
 .carousel-indicators li
@@ -285,7 +291,7 @@ table.pricing-table td.table-pricing-info-value i
 }
 a.limited-offer-notify
 {
-    padding: 15px 18px;
+    padding: 5px 10px;
     position: fixed;
     z-index: 20;
     right: 15px;
@@ -299,6 +305,14 @@ a.limited-offer-notify i
 {
     font-size:3em;
     color:white;
+}
+.notify-text
+{
+    display: inline-block;
+    color: white;
+    text-decoration: none !important;
+    font-size: 14px;
+    line-height: 1em;
 }
 @media only screen and (max-width: 480px)
 {
@@ -358,18 +372,6 @@ a.limited-offer-notify i
     font-size: 25px !important;
     margin-bottom: 30px;
     text-align: center;
-}
-.carousel-text
-{
-    min-height: 100px;
-    margin-top: 20px;
-    display:block;
-    font-family: 'Roboto Condensed', sans-serif;
-    color: black !important;
-    font-weight:bold;
-    font-size: 17px !important;
-    text-align: center;
-    margin-bottom: 20px;
 }
 }
 @media (min-width: 1200px)
