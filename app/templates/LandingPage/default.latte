@@ -28,22 +28,22 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li>
-                            <a n:href="changeLang! lang=>en"><span class="flag-icon flag-icon-us"></span>&nbsp;&nbsp;English</a>
+                            <a n:href="changeLang! lang=>en"><span class="flag-icon flag-icon-us change-lang-en"></span>&nbsp;&nbsp;English</a>
                         </li>
                         <li>
-                            <a n:href="changeLang! lang=>cz"><span class="flag-icon flag-icon-cz"></span>&nbsp;&nbsp;Čeština</a>
+                            <a n:href="changeLang! lang=>cz"><span class="flag-icon flag-icon-cz change-lang-cz"></span>&nbsp;&nbsp;Čeština</a>
                         </li>
                         <!--                            <li>
                                                         <a n:href="changeLang! lang=>de"><span class="flag-icon flag-icon-de"></span>&nbsp;&nbsp;Deutsch</a>
                                                     </li>-->
                         <li>
-                            <a n:href="changeLang! lang=>hu"><span class="flag-icon flag-icon-hu"></span>&nbsp;&nbsp;Magyar</a>
+                            <a n:href="changeLang! lang=>hu"><span class="flag-icon flag-icon-hu change-lang-hu"></span>&nbsp;&nbsp;Magyar</a>
                         </li>
                         <li>
-                            <a n:href="changeLang! lang=>ru"><span class="flag-icon flag-icon-ru"></span>&nbsp;&nbsp;Pусский</a>
+                            <a n:href="changeLang! lang=>ru"><span class="flag-icon flag-icon-ru change-lang-ru"></span>&nbsp;&nbsp;Pусский</a>
                         </li>
                         <li>
-                            <a n:href="changeLang! lang=>sk"><span class="flag-icon flag-icon-sk"></span>&nbsp;&nbsp;Slovenčina</a>
+                            <a n:href="changeLang! lang=>sk"><span class="flag-icon flag-icon-sk change-lang-sk"></span>&nbsp;&nbsp;Slovenčina</a>
                         </li>
                     </ul>
                     <script type="text/javascript">
@@ -226,15 +226,15 @@
                     <div class="col-md-12" style="text-align:center;padding-top: 15px;">
                         <!-- Carousel indicators -->
                         <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                            <li data-target="#myCarousel" data-slide-to="3"></li>
-                            <li data-target="#myCarousel" data-slide-to="4"></li>
-                            <li data-target="#myCarousel" data-slide-to="5"></li>
-                            <li data-target="#myCarousel" data-slide-to="6"></li>
-                            <li data-target="#myCarousel" data-slide-to="7"></li>
-                            <li data-target="#myCarousel" data-slide-to="8"></li>
+                            <li data-target="#myCarousel" data-slide-to="0" class="lp-testimonial active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1" class="lp-testimonial"></li>
+                            <li data-target="#myCarousel" data-slide-to="2" class="lp-testimonial"></li>
+                            <li data-target="#myCarousel" data-slide-to="3" class="lp-testimonial"></li>
+                            <li data-target="#myCarousel" data-slide-to="4" class="lp-testimonial"></li>
+                            <li data-target="#myCarousel" data-slide-to="5" class="lp-testimonial"></li>
+                            <li data-target="#myCarousel" data-slide-to="6" class="lp-testimonial"></li>
+                            <li data-target="#myCarousel" data-slide-to="7" class="lp-testimonial"></li>
+                            <li data-target="#myCarousel" data-slide-to="8" class="lp-testimonial"></li>
                         </ol>
                     </div>
                 </div>
@@ -300,35 +300,35 @@
         <div class="container">
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="col-md-12 community_link form-group">
-                    <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:kennel_list lang=>$lang, reset=>1" role="button">{_ 'Kennels'}<span class="badge landing_badge counter">{DataModel::getKennelsCount()}</span></a>
+                    <a class="btn text-uppercase btn-lg btn-block lp-kennel-list" n:href="kennel:kennel_list lang=>$lang, reset=>1" role="button">{_ 'Kennels'}<span class="badge landing_badge counter">{DataModel::getKennelsCount()}</span></a>
                 </div>
                 <div class="col-md-12 community_link form-group">
-                    <a class="btn text-uppercase btn-lg btn-block" n:href="owner:owner_list lang=>$lang, reset=>1" role="button">{_ 'Owners'}<span class="badge landing_badge counter">{DataModel::getOwnersCount()}</span></a>
+                    <a class="btn text-uppercase btn-lg btn-block lp-owner-list" n:href="owner:owner_list lang=>$lang, reset=>1" role="button">{_ 'Owners'}<span class="badge landing_badge counter">{DataModel::getOwnersCount()}</span></a>
                 </div>
                 <div class="col-md-12 community_link form-group">
-                    <a class="btn text-uppercase btn-lg btn-block" n:href="handler:handler_list lang=>$lang, reset=>1" role="button">{_ 'Handlers'}<span class="badge landing_badge counter">{DataModel::getHandlersCount()}</span></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="col-md-12 community_link form-group">
-                    <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_list lang=>$lang, reset=>1" role="button">{_ 'Dogs with pedigree'}<span class="badge landing_badge counter">{DataModel::getDogsCount()}</span></a>
-                </div>
-                <div class="col-md-12 community_link form-group">
-                    <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_for_mating_list lang=>$lang, reset=>1" role="button">{_ 'Stud dogs'}<span class="badge landing_badge counter">{DataModel::getMattingDogsCount()}</span></a>
-                </div>
-                <div class="col-md-12 community_link form-group">
-                    <a class="btn text-uppercase btn-lg btn-block" n:href="dog:dog_for_sale_list lang=>$lang, reset=>1" role="button">{_ 'Dogs with pedigree for sale'}<span class="badge landing_badge counter">{DataModel::getDogsForSaleCount()}</span></a>
+                    <a class="btn text-uppercase btn-lg btn-block lp-handler-list" n:href="handler:handler_list lang=>$lang, reset=>1" role="button">{_ 'Handlers'}<span class="badge landing_badge counter">{DataModel::getHandlersCount()}</span></a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="col-md-12 community_link form-group">
-                    <a class="btn text-uppercase btn-lg btn-block" n:href="kennel:planned_litter_list lang=>$lang, reset=>1" role="button">{_ 'Planned litters'}<span class="badge landing_badge counter">{DataModel::getPlannedLittersCount()}</span></a>
+                    <a class="btn text-uppercase btn-lg btn-block lp-dog-list" n:href="dog:dog_list lang=>$lang, reset=>1" role="button">{_ 'Dogs with pedigree'}<span class="badge landing_badge counter">{DataModel::getDogsCount()}</span></a>
                 </div>
                 <div class="col-md-12 community_link form-group">
-                    <a class="btn text-uppercase btn-lg btn-block" n:href="puppy:puppy_list lang=>$lang, reset=>1" role="button">{_ 'Puppies for sale'}<span class="badge landing_badge counter">{DataModel::getPuppiesForSaleCount()}</span></a>
+                    <a class="btn text-uppercase btn-lg btn-block lp-dog-mating-list" n:href="dog:dog_for_mating_list lang=>$lang, reset=>1" role="button">{_ 'Stud dogs'}<span class="badge landing_badge counter">{DataModel::getMattingDogsCount()}</span></a>
                 </div>
                 <div class="col-md-12 community_link form-group">
-                    <a class="btn text-uppercase btn-lg btn-block" n:href="puppy:puppy_sold_list lang=>$lang, reset=>1" role="button">{_ 'Sold puppies'}<span class="badge landing_badge counter">{DataModel::getPuppiesSoldCount()}</span></a>
+                    <a class="btn text-uppercase btn-lg btn-block lp-dog-for-sale-list" n:href="dog:dog_for_sale_list lang=>$lang, reset=>1" role="button">{_ 'Dogs with pedigree for sale'}<span class="badge landing_badge counter">{DataModel::getDogsForSaleCount()}</span></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="col-md-12 community_link form-group">
+                    <a class="btn text-uppercase btn-lg btn-block lp-planned-litter-list" n:href="kennel:planned_litter_list lang=>$lang, reset=>1" role="button">{_ 'Planned litters'}<span class="badge landing_badge counter">{DataModel::getPlannedLittersCount()}</span></a>
+                </div>
+                <div class="col-md-12 community_link form-group">
+                    <a class="btn text-uppercase btn-lg btn-block lp-puppy-list" n:href="puppy:puppy_list lang=>$lang, reset=>1" role="button">{_ 'Puppies for sale'}<span class="badge landing_badge counter">{DataModel::getPuppiesForSaleCount()}</span></a>
+                </div>
+                <div class="col-md-12 community_link form-group">
+                    <a class="btn text-uppercase btn-lg btn-block lp-puppy-sold-list" n:href="puppy:puppy_sold_list lang=>$lang, reset=>1" role="button">{_ 'Sold puppies'}<span class="badge landing_badge counter">{DataModel::getPuppiesSoldCount()}</span></a>
                 </div>
             </div>
         </div>
