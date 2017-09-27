@@ -38,6 +38,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $paginator;
     public $page_title;
     public $lang_session;
+    public $premium_action_price = 29;
+    public $premium_regular_price = 69;
 
     /** @persistent */
     public $lang;
@@ -85,8 +87,54 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         return $extended_token;
     }
 
+    public function createCountdown() {
+        try {
+            $this->database->query("ALTER TABLE tbl_user ADD COLUMN(user_notify_premium_time DATETIME NULL)");
+        } catch (\Exception $ex) {
+            
+        }
+
+        $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+
+        $date_to = strtotime($user->user_notify_premium_time);
+        $date_now = strtotime(date("Y-m-d H:i:s"));
+
+        $date_diff = $date_now - $date_to;
+
+
+        $date_diff = (($date_diff / 3600) / 24) / 365;
+
+        if ($date_diff >= 1) {
+            $data = array();
+
+            $data['user_notify_premium_time'] = date("Y-m-d H:i:s", $date_now + 259200);
+
+            $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->update($data);
+        } else {
+            return $date_to;
+        }
+    }
+
+    public function getCountdownTime() {
+        $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
+
+        $date_to = strtotime($user->user_notify_premium_time);
+        $date_now = strtotime(date("Y-m-d H:i:s"));
+
+        $date_diff = $date_now - $date_to;
+
+
+        $date_diff = (($date_diff / 3600) / 24) / 365;
+
+        if ($date_diff >= 1) {
+            return date("Y-m-d H:i:s", $date_now + 259200);
+        } else {
+            return $date_to;
+        }
+    }
+
     public function getCountdownTimer() {
-        $date_to = strtotime("2017-09-22 9:30:00");
+        $date_to = $this->getCountdownTime();
         $date_now = strtotime(date("Y-m-d H:i:s"));
 
         $date_diff = $date_to - $date_now;
@@ -96,6 +144,31 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         } else {
             return 0;
         }
+    }
+
+    public function hasCountdownTime() {
+        $date_to = $this->getCountdownTime();
+        $date_now = strtotime(date("Y-m-d H:i:s"));
+
+        $date_diff = $date_to - $date_now;
+
+        if ($date_diff >= 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function getPremiumPrice() {
+        if ($this->hasCountdownTime()) {
+            return $this->premium_action_price;
+        } else {
+            return $this->premium_regular_price;
+        }
+    }
+
+    public function getPremiumRegularPrice() {
+        return $this->premium_regular_price;
     }
 
     public function getTimelineRow($id = 0) {
@@ -1374,6 +1447,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         if (isset($_GET['amt']))
             $amt = $_GET['amt'];
 
+        $amt = $this->getPremiumPrice();
+
         $rand = rand(10000000, 99999999);
 
         try {
@@ -1390,16 +1465,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $user = $this->database->table("tbl_user")->where("id=?", $this->logged_in_id)->fetch();
 
 
-        if ($amt == 30)
-            $description = "DOGFORSHOW - " . $this->translate("Premium account activation") . " " . $this->translate("for 6 months");
-        else
-        if ($amt == 54)
+//        if ($amt == 30)
+//            $description = "DOGFORSHOW - " . $this->translate("Premium account activation") . " " . $this->translate("for 6 months");
+//        else
+//        if ($amt == 54)
             $description = "DOGFORSHOW - " . $this->translate("Premium account activation") . " " . $this->translate("for 12 months");
-        else
-        if ($amt == 84)
-            $description = "DOGFORSHOW - " . $this->translate("Premium account activation") . " " . $this->translate("for 24 months");
-
-
+//        else
+//        if ($amt == 84)
+//            $description = "DOGFORSHOW - " . $this->translate("Premium account activation") . " " . $this->translate("for 24 months");
 // Prepare GET data
         $query = array();
         $query['currency_code'] = 'EUR';
@@ -1431,6 +1504,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
         if (isset($_GET['pay']))
             $pay = $_GET['pay'];
+        
+        $amt = $this->getPremiumPrice();
 
         $amt = number_format($amt, 2, ".", "");
 
@@ -1516,23 +1591,23 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
                     if ($_GET['RES'] == 0) {
                         if ($expiry > $curdate) {
-                            if ($amount == 30)
-                                $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 6 months"));
-                            else
-                            if ($amount == 54)
-                                $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 2 years"));
-                            else
-                            if ($amount == 84)
-                                $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 2 years"));
+//                            if ($amount == 30)
+//                                $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 6 months"));
+//                            else
+//                            if ($amount == 54)
+                                $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 1 years"));
+//                            else
+//                            if ($amount == 84)
+//                                $end = date("Y-m-d", strtotime(date("Y-m-d", strtotime($expiry)) . " + 2 years"));
                         }else {
-                            if ($amount == 30)
-                                $end = date('Y-m-d', strtotime('+6 months'));
-                            else
-                            if ($amount == 54)
-                                $end = date('Y-m-d', strtotime('+2 years'));
-                            else
-                            if ($amount == 84)
-                                $end = date('Y-m-d', strtotime('+2 years'));
+//                            if ($amount == 30)
+//                                $end = date('Y-m-d', strtotime('+6 months'));
+//                            else
+//                            if ($amount == 54)
+                                $end = date('Y-m-d', strtotime('+1 years'));
+//                            else
+//                            if ($amount == 84)
+//                                $end = date('Y-m-d', strtotime('+2 years'));
                         }
 
 // vykonaj upravy v db a superfakture, len pokial je transakcia autorizovana
@@ -1563,14 +1638,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
                         $sf = new \invoice();
 
-                        if ($amount == 30)
-                            $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 6 months"), "1", $amount, $user->state);
-                        else
-                        if ($amount == 54)
+//                        if ($amount == 30)
+//                            $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 6 months"), "1", $amount, $user->state);
+//                        else
+//                        if ($amount == 54)
                             $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 12 months"), "1", $amount, $user->state);
-                        else
-                        if ($amount == 84)
-                            $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 24 months"), "1", $amount, $user->state);
+//                        else
+//                        if ($amount == 84)
+//                            $response = $sf->hookNewOrder($transaction_id, $user->name . " " . $user->surname, $user->address, $user->city, $user->zip, "", $user->phone, "DOGFORSHOW - " . $this->translate("Premium account activation"), $this->translate("for 24 months"), "1", $amount, $user->state);
 
                         $id = $response->data->Invoice->id;
                         $token = $response->data->Invoice->token;
@@ -1632,7 +1707,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             if ($this->logged_in_id > 0)
                 $this->redirect("default");
             else {
-                $this->terminate();
+                $this->redirect("default");
+                //$this->terminate();
             }
         }
     }

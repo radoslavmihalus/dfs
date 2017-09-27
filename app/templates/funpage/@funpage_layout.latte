@@ -4,7 +4,7 @@
     <body>
         <!-- Google Tag Manager -->
         <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MTKG8H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        
+
         <!-- Modal Flash control  -->
         {include '../components/modal_control.latte'}
         <!-- top-menu -->
@@ -20,6 +20,7 @@
             <div class="row" style="margin-left: 0px;margin-right: 0px;">
                 <div class="col-md-12" style="padding-left: 5px;padding-right: 5px;">
                     {snippet contentBody}
+                        {include '../components/premium_notify_badge.latte'}
                         {include 'funpage_header.latte'}
                         <div class="col-md-12" style="padding:0px;">
                             {include content}

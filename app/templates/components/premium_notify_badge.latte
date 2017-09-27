@@ -1,0 +1,29 @@
+{if $presenter->action != "user_premium" && $presenter->action != "user_premium_activation"}
+    {if !$is_premium_user && $logged_in_profile_id>0}
+        {if $presenter->hasCountdownTime()}
+            <a class="limited-offer-notify animated tada infinite" style="text-decoration: none;" id="limited-offer-notify" n:href="user:user_premium">
+                <table>
+                    <tr>
+                        <td style="width:50px">
+                            <i class="fa fa-gift"></i>
+                        </td>
+                        <td style="width:80px">
+                            <span class="notify-text">{_ "We have a gift for you"}</span>
+                        </td>
+                </table>
+            </a>
+        {else}
+            <a class="limited-offer-notify animated tada infinite" style="text-decoration: none;" id="limited-offer-notify" n:href="user:user_premium">
+                <table>
+                    <tr>
+                        <td style="width:50px">
+                            <i class="fa fa-star"></i>
+                        </td>
+                        <td style="width:80px">
+                            <span class="notify-text">{_ "I want to get all the benefits"}</span>
+                        </td>
+                </table>
+            </a>
+        {/if}
+    {/if}
+{/if}

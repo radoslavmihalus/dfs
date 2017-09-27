@@ -78,6 +78,9 @@ class userPresenter extends BasePresenter {
     }
 
     public function actionUser_premium() {
+        if (!$this->lang) {
+            $this->lang = "en";
+        }
         try {
             $data = array();
 
@@ -86,11 +89,19 @@ class userPresenter extends BasePresenter {
         } catch (\Exception $ex) {
             
         }
+
+        try {
+            $this->createCountdown();
+        } catch (\Exception $ex) {
+            
+        }
     }
 
-    public function actionUser_premium_activation($amt = 50) {
+    public function actionUser_premium_activation() {
         if (isset($_GET['amt']))
             $amt = $_GET['amt'];
+
+        $amt = $this->getPremiumPrice();
 
         $this->amt = $amt;
 
