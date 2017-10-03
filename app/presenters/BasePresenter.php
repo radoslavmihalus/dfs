@@ -150,15 +150,19 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     }
 
     public function hasCountdownTime() {
-        //$date_to = date("Y-m-d H:i:s", strtotime($this->getCountdownTime()));
-        $date_to = $this->getCountdownTime();
-        $date_now = strtotime(date("Y-m-d H:i:s"));
+        if ($this->logged_in_profile_id > 0) {
+            //$date_to = date("Y-m-d H:i:s", strtotime($this->getCountdownTime()));
+            $date_to = $this->getCountdownTime();
+            $date_now = strtotime(date("Y-m-d H:i:s"));
 
-        $date_diff = $date_to - $date_now;
-        // \Tracy\Debugger::log($date_to . " | " . $date_now . " | " . $date_diff);
+            $date_diff = $date_to - $date_now;
+            // \Tracy\Debugger::log($date_to . " | " . $date_now . " | " . $date_diff);
 
-        if ($date_diff >= 0) {
-            return TRUE;
+            if ($date_diff >= 0) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
         } else {
             return FALSE;
         }
@@ -202,7 +206,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $notify['timeline_id'] = $article->id;
                 $notify['comment'] = "";
                 $notify['type'] = "article";
-                $this->database->table("tbl_notify")->insert($notify);
+                //$this->database->table("tbl_notify")->insert($notify);
             }
             $data = array();
             $data['publish'] = 0;
@@ -1689,7 +1693,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                         $mailer = new Nette\Mail\SmtpMailer(array(
                             'host' => 'mail.dogforshow.com',
                             'username' => 'info@dogforshow.com',
-                            'password' => 'awqbn154',
+                            'password' => 'V5T8-enu03F83ma',
                         ));
                         $mailer->send($mail);
 
@@ -1886,7 +1890,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $mailer = new Nette\Mail\SmtpMailer(array(
                     'host' => 'mail.dogforshow.com',
                     'username' => 'info@dogforshow.com',
-                    'password' => 'awqbn154',
+                    'password' => 'V5T8-enu03F83ma',
                 ));
                 $mailer->send($mail);
 
@@ -2036,7 +2040,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $mailer = new Nette\Mail\SmtpMailer(array(
                 'host' => 'mail.dogforshow.com',
                 'username' => 'info@dogforshow.com',
-                'password' => 'awqbn154',
+                'password' => 'V5T8-enu03F83ma',
             ));
             $mailer->send($mail);
 
@@ -2125,7 +2129,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $mailer = new Nette\Mail\SmtpMailer(array(
             'host' => 'mail.dogforshow.com',
             'username' => 'info@dogforshow.com',
-            'password' => 'awqbn154',
+            'password' => 'V5T8-enu03F83ma',
         ));
         $mailer->send($mail);
     }
@@ -2266,7 +2270,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $mailer = new Nette\Mail\SmtpMailer(array(
                     'host' => 'mail.dogforshow.com',
                     'username' => 'info@dogforshow.com',
-                    'password' => 'awqbn154',
+                    'password' => 'V5T8-enu03F83ma',
                 ));
                 $mailer->send($mail);
 

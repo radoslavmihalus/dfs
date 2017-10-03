@@ -77,7 +77,7 @@ class bloggerPresenter extends BasePresenter {
             $mailer = new Nette\Mail\SmtpMailer(array(
                 'host' => 'mail.dogforshow.com',
                 'username' => 'info@dogforshow.com',
-                'password' => 'awqbn154',
+                'password' => 'V5T8-enu03F83ma',
             ));
 
             $mailer->send($mail);
@@ -155,7 +155,7 @@ class bloggerPresenter extends BasePresenter {
             $mailer = new Nette\Mail\SmtpMailer(array(
                 'host' => 'mail.dogforshow.com',
                 'username' => 'info@dogforshow.com',
-                'password' => 'awqbn154',
+                'password' => 'V5T8-enu03F83ma',
             ));
 
             $mailer->send($mail);
@@ -243,7 +243,7 @@ class bloggerPresenter extends BasePresenter {
             $mailer = new Nette\Mail\SmtpMailer(array(
                 'host' => 'mail.dogforshow.com',
                 'username' => 'info@dogforshow.com',
-                'password' => 'awqbn154',
+                'password' => 'V5T8-enu03F83ma',
             ));
 
             $mailer->send($mail);
@@ -315,7 +315,7 @@ class bloggerPresenter extends BasePresenter {
             $mailer = new Nette\Mail\SmtpMailer(array(
                 'host' => 'mail.dogforshow.com',
                 'username' => 'info@dogforshow.com',
-                'password' => 'awqbn154',
+                'password' => 'V5T8-enu03F83ma',
             ));
 
             $mailer->send($mail);
