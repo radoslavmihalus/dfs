@@ -199,7 +199,8 @@ class kennelPresenter extends BasePresenter {
                 $this->paginator->getPaginator()->setPage($page->page);
             }
 
-            $page->page = $page->page + 1;
+            $page->page = $this->paginator->getPaginator()->getPage();
+            //$page->page = $page->page + 1;
 
             $i = 0;
 
