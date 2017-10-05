@@ -1126,6 +1126,39 @@ class kennelPresenter extends BasePresenter {
             //$id = $this->database->getInsertId();
 
             $this->data_model->addToTimeline($this->logged_in_kennel_id, $id, 7, $data['name'] . " - " . $data['month'] . "/" . $data['year'], $data['dog_image']);
+
+            try {
+                $tran = new DFSTranslator();
+
+                $tran->lang = 'en';
+
+                $fb_post = array();
+
+                $kennel = $this->database->table("tbl_userkennel")->where("id=?", $this->logged_in_kennel_id)->fetch();
+
+                $fb_post['title'] = "Planned litter " . $data['name'] . " - " . $data['month'] . "/" . $data['year'];
+                $fb_post['image'] = 'https://dogforshow.com/' . $bitch->dog_image;
+                $fb_post['type'] = 'link'; // post type
+                $fb_post['fid'] = '251674108333436'; //'114274177380'; //''; // dogforshow facebook funpage id
+                $fb_post['name'] = 'DOGFORSHOW'; // dogforshow facebook funpage name
+                $fb_post['cid'] = 'page'; // funpage type
+                $fb_post['message'] = 'When you add your planned litter on www.dogforshow.com, it will be automatically shared with more than 63 000 dog lovers from around the world on the DOGFORSHOW Facebook fan page.'; // dogforshow facebook funpage name
+                $fb_post['description'] = mb_strtoupper($kennel->kennel_name) . ' | ' . mb_strtoupper($tran->translate($bitch->breed_name)) . ' | ' . mb_strtoupper($tran->translate($bitch->country));
+                $fb_post['url'] = "https://dogforshow.com/kennel-planned-litter-list?id=" . $this->logged_in_kennel_id . "&lang=en";
+                $fb_post['time_post'] = date("Y-m-d H:i:s");
+                $fb_post['status'] = 1;
+                $fb_post['uid'] = 1;
+                $fb_post['delete'] = 0;
+                $fb_post['deplay'] = 5;
+                $fb_post['created'] = date("Y-m-d H:i:s");
+                $fb_post['changed'] = date("Y-m-d H:i:s");
+                $fb_post['access_token'] = 'CAAXspQlPuT0BAEu0Hcu54ht8J3ZBueZA9gwzCj2OZBPYv0a5Oy7pLbOBdOZCHsN63e4BnluUHZCUFjlAlNZCrOwawcQ2pkPytObK3KL7IYjTkRekZBLISek7ZC5Je4WXVfNc8g5kFvqEhckT3JEQOl4kFnZAavudqnUM3HhNa9joDefTprkxfDUZAPZA6dZBplZC0hHUZD'; //$this->getPostToken();
+
+                $this->database->table("tbl_posts")->insert($fb_post);
+            } catch (\Exception $ex) {
+                
+            }
+
             $this->redirect("kennel_planned_litter_list", array(id => $this->logged_in_kennel_id));
         } catch (\ErrorException $ex) {
             $this->flashMessage($ex->getMessage(), "Error");
