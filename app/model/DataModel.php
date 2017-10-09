@@ -1823,7 +1823,7 @@ class DataModel {
                 $row = $database->table("tbl_articles")->where("id=?", $id)->fetch();
                 $title = $row->header;
                 $description = $row->preface;
-                $image = DataModel::getURL() . "/" . $row->image;
+                $image = DataModel::getURL() . "/uploads/" . $row->image;
                 break;
             default :
                 return "";
