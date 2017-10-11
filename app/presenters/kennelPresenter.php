@@ -1144,7 +1144,7 @@ class kennelPresenter extends BasePresenter {
                 $fb_post['cid'] = 'page'; // funpage type
                 $fb_post['message'] = 'When you add your planned litter on www.dogforshow.com, it will be automatically shared with more than 63 000 dog lovers from around the world on the DOGFORSHOW Facebook fan page.'; // dogforshow facebook funpage name
                 $fb_post['description'] = mb_strtoupper($kennel->kennel_name) . ' | ' . mb_strtoupper($tran->translate($bitch->breed_name)) . ' | ' . mb_strtoupper($tran->translate($bitch->country));
-                $fb_post['url'] = "https://dogforshow.com/kennel-planned-litter-list?id=" . $this->logged_in_kennel_id . "&lang=en";
+                $fb_post['url'] = "https://dogforshow.com/kennel-planned-litter-list?id=" . $this->logged_in_kennel_id . "&lang=en&litter=$id#litterid_$id";
                 $fb_post['time_post'] = date("Y-m-d H:i:s");
                 $fb_post['status'] = 1;
                 $fb_post['uid'] = 1;
