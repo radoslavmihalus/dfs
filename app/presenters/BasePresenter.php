@@ -1693,7 +1693,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                         $mailer = new Nette\Mail\SmtpMailer(array(
                             'host' => 'mail.dogforshow.com',
                             'username' => 'info@dogforshow.com',
-                            'password' => 'V5T8-enu03F83ma',
+                            'password' => 'cuKn2QmKk192UDME',
                         ));
                         $mailer->send($mail);
 
@@ -1890,7 +1890,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $mailer = new Nette\Mail\SmtpMailer(array(
                     'host' => 'mail.dogforshow.com',
                     'username' => 'info@dogforshow.com',
-                    'password' => 'V5T8-enu03F83ma',
+                    'password' => 'cuKn2QmKk192UDME',
                 ));
                 $mailer->send($mail);
 
@@ -2040,7 +2040,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
             $mailer = new Nette\Mail\SmtpMailer(array(
                 'host' => 'mail.dogforshow.com',
                 'username' => 'info@dogforshow.com',
-                'password' => 'V5T8-enu03F83ma',
+                'password' => 'cuKn2QmKk192UDME',
             ));
             $mailer->send($mail);
 
@@ -2129,7 +2129,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
         $mailer = new Nette\Mail\SmtpMailer(array(
             'host' => 'mail.dogforshow.com',
             'username' => 'info@dogforshow.com',
-            'password' => 'V5T8-enu03F83ma',
+            'password' => 'cuKn2QmKk192UDME',
         ));
         $mailer->send($mail);
     }
@@ -2270,7 +2270,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
                 $mailer = new Nette\Mail\SmtpMailer(array(
                     'host' => 'mail.dogforshow.com',
                     'username' => 'info@dogforshow.com',
-                    'password' => 'V5T8-enu03F83ma',
+                    'password' => 'cuKn2QmKk192UDME',
                 ));
                 $mailer->send($mail);
 
