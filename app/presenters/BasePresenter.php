@@ -38,7 +38,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter {
     public $paginator;
     public $page_title;
     public $lang_session;
-    public $premium_action_price = 9.99;
+    public $premium_action_price = 19;
     public $premium_regular_price = 69;
 
     /** @persistent */
