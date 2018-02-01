@@ -787,8 +787,10 @@ class dogPresenter extends BasePresenter {
         $form->addSelect("ddlProfile")->setItems($profiles)->setValue($this->logged_in_profile_id)->setRequired($this->translate("Required field"));
         $form->addText("ddlDogFather")->setRequired($this->translate("Required field"));
         $form->addText("ddlDogMother")->setRequired($this->translate("Required field"));
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmCreateDogProfileSucceeded');
-        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmCreateDogProfileSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmCreateDogProfileSucceeded');
+//        $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
 
         return $form;
     }
@@ -857,7 +859,9 @@ class dogPresenter extends BasePresenter {
         $form->addSelect("ddlProfile")->setItems($profiles)->setValue($profile->profile_id)->setRequired($this->translate("Required field"));
         $form->addText("ddlDogFather")->setValue($profile->dog_father);
         $form->addText("ddlDogMother")->setValue($profile->dog_mother);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfileSucceeded');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmEditDogProfileSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfileSucceeded');
 
         return $form;
     }
@@ -866,7 +870,9 @@ class dogPresenter extends BasePresenter {
         $id = $this->dog_id;
         $form = new Form();
         $form->addHidden("txtDogProfilePhoto")->setRequired();
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfilePictureSucceeded');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmEditDogProfilePictureSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditDogProfilePictureSucceeded');
         return $form;
     }
 
@@ -877,8 +883,10 @@ class dogPresenter extends BasePresenter {
         $form->addText("ddlDate");
         $form->addText("txtChampionshipName");
         $form->addHidden("txtChampionshipPicture");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddTitleSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddTitleSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmDogAddTitleSucceeded');
         return $form;
     }
 
@@ -919,7 +927,9 @@ class dogPresenter extends BasePresenter {
         $form->addText("txtPedigree10")->setValue($txt10)->setRequired();
         $form->addText("txtPedigree11")->setValue($txt11)->setRequired();
         $form->addText("txtPedigree12")->setValue($txt12)->setRequired();
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddPedigreeSucceeded');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmAddPedigreeSucceeded');
+        //$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddPedigreeSucceeded');
         return $form;
     }
 
@@ -934,8 +944,10 @@ class dogPresenter extends BasePresenter {
         $form->addText("ddlDate")->setValue($date);
         $form->addText("txtChampionshipName")->setValue($row->description);
         $form->addHidden("txtChampionshipPicture")->setValue($row->image);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditTitleSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditTitleSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmDogEditTitleSucceeded');
         return $form;
     }
 
@@ -946,8 +958,10 @@ class dogPresenter extends BasePresenter {
         $form->addText("ddlDate")->setRequired();
         $form->addText("txtHealthName")->setRequired();
         $form->addHidden("txtHealthPicture");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddHealthSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddHealthSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmDogAddHealthSucceeded');
         return $form;
     }
 
@@ -962,8 +976,10 @@ class dogPresenter extends BasePresenter {
         $form->addText("ddlDate")->setValue($date)->setRequired();
         $form->addText("txtHealthName")->setValue($row->description)->setRequired();
         $form->addHidden("txtHealthPicture")->setValue($row->image);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditHealthSucceeded');
+        //$form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditHealthSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmDogEditHealthSucceeded');
         return $form;
     }
 
@@ -978,8 +994,10 @@ class dogPresenter extends BasePresenter {
         $form->addText("ddlDate")->setValue($date)->setRequired();
         $form->addText("txtMatingBitchName")->setValue($row->description)->setRequired();
         $form->addHidden("txtMatingBitchPicture")->setValue($row->image);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditMatingSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditMatingSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmDogEditMatingSucceeded');
         return $form;
     }
 
@@ -990,8 +1008,10 @@ class dogPresenter extends BasePresenter {
         $form->addText("ddlDate")->setValue($date)->setRequired();
         $form->addText("txtMatingBitchName")->setRequired();
         $form->addHidden("txtMatingBitchPicture");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddMatingSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddMatingSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmDogAddMatingSucceeded');
         return $form;
     }
 
@@ -1006,8 +1026,10 @@ class dogPresenter extends BasePresenter {
         $form->addText("ddlDate")->setValue($date)->setRequired();
         $form->addText("txtWorkExamName")->setValue($row->description)->setRequired();
         $form->addHidden("txtWorkExamPicture")->setValue($row->image);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditWorkexamSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditWorkexamSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmDogEditWorkexamSucceeded');
         return $form;
     }
 
@@ -1018,8 +1040,11 @@ class dogPresenter extends BasePresenter {
         $form->addText("ddlDate")->setRequired();
         $form->addText("txtWorkExamName")->setRequired();
         $form->addHidden("txtWorkExamPicture");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddWorkexamSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddWorkexamSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmDogAddWorkexamSucceeded');
+        
         return $form;
     }
 
@@ -1048,8 +1073,10 @@ class dogPresenter extends BasePresenter {
         $form->addHidden("dog_id")->setValue($id);
         $form->addText("txtCoownerName")->setRequired();
         $form->addSelect("ddlCountry")->setItems($countries)->setRequired();
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddCoownerSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogAddCoownerSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmDogAddCoownerSucceeded');
         return $form;
     }
 
@@ -1081,8 +1108,10 @@ class dogPresenter extends BasePresenter {
         $form->addHidden("dog_id")->setValue($id);
         $form->addText("txtCoownerName")->setValue($result->coowner_name);
         $form->addSelect("ddlCountry")->setItems($countries)->setValue($result->coowner_state);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditCoownerSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmDogEditCoownerSucceeded');
         $form->addSubmit('btnCancel')->onClick[] = array($this, 'formCanceled');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmDogEditCoownerSucceeded');
         return $form;
     }
 
@@ -1208,7 +1237,9 @@ class dogPresenter extends BasePresenter {
         $form->addCheckboxList("chckTitles")->setItems($titles);
         $form->addText("txtOtherTitle");
         $form->addText("txtShowImage");
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddShowSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmAddShowSucceeded');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmAddShowSucceeded');
 
         return $form;
     }
@@ -1443,7 +1474,9 @@ class dogPresenter extends BasePresenter {
         $form->addCheckboxList("chckTitles")->setItems($titles)->setValue($sel_titles);
         $form->addText("txtOtherTitle")->setValue($show->other_title);
         $form->addText("txtShowImage")->setValue($show->show_image);
-        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditShowSucceeded');
+//        $form->addSubmit('btnSubmit')->onClick[] = array($this, 'frmEditShowSucceeded');
+        $form->addSubmit('btnSubmit','Save');
+        $form->onSuccess[] = array($this, 'frmEditShowSucceeded');
 
         return $form;
     }
